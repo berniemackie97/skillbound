@@ -20,21 +20,29 @@ Skillbound is a comprehensive web platform that imports OSRS character data from
 
 - **Next.js 14+** with App Router (React Server Components)
 - **TypeScript 5+** with strict mode
-- **Tailwind CSS** for styling
-- **Prisma** as ORM
+- **Drizzle ORM** for type-safe database queries
+- **Tailwind CSS** for styling (planned)
 
 ### Infrastructure
 
-- **Vercel** for hosting
-- **Neon** for PostgreSQL database
-- **Upstash Redis** for caching and rate limiting
-- **Inngest** for background jobs and workflows
-- **Auth.js** for authentication
+- **PostgreSQL 15** for database
+- **Docker** for local development
+- **Vercel** for hosting (planned)
+- **Auth.js** for authentication (planned)
+- **Inngest** for background jobs (planned)
 
-### Observability
+### Implemented Features
 
-- **Sentry** for error tracking
-- **Structured logging** with correlation IDs
+✅ **Database Layer** - Complete Drizzle schemas for all entities
+✅ **Hiscores API Client** - Retry logic, caching, CSV parsing
+✅ **Character Lookup API** - Request validation with Zod
+✅ **Domain Logic** - XP calculations with full test coverage
+
+### In Progress
+
+🚧 **Character Management UI** - Track and manage characters
+🚧 **Snapshot System** - Historical progress tracking
+🚧 **Requirements Engine** - Quest/diary completion checking
 
 ## Architecture
 
@@ -42,12 +50,15 @@ Skillbound follows a modular monolith architecture with strict boundaries:
 
 ```
 /apps
-  /web              Next.js application
+  /web              Next.js 14 application with App Router
 /packages
-  /domain           Pure business logic (no framework dependencies)
-  /database         Prisma schema and migrations
-  /integrations     External API clients (hiscores, wiki)
-  /content          Content bundle schemas and validators
+  /domain           Pure business logic with XP calculations
+  /database         Drizzle ORM schemas and migrations
+  /hiscores         OSRS Hiscores API client with caching
+/tooling
+  /typescript       Shared TypeScript configurations
+  /eslint           Shared ESLint configurations
+  /prettier         Shared Prettier configuration
   /ui               Shared UI primitives
   /testing          Test utilities and fixtures
 /tooling
@@ -68,44 +79,48 @@ Skillbound follows a modular monolith architecture with strict boundaries:
 
 ### Prerequisites
 
-- Node.js 20+
-- pnpm 8+
-- PostgreSQL (via Neon or local)
-- Redis (via Upstash or local)
+- **Node.js 20+** and **pnpm 8+**
+- **Docker** (for local PostgreSQL database)
 
-### Installation
+### Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/skillbound.git
-cd skillbound
-
-# Install dependencies
+# 1. Install dependencies
 pnpm install
 
-# Copy environment variables
-cp .env.example .env.local
+# 2. Copy environment variables
+cp .env.example .env
 
-# Set up database
-pnpm db:migrate
-pnpm db:generate
+# 3. Start PostgreSQL database
+docker compose up -d
 
-# Start development server
-pnpm dev
+# 4. Push database schema
+pnpm db:push
+
+# 5. Start development server
+pnpm --filter @skillbound/web dev
 ```
 
-The app will be available at http://localhost:3000
+The app will be available at **http://localhost:3000**
 
-### Environment Variables
+### Test the API
 
-See `.env.example` for required environment variables:
+```bash
+# Test character lookup (replace with any OSRS player name)
+curl "http://localhost:3000/api/characters/lookup?username=Lynx%20Titan&mode=normal"
+```
 
-- `DATABASE_URL`: Neon PostgreSQL connection string
-- `REDIS_URL`: Upstash Redis connection string
-- `NEXTAUTH_SECRET`: Auth.js secret
-- `NEXTAUTH_URL`: Application URL
-- `GOOGLE_CLIENT_ID`: Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET`: Google OAuth client secret
+You should see JSON with all skills and boss kill counts!
+
+### Database Management
+
+See [DATABASE_SETUP.md](./DATABASE_SETUP.md) for detailed database instructions.
+
+```bash
+pnpm db:generate  # Generate new migration after schema changes
+pnpm db:push      # Push schema changes directly (development)
+pnpm db:studio    # Open visual database browser
+```
 
 ## Development
 
@@ -127,10 +142,10 @@ pnpm test:integration # Run integration tests
 pnpm test:e2e         # Run e2e tests
 
 # Database
-pnpm db:migrate       # Run migrations
-pnpm db:studio        # Open Prisma Studio
-pnpm db:generate      # Generate Prisma Client
-pnpm db:push          # Push schema to database (dev only)
+pnpm db:generate      # Generate migrations from schema
+pnpm db:push          # Push schema to database (dev)
+pnpm db:migrate       # Run pending migrations (production)
+pnpm db:studio        # Open Drizzle Studio
 ```
 
 ### Testing Strategy
