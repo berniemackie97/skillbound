@@ -36,6 +36,91 @@ const SKILL_NAMES = [
 ] as const;
 
 /**
+ * Activity/Boss names in the order they appear in the CSV (after skills)
+ * Based on OSRS Hiscores API order
+ */
+const ACTIVITY_NAMES = [
+  'league_points',
+  'bounty_hunter_hunter',
+  'bounty_hunter_rogue',
+  'bounty_hunter_legacy_hunter',
+  'bounty_hunter_legacy_rogue',
+  'clue_scrolls_all',
+  'clue_scrolls_beginner',
+  'clue_scrolls_easy',
+  'clue_scrolls_medium',
+  'clue_scrolls_hard',
+  'clue_scrolls_elite',
+  'clue_scrolls_master',
+  'lms_rank',
+  'pvp_arena_rank',
+  'soul_wars_zeal',
+  'rifts_closed',
+  'colosseum_glory',
+  'abyssal_sire',
+  'alchemical_hydra',
+  'artio',
+  'barrows_chests',
+  'bryophyta',
+  'callisto',
+  'calvarion',
+  'cerberus',
+  'chambers_of_xeric',
+  'chambers_of_xeric_challenge_mode',
+  'chaos_elemental',
+  'chaos_fanatic',
+  'commander_zilyana',
+  'corporeal_beast',
+  'crazy_archaeologist',
+  'dagannoth_prime',
+  'dagannoth_rex',
+  'dagannoth_supreme',
+  'deranged_archaeologist',
+  'duke_sucellus',
+  'general_graardor',
+  'giant_mole',
+  'grotesque_guardians',
+  'hespori',
+  'kalphite_queen',
+  'king_black_dragon',
+  'kraken',
+  'kreearra',
+  'kril_tsutsaroth',
+  'lunar_chests',
+  'mimic',
+  'nex',
+  'nightmare',
+  'phosanis_nightmare',
+  'obor',
+  'phantom_muspah',
+  'sarachnis',
+  'scorpia',
+  'scurrius',
+  'skotizo',
+  'sol_heredit',
+  'spindel',
+  'tempoross',
+  'the_gauntlet',
+  'the_corrupted_gauntlet',
+  'the_leviathan',
+  'the_whisperer',
+  'theatre_of_blood',
+  'theatre_of_blood_hard_mode',
+  'thermonuclear_smoke_devil',
+  'tombs_of_amascut',
+  'tombs_of_amascut_expert',
+  'tzkal_zuk',
+  'tztok_jad',
+  'vardorvis',
+  'venenatis',
+  'vetion',
+  'vorkath',
+  'wintertodt',
+  'zalcano',
+  'zulrah',
+] as const;
+
+/**
  * Parse CSV line into skill data
  */
 function parseSkillLine(line: string): RawSkillData {
@@ -96,14 +181,18 @@ export function parseHiscoresCsv(
   }
 
   // Parse activities/bosses (remaining lines)
-  // We'll skip naming them for now since they vary and require a lookup
   for (let i = SKILL_NAMES.length; i < lines.length; i++) {
-    const activityName = `activity_${i - SKILL_NAMES.length}`;
+    const activityIndex = i - SKILL_NAMES.length;
+    const activityName = ACTIVITY_NAMES[activityIndex];
     const line = lines[i];
+
     if (!line) {
       continue;
     }
-    activities[activityName] = parseActivityLine(line);
+
+    // Use the proper activity name if we have it, otherwise fallback to index
+    const key = activityName ?? `activity_${activityIndex}`;
+    activities[key] = parseActivityLine(line);
   }
 
   return {
