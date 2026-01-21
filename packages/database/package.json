@@ -1,0 +1,35 @@
+{
+  "name": "@skillbound/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts",
+    "./client": "./src/client.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push",
+    "studio": "drizzle-kit studio",
+    "test": "vitest run",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.1",
+    "drizzle-orm": "^0.36.4",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@skillbound/eslint-config": "workspace:*",
+    "@skillbound/typescript-config": "workspace:*",
+    "@types/node": "^20.11.5",
+    "drizzle-kit": "^0.28.1",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
+  }
+}

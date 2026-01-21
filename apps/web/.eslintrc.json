@@ -1,0 +1,6 @@
+{
+  "extends": ["@skillbound/eslint-config", "next/core-web-vitals"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

@@ -17,12 +17,14 @@ Skillbound is a comprehensive web platform that imports OSRS character data from
 ## Tech Stack
 
 ### Core
+
 - **Next.js 14+** with App Router (React Server Components)
 - **TypeScript 5+** with strict mode
 - **Tailwind CSS** for styling
 - **Prisma** as ORM
 
 ### Infrastructure
+
 - **Vercel** for hosting
 - **Neon** for PostgreSQL database
 - **Upstash Redis** for caching and rate limiting
@@ -30,6 +32,7 @@ Skillbound is a comprehensive web platform that imports OSRS character data from
 - **Auth.js** for authentication
 
 ### Observability
+
 - **Sentry** for error tracking
 - **Structured logging** with correlation IDs
 
@@ -176,6 +179,7 @@ External API clients with proper error handling:
 - **ThirdPartyClient**: Optional WiseOldMan/Temple integration
 
 All clients implement:
+
 - Timeout and AbortSignal support
 - Exponential backoff retries
 - Circuit breaker pattern
