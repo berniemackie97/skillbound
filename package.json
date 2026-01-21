@@ -1,0 +1,48 @@
+{
+  "name": "skillbound",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:e2e": "turbo run test:e2e",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "db:migrate": "pnpm --filter @skillbound/database migrate",
+    "db:studio": "pnpm --filter @skillbound/database studio",
+    "db:generate": "pnpm --filter @skillbound/database generate",
+    "db:push": "pnpm --filter @skillbound/database push",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@skillbound/eslint-config": "workspace:*",
+    "@skillbound/prettier-config": "workspace:*",
+    "@skillbound/typescript-config": "workspace:*",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "turbo": "^1.12.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@skillbound/prettier-config"
+}

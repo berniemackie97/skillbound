@@ -1,0 +1,91 @@
+name: Database
+
+on:
+  push:
+    paths:
+      - 'packages/database/prisma/**'
+      - 'packages/database/migrations/**'
+  pull_request:
+    paths:
+      - 'packages/database/prisma/**'
+      - 'packages/database/migrations/**'
+
+jobs:
+  migration-check:
+    name: Migration Check
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: skillbound
+          POSTGRES_PASSWORD: skillbound
+          POSTGRES_DB: skillbound_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8.15.0'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check migration files
+        run: |
+          cd packages/database
+          # Ensure migrations are named correctly
+          for file in prisma/migrations/*/migration.sql; do
+            if [ ! -f "$file" ]; then
+              echo "Invalid migration structure"
+              exit 1
+            fi
+          done
+
+      - name: Validate schema
+        run: pnpm --filter @skillbound/database prisma validate
+
+      - name: Test migrations (up)
+        run: pnpm --filter @skillbound/database migrate deploy
+        env:
+          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_test
+
+      - name: Generate Prisma Client
+        run: pnpm --filter @skillbound/database generate
+
+      - name: Check for schema drift
+        run: |
+          pnpm --filter @skillbound/database prisma migrate diff \
+            --from-schema-datamodel packages/database/prisma/schema.prisma \
+            --to-schema-datasource packages/database/prisma/schema.prisma \
+            --exit-code
+        env:
+          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_test
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Database migrations validated successfully!'
+            })
