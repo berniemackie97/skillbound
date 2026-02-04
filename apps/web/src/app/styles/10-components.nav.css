@@ -156,6 +156,12 @@
   display: none;
 }
 
+/* Hide mobile menu panel/backdrop on desktop */
+.mobile-menu-panel,
+.mobile-menu-backdrop {
+  display: none;
+}
+
 /* ==========================================================================
    Mobile Navigation - Compact single-row layout with hamburger
    ========================================================================== */
@@ -167,6 +173,7 @@
     border-width: 1px;
     border-image: none;
     border-color: var(--border);
+    flex-wrap: wrap;
     box-shadow:
       inset 0 1px 0 rgba(255, 223, 128, 0.1),
       0 4px 12px rgba(0, 0, 0, 0.4);
@@ -210,7 +217,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    order: -1; /* Place before nav-actions */
+    order: 2;
   }
 
   .mobile-menu-toggle:hover {
@@ -244,6 +251,7 @@
 
   /* Mobile menu backdrop */
   .mobile-menu-backdrop {
+    display: block;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
@@ -254,6 +262,7 @@
 
   /* Mobile menu slide-out panel */
   .mobile-menu-panel {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -264,6 +273,9 @@
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
     z-index: 100;
     transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -271,6 +283,9 @@
 
   .mobile-menu-panel.open {
     transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   /* Mobile menu nav links */

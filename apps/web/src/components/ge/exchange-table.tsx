@@ -4,6 +4,7 @@ import { Fragment, memo, useCallback, useEffect, useLayoutEffect, useRef, useSta
 
 import { formatGp, formatRoi, formatTimeAgo, getItemIconUrl } from '@/lib/trading/ge-service';
 
+import { MobileFilterSheet } from './mobile-filter-sheet';
 import { PriceChartPanel } from './price-chart-panel';
 
 export interface ExchangeItem {
@@ -237,6 +238,7 @@ export function ExchangeTable({
   const [expandedItemId, setExpandedItemId] = useState<number | null>(null);
   const [openFilter, setOpenFilter] = useState<ColumnFilterKey | null>(null);
   const [now, setNow] = useState<Date | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const tableRef = useRef<HTMLDivElement | null>(null);
   const rowRefs = useRef<Map<number, HTMLTableRowElement>>(new Map());
   const rowPositions = useRef<Map<number, number>>(new Map());
@@ -250,12 +252,27 @@ export function ExchangeTable({
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(max-width: 768px)');
+    const handleChange = () => setIsMobile(media.matches);
+    handleChange();
+    if (media.addEventListener) {
+      media.addEventListener('change', handleChange);
+      return () => media.removeEventListener('change', handleChange);
+    }
+    media.addListener(handleChange);
+    return () => media.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (!tableRef.current) return;
       const target = event.target as Node;
       if (
         tableRef.current.contains(target) &&
-        (target as HTMLElement).closest('.filter-popover, .filter-btn')
+        (target as HTMLElement).closest(
+          '.filter-popover, .filter-btn, .mobile-filter-sheet, .mobile-filter-backdrop'
+        )
       ) {
         return;
       }
@@ -317,6 +334,16 @@ export function ExchangeTable({
   const handleOpenFilter = useCallback((key: ColumnFilterKey | null) => {
     setOpenFilter(key);
   }, []);
+
+  const filterLabels: Record<ColumnFilterKey, string> = {
+    buyPrice: 'Buy Price',
+    sellPrice: 'Sell Price',
+    margin: 'Margin',
+    profit: 'Profit',
+    roi: 'ROI %',
+    volume: 'Volume',
+    potentialProfit: 'Pot. Profit',
+  };
 
   // Common props for all SortHeader components
   const sortHeaderProps = {
@@ -539,6 +566,21 @@ export function ExchangeTable({
           ))}
         </tbody>
       </table>
+
+      {isMobile && openFilter && (
+        <MobileFilterSheet
+          filterKey={openFilter}
+          isOpen={Boolean(openFilter)}
+          label={filterLabels[openFilter]}
+          maxValue={columnFilters[openFilter].max}
+          minValue={columnFilters[openFilter].min}
+          onApply={() => onColumnFilterApply(openFilter)}
+          onClear={() => onColumnFilterClear(openFilter)}
+          onClose={() => setOpenFilter(null)}
+          onMaxChange={(value) => onColumnFilterChange(openFilter, 'max', value)}
+          onMinChange={(value) => onColumnFilterChange(openFilter, 'min', value)}
+        />
+      )}
 
       {/* Pagination */}
       <div className="table-pagination">

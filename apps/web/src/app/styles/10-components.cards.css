@@ -1105,15 +1105,6 @@
 }
 
 @media (max-width: 860px) {
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-  }
-
   .form-grid {
     grid-template-columns: 1fr;
   }

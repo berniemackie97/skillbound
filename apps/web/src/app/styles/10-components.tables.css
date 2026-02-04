@@ -344,6 +344,113 @@
   filter: brightness(1.1);
 }
 
+/* Mobile filter sheet */
+.mobile-filter-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 80;
+  animation: fadeIn 0.2s ease;
+}
+
+.mobile-filter-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(36, 28, 16, 0.98), rgba(20, 14, 8, 0.98));
+  border-top: 1px solid var(--border);
+  border-radius: 18px 18px 0 0;
+  padding: 18px;
+  z-index: 90;
+  box-shadow: 0 -12px 24px rgba(0, 0, 0, 0.6);
+  animation: slideIn 0.22s ease;
+}
+
+.mobile-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.mobile-filter-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mobile-filter-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.mobile-filter-body {
+  display: grid;
+  gap: 12px;
+}
+
+.mobile-filter-field {
+  display: grid;
+  gap: 6px;
+}
+
+.mobile-filter-field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.mobile-filter-field input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.mobile-filter-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.mobile-filter-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.mobile-filter-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mobile-filter-btn.secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.mobile-filter-btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 /* Star and expand buttons */
 .exchange-table .col-star,
 .exchange-table .col-expand {
