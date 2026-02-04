@@ -1,4 +1,9 @@
-import { getLevelForXp, getXpForLevel, SKILLS } from '@skillbound/domain';
+import {
+  getLevelForXp,
+  getXpForLevel,
+  MAX_LEVEL,
+  SKILLS,
+} from '@skillbound/domain';
 
 import SkillCalculator from '@/components/skills/skill-calculator';
 import { getSessionUser } from '@/lib/auth/auth-helpers';
@@ -51,9 +56,10 @@ export default async function CalculatorsPage({
       ? skillParam
       : 'prayer'
   ) as (typeof SKILLS)[number];
-  const currentLevelParam = getStringParam(resolvedSearchParams?.currentLevel) || '1';
+  const currentLevelParam =
+    getStringParam(resolvedSearchParams?.currentLevel) || '1';
   const currentXpParam = getStringParam(resolvedSearchParams?.currentXp) || '';
-  const targetLevelParam = getStringParam(resolvedSearchParams?.targetLevel) || '2';
+  const rawTargetLevelParam = getStringParam(resolvedSearchParams?.targetLevel);
   const usernameParam = getStringParam(resolvedSearchParams?.username).trim();
   const mode = getStringParam(resolvedSearchParams?.mode) || 'auto';
 
@@ -84,6 +90,14 @@ export default async function CalculatorsPage({
   } else {
     resolvedCurrentLevel = parsedLevel;
   }
+
+  const fallbackTargetLevel =
+    resolvedCurrentLevel !== null
+      ? Math.min(resolvedCurrentLevel + 1, MAX_LEVEL)
+      : null;
+  const targetLevelParam =
+    rawTargetLevelParam ||
+    (fallbackTargetLevel !== null ? String(fallbackTargetLevel) : '2');
 
   const calculator = await getCalculatorDataForSkill(skill);
 

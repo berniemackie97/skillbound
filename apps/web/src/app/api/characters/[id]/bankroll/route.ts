@@ -8,6 +8,7 @@ import {
   getBankroll,
   setBankroll,
   recalculateBankroll,
+  adjustBankroll,
   verifyCharacterOwnership,
 } from '@/lib/trading/trading-service';
 
@@ -18,6 +19,10 @@ const paramsSchema = z.object({
 const updateBankrollSchema = z.object({
   currentBankroll: z.number().int().nonnegative(),
   initialBankroll: z.number().int().nonnegative().optional(),
+});
+
+const adjustBankrollSchema = z.object({
+  delta: z.number().int().positive(),
 });
 
 /**
@@ -212,6 +217,87 @@ export async function POST(
     const problem = createProblemDetails({
       status: 500,
       title: 'Failed to recalculate bankroll',
+      detail: errorMessage,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+}
+
+/**
+ * PATCH /api/characters/[id]/bankroll
+ *
+ * Adjust bankroll by a delta amount without changing the starting bankroll.
+ *
+ * Body:
+ * {
+ *   delta: number (positive)
+ * }
+ */
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id?: string }> }
+) {
+  const user = await getSessionUser();
+  if (!user) {
+    return unauthorizedResponse();
+  }
+
+  const resolvedParams = await params;
+  const parsedParams = paramsSchema.safeParse(resolvedParams);
+  if (!parsedParams.success) {
+    const problem = createProblemDetails({
+      status: 400,
+      title: 'Invalid character id',
+      detail: 'Character id must be a valid UUID.',
+      errors: parsedParams.error.issues,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const characterId = parsedParams.data.id;
+
+  // Verify ownership
+  const isOwner = await verifyCharacterOwnership(characterId, user.id);
+  if (!isOwner) {
+    const problem = createProblemDetails({
+      status: 404,
+      title: 'Character not found',
+      detail: 'No saved character exists for that id.',
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    const problem = createProblemDetails({
+      status: 400,
+      title: 'Invalid JSON',
+      detail: 'Request body must be valid JSON.',
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const parsed = adjustBankrollSchema.safeParse(body);
+  if (!parsed.success) {
+    const problem = createProblemDetails({
+      status: 400,
+      title: 'Invalid bankroll adjustment',
+      detail: 'Delta must be a positive integer.',
+      errors: parsed.error.issues,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  try {
+    const bankroll = await adjustBankroll(characterId, parsed.data.delta);
+    return NextResponse.json({ data: bankroll });
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    const problem = createProblemDetails({
+      status: 500,
+      title: 'Failed to adjust bankroll',
       detail: errorMessage,
     });
     return NextResponse.json(problem, { status: problem.status });

@@ -54,6 +54,12 @@ export interface GeExchangeItem {
   volume: number | null;
   avgHighPrice: number | null;
   avgLowPrice: number | null;
+  volume5m: number | null;
+  volume1h: number | null;
+  avgHighPrice5m: number | null;
+  avgLowPrice5m: number | null;
+  avgHighPrice1h: number | null;
+  avgLowPrice1h: number | null;
 }
 
 export interface GeItemFilters {
@@ -103,12 +109,14 @@ export interface PricePoint {
  */
 export type ChartPeriod = 'live' | '1w' | '1m' | '1y' | '5y' | 'all';
 
+type WikiClientKind = 'latest' | 'interval' | 'mapping' | 'timeseries';
+
 /**
- * Create a wiki prices client with caching
+ * Create a wiki prices client with caching tuned to the data type.
  */
-function getWikiClient() {
+function getWikiClient(kind: WikiClientKind) {
   const cache = getWikiCache();
-  const cacheTtlMs = getWikiCacheTtlMs('mapping');
+  const cacheTtlMs = getWikiCacheTtlMs(kind);
   const userAgent =
     process.env['SKILLBOUND_USER_AGENT'] ??
     process.env['INTEGRATIONS_USER_AGENT'] ??
@@ -126,13 +134,15 @@ function getWikiClient() {
  * Get all GE items with current prices and calculations
  */
 export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
-  const client = getWikiClient();
+  const mappingClient = getWikiClient('mapping');
+  const latestClient = getWikiClient('latest');
+  const intervalClient = getWikiClient('interval');
 
   const [mappings, latestPrices, intervalPrices, hourlyPrices] = await Promise.all([
-    client.getItemMappings(),
-    client.getLatestPrices(),
-    client.get5MinutePrices(),
-    client.get1HourPrices(),
+    mappingClient.getItemMappings(),
+    latestClient.getLatestPrices(),
+    intervalClient.get5MinutePrices(),
+    intervalClient.get1HourPrices(),
   ]);
 
   const items: GeExchangeItem[] = [];
@@ -145,21 +155,21 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
     const buyPrice = latest?.high ?? null;
     const sellPrice = latest?.low ?? null;
 
-    // Calculate margin (buy price - sell price)
+    // Calculate margin (sell-to-buyers minus buy-now)
     const margin =
       buyPrice !== null && sellPrice !== null ? buyPrice - sellPrice : null;
 
-    // Calculate tax on sell price
-    const tax = sellPrice !== null ? calculateGeTax(sellPrice) : null;
+    // GE tax applies to the sale price (buy price)
+    const tax = buyPrice !== null ? calculateGeTax(buyPrice) : null;
 
     // Profit is margin minus tax
     const profit =
       margin !== null && tax !== null ? margin - tax : null;
 
-    // ROI percentage (profit / buy price * 100)
+    // ROI percentage (profit / buy-now price (sell price) * 100)
     const roiPercent =
-      profit !== null && buyPrice !== null && buyPrice > 0
-        ? (profit / buyPrice) * 100
+      profit !== null && sellPrice !== null && sellPrice > 0
+        ? (profit / sellPrice) * 100
         : null;
 
     // Potential profit based on buy limit
@@ -168,6 +178,13 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
       profit !== null && buyLimit !== null
         ? profit * buyLimit
         : null;
+
+    const volume5m = interval?.volume ?? null;
+    const volume1h = hourlyInterval?.volume ?? null;
+    const avgHighPrice5m = interval?.avgHighPrice ?? null;
+    const avgLowPrice5m = interval?.avgLowPrice ?? null;
+    const avgHighPrice1h = hourlyInterval?.avgHighPrice ?? null;
+    const avgLowPrice1h = hourlyInterval?.avgLowPrice ?? null;
 
     items.push({
       id: mapping.id,
@@ -195,9 +212,15 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
       roiPercent,
       potentialProfit,
 
-      volume: interval?.volume ?? hourlyInterval?.volume ?? null,
-      avgHighPrice: interval?.avgHighPrice ?? hourlyInterval?.avgHighPrice ?? null,
-      avgLowPrice: interval?.avgLowPrice ?? hourlyInterval?.avgLowPrice ?? null,
+      volume: volume5m ?? volume1h ?? null,
+      avgHighPrice: avgHighPrice5m ?? avgHighPrice1h ?? null,
+      avgLowPrice: avgLowPrice5m ?? avgLowPrice1h ?? null,
+      volume5m,
+      volume1h,
+      avgHighPrice5m,
+      avgLowPrice5m,
+      avgHighPrice1h,
+      avgLowPrice1h,
     });
   }
 
@@ -349,10 +372,11 @@ export async function searchItems(
     return [];
   }
 
-  const client = getWikiClient();
+  const mappingClient = getWikiClient('mapping');
+  const latestClient = getWikiClient('latest');
   const [mappings, latestPrices] = await Promise.all([
-    client.getItemMappings(),
-    client.getLatestPrices(),
+    mappingClient.getItemMappings(),
+    latestClient.getLatestPrices(),
   ]);
 
   const normalizedQuery = query.toLowerCase();
@@ -405,7 +429,7 @@ export async function getItemTimeseries(
   itemId: number,
   period: ChartPeriod = 'live'
 ): Promise<PricePoint[]> {
-  const client = getWikiClient();
+  const client = getWikiClient('timeseries');
 
   // Determine timestep based on period
   // The API returns up to 365 data points, so we choose the timestep that gives
@@ -513,7 +537,7 @@ export async function getItemMapping(
   // Refresh cache if expired or empty
   if (!itemMappingsCache || now - itemMappingsCacheTime > ITEM_CACHE_TTL_MS) {
     try {
-      const client = getWikiClient();
+      const client = getWikiClient('mapping');
       const mappings = await client.getItemMappings();
       itemMappingsCache = new Map();
       for (const item of mappings) {

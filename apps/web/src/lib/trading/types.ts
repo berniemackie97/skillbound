@@ -21,6 +21,7 @@ export interface TradeValidationResult {
   error?: string | undefined;
   errorCode?: string | undefined;
   availableQuantity?: number | undefined;
+  availableBankroll?: number | undefined;
 }
 
 /**
@@ -29,12 +30,19 @@ export interface TradeValidationResult {
 export class TradeValidationError extends Error {
   public readonly code: string;
   public readonly availableQuantity: number | undefined;
+  public readonly availableBankroll: number | undefined;
 
-  constructor(message: string, code: string, availableQuantity?: number) {
+  constructor(
+    message: string,
+    code: string,
+    availableQuantity?: number,
+    availableBankroll?: number
+  ) {
     super(message);
     this.name = 'TradeValidationError';
     this.code = code;
     this.availableQuantity = availableQuantity;
+    this.availableBankroll = availableBankroll;
   }
 }
 

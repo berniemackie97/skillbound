@@ -299,20 +299,31 @@ export default function SkillCalculator({
 
   const [mode, setMode] = useState(initialMode);
   const [username, setUsername] = useState(initialUsername);
-  const [currentLevel, setCurrentLevel] = useState(
-    clampNumber(parseNumber(initialCurrentLevel) ?? 1, 1, MAX_LEVEL)
+  const initialCurrentLevelValue = clampNumber(
+    parseNumber(initialCurrentLevel) ?? 1,
+    1,
+    MAX_LEVEL
   );
-  const [currentXp, setCurrentXp] = useState(
-    clampNumber(parseNumber(initialCurrentXp) ?? 0, 0, MAX_XP)
+  const initialCurrentXpValue = clampNumber(
+    parseNumber(initialCurrentXp) ?? 0,
+    0,
+    MAX_XP
   );
-  const [targetLevel, setTargetLevel] = useState(
-    clampNumber(parseNumber(initialTargetLevel) ?? 2, 1, MAX_LEVEL)
+  const initialTargetLevelValue = clampNumber(
+    parseNumber(initialTargetLevel) ?? 2,
+    1,
+    MAX_LEVEL
   );
-  const [targetXp, setTargetXp] = useState(
-    safeGetXpForLevel(
-      clampNumber(parseNumber(initialTargetLevel) ?? 2, 1, MAX_LEVEL)
-    ) ?? 83
+  const initialTargetXpValue =
+    safeGetXpForLevel(initialTargetLevelValue) ?? 83;
+
+  const [currentLevel, setCurrentLevel] = useState(initialCurrentLevelValue);
+  const [currentXp, setCurrentXp] = useState(initialCurrentXpValue);
+  const [targetLevel, setTargetLevel] = useState(initialTargetLevelValue);
+  const [targetLevelInput, setTargetLevelInput] = useState(
+    String(initialTargetLevelValue)
   );
+  const [targetXp, setTargetXp] = useState(initialTargetXpValue);
 
   const [lookupData, setLookupData] = useState<HiscoresResponse | null>(null);
   const [lookupMeta, setLookupMeta] = useState<LookupMeta | null>(null);
@@ -340,6 +351,10 @@ export default function SkillCalculator({
   const [newMonsterHitpoints, setNewMonsterHitpoints] = useState('');
   const [newMonsterBonus, setNewMonsterBonus] = useState('');
   const [monsterImages, setMonsterImages] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    setTargetLevelInput(String(targetLevel));
+  }, [targetLevel]);
 
   const snapshotSkillMap = useMemo(() => {
     const map = new Map<SkillName, SkillSnapshot>();
@@ -770,6 +785,10 @@ export default function SkillCalculator({
   }, [targetLevel]);
 
   const handleTargetLevelChange = useCallback((value: string) => {
+    setTargetLevelInput(value);
+    if (value.trim() === '') {
+      return;
+    }
     const parsed = parseNumber(value);
     if (parsed === null) {
       return;
@@ -1054,7 +1073,7 @@ export default function SkillCalculator({
                     type="number"
                     min={1}
                     max={MAX_LEVEL}
-                    value={targetLevel}
+                    value={targetLevelInput}
                     onChange={(e) => handleTargetLevelChange(e.target.value)}
                   />
                 </div>

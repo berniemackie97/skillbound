@@ -22,7 +22,7 @@ import {
   updateInventoryOnBuy,
   updateInventoryOnSell,
 } from './inventory';
-import { adjustBankroll, recalculateBankroll } from './bankroll';
+import { adjustBankroll, getBankroll, recalculateBankroll } from './bankroll';
 import {
   type DeleteTradeImpact,
   type ItemProfitBreakdown,
@@ -76,6 +76,22 @@ export async function validateTrade(
     };
   }
 
+  if (input.tradeType === 'buy') {
+    const totalValue = input.quantity * input.pricePerItem;
+    if (totalValue > 0) {
+      const bankroll = await getBankroll(characterId);
+      const available = Math.max(bankroll?.currentBankroll ?? 0, 0);
+      if (totalValue > available) {
+        return {
+          valid: false,
+          error: `Not enough bankroll. Available: ${available.toLocaleString()}`,
+          errorCode: 'INSUFFICIENT_BANKROLL',
+          availableBankroll: available,
+        };
+      }
+    }
+  }
+
   // For sell trades, validate that we have inventory to sell
   if (input.tradeType === 'sell') {
     const position = await getInventoryPosition(characterId, input.itemId);
@@ -117,7 +133,8 @@ export async function createTrade(
     throw new TradeValidationError(
       validation.error ?? 'Trade validation failed',
       validation.errorCode ?? 'VALIDATION_ERROR',
-      validation.availableQuantity
+      validation.availableQuantity,
+      validation.availableBankroll
     );
   }
 

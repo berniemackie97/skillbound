@@ -13,6 +13,8 @@ import {
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
+export const dynamic = 'force-dynamic';
+
 const sortFields: SortField[] = [
   'name',
   'buyPrice',
@@ -28,6 +30,10 @@ const sortFields: SortField[] = [
 ];
 
 const querySchema = z.object({
+  ids: z
+    .string()
+    .optional()
+    .transform((v) => parseIds(v)),
   sort: z.string().optional(),
   order: z.string().optional(),
   page: z
@@ -100,6 +106,16 @@ const querySchema = z.object({
     .optional()
     .transform((v) => parseOptionalInt(v)),
 });
+
+function parseIds(value?: string): number[] | undefined {
+  if (!value) return undefined;
+  const ids = value
+    .split(',')
+    .map((entry) => Number.parseInt(entry.trim(), 10))
+    .filter((id) => Number.isFinite(id) && id > 0);
+  if (ids.length === 0) return undefined;
+  return Array.from(new Set(ids));
+}
 
 function parseSortList(value?: string): SortField[] {
   const candidates = (value ?? '')
@@ -177,6 +193,7 @@ function applyRateLimitHeaders(
  */
 export async function GET(request: NextRequest) {
   const parsed = querySchema.safeParse({
+    ids: request.nextUrl.searchParams.get('ids') ?? undefined,
     sort: request.nextUrl.searchParams.get('sort') ?? undefined,
     order: request.nextUrl.searchParams.get('order') ?? undefined,
     page: request.nextUrl.searchParams.get('page') ?? undefined,
@@ -230,6 +247,31 @@ export async function GET(request: NextRequest) {
 
   try {
     let items = await getGeExchangeItems();
+
+    if (parsed.data.ids && parsed.data.ids.length > 0) {
+      const itemMap = new Map(items.map((item) => [item.id, item]));
+      const filtered = parsed.data.ids
+        .map((id) => itemMap.get(id))
+        .filter((item): item is (typeof items)[number] => Boolean(item));
+
+      const serializedItems = filtered.map((item) => ({
+        ...item,
+        buyPriceTime: item.buyPriceTime?.toISOString() ?? null,
+        sellPriceTime: item.sellPriceTime?.toISOString() ?? null,
+      }));
+
+      const response = NextResponse.json({
+        data: serializedItems,
+        meta: {
+          total: serializedItems.length,
+          page: 1,
+          limit: serializedItems.length,
+          totalPages: 1,
+        },
+      });
+
+      return applyRateLimitHeaders(response, rateLimitResult);
+    }
 
     const filters: GeItemFilters = {
       search: parsed.data.search,

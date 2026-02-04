@@ -243,6 +243,9 @@ export async function POST(
             ...(err.availableQuantity !== undefined && {
               availableQuantity: err.availableQuantity,
             }),
+            ...(err.availableBankroll !== undefined && {
+              availableBankroll: err.availableBankroll,
+            }),
           },
         ],
       });

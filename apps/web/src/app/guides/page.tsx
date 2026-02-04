@@ -42,15 +42,15 @@ export default async function GuidesPage() {
   });
 
   return (
-    <div className="guides-listing">
-      {/* Header */}
-      <header className="guides-listing-header">
-        <div className="guides-listing-header-content">
+    <div className="guides-page">
+      {/* Page Header */}
+      <header className="guides-header">
+        <div className="guides-header-content">
           <h1>Guides</h1>
           <p>Curated progression paths to efficiently level your account</p>
         </div>
         {activeCharacter ? (
-          <div className="guides-listing-character">
+          <div className="guides-character-badge">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
@@ -58,18 +58,21 @@ export default async function GuidesPage() {
             {activeCharacter.displayName}
           </div>
         ) : user ? (
-          <Link href="/characters" className="guides-listing-character-link">
-            Select character
+          <Link href="/characters" className="guides-character-link">
+            Select a character
           </Link>
         ) : null}
       </header>
 
-      <GuidesClient
-        guides={guidesWithProgress}
-        allTags={allTags}
-        isLoggedIn={Boolean(user)}
-        activeCharacterId={activeCharacter?.id ?? null}
-      />
+      {/* Main Panel with Gold Border */}
+      <div className="guides-panel">
+        <GuidesClient
+          guides={guidesWithProgress}
+          allTags={allTags}
+          isLoggedIn={Boolean(user)}
+          activeCharacterId={activeCharacter?.id ?? null}
+        />
+      </div>
     </div>
   );
 }

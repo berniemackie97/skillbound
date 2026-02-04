@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ItemSearch, type ItemSearchResult } from '../ge/item-search';
 import { formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
+import { useLiveGeItems } from './use-live-ge-items';
 
 interface ErrorResponse {
   detail?: string;
@@ -34,17 +35,6 @@ type FavoriteItem = {
   icon?: string | null;
 };
 
-type GeItemSummary = {
-  id: number;
-  name: string;
-  icon: string;
-  buyPrice: number | null;
-  sellPrice: number | null;
-  margin: number | null;
-  volume: number | null;
-  roiPercent: number | null;
-  potentialProfit: number | null;
-};
 
 const FAVORITES_STORAGE_KEY = 'skillbound:ge-favorites';
 const FAVORITES_META_STORAGE_KEY = 'skillbound:ge-favorites-meta';
@@ -55,7 +45,6 @@ export function WatchList({ characterId, items }: WatchListProps) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [filterText, setFilterText] = useState('');
   const [favoriteItems, setFavoriteItems] = useState<FavoriteItem[]>([]);
-  const [geItems, setGeItems] = useState<Record<number, GeItemSummary>>({});
   const syncingFavoritesRef = useRef<Set<number>>(new Set());
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editFields, setEditFields] = useState({
@@ -154,44 +143,17 @@ export function WatchList({ characterId, items }: WatchListProps) {
     void sync();
   }, [characterId, favoriteItems, items, router]);
 
-  useEffect(() => {
-    let active = true;
-    const ids = Array.from(
-      new Set([
-        ...items.map((item) => item.itemId),
-        ...favoriteItems.map((item) => item.id),
-      ])
-    );
-    if (ids.length === 0) return;
-
-    const fetchItems = async () => {
-      const results: Record<number, GeItemSummary> = {};
-      await Promise.all(
-        ids.map(async (id) => {
-          try {
-            const response = await fetch(`/api/ge/items/${id}`);
-            if (!response.ok) return;
-            const payload = (await response.json()) as {
-              data?: GeItemSummary;
-            };
-            if (payload.data) {
-              results[id] = payload.data;
-            }
-          } catch {
-            // Ignore fetch errors per item
-          }
-        })
-      );
-      if (active && Object.keys(results).length > 0) {
-        setGeItems((prev) => ({ ...prev, ...results }));
-      }
-    };
-
-    void fetchItems();
-    return () => {
-      active = false;
-    };
-  }, [favoriteItems, items]);
+  const liveIds = useMemo(
+    () =>
+      Array.from(
+        new Set([
+          ...items.map((item) => item.itemId),
+          ...favoriteItems.map((item) => item.id),
+        ])
+      ),
+    [favoriteItems, items]
+  );
+  const { items: liveItems } = useLiveGeItems(liveIds);
 
   const filteredWatchItems = useMemo(() => {
     if (!filterText.trim()) return items;
@@ -482,9 +444,73 @@ export function WatchList({ characterId, items }: WatchListProps) {
       ) : (
         <ul className="watch-items">
           {filteredWatchItems.map((item) => {
-            const geItem = geItems[item.itemId];
+            const geItem = liveItems[item.itemId];
+            const alertReasons: string[] = [];
+
+            if (item.isActive && geItem) {
+              if (item.alertOnMargin && geItem.margin !== null) {
+                if (geItem.margin >= item.alertOnMargin) {
+                  alertReasons.push(`Margin ≥ ${formatGp(item.alertOnMargin)}`);
+                }
+              }
+              if (item.alertOnBuyPrice && geItem.buyPrice !== null) {
+                if (geItem.buyPrice <= item.alertOnBuyPrice) {
+                  alertReasons.push(`Buy ≤ ${formatGp(item.alertOnBuyPrice)}`);
+                }
+              }
+              if (item.alertOnSellPrice && geItem.sellPrice !== null) {
+                if (geItem.sellPrice >= item.alertOnSellPrice) {
+                  alertReasons.push(`Sell ≥ ${formatGp(item.alertOnSellPrice)}`);
+                }
+              }
+              if (item.alertOnVolume && geItem.volume !== null) {
+                if (geItem.volume >= item.alertOnVolume) {
+                  alertReasons.push(
+                    `Vol ≥ ${item.alertOnVolume.toLocaleString()}`
+                  );
+                }
+              }
+
+              if (geItem.avgHighPrice && geItem.buyPrice) {
+                const delta =
+                  (geItem.buyPrice - geItem.avgHighPrice) /
+                  geItem.avgHighPrice;
+                if (delta >= 0.08) {
+                  alertReasons.push(
+                    `Price spike +${(delta * 100).toFixed(1)}%`
+                  );
+                } else if (delta <= -0.08) {
+                  alertReasons.push(
+                    `Price dip ${(delta * 100).toFixed(1)}%`
+                  );
+                }
+              }
+
+              if (geItem.margin && geItem.avgHighPrice) {
+                const marginPct = geItem.margin / geItem.avgHighPrice;
+                if (marginPct >= 0.03) {
+                  alertReasons.push(
+                    `Wide margin ${formatGp(geItem.margin)}`
+                  );
+                }
+              }
+
+              if (geItem.volume5m && geItem.volume1h) {
+                const expected = geItem.volume1h / 12;
+                if (expected > 0 && geItem.volume5m > expected * 1.8) {
+                  alertReasons.push(
+                    `Volume spike ${geItem.volume5m.toLocaleString()}`
+                  );
+                }
+              }
+            }
             return (
-              <li key={item.id} className={item.isActive ? '' : 'inactive'}>
+              <li
+                key={item.id}
+                className={`watch-item ${item.isActive ? '' : 'inactive'} ${
+                  alertReasons.length > 0 ? 'alert-hit' : ''
+                }`}
+              >
                 <div className="watch-item-info">
                   {geItem?.icon && (
                     <img
@@ -535,6 +561,17 @@ export function WatchList({ characterId, items }: WatchListProps) {
                   </span>
                 )}
               </div>
+
+              {alertReasons.length > 0 && (
+                <div className="watch-item-live-alerts">
+                  <span className="alert-pill">Alert</span>
+                  {alertReasons.map((reason) => (
+                    <span key={reason} className="alert-reason">
+                      {reason}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               {editingId === item.id && (
                 <div className="watch-item-edit">

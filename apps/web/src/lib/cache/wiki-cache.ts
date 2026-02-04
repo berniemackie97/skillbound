@@ -33,7 +33,7 @@ export function getWikiCacheTtlMs(
 ): number {
   switch (kind) {
     case 'latest':
-      return readNumberEnv('WIKI_PRICES_CACHE_TTL_MS', 10 * 60 * 1000);
+      return readNumberEnv('WIKI_PRICES_CACHE_TTL_MS', 30 * 1000);
     case 'interval':
       return readNumberEnv('WIKI_PRICES_INTERVAL_CACHE_TTL_MS', 5 * 60 * 1000);
     case 'mapping':

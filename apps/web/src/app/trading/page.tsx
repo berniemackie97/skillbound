@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { ExchangeClient } from '@/components/ge';
 import {
   BankrollCard,
+  LiveAlerts,
   InventoryCard,
   ProfitSummary,
   TradeForm,
@@ -305,6 +306,7 @@ async function TradeTrackerContent({
             </div>
             <TradeForm
               characterId={characterId}
+              availableBankroll={bankroll?.currentBankroll ?? 0}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
             />
           </div>
@@ -353,6 +355,7 @@ async function TradeTrackerContent({
         </div>
 
         <div className="tracker-sidebar">
+          <LiveAlerts inventory={inventory} watchItems={watchItems} />
           <InventoryCard inventory={inventory} />
 
           <div className="tracker-card watchlist-card">

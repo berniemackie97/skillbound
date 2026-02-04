@@ -1,6 +1,9 @@
 'use client';
 
-import { formatGp } from '@/lib/trading/ge-service';
+import { useMemo } from 'react';
+
+import { calculateGeTax, formatGp } from '@/lib/trading/ge-service';
+import { useLiveGeItems } from './use-live-ge-items';
 
 interface InventoryPosition {
   itemId: number;
@@ -24,6 +27,44 @@ interface InventoryCardProps {
 }
 
 export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
+  const { items: liveItems } = useLiveGeItems(
+    inventory.positions.map((pos) => pos.itemId)
+  );
+
+  const positionsWithLive = useMemo(() => {
+    return inventory.positions.map((position) => {
+      const live = liveItems[position.itemId];
+      const currentBuy = live?.sellPrice ?? null;
+      const currentSell = live?.buyPrice ?? null;
+      const margin = live?.margin ?? null;
+      const netPerItem =
+        currentSell !== null
+          ? currentSell - position.averageBuyPrice - calculateGeTax(currentSell)
+          : null;
+      const netTotal =
+        netPerItem !== null ? netPerItem * position.remainingQuantity : null;
+      const breakEven =
+        position.averageBuyPrice > 0
+          ? Math.ceil(
+              position.averageBuyPrice / 0.99 > 500_000_000
+                ? position.averageBuyPrice + 5_000_000
+                : position.averageBuyPrice / 0.99
+            )
+          : null;
+
+      return {
+        ...position,
+        live,
+        currentBuy,
+        currentSell,
+        margin,
+        netPerItem,
+        netTotal,
+        breakEven,
+      };
+    });
+  }, [inventory.positions, liveItems]);
+
   return (
     <div className="inventory-card">
       <div className="inventory-header">
@@ -51,7 +92,21 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
         </div>
       ) : (
         <div className="inventory-list">
-          {inventory.positions.map((position) => (
+          {positionsWithLive.map((position) => {
+            const status =
+              position.netPerItem === null
+                ? 'neutral'
+                : position.netPerItem >= 0
+                  ? 'positive'
+                  : 'negative';
+            const statusLabel =
+              position.netPerItem === null
+                ? 'No live price'
+                : position.netPerItem >= 0
+                  ? 'In Profit'
+                  : 'In Red';
+
+            return (
             <div
               key={position.itemId}
               className="inventory-item"
@@ -79,12 +134,30 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
                   <span>@</span>
                   <span>{formatGp(position.averageBuyPrice)} avg</span>
                 </div>
+                <div className="inventory-item-live">
+                  <span className={`inventory-pill ${status}`}>{statusLabel}</span>
+                  <span>Buy {formatGp(position.currentBuy)}</span>
+                  <span>Sell {formatGp(position.currentSell)}</span>
+                  <span>Margin {formatGp(position.margin)}</span>
+                  {position.breakEven !== null && (
+                    <span>Break-even {formatGp(position.breakEven)}</span>
+                  )}
+                </div>
               </div>
               <span className="inventory-item-value">
-                {formatGp(position.heldValue)}
+                <span className="inventory-held">
+                  {formatGp(position.heldValue)}
+                </span>
+                {position.netTotal !== null && (
+                  <span className={`inventory-pnl ${status}`}>
+                    {position.netTotal >= 0 ? '+' : ''}
+                    {formatGp(position.netTotal)}
+                  </span>
+                )}
               </span>
             </div>
-          ))}
+          );
+          })}
         </div>
       )}
     </div>

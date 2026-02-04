@@ -1,4 +1,5 @@
 export { BankrollCard } from './bankroll-card';
+export { LiveAlerts } from './live-alerts';
 export { InventoryCard } from './inventory-card';
 export { ProfitSummary } from './profit-summary';
 export { TradeForm } from './trade-form';

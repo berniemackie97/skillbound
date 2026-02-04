@@ -27,6 +27,7 @@ interface ValidationError {
   code: string;
   message: string;
   availableQuantity?: number;
+  availableBankroll?: number;
 }
 
 interface ErrorResponse {
@@ -39,12 +40,14 @@ type TradeFormProps = {
   characterId: string;
   onSuccess?: () => void;
   preselectedItemId?: number;
+  availableBankroll?: number;
 };
 
 export function TradeForm({
   characterId,
   onSuccess,
   preselectedItemId,
+  availableBankroll,
 }: TradeFormProps) {
   const router = useRouter();
 
@@ -75,6 +78,11 @@ export function TradeForm({
 
   const totalValue =
     (parseInt(quantity, 10) || 0) * (parseInt(pricePerItem, 10) || 0);
+  const exceedsBankroll =
+    tradeType === 'buy' &&
+    typeof availableBankroll === 'number' &&
+    availableBankroll >= 0 &&
+    totalValue > availableBankroll;
 
   // Search for items
   const searchItems = useCallback(async (query: string) => {
@@ -251,6 +259,14 @@ export function TradeForm({
       return;
     }
 
+    if (exceedsBankroll) {
+      setError(
+        `Not enough bankroll. Available: ${formatGp(availableBankroll ?? 0)} GP.`
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch(`/api/characters/${characterId}/trades`, {
         method: 'POST',
@@ -299,6 +315,13 @@ export function TradeForm({
               break;
             case 'INVALID_PRICE':
               setError('Please enter a valid price (0 or greater).');
+              break;
+            case 'INSUFFICIENT_BANKROLL':
+              setError(
+                validationError.availableBankroll !== undefined
+                  ? `Not enough bankroll. Available: ${formatGp(validationError.availableBankroll)} GP.`
+                  : 'Not enough bankroll for this purchase.'
+              );
               break;
             default:
               setError(validationError.message || data.detail || 'Validation failed.');
@@ -472,6 +495,11 @@ export function TradeForm({
         <strong className={tradeType === 'buy' ? 'cost' : 'revenue'}>
           {formatGp(totalValue)} GP
         </strong>
+        {tradeType === 'buy' && typeof availableBankroll === 'number' && (
+          <span className="bankroll-available">
+            Available: {formatGp(availableBankroll)} GP
+          </span>
+        )}
       </div>
 
       <label className="form-field">
@@ -487,7 +515,7 @@ export function TradeForm({
       <button
         type="submit"
         className={`button submit-btn ${tradeType}`}
-        disabled={isSubmitting || !selectedItem}
+        disabled={isSubmitting || !selectedItem || exceedsBankroll}
       >
         {isSubmitting
           ? 'Recording...'
