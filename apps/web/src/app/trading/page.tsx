@@ -409,7 +409,7 @@ export default async function TradingPage({ searchParams }: PageProps) {
   }
 
   return (
-    <main className="page trading-page ge-exchange-page">
+    <div className="trading-page ge-exchange-page">
       <section className="page-header trading-header">
         <div className="header-content">
           <h1>GE Exchange</h1>
@@ -520,6 +520,6 @@ export default async function TradingPage({ searchParams }: PageProps) {
           )}
         </section>
       )}
-    </main>
+    </div>
   );
 }

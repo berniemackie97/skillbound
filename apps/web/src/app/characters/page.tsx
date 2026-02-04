@@ -173,16 +173,6 @@ export default async function CharactersPage() {
         </div>
         <div className="hero-kpis">
           <div className="stat-chip">
-            <span>Recent captures</span>
-            <strong>{recentSnapshots.length}</strong>
-          </div>
-          <div className="stat-chip">
-            <span>Last capture</span>
-            <strong>
-              {latestSnapshot ? latestSnapshot.capturedAt.toLocaleString() : '—'}
-            </strong>
-          </div>
-          <div className="stat-chip">
             <span>Quests completed</span>
             <strong>{stateSummary?.questsCompleted ?? '—'}</strong>
           </div>
@@ -193,14 +183,6 @@ export default async function CharactersPage() {
           <div className="stat-chip">
             <span>Unlocks obtained</span>
             <strong>{stateSummary?.unlocksObtained ?? '—'}</strong>
-          </div>
-          <div className="stat-chip">
-            <span>Saved characters</span>
-            <strong>{activeCharacters.length}</strong>
-          </div>
-          <div className="stat-chip">
-            <span>Data source</span>
-            <strong>{latestSnapshot?.dataSource ?? '—'}</strong>
           </div>
           <div className="stat-chip">
             <span>Weekly XP</span>
@@ -293,20 +275,6 @@ export default async function CharactersPage() {
           </div>
         </div>
         <div className="panel-grid">
-          <div className="stack-card">
-            <h3>Recent captures</h3>
-            {recentSnapshots.length > 0 ? (
-              <ul>
-                {recentSnapshots.map((snapshot) => (
-                  <li key={snapshot.id}>
-                    {snapshot.capturedAt.toLocaleString()}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="muted">No snapshots captured yet.</p>
-            )}
-          </div>
           <div className="stack-card">
             <h3>Snapshot deltas</h3>
             {snapshotDelta ? (

@@ -563,17 +563,6 @@
   pointer-events: none;
 }
 
-.panel::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: url('/images/border-pattern.svg') repeat-x bottom;
-  opacity: 0.15;
-  pointer-events: none;
-}
 
 .panel-header {
   display: flex;

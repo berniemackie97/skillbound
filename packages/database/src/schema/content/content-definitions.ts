@@ -22,6 +22,7 @@ export const questDefinitions = pgTable(
     difficulty: text('difficulty'), // Novice, Intermediate, Experienced, Master, Grandmaster
     length: text('length'), // Very Short, Short, Medium, Long, Very Long
     description: text('description'), // Quest description
+    questPoints: integer('quest_points'), // Quest points awarded
     requirements: jsonb('requirements').$type<unknown[]>().default([]),
     optionalRequirements: jsonb('optional_requirements').$type<unknown[]>(),
     wikiUrl: text('wiki_url'),

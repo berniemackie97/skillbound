@@ -14,6 +14,16 @@ const querySchema = z.object({
     .transform((value) =>
       value === undefined ? undefined : Number.parseInt(value, 10)
     ),
+  ids: z
+    .string()
+    .optional()
+    .transform((value) => {
+      if (!value) return undefined;
+      return value
+        .split(',')
+        .map((entry) => Number.parseInt(entry.trim(), 10))
+        .filter((entry) => Number.isFinite(entry));
+    }),
 });
 
 function applyRateLimitHeaders(
@@ -32,11 +42,13 @@ function applyRateLimitHeaders(
 export async function GET(request: NextRequest) {
   const parsed = querySchema.safeParse({
     id: request.nextUrl.searchParams.get('id') ?? undefined,
+    ids: request.nextUrl.searchParams.get('ids') ?? undefined,
   });
 
   if (
     !parsed.success ||
-    (parsed.data.id !== undefined && !Number.isFinite(parsed.data.id))
+    (parsed.data.id !== undefined && !Number.isFinite(parsed.data.id)) ||
+    (parsed.data.ids !== undefined && parsed.data.ids.length === 0)
   ) {
     const problem = createProblemDetails({
       status: 400,
@@ -81,9 +93,13 @@ export async function GET(request: NextRequest) {
     });
 
     const mappings = await client.getItemMappings();
-    const filtered = parsed.data.id
-      ? mappings.filter((item: { id: number }) => item.id === parsed.data.id)
-      : mappings;
+    const filtered = parsed.data.ids
+      ? mappings.filter((item: { id: number }) =>
+          parsed.data.ids?.includes(item.id)
+        )
+      : parsed.data.id
+        ? mappings.filter((item: { id: number }) => item.id === parsed.data.id)
+        : mappings;
 
     const response = NextResponse.json({ data: filtered });
     return applyRateLimitHeaders(response, rateLimitResult);

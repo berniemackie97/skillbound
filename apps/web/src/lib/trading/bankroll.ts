@@ -1,6 +1,7 @@
 import {
   eq,
   geTradingBankroll,
+  geTrades,
   type GeTradingBankroll,
   type NewGeTradingBankroll,
 } from '@skillbound/database';
@@ -81,5 +82,51 @@ export async function adjustBankroll(
   return setBankroll(characterId, {
     currentBankroll: newAmount,
     initialBankroll: existing?.initialBankroll,
+  });
+}
+
+/**
+ * Recalculate the current bankroll based on initial bankroll and all trades.
+ * This is useful to sync bankroll if trades were recorded before bankroll tracking.
+ *
+ * Formula: currentBankroll = initialBankroll - (total buys) + (total sells)
+ */
+export async function recalculateBankroll(
+  characterId: string
+): Promise<GeTradingBankroll> {
+  const db = getDbClient();
+
+  // Get existing bankroll to preserve initial value
+  const existing = await getBankroll(characterId);
+  const initialBankroll = existing?.initialBankroll ?? 0;
+
+  // Get all trades for this character
+  const trades = await db
+    .select()
+    .from(geTrades)
+    .where(eq(geTrades.userCharacterId, characterId));
+
+  // Calculate net change from trades
+  let netChange = 0;
+  for (const trade of trades) {
+    if (trade.tradeType === 'buy') {
+      // Buys reduce bankroll
+      netChange -= trade.totalValue;
+    } else {
+      // Sells increase bankroll
+      netChange += trade.totalValue;
+    }
+  }
+
+  const newCurrent = initialBankroll + netChange;
+
+  logger.info(
+    { characterId, initialBankroll, netChange, newCurrent },
+    'Recalculated bankroll from trades'
+  );
+
+  return setBankroll(characterId, {
+    currentBankroll: newCurrent,
+    initialBankroll,
   });
 }

@@ -34,7 +34,6 @@
     { "path": "./packages/domain" },
     { "path": "./packages/hiscores" },
     { "path": "./packages/integrations" },
-    { "path": "./packages/wiki-api" },
-    { "path": "./packages/wiki-client" }
+    { "path": "./packages/wiki-api" }
   ]
 }

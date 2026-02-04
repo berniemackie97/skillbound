@@ -7,6 +7,7 @@ import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   getBankroll,
   setBankroll,
+  recalculateBankroll,
   verifyCharacterOwnership,
 } from '@/lib/trading/trading-service';
 
@@ -157,6 +158,60 @@ export async function PUT(
     const problem = createProblemDetails({
       status: 500,
       title: 'Failed to update bankroll',
+      detail: errorMessage,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+}
+
+/**
+ * POST /api/characters/[id]/bankroll
+ *
+ * Recalculate the current bankroll from initial bankroll + all trades.
+ * This syncs the bankroll if it got out of sync with actual trades.
+ */
+export async function POST(
+  _request: NextRequest,
+  { params }: { params: Promise<{ id?: string }> }
+) {
+  const user = await getSessionUser();
+  if (!user) {
+    return unauthorizedResponse();
+  }
+
+  const resolvedParams = await params;
+  const parsedParams = paramsSchema.safeParse(resolvedParams);
+  if (!parsedParams.success) {
+    const problem = createProblemDetails({
+      status: 400,
+      title: 'Invalid character id',
+      detail: 'Character id must be a valid UUID.',
+      errors: parsedParams.error.issues,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const characterId = parsedParams.data.id;
+
+  // Verify ownership
+  const isOwner = await verifyCharacterOwnership(characterId, user.id);
+  if (!isOwner) {
+    const problem = createProblemDetails({
+      status: 404,
+      title: 'Character not found',
+      detail: 'No saved character exists for that id.',
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  try {
+    const bankroll = await recalculateBankroll(characterId);
+    return NextResponse.json({ data: bankroll });
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    const problem = createProblemDetails({
+      status: 500,
+      title: 'Failed to recalculate bankroll',
       detail: errorMessage,
     });
     return NextResponse.json(problem, { status: problem.status });

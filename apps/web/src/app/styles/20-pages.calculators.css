@@ -2,14 +2,11 @@
    Skill Calculator Page Styles
    ========================================================================== */
 
-/* Container */
+/* Container - layout's main.page provides the base padding */
 .calc-container {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  padding: var(--page-pad-top) var(--page-pad-x) var(--page-pad-bottom);
-  max-width: 1600px;
-  margin: 0 auto;
 }
 
 /* Header */
@@ -62,15 +59,42 @@
   opacity: 0.7;
 }
 
-/* Skill Selector */
+/* Skill Selector - Panel Style */
 .calc-skills {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-5);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  padding: 26px;
   border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--bg-elev) 0%, rgba(42, 35, 24, 0.8) 100%);
+  border: 3px solid transparent;
+  border-image: linear-gradient(135deg, var(--rs-gold) 0%, var(--accent) 50%, var(--rs-tan) 100%) 1;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 223, 128, 0.15),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(212, 175, 55, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-skills::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 223, 128, 0.3) 25%,
+    rgba(255, 223, 128, 0.5) 50%,
+    rgba(255, 223, 128, 0.3) 75%,
+    transparent 100%
+  );
 }
 
 .calc-skill-group {
@@ -118,12 +142,43 @@
   box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
-/* Main Layout */
+/* Main Layout - Panel Style (matches .panel from guides) */
 .calc-main {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: var(--space-6);
   align-items: start;
+  padding: 26px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--bg-elev) 0%, rgba(42, 35, 24, 0.8) 100%);
+  border: 3px solid transparent;
+  border-image: linear-gradient(135deg, var(--rs-gold) 0%, var(--accent) 50%, var(--rs-tan) 100%) 1;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 223, 128, 0.15),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(212, 175, 55, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 223, 128, 0.3) 25%,
+    rgba(255, 223, 128, 0.5) 50%,
+    rgba(255, 223, 128, 0.3) 75%,
+    transparent 100%
+  );
 }
 
 @media (max-width: 1024px) {
@@ -477,6 +532,18 @@
   gap: 10px;
 }
 
+.calc-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.calc-action-link:hover .calc-action-name {
+  text-decoration: underline;
+}
+
 .calc-action-cell img {
   width: 24px;
   height: 24px;
@@ -493,13 +560,9 @@
   flex-wrap: wrap;
 }
 
-.calc-action-info a {
+.calc-action-name {
   color: var(--accent);
   text-decoration: none;
-}
-
-.calc-action-info a:hover {
-  text-decoration: underline;
 }
 
 /* Tags */
@@ -587,17 +650,17 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .calc-container {
-    padding: var(--space-5) 5vw var(--space-8);
-  }
-
+@media (max-width: 860px) {
   .calc-header-content h1 {
     font-size: 1.5rem;
   }
 
   .calc-skills {
-    padding: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .calc-main {
+    padding: var(--space-5);
   }
 
   .calc-skill-buttons {
@@ -615,5 +678,20 @@
 
   .calc-table {
     min-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .calc-skills,
+  .calc-main {
+    padding: var(--space-4);
+  }
+
+  .calc-header-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .calc-header-content p {
+    font-size: 0.9rem;
   }
 }

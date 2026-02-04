@@ -36,6 +36,7 @@ export async function generateContentBundle(
     difficulty: q.difficulty || undefined,
     length: q.length || undefined,
     description: q.description || undefined,
+    questPoints: q.questPoints ?? undefined,
     requirements: (q.requirements as Requirement[]) || [],
     optionalRequirements:
       (q.optionalRequirements as Requirement[] | undefined) || undefined,

@@ -14,6 +14,7 @@ import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   syncAllFromWiki,
   syncCombatAchievements,
+  syncDiaries,
   syncQuests,
 } from '@/lib/wiki/wiki-sync';
 
@@ -57,7 +58,8 @@ export async function POST(request: NextRequest) {
   }
 
   const typeParam = request.nextUrl.searchParams.get('type')?.toLowerCase();
-  const type = typeParam && ['combat', 'quests', 'all'].includes(typeParam)
+  const type =
+    typeParam && ['combat', 'quests', 'diaries', 'all'].includes(typeParam)
     ? typeParam
     : 'combat';
 
@@ -69,6 +71,8 @@ export async function POST(request: NextRequest) {
       results = await syncAllFromWiki(db);
     } else if (type === 'quests') {
       results = await syncQuests(db);
+    } else if (type === 'diaries') {
+      results = await syncDiaries(db);
     } else {
       results = await syncCombatAchievements(db);
     }

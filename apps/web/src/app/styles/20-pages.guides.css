@@ -2217,3 +2217,522 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ==========================================================================
+   Guides Listing Page - Modern Layout with Search/Filter/Pagination
+   ========================================================================== */
+
+.guides-listing {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.guides-listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.guides-listing-header-content h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  color: var(--rs-gold);
+  margin: 0 0 4px;
+}
+
+.guides-listing-header-content p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.guides-listing-character {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.guides-listing-character svg {
+  color: var(--accent);
+}
+
+.guides-listing-character-link {
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.guides-listing-character-link:hover {
+  border-color: var(--accent);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+/* Content Area */
+.guides-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Filters Section */
+.guides-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.guides-search {
+  position: relative;
+  max-width: 400px;
+}
+
+.guides-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.guides-search-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.guides-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.guides-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Tag Filters */
+.guides-tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.guides-tag-filter {
+  padding: 6px 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guides-tag-filter:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.guides-tag-filter.active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Filter Actions */
+.guides-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.guides-tracked-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guides-tracked-filter:hover {
+  border-color: var(--accent-alt);
+  color: var(--text);
+}
+
+.guides-tracked-filter.active {
+  background: rgba(127, 175, 58, 0.15);
+  border-color: var(--accent-alt);
+  color: var(--accent-alt);
+}
+
+.guides-clear-filters {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guides-clear-filters:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* Results Info */
+.guides-results-info {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Guides Grid */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Guide Card */
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.guide-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.guide-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+.guide-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.guide-card-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.guide-card-badge.completed {
+  background: rgba(127, 175, 58, 0.2);
+  color: var(--accent-alt);
+}
+
+.guide-card-badge.tracking {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent);
+}
+
+.guide-card-description {
+  padding: 12px 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.guide-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 20px;
+  margin-top: auto;
+}
+
+.guide-card-steps {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.guide-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.guide-card-tag {
+  padding: 2px 8px;
+  background: var(--bg-elev);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+}
+
+.guide-card-tag-more {
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Progress Bar */
+.guide-card-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  margin-top: 12px;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+}
+
+.guide-card-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(212, 175, 55, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.guide-card-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--rs-gold));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.guide-card-progress-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Modes */
+.guide-card-modes {
+  display: flex;
+  gap: 6px;
+  padding: 0 20px 16px;
+}
+
+.guide-card-mode {
+  padding: 2px 8px;
+  background: rgba(127, 127, 127, 0.15);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* No progress - add bottom padding */
+.guide-card:not(:has(.guide-card-progress)) .guide-card-meta {
+  padding-bottom: 20px;
+}
+
+.guide-card:not(:has(.guide-card-progress)):not(:has(.guide-card-modes)) .guide-card-meta {
+  padding-bottom: 20px;
+}
+
+.guide-card:has(.guide-card-modes):not(:has(.guide-card-progress)) .guide-card-meta {
+  padding-bottom: 12px;
+}
+
+/* Empty State */
+.guides-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 64px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.guides-empty p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Pagination */
+.guides-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.guides-pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guides-pagination-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.guides-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.guides-pagination-pages {
+  display: flex;
+  gap: 4px;
+}
+
+.guides-pagination-page {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guides-pagination-page:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.guides-pagination-page.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+/* ==========================================================================
+   Responsive - Guides Listing
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .guides-listing-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .guides-search {
+    max-width: none;
+    width: 100%;
+  }
+
+  .guides-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guides-pagination {
+    flex-wrap: wrap;
+  }
+
+  .guides-pagination-pages {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .guides-filters {
+    padding: 16px;
+  }
+
+  .guide-card-header {
+    padding: 16px 16px 0;
+  }
+
+  .guide-card-description {
+    padding: 10px 16px;
+  }
+
+  .guide-card-meta {
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .guide-card-progress {
+    padding: 12px 16px;
+  }
+
+  .guide-card-modes {
+    padding: 0 16px 16px;
+  }
+}

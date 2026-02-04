@@ -22,6 +22,7 @@ import {
   updateInventoryOnBuy,
   updateInventoryOnSell,
 } from './inventory';
+import { adjustBankroll, recalculateBankroll } from './bankroll';
 import {
   type DeleteTradeImpact,
   type ItemProfitBreakdown,
@@ -157,10 +158,14 @@ export async function createTrade(
       input.pricePerItem,
       input.tradedAt
     );
+    // Decrease bankroll when buying (spending money)
+    await adjustBankroll(characterId, -totalValue);
   } else {
     // Sell trade - match with buys using FIFO and calculate profit
     await matchSellWithBuys(characterId, trade);
     await updateInventoryOnSell(characterId, input.itemId, input.quantity);
+    // Increase bankroll when selling (receiving money)
+    await adjustBankroll(characterId, totalValue);
   }
 
   return trade;
@@ -385,8 +390,9 @@ export async function recalculateProfitMatches(
 
   logger.info({ characterId, matchesUpdated }, 'Recalculated profit matches (FIFO)');
 
-  // Also recalculate inventory positions
+  // Also recalculate inventory positions and bankroll
   await recalculateInventoryPositions(characterId);
+  await recalculateBankroll(characterId);
 
   return { matchesUpdated };
 }
@@ -691,8 +697,9 @@ export async function deleteTrade(
 
   // If this is a buy, first delete all sells matched to it
   if (existing.tradeType === 'buy') {
+    // Get matched sells to also reverse their bankroll impact
     const matchedSells = await db
-      .select({ id: geTrades.id })
+      .select()
       .from(geTrades)
       .where(
         and(
@@ -702,6 +709,11 @@ export async function deleteTrade(
       );
 
     if (matchedSells.length > 0) {
+      // Reverse bankroll for each deleted sell (subtract their sell value)
+      for (const sell of matchedSells) {
+        await adjustBankroll(characterId, -sell.totalValue);
+      }
+
       await db
         .delete(geTrades)
         .where(eq(geTrades.matchedTradeId, tradeId));
@@ -712,6 +724,12 @@ export async function deleteTrade(
         'Deleted linked sells for buy trade'
       );
     }
+
+    // Reverse bankroll for deleted buy (add back what was spent)
+    await adjustBankroll(characterId, existing.totalValue);
+  } else {
+    // Reverse bankroll for deleted sell (subtract what was received)
+    await adjustBankroll(characterId, -existing.totalValue);
   }
 
   // Delete the trade itself

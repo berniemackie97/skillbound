@@ -64,6 +64,96 @@ export interface CombatAchievement {
   type?: string | undefined;
 }
 
+/**
+ * Monster data from bucket
+ */
+export interface Monster {
+  name: string;
+  version?: string | undefined;
+  combatLevel?: number | undefined;
+  hitpoints?: number | undefined;
+  maxHit?: number | undefined;
+  attackStyle?: string | undefined;
+  attackSpeed?: number | undefined;
+  aggressive?: boolean | undefined;
+  poisonous?: boolean | undefined;
+  immunePoison?: boolean | undefined;
+  immuneVenom?: boolean | undefined;
+  slayerLevel?: number | undefined;
+  slayerXp?: number | undefined;
+  slayerCategory?: string | undefined;
+  assignedBy?: string | undefined;
+  attackLevel?: number | undefined;
+  strengthLevel?: number | undefined;
+  defenceLevel?: number | undefined;
+  magicLevel?: number | undefined;
+  rangedLevel?: number | undefined;
+  attackBonus?: number | undefined;
+  strengthBonus?: number | undefined;
+  magicAttackBonus?: number | undefined;
+  magicStrengthBonus?: number | undefined;
+  rangeAttackBonus?: number | undefined;
+  rangeStrengthBonus?: number | undefined;
+  stabDefence?: number | undefined;
+  slashDefence?: number | undefined;
+  crushDefence?: number | undefined;
+  magicDefence?: number | undefined;
+  rangeDefence?: number | undefined;
+  examine?: string | undefined;
+}
+
+/**
+ * Equipment bonuses data from bucket
+ */
+export interface EquipmentBonuses {
+  itemId: number;
+  itemName: string;
+  slot?: string | undefined;
+  stabAttack?: number | undefined;
+  slashAttack?: number | undefined;
+  crushAttack?: number | undefined;
+  magicAttack?: number | undefined;
+  rangeAttack?: number | undefined;
+  stabDefence?: number | undefined;
+  slashDefence?: number | undefined;
+  crushDefence?: number | undefined;
+  magicDefence?: number | undefined;
+  rangeDefence?: number | undefined;
+  strengthBonus?: number | undefined;
+  rangeStrengthBonus?: number | undefined;
+  magicDamageBonus?: number | undefined;
+  prayerBonus?: number | undefined;
+  attackSpeed?: number | undefined;
+  attackRange?: number | undefined;
+}
+
+/**
+ * Spell data from bucket
+ */
+export interface Spell {
+  name: string;
+  spellbook: string;
+  levelRequired: number;
+  type?: string | undefined;
+  maxHit?: number | undefined;
+  baseXp?: number | undefined;
+  runes?: string | undefined;
+  description?: string | undefined;
+}
+
+/**
+ * Activity/minigame data from bucket
+ */
+export interface Activity {
+  name: string;
+  type?: string | undefined;
+  participants?: string | undefined;
+  skills?: string | undefined;
+  rewards?: string | undefined;
+  location?: string | undefined;
+  requirements?: string | undefined;
+}
+
 const BucketResponseSchema = z.object({
   bucketQuery: z.string().optional(),
   bucket: z.array(z.record(z.string(), z.unknown())).optional(),
@@ -218,7 +308,7 @@ export class WikiBucketClient {
    */
   async getQuests(): Promise<Quest[]> {
     const query =
-      "bucket('quest').select('page_name','description','official_difficulty','official_length','requirements','start_point','items_required','enemies_to_defeat','ironman_concerns').run()";
+      "bucket('quest').select('page_name','description','official_difficulty','official_length','requirements','start_point','items_required','enemies_to_defeat','ironman_concerns').limit(1000).run()";
 
     const results = await this.query(query);
 
@@ -400,7 +490,7 @@ export class WikiBucketClient {
    * Get all combat achievements
    */
   async getCombatAchievements(): Promise<CombatAchievement[]> {
-    const query = `bucket('combat_achievement').select('id','name','monster','task','tier','type').run()`;
+    const query = `bucket('combat_achievement').select('id','name','monster','task','tier','type').limit(1000).run()`;
 
     const results = await this.query(query);
 
@@ -439,6 +529,311 @@ export class WikiBucketClient {
       .filter(
         (achievement): achievement is CombatAchievement => achievement !== null
       );
+  }
+
+  /**
+   * Get monster by name
+   */
+  async getMonster(name: string): Promise<Monster | null> {
+    const query = `bucket('infobox_monster').select('name','version','combat','hitpoints','max_hit','attack_style','attack_speed','aggressive','poisonous','immune_poison','immune_venom','slaylvl','slayxp','cat','assigned_by','att','str','def','mage','range','attbns','strbns','apts','apls','apcs','apms','aprs','dstab','dslash','dcrush','dmage','drange','examine').where('name','${name}').limit(10).run()`;
+
+    const results = await this.query(query);
+
+    if (results.length === 0) {
+      return null;
+    }
+
+    const row = results[0];
+    if (!row) {
+      return null;
+    }
+
+    const monsterName = toStringValue(row['name']);
+    if (!monsterName) {
+      return null;
+    }
+
+    const monster: Monster = { name: monsterName };
+
+    const version = toStringValue(row['version']);
+    if (version) monster.version = version;
+
+    const combatLevel = toNumberValue(row['combat']);
+    if (combatLevel !== undefined) monster.combatLevel = combatLevel;
+
+    const hitpoints = toNumberValue(row['hitpoints']);
+    if (hitpoints !== undefined) monster.hitpoints = hitpoints;
+
+    const maxHit = toNumberValue(row['max_hit']);
+    if (maxHit !== undefined) monster.maxHit = maxHit;
+
+    const attackStyle = toStringValue(row['attack_style']);
+    if (attackStyle) monster.attackStyle = attackStyle;
+
+    const attackSpeed = toNumberValue(row['attack_speed']);
+    if (attackSpeed !== undefined) monster.attackSpeed = attackSpeed;
+
+    const aggressive = toBooleanValue(row['aggressive']);
+    if (aggressive !== undefined) monster.aggressive = aggressive;
+
+    const poisonous = toBooleanValue(row['poisonous']);
+    if (poisonous !== undefined) monster.poisonous = poisonous;
+
+    const immunePoison = toBooleanValue(row['immune_poison']);
+    if (immunePoison !== undefined) monster.immunePoison = immunePoison;
+
+    const immuneVenom = toBooleanValue(row['immune_venom']);
+    if (immuneVenom !== undefined) monster.immuneVenom = immuneVenom;
+
+    const slayerLevel = toNumberValue(row['slaylvl']);
+    if (slayerLevel !== undefined) monster.slayerLevel = slayerLevel;
+
+    const slayerXp = toNumberValue(row['slayxp']);
+    if (slayerXp !== undefined) monster.slayerXp = slayerXp;
+
+    const slayerCategory = toStringValue(row['cat']);
+    if (slayerCategory) monster.slayerCategory = slayerCategory;
+
+    const assignedBy = toStringValue(row['assigned_by']);
+    if (assignedBy) monster.assignedBy = assignedBy;
+
+    const attackLevel = toNumberValue(row['att']);
+    if (attackLevel !== undefined) monster.attackLevel = attackLevel;
+
+    const strengthLevel = toNumberValue(row['str']);
+    if (strengthLevel !== undefined) monster.strengthLevel = strengthLevel;
+
+    const defenceLevel = toNumberValue(row['def']);
+    if (defenceLevel !== undefined) monster.defenceLevel = defenceLevel;
+
+    const magicLevel = toNumberValue(row['mage']);
+    if (magicLevel !== undefined) monster.magicLevel = magicLevel;
+
+    const rangedLevel = toNumberValue(row['range']);
+    if (rangedLevel !== undefined) monster.rangedLevel = rangedLevel;
+
+    const attackBonus = toNumberValue(row['attbns']);
+    if (attackBonus !== undefined) monster.attackBonus = attackBonus;
+
+    const strengthBonus = toNumberValue(row['strbns']);
+    if (strengthBonus !== undefined) monster.strengthBonus = strengthBonus;
+
+    const stabDefence = toNumberValue(row['dstab']);
+    if (stabDefence !== undefined) monster.stabDefence = stabDefence;
+
+    const slashDefence = toNumberValue(row['dslash']);
+    if (slashDefence !== undefined) monster.slashDefence = slashDefence;
+
+    const crushDefence = toNumberValue(row['dcrush']);
+    if (crushDefence !== undefined) monster.crushDefence = crushDefence;
+
+    const magicDefence = toNumberValue(row['dmage']);
+    if (magicDefence !== undefined) monster.magicDefence = magicDefence;
+
+    const rangeDefence = toNumberValue(row['drange']);
+    if (rangeDefence !== undefined) monster.rangeDefence = rangeDefence;
+
+    const examine = toStringValue(row['examine']);
+    if (examine) monster.examine = examine;
+
+    return monster;
+  }
+
+  /**
+   * Search monsters by name
+   */
+  async searchMonsters(name: string, limit = 20): Promise<Monster[]> {
+    const query = `bucket('infobox_monster').select('name','version','combat','hitpoints','slaylvl','cat','examine').where('name','${name}').limit(${limit}).run()`;
+
+    const results = await this.query(query);
+
+    return results
+      .map((row) => {
+        const monsterName = toStringValue(row['name']);
+        if (!monsterName) return null;
+
+        const monster: Monster = { name: monsterName };
+
+        const version = toStringValue(row['version']);
+        if (version) monster.version = version;
+
+        const combatLevel = toNumberValue(row['combat']);
+        if (combatLevel !== undefined) monster.combatLevel = combatLevel;
+
+        const hitpoints = toNumberValue(row['hitpoints']);
+        if (hitpoints !== undefined) monster.hitpoints = hitpoints;
+
+        const slayerLevel = toNumberValue(row['slaylvl']);
+        if (slayerLevel !== undefined) monster.slayerLevel = slayerLevel;
+
+        const slayerCategory = toStringValue(row['cat']);
+        if (slayerCategory) monster.slayerCategory = slayerCategory;
+
+        const examine = toStringValue(row['examine']);
+        if (examine) monster.examine = examine;
+
+        return monster;
+      })
+      .filter((m): m is Monster => m !== null);
+  }
+
+  /**
+   * Get equipment bonuses by item name
+   */
+  async getEquipmentBonuses(itemName: string): Promise<EquipmentBonuses | null> {
+    const query = `bucket('infobox_bonuses').select('item_id','item_name','slot','astab','aslash','acrush','amagic','arange','dstab','dslash','dcrush','dmagic','drange','str','rstr','mdmg','prayer','aspeed','arange').where('item_name','${itemName}').limit(1).run()`;
+
+    const results = await this.query(query);
+
+    if (results.length === 0) {
+      return null;
+    }
+
+    const row = results[0];
+    if (!row) return null;
+
+    const itemId = toNumberValue(row['item_id']);
+    const name = toStringValue(row['item_name']);
+    if (!itemId || !name) return null;
+
+    const bonuses: EquipmentBonuses = {
+      itemId,
+      itemName: name,
+    };
+
+    const slot = toStringValue(row['slot']);
+    if (slot) bonuses.slot = slot;
+
+    const stabAttack = toNumberValue(row['astab']);
+    if (stabAttack !== undefined) bonuses.stabAttack = stabAttack;
+
+    const slashAttack = toNumberValue(row['aslash']);
+    if (slashAttack !== undefined) bonuses.slashAttack = slashAttack;
+
+    const crushAttack = toNumberValue(row['acrush']);
+    if (crushAttack !== undefined) bonuses.crushAttack = crushAttack;
+
+    const magicAttack = toNumberValue(row['amagic']);
+    if (magicAttack !== undefined) bonuses.magicAttack = magicAttack;
+
+    const rangeAttack = toNumberValue(row['arange']);
+    if (rangeAttack !== undefined) bonuses.rangeAttack = rangeAttack;
+
+    const stabDefence = toNumberValue(row['dstab']);
+    if (stabDefence !== undefined) bonuses.stabDefence = stabDefence;
+
+    const slashDefence = toNumberValue(row['dslash']);
+    if (slashDefence !== undefined) bonuses.slashDefence = slashDefence;
+
+    const crushDefence = toNumberValue(row['dcrush']);
+    if (crushDefence !== undefined) bonuses.crushDefence = crushDefence;
+
+    const magicDefence = toNumberValue(row['dmagic']);
+    if (magicDefence !== undefined) bonuses.magicDefence = magicDefence;
+
+    const rangeDefence = toNumberValue(row['drange']);
+    if (rangeDefence !== undefined) bonuses.rangeDefence = rangeDefence;
+
+    const strengthBonus = toNumberValue(row['str']);
+    if (strengthBonus !== undefined) bonuses.strengthBonus = strengthBonus;
+
+    const rangeStrengthBonus = toNumberValue(row['rstr']);
+    if (rangeStrengthBonus !== undefined) bonuses.rangeStrengthBonus = rangeStrengthBonus;
+
+    const magicDamageBonus = toNumberValue(row['mdmg']);
+    if (magicDamageBonus !== undefined) bonuses.magicDamageBonus = magicDamageBonus;
+
+    const prayerBonus = toNumberValue(row['prayer']);
+    if (prayerBonus !== undefined) bonuses.prayerBonus = prayerBonus;
+
+    const attackSpeed = toNumberValue(row['aspeed']);
+    if (attackSpeed !== undefined) bonuses.attackSpeed = attackSpeed;
+
+    return bonuses;
+  }
+
+  /**
+   * Get spells by spellbook
+   */
+  async getSpells(spellbook?: string): Promise<Spell[]> {
+    let query = `bucket('infobox_spell').select('name','spellbook','level','type','max_hit','base_xp','runes','description').limit(500).run()`;
+
+    if (spellbook) {
+      query = `bucket('infobox_spell').select('name','spellbook','level','type','max_hit','base_xp','runes','description').where('spellbook','${spellbook}').limit(500).run()`;
+    }
+
+    const results = await this.query(query);
+
+    return results
+      .map((row) => {
+        const name = toStringValue(row['name']);
+        const book = toStringValue(row['spellbook']);
+        const level = toNumberValue(row['level']);
+
+        if (!name || !book || level === undefined) return null;
+
+        const spell: Spell = {
+          name,
+          spellbook: book,
+          levelRequired: level,
+        };
+
+        const type = toStringValue(row['type']);
+        if (type) spell.type = type;
+
+        const maxHit = toNumberValue(row['max_hit']);
+        if (maxHit !== undefined) spell.maxHit = maxHit;
+
+        const baseXp = toNumberValue(row['base_xp']);
+        if (baseXp !== undefined) spell.baseXp = baseXp;
+
+        const runes = toStringValue(row['runes']);
+        if (runes) spell.runes = runes;
+
+        const description = toStringValue(row['description']);
+        if (description) spell.description = description;
+
+        return spell;
+      })
+      .filter((s): s is Spell => s !== null);
+  }
+
+  /**
+   * Get activities/minigames
+   */
+  async getActivities(): Promise<Activity[]> {
+    const query = `bucket('infobox_activity').select('name','type','participants','skills','rewards','location','requirements').limit(500).run()`;
+
+    const results = await this.query(query);
+
+    return results
+      .map((row) => {
+        const name = toStringValue(row['name']);
+        if (!name) return null;
+
+        const activity: Activity = { name };
+
+        const type = toStringValue(row['type']);
+        if (type) activity.type = type;
+
+        const participants = toStringValue(row['participants']);
+        if (participants) activity.participants = participants;
+
+        const skills = toStringValue(row['skills']);
+        if (skills) activity.skills = skills;
+
+        const rewards = toStringValue(row['rewards']);
+        if (rewards) activity.rewards = rewards;
+
+        const location = toStringValue(row['location']);
+        if (location) activity.location = location;
+
+        const requirements = toStringValue(row['requirements']);
+        if (requirements) activity.requirements = requirements;
+
+        return activity;
+      })
+      .filter((a): a is Activity => a !== null);
   }
 }
 

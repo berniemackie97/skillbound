@@ -26,14 +26,13 @@ export function BankrollCard({
   const [currentInput, setCurrentInput] = useState('');
   const [startingInput, setStartingInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Calculate ROI based on starting bankroll
+  // Calculate ROI based on total profit vs initial bankroll
   const roi =
     bankroll.initialBankroll > 0
-      ? ((bankroll.currentBankroll - bankroll.initialBankroll) /
-          bankroll.initialBankroll) *
-        100
+      ? (totalProfit / bankroll.initialBankroll) * 100
       : 0;
 
   function handleEdit() {
@@ -95,17 +94,47 @@ export function BankrollCard({
     setError(null);
   }
 
+  async function handleSync() {
+    setIsSyncing(true);
+    setError(null);
+    try {
+      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to sync bankroll');
+      }
+
+      router.refresh();
+    } catch {
+      setError('Failed to sync bankroll');
+    } finally {
+      setIsSyncing(false);
+    }
+  }
+
   return (
     <div className="bankroll-card">
       <div className="bankroll-header">
         <h3>Trading Bankroll</h3>
         {!isEditing && (
-          <button
-            className="button ghost small"
-            onClick={handleEdit}
-          >
-            Edit
-          </button>
+          <div className="bankroll-actions">
+            <button
+              className="button ghost small"
+              onClick={handleSync}
+              disabled={isSyncing}
+              title="Recalculate bankroll from trades"
+            >
+              {isSyncing ? 'Syncing...' : 'Sync'}
+            </button>
+            <button
+              className="button ghost small"
+              onClick={handleEdit}
+            >
+              Edit
+            </button>
+          </div>
         )}
       </div>
 

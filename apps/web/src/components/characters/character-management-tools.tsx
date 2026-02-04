@@ -144,26 +144,23 @@ export function CharacterManagementTools({
           />
           <span>Enable scheduled syncs</span>
         </label>
-        <label>
-          <span className="label">Sync cadence</span>
-          <select
-            value={settings.intervalHours}
-            onChange={(event) =>
-              handleSaveSettings({
-                ...settings,
-                intervalHours: Number(event.target.value),
-              })
-            }
-          >
-            {INTERVAL_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <select
+          value={settings.intervalHours}
+          onChange={(event) =>
+            handleSaveSettings({
+              ...settings,
+              intervalHours: Number(event.target.value),
+            })
+          }
+        >
+          {INTERVAL_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         <div className="management-meta">
-          <span className="label">Next scheduled sync</span>
+          <span className="label">Next sync</span>
           <strong>{nextSync}</strong>
         </div>
       </div>

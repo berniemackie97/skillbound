@@ -23,6 +23,7 @@ import {
   evaluateBundleQuests,
 } from '@/lib/requirements/requirements-evaluator';
 import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
+import { applyQuestPoints } from '@/lib/character/quest-points';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 import { getDbClient } from '@/lib/db';
 
@@ -96,6 +97,7 @@ export async function GET(request: NextRequest) {
         progressSnapshot.activities
       );
       facts = enrichFactsWithRuneLiteData(facts, latestSnapshot, bundle);
+      facts = applyQuestPoints(facts, bundle);
 
       requirements = {
         quests: evaluateBundleQuests(bundle, facts),

@@ -1,14 +1,20 @@
 import Link from 'next/link';
 import { unstable_noStore as noStore } from 'next/cache';
 
-import { getSessionUser } from '@/lib/auth/auth-helpers';
+import {
+  magicLinkAction,
+  registerAction,
+  signInAction,
+  signOutAction,
+} from '@/lib/auth/auth-actions';
+import { auth } from '@/lib/auth/auth';
+import { getAuthProviderFlags } from '@/lib/auth/auth-providers';
 import {
   getActiveCharacter,
   getUserCharacters,
 } from '@/lib/character/character-selection';
 
-import { CharacterSwitcher } from '../characters/character-switcher';
-import { NavAuth } from './nav-auth';
+import { NavActions } from './nav-actions';
 
 const NAV_LINKS = [
   // { href: '/', label: 'Overview' },
@@ -22,10 +28,14 @@ const NAV_LINKS = [
 
 export async function SiteNav() {
   noStore();
-  const user = await getSessionUser();
+  const session = await auth();
+  const user = session?.user;
   const characters = user ? await getUserCharacters(user.id) : [];
   const activeSelection = user ? await getActiveCharacter(user.id) : null;
   const activeCharacterId = activeSelection?.character?.id ?? null;
+
+  const { hasGoogle, hasGitHub, hasFacebook, hasTwitter, hasMagicLink } =
+    getAuthProviderFlags();
 
   return (
     <header className="nav">
@@ -43,18 +53,22 @@ export async function SiteNav() {
           </Link>
         ))}
       </nav>
-      <div className="nav-actions">
-        {user && characters.length > 0 && (
-          <CharacterSwitcher
-            characters={characters}
-            activeCharacterId={activeCharacterId}
-          />
-        )}
-        <NavAuth />
-        <Link className="button" href="/lookup">
-          New lookup
-        </Link>
-      </div>
+      <NavActions
+        characters={characters}
+        activeCharacterId={activeCharacterId}
+        isSignedIn={Boolean(user)}
+        userEmail={user?.email}
+        userName={user?.name}
+        hasGoogle={hasGoogle}
+        hasGitHub={hasGitHub}
+        hasFacebook={hasFacebook}
+        hasTwitter={hasTwitter}
+        hasMagicLink={hasMagicLink}
+        signInAction={signInAction}
+        signOutAction={signOutAction}
+        registerAction={registerAction}
+        magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+      />
     </header>
   );
 }

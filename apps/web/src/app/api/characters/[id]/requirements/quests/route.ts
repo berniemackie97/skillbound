@@ -23,6 +23,7 @@ import {
 } from '@/lib/requirements/requirements-context';
 import { evaluateBundleQuests } from '@/lib/requirements/requirements-evaluator';
 import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
+import { applyQuestPoints } from '@/lib/character/quest-points';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 const paramsSchema = z.object({
@@ -135,6 +136,7 @@ export async function GET(
 
     // Apply manual overrides AFTER RuneLite enrichment (overrides win)
     facts = applyOverrides(overrides, facts);
+    facts = applyQuestPoints(facts, bundle);
 
     const results = evaluateBundleQuests(bundle, facts);
 

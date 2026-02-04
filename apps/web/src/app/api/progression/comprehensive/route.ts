@@ -32,6 +32,7 @@ import {
   evaluateBundleQuests,
 } from '@/lib/requirements/requirements-evaluator';
 import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
+import { applyQuestPoints } from '@/lib/character/quest-points';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 const querySchema = z.object({
@@ -187,6 +188,7 @@ export async function GET(request: NextRequest) {
 
       // Apply legacy overrides (character_overrides table)
       facts = applyOverrides(overrides, facts);
+      facts = applyQuestPoints(facts, bundle);
 
       requirements.quests = evaluateBundleQuests(bundle, facts);
       requirements.diaries = evaluateBundleDiaries(bundle, facts);

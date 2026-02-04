@@ -103,11 +103,50 @@
   align-items: center;
   gap: 10px;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
-.checkbox-row input {
-  width: 16px;
-  height: 16px;
+.checkbox-row input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background: var(--rs-brown);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.checkbox-row input[type="checkbox"]:hover {
+  border-color: var(--accent-strong);
+  background: rgba(83, 66, 42, 0.9);
+}
+
+.checkbox-row input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, var(--accent), var(--rs-gold));
+  border-color: var(--accent-strong);
+}
+
+.checkbox-row input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--rs-black);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.checkbox-row input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 0 3px rgba(212, 175, 55, 0.25);
 }
 
 .calculator-table-wrapper {

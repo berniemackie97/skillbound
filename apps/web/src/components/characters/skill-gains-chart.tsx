@@ -81,35 +81,37 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
 
   return (
     <div className="chart-container">
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={150}>
+      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={140}>
         <BarChart
           data={chartData}
           layout="vertical"
-          margin={{ top: 5, right: 10, left: 5, bottom: 5 }}
+          margin={{ top: 5, right: 8, left: 0, bottom: 5 }}
         >
           <XAxis
             type="number"
             stroke="var(--text-muted)"
-            tick={{ fontSize: 10 }}
+            tick={{ fontSize: 9 }}
             tickFormatter={formatXp}
-            tickLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
-            axisLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
+            tickLine={false}
+            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
           />
           <YAxis
             type="category"
             dataKey="name"
             stroke="var(--text-muted)"
-            tick={{ fontSize: 11 }}
+            tick={{ fontSize: 10 }}
             tickLine={false}
             axisLine={false}
-            width={80}
+            width={70}
           />
           <Tooltip
+            cursor={{ fill: 'rgba(212, 175, 55, 0.1)' }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
               borderRadius: '8px',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              fontSize: '0.85rem',
             }}
             labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
             formatter={(value, name) => {
@@ -123,14 +125,14 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
           />
           <Bar
             dataKey="deltaXp"
-            radius={[0, 4, 4, 0]}
-            maxBarSize={24}
+            radius={[0, 3, 3, 0]}
+            maxBarSize={20}
           >
             {chartData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={getSkillColor(entry.name)}
-                opacity={0.85}
+                opacity={0.9}
               />
             ))}
           </Bar>

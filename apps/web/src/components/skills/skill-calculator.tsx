@@ -125,6 +125,32 @@ function safeGetLevelForXp(xp: number) {
   }
 }
 
+function buildWikiUrl(title: string) {
+  const slug = title.replace(/\s+/g, '_');
+  return `https://oldschool.runescape.wiki/w/${encodeURIComponent(slug)}`;
+}
+
+function resolveActionImage(image?: string | null): string | null {
+  if (!image) {
+    return null;
+  }
+  const trimmed = image.trim();
+  if (!trimmed) {
+    return null;
+  }
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('/')) {
+    return `https://oldschool.tools${trimmed}`;
+  }
+  return `https://oldschool.tools/${trimmed.replace(/^\//, '')}`;
+}
+
+function normalizeWikiKey(value: string): string {
+  return value.toLowerCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function getSkillEntryFromLookup(lookup: HiscoresResponse | null, skill: SkillName) {
   if (!lookup) {
     return null;
@@ -313,6 +339,7 @@ export default function SkillCalculator({
   const [newMonsterLevel, setNewMonsterLevel] = useState('');
   const [newMonsterHitpoints, setNewMonsterHitpoints] = useState('');
   const [newMonsterBonus, setNewMonsterBonus] = useState('');
+  const [monsterImages, setMonsterImages] = useState<Record<string, string>>({});
 
   const snapshotSkillMap = useMemo(() => {
     const map = new Map<SkillName, SkillSnapshot>();
@@ -330,6 +357,14 @@ export default function SkillCalculator({
   const skillGroups = useMemo(() => buildSkillGroups(), []);
 
   const xpRemaining = Math.max(0, targetXp - currentXp);
+  const currentLevelBaseXp = safeGetXpForLevel(currentLevel) ?? 0;
+  const progressBaseXp = Math.min(currentXp, currentLevelBaseXp);
+  const progressDenominator = Math.max(1, targetXp - progressBaseXp);
+  const progressNumerator = Math.max(0, currentXp - progressBaseXp);
+  const progressPercent =
+    targetXp <= progressBaseXp
+      ? 100
+      : Math.min(100, (progressNumerator / progressDenominator) * 100);
   const showControlledToggle =
     skill === 'attack' || skill === 'strength' || (skill === 'defence' && combatStyle === 'melee');
   const actionsPerHour = clampNumber(parseNumber(actionsPerHourInput) ?? 0, 0, 1_000_000);
@@ -832,8 +867,67 @@ export default function SkillCalculator({
     []
   );
 
-  // Calculate progress percentage
-  const progressPercent = targetXp > 0 ? Math.min(100, (currentXp / targetXp) * 100) : 0;
+  const monsterImageTargets = useMemo(() => {
+    if (calculator.type !== 'combat') {
+      return [];
+    }
+    const names = new Set<string>();
+    for (const row of combatRows) {
+      if (row.monster.name) {
+        names.add(row.monster.name);
+      }
+    }
+    return Array.from(names);
+  }, [calculator.type, combatRows]);
+
+  const monsterImageKey = useMemo(
+    () => monsterImageTargets.map((name) => normalizeWikiKey(name)).sort().join('|'),
+    [monsterImageTargets]
+  );
+
+  useEffect(() => {
+    if (monsterImageTargets.length === 0) {
+      return;
+    }
+
+    let cancelled = false;
+    const chunkSize = 50;
+
+    const fetchImages = async () => {
+      const nextImages: Record<string, string> = {};
+      for (let i = 0; i < monsterImageTargets.length; i += chunkSize) {
+        const chunk = monsterImageTargets.slice(i, i + chunkSize);
+        const params = new URLSearchParams({
+          titles: chunk.join(','),
+          size: '48',
+        });
+        const response = await fetch(`/api/wiki/page-images?${params.toString()}`);
+        if (!response.ok) {
+          continue;
+        }
+        const payload = (await response.json()) as {
+          data?: Array<{ title: string; url: string | null }>;
+        };
+        for (const entry of payload.data ?? []) {
+          if (!entry.url) {
+            continue;
+          }
+          nextImages[normalizeWikiKey(entry.title)] = entry.url;
+        }
+      }
+
+      if (cancelled) {
+        return;
+      }
+      setMonsterImages((prev) => ({ ...prev, ...nextImages }));
+    };
+
+    void fetchImages();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [monsterImageKey, monsterImageTargets]);
 
   return (
     <div className="calc-container">
@@ -1319,6 +1413,8 @@ export default function SkillCalculator({
                       const itemsUsed = itemsUsedForAction(action, entry.actionsNeeded);
                       const levelMet = action.level_req <= currentLevel;
                       const xpPerHour = actionsPerHour > 0 ? entry.xpPerAction * actionsPerHour : null;
+                      const actionImage = resolveActionImage(action.image);
+                      const actionHref = buildWikiUrl(action.name);
                       return (
                         <tr key={`${action.name}-${index}`} className={levelMet ? 'calc-row-met' : 'calc-row-unmet'}>
                           <td>
@@ -1328,25 +1424,27 @@ export default function SkillCalculator({
                           </td>
                           <td>
                             <div className="calc-action-cell">
-                              {action.image && (
-                                <img
-                                  src={action.image.trim()}
-                                  alt=""
-                                  loading="lazy"
-                                  width={24}
-                                  height={24}
-                                />
-                              )}
-                              <div className="calc-action-info">
-                                {action.link ? (
-                                  <a href={action.link} target="_blank" rel="noreferrer">
-                                    {action.name}
-                                  </a>
-                                ) : (
-                                  <span>{action.name}</span>
+                              <a
+                                className="calc-action-link"
+                                href={actionHref}
+                                target="_blank"
+                                rel="noreferrer"
+                                title={`Open ${action.name} on the OSRS Wiki`}
+                              >
+                                {actionImage && (
+                                  <img
+                                    src={actionImage}
+                                    alt=""
+                                    loading="lazy"
+                                    width={24}
+                                    height={24}
+                                  />
                                 )}
-                                {action.action_members && <span className="calc-member-tag">P2P</span>}
-                              </div>
+                                <div className="calc-action-info">
+                                  <span className="calc-action-name">{action.name}</span>
+                                  {action.action_members && <span className="calc-member-tag">P2P</span>}
+                                </div>
+                              </a>
                             </div>
                           </td>
                           <td className="calc-num">{formatDecimal(entry.xpPerAction)}</td>
@@ -1420,19 +1518,38 @@ export default function SkillCalculator({
                   ) : (
                     combatRows.map((entry, index) => {
                       const xpPerHour = killsPerHour > 0 ? entry.xpPerKill * killsPerHour : null;
+                      const monsterHref = buildWikiUrl(entry.monster.name);
+                      const monsterImage = monsterImages[normalizeWikiKey(entry.monster.name)];
                       return (
                         <tr key={`${entry.monster.name}-${index}`}>
                           <td>
                             <div className="calc-action-cell">
-                              <div className="calc-action-info">
-                                <span>{entry.monster.name}</span>
-                                {entry.monster.members && <span className="calc-member-tag">P2P</span>}
-                                {entry.monster.xp_bonus_multiplier && entry.monster.xp_bonus_multiplier !== 1 && (
-                                  <span className="calc-bonus-tag">
-                                    +{formatDecimal((entry.monster.xp_bonus_multiplier - 1) * 100)}%
-                                  </span>
+                              <a
+                                className="calc-action-link"
+                                href={monsterHref}
+                                target="_blank"
+                                rel="noreferrer"
+                                title={`Open ${entry.monster.name} on the OSRS Wiki`}
+                              >
+                                {monsterImage && (
+                                  <img
+                                    src={monsterImage}
+                                    alt=""
+                                    loading="lazy"
+                                    width={24}
+                                    height={24}
+                                  />
                                 )}
-                              </div>
+                                <div className="calc-action-info">
+                                  <span className="calc-action-name">{entry.monster.name}</span>
+                                  {entry.monster.members && <span className="calc-member-tag">P2P</span>}
+                                  {entry.monster.xp_bonus_multiplier && entry.monster.xp_bonus_multiplier !== 1 && (
+                                    <span className="calc-bonus-tag">
+                                      +{formatDecimal((entry.monster.xp_bonus_multiplier - 1) * 100)}%
+                                    </span>
+                                  )}
+                                </div>
+                              </a>
                               {entry.isCustom && entry.customIndex !== undefined && (
                                 <button
                                   type="button"

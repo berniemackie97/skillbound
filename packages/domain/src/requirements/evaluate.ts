@@ -152,8 +152,14 @@ export function evaluateRequirement(
       return { requirement, status };
     }
     case 'item-possessed': {
-      const status = resolveBoolean(facts.items?.[requirement.itemId]);
-      return { requirement, status };
+      const value = facts.items?.[requirement.itemId];
+      if (value === true) {
+        return { requirement, status: 'MET' };
+      }
+      if (value === false) {
+        return { requirement, status: 'NOT_MET' };
+      }
+      return { requirement, status: 'UNKNOWN' };
     }
     case 'manual-check': {
       return { requirement, status: 'UNKNOWN' };

@@ -72,10 +72,10 @@ export function ProgressionChart({
 
   return (
     <div className="chart-container large">
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={200}>
+      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={160}>
         <AreaChart
           data={data}
-          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+          margin={{ top: 8, right: 8, left: -10, bottom: 0 }}
         >
           <defs>
             <linearGradient id="gradientXp" x1="0" y1="0" x2="0" y2="1">
@@ -93,31 +93,34 @@ export function ProgressionChart({
           </defs>
           <CartesianGrid
             strokeDasharray="3 3"
-            stroke="rgba(226, 176, 101, 0.1)"
+            stroke="rgba(226, 176, 101, 0.08)"
             vertical={false}
           />
           <XAxis
             dataKey="timestamp"
             tickFormatter={formatTimestamp}
             stroke="var(--text-muted)"
-            tick={{ fontSize: 11 }}
-            tickLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
-            axisLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
+            tick={{ fontSize: 9 }}
+            tickLine={false}
+            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
+            interval="preserveStartEnd"
           />
           <YAxis
             stroke="var(--text-muted)"
-            tick={{ fontSize: 11 }}
+            tick={{ fontSize: 9 }}
             tickFormatter={formatXpValue}
-            tickLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
-            axisLine={{ stroke: 'rgba(226, 176, 101, 0.2)' }}
-            width={60}
+            tickLine={false}
+            axisLine={false}
+            width={50}
           />
           <Tooltip
+            cursor={{ stroke: 'rgba(212, 175, 55, 0.3)', strokeWidth: 1 }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
               borderRadius: '8px',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              fontSize: '0.85rem',
             }}
             labelStyle={{ color: 'var(--text-muted)', marginBottom: 8 }}
             itemStyle={{ padding: '2px 0' }}
@@ -133,9 +136,9 @@ export function ProgressionChart({
           />
           {showAll && (
             <Legend
-              wrapperStyle={{ paddingTop: 12 }}
+              wrapperStyle={{ paddingTop: 8, fontSize: 11 }}
               formatter={(value) => (
-                <span style={{ color: 'var(--text)', fontSize: 12 }}>
+                <span style={{ color: 'var(--text)', fontSize: 11 }}>
                   {LABELS[value as keyof typeof LABELS] || value}
                 </span>
               )}
@@ -151,7 +154,7 @@ export function ProgressionChart({
               name="totalXp"
               dot={false}
               activeDot={{
-                r: 5,
+                r: 4,
                 fill: COLORS.totalXp,
                 stroke: 'rgba(30, 25, 18, 0.95)',
                 strokeWidth: 2,
@@ -168,7 +171,7 @@ export function ProgressionChart({
               name="totalLevel"
               dot={false}
               activeDot={{
-                r: 5,
+                r: 4,
                 fill: COLORS.totalLevel,
                 stroke: 'rgba(30, 25, 18, 0.95)',
                 strokeWidth: 2,
@@ -185,7 +188,7 @@ export function ProgressionChart({
               name="combatLevel"
               dot={false}
               activeDot={{
-                r: 5,
+                r: 4,
                 fill: COLORS.combatLevel,
                 stroke: 'rgba(30, 25, 18, 0.95)',
                 strokeWidth: 2,

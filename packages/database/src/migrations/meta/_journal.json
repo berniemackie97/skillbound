@@ -127,6 +127,13 @@
       "when": 1769650000000,
       "tag": "0016_trading_bankroll_inventory",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1770173291937,
+      "tag": "0017_quest_points",
+      "breakpoints": true
     }
   ]
 }
