@@ -3,12 +3,12 @@ name: Database
 on:
   push:
     paths:
-      - 'packages/database/prisma/**'
-      - 'packages/database/migrations/**'
+      - 'packages/database/src/schema/**'
+      - 'packages/database/src/migrations/**'
   pull_request:
     paths:
-      - 'packages/database/prisma/**'
-      - 'packages/database/migrations/**'
+      - 'packages/database/src/schema/**'
+      - 'packages/database/src/migrations/**'
 
 jobs:
   migration-check:
@@ -50,31 +50,16 @@ jobs:
       - name: Check migration files
         run: |
           cd packages/database
-          # Ensure migrations are named correctly
-          for file in prisma/migrations/*/migration.sql; do
-            if [ ! -f "$file" ]; then
-              echo "Invalid migration structure"
-              exit 1
-            fi
-          done
+          if [ ! -d "src/migrations" ]; then
+            echo "Missing migrations directory"
+            exit 1
+          fi
 
-      - name: Validate schema
-        run: pnpm --filter @skillbound/database prisma validate
+      - name: Type check database package
+        run: pnpm --filter @skillbound/database typecheck
 
-      - name: Test migrations (up)
-        run: pnpm --filter @skillbound/database migrate deploy
-        env:
-          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_test
-
-      - name: Generate Prisma Client
-        run: pnpm --filter @skillbound/database generate
-
-      - name: Check for schema drift
-        run: |
-          pnpm --filter @skillbound/database prisma migrate diff \
-            --from-schema-datamodel packages/database/prisma/schema.prisma \
-            --to-schema-datasource packages/database/prisma/schema.prisma \
-            --exit-code
+      - name: Run migrations
+        run: pnpm --filter @skillbound/database migrate
         env:
           DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_test
 

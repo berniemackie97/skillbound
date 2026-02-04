@@ -1,0 +1,2937 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:36:59.502Z",
+  "payload": {
+    "name": "Construction",
+    "slug": "construction",
+    "members_only": true,
+    "bonuses": [
+      {
+        "name": "Carpenter's Outfit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      }
+    ],
+    "categories": {
+      "1": "Garden",
+      "2": "Raw Materials",
+      "3": "Parlour",
+      "4": "Bedroom",
+      "5": "Chapel",
+      "6": "Dining Room",
+      "7": "Quest Hall",
+      "8": "Study",
+      "9": "Kitchen",
+      "10": "Skill Hall",
+      "11": "Dungeon",
+      "12": "Combat Room",
+      "13": "Throne Room",
+      "14": "Portal Chamber",
+      "15": "Superior Garden",
+      "16": "Costume Room",
+      "17": "Formal Garden",
+      "18": "Treasure Room",
+      "92": "Mahogany Homes",
+      "103": "Repair Kits",
+      "104": "Hull Parts"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": true,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Exit portal",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/exit-portal.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Plank",
+        "image": "https://general-543f.kxcdn.com/items/plank.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 29,
+        "categories": [
+          2
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Plank",
+            "amount": 1,
+            "price": 153,
+            "real_time_price": 154
+          }
+        ]
+      },
+      {
+        "name": "Teak plank",
+        "image": "https://general-543f.kxcdn.com/items/teak_plank.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 90,
+        "categories": [
+          2
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 1,
+            "price": 778,
+            "real_time_price": 778
+          }
+        ]
+      },
+      {
+        "name": "Plant",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/plant.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 31,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany plank",
+        "image": "https://general-543f.kxcdn.com/items/mahogany_plank.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 140,
+        "categories": [
+          2
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 1,
+            "price": 1999,
+            "real_time_price": 1985
+          }
+        ]
+      },
+      {
+        "name": "Oak plank",
+        "image": "https://general-543f.kxcdn.com/items/oak_plank.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          2
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 1,
+            "price": 394,
+            "real_time_price": 409
+          }
+        ]
+      },
+      {
+        "name": "Fern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/fern-big.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 31,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Short plant",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/short-plant.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 31,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Dock leaf",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/dock-leaf.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 31,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Crude wooden chair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/crude-wooden-chair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 58,
+        "categories": [
+          3
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Plank",
+            "amount": 2,
+            "price": 153,
+            "real_time_price": 154
+          }
+        ]
+      },
+      {
+        "name": "Brown rug",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/brown-rug.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 2,
+        "exp_given": 30,
+        "categories": [
+          3,
+          4,
+          5
+        ],
+        "link": null
+      },
+      {
+        "name": "Torn curtains",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/torn-curtains.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 2,
+        "exp_given": 132,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Clay fireplace",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/clay-fireplace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 3,
+        "exp_given": 30,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden bookcase",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-bookcase.png\r\n",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 4,
+        "exp_given": 115,
+        "categories": [
+          3,
+          7,
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Firepit",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/firepit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 40,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Cat blanket",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/cat-blanket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 15,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Decorative rock",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/decorative-rock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 31,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Small fern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/small-fern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 6,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Thistle",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/thistle.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 6,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Bush",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/bush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 6,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Large leaf bush",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/large-leaf-bush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 6,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden shelves 1",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-shelves-1.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 6,
+        "exp_given": 87,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Pump and drain",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/pump-and-drain.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 100,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Beer barrel",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/beer-barrel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 87,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden chair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-chair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 8,
+        "exp_given": 87,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden larder",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-larder.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 9,
+        "exp_given": 228,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Wood dining table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wood-dining-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 115,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Pond",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/pond.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Nice tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/nice-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 44,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 115,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Firepit with hook",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/firepit-with-hook.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 11,
+        "exp_given": 60,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Reeds",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/reeds.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Fern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/fern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Cider barrel",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/cider-barrel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 91,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden shelves 2",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-shelves-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 147,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Wood table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wood-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 87,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Huge plant",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/huge-plant.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Tall plant",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/tall-plant.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Rug",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/rug.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 13,
+        "exp_given": 60,
+        "categories": [
+          3,
+          4,
+          10,
+          7,
+          5,
+          11
+        ],
+        "link": null
+      },
+      {
+        "name": "Rocking chair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/rocking-chair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 14,
+        "exp_given": 87,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Imp statue",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/imp-statue.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 150,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 70,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak decoration",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-decoration.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 16,
+        "exp_given": 120,
+        "categories": [
+          6,
+          12,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Firepit with pot",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/firepit-with-pot.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 17,
+        "exp_given": 80,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Curtains",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/curtains.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 18,
+        "exp_given": 225,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Asgarnian ale",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/asgarnian-ale.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 18,
+        "exp_given": 184,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Cat basket",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/cat-basket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 58,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak chair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-chair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 120,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden bed",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-bed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 117,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Shoe box",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/shoe-box.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 58,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Shaving stand",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/shaving-stand.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 30,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-dining-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 22,
+        "exp_given": 240,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 22,
+        "exp_given": 240,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden shelves 3",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-shelves-3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 23,
+        "exp_given": 147,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Small oven",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/small-oven.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 24,
+        "exp_given": 80,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak clock",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-clock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 142,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak armchair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-armchair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 180,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Greenman's ale",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/greenmans-ale.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 184,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Rope bell-pull",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/rope-bell-pull.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 64,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Pump and tub",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/pump-and-tub.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 200,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak drawers",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-drawers.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 120,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak bookcase",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-bookcase.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 180,
+        "categories": [
+          3,
+          7,
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Large oven",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/large-oven.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 100,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak shaving stand",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-shaving-stand.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 61,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Willow tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/willow-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 100,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak bed",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-bed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 210,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Carved oak bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/carved-oak-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 31,
+        "exp_given": 240,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Carved oak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/carved-oak-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 31,
+        "exp_given": 360,
+        "categories": [
+          6
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 6,
+            "price": 394,
+            "real_time_price": 409
+          }
+        ]
+      },
+      {
+        "name": "Oak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 32,
+        "exp_given": 180,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Boxing ring",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/boxing-ring.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 32,
+        "exp_given": 420,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak larder",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-larder.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 480,
+        "categories": [
+          9
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 8,
+            "price": 394,
+            "real_time_price": 409
+          }
+        ]
+      },
+      {
+        "name": "Cushioned basket",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/cushioned-basket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 58,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Stone fireplace",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/stone-fireplace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 40,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Steel range",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/steel-range.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 120,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak shelves 1",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-shelves-1.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 240,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Glove rack",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/glove-rack.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 120,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Large oak bed",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/large-oak-bed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 330,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak armchair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-armchair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 180,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Dragon bitter",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/dragon-bitter.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 36,
+        "exp_given": 224,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak decoration",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-decoration.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 36,
+        "exp_given": 180,
+        "categories": [
+          6,
+          12,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Bell-pull",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/bell-pull.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 37,
+        "exp_given": 120,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak dresser",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-dresser.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 37,
+        "exp_given": 121,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 360,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-dining-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 360,
+        "categories": [
+          6
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 4,
+            "price": 778,
+            "real_time_price": 778
+          }
+        ]
+      },
+      {
+        "name": "Oak wardrobe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-wardrobe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 39,
+        "exp_given": 180,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak bed",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-bed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 300,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany bookcase",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-bookcase.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 420,
+        "categories": [
+          3,
+          7,
+          8
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 3,
+            "price": 1999,
+            "real_time_price": 1985
+          }
+        ]
+      },
+      {
+        "name": "Oak lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 60,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Opulent curtains",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/opulent-curtains.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 315,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Fencing ring",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/fencing-ring.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 41,
+        "exp_given": 570,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Globe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/globe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 41,
+        "exp_given": 180,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Fancy range",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/fancy-range.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 160,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Crystal ball",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/crystal-ball.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 280,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Alchemical chart",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/alchemical-chart.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 43,
+        "exp_given": 30,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak larder",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-larder.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 43,
+        "exp_given": 750,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Wooden telescope",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/wooden-telescope.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 121,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Weapons rack",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/weapons-rack.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 180,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Carved teak bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/carved-teak-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 360,
+        "categories": [
+          6,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak shelves 2",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-shelves-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 240,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Carved teak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/carved-teak-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 600,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Large teak bed",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/large-teak-bed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 480,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Maple tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/maple-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 122,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak dresser",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-dresser.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 46,
+        "exp_given": 181,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Sink",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/sink.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 300,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Eagle lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/eagle-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 120,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Demon lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/demon-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 120,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Mounted mythical cape",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mounted-mythical-cape.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 370,
+        "categories": [
+          7
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 3,
+            "price": 778,
+            "real_time_price": 778
+          }
+        ]
+      },
+      {
+        "name": "Chef's delight",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/chefs-delight.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 224,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak portal",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-portal.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 270,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany armchair",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-armchair.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 280,
+        "categories": [
+          3
+        ],
+        "link": null
+      },
+      {
+        "name": "Ornamental globe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/ornamental-globe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 270,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teleport focus",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teleport-focus.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 40,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak drawers",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-drawers.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 180,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Combat ring",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/combat-ring.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 630,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 270,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 560,
+        "categories": [
+          6,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 840,
+        "categories": [
+          6
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 6,
+            "price": 1999,
+            "real_time_price": 1985
+          }
+        ]
+      },
+      {
+        "name": "4-poster",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/4-poster.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 450,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Extra weapons rack",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/extra-weapons-rack.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 54,
+        "exp_given": 440,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Elemental sphere",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/elemental-sphere.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 54,
+        "exp_given": 580,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak clock",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-clock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 202,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Gilded decoration",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-decoration.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 1020,
+        "categories": [
+          6,
+          12,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Fancy teak dresser",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/fancy-teak-dresser.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 182,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak shelves 1",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-shelves-1.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 330,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak eagle lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-eagle-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 180,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak demon lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-demon-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 180,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Lunar globe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/lunar-globe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 570,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Gilded 4-poster",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-4-poster.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 1330,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Posh bell-pull",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/posh-bell-pull.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 420,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Yew tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/yew-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 141,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Gilded bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 61,
+        "exp_given": 1760,
+        "categories": [
+          6,
+          13
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak wardrobe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-wardrobe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 270,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Marble fireplace",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/marble-fireplace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 500,
+        "categories": [
+          3,
+          4,
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Astronomical chart",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/astronomical-chart.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 45,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak telescope",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-telescope.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 64,
+        "exp_given": 181,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany dresser",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-dresser.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 64,
+        "exp_given": 281,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany portal",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-portal.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 420,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Greater focus",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/greater-focus.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 500,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Opulent rug",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/opulent-rug.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 360,
+        "categories": [
+          3,
+          4,
+          10,
+          7,
+          11
+        ],
+        "link": null
+      },
+      {
+        "name": "Crystal of power",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/crystal-of-power.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 890,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak garden bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-garden-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 540,
+        "categories": [
+          15
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak shelves 2",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/teak-shelves-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 930,
+        "categories": [
+          9
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany demon lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-demon-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 580,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany eagle lectern",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-eagle-lectern.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 580,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Celestial globe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/celestial-globe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 570,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Carved teak magic wardrobe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/carved-teak-magic-wardrobe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 540,
+        "categories": [
+          16
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 6,
+            "price": 778,
+            "real_time_price": 778
+          }
+        ]
+      },
+      {
+        "name": "Dungeon entrance",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/dungeon-entrance.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 500,
+        "categories": [
+          1,
+          17
+        ],
+        "link": null
+      },
+      {
+        "name": "Ranging pedestals",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/ranging-pedestals.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 720,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Opulent table",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/opulent-table.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 3100,
+        "categories": [
+          6
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak door",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/oak-door.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 600,
+        "categories": [
+          11,
+          18
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 10,
+            "price": 394,
+            "real_time_price": 409
+          }
+        ]
+      },
+      {
+        "name": "Gilded dresser",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-dresser.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 582,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany wardrobe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-wardrobe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 420,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Magic tree",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/magic-tree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 223,
+        "categories": [
+          1
+        ],
+        "link": null
+      },
+      {
+        "name": "Armillary globe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/armillary-globe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 960,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Marble portal",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/marble-portal.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 1500,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Scrying pool",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/scrying-pool.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 2000,
+        "categories": [
+          14
+        ],
+        "link": null
+      },
+      {
+        "name": "Balance beam",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/balance-beam.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 1000,
+        "categories": [
+          12
+        ],
+        "link": null
+      },
+      {
+        "name": "Infernal chart",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/infernal-chart.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 83,
+        "exp_given": 60,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany telescope",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-telescope.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 281,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Gilded clock",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-clock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 602,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Small orrery",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/small-orrery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 1320,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Gilded wardrobe",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gilded-wardrobe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 720,
+        "categories": [
+          4
+        ],
+        "link": null
+      },
+      {
+        "name": "Large orrery",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/large-orrery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 95,
+        "exp_given": 1420,
+        "categories": [
+          8
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Beginner (base)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-beginner.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 500,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Novice (base)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-novice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 1250,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Adept (base)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-adept.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 2250,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Expert (base)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-expert.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 2750,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Beginner (avg)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-beginner.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 865,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Novice (avg)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-novice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 1887.5,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Adept (avg)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-adept.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 3275.6,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany Homes - Expert (avg)",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/mahogany-homes-expert.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 4373.4,
+        "categories": [
+          92
+        ],
+        "link": null
+      },
+      {
+        "name": "Gnome bench",
+        "image": "https://general-543f.kxcdn.com/misc/construction-skill-calculator/gnome-bench.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 840,
+        "categories": [
+          15
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 6,
+            "price": 1999,
+            "real_time_price": 1985
+          }
+        ]
+      },
+      {
+        "name": "Repair kit",
+        "image": "https://general-543f.kxcdn.com/items/repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 43.5,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Plank",
+            "amount": 2,
+            "price": 153,
+            "real_time_price": 154
+          },
+          {
+            "name": "Bronze nails",
+            "amount": 10,
+            "price": 2,
+            "real_time_price": 1
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Repair kit",
+            "amount": 2,
+            "price": 76,
+            "real_time_price": 62
+          }
+        ]
+      },
+      {
+        "name": "Oak repair kit",
+        "image": "https://general-543f.kxcdn.com/items/oak-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 90,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 2,
+            "price": 394,
+            "real_time_price": 409
+          },
+          {
+            "name": "Iron nails",
+            "amount": 10,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Oak repair kit",
+            "amount": 2,
+            "price": 144,
+            "real_time_price": 115
+          }
+        ]
+      },
+      {
+        "name": "Teak repair kit",
+        "image": "https://general-543f.kxcdn.com/items/teak-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 135,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 2,
+            "price": 778,
+            "real_time_price": 778
+          },
+          {
+            "name": "Steel nails",
+            "amount": 10,
+            "price": 17,
+            "real_time_price": 17
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Teak repair kit",
+            "amount": 2,
+            "price": 427,
+            "real_time_price": 400
+          }
+        ]
+      },
+      {
+        "name": "Mahogany repair kit",
+        "image": "https://general-543f.kxcdn.com/items/mahogany-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 210,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 2,
+            "price": 1999,
+            "real_time_price": 1985
+          },
+          {
+            "name": "Mithril nails",
+            "amount": 10,
+            "price": 76,
+            "real_time_price": 76
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Mahogany repair kit",
+            "amount": 2,
+            "price": 1190,
+            "real_time_price": 1183
+          }
+        ]
+      },
+      {
+        "name": "Camphor repair kit",
+        "image": "https://general-543f.kxcdn.com/items/camphor-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 255,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Camphor plank",
+            "amount": 2,
+            "price": 2974,
+            "real_time_price": 2799
+          },
+          {
+            "name": "Adamantite nails",
+            "amount": 10,
+            "price": 122,
+            "real_time_price": 122
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Camphor repair kit",
+            "amount": 2,
+            "price": 1802,
+            "real_time_price": 1802
+          }
+        ]
+      },
+      {
+        "name": "Ironwood repair kit",
+        "image": "https://general-543f.kxcdn.com/items/ironwood-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 300,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ironwood plank",
+            "amount": 1,
+            "price": 3586,
+            "real_time_price": 3586
+          },
+          {
+            "name": "Rune nails",
+            "amount": 10,
+            "price": 831,
+            "real_time_price": 831
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Ironwood repair kit",
+            "amount": 3,
+            "price": 2174,
+            "real_time_price": 2165
+          }
+        ]
+      },
+      {
+        "name": "Rosewood repair kit",
+        "image": "https://general-543f.kxcdn.com/items/rosewood-repair-kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 330,
+        "categories": [
+          103
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Rosewood plank",
+            "amount": 1,
+            "price": 4861,
+            "real_time_price": 4612
+          },
+          {
+            "name": "Dragon nails",
+            "amount": 5,
+            "price": 19037,
+            "real_time_price": 49704
+          },
+          {
+            "name": "Swamp paste",
+            "amount": 5,
+            "price": 21,
+            "real_time_price": 22
+          }
+        ],
+        "products": [
+          {
+            "name": "Rosewood repair kit",
+            "amount": 3,
+            "price": 26418,
+            "real_time_price": 52472
+          }
+        ]
+      },
+      {
+        "name": "Wooden hull parts",
+        "image": "https://general-543f.kxcdn.com/items/wooden-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 72.5,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Plank",
+            "amount": 5,
+            "price": 153,
+            "real_time_price": 154
+          }
+        ],
+        "products": [
+          {
+            "name": "Wooden hull parts",
+            "amount": 1,
+            "price": 310,
+            "real_time_price": 20
+          }
+        ]
+      },
+      {
+        "name": "Oak hull parts",
+        "image": "https://general-543f.kxcdn.com/items/oak-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 8,
+        "exp_given": 150,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak plank",
+            "amount": 5,
+            "price": 394,
+            "real_time_price": 409
+          }
+        ],
+        "products": [
+          {
+            "name": "Oak hull parts",
+            "amount": 1,
+            "price": 618,
+            "real_time_price": 316
+          }
+        ]
+      },
+      {
+        "name": "Teak hull parts",
+        "image": "https://general-543f.kxcdn.com/items/teak-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 23,
+        "exp_given": 225,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak plank",
+            "amount": 5,
+            "price": 778,
+            "real_time_price": 778
+          }
+        ],
+        "products": [
+          {
+            "name": "Teak hull parts",
+            "amount": 1,
+            "price": 1018,
+            "real_time_price": 900
+          }
+        ]
+      },
+      {
+        "name": "Mahogany hull parts",
+        "image": "https://general-543f.kxcdn.com/items/mahogany-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 41,
+        "exp_given": 350,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany plank",
+            "amount": 5,
+            "price": 1999,
+            "real_time_price": 1985
+          }
+        ],
+        "products": [
+          {
+            "name": "Mahogany hull parts",
+            "amount": 1,
+            "price": 3468,
+            "real_time_price": 4500
+          }
+        ]
+      },
+      {
+        "name": "Camphor hull parts",
+        "image": "https://general-543f.kxcdn.com/items/camphor-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 400,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Camphor plank",
+            "amount": 5,
+            "price": 2974,
+            "real_time_price": 2799
+          }
+        ],
+        "products": [
+          {
+            "name": "Camphor hull parts",
+            "amount": 1,
+            "price": 8030,
+            "real_time_price": 8564
+          }
+        ]
+      },
+      {
+        "name": "Ironwood hull parts",
+        "image": "https://general-543f.kxcdn.com/items/ironwood-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 437.5,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ironwood plank",
+            "amount": 5,
+            "price": 3586,
+            "real_time_price": 3586
+          }
+        ],
+        "products": [
+          {
+            "name": "Ironwood hull parts",
+            "amount": 1,
+            "price": 8519,
+            "real_time_price": 11413
+          }
+        ]
+      },
+      {
+        "name": "Rosewood hull parts",
+        "image": "https://general-543f.kxcdn.com/items/rosewood-hull-parts.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 475,
+        "categories": [
+          104
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Rosewood plank",
+            "amount": 5,
+            "price": 4861,
+            "real_time_price": 4612
+          }
+        ],
+        "products": [
+          {
+            "name": "Rosewood hull parts",
+            "amount": 1,
+            "price": 11431,
+            "real_time_price": 11639
+          }
+        ]
+      }
+    ]
+  }
+}

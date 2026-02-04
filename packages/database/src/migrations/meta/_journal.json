@@ -8,6 +8,125 @@
       "when": 1769038438139,
       "tag": "0000_broad_eddie_brock",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769123555742,
+      "tag": "0001_curly_iceman",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769124990259,
+      "tag": "0002_far_viper",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1769131265916,
+      "tag": "0003_eminent_white_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1769132274464,
+      "tag": "0004_shocking_chronomancer",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1769209502047,
+      "tag": "0005_easy_nemesis",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1769236254425,
+      "tag": "0006_smart_union_jack",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1769285722919,
+      "tag": "0007_thick_blackheart",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1769301909118,
+      "tag": "0008_shocking_scream",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1769305462966,
+      "tag": "0009_light_talisman",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1769462299158,
+      "tag": "0010_tiny_maria_hill",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1769537910000,
+      "tag": "0011_stormy_preset",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1769539800000,
+      "tag": "0012_silver_sable",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1769632000000,
+      "tag": "0013_wom_backfill_checked",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1769568000000,
+      "tag": "0014_character_profiles_user_characters",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1769575000000,
+      "tag": "0015_character_archival_sync_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1769575000000,
+      "tag": "0015_character_archival_sync_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1769650000000,
+      "tag": "0016_trading_bankroll_inventory",
+      "breakpoints": true
     }
   ]
 }

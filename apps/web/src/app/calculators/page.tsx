@@ -1,0 +1,107 @@
+import { getLevelForXp, getXpForLevel, SKILLS } from '@skillbound/domain';
+
+import SkillCalculator from '@/components/skills/skill-calculator';
+import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { getActiveCharacter } from '@/lib/character/character-selection';
+import { getLatestCharacterSnapshot } from '@/lib/character/character-snapshots';
+import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
+
+type SearchParams = Promise<{
+  skill?: string | string[];
+  currentLevel?: string | string[];
+  currentXp?: string | string[];
+  targetLevel?: string | string[];
+  username?: string | string[];
+  mode?: string | string[];
+}>;
+
+function getStringParam(value: string | string[] | undefined) {
+  if (!value) {
+    return '';
+  }
+  return Array.isArray(value) ? (value[0] ?? '') : value;
+}
+
+function parseNumber(value: string): number | null {
+  if (!value) {
+    return null;
+  }
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+export default async function CalculatorsPage({
+  searchParams,
+}: {
+  searchParams?: SearchParams;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const sessionUser = await getSessionUser();
+  const activeSelection = sessionUser
+    ? await getActiveCharacter(sessionUser.id)
+    : null;
+  const activeCharacter = activeSelection?.character ?? null;
+  const activeSnapshot = activeCharacter
+    ? await getLatestCharacterSnapshot(activeCharacter.id)
+    : null;
+
+  const skillParam = getStringParam(resolvedSearchParams?.skill).toLowerCase();
+  const skill = (
+    SKILLS.includes(skillParam as (typeof SKILLS)[number])
+      ? skillParam
+      : 'prayer'
+  ) as (typeof SKILLS)[number];
+  const currentLevelParam = getStringParam(resolvedSearchParams?.currentLevel) || '1';
+  const currentXpParam = getStringParam(resolvedSearchParams?.currentXp) || '';
+  const targetLevelParam = getStringParam(resolvedSearchParams?.targetLevel) || '2';
+  const usernameParam = getStringParam(resolvedSearchParams?.username).trim();
+  const mode = getStringParam(resolvedSearchParams?.mode) || 'auto';
+
+  const snapshotSkill = activeSnapshot?.skills.find(
+    (entry) => entry.name === skill
+  );
+  const parsedLevel = parseNumber(currentLevelParam);
+
+  let fallbackXpFromLevel: number | null = null;
+  if (parsedLevel !== null) {
+    try {
+      fallbackXpFromLevel = getXpForLevel(parsedLevel);
+    } catch {
+      fallbackXpFromLevel = null;
+    }
+  }
+
+  const resolvedCurrentXp =
+    parseNumber(currentXpParam) ?? snapshotSkill?.xp ?? fallbackXpFromLevel;
+
+  let resolvedCurrentLevel: number | null = null;
+  if (resolvedCurrentXp !== null) {
+    try {
+      resolvedCurrentLevel = getLevelForXp(resolvedCurrentXp);
+    } catch {
+      resolvedCurrentLevel = null;
+    }
+  } else {
+    resolvedCurrentLevel = parsedLevel;
+  }
+
+  const calculator = await getCalculatorDataForSkill(skill);
+
+  return (
+    <SkillCalculator
+      activeCharacterName={activeCharacter?.displayName ?? null}
+      snapshotSkills={activeSnapshot?.skills ?? null}
+      initialSkill={skill}
+      initialCalculator={calculator}
+      initialMode={mode}
+      initialUsername={usernameParam || activeCharacter?.displayName || ''}
+      initialCurrentLevel={
+        resolvedCurrentLevel?.toString() ?? currentLevelParam
+      }
+      initialCurrentXp={
+        resolvedCurrentXp !== null ? String(resolvedCurrentXp) : currentXpParam
+      }
+      initialTargetLevel={targetLevelParam}
+    />
+  );
+}

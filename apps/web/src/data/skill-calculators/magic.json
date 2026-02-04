@@ -1,0 +1,2196 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.296Z",
+  "payload": {
+    "name": "Magic",
+    "slug": "magic",
+    "members_only": false,
+    "bonuses": [],
+    "categories": {
+      "62": "Standard Spellbook",
+      "63": "Arceuus Spellbook",
+      "64": "Ancient Spellbook",
+      "65": "Lunar Spellbook"
+    },
+    "profit_loss_settings": {
+      "enabled": false,
+      "show_components": false,
+      "real_time_prices": false
+    },
+    "data": [
+      {
+        "name": "Wind Strike",
+        "image": "/images/spells/standard/wind_strike.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 5.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/wind-strike"
+      },
+      {
+        "name": "Confuse",
+        "image": "/images/spells/standard/confuse.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 3,
+        "exp_given": 13,
+        "categories": [
+          62
+        ],
+        "link": "/guides/confuse"
+      },
+      {
+        "name": "Enchant Opal Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 4,
+        "exp_given": 9,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-opal"
+      },
+      {
+        "name": "Water Strike",
+        "image": "/images/spells/standard/water_strike.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 5,
+        "exp_given": 7.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/water-strike"
+      },
+      {
+        "name": "Lvl-1 Enchant",
+        "image": "/images/spells/standard/enchant_sapphire_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 7,
+        "exp_given": 17.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-1-enchant"
+      },
+      {
+        "name": "Enchant Sapphire Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 17.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-sapphire"
+      },
+      {
+        "name": "Earth Strike",
+        "image": "/images/spells/standard/earth_strike.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 9,
+        "exp_given": 9.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/earth-strike"
+      },
+      {
+        "name": "Weaken",
+        "image": "/images/spells/standard/weaken.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 11,
+        "exp_given": 21,
+        "categories": [
+          62
+        ],
+        "link": "/guides/weaken"
+      },
+      {
+        "name": "Fire Strike",
+        "image": "/images/spells/standard/fire_strike.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 13,
+        "exp_given": 11.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/fire-strike"
+      },
+      {
+        "name": "Enchant Jade Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 14,
+        "exp_given": 19,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-jade"
+      },
+      {
+        "name": "Bones to Bananas",
+        "image": "/images/spells/standard/bones_to_bananas.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 15,
+        "exp_given": 25,
+        "categories": [
+          62
+        ],
+        "link": "/guides/bones-to-bananas"
+      },
+      {
+        "name": "Draynor Manor Teleport",
+        "image": "/images/spells/arceuus/draynor_manor_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 17,
+        "exp_given": 16,
+        "categories": [
+          63
+        ],
+        "link": "/guides/draynor-manor-teleport"
+      },
+      {
+        "name": "Wind Bolt",
+        "image": "/images/spells/standard/wind_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 17,
+        "exp_given": 13.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/wind-bolt"
+      },
+      {
+        "name": "Curse",
+        "image": "/images/spells/standard/curse.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 19,
+        "exp_given": 29,
+        "categories": [
+          62
+        ],
+        "link": "/guides/curse"
+      },
+      {
+        "name": "Bind",
+        "image": "/images/spells/standard/bind.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 20,
+        "exp_given": 30,
+        "categories": [
+          62
+        ],
+        "link": "/guides/bind"
+      },
+      {
+        "name": "Low Level Alchemy",
+        "image": "/images/spells/standard/low_level_alchemy.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 21,
+        "exp_given": 31,
+        "categories": [
+          62
+        ],
+        "link": "/guides/low-level-alchemy"
+      },
+      {
+        "name": "Water Bolt",
+        "image": "/images/spells/standard/water_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 23,
+        "exp_given": 16.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/water-bolt"
+      },
+      {
+        "name": "Enchant Pearl Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 24,
+        "exp_given": 29,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-pearl"
+      },
+      {
+        "name": "Varrock Teleport",
+        "image": "/images/spells/standard/varrock_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 25,
+        "exp_given": 35,
+        "categories": [
+          62
+        ],
+        "link": "/guides/varrock-teleport"
+      },
+      {
+        "name": "Lvl-2 Enchant",
+        "image": "/images/spells/standard/enchant_emerald_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 27,
+        "exp_given": 37,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-2-enchant"
+      },
+      {
+        "name": "Enchant Emerald Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 37,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-emerald"
+      },
+      {
+        "name": "Mind Altar Teleport",
+        "image": "/images/spells/arceuus/mind_altar_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 28,
+        "exp_given": 22,
+        "categories": [
+          63
+        ],
+        "link": "/guides/mind-altar-teleport"
+      },
+      {
+        "name": "Enchant Topaz Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 33,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-red-topaz"
+      },
+      {
+        "name": "Earth Bolt",
+        "image": "/images/spells/standard/earth_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 29,
+        "exp_given": 19.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/earth-bolt"
+      },
+      {
+        "name": "Lumbridge Teleport",
+        "image": "/images/spells/standard/lumbridge_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 31,
+        "exp_given": 41,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lumbridge-teleport"
+      },
+      {
+        "name": "Telekinetic Grab",
+        "image": "/images/spells/standard/telekinetic_grab.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 33,
+        "exp_given": 43,
+        "categories": [
+          62
+        ],
+        "link": "/guides/telekinetic-grab"
+      },
+      {
+        "name": "Respawn Teleport",
+        "image": "/images/spells/arceuus/respawn_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 27,
+        "categories": [
+          63
+        ],
+        "link": "/guides/respawn-teleport"
+      },
+      {
+        "name": "Fire Bolt",
+        "image": "/images/spells/standard/fire_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 35,
+        "exp_given": 22.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/fire-bolt"
+      },
+      {
+        "name": "Falador Teleport",
+        "image": "/images/spells/standard/falador_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 37,
+        "exp_given": 48,
+        "categories": [
+          62
+        ],
+        "link": "/guides/falador-teleport"
+      },
+      {
+        "name": "Crumble Undead",
+        "image": "/images/spells/standard/crumble_undead.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 39,
+        "exp_given": 24.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/crumble-undead"
+      },
+      {
+        "name": "Salve Graveyard Teleport",
+        "image": "/images/spells/arceuus/salve_graveyard_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 30,
+        "categories": [
+          63
+        ],
+        "link": "/guides/salve-graveyard-teleport"
+      },
+      {
+        "name": "Teleport to House",
+        "image": "/images/spells/standard/teleport_to_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 30,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleport-to-house"
+      },
+      {
+        "name": "Wind Blast",
+        "image": "/images/spells/standard/wind_blast.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 41,
+        "exp_given": 25.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/wind-blast"
+      },
+      {
+        "name": "Superheat Item",
+        "image": "/images/spells/standard/superheat_item.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 43,
+        "exp_given": 53,
+        "categories": [
+          62
+        ],
+        "link": "/guides/superheat-item"
+      },
+      {
+        "name": "Camelot Teleport",
+        "image": "/images/spells/standard/camelot_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 55.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/camelot-teleport"
+      },
+      {
+        "name": "Water Blast",
+        "image": "/images/spells/standard/water_blast.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 47,
+        "exp_given": 28.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/water-blast"
+      },
+      {
+        "name": "Fenkenstrain's Castle Teleport",
+        "image": "/images/spells/arceuus/fenkenstrains_castle_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 50,
+        "categories": [
+          63
+        ],
+        "link": "/guides/fenkenstrains-castle-teleport"
+      },
+      {
+        "name": "Lvl-3 Enchant",
+        "image": "/images/spells/standard/enchant_ruby_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 49,
+        "exp_given": 59,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-3-enchant"
+      },
+      {
+        "name": "Enchant Ruby Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 49,
+        "exp_given": 59,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-ruby"
+      },
+      {
+        "name": "Iban Blast",
+        "image": "/images/spells/standard/iban_blast.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 30,
+        "categories": [
+          62
+        ],
+        "link": "/guides/iban-blast"
+      },
+      {
+        "name": "Smoke Rush",
+        "image": "/images/spells/ancient/smoke_rush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 30,
+        "categories": [
+          64
+        ],
+        "link": "/guides/smoke-rush"
+      },
+      {
+        "name": "Magic Dart",
+        "image": "/images/spells/standard/magic_dart.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 30,
+        "categories": [
+          62
+        ],
+        "link": "/guides/magic-dart"
+      },
+      {
+        "name": "Snare",
+        "image": "/images/spells/standard/snare.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 60,
+        "categories": [
+          62
+        ],
+        "link": "/guides/snare"
+      },
+      {
+        "name": "Ardougne Teleport",
+        "image": "/images/spells/standard/ardougne_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 61,
+        "categories": [
+          62
+        ],
+        "link": "/guides/ardougne-teleport"
+      },
+      {
+        "name": "Shadow Rush",
+        "image": "/images/spells/ancient/shadow_rush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 31,
+        "categories": [
+          64
+        ],
+        "link": "/guides/shadow-rush"
+      },
+      {
+        "name": "Earth Blast",
+        "image": "/images/spells/standard/earth_blast.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 53,
+        "exp_given": 31.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/earth-blast"
+      },
+      {
+        "name": "Paddewwa Teleport",
+        "image": "/images/spells/ancient/paddewwa_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 54,
+        "exp_given": 64,
+        "categories": [
+          64
+        ],
+        "link": "/guides/paddewwa-teleport"
+      },
+      {
+        "name": "High Level Alchemy",
+        "image": "/images/spells/standard/high_level_alchemy.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 55,
+        "exp_given": 65,
+        "categories": [
+          62
+        ],
+        "link": "/guides/high-level-alchemy"
+      },
+      {
+        "name": "Charge Water Orb",
+        "image": "/images/spells/standard/charge_water_orb.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 56,
+        "categories": [
+          62
+        ],
+        "link": "/guides/charge-water-orb"
+      },
+      {
+        "name": "Blood Rush",
+        "image": "/images/spells/ancient/blood_rush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 33,
+        "categories": [
+          64
+        ],
+        "link": "/guides/blood-rush"
+      },
+      {
+        "name": "Enchant Diamond Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 67,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-diamond"
+      },
+      {
+        "name": "Lvl-4 Enchant",
+        "image": "/images/spells/standard/enchant_diamond_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 57,
+        "exp_given": 67,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-4-enchant"
+      },
+      {
+        "name": "Watchtower Teleport",
+        "image": "/images/spells/standard/watchtower_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 68,
+        "categories": [
+          62
+        ],
+        "link": "/guides/watchtower-teleport"
+      },
+      {
+        "name": "Ice Rush",
+        "image": "/images/spells/ancient/ice_rush.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 34,
+        "categories": [
+          64
+        ],
+        "link": "/guides/ice-rush"
+      },
+      {
+        "name": "Fire Blast",
+        "image": "/images/spells/standard/fire_blast.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 59,
+        "exp_given": 34.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/fire-blast"
+      },
+      {
+        "name": "Senntisten Teleport",
+        "image": "/images/spells/ancient/senntisten_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 70,
+        "categories": [
+          64
+        ],
+        "link": "/guides/senntisten-teleport"
+      },
+      {
+        "name": "Claws of Guthix",
+        "image": "/images/spells/standard/claws_of_guthix.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 35,
+        "categories": [
+          62
+        ],
+        "link": "/guides/claws-of-guthix"
+      },
+      {
+        "name": "Flames of Zamorak",
+        "image": "/images/spells/standard/flames_of_zamorak.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 35,
+        "categories": [
+          62
+        ],
+        "link": "/guides/flames-of-zamorak"
+      },
+      {
+        "name": "Saradomin Strike",
+        "image": "/images/spells/standard/saradomin_strike.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 35,
+        "categories": [
+          62
+        ],
+        "link": "/guides/saradomin-strike"
+      },
+      {
+        "name": "Charge Earth Orb",
+        "image": "/images/spells/standard/charge_earth_orb.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 70,
+        "categories": [
+          62
+        ],
+        "link": "/guides/charge-earth-orb"
+      },
+      {
+        "name": "Bones to Peaches",
+        "image": "/images/spells/standard/bones_to_peaches.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 65,
+        "categories": [
+          62
+        ],
+        "link": "/guides/bones-to-peaches"
+      },
+      {
+        "name": "West Ardougne Teleport",
+        "image": "/images/spells/arceuus/west_ardougne_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 61,
+        "exp_given": 68,
+        "categories": [
+          63
+        ],
+        "link": "/guides/west-ardougne-teleport"
+      },
+      {
+        "name": "Trollheim Teleport",
+        "image": "/images/spells/standard/trollheim_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 61,
+        "exp_given": 68,
+        "categories": [
+          62
+        ],
+        "link": "/guides/trollheim-teleport"
+      },
+      {
+        "name": "Smoke Burst",
+        "image": "/images/spells/ancient/smoke_burst.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 36,
+        "categories": [
+          64
+        ],
+        "link": "/guides/smoke-burst"
+      },
+      {
+        "name": "Wind Wave",
+        "image": "/images/spells/standard/wind_wave.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 36,
+        "categories": [
+          62
+        ],
+        "link": "/guides/wind-wave"
+      },
+      {
+        "name": "Charge Fire Orb",
+        "image": "/images/spells/standard/charge_fire_orb.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 73,
+        "categories": [
+          62
+        ],
+        "link": "/guides/charge-fire-orb"
+      },
+      {
+        "name": "Shadow Burst",
+        "image": "/images/spells/ancient/shadow_burst.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 64,
+        "exp_given": 37,
+        "categories": [
+          64
+        ],
+        "link": "/guides/shadow-burst"
+      },
+      {
+        "name": "Teleport Ape Atoll",
+        "image": "/images/spells/standard/teleport_ape_atoll.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 64,
+        "exp_given": 74,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleport-to-ape-atoll"
+      },
+      {
+        "name": "Bake Pie",
+        "image": "/images/spells/lunar/bake_pie.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 60,
+        "categories": [
+          65
+        ],
+        "link": "/guides/bake-pie"
+      },
+      {
+        "name": "Harmony Island Teleport",
+        "image": "/images/spells/arceuus/harmony_island_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 74,
+        "categories": [
+          63
+        ],
+        "link": "/guides/harmony-island-teleport"
+      },
+      {
+        "name": "Geomancy",
+        "image": "/images/spells/lunar/geomancy.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 60,
+        "categories": [
+          65
+        ],
+        "link": "/guides/geomancy"
+      },
+      {
+        "name": "Water Wave",
+        "image": "/images/spells/standard/water_wave.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 37.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/water-wave"
+      },
+      {
+        "name": "Charge Air Orb",
+        "image": "/images/spells/standard/charge_air_orb.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 76,
+        "categories": [
+          62
+        ],
+        "link": "/guides/charge-air-orb"
+      },
+      {
+        "name": "Cure Plant",
+        "image": "/images/spells/lunar/cure_plant.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 60,
+        "categories": [
+          65
+        ],
+        "link": "/guides/cure-plant"
+      },
+      {
+        "name": "Kharyrll Teleport",
+        "image": "/images/spells/ancient/kharyrll_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 76,
+        "categories": [
+          64
+        ],
+        "link": "/guides/kharyrll-teleport"
+      },
+      {
+        "name": "Vulnerability",
+        "image": "/images/spells/standard/vulnerability.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 76,
+        "categories": [
+          62
+        ],
+        "link": "/guides/vulnerability"
+      },
+      {
+        "name": "Monster Examine",
+        "image": "/images/spells/lunar/monster_examine.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 61,
+        "categories": [
+          65
+        ],
+        "link": "/guides/monster-examine"
+      },
+      {
+        "name": "NPC Contact",
+        "image": "/images/spells/lunar/npc_contact.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 63,
+        "categories": [
+          65
+        ],
+        "link": "/guides/npc-contact"
+      },
+      {
+        "name": "Blood Burst",
+        "image": "/images/spells/ancient/blood_burst.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 39,
+        "categories": [
+          64
+        ],
+        "link": "/guides/blood-burst"
+      },
+      {
+        "name": "Cure Other",
+        "image": "/images/spells/lunar/cure_other.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 65,
+        "categories": [
+          65
+        ],
+        "link": "/guides/cure-other"
+      },
+      {
+        "name": "Lvl-5 Enchant",
+        "image": "/images/spells/standard/enchant_dragonstone_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 78,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-5-enchant"
+      },
+      {
+        "name": "Enchant Dragonstone Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 78,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-dragonstone"
+      },
+      {
+        "name": "Humidify",
+        "image": "/images/spells/lunar/humidify.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 65,
+        "categories": [
+          65
+        ],
+        "link": "/guides/humidify"
+      },
+      {
+        "name": "Kourend Castle Teleport",
+        "image": "/images/spells/standard/teleport_to_kourend.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 58,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleport-to-kourend"
+      },
+      {
+        "name": "Moonclan Teleport",
+        "image": "/images/spells/lunar/moonclan_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 66,
+        "categories": [
+          65
+        ],
+        "link": "/guides/moonclan-teleport"
+      },
+      {
+        "name": "Earth Wave",
+        "image": "/images/spells/standard/earth_wave.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 40,
+        "categories": [
+          62
+        ],
+        "link": "/guides/earth-wave"
+      },
+      {
+        "name": "Ice Burst",
+        "image": "/images/spells/ancient/ice_burst.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 40,
+        "categories": [
+          64
+        ],
+        "link": "/guides/ice-burst"
+      },
+      {
+        "name": "Tele Group Moonclan",
+        "image": "/images/spells/lunar/tele_group_moonclan.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 67,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-moonclan"
+      },
+      {
+        "name": "Cemetery Teleport",
+        "image": "/images/spells/arceuus/cemetery_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 82,
+        "categories": [
+          63
+        ],
+        "link": "/guides/cemetery-teleport"
+      },
+      {
+        "name": "Cure Me",
+        "image": "/images/spells/lunar/cure_me.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 69,
+        "categories": [
+          65
+        ],
+        "link": "/guides/cure-me"
+      },
+      {
+        "name": "Hunter Kit",
+        "image": "/images/spells/lunar/hunter_kit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 70,
+        "categories": [
+          65
+        ],
+        "link": "/guides/hunter-kit"
+      },
+      {
+        "name": "Ourania Teleport",
+        "image": "/images/spells/lunar/ourania_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 69,
+        "categories": [
+          65
+        ],
+        "link": "/guides/ourania-teleport"
+      },
+      {
+        "name": "Lassar Teleport",
+        "image": "/images/spells/ancient/lassar_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 82,
+        "categories": [
+          64
+        ],
+        "link": "/guides/lassar-teleport"
+      },
+      {
+        "name": "Waterbirth Teleport",
+        "image": "/images/spells/lunar/waterbirth_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 71,
+        "categories": [
+          65
+        ],
+        "link": "/guides/waterbirth-teleport"
+      },
+      {
+        "name": "Tele Group Waterbirth",
+        "image": "/images/spells/lunar/tele_group_waterbirth.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 72,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-waterbirth"
+      },
+      {
+        "name": "Enfeeble",
+        "image": "/images/spells/standard/enfeeble.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 83,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enfeeble"
+      },
+      {
+        "name": "Teleother Lumbridge",
+        "image": "/images/spells/standard/teleother_lumbridge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 84,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleother-lumbridge"
+      },
+      {
+        "name": "Smoke Blitz",
+        "image": "/images/spells/ancient/smoke_blitz.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 42,
+        "categories": [
+          64
+        ],
+        "link": "/guides/smoke-blitz"
+      },
+      {
+        "name": "Cure Group",
+        "image": "/images/spells/lunar/cure_group.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 74,
+        "categories": [
+          65
+        ],
+        "link": "/guides/cure-group"
+      },
+      {
+        "name": "Stat Spy",
+        "image": "/images/spells/lunar/stat_spy.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 76,
+        "categories": [
+          65
+        ],
+        "link": "/guides/stat-spy"
+      },
+      {
+        "name": "Barbarian Teleport",
+        "image": "/images/spells/lunar/barbarian_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 76,
+        "categories": [
+          65
+        ],
+        "link": "/guides/barbarian-teleport"
+      },
+      {
+        "name": "Fire Wave",
+        "image": "/images/spells/standard/fire_wave.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 42.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/fire-wave"
+      },
+      {
+        "name": "Tele Group Barbarian",
+        "image": "/images/spells/lunar/tele_group_barbarian.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 76,
+        "exp_given": 77,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-barbarian"
+      },
+      {
+        "name": "Shadow Blitz",
+        "image": "/images/spells/ancient/shadow_blitz.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 76,
+        "exp_given": 43,
+        "categories": [
+          64
+        ],
+        "link": "/guides/shadow-blitz"
+      },
+      {
+        "name": "Spin Flax",
+        "image": "/images/spells/lunar/spin_flax.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 76,
+        "exp_given": 75,
+        "categories": [
+          65
+        ],
+        "link": "/guides/spin-flax"
+      },
+      {
+        "name": "Superglass Make",
+        "image": "/images/spells/lunar/superglass_make.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 78,
+        "categories": [
+          65
+        ],
+        "link": "/guides/superglass-make"
+      },
+      {
+        "name": "Tan Leather",
+        "image": "/images/spells/lunar/tan_leather.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 81,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tan-leather"
+      },
+      {
+        "name": "Khazard Teleport",
+        "image": "/images/spells/lunar/khazard_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 80,
+        "categories": [
+          65
+        ],
+        "link": "/guides/khazard-teleport"
+      },
+      {
+        "name": "Dareeyak Teleport",
+        "image": "/images/spells/ancient/dareeyak_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 88,
+        "categories": [
+          64
+        ],
+        "link": "/guides/dareeyak-teleport"
+      },
+      {
+        "name": "Resurrect Crops",
+        "image": "/images/spells/arceuus/resurrect_crops.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 90,
+        "categories": [
+          63
+        ],
+        "link": "/guides/resurrect-crops"
+      },
+      {
+        "name": "Entangle",
+        "image": "/images/spells/standard/entangle.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 89,
+        "categories": [
+          62
+        ],
+        "link": "/guides/entangle"
+      },
+      {
+        "name": "Tele Group Khazard",
+        "image": "/images/spells/lunar/tele_group_khazard.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 81,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-khazard"
+      },
+      {
+        "name": "Dream",
+        "image": "/images/spells/lunar/dream.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 82,
+        "categories": [
+          65
+        ],
+        "link": "/guides/dream"
+      },
+      {
+        "name": "Charge",
+        "image": "/images/spells/standard/charge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 180,
+        "categories": [
+          62
+        ],
+        "link": "/guides/charge"
+      },
+      {
+        "name": "Blood Blitz",
+        "image": "/images/spells/ancient/blood_blitz.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 45,
+        "categories": [
+          64
+        ],
+        "link": "/guides/blood-blitz"
+      },
+      {
+        "name": "Stun",
+        "image": "/images/spells/standard/stun.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 90,
+        "categories": [
+          62
+        ],
+        "link": "/guides/stun"
+      },
+      {
+        "name": "String Jewellery",
+        "image": "/images/spells/lunar/string_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 83,
+        "categories": [
+          65
+        ],
+        "link": "/guides/string-jewellery"
+      },
+      {
+        "name": "Stat Restore Pot Share",
+        "image": "/images/spells/lunar/stat_restore_pot_share.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 84,
+        "categories": [
+          65
+        ],
+        "link": "/guides/stat-restore-pot-share"
+      },
+      {
+        "name": "Wind Surge",
+        "image": "/images/spells/standard/wind_surge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 44.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/wind-surge"
+      },
+      {
+        "name": "Teleother Falador",
+        "image": "/images/spells/standard/teleother_falador.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 92,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleother-falador"
+      },
+      {
+        "name": "Magic Imbue",
+        "image": "/images/spells/lunar/magic_imbue.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 86,
+        "categories": [
+          65
+        ],
+        "link": "/guides/magic-imbue"
+      },
+      {
+        "name": "Ice Blitz",
+        "image": "/images/spells/ancient/ice_blitz.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 46,
+        "categories": [
+          64
+        ],
+        "link": "/guides/ice-blitz"
+      },
+      {
+        "name": "Fertile Soil",
+        "image": "/images/spells/lunar/fertile_soil.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 83,
+        "exp_given": 87,
+        "categories": [
+          65
+        ],
+        "link": "/guides/fertile-soil"
+      },
+      {
+        "name": "Barrows Teleport",
+        "image": "/images/spells/arceuus/barrows_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 83,
+        "exp_given": 90,
+        "categories": [
+          63
+        ],
+        "link": "/guides/barrows-teleport"
+      },
+      {
+        "name": "Carrallangar Teleport",
+        "image": "/images/spells/ancient/carrallangar_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 82,
+        "categories": [
+          64
+        ],
+        "link": "/guides/carrallangar-teleport"
+      },
+      {
+        "name": "Boost Potion Share",
+        "image": "/images/spells/lunar/boost_potion_share.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 88,
+        "categories": [
+          65
+        ],
+        "link": "/guides/boost-potion-share"
+      },
+      {
+        "name": "Water Surge",
+        "image": "/images/spells/standard/water_surge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 46.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/water-surge"
+      },
+      {
+        "name": "Fishing Guild Teleport",
+        "image": "/images/spells/lunar/fishing_guild_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 89,
+        "categories": [
+          65
+        ],
+        "link": "/guides/fishing-guild-teleport"
+      },
+      {
+        "name": "Tele Block",
+        "image": "/images/spells/standard/tele_block.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 85,
+        "exp_given": 80,
+        "categories": [
+          62
+        ],
+        "link": "/guides/tele-block"
+      },
+      {
+        "name": "Teleport to Bounty Target",
+        "image": "/images/spells/standard/teleport_to_bounty_target.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 45,
+        "categories": [
+          62,
+          65,
+          64
+        ],
+        "link": "/guides/teleport-to-bounty-target"
+      },
+      {
+        "name": "Smoke Barrage",
+        "image": "/images/spells/ancient/smoke_barrage.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 48,
+        "categories": [
+          64
+        ],
+        "link": "/guides/smoke-barrage"
+      },
+      {
+        "name": "Tele Group Fishing Guild",
+        "image": "/images/spells/lunar/tele_group_fishing_guild.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 90,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-fishing-guild"
+      },
+      {
+        "name": "Plank Make",
+        "image": "/images/spells/lunar/plank_make.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 90,
+        "categories": [
+          65
+        ],
+        "link": "/guides/plank-make"
+      },
+      {
+        "name": "Catherby Teleport",
+        "image": "/images/spells/lunar/catherby_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 92,
+        "categories": [
+          65
+        ],
+        "link": "/guides/catherby-teleport"
+      },
+      {
+        "name": "Lvl-6 Enchant",
+        "image": "/images/spells/standard/enchant_onyx_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 97,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-6-enchant"
+      },
+      {
+        "name": "Enchant Onyx Bolt",
+        "image": "/images/spells/standard/enchant_crossbow_bolt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 97,
+        "categories": [
+          62
+        ],
+        "link": "/guides/enchant-crossbow-bolt-onyx"
+      },
+      {
+        "name": "Shadow Barrage",
+        "image": "/images/spells/ancient/shadow_barrage.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 88,
+        "exp_given": 48,
+        "categories": [
+          64
+        ],
+        "link": "/guides/shadow-barrage"
+      },
+      {
+        "name": "Tele Group Catherby",
+        "image": "/images/spells/lunar/tele_group_catherby.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 88,
+        "exp_given": 93,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-catherby"
+      },
+      {
+        "name": "Ice Plateau Teleport",
+        "image": "/images/spells/lunar/ice_plateau_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 89,
+        "exp_given": 96,
+        "categories": [
+          65
+        ],
+        "link": "/guides/ice-plateau-teleport"
+      },
+      {
+        "name": "Recharge Dragonstone",
+        "image": "/images/spells/lunar/recharge_dragonstone.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 89,
+        "exp_given": 97.5,
+        "categories": [
+          65
+        ],
+        "link": "/guides/recharge-dragonstone"
+      },
+      {
+        "name": "Annakarl Teleport",
+        "image": "/images/spells/ancient/annakarl_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 100,
+        "categories": [
+          64
+        ],
+        "link": "/guides/annakarl-teleport"
+      },
+      {
+        "name": "Earth Surge",
+        "image": "/images/spells/standard/earth_surge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 48.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/earth-surge"
+      },
+      {
+        "name": "Tele Group Ice Plateau",
+        "image": "/images/spells/lunar/tele_group_ice_plateau.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 99,
+        "categories": [
+          65
+        ],
+        "link": "/guides/tele-group-ice-plateau"
+      },
+      {
+        "name": "Teleother Camelot",
+        "image": "/images/spells/standard/teleother_camelot.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 100,
+        "categories": [
+          62
+        ],
+        "link": "/guides/teleother-camelot"
+      },
+      {
+        "name": "Ape Atoll Teleport",
+        "image": "/images/spells/arceuus/ape_atoll_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 100,
+        "categories": [
+          63
+        ],
+        "link": "/guides/ape-atoll-teleport"
+      },
+      {
+        "name": "Energy Transfer",
+        "image": "/images/spells/lunar/energy_transfer.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 91,
+        "exp_given": 100,
+        "categories": [
+          65
+        ],
+        "link": "/guides/energy-transfer"
+      },
+      {
+        "name": "Blood Barrage",
+        "image": "/images/spells/ancient/blood_barrage.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 51,
+        "categories": [
+          64
+        ],
+        "link": "/guides/blood-barrage"
+      },
+      {
+        "name": "Heal Other",
+        "image": "/images/spells/lunar/heal_other.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 101,
+        "categories": [
+          65
+        ],
+        "link": "/guides/heal-other"
+      },
+      {
+        "name": "Vengeance Other",
+        "image": "/images/spells/lunar/vengeance_other.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 93,
+        "exp_given": 108,
+        "categories": [
+          65
+        ],
+        "link": "/guides/vengeance-other"
+      },
+      {
+        "name": "Lvl-7 Enchant",
+        "image": "/images/spells/standard/enchant_zenyte_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 93,
+        "exp_given": 110,
+        "categories": [
+          62
+        ],
+        "link": "/guides/lvl-7-enchant"
+      },
+      {
+        "name": "Ice Barrage",
+        "image": "/images/spells/ancient/ice_barrage.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 94,
+        "exp_given": 52,
+        "categories": [
+          64
+        ],
+        "link": "/guides/ice-barrage"
+      },
+      {
+        "name": "Vengeance",
+        "image": "/images/spells/lunar/vengeance.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 94,
+        "exp_given": 112,
+        "categories": [
+          65
+        ],
+        "link": "/guides/vengeance"
+      },
+      {
+        "name": "Heal Group",
+        "image": "/images/spells/lunar/heal_group.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 95,
+        "exp_given": 124,
+        "categories": [
+          65
+        ],
+        "link": "/guides/heal-group"
+      },
+      {
+        "name": "Fire Surge",
+        "image": "/images/spells/standard/fire_surge.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 95,
+        "exp_given": 50.5,
+        "categories": [
+          62
+        ],
+        "link": "/guides/fire-surge"
+      },
+      {
+        "name": "Ghorrock Teleport",
+        "image": "/images/spells/ancient/ghorrock_teleport.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 96,
+        "exp_given": 106,
+        "categories": [
+          64
+        ],
+        "link": "/guides/ghorrock-teleport"
+      },
+      {
+        "name": "Spellbook Swap",
+        "image": "/images/spells/lunar/spellbook_swap.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 96,
+        "exp_given": 130,
+        "categories": [
+          65
+        ],
+        "link": "/guides/spellbook-swap"
+      },
+      {
+        "name": "Lvl-1 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_sapphire_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 14,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-2 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_emerald_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 28,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-3 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_ruby_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 49,
+        "exp_given": 45,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-4 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_diamond_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 50.5,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-5 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_dragonstone_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 58,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-6 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_onyx_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 72,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Lvl-7 Enchant (MTA)",
+        "image": "https://oldschool.tools/images/spells/standard/enchant_zenyte_jewellery.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 93,
+        "exp_given": 87.5,
+        "categories": [
+          62
+        ],
+        "link": null
+      },
+      {
+        "name": "Basic Reanimation",
+        "image": "https://oldschool.tools/images/spells/arceuus/basic-reanimation.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 16,
+        "exp_given": 32,
+        "categories": [
+          63
+        ],
+        "link": null
+      },
+      {
+        "name": "Adept Reanimation",
+        "image": "https://oldschool.tools/images/spells/arceuus/adept-reanimation.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 41,
+        "exp_given": 80,
+        "categories": [
+          63
+        ],
+        "link": null
+      },
+      {
+        "name": "Expert Reanimation",
+        "image": "https://oldschool.tools/images/spells/arceuus/expert-reanimation.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 138,
+        "categories": [
+          63
+        ],
+        "link": null
+      },
+      {
+        "name": "Master Reanimation",
+        "image": "https://oldschool.tools/images/spells/arceuus/master-reanimation.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 170,
+        "categories": [
+          63
+        ],
+        "link": null
+      }
+    ]
+  }
+}

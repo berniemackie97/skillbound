@@ -1,0 +1,712 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.712Z",
+  "payload": {
+    "name": "Thieving",
+    "slug": "thieving",
+    "members_only": true,
+    "bonuses": [],
+    "categories": {
+      "83": "Pickpocketing",
+      "84": "Sq'irkjuice",
+      "85": "Stalls",
+      "97": "Chests"
+    },
+    "profit_loss_settings": {
+      "enabled": false,
+      "show_components": false,
+      "real_time_prices": false
+    },
+    "data": [
+      {
+        "name": "Man/Woman",
+        "image": "/images/thieving/pickpocket_npcs/man.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 8,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Winter sq'irkjuice",
+        "image": "https://general-543f.kxcdn.com/items/winter_sqirkjuice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 350,
+        "categories": [
+          84
+        ],
+        "link": null
+      },
+      {
+        "name": "Vegetable stall",
+        "image": "/images/thieving/stalls/vegetable.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 2,
+        "exp_given": 10,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Cake stall",
+        "image": "/images/thieving/stalls/cake.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 16,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Tea stall",
+        "image": "/images/thieving/stalls/tea.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 16,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Crafting stall",
+        "image": "/images/thieving/stalls/crafting.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 20,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Monkey food stall",
+        "image": "/images/thieving/stalls/monkey-food.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 16,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Farmer",
+        "image": "/images/thieving/pickpocket_npcs/farmer.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 14.5,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Silk stall",
+        "image": "/images/thieving/stalls/silk.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 24,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Wine stall",
+        "image": "/images/thieving/stalls/wine.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 22,
+        "exp_given": 27,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Warrior/Al-Kharid Warrior",
+        "image": "/images/thieving/pickpocket_npcs/warrior.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 26,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Fruit stall",
+        "image": "/images/thieving/stalls/fruit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 28.5,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Spring sq'irkjuice",
+        "image": "https://general-543f.kxcdn.com/items/spring_sqirkjuice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 1350,
+        "categories": [
+          84
+        ],
+        "link": null
+      },
+      {
+        "name": "Seed stall",
+        "image": "/images/thieving/stalls/seed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 10,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Rogue",
+        "image": "/images/thieving/pickpocket_npcs/rogue.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 32,
+        "exp_given": 36.5,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Fur stall",
+        "image": "/images/thieving/stalls/fur.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 45,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Cave Goblin",
+        "image": "/images/thieving/pickpocket_npcs/cave_goblin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 36,
+        "exp_given": 40,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Master Farmer",
+        "image": "/images/thieving/pickpocket_npcs/master_farmer.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 43,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Guard",
+        "image": "/images/thieving/pickpocket_npcs/guard.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 46.8,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Fish stall",
+        "image": "/images/thieving/stalls/fish.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 42,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Bearded Pollnivnian Bandit",
+        "image": "/images/thieving/pickpocket_npcs/bearded_pollnivnian_bandit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 65,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Fremennik Citizen",
+        "image": "/images/thieving/pickpocket_npcs/fremennik_citizen.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 65,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Autumn sq'irkjuice",
+        "image": "https://general-543f.kxcdn.com/items/autumn_sqirkjuice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 2350,
+        "categories": [
+          84
+        ],
+        "link": null
+      },
+      {
+        "name": "Crossbow stall",
+        "image": "/images/thieving/stalls/crossbow.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 49,
+        "exp_given": 52,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Silver stall",
+        "image": "/images/thieving/stalls/silver.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 205,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Desert Bandit",
+        "image": "/images/thieving/pickpocket_npcs/desert_bandit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 79.4,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Knight",
+        "image": "/images/thieving/pickpocket_npcs/knight.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 84.3,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Pollnivnian Bandit",
+        "image": "/images/thieving/pickpocket_npcs/pollnivnian_bandit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 84.3,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Magic stall",
+        "image": "/images/thieving/stalls/magic.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 90,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Scimitar stall",
+        "image": "/images/thieving/stalls/scimitar.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 210,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Menaphite Thug",
+        "image": "/images/thieving/pickpocket_npcs/menaphite_thug.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 137.5,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Yanille Watchman",
+        "image": "/images/thieving/pickpocket_npcs/yanille_watchman.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 137.5,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Summer sq'irkjuice",
+        "image": "https://general-543f.kxcdn.com/items/summer_sqirkjuice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 3000,
+        "categories": [
+          84
+        ],
+        "link": null
+      },
+      {
+        "name": "Paladin",
+        "image": "/images/thieving/pickpocket_npcs/paladin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 131.8,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Gnome",
+        "image": "/images/thieving/pickpocketing/gnome.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 133.5,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Gem stall",
+        "image": "/images/thieving/stalls/gems.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 408,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Hero",
+        "image": "/images/thieving/pickpocket_npcs/hero.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 163.3,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Vyre",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/vyre.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 306.9,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Elf",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/elf.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 353.3,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "TzHaar-Hur",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/tzhaar-hur.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 103.4,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "H.A.M. Member",
+        "image": "https://oldschool.tools/images/thieving/pickpocket_npcs/ham_female.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 22.2,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Wilderness Rogues Chest",
+        "image": "https://general-543f.kxcdn.com/items/dragonstone.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 701.7,
+        "categories": [
+          97
+        ],
+        "link": null
+      },
+      {
+        "name": "Digsite workman",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/digsite-workman.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 10.4,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Wealthy citizen",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/wealthy-citizen.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 96,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Villager",
+        "image": "https://general-543f.kxcdn.com/misc/thieving-skill-calculator/villager.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 8,
+        "categories": [
+          83
+        ],
+        "link": null
+      },
+      {
+        "name": "Ore stall",
+        "image": "https://general-543f.kxcdn.com/items/runite_ore.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 350,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Gem stall (Mor Ul Rek)",
+        "image": "https://general-543f.kxcdn.com/items/onyx.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 408,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Spice stall",
+        "image": "https://general-543f.kxcdn.com/items/spice.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 92,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Monkey general stall",
+        "image": "https://general-543f.kxcdn.com/items/pot.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 25,
+        "categories": [
+          85
+        ],
+        "link": null
+      },
+      {
+        "name": "Nature rune chest",
+        "image": "https://general-543f.kxcdn.com/items/nature_rune.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 28,
+        "exp_given": 25,
+        "categories": [
+          97
+        ],
+        "link": null
+      },
+      {
+        "name": "Steel arrowtips chest",
+        "image": "https://general-543f.kxcdn.com/items/steel_arrowtips.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 150,
+        "categories": [
+          97
+        ],
+        "link": null
+      },
+      {
+        "name": "Blood rune chest",
+        "image": "https://general-543f.kxcdn.com/items/blood_rune.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 250,
+        "categories": [
+          97
+        ],
+        "link": null
+      },
+      {
+        "name": "Dorgesh-Kaan rich chest",
+        "image": "https://general-543f.kxcdn.com/items/uncut-sapphire.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 650,
+        "categories": [
+          97
+        ],
+        "link": null
+      }
+    ]
+  }
+}

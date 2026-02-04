@@ -1,0 +1,139 @@
+/* Components: Status UI (chips, badges, pills, callouts) */
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(78, 197, 184, 0.15);
+  color: var(--accent-alt);
+  font-size: 0.8rem;
+}
+
+.chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.chip:hover {
+  color: var(--text);
+  border-color: rgba(226, 176, 101, 0.4);
+}
+
+.chip.active {
+  color: var(--text);
+  border-color: var(--accent-strong);
+  background: rgba(212, 175, 55, 0.18);
+}
+
+.pill-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(107, 182, 255, 0.15);
+  color: var(--accent-blue);
+  font-size: 0.75rem;
+}
+
+.pill.subtle {
+  background: rgba(226, 176, 101, 0.12);
+  color: var(--accent-strong);
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-pill.clickable {
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.status-pill.clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.status-pill.clickable:active {
+  transform: translateY(0);
+}
+
+.status-pill.clickable.updating {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.status-pill.met {
+  background: rgba(78, 197, 184, 0.2);
+  color: var(--accent-alt);
+}
+
+.status-pill.clickable.met:hover {
+  background: rgba(78, 197, 184, 0.3);
+  border-color: var(--accent-alt);
+}
+
+.status-pill.not-met {
+  background: rgba(255, 99, 99, 0.18);
+  color: #ff9a9a;
+}
+
+.status-pill.clickable.not-met:hover {
+  background: rgba(255, 99, 99, 0.25);
+  border-color: #ff9a9a;
+}
+
+.status-pill.in-progress {
+  background: rgba(255, 183, 77, 0.2);
+  color: #ffb74d;
+}
+
+.status-pill.clickable.in-progress:hover {
+  background: rgba(255, 183, 77, 0.3);
+  border-color: #ffb74d;
+}
+
+.status-pill.unknown {
+  background: rgba(255, 221, 112, 0.18);
+  color: #f7d26b;
+}
+
+.status-pill.clickable.unknown:hover {
+  background: rgba(255, 221, 112, 0.25);
+  border-color: #f7d26b;
+}
+
+
+.error {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 99, 99, 0.1);
+  border: 1px solid rgba(255, 99, 99, 0.3);
+  color: #ff9a9a;
+  margin-bottom: 12px;
+}
+
+
+.status-note {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(107, 182, 255, 0.12);
+  border: 1px solid rgba(107, 182, 255, 0.25);
+  color: var(--accent-blue);
+  font-size: 0.9rem;
+}

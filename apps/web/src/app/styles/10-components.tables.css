@@ -1,0 +1,630 @@
+/* Components: tables + wrappers
+   Goal: make tables behave inside cards/grids (no clipping, predictable scroll).
+   Includes trading exchange table ("exchange-table-*") and calculator table.
+*/
+
+.trade-table-wrapper,
+.calculator-table-wrapper,
+.exchange-table-container {
+  max-width: 100%;
+  min-width: 0; /* critical inside grid/flex items */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Calculator wrapper keeps its existing “panel” look if present */
+.calculator-table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Base table behavior */
+.trade-table,
+.calculator-table,
+.exchange-table,
+.trade-table-wrapper table,
+.calculator-table-wrapper table,
+.exchange-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Ensure long values don’t force the whole layout to expand */
+.trade-table td,
+.trade-table th,
+.calculator-table td,
+.calculator-table th,
+.exchange-table td,
+.exchange-table th {
+  min-width: 0;
+}
+
+/* Calculator table: allow horizontal scroll on smaller screens */
+.calculator-table {
+  min-width: 640px;
+}
+
+/* Sticky headers (safe defaults; pages can override background) */
+.trade-table thead th,
+.calculator-table thead th,
+.exchange-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* Reduce header jitter when inside overflow containers */
+.trade-table th,
+.calculator-table th,
+.exchange-table th {
+  white-space: nowrap;
+}
+
+/* -----------------------------
+   Trading Exchange Table styles
+   ----------------------------- */
+
+.exchange-table-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exchange-table-container {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  overscroll-behavior: auto;
+}
+
+.exchange-table {
+  min-width: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.exchange-table-container table.exchange-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.exchange-table thead th {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.30)
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+.exchange-table th,
+.exchange-table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: middle;
+}
+
+.exchange-table th {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.exchange-table td {
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exchange-table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.06);
+}
+
+/* Column alignment: expander, name left, numbers right */
+.exchange-table th:nth-child(1),
+.exchange-table td:nth-child(1) {
+  text-align: center;
+}
+
+.exchange-table th:nth-child(2),
+.exchange-table td:nth-child(2) {
+  text-align: left;
+}
+
+.exchange-table th:nth-child(n + 3),
+.exchange-table td:nth-child(n + 3) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Column sizing to fit within the viewport */
+.exchange-table col.col-star {
+  width: 3.5%;
+}
+
+.exchange-table col.col-expand {
+  width: 3.5%;
+}
+
+.exchange-table col.col-name {
+  width: 24%;
+}
+
+.exchange-table col.col-price {
+  width: 8%;
+}
+
+.exchange-table col.col-margin {
+  width: 7%;
+}
+
+.exchange-table col.col-tax {
+  width: 6%;
+}
+
+.exchange-table col.col-profit {
+  width: 8%;
+}
+
+.exchange-table col.col-roi {
+  width: 6%;
+}
+
+.exchange-table col.col-volume {
+  width: 6%;
+}
+
+.exchange-table col.col-limit {
+  width: 6%;
+}
+
+.exchange-table col.col-potential {
+  width: 8%;
+}
+
+.exchange-table col.col-time {
+  width: 6%;
+}
+
+/* Additional exchange table styles for improved UX */
+.exchange-table .sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.exchange-table .sortable:hover {
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.exchange-table .header-grid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.exchange-table .col-name .header-grid {
+  justify-content: flex-start;
+}
+
+.exchange-table .header-label {
+  white-space: nowrap;
+}
+
+.exchange-table .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exchange-table .sort-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.exchange-table .sort-rank {
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+.exchange-table .filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.15s ease;
+}
+
+.exchange-table .filter-btn:hover,
+.exchange-table .filter-btn.active {
+  opacity: 1;
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--accent);
+}
+
+.exchange-table .filter-popover {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  min-width: 180px;
+}
+
+.exchange-table .filter-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.exchange-table .filter-inputs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.exchange-table .filter-inputs input {
+  flex: 1;
+  padding: 8px 10px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.exchange-table .filter-inputs input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.exchange-table .filter-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.exchange-table .filter-clear,
+.exchange-table .filter-apply {
+  flex: 1;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exchange-table .filter-clear {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.exchange-table .filter-clear:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.exchange-table .filter-apply {
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+}
+
+.exchange-table .filter-apply:hover {
+  filter: brightness(1.1);
+}
+
+/* Star and expand buttons */
+.exchange-table .col-star,
+.exchange-table .col-expand {
+  width: 44px;
+  text-align: center;
+  padding: 8px;
+}
+
+.exchange-table .star-btn,
+.exchange-table .expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exchange-table .star-btn:hover,
+.exchange-table .expand-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+}
+
+.exchange-table .star-btn.active {
+  color: #ffd700;
+}
+
+.exchange-table .expand-btn.active svg {
+  transform: rotate(180deg);
+}
+
+/* Item name cell */
+.exchange-table .item-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.exchange-table .item-icon {
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.exchange-table .item-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Price cells */
+.exchange-table .price-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exchange-table .price-indicator {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.exchange-table .price-indicator.buy {
+  color: #7faf3a;
+}
+
+.exchange-table .price-indicator.sell {
+  color: #cf3a3a;
+}
+
+.exchange-table .price-empty {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Positive/negative styling */
+.exchange-table .positive {
+  color: #b6f1b6;
+}
+
+.exchange-table .negative {
+  color: #ff9a9a;
+}
+
+/* Update row */
+.exchange-table .update-row th {
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--border);
+}
+
+.exchange-table .update-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.exchange-table .update-dot {
+  width: 6px;
+  height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Expanded row */
+.exchange-table .item-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.exchange-table .item-row.expanded {
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.exchange-table .expanded-row td {
+  padding: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+}
+
+.exchange-table .expanded-content {
+  padding: 0;
+}
+
+/* Time column */
+.exchange-table .col-time {
+  white-space: nowrap;
+}
+
+.exchange-table .time-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  margin-right: 6px;
+  opacity: 0.7;
+}
+
+/* -----------------------------
+   Trade Table styles (tracker)
+   ----------------------------- */
+
+.trade-table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.trade-table {
+  min-width: 600px;
+}
+
+.trade-table th {
+  padding: 12px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-align: left;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--border);
+}
+
+.trade-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: middle;
+}
+
+.trade-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.trade-table .date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.trade-table .item .item-name {
+  font-weight: 500;
+}
+
+.trade-table .item .item-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.trade-table .trade-type-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+}
+
+.trade-table .trade-type-badge.buy {
+  background: rgba(127, 175, 58, 0.15);
+  color: #7faf3a;
+}
+
+.trade-table .trade-type-badge.sell {
+  background: rgba(207, 58, 58, 0.15);
+  color: #cf3a3a;
+}
+
+.trade-table .quantity,
+.trade-table .price,
+.trade-table .total {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.trade-table .profit {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.trade-table .profit-positive {
+  color: #b6f1b6;
+}
+
+.trade-table .profit-negative {
+  color: #ff9a9a;
+}
+
+.trade-table .text-muted {
+  color: var(--text-muted);
+}
+
+.trade-table .actions {
+  width: 50px;
+  text-align: center;
+}
+
+.trade-table .button.ghost.small {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.trade-table tbody tr:hover .button.ghost.small {
+  opacity: 1;
+}
+
+/* Empty state */
+.trade-list .empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.trade-list .empty-state p {
+  margin: 0 0 8px;
+}
+
+.trade-list .empty-state .text-muted {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}

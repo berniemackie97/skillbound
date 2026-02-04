@@ -1,0 +1,75 @@
+/* Reset / Normalize (global, low-specificity) */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+/* Make media elements behave predictably */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+/* Remove default typography quirks */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* Lists: you decide styling, not the browser */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Forms inherit your typography (base layer sets actual font/color) */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* Links: base layer can decide styling; reset removes surprises */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Prevent textarea from forcing horizontal scroll on small screens */
+textarea {
+  min-width: 0;
+}

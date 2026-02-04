@@ -6,8 +6,15 @@ const nextConfig = {
     '@skillbound/domain',
     '@skillbound/hiscores',
   ],
-  experimental: {
-    serverComponentsExternalPackages: ['@neondatabase/serverless'],
+  serverExternalPackages: ['@neondatabase/serverless'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'oldschool.runescape.wiki',
+        pathname: '/images/**',
+      },
+    ],
   },
 };
 

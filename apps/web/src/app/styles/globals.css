@@ -1,0 +1,32 @@
+/* styles/globals.css */
+@layer tokens, reset, base, layout, components, pages, utilities, animations;
+
+@import url('./00-tokens.css') layer(tokens);
+@import url('./01-reset.css') layer(reset);
+@import url('./02-base.css') layer(base);
+@import url('./03-layout.css') layer(layout);
+
+/* Components */
+@import url('./10-components.nav.css') layer(components);
+@import url('./10-components.buttons.css') layer(components);
+@import url('./10-components.cards.css') layer(components);
+@import url('./10-components.forms.css') layer(components);
+@import url('./10-components.status.css') layer(components);
+
+/* Tables + Calculator (trading UI depends on these) */
+@import url('./10-components.tables.css') layer(components);
+@import url('./10-components.calculator.css') layer(components);
+
+/* Pages */
+@import url('./20-pages.home.css') layer(pages);
+@import url('./20-pages.auth.css') layer(pages);
+@import url('./20-pages.trading.css') layer(pages);
+@import url('./20-pages.item-detail.css') layer(pages);
+@import url('./20-pages.calculators.css') layer(pages);
+@import url('./20-pages.guides.css') layer(pages);
+@import url('./20-pages.misc.css') layer(pages);
+@import url('./20-pages.characters.css') layer(pages);
+
+/* Utilities last so they can intentionally override components/pages */
+@import url('./90-utilities.css') layer(utilities);
+@import url('./99-animations.css') layer(animations);

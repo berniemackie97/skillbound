@@ -24,25 +24,38 @@
     "db:studio": "pnpm --filter @skillbound/database studio",
     "db:generate": "pnpm --filter @skillbound/database generate",
     "db:push": "pnpm --filter @skillbound/database push",
+    "db:seed:progression": "pnpm --filter @skillbound/database seed:progression",
+    "sync:skill-calculators": "tsx scripts/sync-skill-calculators.ts",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@skillbound/eslint-config": "workspace:*",
     "@skillbound/prettier-config": "workspace:*",
     "@skillbound/typescript-config": "workspace:*",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.2.4",
-    "turbo": "^1.12.4"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
+    "turbo": "^2.7.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "@next/eslint-plugin-next>glob": "^10.5.0",
+      "@auth/core": "0.41.1",
+      "esbuild": "0.25.12"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix",
+      "ESLINT_USE_FLAT_CONFIG=false eslint --fix",
       "prettier --write"
     ],
     "*.{json,md}": [
       "prettier --write"
     ]
   },
-  "prettier": "@skillbound/prettier-config"
+  "prettier": "@skillbound/prettier-config",
+  "dependencies": {
+    "recharts": "^3.7.0"
+  }
 }

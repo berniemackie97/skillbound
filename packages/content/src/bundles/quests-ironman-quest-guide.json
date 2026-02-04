@@ -1,0 +1,2168 @@
+[
+  {
+    "id": "a_kingdom_divided",
+    "name": "A Kingdom Divided",
+    "requirements": []
+  },
+  {
+    "id": "a_night_at_the_theatre",
+    "name": "A Night at the Theatre",
+    "requirements": []
+  },
+  {
+    "id": "a_porcine_of_interest",
+    "name": "A Porcine of Interest",
+    "requirements": []
+  },
+  {
+    "id": "a_soul_s_bane",
+    "name": "A Soul's Bane",
+    "requirements": []
+  },
+  {
+    "id": "a_tail_of_two_cats",
+    "name": "A Tail of Two Cats",
+    "requirements": []
+  },
+  {
+    "id": "a_taste_of_hope",
+    "name": "A Taste of Hope",
+    "requirements": []
+  },
+  {
+    "id": "alfred_grimhand_s_barcrawl",
+    "name": "Alfred Grimhand's Barcrawl",
+    "requirements": []
+  },
+  {
+    "id": "an_existential_crisis",
+    "name": "An Existential Crisis",
+    "requirements": []
+  },
+  {
+    "id": "animal_magnetism",
+    "name": "Animal Magnetism",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 19
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 31
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "slayer",
+        "level": 18
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 35
+      }
+    ]
+  },
+  {
+    "id": "another_slice_of_h_a_m",
+    "name": "Another Slice of H.A.M.",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "attack",
+        "level": 15
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "at_first_light",
+    "name": "At First Light",
+    "requirements": []
+  },
+  {
+    "id": "barbarian_training",
+    "name": "Barbarian Training",
+    "requirements": []
+  },
+  {
+    "id": "bear_your_soul",
+    "name": "Bear Your Soul",
+    "requirements": []
+  },
+  {
+    "id": "below_ice_mountain",
+    "name": "Below Ice Mountain",
+    "requirements": []
+  },
+  {
+    "id": "beneath_cursed_sands",
+    "name": "Beneath Cursed Sands",
+    "requirements": []
+  },
+  {
+    "id": "between_a_rock",
+    "name": "Between a Rock…",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "defence",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "big_chompy_bird_hunting",
+    "name": "Big Chompy Bird Hunting",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "fletching",
+        "level": 5
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "biohazard",
+    "name": "Biohazard",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 33
+      }
+    ]
+  },
+  {
+    "id": "black_knights_fortress",
+    "name": "Black Knights' Fortress",
+    "requirements": []
+  },
+  {
+    "id": "bone_voyage",
+    "name": "Bone Voyage",
+    "requirements": []
+  },
+  {
+    "id": "burial_at_sea",
+    "name": "Burial at Sea",
+    "requirements": []
+  },
+  {
+    "id": "cabin_fever",
+    "name": "Cabin Fever",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 42
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 45
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "children_of_the_sun",
+    "name": "Children of the Sun",
+    "requirements": []
+  },
+  {
+    "id": "client_of_kourend",
+    "name": "Client of Kourend",
+    "requirements": []
+  },
+  {
+    "id": "clock_tower",
+    "name": "Clock Tower",
+    "requirements": []
+  },
+  {
+    "id": "cold_war",
+    "name": "Cold War",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 34
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "hunter",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "contact",
+    "name": "Contact!",
+    "requirements": []
+  },
+  {
+    "id": "cook_s_assistant",
+    "name": "Cook's Assistant",
+    "requirements": []
+  },
+  {
+    "id": "creature_of_fenkenstrain",
+    "name": "Creature of Fenkenstrain",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "current_affairs",
+    "name": "Current Affairs",
+    "requirements": []
+  },
+  {
+    "id": "curse_of_the_empty_lord",
+    "name": "Curse of the Empty Lord",
+    "requirements": []
+  },
+  {
+    "id": "daddy_s_home",
+    "name": "Daddy's Home",
+    "requirements": []
+  },
+  {
+    "id": "darkness_of_hallowvale",
+    "name": "Darkness of Hallowvale",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 26
+      },
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 5
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 32
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 33
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "strength",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 22
+      }
+    ]
+  },
+  {
+    "id": "death_plateau",
+    "name": "Death Plateau",
+    "requirements": []
+  },
+  {
+    "id": "death_on_the_isle",
+    "name": "Death on the Isle",
+    "requirements": []
+  },
+  {
+    "id": "death_to_the_dorgeshuun",
+    "name": "Death to the Dorgeshuun",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 23
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 23
+      }
+    ]
+  },
+  {
+    "id": "defender_of_varrock",
+    "name": "Defender of Varrock",
+    "requirements": []
+  },
+  {
+    "id": "demon_slayer",
+    "name": "Demon Slayer",
+    "requirements": []
+  },
+  {
+    "id": "desert_treasure_i",
+    "name": "Desert Treasure I",
+    "requirements": []
+  },
+  {
+    "id": "desert_treasure_ii_the_fallen_empire",
+    "name": "Desert Treasure II - The Fallen Empire",
+    "requirements": []
+  },
+  {
+    "id": "devious_minds",
+    "name": "Devious Minds",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "fletching",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "runecraft",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 65
+      }
+    ]
+  },
+  {
+    "id": "doric_s_quest",
+    "name": "Doric's Quest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 15
+      }
+    ]
+  },
+  {
+    "id": "dragon_slayer_i",
+    "name": "Dragon Slayer I",
+    "requirements": []
+  },
+  {
+    "id": "dragon_slayer_ii",
+    "name": "Dragon Slayer II",
+    "requirements": []
+  },
+  {
+    "id": "dream_mentor",
+    "name": "Dream Mentor",
+    "requirements": []
+  },
+  {
+    "id": "druidic_ritual",
+    "name": "Druidic Ritual",
+    "requirements": []
+  },
+  {
+    "id": "dwarf_cannon",
+    "name": "Dwarf Cannon",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "eadgar_s_ruse",
+    "name": "Eadgar's Ruse",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 43
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 31
+      }
+    ]
+  },
+  {
+    "id": "eagles_peak",
+    "name": "Eagles' Peak",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "hunter",
+        "level": 27
+      }
+    ]
+  },
+  {
+    "id": "elemental_workshop_i",
+    "name": "Elemental Workshop I",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "elemental_workshop_ii",
+    "name": "Elemental Workshop II",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "enakhra_s_lament",
+    "name": "Enakhra's Lament",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 45
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 39
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 43
+      }
+    ]
+  },
+  {
+    "id": "enlightened_journey",
+    "name": "Enlightened Journey",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 36
+      },
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "enter_the_abyss",
+    "name": "Enter the Abyss",
+    "requirements": []
+  },
+  {
+    "id": "ernest_the_chicken",
+    "name": "Ernest the Chicken",
+    "requirements": []
+  },
+  {
+    "id": "ethically_acquired_antiquities",
+    "name": "Ethically Acquired Antiquities",
+    "requirements": []
+  },
+  {
+    "id": "fairytale_i_growing_pains",
+    "name": "Fairytale I - Growing Pains",
+    "requirements": []
+  },
+  {
+    "id": "fairytale_ii_cure_a_queen",
+    "name": "Fairytale II - Cure a Queen",
+    "requirements": []
+  },
+  {
+    "id": "family_crest",
+    "name": "Family Crest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 59
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "family_pest",
+    "name": "Family Pest",
+    "requirements": []
+  },
+  {
+    "id": "fight_arena",
+    "name": "Fight Arena",
+    "requirements": []
+  },
+  {
+    "id": "fishing_contest",
+    "name": "Fishing Contest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "fishing",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "forgettable_tale",
+    "name": "Forgettable Tale...",
+    "requirements": []
+  },
+  {
+    "id": "garden_of_tranquillity",
+    "name": "Garden of Tranquillity",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "gertrude_s_cat",
+    "name": "Gertrude's Cat",
+    "requirements": []
+  },
+  {
+    "id": "getting_ahead",
+    "name": "Getting Ahead",
+    "requirements": []
+  },
+  {
+    "id": "ghosts_ahoy",
+    "name": "Ghosts Ahoy",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "goblin_diplomacy",
+    "name": "Goblin Diplomacy",
+    "requirements": []
+  },
+  {
+    "id": "grim_tales",
+    "name": "Grim tales",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 59
+      },
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 45
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 52
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 58
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 71
+      }
+    ]
+  },
+  {
+    "id": "haunted_mine",
+    "name": "Haunted Mine",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 15
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 35
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 43
+      }
+    ]
+  },
+  {
+    "id": "hazeel_cult",
+    "name": "Hazeel Cult",
+    "requirements": []
+  },
+  {
+    "id": "heroes_quest",
+    "name": "Heroes Quest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 53
+      },
+      {
+        "type": "skill-level",
+        "skill": "fishing",
+        "level": 53
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "his_faithful_servants",
+    "name": "His Faithful Servants",
+    "requirements": []
+  },
+  {
+    "id": "holy_grail",
+    "name": "Holy Grail",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "attack",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "hopespear_s_will",
+    "name": "Hopespear's Will",
+    "requirements": []
+  },
+  {
+    "id": "horror_from_the_deep",
+    "name": "Horror from the Deep",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 35
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "icthlarin_s_little_helper",
+    "name": "Icthlarin's Little Helper",
+    "requirements": []
+  },
+  {
+    "id": "imp_catcher",
+    "name": "Imp Catcher",
+    "requirements": []
+  },
+  {
+    "id": "impending_chaos",
+    "name": "Impending Chaos",
+    "requirements": []
+  },
+  {
+    "id": "in_aid_of_the_myreque",
+    "name": "In Aid of the Myreque",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 7
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 15
+      }
+    ]
+  },
+  {
+    "id": "in_search_of_knowledge",
+    "name": "In Search of Knowledge",
+    "requirements": []
+  },
+  {
+    "id": "in_search_of_the_myreque",
+    "name": "In Search of the Myreque",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "into_the_tombs",
+    "name": "Into the Tombs",
+    "requirements": []
+  },
+  {
+    "id": "jungle_potion",
+    "name": "Jungle Potion",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 3
+      }
+    ]
+  },
+  {
+    "id": "king_s_ransom",
+    "name": "King's Ransom",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "defence",
+        "level": 65
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 45
+      }
+    ]
+  },
+  {
+    "id": "lair_of_tarn_razorlor",
+    "name": "Lair of Tarn Razorlor",
+    "requirements": []
+  },
+  {
+    "id": "land_of_the_goblins",
+    "name": "Land of the Goblins",
+    "requirements": []
+  },
+  {
+    "id": "legends_quest",
+    "name": "Legends Quest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 45
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 56
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 52
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 42
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "strength",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "lost_city",
+    "name": "Lost City",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 31
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 36
+      }
+    ]
+  },
+  {
+    "id": "lunar_diplomacy",
+    "name": "Lunar Diplomacy",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 61
+      },
+      {
+        "type": "skill-level",
+        "skill": "defence",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 49
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 5
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 65
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 60
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 55
+      }
+    ]
+  },
+  {
+    "id": "mage_arena_i",
+    "name": "Mage Arena I",
+    "requirements": []
+  },
+  {
+    "id": "mage_arena_ii",
+    "name": "Mage Arena II",
+    "requirements": []
+  },
+  {
+    "id": "making_friends_with_my_arm",
+    "name": "Making Friends with My Arm",
+    "requirements": []
+  },
+  {
+    "id": "making_history",
+    "name": "Making History",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "meat_and_greet",
+    "name": "Meat and Greet",
+    "requirements": []
+  },
+  {
+    "id": "merlin_s_crystal",
+    "name": "Merlin's Crystal",
+    "requirements": []
+  },
+  {
+    "id": "misthalin_mystery",
+    "name": "Misthalin Mystery",
+    "requirements": []
+  },
+  {
+    "id": "monk_s_friend",
+    "name": "Monk's Friend",
+    "requirements": []
+  },
+  {
+    "id": "monkey_madness_i",
+    "name": "Monkey Madness I",
+    "requirements": []
+  },
+  {
+    "id": "monkey_madness_ii",
+    "name": "Monkey Madness II",
+    "requirements": []
+  },
+  {
+    "id": "mountain_daughter",
+    "name": "Mountain Daughter",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "mourning_s_end_part_i",
+    "name": "Mourning's End Part I",
+    "requirements": []
+  },
+  {
+    "id": "mourning_s_end_part_ii",
+    "name": "Mourning's End Part II",
+    "requirements": []
+  },
+  {
+    "id": "murder_mystery",
+    "name": "Murder Mystery",
+    "requirements": []
+  },
+  {
+    "id": "my_arm_s_big_adventure",
+    "name": "My Arm's Big Adventure",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 29
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "nature_spirit",
+    "name": "Nature Spirit",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 18
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "observatory_quest",
+    "name": "Observatory Quest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "olaf_s_quest",
+    "name": "Olaf's Quest",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "one_small_favour",
+    "name": "One Small Favour",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 36
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 18
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "pandemonium",
+    "name": "Pandemonium",
+    "requirements": []
+  },
+  {
+    "id": "perilous_moons",
+    "name": "Perilous Moons",
+    "requirements": []
+  },
+  {
+    "id": "pirate_s_treasure",
+    "name": "Pirate's Treasure",
+    "requirements": []
+  },
+  {
+    "id": "plague_city",
+    "name": "Plague City",
+    "requirements": []
+  },
+  {
+    "id": "priest_in_peril",
+    "name": "Priest in Peril",
+    "requirements": []
+  },
+  {
+    "id": "prince_ali_rescue",
+    "name": "Prince Ali Rescue",
+    "requirements": []
+  },
+  {
+    "id": "prying_times",
+    "name": "Prying Times",
+    "requirements": []
+  },
+  {
+    "id": "rag_and_bone_man_i",
+    "name": "Rag and Bone Man I",
+    "requirements": []
+  },
+  {
+    "id": "rag_and_bone_man_ii",
+    "name": "Rag and Bone Man II",
+    "requirements": []
+  },
+  {
+    "id": "ratcatchers",
+    "name": "Ratcatchers",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster",
+    "name": "Recipe for Disaster",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 48
+      },
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 70
+      }
+    ]
+  },
+  {
+    "id": "recipe_for_disaster_another_cook_s_quest",
+    "name": "Recipe for Disaster - Another Cook's Quest",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_culinaromancer",
+    "name": "Recipe for Disaster - Culinaromancer",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_evil_dave",
+    "name": "Recipe for Disaster - Evil Dave",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_king_awowogei",
+    "name": "Recipe for Disaster - King Awowogei",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_lumbridge_guide",
+    "name": "Recipe for Disaster - Lumbridge Guide",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_mountain_dwarf",
+    "name": "Recipe for Disaster - Mountain Dwarf",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_pirate_pete",
+    "name": "Recipe for Disaster - Pirate Pete",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_sir_amik_varze",
+    "name": "Recipe for Disaster - Sir Amik Varze",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_skrach_uglogwee",
+    "name": "Recipe for Disaster - Skrach Uglogwee",
+    "requirements": []
+  },
+  {
+    "id": "recipe_for_disaster_wartface_bentnoze",
+    "name": "Recipe for Disaster - Wartface & Bentnoze",
+    "requirements": []
+  },
+  {
+    "id": "recruitment_drive",
+    "name": "Recruitment Drive",
+    "requirements": []
+  },
+  {
+    "id": "regicide",
+    "name": "Regicide",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 56
+      }
+    ]
+  },
+  {
+    "id": "romeo_juliet",
+    "name": "Romeo & Juliet",
+    "requirements": []
+  },
+  {
+    "id": "roving_elves",
+    "name": "Roving Elves",
+    "requirements": []
+  },
+  {
+    "id": "royal_trouble",
+    "name": "Royal Trouble",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "slayer",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "rum_deal",
+    "name": "Rum Deal",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 42
+      },
+      {
+        "type": "skill-level",
+        "skill": "farming",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "fishing",
+        "level": 50
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 47
+      },
+      {
+        "type": "skill-level",
+        "skill": "slayer",
+        "level": 42
+      }
+    ]
+  },
+  {
+    "id": "rune_mysteries",
+    "name": "Rune Mysteries",
+    "requirements": []
+  },
+  {
+    "id": "scorpion_catcher",
+    "name": "Scorpion Catcher",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 31
+      }
+    ]
+  },
+  {
+    "id": "scrambled",
+    "name": "Scrambled!",
+    "requirements": []
+  },
+  {
+    "id": "sea_slug",
+    "name": "Sea Slug",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "secrets_of_the_north",
+    "name": "Secrets of the North",
+    "requirements": []
+  },
+  {
+    "id": "shades_of_mort_ton",
+    "name": "Shades of Mort'ton",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 15
+      }
+    ]
+  },
+  {
+    "id": "shadow_of_the_storm",
+    "name": "Shadow of the Storm",
+    "requirements": []
+  },
+  {
+    "id": "shadows_of_custodia",
+    "name": "Shadows of Custodia",
+    "requirements": []
+  },
+  {
+    "id": "sheep_herder",
+    "name": "Sheep Herder",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 5
+      }
+    ]
+  },
+  {
+    "id": "sheep_shearer",
+    "name": "Sheep Shearer",
+    "requirements": []
+  },
+  {
+    "id": "shield_of_arrav",
+    "name": "Shield of Arrav",
+    "requirements": []
+  },
+  {
+    "id": "shilo_village",
+    "name": "Shilo Village",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 32
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 4
+      }
+    ]
+  },
+  {
+    "id": "sins_of_the_father",
+    "name": "Sins of the Father",
+    "requirements": []
+  },
+  {
+    "id": "skippy_and_the_mogres",
+    "name": "Skippy and the Mogres",
+    "requirements": []
+  },
+  {
+    "id": "sleeping_giants",
+    "name": "Sleeping Giants",
+    "requirements": []
+  },
+  {
+    "id": "song_of_the_elves",
+    "name": "Song of the Elves",
+    "requirements": []
+  },
+  {
+    "id": "spirits_of_the_elid",
+    "name": "Spirits of the Elid",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 33
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 37
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 37
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 37
+      }
+    ]
+  },
+  {
+    "id": "swan_song",
+    "name": "Swan Song",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 62
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 42
+      },
+      {
+        "type": "skill-level",
+        "skill": "fishing",
+        "level": 62
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 66
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 45
+      }
+    ]
+  },
+  {
+    "id": "tai_bwo_wannai_trio",
+    "name": "Tai Bwo Wannai Trio",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 15
+      },
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "fishing",
+        "level": 5
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 34
+      }
+    ]
+  },
+  {
+    "id": "tale_of_the_righteous",
+    "name": "Tale of the Righteous",
+    "requirements": []
+  },
+  {
+    "id": "tears_of_guthix",
+    "name": "Tears of Guthix",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 49
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 49
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "temple_of_ikov",
+    "name": "Temple of Ikov",
+    "requirements": []
+  },
+  {
+    "id": "temple_of_the_eye",
+    "name": "Temple of the Eye",
+    "requirements": []
+  },
+  {
+    "id": "the_ascent_of_arceuus",
+    "name": "The Ascent of Arceuus",
+    "requirements": []
+  },
+  {
+    "id": "the_corsair_curse",
+    "name": "The Corsair Curse",
+    "requirements": []
+  },
+  {
+    "id": "the_curse_of_arrav",
+    "name": "The Curse of Arrav",
+    "requirements": []
+  },
+  {
+    "id": "the_depths_of_despair",
+    "name": "The Depths of Despair",
+    "requirements": []
+  },
+  {
+    "id": "the_dig_site",
+    "name": "The Dig Site",
+    "requirements": []
+  },
+  {
+    "id": "the_enchanted_key",
+    "name": "The Enchanted Key",
+    "requirements": []
+  },
+  {
+    "id": "the_eyes_of_glouphrie",
+    "name": "The Eyes of Glouphrie",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 5
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 46
+      }
+    ]
+  },
+  {
+    "id": "the_feud",
+    "name": "The Feud",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "the_final_dawn",
+    "name": "The Final Dawn",
+    "requirements": []
+  },
+  {
+    "id": "the_forsaken_tower",
+    "name": "The Forsaken Tower",
+    "requirements": []
+  },
+  {
+    "id": "the_fremennik_exiles",
+    "name": "The Fremennik Exiles",
+    "requirements": []
+  },
+  {
+    "id": "the_fremennik_isles",
+    "name": "The Fremennik Isles",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 46
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 56
+      }
+    ]
+  },
+  {
+    "id": "the_fremennik_trials",
+    "name": "The Fremennik Trials",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "fletching",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "woodcutting",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "the_frozen_door",
+    "name": "The Frozen Door",
+    "requirements": []
+  },
+  {
+    "id": "the_garden_of_death",
+    "name": "The Garden of Death",
+    "requirements": []
+  },
+  {
+    "id": "the_general_s_shadow",
+    "name": "The General's Shadow",
+    "requirements": []
+  },
+  {
+    "id": "the_giant_dwarf",
+    "name": "The Giant Dwarf",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 12
+      },
+      {
+        "type": "skill-level",
+        "skill": "firemaking",
+        "level": 16
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 33
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 14
+      }
+    ]
+  },
+  {
+    "id": "the_golem",
+    "name": "The Golem",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 20
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "the_grand_tree",
+    "name": "The Grand Tree",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 25
+      }
+    ]
+  },
+  {
+    "id": "the_great_brain_robbery",
+    "name": "The Great Brain Robbery",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 16
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "the_hand_in_the_sand",
+    "name": "The Hand in the Sand",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 49
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 17
+      }
+    ]
+  },
+  {
+    "id": "the_heart_of_darkness",
+    "name": "The Heart of Darkness",
+    "requirements": []
+  },
+  {
+    "id": "the_knight_s_sword",
+    "name": "The Knight's Sword",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "cooking",
+        "level": 10
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "the_lost_tribe",
+    "name": "The Lost Tribe",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 13
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 17
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 13
+      }
+    ]
+  },
+  {
+    "id": "the_path_of_glouphrie",
+    "name": "The Path of Glouphrie",
+    "requirements": []
+  },
+  {
+    "id": "the_queen_of_thieves",
+    "name": "The Queen of Thieves",
+    "requirements": []
+  },
+  {
+    "id": "the_red_reef",
+    "name": "The Red Reef",
+    "requirements": []
+  },
+  {
+    "id": "the_restless_ghost",
+    "name": "The Restless Ghost",
+    "requirements": []
+  },
+  {
+    "id": "the_ribbiting_tale_of_a_lily_pad_labour_dispute",
+    "name": "The Ribbiting Tale of a Lily Pad Labour Dispute",
+    "requirements": []
+  },
+  {
+    "id": "the_slug_menace",
+    "name": "The Slug Menace",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "crafting",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "runecraft",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "slayer",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "the_tourist_trap",
+    "name": "The Tourist Trap",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "fletching",
+        "level": 10
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 20
+      }
+    ]
+  },
+  {
+    "id": "throne_of_miscellania",
+    "name": "Throne of Miscellania",
+    "requirements": []
+  },
+  {
+    "id": "tower_of_life",
+    "name": "Tower of Life",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "construction",
+        "level": 10
+      }
+    ]
+  },
+  {
+    "id": "tree_gnome_village",
+    "name": "Tree Gnome Village",
+    "requirements": []
+  },
+  {
+    "id": "tribal_totem",
+    "name": "Tribal Totem",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 21
+      }
+    ]
+  },
+  {
+    "id": "troll_romance",
+    "name": "Troll Romance",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 28
+      }
+    ]
+  },
+  {
+    "id": "troll_stronghold",
+    "name": "Troll Stronghold",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 15
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 43
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 30
+      }
+    ]
+  },
+  {
+    "id": "troubled_tortugans",
+    "name": "Troubled Tortugans",
+    "requirements": []
+  },
+  {
+    "id": "tutorial_island",
+    "name": "Tutorial Island",
+    "requirements": []
+  },
+  {
+    "id": "twilight_s_promise",
+    "name": "Twilight's Promise",
+    "requirements": []
+  },
+  {
+    "id": "underground_pass",
+    "name": "Underground Pass",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 50
+      }
+    ]
+  },
+  {
+    "id": "vale_totems",
+    "name": "Vale Totems",
+    "requirements": []
+  },
+  {
+    "id": "vampyre_slayer",
+    "name": "Vampyre Slayer",
+    "requirements": []
+  },
+  {
+    "id": "wanted",
+    "name": "Wanted!",
+    "requirements": []
+  },
+  {
+    "id": "watchtower",
+    "name": "Watchtower",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "agility",
+        "level": 25
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 14
+      },
+      {
+        "type": "skill-level",
+        "skill": "magic",
+        "level": 14
+      },
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 40
+      },
+      {
+        "type": "skill-level",
+        "skill": "thieving",
+        "level": 15
+      }
+    ]
+  },
+  {
+    "id": "waterfall_quest",
+    "name": "Waterfall Quest",
+    "requirements": []
+  },
+  {
+    "id": "what_lies_below",
+    "name": "What Lies Below",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "mining",
+        "level": 42
+      },
+      {
+        "type": "skill-level",
+        "skill": "runecraft",
+        "level": 35
+      }
+    ]
+  },
+  {
+    "id": "while_guthix_sleeps",
+    "name": "While Guthix Sleeps",
+    "requirements": []
+  },
+  {
+    "id": "witch_s_house",
+    "name": "Witch's House",
+    "requirements": []
+  },
+  {
+    "id": "witch_s_potion",
+    "name": "Witch's Potion",
+    "requirements": []
+  },
+  {
+    "id": "x_marks_the_spot",
+    "name": "X Marks the Spot",
+    "requirements": []
+  },
+  {
+    "id": "zogre_flesh_eaters",
+    "name": "Zogre Flesh Eaters",
+    "requirements": [
+      {
+        "type": "skill-level",
+        "skill": "fletching",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "herblore",
+        "level": 8
+      },
+      {
+        "type": "skill-level",
+        "skill": "prayer",
+        "level": 43
+      },
+      {
+        "type": "skill-level",
+        "skill": "ranged",
+        "level": 30
+      },
+      {
+        "type": "skill-level",
+        "skill": "smithing",
+        "level": 4
+      },
+      {
+        "type": "skill-level",
+        "skill": "strength",
+        "level": 20
+      }
+    ]
+  }
+]

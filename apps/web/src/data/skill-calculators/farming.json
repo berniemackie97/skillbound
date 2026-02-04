@@ -1,0 +1,580 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:36:59.792Z",
+  "payload": {
+    "name": "Farming",
+    "slug": "farming",
+    "members_only": true,
+    "bonuses": [
+      {
+        "name": "Farmer's outfit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      }
+    ],
+    "categories": {
+      "33": "Allotment",
+      "34": "Herbs",
+      "35": "Trees",
+      "36": "Fruit Trees"
+    },
+    "profit_loss_settings": {
+      "enabled": false,
+      "show_components": false,
+      "real_time_prices": false
+    },
+    "data": [
+      {
+        "name": "Potato (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/potato.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 134,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Onion (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/onion.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 156.5,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Cabbage (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/cabbage.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 171,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Guam (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/guam_leaf.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 9,
+        "exp_given": 86,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Tomato (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/tomato.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 208.5,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Marrentill (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/marrentill.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 14,
+        "exp_given": 103.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/oak_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 481.3,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Tarromin (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/tarromin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 124,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Sweetcorn (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/sweetcorn.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 283,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Giant seaweed (Plant, harvest 24)",
+        "image": "https://general-543f.kxcdn.com/items/seaweed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 23,
+        "exp_given": 523,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Harralander (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/harralander.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 165.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Apple tree (plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/cooking_apple.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 1272.5,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Willow tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/willow_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 1481.5,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Strawberry (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/strawberry.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 31,
+        "exp_given": 432,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Ranarr (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/ranarr_weed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 32,
+        "exp_given": 209.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Banana tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/banana.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 1841.5,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/teak_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 7325,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Toadflax (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/toadflax.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 265,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Orange tree (Planting, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/orange.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 39,
+        "exp_given": 2586.7,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Curry tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/curry_leaf.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 3036.9,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Irit (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/irit_leaf.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 334,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Maple tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/maple_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 3448.4,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Watermelon (Plant, harvest 14)",
+        "image": "https://general-543f.kxcdn.com/items/watermelon.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 811.5,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Avantoe (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/avantoe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 423.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Pineapple tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/pineapple.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 4791.7,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/mahogany_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 15783,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Kwuarm (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/kwuarm.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 537,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Papaya tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/papaya_fruit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 6380.4,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Yew tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/yew_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 7150.9,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Snape grass (Plant, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/snape_grass.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 61,
+        "exp_given": 164,
+        "categories": [
+          33
+        ],
+        "link": null
+      },
+      {
+        "name": "Snapdragon (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/snapdragon.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 678.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Cadantine (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/cadantine.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 826.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Palm tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/coconut.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 10509.6,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Calquat tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/calquat_fruit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 12274,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Lantadyme (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/lantadyme.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 1043.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Crystal tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/crystal_shard.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 13366,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Magic tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/magic_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 13913.8,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Dwarf weed (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/dwarf_weed.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 1322.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Dragonfruit tree (Plant, check health, harvest)",
+        "image": "https://general-543f.kxcdn.com/items/dragonfruit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 17895,
+        "categories": [
+          36
+        ],
+        "link": null
+      },
+      {
+        "name": "Torstol (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/torstol.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 1546.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      },
+      {
+        "name": "Redwood tree (Plant, check health)",
+        "image": "https://general-543f.kxcdn.com/items/redwood_logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 22680,
+        "categories": [
+          35
+        ],
+        "link": null
+      },
+      {
+        "name": "Celastrus tree (Plant, check health, harvest 3)",
+        "image": "https://general-543f.kxcdn.com/items/celastrus-bark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 14400.5,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Huasca (Plant, harvest 6)",
+        "image": "https://general-543f.kxcdn.com/items/grimy-huasca.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 746.5,
+        "categories": [
+          34
+        ],
+        "link": null
+      }
+    ]
+  }
+}

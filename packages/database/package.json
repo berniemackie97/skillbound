@@ -9,27 +9,30 @@
     "./client": "./src/client.ts"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts",
     "typecheck": "tsc --noEmit",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "push": "drizzle-kit push",
     "studio": "drizzle-kit studio",
+    "seed:progression": "tsx src/scripts/seed-progression-categories.ts",
     "test": "vitest run",
     "test:unit": "vitest run"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.1",
-    "drizzle-orm": "^0.36.4",
-    "zod": "^3.22.4"
+    "drizzle-orm": "^0.45.1",
+    "pg": "^8.17.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@skillbound/eslint-config": "workspace:*",
     "@skillbound/typescript-config": "workspace:*",
-    "@types/node": "^20.11.5",
-    "drizzle-kit": "^0.28.1",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.1"
+    "@types/node": "^25.1.0",
+    "@types/pg": "^8.16.0",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.8",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }

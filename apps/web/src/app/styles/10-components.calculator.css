@@ -1,0 +1,368 @@
+/* Components: Calculator + Data tables (shared) */
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.calculator {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.calculator-result {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.item-search .search-result .members-badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Shared calculator panel styles (moved from home) */
+
+.calculator-panel {
+  gap: 18px;
+}
+
+.calculator-groups {
+  display: grid;
+  gap: 14px;
+}
+
+.calculator-group-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.calculator-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calculator-summary {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculator-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.calculator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculator-card h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.calculator-checkboxes {
+  display: grid;
+  gap: 8px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.checkbox-row input {
+  width: 16px;
+  height: 16px;
+}
+
+.calculator-table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.calculator-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 640px;
+  font-variant-numeric: tabular-nums;
+}
+
+.calculator-table th {
+  text-align: left;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--text);
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.calculator-table td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.calculator-table tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.table-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
+}
+
+.level-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.level-pill.met {
+  background: rgba(67, 200, 120, 0.2);
+  color: #b6f1b6;
+  border: 1px solid rgba(67, 200, 120, 0.4);
+}
+
+.level-pill.unmet {
+  background: rgba(255, 99, 99, 0.15);
+  color: #ff9a9a;
+  border: 1px solid rgba(255, 99, 99, 0.35);
+}
+
+.action-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-cell img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.members-badge {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 215, 128, 0.4);
+  color: var(--rs-gold);
+}
+
+.items-used ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.profit {
+  font-weight: 600;
+}
+
+.profit.positive {
+  color: #b6f1b6;
+}
+
+.profit.negative {
+  color: #ff9a9a;
+}
+
+.bonus-pill {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(107, 182, 255, 0.12);
+  color: var(--accent-blue);
+}
+
+.calculator-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-summary h3 {
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.stat-row span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.stat-row strong {
+  font-size: 1.1rem;
+}
+
+.result-list h4 {
+  margin-bottom: 10px;
+}
+
+.result-list ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.result-list li {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.trade-table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.trade-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 720px;
+  font-variant-numeric: tabular-nums;
+}
+
+.trade-table th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.trade-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.trade-table tr:hover td {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.trade-table .date {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.trade-table .character {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.trade-table .character-name {
+  font-weight: 600;
+}
+
+.trade-table .item {
+  display: flex;
+  flex-direction: column;
+}
+
+.trade-table .item-name {
+  font-weight: 500;
+}
+
+.trade-table .item-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.trade-table .quantity,
+.trade-table .price,
+.trade-table .total {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.trade-table .profit {
+  text-align: right;
+}
+
+.trade-table .actions {
+  text-align: center;
+  width: 40px;
+}

@@ -114,8 +114,6 @@ jobs:
           sleep 15
           # Health check
           curl -f ${{ steps.deploy.outputs.url }}/api/health || exit 1
-          # Test critical endpoints
-          curl -f ${{ steps.deploy.outputs.url }}/api/lookup/test || true
 
       - name: Notify deployment
         uses: actions/github-script@v7

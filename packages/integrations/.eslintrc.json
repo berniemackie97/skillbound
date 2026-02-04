@@ -1,0 +1,6 @@
+{
+  "extends": "@skillbound/eslint-config",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

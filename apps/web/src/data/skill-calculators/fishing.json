@@ -1,0 +1,807 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:36:59.946Z",
+  "payload": {
+    "name": "Fishing",
+    "slug": "fishing",
+    "members_only": false,
+    "bonuses": [
+      {
+        "name": "Angler's Outfit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      }
+    ],
+    "categories": {
+      "37": "Small Net",
+      "38": "Bait Fishing",
+      "39": "Big Net",
+      "40": "Fly Fishing",
+      "41": "Harpooning",
+      "42": "Barbarian Fishing",
+      "100": "Lantern fishing",
+      "101": "Deep sea trawling"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": true,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Raw shrimps",
+        "image": "https://general-543f.kxcdn.com/items/raw_shrimps.png",
+        "imageWidth": 31,
+        "imageHeight": 23,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 10,
+        "categories": [
+          37
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw shrimps",
+            "amount": 1,
+            "price": 34,
+            "real_time_price": 34
+          }
+        ]
+      },
+      {
+        "name": "Raw sardine",
+        "image": "https://general-543f.kxcdn.com/items/raw_sardine.png",
+        "imageWidth": 19,
+        "imageHeight": 15,
+        "action_members": false,
+        "level_req": 5,
+        "exp_given": 20,
+        "categories": [
+          38
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw sardine",
+            "amount": 1,
+            "price": 51,
+            "real_time_price": 54
+          }
+        ]
+      },
+      {
+        "name": "Raw herring",
+        "image": "https://general-543f.kxcdn.com/items/raw_herring.png",
+        "imageWidth": 29,
+        "imageHeight": 22,
+        "action_members": false,
+        "level_req": 10,
+        "exp_given": 30,
+        "categories": [
+          38
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fishing bait",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw herring",
+            "amount": 1,
+            "price": 63,
+            "real_time_price": 78
+          }
+        ]
+      },
+      {
+        "name": "Raw anchovies",
+        "image": "https://general-543f.kxcdn.com/items/raw_anchovies.png",
+        "imageWidth": 31,
+        "imageHeight": 23,
+        "action_members": false,
+        "level_req": 15,
+        "exp_given": 40,
+        "categories": [
+          37
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw anchovies",
+            "amount": 1,
+            "price": 28,
+            "real_time_price": 34
+          }
+        ]
+      },
+      {
+        "name": "Raw mackerel",
+        "image": "https://general-543f.kxcdn.com/items/raw_mackerel.png",
+        "imageWidth": 29,
+        "imageHeight": 22,
+        "action_members": true,
+        "level_req": 16,
+        "exp_given": 20,
+        "categories": [
+          39
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw mackerel",
+            "amount": 1,
+            "price": 32,
+            "real_time_price": 38
+          }
+        ]
+      },
+      {
+        "name": "Raw trout",
+        "image": "https://general-543f.kxcdn.com/items/raw_trout.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 20,
+        "exp_given": 50,
+        "categories": [
+          40
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Feather",
+            "amount": 1,
+            "price": 3,
+            "real_time_price": 3
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw trout",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 80
+          }
+        ]
+      },
+      {
+        "name": "Raw cod",
+        "image": "https://general-543f.kxcdn.com/items/raw_cod.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 23,
+        "exp_given": 45,
+        "categories": [
+          39
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw cod",
+            "amount": 1,
+            "price": 28,
+            "real_time_price": 28
+          }
+        ]
+      },
+      {
+        "name": "Raw pike",
+        "image": "https://general-543f.kxcdn.com/items/raw_pike.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 25,
+        "exp_given": 60,
+        "categories": [
+          38
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fishing bait",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw pike",
+            "amount": 1,
+            "price": 193,
+            "real_time_price": 195
+          }
+        ]
+      },
+      {
+        "name": "Raw slimy eel",
+        "image": "https://general-543f.kxcdn.com/items/raw_slimy_eel.png",
+        "imageWidth": 31,
+        "imageHeight": 20,
+        "action_members": true,
+        "level_req": 28,
+        "exp_given": 65,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw slimy eel",
+            "amount": 1,
+            "price": 86,
+            "real_time_price": 86
+          }
+        ]
+      },
+      {
+        "name": "Raw salmon",
+        "image": "https://general-543f.kxcdn.com/items/raw_salmon.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 30,
+        "exp_given": 70,
+        "categories": [
+          40
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Feather",
+            "amount": 1,
+            "price": 3,
+            "real_time_price": 3
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw salmon",
+            "amount": 1,
+            "price": 92,
+            "real_time_price": 86
+          }
+        ]
+      },
+      {
+        "name": "Raw tuna",
+        "image": "https://general-543f.kxcdn.com/items/raw_tuna.png",
+        "imageWidth": 28,
+        "imageHeight": 23,
+        "action_members": false,
+        "level_req": 35,
+        "exp_given": 80,
+        "categories": [
+          41
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw tuna",
+            "amount": 1,
+            "price": 89,
+            "real_time_price": 89
+          }
+        ]
+      },
+      {
+        "name": "Raw rainbow fish",
+        "image": "https://general-543f.kxcdn.com/items/raw_rainbow_fish.png",
+        "imageWidth": 31,
+        "imageHeight": 22,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 80,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Stripy feather",
+            "amount": 1,
+            "price": 28,
+            "real_time_price": 28
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw rainbow fish",
+            "amount": 1,
+            "price": 468,
+            "real_time_price": 468
+          }
+        ]
+      },
+      {
+        "name": "Raw cave eel",
+        "image": "https://general-543f.kxcdn.com/items/raw_cave_eel.png",
+        "imageWidth": 29,
+        "imageHeight": 29,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 80,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Fishing bait",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw cave eel",
+            "amount": 1,
+            "price": 100,
+            "real_time_price": 76
+          }
+        ]
+      },
+      {
+        "name": "Raw lobster",
+        "image": "https://general-543f.kxcdn.com/items/raw_lobster.png",
+        "imageWidth": 30,
+        "imageHeight": 29,
+        "action_members": false,
+        "level_req": 40,
+        "exp_given": 90,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw lobster",
+            "amount": 1,
+            "price": 155,
+            "real_time_price": 155
+          }
+        ]
+      },
+      {
+        "name": "Raw bass",
+        "image": "https://general-543f.kxcdn.com/items/raw_bass.png",
+        "imageWidth": 28,
+        "imageHeight": 23,
+        "action_members": true,
+        "level_req": 46,
+        "exp_given": 100,
+        "categories": [
+          39
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw bass",
+            "amount": 1,
+            "price": 16,
+            "real_time_price": 16
+          }
+        ]
+      },
+      {
+        "name": "Leaping trout",
+        "image": "https://general-543f.kxcdn.com/items/leaping_trout.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 50,
+        "categories": [
+          42
+        ],
+        "link": null
+      },
+      {
+        "name": "Raw swordfish",
+        "image": "https://general-543f.kxcdn.com/items/raw_swordfish.png",
+        "imageWidth": 31,
+        "imageHeight": 27,
+        "action_members": false,
+        "level_req": 50,
+        "exp_given": 100,
+        "categories": [
+          41
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw swordfish",
+            "amount": 1,
+            "price": 219,
+            "real_time_price": 217
+          }
+        ]
+      },
+      {
+        "name": "Leaping salmon",
+        "image": "https://general-543f.kxcdn.com/items/leaping_salmon.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 70,
+        "categories": [
+          42
+        ],
+        "link": null
+      },
+      {
+        "name": "Raw monkfish",
+        "image": "https://general-543f.kxcdn.com/items/raw_monkfish.png",
+        "imageWidth": 32,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 120,
+        "categories": [
+          37
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw monkfish",
+            "amount": 1,
+            "price": 260,
+            "real_time_price": 262
+          }
+        ]
+      },
+      {
+        "name": "Raw karambwan",
+        "image": "https://general-543f.kxcdn.com/items/raw_karambwan.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 50,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Leaping sturgeon",
+        "image": "https://general-543f.kxcdn.com/items/leaping_sturgeon.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 80,
+        "categories": [
+          42
+        ],
+        "link": null
+      },
+      {
+        "name": "Raw shark",
+        "image": "https://general-543f.kxcdn.com/items/raw_shark.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 76,
+        "exp_given": 110,
+        "categories": [
+          41
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw shark",
+            "amount": 1,
+            "price": 460,
+            "real_time_price": 461
+          }
+        ]
+      },
+      {
+        "name": "Raw sea turtle",
+        "image": "https://general-543f.kxcdn.com/items/raw_sea_turtle.png",
+        "imageWidth": 31,
+        "imageHeight": 23,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 38,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw sea turtle",
+            "amount": 1,
+            "price": 658,
+            "real_time_price": 610
+          }
+        ]
+      },
+      {
+        "name": "Infernal eel",
+        "image": "https://general-543f.kxcdn.com/items/infernal_eel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 95,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Raw manta ray",
+        "image": "https://general-543f.kxcdn.com/items/raw_manta_ray.png",
+        "imageWidth": 28,
+        "imageHeight": 29,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 46,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw manta ray",
+            "amount": 1,
+            "price": 1470,
+            "real_time_price": 1404
+          }
+        ]
+      },
+      {
+        "name": "Raw anglerfish",
+        "image": "https://general-543f.kxcdn.com/items/raw_anglerfish.png",
+        "imageWidth": 32,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 120,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Sandworms",
+            "amount": 1,
+            "price": 104,
+            "real_time_price": 104
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw anglerfish",
+            "amount": 1,
+            "price": 1679,
+            "real_time_price": 1709
+          }
+        ]
+      },
+      {
+        "name": "Raw dark crab",
+        "image": "https://general-543f.kxcdn.com/items/raw_dark_crab.png",
+        "imageWidth": 30,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 130,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Dark fishing bait",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Raw dark crab",
+            "amount": 1,
+            "price": 1145,
+            "real_time_price": 1041
+          }
+        ]
+      },
+      {
+        "name": "Sacred eel",
+        "image": "https://general-543f.kxcdn.com/items/sacred_eel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 105,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Minnow",
+        "image": "https://general-543f.kxcdn.com/items/minnow.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 26.1,
+        "categories": [
+          37
+        ],
+        "link": null
+      },
+      {
+        "name": "Raw lava eel",
+        "image": "https://general-543f.kxcdn.com/items/raw-lava-eel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 60,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Raw swordtip squid",
+        "image": "https://general-543f.kxcdn.com/items/raw-swordtip-squid.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 55,
+        "categories": [
+          100
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw swordtip squid",
+            "amount": 1,
+            "price": 1082,
+            "real_time_price": 1603
+          }
+        ]
+      },
+      {
+        "name": "Raw jumbo squid",
+        "image": "https://general-543f.kxcdn.com/items/raw-jumbo-squid.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 75,
+        "categories": [
+          100
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw jumbo squid",
+            "amount": 1,
+            "price": 2531,
+            "real_time_price": 3400
+          }
+        ]
+      },
+      {
+        "name": "Raw giant krill",
+        "image": "https://general-543f.kxcdn.com/items/raw-giant-krill.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 23,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw giant krill",
+            "amount": 1,
+            "price": 311,
+            "real_time_price": 122
+          }
+        ]
+      },
+      {
+        "name": "Raw haddock",
+        "image": "https://general-543f.kxcdn.com/items/raw-haddock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 26,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw haddock",
+            "amount": 1,
+            "price": 434,
+            "real_time_price": 156
+          }
+        ]
+      },
+      {
+        "name": "Raw bluefin",
+        "image": "https://general-543f.kxcdn.com/items/raw-bluefin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 220.5,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw bluefin",
+            "amount": 1,
+            "price": 1479,
+            "real_time_price": 1389
+          }
+        ]
+      },
+      {
+        "name": "Raw marlin",
+        "image": "https://general-543f.kxcdn.com/items/raw-marlin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 91,
+        "exp_given": 265.5,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw marlin",
+            "amount": 1,
+            "price": 6345,
+            "real_time_price": 6550
+          }
+        ]
+      },
+      {
+        "name": "Raw yellowfin",
+        "image": "https://general-543f.kxcdn.com/items/raw-yellowfin.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 31.1,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw yellowfin",
+            "amount": 1,
+            "price": 583,
+            "real_time_price": 700
+          }
+        ]
+      },
+      {
+        "name": "Raw halibut",
+        "image": "https://general-543f.kxcdn.com/items/raw-halibut.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 83,
+        "exp_given": 39.1,
+        "categories": [
+          101
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Raw halibut",
+            "amount": 1,
+            "price": 2755,
+            "real_time_price": 2317
+          }
+        ]
+      }
+    ]
+  }
+}

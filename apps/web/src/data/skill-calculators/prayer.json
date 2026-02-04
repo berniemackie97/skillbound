@@ -1,0 +1,1671 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.479Z",
+  "payload": {
+    "name": "Prayer",
+    "slug": "prayer",
+    "members_only": false,
+    "bonuses": [
+      {
+        "name": "Lit Gilded Altar (350% exp)",
+        "bonus": 3.5,
+        "validCategories": [
+          69
+        ]
+      },
+      {
+        "name": "Ectofuntus (400% exp)",
+        "bonus": 4,
+        "validCategories": [
+          69
+        ]
+      },
+      {
+        "name": "Chaos Altar (700% exp, averaged)",
+        "bonus": 7,
+        "validCategories": [
+          69
+        ]
+      },
+      {
+        "name": "Sacred Bone Burner (300% exp)",
+        "bonus": 3,
+        "validCategories": [
+          69
+        ]
+      },
+      {
+        "name": "Demonic Offering (Ashes) (300% exp)",
+        "bonus": 3,
+        "validCategories": [
+          96
+        ]
+      }
+    ],
+    "categories": {
+      "69": "Bones",
+      "70": "Ensouled Heads",
+      "71": "Remains",
+      "96": "Ashes"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": true,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Bones",
+        "image": "https://general-543f.kxcdn.com/items/bones.png",
+        "imageWidth": 26,
+        "imageHeight": 19,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 4.5,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Bones",
+            "amount": 1,
+            "price": 30,
+            "real_time_price": 34
+          }
+        ]
+      },
+      {
+        "name": "Ensouled goblin head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_goblin_head.png",
+        "imageWidth": 29,
+        "imageHeight": 27,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 130,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled goblin head",
+            "amount": 1,
+            "price": 73,
+            "real_time_price": 78
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled monkey head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_monkey_head.png",
+        "imageWidth": 28,
+        "imageHeight": 27,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 182,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled monkey head",
+            "amount": 1,
+            "price": 555,
+            "real_time_price": 555
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled imp head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_imp_head.png",
+        "imageWidth": 28,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 286,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled imp head",
+            "amount": 1,
+            "price": 775,
+            "real_time_price": 775
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled minotaur head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_minotaur_head.png",
+        "imageWidth": 28,
+        "imageHeight": 15,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 364,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled minotaur head",
+            "amount": 1,
+            "price": 146,
+            "real_time_price": 146
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled scorpion head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_scorpion_head.png",
+        "imageWidth": 25,
+        "imageHeight": 23,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 454,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled scorpion head",
+            "amount": 1,
+            "price": 218,
+            "real_time_price": 218
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled bear head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_bear_head.png",
+        "imageWidth": 19,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 480,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled bear head",
+            "amount": 1,
+            "price": 301,
+            "real_time_price": 304
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled unicorn head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_unicorn_head.png",
+        "imageWidth": 27,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 494,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled unicorn head",
+            "amount": 1,
+            "price": 847,
+            "real_time_price": 847
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 2,
+            "price": 93,
+            "real_time_price": 93
+          }
+        ]
+      },
+      {
+        "name": "Ensouled dog head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_dog_head.png",
+        "imageWidth": 30,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 520,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled dog head",
+            "amount": 1,
+            "price": 340,
+            "real_time_price": 500
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled chaos druid head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_chaos_druid_head.png",
+        "imageWidth": 20,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 584,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled chaos druid head",
+            "amount": 1,
+            "price": 123,
+            "real_time_price": 200
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled giant head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_giant_head.png",
+        "imageWidth": 18,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 650,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled giant head",
+            "amount": 1,
+            "price": 210,
+            "real_time_price": 200
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled ogre head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_ogre_head.png",
+        "imageWidth": 19,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 716,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled ogre head",
+            "amount": 1,
+            "price": 383,
+            "real_time_price": 375
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled elf head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_elf_head.png",
+        "imageWidth": 17,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 754,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled elf head",
+            "amount": 1,
+            "price": 811,
+            "real_time_price": 900
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled troll head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_troll_head.png",
+        "imageWidth": 23,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 780,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled troll head",
+            "amount": 1,
+            "price": 556,
+            "real_time_price": 322
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled horror head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_horror_head.png",
+        "imageWidth": 25,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 832,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled horror head",
+            "amount": 1,
+            "price": 752,
+            "real_time_price": 680
+          },
+          {
+            "name": "Body rune",
+            "amount": 4,
+            "price": 4,
+            "real_time_price": 5
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 1,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled kalphite head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_kalphite_head.png",
+        "imageWidth": 21,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 884,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled kalphite head",
+            "amount": 1,
+            "price": 396,
+            "real_time_price": 375
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled dagannoth head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_dagannoth_head.png",
+        "imageWidth": 25,
+        "imageHeight": 28,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 936,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled dagannoth head",
+            "amount": 1,
+            "price": 487,
+            "real_time_price": 487
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled bloodveld head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_bloodveld_head.png",
+        "imageWidth": 27,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1040,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled bloodveld head",
+            "amount": 1,
+            "price": 1039,
+            "real_time_price": 1039
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled tzhaar head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_tzhaar_head.png",
+        "imageWidth": 18,
+        "imageHeight": 17,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1104,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled tzhaar head",
+            "amount": 1,
+            "price": 1232,
+            "real_time_price": 4740
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled demon head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_demon_head.png",
+        "imageWidth": 25,
+        "imageHeight": 29,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1170,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled demon head",
+            "amount": 1,
+            "price": 1463,
+            "real_time_price": 1649
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled aviansie head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_aviansie_head.png",
+        "imageWidth": 22,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1234,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled aviansie head",
+            "amount": 1,
+            "price": 1175,
+            "real_time_price": 1348
+          },
+          {
+            "name": "Blood rune",
+            "amount": 2,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 4,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 4,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled abyssal head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_abyssal_head.png",
+        "imageWidth": 30,
+        "imageHeight": 19,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1300,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled abyssal head",
+            "amount": 1,
+            "price": 1626,
+            "real_time_price": 2000
+          },
+          {
+            "name": "Blood rune",
+            "amount": 2,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 4,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 4,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Ensouled dragon head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled_dragon_head.png",
+        "imageWidth": 30,
+        "imageHeight": 28,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1560,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled dragon head",
+            "amount": 1,
+            "price": 2826,
+            "real_time_price": 2826
+          },
+          {
+            "name": "Blood rune",
+            "amount": 2,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Nature rune",
+            "amount": 4,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Soul rune",
+            "amount": 4,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Wolf bones",
+        "image": "https://general-543f.kxcdn.com/items/wolf_bones.png",
+        "imageWidth": 29,
+        "imageHeight": 28,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 4.5,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Wolf bones",
+            "amount": 1,
+            "price": 536,
+            "real_time_price": 536
+          }
+        ]
+      },
+      {
+        "name": "Loar remains",
+        "image": "https://general-543f.kxcdn.com/items/loar_remains.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 33,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Loar remains",
+            "amount": 1,
+            "price": 154,
+            "real_time_price": 1000
+          }
+        ]
+      },
+      {
+        "name": "Burnt bones",
+        "image": "https://general-543f.kxcdn.com/items/burnt_bones.png",
+        "imageWidth": 26,
+        "imageHeight": 19,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 4.5,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Burnt bones",
+            "amount": 1,
+            "price": 372,
+            "real_time_price": 372
+          }
+        ]
+      },
+      {
+        "name": "Monkey bones",
+        "image": "https://general-543f.kxcdn.com/items/monkey_bones.png",
+        "imageWidth": 26,
+        "imageHeight": 19,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 5,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Monkey bones",
+            "amount": 1,
+            "price": 478,
+            "real_time_price": 467
+          }
+        ]
+      },
+      {
+        "name": "Bat bones",
+        "image": "https://general-543f.kxcdn.com/items/bat_bones.png",
+        "imageWidth": 26,
+        "imageHeight": 19,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 5.3,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Bat bones",
+            "amount": 1,
+            "price": 359,
+            "real_time_price": 665
+          }
+        ]
+      },
+      {
+        "name": "Jogre bones",
+        "image": "https://general-543f.kxcdn.com/items/jogre_bones.png",
+        "imageWidth": 23,
+        "imageHeight": 20,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 15,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Jogre bones",
+            "amount": 1,
+            "price": 804,
+            "real_time_price": 827
+          }
+        ]
+      },
+      {
+        "name": "Big bones",
+        "image": "https://general-543f.kxcdn.com/items/big_bones.png",
+        "imageWidth": 23,
+        "imageHeight": 20,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 15,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Big bones",
+            "amount": 1,
+            "price": 334,
+            "real_time_price": 400
+          }
+        ]
+      },
+      {
+        "name": "Zogre bones",
+        "image": "https://general-543f.kxcdn.com/items/zogre_bones.png",
+        "imageWidth": 28,
+        "imageHeight": 27,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 22.5,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Zogre bones",
+            "amount": 1,
+            "price": 863,
+            "real_time_price": 1000
+          }
+        ]
+      },
+      {
+        "name": "Shaikahan bones",
+        "image": "https://general-543f.kxcdn.com/items/shaikahan_bones.png",
+        "imageWidth": 28,
+        "imageHeight": 22,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 25,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Shaikahan bones",
+            "amount": 1,
+            "price": 6541,
+            "real_time_price": 6868
+          }
+        ]
+      },
+      {
+        "name": "Babydragon bones",
+        "image": "https://general-543f.kxcdn.com/items/babydragon_bones.png",
+        "imageWidth": 23,
+        "imageHeight": 20,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 30,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Babydragon bones",
+            "amount": 1,
+            "price": 577,
+            "real_time_price": 699
+          }
+        ]
+      },
+      {
+        "name": "Phrin remains",
+        "image": "https://general-543f.kxcdn.com/items/phrin_remains.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 46.5,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Phrin remains",
+            "amount": 1,
+            "price": 2780,
+            "real_time_price": 2780
+          }
+        ]
+      },
+      {
+        "name": "Ourg bones",
+        "image": "https://general-543f.kxcdn.com/items/ourg_bones.png",
+        "imageWidth": 24,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 140,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ourg bones",
+            "amount": 1,
+            "price": 47370,
+            "real_time_price": 47370
+          }
+        ]
+      },
+      {
+        "name": "Riyl remains",
+        "image": "https://general-543f.kxcdn.com/items/riyl_remains.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 59.5,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Riyl remains",
+            "amount": 1,
+            "price": 617,
+            "real_time_price": 434
+          }
+        ]
+      },
+      {
+        "name": "Wyvern bones",
+        "image": "https://general-543f.kxcdn.com/items/wyvern_bones.png",
+        "imageWidth": 28,
+        "imageHeight": 27,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 72,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Wyvern bones",
+            "amount": 1,
+            "price": 1787,
+            "real_time_price": 1869
+          }
+        ]
+      },
+      {
+        "name": "Dragon bones",
+        "image": "https://general-543f.kxcdn.com/items/dragon_bones.png",
+        "imageWidth": 31,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 72,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Dragon bones",
+            "amount": 1,
+            "price": 1851,
+            "real_time_price": 1873
+          }
+        ]
+      },
+      {
+        "name": "Asyn remains",
+        "image": "https://general-543f.kxcdn.com/items/asyn_remains.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 82.5,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Asyn remains",
+            "amount": 1,
+            "price": 3256,
+            "real_time_price": 4647
+          }
+        ]
+      },
+      {
+        "name": "Fayrg bones",
+        "image": "https://general-543f.kxcdn.com/items/fayrg_bones.png",
+        "imageWidth": 24,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 84,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fayrg bones",
+            "amount": 1,
+            "price": 4286,
+            "real_time_price": 2443
+          }
+        ]
+      },
+      {
+        "name": "Fiyr remains",
+        "image": "https://general-543f.kxcdn.com/items/fiyr_remains.png",
+        "imageWidth": 29,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 84,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fiyr remains",
+            "amount": 1,
+            "price": 4965,
+            "real_time_price": 5032
+          }
+        ]
+      },
+      {
+        "name": "Lava dragon bones",
+        "image": "https://general-543f.kxcdn.com/items/lava_dragon_bones.png",
+        "imageWidth": 30,
+        "imageHeight": 28,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 85,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Lava dragon bones",
+            "amount": 1,
+            "price": 3428,
+            "real_time_price": 3649
+          }
+        ]
+      },
+      {
+        "name": "Raurg bones",
+        "image": "https://general-543f.kxcdn.com/items/raurg_bones.png",
+        "imageWidth": 24,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 96,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Raurg bones",
+            "amount": 1,
+            "price": 7344,
+            "real_time_price": 7344
+          }
+        ]
+      },
+      {
+        "name": "Dagannoth bones",
+        "image": "https://general-543f.kxcdn.com/items/dagannoth_bones.png",
+        "imageWidth": 31,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 125,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Dagannoth bones",
+            "amount": 1,
+            "price": 12811,
+            "real_time_price": 13532
+          }
+        ]
+      },
+      {
+        "name": "Wyrm bones",
+        "image": "https://general-543f.kxcdn.com/items/wyrm_bones.png",
+        "imageWidth": 30,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 50,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Wyrm bones",
+            "amount": 1,
+            "price": 917,
+            "real_time_price": 923
+          }
+        ]
+      },
+      {
+        "name": "Drake bones",
+        "image": "https://general-543f.kxcdn.com/items/drake_bones.png",
+        "imageWidth": 30,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 80,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Drake bones",
+            "amount": 1,
+            "price": 2843,
+            "real_time_price": 3387
+          }
+        ]
+      },
+      {
+        "name": "Hydra bones",
+        "image": "https://general-543f.kxcdn.com/items/hydra_bones.png",
+        "imageWidth": 30,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 110,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Hydra bones",
+            "amount": 1,
+            "price": 7094,
+            "real_time_price": 7419
+          }
+        ]
+      },
+      {
+        "name": "Superior dragon bones",
+        "image": "https://general-543f.kxcdn.com/items/superior_dragon_bones.png",
+        "imageWidth": 29,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 150,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Superior dragon bones",
+            "amount": 1,
+            "price": 24776,
+            "real_time_price": 24529
+          }
+        ]
+      },
+      {
+        "name": "Ensouled hellhound head",
+        "image": "https://general-543f.kxcdn.com/items/ensouled-hellhound-head.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 1200,
+        "categories": [
+          70
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ensouled hellhound head",
+            "amount": 1,
+            "price": 2058,
+            "real_time_price": 2040
+          },
+          {
+            "name": "Nature rune",
+            "amount": 3,
+            "price": 93,
+            "real_time_price": 93
+          },
+          {
+            "name": "Blood rune",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 217
+          },
+          {
+            "name": "Soul rune",
+            "amount": 2,
+            "price": 298,
+            "real_time_price": 300
+          }
+        ]
+      },
+      {
+        "name": "Fiendish ashes",
+        "image": "https://general-543f.kxcdn.com/items/fiendish-ashes.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 10,
+        "categories": [
+          96
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fiendish ashes",
+            "amount": 1,
+            "price": 118,
+            "real_time_price": 113
+          }
+        ]
+      },
+      {
+        "name": "Vile ashes",
+        "image": "https://general-543f.kxcdn.com/items/vile-ashes.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 25,
+        "categories": [
+          96
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Vile ashes",
+            "amount": 1,
+            "price": 112,
+            "real_time_price": 110
+          }
+        ]
+      },
+      {
+        "name": "Malicious ashes",
+        "image": "https://general-543f.kxcdn.com/items/malicious-ashes.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 65,
+        "categories": [
+          96
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Malicious ashes",
+            "amount": 1,
+            "price": 891,
+            "real_time_price": 1087
+          }
+        ]
+      },
+      {
+        "name": "Abyssal ashes",
+        "image": "https://general-543f.kxcdn.com/items/abyssal-ashes.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 85,
+        "categories": [
+          96
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Abyssal ashes",
+            "amount": 1,
+            "price": 1583,
+            "real_time_price": 1662
+          }
+        ]
+      },
+      {
+        "name": "Infernal ashes",
+        "image": "https://general-543f.kxcdn.com/items/infernal-ashes.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 110,
+        "categories": [
+          96
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Infernal ashes",
+            "amount": 1,
+            "price": 3108,
+            "real_time_price": 2953
+          }
+        ]
+      },
+      {
+        "name": "Urium remains",
+        "image": "https://general-543f.kxcdn.com/items/loar_remains.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 120.5,
+        "categories": [
+          71
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Urium remains",
+            "amount": 1,
+            "price": 5421,
+            "real_time_price": 5650
+          }
+        ]
+      },
+      {
+        "name": "Blessed bone shards",
+        "image": "https://general-543f.kxcdn.com/items/blessed-bone-shards.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 5,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Blessed bone shards (sunfire wine)",
+        "image": "https://general-543f.kxcdn.com/items/blessed-bone-shards.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 6,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Wyrmling bones",
+        "image": "https://general-543f.kxcdn.com/items/wyrmling-bones.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 21,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Wyrmling bones",
+            "amount": 1,
+            "price": 236,
+            "real_time_price": 224
+          }
+        ]
+      },
+      {
+        "name": "Frost dragon bones",
+        "image": "https://general-543f.kxcdn.com/items/frost-dragon-bones.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 100,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Frost dragon bones",
+            "amount": 1,
+            "price": 5335,
+            "real_time_price": 5335
+          }
+        ]
+      },
+      {
+        "name": "Strykewyrm bones",
+        "image": "https://general-543f.kxcdn.com/items/strykewyrm-bones.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          69
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Strykewyrm bones",
+            "amount": 1,
+            "price": 1485,
+            "real_time_price": 1415
+          }
+        ]
+      }
+    ]
+  }
+}

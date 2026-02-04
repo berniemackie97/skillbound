@@ -1,0 +1,3029 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.137Z",
+  "payload": {
+    "name": "Herblore",
+    "slug": "herblore",
+    "members_only": true,
+    "bonuses": [],
+    "categories": {
+      "50": "Potions",
+      "51": "Herbs",
+      "52": "Tar",
+      "90": "Barbarian Mixes"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": true,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Attack potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/attack_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 3,
+        "exp_given": 25,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Guam potion (unf)",
+            "amount": 1,
+            "price": 347,
+            "real_time_price": 339
+          },
+          {
+            "name": "Eye of newt",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Attack potion(3)",
+            "amount": 1,
+            "price": 7,
+            "real_time_price": 5
+          }
+        ]
+      },
+      {
+        "name": "Guam leaf",
+        "image": "https://general-543f.kxcdn.com/items/guam_leaf.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 3,
+        "exp_given": 2.5,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy guam leaf",
+            "amount": 1,
+            "price": 547,
+            "real_time_price": 547
+          }
+        ],
+        "products": [
+          {
+            "name": "Guam leaf",
+            "amount": 1,
+            "price": 293,
+            "real_time_price": 286
+          }
+        ]
+      },
+      {
+        "name": "Marrentill",
+        "image": "https://general-543f.kxcdn.com/items/marrentill.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 3.8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy marrentill",
+            "amount": 1,
+            "price": 170,
+            "real_time_price": 170
+          }
+        ],
+        "products": [
+          {
+            "name": "Marrentill",
+            "amount": 1,
+            "price": 181,
+            "real_time_price": 179
+          }
+        ]
+      },
+      {
+        "name": "Antipoison (3)",
+        "image": "https://general-543f.kxcdn.com/items/antipoison_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 37.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Marrentill potion (unf)",
+            "amount": 1,
+            "price": 225,
+            "real_time_price": 240
+          },
+          {
+            "name": "Unicorn horn dust",
+            "amount": 1,
+            "price": 242,
+            "real_time_price": 270
+          }
+        ],
+        "products": [
+          {
+            "name": "Antipoison(3)",
+            "amount": 1,
+            "price": 106,
+            "real_time_price": 110
+          }
+        ]
+      },
+      {
+        "name": "Relicym's balm (3)",
+        "image": "https://general-543f.kxcdn.com/items/relicyms_balm_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 8,
+        "exp_given": 40,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Tarromin",
+        "image": "https://general-543f.kxcdn.com/items/tarromin.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 11,
+        "exp_given": 5,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy tarromin",
+            "amount": 1,
+            "price": 152,
+            "real_time_price": 177
+          }
+        ],
+        "products": [
+          {
+            "name": "Tarromin",
+            "amount": 1,
+            "price": 190,
+            "real_time_price": 202
+          }
+        ]
+      },
+      {
+        "name": "Strength potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/strength_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 12,
+        "exp_given": 50,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Tarromin potion (unf)",
+            "amount": 1,
+            "price": 252,
+            "real_time_price": 258
+          },
+          {
+            "name": "Limpwurt root",
+            "amount": 1,
+            "price": 293,
+            "real_time_price": 292
+          }
+        ],
+        "products": [
+          {
+            "name": "Strength potion(3)",
+            "amount": 1,
+            "price": 48,
+            "real_time_price": 48
+          }
+        ]
+      },
+      {
+        "name": "Serum 207 (3)",
+        "image": "https://general-543f.kxcdn.com/items/serum_207_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 50,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Guam tar (x15)",
+        "image": "https://general-543f.kxcdn.com/items/guam_tar.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 30,
+        "categories": [
+          52
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Swamp tar",
+            "amount": 15,
+            "price": 3,
+            "real_time_price": 4
+          },
+          {
+            "name": "Guam leaf",
+            "amount": 1,
+            "price": 293,
+            "real_time_price": 300
+          }
+        ],
+        "products": [
+          {
+            "name": "Guam tar",
+            "amount": 15,
+            "price": null,
+            "real_time_price": null
+          }
+        ]
+      },
+      {
+        "name": "Harralander",
+        "image": "https://general-543f.kxcdn.com/items/harralander.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 6.3,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy harralander",
+            "amount": 1,
+            "price": 478,
+            "real_time_price": 468
+          }
+        ],
+        "products": [
+          {
+            "name": "Harralander",
+            "amount": 1,
+            "price": 545,
+            "real_time_price": 530
+          }
+        ]
+      },
+      {
+        "name": "Restore potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/restore_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 22,
+        "exp_given": 62.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Harralander potion (unf)",
+            "amount": 1,
+            "price": 681,
+            "real_time_price": 700
+          },
+          {
+            "name": "Red spiders' eggs",
+            "amount": 1,
+            "price": 163,
+            "real_time_price": 162
+          }
+        ],
+        "products": [
+          {
+            "name": "Restore potion(3)",
+            "amount": 1,
+            "price": 54,
+            "real_time_price": 70
+          }
+        ]
+      },
+      {
+        "name": "Ranarr weed",
+        "image": "https://general-543f.kxcdn.com/items/ranarr_weed.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 7.5,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy ranarr weed",
+            "amount": 1,
+            "price": 5000,
+            "real_time_price": 5193
+          }
+        ],
+        "products": [
+          {
+            "name": "Ranarr weed",
+            "amount": 1,
+            "price": 5232,
+            "real_time_price": 5265
+          }
+        ]
+      },
+      {
+        "name": "Energy potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/energy_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 67.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Harralander potion (unf)",
+            "amount": 1,
+            "price": 681,
+            "real_time_price": 700
+          },
+          {
+            "name": "Chocolate dust",
+            "amount": 1,
+            "price": 75,
+            "real_time_price": 75
+          }
+        ],
+        "products": [
+          {
+            "name": "Energy potion(3)",
+            "amount": 1,
+            "price": 69,
+            "real_time_price": 72
+          }
+        ]
+      },
+      {
+        "name": "Toadflax",
+        "image": "https://general-543f.kxcdn.com/items/toadflax.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy toadflax",
+            "amount": 1,
+            "price": 2896,
+            "real_time_price": 2783
+          }
+        ],
+        "products": [
+          {
+            "name": "Toadflax",
+            "amount": 1,
+            "price": 3062,
+            "real_time_price": 2921
+          }
+        ]
+      },
+      {
+        "name": "Defence potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/defence_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 75,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ranarr potion (unf)",
+            "amount": 1,
+            "price": 5734,
+            "real_time_price": 5731
+          },
+          {
+            "name": "White berries",
+            "amount": 1,
+            "price": 310,
+            "real_time_price": 310
+          }
+        ],
+        "products": [
+          {
+            "name": "Defence potion(3)",
+            "amount": 1,
+            "price": 331,
+            "real_time_price": 422
+          }
+        ]
+      },
+      {
+        "name": "Marrentill tar (x15)",
+        "image": "https://general-543f.kxcdn.com/items/marrentill_tar.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 31,
+        "exp_given": 42.5,
+        "categories": [
+          52
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Swamp tar",
+            "amount": 15,
+            "price": 3,
+            "real_time_price": 4
+          },
+          {
+            "name": "Marrentill",
+            "amount": 1,
+            "price": 181,
+            "real_time_price": 196
+          }
+        ],
+        "products": [
+          {
+            "name": "Marrentill tar",
+            "amount": 15,
+            "price": null,
+            "real_time_price": null
+          }
+        ]
+      },
+      {
+        "name": "Agility potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/agility_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 80,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Toadflax potion (unf)",
+            "amount": 1,
+            "price": 3522,
+            "real_time_price": 3433
+          },
+          {
+            "name": "Toad's legs",
+            "amount": 1,
+            "price": 454,
+            "real_time_price": 500
+          }
+        ],
+        "products": [
+          {
+            "name": "Agility potion(3)",
+            "amount": 1,
+            "price": 222,
+            "real_time_price": 270
+          }
+        ]
+      },
+      {
+        "name": "Combat potion(3)",
+        "image": "https://general-543f.kxcdn.com/items/combat_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 36,
+        "exp_given": 84,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Harralander potion (unf)",
+            "amount": 1,
+            "price": 681,
+            "real_time_price": 700
+          },
+          {
+            "name": "Goat horn dust",
+            "amount": 1,
+            "price": 75,
+            "real_time_price": 75
+          }
+        ],
+        "products": [
+          {
+            "name": "Combat potion(3)",
+            "amount": 1,
+            "price": 409,
+            "real_time_price": 380
+          }
+        ]
+      },
+      {
+        "name": "Prayer potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/prayer_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 87.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ranarr potion (unf)",
+            "amount": 1,
+            "price": 5734,
+            "real_time_price": 5731
+          },
+          {
+            "name": "Snape grass",
+            "amount": 1,
+            "price": 431,
+            "real_time_price": 408
+          }
+        ],
+        "products": [
+          {
+            "name": "Prayer potion(3)",
+            "amount": 1,
+            "price": 5788,
+            "real_time_price": 5823
+          }
+        ]
+      },
+      {
+        "name": "Tarromin tar (x15)",
+        "image": "https://general-543f.kxcdn.com/items/tarromin_tar.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 39,
+        "exp_given": 55,
+        "categories": [
+          52
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Swamp tar",
+            "amount": 15,
+            "price": 3,
+            "real_time_price": 4
+          },
+          {
+            "name": "Tarromin",
+            "amount": 1,
+            "price": 190,
+            "real_time_price": 190
+          }
+        ],
+        "products": [
+          {
+            "name": "Tarromin tar",
+            "amount": 15,
+            "price": null,
+            "real_time_price": null
+          }
+        ]
+      },
+      {
+        "name": "Irit leaf",
+        "image": "https://general-543f.kxcdn.com/items/irit_leaf.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 8.8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy irit leaf",
+            "amount": 1,
+            "price": 2303,
+            "real_time_price": 2414
+          }
+        ],
+        "products": [
+          {
+            "name": "Irit leaf",
+            "amount": 1,
+            "price": 2498,
+            "real_time_price": 2500
+          }
+        ]
+      },
+      {
+        "name": "Harralander tar (x15)",
+        "image": "https://general-543f.kxcdn.com/items/harralander_tar.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 72.5,
+        "categories": [
+          52
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Swamp tar",
+            "amount": 15,
+            "price": 3,
+            "real_time_price": 4
+          },
+          {
+            "name": "Harralander",
+            "amount": 1,
+            "price": 545,
+            "real_time_price": 543
+          }
+        ],
+        "products": [
+          {
+            "name": "Harralander tar",
+            "amount": 15,
+            "price": null,
+            "real_time_price": null
+          }
+        ]
+      },
+      {
+        "name": "Super attack(3)",
+        "image": "https://general-543f.kxcdn.com/items/super_attack_3.png",
+        "imageWidth": 22,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 100,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Irit potion (unf)",
+            "amount": 1,
+            "price": 2903,
+            "real_time_price": 3017
+          },
+          {
+            "name": "Eye of newt",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Super attack(3)",
+            "amount": 1,
+            "price": 2527,
+            "real_time_price": 2527
+          }
+        ]
+      },
+      {
+        "name": "Superantipoison (3)",
+        "image": "https://general-543f.kxcdn.com/items/superantipoison_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 106.3,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Irit potion (unf)",
+            "amount": 1,
+            "price": 2903,
+            "real_time_price": 3017
+          },
+          {
+            "name": "Unicorn horn dust",
+            "amount": 1,
+            "price": 242,
+            "real_time_price": 270
+          }
+        ],
+        "products": [
+          {
+            "name": "Superantipoison(3)",
+            "amount": 1,
+            "price": 2143,
+            "real_time_price": 2102
+          }
+        ]
+      },
+      {
+        "name": "Avantoe",
+        "image": "https://general-543f.kxcdn.com/items/avantoe.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 10,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy avantoe",
+            "amount": 1,
+            "price": 2817,
+            "real_time_price": 2677
+          }
+        ],
+        "products": [
+          {
+            "name": "Avantoe",
+            "amount": 1,
+            "price": 2896,
+            "real_time_price": 2684
+          }
+        ]
+      },
+      {
+        "name": "Fishing potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/fishing_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 112.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Avantoe potion (unf)",
+            "amount": 1,
+            "price": 3350,
+            "real_time_price": 3290
+          },
+          {
+            "name": "Snape grass",
+            "amount": 1,
+            "price": 431,
+            "real_time_price": 408
+          }
+        ],
+        "products": [
+          {
+            "name": "Fishing potion(3)",
+            "amount": 1,
+            "price": 61,
+            "real_time_price": 30
+          }
+        ]
+      },
+      {
+        "name": "Super energy(3)",
+        "image": "https://general-543f.kxcdn.com/items/super_energy_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 117.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Avantoe potion (unf)",
+            "amount": 1,
+            "price": 3350,
+            "real_time_price": 3290
+          },
+          {
+            "name": "Mort myre fungus",
+            "amount": 1,
+            "price": 367,
+            "real_time_price": 374
+          }
+        ],
+        "products": [
+          {
+            "name": "Super energy(3)",
+            "amount": 1,
+            "price": 3510,
+            "real_time_price": 2970
+          }
+        ]
+      },
+      {
+        "name": "Hunter potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/hunter_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 120,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Avantoe potion (unf)",
+            "amount": 1,
+            "price": 3350,
+            "real_time_price": 3290
+          },
+          {
+            "name": "Kebbit teeth dust",
+            "amount": 1,
+            "price": 843,
+            "real_time_price": 850
+          }
+        ],
+        "products": [
+          {
+            "name": "Hunter potion(3)",
+            "amount": 1,
+            "price": 1631,
+            "real_time_price": 40
+          }
+        ]
+      },
+      {
+        "name": "Kwuarm",
+        "image": "https://general-543f.kxcdn.com/items/kwuarm.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 54,
+        "exp_given": 11.3,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy kwuarm",
+            "amount": 1,
+            "price": 2967,
+            "real_time_price": 3115
+          }
+        ],
+        "products": [
+          {
+            "name": "Kwuarm",
+            "amount": 1,
+            "price": 3224,
+            "real_time_price": 3145
+          }
+        ]
+      },
+      {
+        "name": "Super strength(3)",
+        "image": "https://general-543f.kxcdn.com/items/super_strength_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 125,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Kwuarm potion (unf)",
+            "amount": 1,
+            "price": 3657,
+            "real_time_price": 3706
+          },
+          {
+            "name": "Limpwurt root",
+            "amount": 1,
+            "price": 293,
+            "real_time_price": 292
+          }
+        ],
+        "products": [
+          {
+            "name": "Super strength(3)",
+            "amount": 1,
+            "price": 3346,
+            "real_time_price": 3090
+          }
+        ]
+      },
+      {
+        "name": "Snapdragon",
+        "image": "https://general-543f.kxcdn.com/items/snapdragon.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 11.8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy snapdragon",
+            "amount": 1,
+            "price": 8036,
+            "real_time_price": 8146
+          }
+        ],
+        "products": [
+          {
+            "name": "Snapdragon",
+            "amount": 1,
+            "price": 8302,
+            "real_time_price": 8294
+          }
+        ]
+      },
+      {
+        "name": "Weapon poison",
+        "image": "https://general-543f.kxcdn.com/items/weapon_poison.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 137.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Kwuarm potion (unf)",
+            "amount": 1,
+            "price": 3657,
+            "real_time_price": 3706
+          },
+          {
+            "name": "Dragon scale dust",
+            "amount": 1,
+            "price": 75,
+            "real_time_price": 85
+          }
+        ],
+        "products": [
+          {
+            "name": "Weapon poison",
+            "amount": 1,
+            "price": 318,
+            "real_time_price": 325
+          }
+        ]
+      },
+      {
+        "name": "Super restore(3)",
+        "image": "https://general-543f.kxcdn.com/items/super_restore_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 142.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Snapdragon potion (unf)",
+            "amount": 1,
+            "price": 8898,
+            "real_time_price": 8897
+          },
+          {
+            "name": "Red spiders' eggs",
+            "amount": 1,
+            "price": 163,
+            "real_time_price": 162
+          }
+        ],
+        "products": [
+          {
+            "name": "Super restore(3)",
+            "amount": 1,
+            "price": 8302,
+            "real_time_price": 8307
+          }
+        ]
+      },
+      {
+        "name": "Cadantine",
+        "image": "https://general-543f.kxcdn.com/items/cadantine.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 12.5,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy cadantine",
+            "amount": 1,
+            "price": 3031,
+            "real_time_price": 3091
+          }
+        ],
+        "products": [
+          {
+            "name": "Cadantine",
+            "amount": 1,
+            "price": 3279,
+            "real_time_price": 3205
+          }
+        ]
+      },
+      {
+        "name": "Sanfew serum (3)",
+        "image": "https://general-543f.kxcdn.com/items/sanfew_serum_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 160,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Super defence(3)",
+        "image": "https://general-543f.kxcdn.com/items/super_defence_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 150,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Cadantine potion (unf)",
+            "amount": 1,
+            "price": 3760,
+            "real_time_price": 3734
+          },
+          {
+            "name": "White berries",
+            "amount": 1,
+            "price": 310,
+            "real_time_price": 310
+          }
+        ],
+        "products": [
+          {
+            "name": "Super defence(3)",
+            "amount": 1,
+            "price": 3060,
+            "real_time_price": 2872
+          }
+        ]
+      },
+      {
+        "name": "Lantadyme",
+        "image": "https://general-543f.kxcdn.com/items/lantadyme.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 13.1,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy lantadyme",
+            "amount": 1,
+            "price": 1692,
+            "real_time_price": 1660
+          }
+        ],
+        "products": [
+          {
+            "name": "Lantadyme",
+            "amount": 1,
+            "price": 1804,
+            "real_time_price": 1769
+          }
+        ]
+      },
+      {
+        "name": "Antidote+ (4)",
+        "image": "https://general-543f.kxcdn.com/items/antidote_plus_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 68,
+        "exp_given": 155,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Coconut milk",
+            "amount": 1,
+            "price": 205,
+            "real_time_price": 205
+          },
+          {
+            "name": "Toadflax",
+            "amount": 1,
+            "price": 3062,
+            "real_time_price": 2910
+          },
+          {
+            "name": "Yew roots",
+            "amount": 1,
+            "price": 54,
+            "real_time_price": 53
+          }
+        ],
+        "products": [
+          {
+            "name": "Antidote+(4)",
+            "amount": 1,
+            "price": 2102,
+            "real_time_price": 1487
+          }
+        ]
+      },
+      {
+        "name": "Antifire potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/antifire_potion_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 157.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Lantadyme potion (unf)",
+            "amount": 1,
+            "price": 1990,
+            "real_time_price": 2225
+          },
+          {
+            "name": "Dragon scale dust",
+            "amount": 1,
+            "price": 75,
+            "real_time_price": 85
+          }
+        ],
+        "products": [
+          {
+            "name": "Antifire potion(3)",
+            "amount": 1,
+            "price": 1077,
+            "real_time_price": 994
+          }
+        ]
+      },
+      {
+        "name": "Dwarf weed",
+        "image": "https://general-543f.kxcdn.com/items/dwarf_weed.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 13.8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy dwarf weed",
+            "amount": 1,
+            "price": 2386,
+            "real_time_price": 2443
+          }
+        ],
+        "products": [
+          {
+            "name": "Dwarf weed",
+            "amount": 1,
+            "price": 2601,
+            "real_time_price": 2729
+          }
+        ]
+      },
+      {
+        "name": "Ranging potion(3)",
+        "image": "https://general-543f.kxcdn.com/items/ranging_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 162.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Dwarf weed potion (unf)",
+            "amount": 1,
+            "price": 3072,
+            "real_time_price": 3148
+          },
+          {
+            "name": "Wine of zamorak",
+            "amount": 1,
+            "price": 918,
+            "real_time_price": 954
+          }
+        ],
+        "products": [
+          {
+            "name": "Ranging potion(3)",
+            "amount": 1,
+            "price": 2673,
+            "real_time_price": 2628
+          }
+        ]
+      },
+      {
+        "name": "Weapon poison (+)",
+        "image": "https://general-543f.kxcdn.com/items/weapon_poison_plus.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 165,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Cactus spine",
+            "amount": 1,
+            "price": 2592,
+            "real_time_price": 2500
+          },
+          {
+            "name": "Red spiders' eggs",
+            "amount": 1,
+            "price": 163,
+            "real_time_price": 162
+          },
+          {
+            "name": "Coconut milk",
+            "amount": 1,
+            "price": 205,
+            "real_time_price": 205
+          }
+        ],
+        "products": [
+          {
+            "name": "Weapon poison(+)",
+            "amount": 1,
+            "price": 998,
+            "real_time_price": 643
+          }
+        ]
+      },
+      {
+        "name": "Torstol",
+        "image": "https://general-543f.kxcdn.com/items/torstol.png",
+        "imageWidth": 29,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 15,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy torstol",
+            "amount": 1,
+            "price": 3947,
+            "real_time_price": 4084
+          }
+        ],
+        "products": [
+          {
+            "name": "Torstol",
+            "amount": 1,
+            "price": 4073,
+            "real_time_price": 4060
+          }
+        ]
+      },
+      {
+        "name": "Magic potion(3)",
+        "image": "https://general-543f.kxcdn.com/items/magic_potion_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 76,
+        "exp_given": 172.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Lantadyme potion (unf)",
+            "amount": 1,
+            "price": 1990,
+            "real_time_price": 2225
+          },
+          {
+            "name": "Potato cactus",
+            "amount": 1,
+            "price": 55,
+            "real_time_price": 56
+          }
+        ],
+        "products": [
+          {
+            "name": "Magic potion(3)",
+            "amount": 1,
+            "price": 115,
+            "real_time_price": 131
+          }
+        ]
+      },
+      {
+        "name": "Stamina potion (3)",
+        "image": "https://general-543f.kxcdn.com/items/stamina_potion_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 76.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super energy(3)",
+            "amount": 1,
+            "price": 3510,
+            "real_time_price": 3004
+          },
+          {
+            "name": "Amylase crystal",
+            "amount": 3,
+            "price": 747,
+            "real_time_price": 777
+          }
+        ],
+        "products": [
+          {
+            "name": "Stamina potion(3)",
+            "amount": 1,
+            "price": 4959,
+            "real_time_price": 4624
+          }
+        ]
+      },
+      {
+        "name": "Zamorak brew (3)",
+        "image": "https://general-543f.kxcdn.com/items/zamorak_brew_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 175,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Torstol potion (unf)",
+            "amount": 1,
+            "price": 4506,
+            "real_time_price": 4473
+          },
+          {
+            "name": "Jangerberries",
+            "amount": 1,
+            "price": 490,
+            "real_time_price": 518
+          }
+        ],
+        "products": [
+          {
+            "name": "Zamorak brew(3)",
+            "amount": 1,
+            "price": 354,
+            "real_time_price": 361
+          }
+        ]
+      },
+      {
+        "name": "Antidote++ (4)",
+        "image": "https://general-543f.kxcdn.com/items/antidote_plus_plus_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 177.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Irit leaf",
+            "amount": 1,
+            "price": 2498,
+            "real_time_price": 2550
+          },
+          {
+            "name": "Coconut milk",
+            "amount": 1,
+            "price": 205,
+            "real_time_price": 205
+          },
+          {
+            "name": "Magic roots",
+            "amount": 1,
+            "price": 1950,
+            "real_time_price": 2379
+          }
+        ],
+        "products": [
+          {
+            "name": "Antidote++(4)",
+            "amount": 1,
+            "price": 3742,
+            "real_time_price": 3943
+          }
+        ]
+      },
+      {
+        "name": "Saradomin brew(3)",
+        "image": "https://general-543f.kxcdn.com/items/saradomin_brew_3.png",
+        "imageWidth": 21,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 180,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Toadflax potion (unf)",
+            "amount": 1,
+            "price": 3522,
+            "real_time_price": 3433
+          },
+          {
+            "name": "Crushed nest",
+            "amount": 1,
+            "price": 5107,
+            "real_time_price": 5097
+          }
+        ],
+        "products": [
+          {
+            "name": "Saradomin brew(3)",
+            "amount": 1,
+            "price": 6580,
+            "real_time_price": 6612
+          }
+        ]
+      },
+      {
+        "name": "Weapon poison(++)",
+        "image": "https://general-543f.kxcdn.com/items/weapon_poison_plus_plus.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 190,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Extended antifire (3)",
+        "image": "https://general-543f.kxcdn.com/items/extended_antifire_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 84,
+        "exp_given": 82.5,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Antifire potion(3)",
+            "amount": 1,
+            "price": 1077,
+            "real_time_price": 1024
+          },
+          {
+            "name": "Lava scale shard",
+            "amount": 3,
+            "price": 31,
+            "real_time_price": 31
+          }
+        ],
+        "products": [
+          {
+            "name": "Extended antifire(3)",
+            "amount": 1,
+            "price": 493,
+            "real_time_price": 603
+          }
+        ]
+      },
+      {
+        "name": "Anti-venom (4)",
+        "image": "https://general-543f.kxcdn.com/items/anti-venom-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 87,
+        "exp_given": 120,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Antidote++(4)",
+            "amount": 1,
+            "price": 3742,
+            "real_time_price": 3999
+          },
+          {
+            "name": "Zulrah's scales",
+            "amount": 20,
+            "price": 174,
+            "real_time_price": 176
+          }
+        ],
+        "products": [
+          {
+            "name": "Anti-venom(4)",
+            "amount": 1,
+            "price": 5724,
+            "real_time_price": 5814
+          }
+        ]
+      },
+      {
+        "name": "Super combat potion(4)",
+        "image": "https://general-543f.kxcdn.com/items/super_combat_potion_4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 150,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Torstol",
+            "amount": 1,
+            "price": 4073,
+            "real_time_price": 4073
+          },
+          {
+            "name": "Super attack(4)",
+            "amount": 1,
+            "price": 3483,
+            "real_time_price": 3517
+          },
+          {
+            "name": "Super strength(4)",
+            "amount": 1,
+            "price": 4595,
+            "real_time_price": 4530
+          },
+          {
+            "name": "Super defence(4)",
+            "amount": 1,
+            "price": 4112,
+            "real_time_price": 4000
+          }
+        ],
+        "products": [
+          {
+            "name": "Super combat potion(4)",
+            "amount": 1,
+            "price": 16674,
+            "real_time_price": 16280
+          }
+        ]
+      },
+      {
+        "name": "Super antifire potion",
+        "image": "https://general-543f.kxcdn.com/items/super_antifire_potion_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 130,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Antifire potion(4)",
+            "amount": 1,
+            "price": 1499,
+            "real_time_price": 1483
+          },
+          {
+            "name": "Crushed superior dragon bones",
+            "amount": 1,
+            "price": 24582,
+            "real_time_price": 24582
+          }
+        ],
+        "products": [
+          {
+            "name": "Super antifire potion(4)",
+            "amount": 1,
+            "price": 24197,
+            "real_time_price": 25500
+          }
+        ]
+      },
+      {
+        "name": "Anti-venom+(4)",
+        "image": "https://general-543f.kxcdn.com/items/anti-venom-plus-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 94,
+        "exp_given": 125,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Anti-venom(4)",
+            "amount": 1,
+            "price": 5724,
+            "real_time_price": 5902
+          },
+          {
+            "name": "Torstol",
+            "amount": 1,
+            "price": 4073,
+            "real_time_price": 4073
+          }
+        ],
+        "products": [
+          {
+            "name": "Anti-venom+(4)",
+            "amount": 1,
+            "price": 9858,
+            "real_time_price": 9810
+          }
+        ]
+      },
+      {
+        "name": "Extended super antifire",
+        "image": "https://general-543f.kxcdn.com/items/extended_super_antifire_3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 98,
+        "exp_given": 160,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super antifire potion(4)",
+            "amount": 1,
+            "price": 24197,
+            "real_time_price": 27470
+          },
+          {
+            "name": "Lava scale shard",
+            "amount": 4,
+            "price": 31,
+            "real_time_price": 31
+          }
+        ],
+        "products": [
+          {
+            "name": "Extended super antifire(4)",
+            "amount": 1,
+            "price": 24395,
+            "real_time_price": 25140
+          }
+        ]
+      },
+      {
+        "name": "Attack Mix",
+        "image": "https://general-543f.kxcdn.com/items/attack-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 4,
+        "exp_given": 8,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Attack potion(2)",
+            "amount": 1,
+            "price": 6,
+            "real_time_price": 99
+          },
+          {
+            "name": "Roe",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 130
+          }
+        ],
+        "products": [
+          {
+            "name": "Attack mix(2)",
+            "amount": 1,
+            "price": 108,
+            "real_time_price": 661
+          }
+        ]
+      },
+      {
+        "name": "Antipoison mix",
+        "image": "https://general-543f.kxcdn.com/items/antipoison-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 12,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Antipoison(2)",
+            "amount": 1,
+            "price": 168,
+            "real_time_price": 99
+          },
+          {
+            "name": "Roe",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 130
+          }
+        ],
+        "products": [
+          {
+            "name": "Antipoison mix(2)",
+            "amount": 1,
+            "price": 208,
+            "real_time_price": 200
+          }
+        ]
+      },
+      {
+        "name": "Relicym's mix",
+        "image": "https://general-543f.kxcdn.com/items/relicyms-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 9,
+        "exp_given": 14,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Relicym's balm(2)",
+            "amount": 1,
+            "price": 390,
+            "real_time_price": 371
+          },
+          {
+            "name": "Roe",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 130
+          }
+        ],
+        "products": [
+          {
+            "name": "Relicym's mix(2)",
+            "amount": 1,
+            "price": 471,
+            "real_time_price": 202
+          }
+        ]
+      },
+      {
+        "name": "Strength mix",
+        "image": "https://general-543f.kxcdn.com/items/strength-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 14,
+        "exp_given": 17,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Strength potion(2)",
+            "amount": 1,
+            "price": 30,
+            "real_time_price": 32
+          },
+          {
+            "name": "Roe",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 130
+          }
+        ],
+        "products": [
+          {
+            "name": "Strength mix(2)",
+            "amount": 1,
+            "price": 60,
+            "real_time_price": 111
+          }
+        ]
+      },
+      {
+        "name": "Restore mix",
+        "image": "https://general-543f.kxcdn.com/items/restore-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 24,
+        "exp_given": 21,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Restore potion(2)",
+            "amount": 1,
+            "price": 49,
+            "real_time_price": 33
+          },
+          {
+            "name": "Roe",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 130
+          }
+        ],
+        "products": [
+          {
+            "name": "Restore mix(2)",
+            "amount": 1,
+            "price": 94,
+            "real_time_price": 94
+          }
+        ]
+      },
+      {
+        "name": "Energy mix",
+        "image": "https://general-543f.kxcdn.com/items/energy-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 23,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Energy potion(2)",
+            "amount": 1,
+            "price": 97,
+            "real_time_price": 79
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Energy mix(2)",
+            "amount": 1,
+            "price": 282,
+            "real_time_price": 100
+          }
+        ]
+      },
+      {
+        "name": "Defence mix",
+        "image": "https://general-543f.kxcdn.com/items/defence-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 25,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Defence potion(2)",
+            "amount": 1,
+            "price": 297,
+            "real_time_price": 210
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Defence mix(2)",
+            "amount": 1,
+            "price": 86,
+            "real_time_price": 152
+          }
+        ]
+      },
+      {
+        "name": "Agility mix",
+        "image": "https://general-543f.kxcdn.com/items/agility-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 37,
+        "exp_given": 27,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Agility potion(2)",
+            "amount": 1,
+            "price": 214,
+            "real_time_price": 214
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Agility mix(2)",
+            "amount": 1,
+            "price": 300,
+            "real_time_price": 500
+          }
+        ]
+      },
+      {
+        "name": "Combat mix",
+        "image": "https://general-543f.kxcdn.com/items/combat-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 28,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Combat potion(2)",
+            "amount": 1,
+            "price": 181,
+            "real_time_price": 181
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Combat mix(2)",
+            "amount": 1,
+            "price": 231,
+            "real_time_price": 242
+          }
+        ]
+      },
+      {
+        "name": "Prayer mix",
+        "image": "https://general-543f.kxcdn.com/items/prayer-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 29,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Prayer potion(2)",
+            "amount": 1,
+            "price": 3872,
+            "real_time_price": 3894
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Prayer mix(2)",
+            "amount": 1,
+            "price": 3694,
+            "real_time_price": 3410
+          }
+        ]
+      },
+      {
+        "name": "Superattack mix",
+        "image": "https://general-543f.kxcdn.com/items/superattack-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 33,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super attack(2)",
+            "amount": 1,
+            "price": 1437,
+            "real_time_price": 1740
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Superattack mix(2)",
+            "amount": 1,
+            "price": 227,
+            "real_time_price": 1251
+          }
+        ]
+      },
+      {
+        "name": "Anti-poison supermix",
+        "image": "https://general-543f.kxcdn.com/items/anti-poison-supermix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 35,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Superantipoison(2)",
+            "amount": 1,
+            "price": 1365,
+            "real_time_price": 1365
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Anti-poison supermix(2)",
+            "amount": 1,
+            "price": 1510,
+            "real_time_price": 1510
+          }
+        ]
+      },
+      {
+        "name": "Fishing mix",
+        "image": "https://general-543f.kxcdn.com/items/fishing-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 38,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fishing potion(2)",
+            "amount": 1,
+            "price": 82,
+            "real_time_price": 75
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Fishing mix(2)",
+            "amount": 1,
+            "price": 108,
+            "real_time_price": 100
+          }
+        ]
+      },
+      {
+        "name": "Super energy mix",
+        "image": "https://general-543f.kxcdn.com/items/super-energy-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 56,
+        "exp_given": 39,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super energy(2)",
+            "amount": 1,
+            "price": 2631,
+            "real_time_price": 1937
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Super energy mix(2)",
+            "amount": 1,
+            "price": 2035,
+            "real_time_price": 100
+          }
+        ]
+      },
+      {
+        "name": "Hunting mix",
+        "image": "https://general-543f.kxcdn.com/items/hunting-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 40,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Hunter potion(2)",
+            "amount": 1,
+            "price": 1538,
+            "real_time_price": 925
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Hunting mix(2)",
+            "amount": 1,
+            "price": 949,
+            "real_time_price": 100
+          }
+        ]
+      },
+      {
+        "name": "Super str. mix",
+        "image": "https://general-543f.kxcdn.com/items/super-str-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 42,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super strength(2)",
+            "amount": 1,
+            "price": 2196,
+            "real_time_price": 2087
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Super str. mix(2)",
+            "amount": 1,
+            "price": 1332,
+            "real_time_price": 1781
+          }
+        ]
+      },
+      {
+        "name": "Magic essence mix",
+        "image": "https://general-543f.kxcdn.com/items/magic-essence-mix-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 61,
+        "exp_given": 43,
+        "categories": [
+          90
+        ],
+        "link": null
+      },
+      {
+        "name": "Super restore mix",
+        "image": "https://general-543f.kxcdn.com/items/super-restore-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 48,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super restore(2)",
+            "amount": 1,
+            "price": 5562,
+            "real_time_price": 5336
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Super restore mix(2)",
+            "amount": 1,
+            "price": 2357,
+            "real_time_price": 2341
+          }
+        ]
+      },
+      {
+        "name": "Super def. mix",
+        "image": "https://general-543f.kxcdn.com/items/super-def-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 50,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super defence(2)",
+            "amount": 1,
+            "price": 2193,
+            "real_time_price": 2063
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Super def. mix(2)",
+            "amount": 1,
+            "price": null,
+            "real_time_price": null
+          }
+        ]
+      },
+      {
+        "name": "Antidote+ mix",
+        "image": "https://general-543f.kxcdn.com/items/antidote-plus-mix-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 52,
+        "categories": [
+          90
+        ],
+        "link": null
+      },
+      {
+        "name": "Antifire mix",
+        "image": "https://general-543f.kxcdn.com/items/antifire-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 53,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Antifire potion(2)",
+            "amount": 1,
+            "price": 589,
+            "real_time_price": 778
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Antifire mix(2)",
+            "amount": 1,
+            "price": 135,
+            "real_time_price": 3
+          }
+        ]
+      },
+      {
+        "name": "Ranging mix",
+        "image": "https://general-543f.kxcdn.com/items/ranging-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 54,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Ranging potion(2)",
+            "amount": 1,
+            "price": 1758,
+            "real_time_price": 1758
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Ranging mix(2)",
+            "amount": 1,
+            "price": 1490,
+            "real_time_price": 1050
+          }
+        ]
+      },
+      {
+        "name": "Magic mix",
+        "image": "https://general-543f.kxcdn.com/items/magic-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 83,
+        "exp_given": 57,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Magic potion(2)",
+            "amount": 1,
+            "price": 78,
+            "real_time_price": 50
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Magic mix(2)",
+            "amount": 1,
+            "price": 103,
+            "real_time_price": 53
+          }
+        ]
+      },
+      {
+        "name": "Zamorak mix",
+        "image": "https://general-543f.kxcdn.com/items/zamorak-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 85,
+        "exp_given": 58,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Zamorak brew(2)",
+            "amount": 1,
+            "price": 632,
+            "real_time_price": 200
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Zamorak mix(2)",
+            "amount": 1,
+            "price": 303,
+            "real_time_price": 562
+          }
+        ]
+      },
+      {
+        "name": "Stamina mix",
+        "image": "https://general-543f.kxcdn.com/items/stamina-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 60,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Stamina potion(2)",
+            "amount": 1,
+            "price": 3281,
+            "real_time_price": 3357
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Stamina mix(2)",
+            "amount": 1,
+            "price": 4290,
+            "real_time_price": 2700
+          }
+        ]
+      },
+      {
+        "name": "Extended antifire mix",
+        "image": "https://general-543f.kxcdn.com/items/extended-antifire-mix-2.png",
+        "imageWidth": 20,
+        "imageHeight": 30,
+        "action_members": true,
+        "level_req": 91,
+        "exp_given": 61,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Extended antifire(2)",
+            "amount": 1,
+            "price": 594,
+            "real_time_price": 600
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Extended antifire mix(2)",
+            "amount": 1,
+            "price": 210,
+            "real_time_price": 212
+          }
+        ]
+      },
+      {
+        "name": "Super antifire mix",
+        "image": "https://general-543f.kxcdn.com/items/super-antifire-mix-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 98,
+        "exp_given": 70,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super antifire potion(2)",
+            "amount": 1,
+            "price": 10179,
+            "real_time_price": 11221
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Super antifire mix(2)",
+            "amount": 1,
+            "price": 2509,
+            "real_time_price": 2526
+          }
+        ]
+      },
+      {
+        "name": "Extended super antifire mix",
+        "image": "https://general-543f.kxcdn.com/items/extended-super-antifire-mix-2.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 99,
+        "exp_given": 78,
+        "categories": [
+          90
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Extended super antifire(2)",
+            "amount": 1,
+            "price": 11194,
+            "real_time_price": 13499
+          },
+          {
+            "name": "Caviar",
+            "amount": 1,
+            "price": 66,
+            "real_time_price": 58
+          }
+        ],
+        "products": [
+          {
+            "name": "Extended super antifire mix(2)",
+            "amount": 1,
+            "price": 10091,
+            "real_time_price": 11809
+          }
+        ]
+      },
+      {
+        "name": "Bastion potion",
+        "image": "https://general-543f.kxcdn.com/items/bastion-potion-3.png",
+        "imageWidth": 22,
+        "imageHeight": 31,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 155,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Wine of zamorak",
+            "amount": 1,
+            "price": 918,
+            "real_time_price": 954
+          },
+          {
+            "name": "Cadantine blood potion (unf)",
+            "amount": 1,
+            "price": 17388,
+            "real_time_price": 16519
+          }
+        ],
+        "products": [
+          {
+            "name": "Bastion potion(3)",
+            "amount": 1,
+            "price": 17271,
+            "real_time_price": 16526
+          }
+        ]
+      },
+      {
+        "name": "Battlemage potion",
+        "image": "https://general-543f.kxcdn.com/items/battlemage-potion-3.png",
+        "imageWidth": 22,
+        "imageHeight": 31,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 155,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Potato cactus",
+            "amount": 1,
+            "price": 55,
+            "real_time_price": 56
+          },
+          {
+            "name": "Cadantine blood potion (unf)",
+            "amount": 1,
+            "price": 17388,
+            "real_time_price": 16519
+          }
+        ],
+        "products": [
+          {
+            "name": "Battlemage potion(3)",
+            "amount": 1,
+            "price": 13403,
+            "real_time_price": 14073
+          }
+        ]
+      },
+      {
+        "name": "Divine super attack potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-super-attack-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine super defence potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-super-defence-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine super strength potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-super-strength-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine ranging potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-ranging-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine magic potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-magic-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 78,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine bastion potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-bastion-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Divine battlemage potion",
+        "image": "https://general-543f.kxcdn.com/items/divine-battlemage-potion-4.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 86,
+        "exp_given": 2,
+        "categories": [
+          50
+        ],
+        "link": null
+      },
+      {
+        "name": "Stamina Potion (4)",
+        "image": "https://general-543f.kxcdn.com/items/stamina-potion-4.png",
+        "imageWidth": 22,
+        "imageHeight": 31,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 102,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Super energy(4)",
+            "amount": 1,
+            "price": 4350,
+            "real_time_price": 4217
+          },
+          {
+            "name": "Amylase crystal",
+            "amount": 4,
+            "price": 747,
+            "real_time_price": 777
+          }
+        ],
+        "products": [
+          {
+            "name": "Stamina potion(4)",
+            "amount": 1,
+            "price": 6736,
+            "real_time_price": 6153
+          }
+        ]
+      },
+      {
+        "name": "Huasca",
+        "image": "https://general-543f.kxcdn.com/items/huasca.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 11.8,
+        "categories": [
+          51
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Grimy huasca",
+            "amount": 1,
+            "price": 7006,
+            "real_time_price": 6800
+          }
+        ],
+        "products": [
+          {
+            "name": "Huasca",
+            "amount": 1,
+            "price": 7227,
+            "real_time_price": 7005
+          }
+        ]
+      },
+      {
+        "name": "Prayer regeneration potion(3)",
+        "image": "https://general-543f.kxcdn.com/items/prayer-regeneration-potion-3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 58,
+        "exp_given": 132,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Aldarium",
+            "amount": 1,
+            "price": 29226,
+            "real_time_price": 36999
+          },
+          {
+            "name": "Huasca",
+            "amount": 1,
+            "price": 7227,
+            "real_time_price": 7042
+          }
+        ],
+        "products": [
+          {
+            "name": "Prayer regeneration potion(3)",
+            "amount": 1,
+            "price": 31577,
+            "real_time_price": 35920
+          }
+        ]
+      },
+      {
+        "name": "Surge potion(3)",
+        "image": "https://general-543f.kxcdn.com/items/surge-potion-3.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 81,
+        "exp_given": 185,
+        "categories": [
+          50
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Torstol potion (unf)",
+            "amount": 1,
+            "price": 4506,
+            "real_time_price": 4473
+          },
+          {
+            "name": "Demonic tallow",
+            "amount": 1,
+            "price": 244,
+            "real_time_price": 247
+          }
+        ]
+      }
+    ]
+  }
+}

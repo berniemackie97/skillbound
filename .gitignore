@@ -20,17 +20,20 @@ dist
 .env.local
 .env.*.local
 
+# Google OAuth Secrets
+client_secret*.json
+**/client_secret*.json
+
 # Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+refdocs/*
 
 # IDE
 .vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
 .idea
 *.swp
 *.swo

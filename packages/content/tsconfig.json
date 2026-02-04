@@ -1,0 +1,9 @@
+{
+  "extends": "@skillbound/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "."
+  },
+  "include": ["src/**/*", "src/**/*.json", "vitest.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}

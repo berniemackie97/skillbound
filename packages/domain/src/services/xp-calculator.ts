@@ -20,6 +20,57 @@ export interface XpCalculationResult {
 }
 
 /**
+ * Calculate XP needed to reach a target XP value from current XP
+ */
+export function calculateXpToTargetXp(
+  currentXp: number,
+  targetXp: number
+): XpCalculationResult {
+  if (currentXp < 0 || currentXp > MAX_XP) {
+    throw new Error(`Current XP must be between 0 and ${MAX_XP}`);
+  }
+
+  if (targetXp < 0 || targetXp > MAX_XP) {
+    throw new Error(`Target XP must be between 0 and ${MAX_XP}`);
+  }
+
+  const currentLevel = getLevelForXp(currentXp);
+  const targetLevel = getLevelForXp(targetXp);
+
+  if (currentXp >= targetXp) {
+    return {
+      currentLevel,
+      currentXp,
+      targetLevel,
+      targetXp,
+      xpRemaining: 0,
+      levelsRemaining: 0,
+      progressPercentage: 100,
+    };
+  }
+
+  const xpRemaining = targetXp - currentXp;
+  const levelsRemaining = Math.max(0, targetLevel - currentLevel);
+  const startXp = getXpForLevel(currentLevel);
+  const totalXpNeeded = Math.max(1, targetXp - startXp);
+  const xpGained = currentXp - startXp;
+  const progressPercentage = Math.max(
+    0,
+    Math.min(100, (xpGained / totalXpNeeded) * 100)
+  );
+
+  return {
+    currentLevel,
+    currentXp,
+    targetLevel,
+    targetXp,
+    xpRemaining,
+    levelsRemaining,
+    progressPercentage,
+  };
+}
+
+/**
  * Calculate XP needed to reach a target level from current XP
  */
 export function calculateXpToLevel(
@@ -90,6 +141,18 @@ export interface ActionCalculationResult {
 }
 
 /**
+ * Result of a multi-action plan
+ */
+export interface ActionPlanResult {
+  readonly startLevel: number;
+  readonly startXp: number;
+  readonly endLevel: number;
+  readonly endXp: number;
+  readonly totalXpGained: number;
+  readonly actions: ActionCalculationResult[];
+}
+
+/**
  * Calculate XP gained from performing actions
  */
 export function calculateXpFromActions(
@@ -124,6 +187,45 @@ export function calculateXpFromActions(
     endLevel,
     endXp,
     levelsGained,
+  };
+}
+
+/**
+ * Calculate XP gained from a plan of multiple actions
+ */
+export function calculateActionPlan(
+  currentXp: number,
+  actions: XpAction[]
+): ActionPlanResult {
+  if (currentXp < 0 || currentXp > MAX_XP) {
+    throw new Error(`Current XP must be between 0 and ${MAX_XP}`);
+  }
+
+  if (actions.length === 0) {
+    throw new Error('Action plan must include at least one action');
+  }
+
+  const startLevel = getLevelForXp(currentXp);
+  let xp = currentXp;
+  let totalXpGained = 0;
+  const results: ActionCalculationResult[] = [];
+
+  for (const action of actions) {
+    const result = calculateXpFromActions(xp, action);
+    results.push(result);
+    xp = result.endXp;
+    totalXpGained += result.xpGained;
+  }
+
+  const endLevel = getLevelForXp(xp);
+
+  return {
+    startLevel,
+    startXp: currentXp,
+    endLevel,
+    endXp: xp,
+    totalXpGained,
+    actions: results,
   };
 }
 

@@ -1,0 +1,514 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:36:59.387Z",
+  "payload": {
+    "name": "Agility",
+    "slug": "agility",
+    "members_only": true,
+    "bonuses": [],
+    "categories": {
+      "86": "Brimhaven Agility Arena",
+      "87": "Agility Course",
+      "88": "Rooftop Agility Course",
+      "89": "Shortcuts"
+    },
+    "profit_loss_settings": {
+      "enabled": false,
+      "show_components": false,
+      "real_time_prices": false
+    },
+    "data": [
+      {
+        "name": "Gnome Stronghold",
+        "image": "https://general-543f.kxcdn.com/items/swamp_toad.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 110.5,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Draynor Village Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 120,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Al Kharid Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 216,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Varrock Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 238,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Penguin",
+        "image": "https://general-543f.kxcdn.com/items/clockwork_suit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 540,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Barbarian Outpost",
+        "image": "https://general-543f.kxcdn.com/items/steel_battleaxe.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 153.3,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Canifis Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 240,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Ape Atoll",
+        "image": "https://general-543f.kxcdn.com/items/karamjan_monkey_greegree.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 580,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Falador Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 440,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Wilderness",
+        "image": "https://general-543f.kxcdn.com/items/skull.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 571.4,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Seers' Village Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 570,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Werewolf",
+        "image": "https://general-543f.kxcdn.com/items/stick.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 730,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Pollnivneach Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 890,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Prifddinas (averaged)",
+        "image": "https://general-543f.kxcdn.com/items/crystal_shard.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 1312.5,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Rellekka Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 780,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Ardougne Rooftop",
+        "image": "https://general-543f.kxcdn.com/items/mark_of_grace.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 889,
+        "categories": [
+          88
+        ],
+        "link": null
+      },
+      {
+        "name": "Dorgesh-Kaan",
+        "image": "https://general-543f.kxcdn.com/items/bullseye_lantern_lit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 70,
+        "exp_given": 2750,
+        "categories": [
+          87
+        ],
+        "link": null
+      },
+      {
+        "name": "Plank",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 6,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Low Wall",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 8,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Balancing rope",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 40,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Log balance",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 12,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Monkey bars",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 14,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Balancing ledge",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 16,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Pillar",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 18,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Rope swing",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 20,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Floor spikes",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 22,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Hand holds",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 22,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Pressure pad",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 20,
+        "exp_given": 26,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Spinning blades",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 28,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Darts",
+        "image": "https://general-543f.kxcdn.com/items/agility-arena-ticket.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 30,
+        "categories": [
+          86
+        ],
+        "link": null
+      },
+      {
+        "name": "Edgeville Monkey Bars",
+        "image": "https://general-543f.kxcdn.com/misc/agility-skill-calculator/agility-obstacle-jump.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 20,
+        "categories": [
+          89
+        ],
+        "link": null
+      },
+      {
+        "name": "Hallowed Sepulchre (floor 1)",
+        "image": "https://general-543f.kxcdn.com/items/hallowed-mark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 52,
+        "exp_given": 575,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Hallowed Sepulchre (floor 1 - 2)",
+        "image": "https://general-543f.kxcdn.com/items/hallowed-mark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 1500,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Hallowed Sepulchre (floor 1 - 3)",
+        "image": "https://general-543f.kxcdn.com/items/hallowed-mark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 3000,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Hallowed Sepulchre (floor 1 - 4)",
+        "image": "https://general-543f.kxcdn.com/items/hallowed-mark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 82,
+        "exp_given": 5700,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Hallowed Sepulchre (floor 1 - 5)",
+        "image": "https://general-543f.kxcdn.com/items/hallowed-mark.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 11700,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Agility Pyramid",
+        "image": "https://general-543f.kxcdn.com/misc/agility-skill-calculator/agility-pyramid-top.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 1030,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Colossal Wyrm (Basic)",
+        "image": "https://general-543f.kxcdn.com/items/termites.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 504,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Colossal Wyrm (Advanced)",
+        "image": "https://general-543f.kxcdn.com/items/termites.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 750,
+        "categories": [],
+        "link": null
+      }
+    ]
+  }
+}

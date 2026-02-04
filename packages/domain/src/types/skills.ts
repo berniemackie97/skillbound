@@ -1,6 +1,6 @@
 /**
  * All OSRS skills in their canonical order (as they appear on hiscores)
- * Updated to include Sailing (released November 19, 2025)
+ * Includes Sailing as listed on the official hiscores.
  */
 export const SKILLS = [
   'attack',
@@ -183,3 +183,7 @@ export const HISCORES_ENDPOINTS: Record<AccountMode, string> = {
   'ultimate-ironman':
     'https://secure.runescape.com/m=hiscore_oldschool_ultimate/index_lite.json',
 } as const;
+
+export function buildHiscoresUrl(mode: AccountMode, username: string): string {
+  return `${HISCORES_ENDPOINTS[mode]}?player=${encodeURIComponent(username)}`;
+}

@@ -1,0 +1,783 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.216Z",
+  "payload": {
+    "name": "Hunter",
+    "slug": "hunter",
+    "members_only": true,
+    "bonuses": [],
+    "categories": {
+      "53": "Birds",
+      "54": "Tracking",
+      "55": "Bird Houses",
+      "56": "Butterflies",
+      "57": "Deadfall",
+      "58": "Box Trap",
+      "59": "Net Trap",
+      "60": "Pitfalls",
+      "61": "Falconry",
+      "102": "Crab Trapping"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": false,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Crimson swift",
+        "image": "/images/hunter/crimson-swift.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 34,
+        "categories": [
+          53
+        ],
+        "link": null
+      },
+      {
+        "name": "Polar kebbit",
+        "image": "/images/hunter/polar-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 30,
+        "categories": [
+          54
+        ],
+        "link": null
+      },
+      {
+        "name": "Common kebbit",
+        "image": "/images/hunter/common-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 3,
+        "exp_given": 36,
+        "categories": [
+          54
+        ],
+        "link": null
+      },
+      {
+        "name": "Bird house",
+        "image": "https://general-543f.kxcdn.com/items/bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 280,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Golden warbler",
+        "image": "/images/hunter/golden-warbler.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 5,
+        "exp_given": 47,
+        "categories": [
+          53
+        ],
+        "link": null
+      },
+      {
+        "name": "Feldip Weasel",
+        "image": "/images/hunter/feldip-weasel.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 48,
+        "categories": [
+          54
+        ],
+        "link": null
+      },
+      {
+        "name": "Copper longtail",
+        "image": "/images/hunter/copper-longtail.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 9,
+        "exp_given": 61,
+        "categories": [
+          53
+        ],
+        "link": null
+      },
+      {
+        "name": "Cerulean twitch",
+        "image": "/images/hunter/cerulean-twitch.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 11,
+        "exp_given": 64.5,
+        "categories": [
+          53
+        ],
+        "link": null
+      },
+      {
+        "name": "Desert devil",
+        "image": "/images/hunter/desert-devil.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 13,
+        "exp_given": 66,
+        "categories": [
+          54
+        ],
+        "link": null
+      },
+      {
+        "name": "Oak bird house",
+        "image": "https://general-543f.kxcdn.com/items/oak_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 14,
+        "exp_given": 420,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Ruby harvest",
+        "image": "/images/hunter/ruby-harvest.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 24,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Tropical wagtail",
+        "image": "/images/hunter/tropical-wagtail.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 19,
+        "exp_given": 95,
+        "categories": [
+          53
+        ],
+        "link": null
+      },
+      {
+        "name": "Wild kebbit",
+        "image": "/images/hunter/wild-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 23,
+        "exp_given": 128,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Willow bird house",
+        "image": "https://general-543f.kxcdn.com/items/willow_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 24,
+        "exp_given": 560,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Sapphire glacialis",
+        "image": "/images/hunter/sapphire-glacialis.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 34,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Ferret",
+        "image": "/images/hunter/ferret.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 115,
+        "categories": [
+          58
+        ],
+        "link": null
+      },
+      {
+        "name": "White rabbit",
+        "image": "/images/hunter/white-rabbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 27,
+        "exp_given": 144,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Swamp lizard",
+        "image": "/images/hunter/swamp-lizard.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 29,
+        "exp_given": 152,
+        "categories": [
+          59
+        ],
+        "link": null
+      },
+      {
+        "name": "Spined larupia",
+        "image": "/images/hunter/spined-larupia.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 31,
+        "exp_given": 180,
+        "categories": [
+          60
+        ],
+        "link": null
+      },
+      {
+        "name": "Barb-tailed kebbit",
+        "image": "/images/hunter/barb-tailed-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 33,
+        "exp_given": 168,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Teak bird house",
+        "image": "https://general-543f.kxcdn.com/items/teak_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 34,
+        "exp_given": 700,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Snowy knight",
+        "image": "/images/hunter/snowy-knight.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 44,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Prickly kebbit",
+        "image": "/images/hunter/prickly-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 37,
+        "exp_given": 204,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Horned graahk",
+        "image": "/images/hunter/horned-graahk.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 41,
+        "exp_given": 240,
+        "categories": [
+          60
+        ],
+        "link": null
+      },
+      {
+        "name": "Spotted kebbit",
+        "image": "/images/hunter/spotted-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 43,
+        "exp_given": 104,
+        "categories": [
+          61
+        ],
+        "link": null
+      },
+      {
+        "name": "Maple bird house",
+        "image": "https://general-543f.kxcdn.com/items/maple_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 44,
+        "exp_given": 820,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Black warlock",
+        "image": "/images/hunter/black-warlock.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 54,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Orange salamander",
+        "image": "/images/hunter/orange-salamander.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 47,
+        "exp_given": 224,
+        "categories": [
+          59
+        ],
+        "link": null
+      },
+      {
+        "name": "Mahogany bird house",
+        "image": "https://general-543f.kxcdn.com/items/mahogany_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 49,
+        "exp_given": 960,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Razor-backed kebbit",
+        "image": "/images/hunter/razor-backed-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 49,
+        "exp_given": 348,
+        "categories": [
+          54
+        ],
+        "link": null
+      },
+      {
+        "name": "Sabre-toothed kebbit",
+        "image": "/images/hunter/sabre-toothed-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 51,
+        "exp_given": 200,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Chinchompa",
+        "image": "https://general-543f.kxcdn.com/items/chinchompa.png",
+        "imageWidth": 24,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 53,
+        "exp_given": 198.4,
+        "categories": [
+          58
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Chinchompa",
+            "amount": 1,
+            "price": 718,
+            "real_time_price": 718
+          }
+        ]
+      },
+      {
+        "name": "Sabre-toothed kyatt",
+        "image": "/images/hunter/sabre-toothed-kyatt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 55,
+        "exp_given": 300,
+        "categories": [
+          60
+        ],
+        "link": null
+      },
+      {
+        "name": "Dark kebbit",
+        "image": "/images/hunter/dark-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 132,
+        "categories": [
+          61
+        ],
+        "link": null
+      },
+      {
+        "name": "Yew bird house",
+        "image": "https://general-543f.kxcdn.com/items/yew_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 1020,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Red salamander",
+        "image": "/images/hunter/red-salamander.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 59,
+        "exp_given": 272,
+        "categories": [
+          59
+        ],
+        "link": null
+      },
+      {
+        "name": "Maniacal monkey",
+        "image": "/images/hunter/maniacal-monkey.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 60,
+        "exp_given": 1000,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Carnivorous chinchompa",
+        "image": "https://general-543f.kxcdn.com/items/red_chinchompa.png",
+        "imageWidth": 24,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 63,
+        "exp_given": 265,
+        "categories": [
+          58
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Red chinchompa",
+            "amount": 1,
+            "price": 1005,
+            "real_time_price": 1007
+          }
+        ]
+      },
+      {
+        "name": "Black salamander",
+        "image": "/images/hunter/black-salamander.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 67,
+        "exp_given": 319.5,
+        "categories": [
+          59
+        ],
+        "link": null
+      },
+      {
+        "name": "Dashing kebbit",
+        "image": "/images/hunter/dashing-kebbit.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 69,
+        "exp_given": 156,
+        "categories": [
+          61
+        ],
+        "link": null
+      },
+      {
+        "name": "Imp",
+        "image": "https://general-543f.kxcdn.com/items/magic_box.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 71,
+        "exp_given": 450,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Black chinchompa",
+        "image": "https://general-543f.kxcdn.com/items/black_chinchompa.png",
+        "imageWidth": 24,
+        "imageHeight": 24,
+        "action_members": true,
+        "level_req": 73,
+        "exp_given": 315,
+        "categories": [
+          58
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Black chinchompa",
+            "amount": 1,
+            "price": 2461,
+            "real_time_price": 2402
+          }
+        ]
+      },
+      {
+        "name": "Magic bird house",
+        "image": "https://general-543f.kxcdn.com/items/magic_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 1140,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Redwood bird house",
+        "image": "https://general-543f.kxcdn.com/items/redwood_bird_house.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 89,
+        "exp_given": 1200,
+        "categories": [
+          55
+        ],
+        "link": null
+      },
+      {
+        "name": "Embertailed jerboa",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/embertailed-jerboa.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 39,
+        "exp_given": 137,
+        "categories": [
+          58
+        ],
+        "link": null
+      },
+      {
+        "name": "Pyre fox",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/pyre-fox.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 57,
+        "exp_given": 222,
+        "categories": [
+          57
+        ],
+        "link": null
+      },
+      {
+        "name": "Sunlight moth",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/sunlight-moth.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 74,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Sunlight antelope",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/sunlight-antelope.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 72,
+        "exp_given": 380,
+        "categories": [
+          60
+        ],
+        "link": null
+      },
+      {
+        "name": "Moonlight moth",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/moonlight-moth.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 84,
+        "categories": [
+          56
+        ],
+        "link": null
+      },
+      {
+        "name": "Tecu salamander",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/tecu-salamander.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 79,
+        "exp_given": 344,
+        "categories": [
+          59
+        ],
+        "link": null
+      },
+      {
+        "name": "Moonlight antelope",
+        "image": "https://general-543f.kxcdn.com/misc/hunter-skill-calculator/moonlight-antelope.webp",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 91,
+        "exp_given": 450,
+        "categories": [
+          60
+        ],
+        "link": null
+      },
+      {
+        "name": "Blue crab",
+        "image": "https://general-543f.kxcdn.com/items/blue-crab.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 48,
+        "exp_given": 136,
+        "categories": [
+          102
+        ],
+        "link": null,
+        "components": [
+          {
+            "name": "Fish offcuts",
+            "amount": 1,
+            "price": 6,
+            "real_time_price": 4
+          }
+        ],
+        "products": [
+          {
+            "name": "Blue crab",
+            "amount": 1,
+            "price": 301,
+            "real_time_price": 148
+          }
+        ]
+      },
+      {
+        "name": "Rainbow crab",
+        "image": "https://general-543f.kxcdn.com/items/rainbow-crab-purple.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 77,
+        "exp_given": 216,
+        "categories": [
+          102
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Rainbow crab",
+            "amount": 1,
+            "price": 677,
+            "real_time_price": 906
+          }
+        ]
+      },
+      {
+        "name": "Red crab",
+        "image": "https://general-543f.kxcdn.com/items/red-crab.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 64,
+        "categories": [
+          102
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Red crab",
+            "amount": 1,
+            "price": 172,
+            "real_time_price": 47
+          }
+        ]
+      }
+    ]
+  }
+}

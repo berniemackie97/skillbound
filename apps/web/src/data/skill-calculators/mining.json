@@ -1,0 +1,564 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.399Z",
+  "payload": {
+    "name": "Mining",
+    "slug": "mining",
+    "members_only": false,
+    "bonuses": [
+      {
+        "name": "Prospector Kit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      }
+    ],
+    "categories": {
+      "66": "Essence",
+      "67": "Ore",
+      "68": "Stone"
+    },
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": false,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Clay",
+        "image": "https://general-543f.kxcdn.com/items/clay.png",
+        "imageWidth": 21,
+        "imageHeight": 14,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Clay",
+            "amount": 1,
+            "price": 146,
+            "real_time_price": 147
+          }
+        ]
+      },
+      {
+        "name": "Rune essence",
+        "image": "https://general-543f.kxcdn.com/items/rune_essence.png",
+        "imageWidth": 29,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 5,
+        "categories": [
+          66
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Rune essence",
+            "amount": 1,
+            "price": 11,
+            "real_time_price": 11
+          }
+        ]
+      },
+      {
+        "name": "Copper ore",
+        "image": "https://general-543f.kxcdn.com/items/copper_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 17.5,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Copper ore",
+            "amount": 1,
+            "price": 8,
+            "real_time_price": 8
+          }
+        ]
+      },
+      {
+        "name": "Tin ore",
+        "image": "https://general-543f.kxcdn.com/items/tin_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 17.5,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Tin ore",
+            "amount": 1,
+            "price": 10,
+            "real_time_price": 10
+          }
+        ]
+      },
+      {
+        "name": "Limestone",
+        "image": "https://general-543f.kxcdn.com/items/limestone.png",
+        "imageWidth": 30,
+        "imageHeight": 19,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 26.5,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Limestone",
+            "amount": 1,
+            "price": 135,
+            "real_time_price": 135
+          }
+        ]
+      },
+      {
+        "name": "Iron ore",
+        "image": "https://general-543f.kxcdn.com/items/iron_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 15,
+        "exp_given": 35,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Iron ore",
+            "amount": 1,
+            "price": 77,
+            "real_time_price": 77
+          }
+        ]
+      },
+      {
+        "name": "Silver ore",
+        "image": "https://general-543f.kxcdn.com/items/silver_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 20,
+        "exp_given": 40,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Silver ore",
+            "amount": 1,
+            "price": 45,
+            "real_time_price": 45
+          }
+        ]
+      },
+      {
+        "name": "Pure essence",
+        "image": "https://general-543f.kxcdn.com/items/pure_essence.png",
+        "imageWidth": 29,
+        "imageHeight": 28,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 5,
+        "categories": [
+          66
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Pure essence",
+            "amount": 1,
+            "price": 2,
+            "real_time_price": 2
+          }
+        ]
+      },
+      {
+        "name": "Coal",
+        "image": "https://general-543f.kxcdn.com/items/coal.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 30,
+        "exp_given": 50,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Coal",
+            "amount": 1,
+            "price": 273,
+            "real_time_price": 251
+          }
+        ]
+      },
+      {
+        "name": "Sandstone (10kg)",
+        "image": "https://general-543f.kxcdn.com/items/sandstone_10kg.png",
+        "imageWidth": 30,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 60,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Sandstone (10kg)",
+            "amount": 1,
+            "price": 1919,
+            "real_time_price": 1919
+          }
+        ]
+      },
+      {
+        "name": "Sandstone (5kg)",
+        "image": "https://general-543f.kxcdn.com/items/sandstone_5kg.png",
+        "imageWidth": 26,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 50,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Sandstone (5kg)",
+            "amount": 1,
+            "price": 4,
+            "real_time_price": 2
+          }
+        ]
+      },
+      {
+        "name": "Sandstone (2kg)",
+        "image": "https://general-543f.kxcdn.com/items/sandstone_2kg.png",
+        "imageWidth": 22,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 40,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Sandstone (2kg)",
+            "amount": 1,
+            "price": 110,
+            "real_time_price": 1
+          }
+        ]
+      },
+      {
+        "name": "Sandstone (1kg)",
+        "image": "https://general-543f.kxcdn.com/items/sandstone_1kg.png",
+        "imageWidth": 16,
+        "imageHeight": 16,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 30,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Sandstone (1kg)",
+            "amount": 1,
+            "price": 3,
+            "real_time_price": 4
+          }
+        ]
+      },
+      {
+        "name": "Dense essence block",
+        "image": "https://general-543f.kxcdn.com/items/dense_essence_block.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 38,
+        "exp_given": 12,
+        "categories": [
+          66
+        ],
+        "link": null
+      },
+      {
+        "name": "Gold ore",
+        "image": "https://general-543f.kxcdn.com/items/gold_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 40,
+        "exp_given": 65,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Gold ore",
+            "amount": 1,
+            "price": 107,
+            "real_time_price": 107
+          }
+        ]
+      },
+      {
+        "name": "Granite (500g)",
+        "image": "https://general-543f.kxcdn.com/items/granite_500g.png",
+        "imageWidth": 16,
+        "imageHeight": 16,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 50,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Granite (500g)",
+            "amount": 1,
+            "price": 73,
+            "real_time_price": 81
+          }
+        ]
+      },
+      {
+        "name": "Granite (2kg)",
+        "image": "https://general-543f.kxcdn.com/items/granite_2kg.png",
+        "imageWidth": 22,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 60,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Granite (2kg)",
+            "amount": 1,
+            "price": 37,
+            "real_time_price": 72
+          }
+        ]
+      },
+      {
+        "name": "Granite (5kg)",
+        "image": "https://general-543f.kxcdn.com/items/granite_5kg.png",
+        "imageWidth": 26,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 75,
+        "categories": [
+          68
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Granite (5kg)",
+            "amount": 1,
+            "price": 84,
+            "real_time_price": 84
+          }
+        ]
+      },
+      {
+        "name": "Mithril ore",
+        "image": "https://general-543f.kxcdn.com/items/mithril_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 55,
+        "exp_given": 80,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Mithril ore",
+            "amount": 1,
+            "price": 105,
+            "real_time_price": 105
+          }
+        ]
+      },
+      {
+        "name": "Adamantite ore",
+        "image": "https://general-543f.kxcdn.com/items/adamantite_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 70,
+        "exp_given": 95,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Adamantite ore",
+            "amount": 1,
+            "price": 567,
+            "real_time_price": 563
+          }
+        ]
+      },
+      {
+        "name": "Runite ore",
+        "image": "https://general-543f.kxcdn.com/items/runite_ore.png",
+        "imageWidth": 32,
+        "imageHeight": 28,
+        "action_members": false,
+        "level_req": 85,
+        "exp_given": 125,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Runite ore",
+            "amount": 1,
+            "price": 10111,
+            "real_time_price": 10020
+          }
+        ]
+      },
+      {
+        "name": "Amethyst",
+        "image": "https://general-543f.kxcdn.com/items/amethyst.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 240,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Amethyst",
+            "amount": 1,
+            "price": 3195,
+            "real_time_price": 3216
+          }
+        ]
+      },
+      {
+        "name": "Gem rock",
+        "image": "https://general-543f.kxcdn.com/items/uncut-red-topaz.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 65,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Pay-dirt (uncleaned only)",
+        "image": "https://general-543f.kxcdn.com/items/pay_dirt.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 60,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Stardust",
+        "image": "https://general-543f.kxcdn.com/items/stardust.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 32,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Stardust (F2P)",
+        "image": "https://general-543f.kxcdn.com/items/stardust.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 16,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Lead ore",
+        "image": "https://general-543f.kxcdn.com/items/lead-ore.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 45,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Lead ore",
+            "amount": 1,
+            "price": 324,
+            "real_time_price": 710
+          }
+        ]
+      },
+      {
+        "name": "Nickel ore",
+        "image": "https://general-543f.kxcdn.com/items/nickel-ore.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 74,
+        "exp_given": 80.5,
+        "categories": [
+          67
+        ],
+        "link": null,
+        "products": [
+          {
+            "name": "Nickel ore",
+            "amount": 1,
+            "price": 1965,
+            "real_time_price": 1000
+          }
+        ]
+      }
+    ]
+  }
+}

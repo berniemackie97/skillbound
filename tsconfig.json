@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "incremental": true,
+    "composite": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@skillbound/*": ["packages/*/src", "apps/*/src"]
+    }
+  },
+  "files": [],
+  "include": [],
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "./apps/web" },
+    { "path": "./packages/content" },
+    { "path": "./packages/cache" },
+    { "path": "./packages/database" },
+    { "path": "./packages/domain" },
+    { "path": "./packages/hiscores" },
+    { "path": "./packages/integrations" },
+    { "path": "./packages/wiki-api" },
+    { "path": "./packages/wiki-client" }
+  ]
+}

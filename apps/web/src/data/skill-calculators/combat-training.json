@@ -1,0 +1,227 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.944Z",
+  "payload": {
+    "categories": [],
+    "data": [
+      {
+        "name": "Rock Crab",
+        "level": 13,
+        "hitpoints": 50,
+        "members": true
+      },
+      {
+        "name": "Experiment",
+        "level": 25,
+        "hitpoints": 100,
+        "members": true
+      },
+      {
+        "name": "Chicken",
+        "level": 1,
+        "hitpoints": 3,
+        "members": false
+      },
+      {
+        "name": "Ammonite Crab",
+        "level": 25,
+        "hitpoints": 100,
+        "members": true
+      },
+      {
+        "name": "Sand Crab",
+        "level": 15,
+        "hitpoints": 60,
+        "members": true
+      },
+      {
+        "name": "Man/Woman",
+        "level": 2,
+        "hitpoints": 7,
+        "members": false
+      },
+      {
+        "name": "Al-Kharid warrior",
+        "level": 9,
+        "hitpoints": 19,
+        "members": false
+      },
+      {
+        "name": "Chaos druid",
+        "level": 13,
+        "hitpoints": 20,
+        "members": true
+      },
+      {
+        "name": "Moss giant",
+        "level": 42,
+        "hitpoints": 60,
+        "members": false
+      },
+      {
+        "name": "Moss giant",
+        "level": 48,
+        "hitpoints": 85,
+        "members": false
+      },
+      {
+        "name": "Green dragon",
+        "level": 79,
+        "hitpoints": 75,
+        "members": true
+      },
+      {
+        "name": "Green dragon",
+        "level": 88,
+        "hitpoints": 100,
+        "members": true
+      },
+      {
+        "name": "Yak",
+        "level": 22,
+        "hitpoints": 50,
+        "members": true
+      },
+      {
+        "name": "Bandit",
+        "level": 74,
+        "hitpoints": 65,
+        "members": true
+      },
+      {
+        "name": "Monkey zombie",
+        "level": 82,
+        "hitpoints": 60,
+        "members": true
+      },
+      {
+        "name": "Maniacal monkey",
+        "level": 140,
+        "hitpoints": 65,
+        "members": true
+      },
+      {
+        "name": "Lesser demon",
+        "level": 82,
+        "hitpoints": 81,
+        "members": false
+      },
+      {
+        "name": "Greater demon",
+        "level": 92,
+        "hitpoints": 89,
+        "members": false
+      },
+      {
+        "name": "Jogre",
+        "level": 53,
+        "hitpoints": 60,
+        "members": true
+      },
+      {
+        "name": "Earth warrior",
+        "level": 51,
+        "hitpoints": 54,
+        "members": true
+      },
+      {
+        "name": "Ghoul",
+        "level": 42,
+        "hitpoints": 50,
+        "members": true
+      },
+      {
+        "name": "Hobgoblin",
+        "level": 28,
+        "hitpoints": 29,
+        "members": false
+      },
+      {
+        "name": "Hill giant",
+        "level": 28,
+        "hitpoints": 35,
+        "members": false
+      },
+      {
+        "name": "Fire giant",
+        "level": 86,
+        "hitpoints": 111,
+        "members": true
+      },
+      {
+        "name": "Cow",
+        "level": 2,
+        "hitpoints": 8,
+        "members": false
+      },
+      {
+        "name": "Big frog",
+        "level": 10,
+        "hitpoints": 18,
+        "members": false
+      },
+      {
+        "name": "Giant rat",
+        "level": 3,
+        "hitpoints": 5,
+        "members": false
+      },
+      {
+        "name": "Giant frog",
+        "level": 13,
+        "hitpoints": 23,
+        "members": false
+      },
+      {
+        "name": "Guard",
+        "level": 21,
+        "hitpoints": 22,
+        "members": false
+      },
+      {
+        "name": "Jail guard",
+        "level": 26,
+        "hitpoints": 32,
+        "members": false
+      },
+      {
+        "name": "Flesh crawler",
+        "level": 28,
+        "hitpoints": 25,
+        "members": false
+      },
+      {
+        "name": "Deadly red spider",
+        "level": 34,
+        "hitpoints": 35,
+        "members": false
+      },
+      {
+        "name": "Ogress Shaman/Warrior",
+        "level": 82,
+        "hitpoints": 82,
+        "members": false
+      },
+      {
+        "name": "Spidine",
+        "level": 42,
+        "hitpoints": 35,
+        "members": true
+      },
+      {
+        "name": "Demonic gorilla",
+        "level": 275,
+        "hitpoints": 380,
+        "members": true,
+        "xp_bonus_multiplier": 1.075
+      },
+      {
+        "name": "Scurrius",
+        "level": 200,
+        "hitpoints": 500,
+        "members": true,
+        "xp_bonus_multiplier": 1.2
+      }
+    ]
+  }
+}

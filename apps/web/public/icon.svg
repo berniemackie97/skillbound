@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffe9a0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f4d03f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brownGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b7355;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#53422a;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.7"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background with subtle gradient -->
+  <rect width="512" height="512" fill="#1a1612"/>
+  <radialGradient id="bgGrad" cx="50%" cy="50%">
+    <stop offset="0%" style="stop-color:#2a2318;stop-opacity:0.3"/>
+    <stop offset="100%" style="stop-color:#1a1612;stop-opacity:1"/>
+  </radialGradient>
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+
+  <!-- Outer glow aura -->
+  <path d="M256 40 L440 120 L440 256 Q440 400 256 472 Q72 400 72 256 L72 120 Z"
+        fill="none" stroke="#ffdf80" stroke-width="4" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Outer shield with enhanced stroke -->
+  <path d="M256 40 L440 120 L440 256 Q440 400 256 472 Q72 400 72 256 L72 120 Z"
+        fill="url(#brownGrad)" stroke="#ffdf80" stroke-width="10" filter="url(#shadow)"/>
+
+  <!-- Middle shield layer with brighter gold -->
+  <path d="M256 60 L420 130 L420 256 Q420 380 256 448 Q92 380 92 256 L92 130 Z"
+        fill="url(#goldGrad)" stroke="#2a2014" stroke-width="8" opacity="1"/>
+
+  <!-- Inner decorative border - brighter -->
+  <path d="M256 80 L400 140 L400 256 Q400 360 256 424 Q112 360 112 256 L112 140 Z"
+        fill="none" stroke="#ffe9a0" stroke-width="4" opacity="0.6"/>
+
+  <!-- Skill symbol - stylized 'S' with white stroke for contrast -->
+  <g fill="none" stroke="#ffffff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M256 160 Q300 160 320 180 Q340 200 340 230 Q340 250 320 270 Q300 290 256 290"/>
+    <path d="M256 290 Q212 290 192 310 Q172 330 172 360 Q172 380 192 400 Q212 420 256 420 Q300 420 320 400 Q340 380 340 360"/>
+  </g>
+
+  <!-- Inner 'S' shadow for depth -->
+  <g fill="none" stroke="#1a1612" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity="0.3" transform="translate(2, 3)">
+    <path d="M256 160 Q300 160 320 180 Q340 200 340 230 Q340 250 320 270 Q300 290 256 290"/>
+    <path d="M256 290 Q212 290 192 310 Q172 330 172 360 Q172 380 192 400 Q212 420 256 420 Q300 420 320 400 Q340 380 340 360"/>
+  </g>
+
+  <!-- Highlight on S - brighter -->
+  <g fill="none" stroke="#ffe9a0" stroke-width="8" stroke-linecap="round" opacity="0.6">
+    <path d="M270 165 Q305 170 320 185"/>
+    <path d="M270 295 Q235 300 195 315"/>
+  </g>
+
+  <!-- Shield top highlight - brighter -->
+  <path d="M256 60 L420 130 L420 180"
+        fill="none" stroke="#ffe9a0" stroke-width="6" opacity="0.5"/>
+
+  <!-- Bottom inner glow -->
+  <ellipse cx="256" cy="420" rx="120" ry="40" fill="#ffdf80" opacity="0.1"/>
+</svg>

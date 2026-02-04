@@ -1,0 +1,312 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:36:59.868Z",
+  "payload": {
+    "name": "Firemaking",
+    "slug": "firemaking",
+    "members_only": false,
+    "bonuses": [
+      {
+        "name": "Pyromancer Outfit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      }
+    ],
+    "categories": [],
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": true,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Logs",
+        "image": "https://general-543f.kxcdn.com/items/logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 40,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Logs",
+            "amount": 1,
+            "price": 26,
+            "real_time_price": 32
+          }
+        ]
+      },
+      {
+        "name": "Achey tree logs",
+        "image": "https://general-543f.kxcdn.com/items/achey_tree_logs.png",
+        "imageWidth": 30,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 40,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Achey tree logs",
+            "amount": 1,
+            "price": 137,
+            "real_time_price": 137
+          }
+        ]
+      },
+      {
+        "name": "Oak logs",
+        "image": "https://general-543f.kxcdn.com/items/oak_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 15,
+        "exp_given": 60,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Oak logs",
+            "amount": 1,
+            "price": 26,
+            "real_time_price": 30
+          }
+        ]
+      },
+      {
+        "name": "Willow logs",
+        "image": "https://general-543f.kxcdn.com/items/willow_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 30,
+        "exp_given": 90,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Willow logs",
+            "amount": 1,
+            "price": 35,
+            "real_time_price": 35
+          }
+        ]
+      },
+      {
+        "name": "Teak logs",
+        "image": "https://general-543f.kxcdn.com/items/teak_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 105,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Teak logs",
+            "amount": 1,
+            "price": 115,
+            "real_time_price": 115
+          }
+        ]
+      },
+      {
+        "name": "Arctic pine logs",
+        "image": "https://general-543f.kxcdn.com/items/arctic_pine_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 42,
+        "exp_given": 125,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Arctic pine logs",
+            "amount": 1,
+            "price": 504,
+            "real_time_price": 479
+          }
+        ]
+      },
+      {
+        "name": "Maple logs",
+        "image": "https://general-543f.kxcdn.com/items/maple_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 45,
+        "exp_given": 135,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Maple logs",
+            "amount": 1,
+            "price": 19,
+            "real_time_price": 19
+          }
+        ]
+      },
+      {
+        "name": "Mahogany logs",
+        "image": "https://general-543f.kxcdn.com/items/mahogany_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 157.5,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Mahogany logs",
+            "amount": 1,
+            "price": 217,
+            "real_time_price": 246
+          }
+        ]
+      },
+      {
+        "name": "Yew logs",
+        "image": "https://general-543f.kxcdn.com/items/yew_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 60,
+        "exp_given": 202.5,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Yew logs",
+            "amount": 1,
+            "price": 133,
+            "real_time_price": 138
+          }
+        ]
+      },
+      {
+        "name": "Magic logs",
+        "image": "https://general-543f.kxcdn.com/items/magic_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 303.8,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Magic logs",
+            "amount": 1,
+            "price": 951,
+            "real_time_price": 952
+          }
+        ]
+      },
+      {
+        "name": "Redwood logs",
+        "image": "https://general-543f.kxcdn.com/items/redwood_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 350,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Redwood logs",
+            "amount": 1,
+            "price": 962,
+            "real_time_price": 980
+          }
+        ]
+      },
+      {
+        "name": "Blisterwood logs",
+        "image": "https://general-543f.kxcdn.com/items/blisterwood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 96,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Jatoba logs",
+        "image": "https://general-543f.kxcdn.com/items/jatoba-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 120,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Rosewood logs",
+        "image": "https://general-543f.kxcdn.com/items/rosewood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 268,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Rosewood logs",
+            "amount": 1,
+            "price": 980,
+            "real_time_price": 975
+          }
+        ]
+      },
+      {
+        "name": "Ironwood logs",
+        "image": "https://general-543f.kxcdn.com/items/ironwood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 220.5,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Ironwood logs",
+            "amount": 1,
+            "price": 163,
+            "real_time_price": 141
+          }
+        ]
+      },
+      {
+        "name": "Camphor logs",
+        "image": "https://general-543f.kxcdn.com/items/camphor-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 180,
+        "categories": [],
+        "link": null,
+        "components": [
+          {
+            "name": "Camphor logs",
+            "amount": 1,
+            "price": 635,
+            "real_time_price": 634
+          }
+        ]
+      }
+    ]
+  }
+}

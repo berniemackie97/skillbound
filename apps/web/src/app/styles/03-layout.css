@@ -1,0 +1,87 @@
+/* Layout: app shell + composition primitives (no component visuals) */
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Shell spacing for global regions */
+.shell .nav {
+  margin: 24px 6vw 0;
+}
+
+.shell .footer {
+  margin: 0 6vw 32px;
+}
+
+main.page {
+  padding: 32px 6vw 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Stagger entrance for top-level sections (animation keyframes live in 99-animations.css) */
+main.page > section {
+  animation: fadeUp 0.8s ease both;
+}
+
+main.page > section:nth-of-type(1) { animation-delay: 0.05s; }
+main.page > section:nth-of-type(2) { animation-delay: 0.12s; }
+main.page > section:nth-of-type(3) { animation-delay: 0.18s; }
+main.page > section:nth-of-type(4) { animation-delay: 0.24s; }
+main.page > section:nth-of-type(5) { animation-delay: 0.30s; }
+
+/* Composition helpers */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.character-grid.compact {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+/* Grid children must be allowed to shrink, otherwise overflow containers (tables)
+   get clipped inside grid/flex layouts. */
+.panel-grid > *,
+.character-grid > *,
+.result-grid > *,
+.form-grid > * {
+  min-width: 0;
+}
+
+/* Responsive layout (component-specific responsiveness stays with the component) */
+@media (max-width: 860px) {
+  .shell .nav {
+    margin: 16px 5vw 0;
+  }
+
+  main.page {
+    padding: 24px 5vw 48px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

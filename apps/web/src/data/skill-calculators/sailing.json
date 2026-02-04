@@ -1,0 +1,384 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.869Z",
+  "payload": {
+    "name": "Sailing",
+    "slug": "sailing",
+    "members_only": true,
+    "bonuses": [],
+    "categories": {
+      "98": "Courier Tasks"
+    },
+    "profit_loss_settings": {
+      "enabled": false,
+      "show_components": false,
+      "real_time_prices": false
+    },
+    "data": [
+      {
+        "name": "Courier wanted",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Armour courier",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Spices needed",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 45,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Fish delivery",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Fish for 'The Face'",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Steel collection",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 60,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Keg removal services requested",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 7,
+        "exp_given": 105,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Jewellery delivery",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 9,
+        "exp_given": 105,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "'Legal' courier services requested",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 160,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Return to sender",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 15,
+        "exp_given": 240,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Banana compensation",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 110,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Logs astray",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 110,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Billy-no-ship-parts",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 165,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Secret pirate buisness",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 165,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Secret pirate looty",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 10,
+        "exp_given": 250,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Bait to Catherby",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 805,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Fresh lobster delivery",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 1500,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Wax, wax and more wax",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 805,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Caleb's Coconuts",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 21,
+        "exp_given": 805,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Vials to the holy island",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 22,
+        "exp_given": 345,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "A mislaid port order",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 25,
+        "exp_given": 465,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Sarah's potatoes",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 26,
+        "exp_given": 1085,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Misplaced silk",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 28,
+        "exp_given": 542,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Sending sand",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 28,
+        "exp_given": 1163,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Tar export required",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 1584,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Khazard rennovations",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 880,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Urgent delivery",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 1760,
+        "categories": [
+          98
+        ],
+        "link": null
+      },
+      {
+        "name": "Tar needed",
+        "image": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 30,
+        "exp_given": 1760,
+        "categories": [
+          98
+        ],
+        "link": null
+      }
+    ]
+  }
+}

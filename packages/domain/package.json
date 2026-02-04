@@ -8,7 +8,7 @@
     "./*": "./src/*.ts"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:unit": "vitest run",
@@ -18,13 +18,13 @@
   "devDependencies": {
     "@skillbound/eslint-config": "workspace:*",
     "@skillbound/typescript-config": "workspace:*",
-    "@types/node": "^20.11.5",
-    "@vitest/coverage-v8": "^1.2.1",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.1"
+    "@types/node": "^25.1.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
-    "zod": "^3.22.4"
+    "zod": "^4.3.6"
   }
 }

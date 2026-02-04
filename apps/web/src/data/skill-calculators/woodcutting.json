@@ -1,0 +1,347 @@
+{
+  "source": "oldschool.tools",
+  "fetchedAt": "2026-01-28T05:37:00.789Z",
+  "payload": {
+    "name": "Woodcutting",
+    "slug": "woodcutting",
+    "members_only": false,
+    "bonuses": [
+      {
+        "name": "Lumberjack Outfit (+2.5% exp)",
+        "bonus": 1.025,
+        "validCategories": []
+      },
+      {
+        "name": "Felling Axe (+10% exp)",
+        "bonus": 1.1,
+        "validCategories": []
+      }
+    ],
+    "categories": [],
+    "profit_loss_settings": {
+      "enabled": true,
+      "show_components": false,
+      "real_time_prices": true
+    },
+    "data": [
+      {
+        "name": "Logs",
+        "image": "https://general-543f.kxcdn.com/items/logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 1,
+        "exp_given": 25,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Logs",
+            "amount": 1,
+            "price": 27,
+            "real_time_price": 26
+          }
+        ]
+      },
+      {
+        "name": "Achey tree logs",
+        "image": "https://general-543f.kxcdn.com/items/achey_tree_logs.png",
+        "imageWidth": 30,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 1,
+        "exp_given": 25,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Achey tree logs",
+            "amount": 1,
+            "price": 136,
+            "real_time_price": 170
+          }
+        ]
+      },
+      {
+        "name": "Oak logs",
+        "image": "https://general-543f.kxcdn.com/items/oak_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 15,
+        "exp_given": 37.5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Oak logs",
+            "amount": 1,
+            "price": 27,
+            "real_time_price": 9
+          }
+        ]
+      },
+      {
+        "name": "Willow logs",
+        "image": "https://general-543f.kxcdn.com/items/willow_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 30,
+        "exp_given": 67.5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Willow logs",
+            "amount": 1,
+            "price": 34,
+            "real_time_price": 34
+          }
+        ]
+      },
+      {
+        "name": "Teak logs",
+        "image": "https://general-543f.kxcdn.com/items/teak_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 35,
+        "exp_given": 85,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Teak logs",
+            "amount": 1,
+            "price": 115,
+            "real_time_price": 115
+          }
+        ]
+      },
+      {
+        "name": "Bark",
+        "image": "https://general-543f.kxcdn.com/items/bark.png",
+        "imageWidth": 28,
+        "imageHeight": 21,
+        "action_members": true,
+        "level_req": 45,
+        "exp_given": 82.5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Bark",
+            "amount": 1,
+            "price": 113,
+            "real_time_price": 120
+          }
+        ]
+      },
+      {
+        "name": "Maple logs",
+        "image": "https://general-543f.kxcdn.com/items/maple_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 45,
+        "exp_given": 100,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Maple logs",
+            "amount": 1,
+            "price": 19,
+            "real_time_price": 17
+          }
+        ]
+      },
+      {
+        "name": "Mahogany logs",
+        "image": "https://general-543f.kxcdn.com/items/mahogany_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 50,
+        "exp_given": 125,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Mahogany logs",
+            "amount": 1,
+            "price": 210,
+            "real_time_price": 222
+          }
+        ]
+      },
+      {
+        "name": "Arctic pine logs",
+        "image": "https://general-543f.kxcdn.com/items/arctic_pine_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 54,
+        "exp_given": 40,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Arctic pine logs",
+            "amount": 1,
+            "price": 500,
+            "real_time_price": 496
+          }
+        ]
+      },
+      {
+        "name": "Yew logs",
+        "image": "https://general-543f.kxcdn.com/items/yew_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": false,
+        "level_req": 60,
+        "exp_given": 175,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Yew logs",
+            "amount": 1,
+            "price": 140,
+            "real_time_price": 130
+          }
+        ]
+      },
+      {
+        "name": "Sulliusceps",
+        "image": "https://general-543f.kxcdn.com/items/sulliuscep_cap.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 65,
+        "exp_given": 127,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Magic logs",
+        "image": "https://general-543f.kxcdn.com/items/magic_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 26,
+        "action_members": true,
+        "level_req": 75,
+        "exp_given": 250,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Magic logs",
+            "amount": 1,
+            "price": 949,
+            "real_time_price": 948
+          }
+        ]
+      },
+      {
+        "name": "Redwood logs",
+        "image": "https://general-543f.kxcdn.com/items/redwood_logs.png",
+        "imageWidth": 31,
+        "imageHeight": 25,
+        "action_members": true,
+        "level_req": 90,
+        "exp_given": 380,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Redwood logs",
+            "amount": 1,
+            "price": 933,
+            "real_time_price": 971
+          }
+        ]
+      },
+      {
+        "name": "Blisterwood logs",
+        "image": "https://general-543f.kxcdn.com/items/blisterwood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 62,
+        "exp_given": 76,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Camphor logs",
+        "image": "https://general-543f.kxcdn.com/items/camphor-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 66,
+        "exp_given": 143.5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Camphor logs",
+            "amount": 1,
+            "price": 621,
+            "real_time_price": 690
+          }
+        ]
+      },
+      {
+        "name": "Jatoba logs",
+        "image": "https://general-543f.kxcdn.com/items/jatoba-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 40,
+        "exp_given": 92,
+        "categories": [],
+        "link": null
+      },
+      {
+        "name": "Ironwood logs",
+        "image": "https://general-543f.kxcdn.com/items/ironwood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 80,
+        "exp_given": 175,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Ironwood logs",
+            "amount": 1,
+            "price": 172,
+            "real_time_price": 150
+          }
+        ]
+      },
+      {
+        "name": "Rosewood logs",
+        "image": "https://general-543f.kxcdn.com/items/rosewood-logs.png",
+        "imageWidth": null,
+        "imageHeight": null,
+        "action_members": true,
+        "level_req": 92,
+        "exp_given": 212.5,
+        "categories": [],
+        "link": null,
+        "products": [
+          {
+            "name": "Rosewood logs",
+            "amount": 1,
+            "price": 980,
+            "real_time_price": 910
+          }
+        ]
+      }
+    ]
+  }
+}

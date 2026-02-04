@@ -1,0 +1,73 @@
+:root {
+  /* Tell the browser we support dark UI primitives (scrollbars/form controls). */
+  color-scheme: dark;
+
+  /* ===== Color palette ===== */
+  --bg: #1a1612;
+  --bg-elev: #2a2318;
+  --bg-card: #342c20;
+  --bg-card-strong: #3f3528;
+
+  --text: #e9d9be;
+  --text-muted: #a89372;
+
+  --accent: #d4af37;
+  --accent-strong: #f4d03f;
+  --accent-alt: #7faf3a;
+  --accent-blue: #3a9bcf;
+
+  /* Borders + shadows */
+  --border: rgba(212, 175, 55, 0.15);
+  --shadow: rgba(0, 0, 0, 0.6);
+
+  /* RuneScape-ish material colors used across the UI */
+  --rs-brown: #53422a;
+  --rs-tan: #8b7355;
+  --rs-gold: #ffdf80;
+
+  /* ===== Typography ===== */
+  --font-body: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-display: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  /* ===== Layout ===== */
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* Common spacing scale (px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+  --space-9: 64px;
+
+  /* Container padding defaults (used by layout/page styles) */
+  --page-pad-x: 6vw;
+  --page-pad-top: 32px;
+  --page-pad-bottom: 64px;
+
+  /* ===== Interaction ===== */
+  --border-width: 1px;
+  --border-width-strong: 2px;
+
+  --focus-ring: 0 0 0 3px rgba(212, 175, 55, 0.25);
+
+  /* Motion tokens (keep these simple so reduced-motion overrides are easy) */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-1: 150ms;
+  --dur-2: 250ms;
+  --dur-3: 400ms;
+
+  /* Z-index scale */
+  --z-nav: 10;
+  --z-modal: 50;
+  --z-toast: 60;
+}

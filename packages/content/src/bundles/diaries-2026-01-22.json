@@ -1,0 +1,5042 @@
+[
+  {
+    "id": "ardougne",
+    "name": "Ardougne Diary",
+    "region": "Ardougne",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "go_out_fishing_on_the_fishing_trawler",
+            "description": "Go out fishing on the Fishing Trawler",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Easy"
+          },
+          {
+            "id": "steal_a_cake_from_the_east_ardougne_market_stalls",
+            "description": "Steal a Cake from the East Ardougne market stalls",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 5
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "equip_iban_s_upgraded_staff_or_upgrade_an_iban_staff",
+            "description": "Equip Iban's upgraded staff or upgrade an Iban staff .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "attack",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "underground_pass"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "claim_buckets_of_sand_from_bert_in_yanille",
+            "description": "Claim buckets of sand from Bert in Yanille .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 49
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_hand_in_the_sand"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "harvest_some_strawberries_from_the_ardougne_farming_patch",
+            "description": "Harvest some Strawberries from the Ardougne farming patch",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 31
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "travel_to_castle_wars_by_hot_air_balloon",
+            "description": "Travel to Castle Wars by hot air balloon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "enlightened_journey"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "equip_an_iban_s_upgraded_staff",
+            "description": "Equip an Iban's upgraded staff",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "underground_pass"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "cast_the_ardougne_teleport_spell",
+            "description": "Cast the Ardougne Teleport spell",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 51
+              },
+              {
+                "type": "quest-complete",
+                "questId": "plague_city"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          },
+          {
+            "id": "pickpocket_the_master_farmer_north_of_east_ardougne",
+            "description": "Pickpocket the Master Farmer north of East Ardougne",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 38
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "enter_your_poh_from_yanille",
+            "description": "Enter your POH from Yanille",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "check_the_health_of_a_palm_tree_near_tree_gnome_village",
+            "description": "Check the health of a Palm tree near Tree Gnome Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "pick_some_poison_ivy_berries_from_the_patch_south_of_east_ardougne",
+            "description": "Pick some Poison ivy berries from the patch south of East Ardougne",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 70
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "catch_a_red_salamander",
+            "description": "Catch a Red salamander",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 59
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "teleport_to_the_watchtower",
+            "description": "Teleport to the Watchtower",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 58
+              },
+              {
+                "type": "quest-complete",
+                "questId": "watchtower"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "enter_the_magic_guild",
+            "description": "Enter the Magic Guild",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 66
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "craft_some_death_runes",
+            "description": "Craft some Death runes",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "mourning_s_end_part_ii"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "smith_a_dragon_sq_shield_in_west_ardougne",
+            "description": "Smith a Dragon sq shield in West Ardougne",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 60
+              },
+              {
+                "type": "quest-complete",
+                "questId": "legends_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "smith_a_mithril_platebody_near_ardougne",
+            "description": "Smith a Mithril platebody near Ardougne",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          },
+          {
+            "id": "attempt_to_steal_from_a_chest_in_ardougne_castle",
+            "description": "Attempt to steal from a chest in Ardougne Castle .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 72
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_ardougne_s_rooftop_agility_course",
+            "description": "Complete a lap of Ardougne's Rooftop Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 90
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "catch_a_manta_ray_in_the_fishing_trawler_and_cook_it_in_port_khazard",
+            "description": "Catch a Manta ray in the Fishing Trawler and cook it in Port Khazard",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 91
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 81
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "make_a_rune_crossbow_yourself_from_scratch_within_witchaven_or_yanille",
+            "description": "Make a Rune crossbow yourself from scratch within Witchaven or Yanille",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 10
+              },
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 91
+              },
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 69
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "pick_some_torstol_from_the_patch_north_of_east_ardougne",
+            "description": "Pick some Torstol from the patch north of East Ardougne",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 85
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "catch_a_manta_ray_in_the_fishing_trawler_and_cook_it_in_port_khazard_2",
+            "description": "Catch a manta ray in the Fishing Trawler and cook it in Port Khazard",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 81
+              },
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 91
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "cast_ice_barrage_on_another_player_in_castle_wars",
+            "description": "Cast Ice Barrage on another player in Castle Wars",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 94
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "pickpocket_a_hero",
+            "description": "Pickpocket a Hero",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 80
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          },
+          {
+            "id": "attempt_to_picklock_the_door_to_the_basement_of_the_yanille_agility_dungeon",
+            "description": "Attempt to picklock the door to the basement of the Yanille Agility dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 82
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Ardougne_Diary"
+  },
+  {
+    "id": "desert",
+    "name": "Desert Diary",
+    "region": "Desert",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "catch_a_golden_warbler",
+            "description": "Catch a Golden warbler",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 5
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Easy"
+          },
+          {
+            "id": "open_the_sarcophagus_in_the_first_room_of_pyramid_plunder",
+            "description": "Open the sarcophagus in the first room of Pyramid Plunder",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 21
+              },
+              {
+                "type": "quest-complete",
+                "questId": "icthlarin_s_little_helper"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "climb_to_the_summit_of_the_agility_pyramid",
+            "description": "Climb to the summit of the Agility Pyramid",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "teleport_to_pollnivneach_with_a_redirected_teleport_to_house_tablet_ironman_must_instead_enter_your_poh_from_pollnivneach",
+            "description": "Teleport to Pollnivneach with a redirected Teleport to House tablet ( Ironman must instead: Enter your POH from Pollnivneach)",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "create_a_combat_potion_in_the_desert",
+            "description": "Create a Combat potion in the Desert",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 36
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "catch_an_orange_salamander",
+            "description": "Catch an Orange salamander",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 47
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "slay_a_desert_lizard",
+            "description": "Slay a Desert lizard",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 22
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "travel_to_the_desert_via_the_eagle_transport_system",
+            "description": "Travel to the Desert via the Eagle transport system",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 45
+              },
+              {
+                "type": "quest-complete",
+                "questId": "eagles_peak"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "steal_a_phoenix_feather_from_the_desert_phoenix",
+            "description": "Steal a Phoenix feather from the Desert phoenix",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 25
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_golem"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          },
+          {
+            "id": "chop_some_teak_logs_near_uzer",
+            "description": "Chop some Teak logs near Uzer",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 35
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_pollnivneach_rooftop_course",
+            "description": "Complete a lap of the Pollnivneach Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 70
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "defeat_a_locust_rider_with_keris",
+            "description": "Defeat a Locust Rider with Keris .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "attack",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "contact"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "slay_a_dust_devil_in_the_desert_cave_with_a_slayer_helmet_equipped",
+            "description": "Slay a Dust devil in the desert cave with a Slayer helmet equipped.",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 10
+              },
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 65
+              },
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 55
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "burn_some_yew_logs_on_the_nardah_mayor_s_balcony",
+            "description": "Burn some Yew logs on the Nardah Mayor's balcony",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "refill_your_waterskins_in_the_desert_using_lunar_spells_humidify",
+            "description": "Refill your Waterskins in the Desert using Lunar spells ( Humidify )",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 68
+              },
+              {
+                "type": "quest-complete",
+                "questId": "dream_mentor"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "mine_some_granite",
+            "description": "Mine some Granite",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 45
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "slay_a_dust_devil_with_a_slayer_helmet_equipped",
+            "description": "Slay a Dust devil with a Slayer helmet equipped",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 65
+              },
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 55
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "create_a_mithril_platebody_in_nardah",
+            "description": "Create a Mithril platebody in Nardah",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          },
+          {
+            "id": "knock_out_a_menaphite_thug",
+            "description": "Knock out a Menaphite thug",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_feud"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "speak_to_the_kq_head_in_your_poh",
+            "description": "Speak to the Kq head in your POH",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 78
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          },
+          {
+            "id": "bake_a_wild_pie_at_the_nardah_clay_oven",
+            "description": "Bake a Wild pie at the Nardah clay oven",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 85
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          },
+          {
+            "id": "fletch_some_dragon_darts_at_the_bedabin_camp",
+            "description": "Fletch some Dragon darts at the Bedabin Camp",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 95
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_tourist_trap"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          },
+          {
+            "id": "cast_ice_barrage_against_a_foe_in_the_desert",
+            "description": "Cast Ice Barrage against a foe in the Desert",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 94
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          },
+          {
+            "id": "restore_at_least_85_prayer_points_when_praying_at_the_altar_in_sophanem",
+            "description": "Restore at least 85 Prayer points when praying at the altar in Sophanem",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 85
+              },
+              {
+                "type": "quest-complete",
+                "questId": "icthlarin_s_little_helper"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          },
+          {
+            "id": "steal_from_the_grand_gold_chest_in_the_final_room_of_pyramid_plunder",
+            "description": "Steal from the Grand Gold Chest in the final room of Pyramid Plunder",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 91
+              },
+              {
+                "type": "quest-complete",
+                "questId": "icthlarin_s_little_helper"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Desert_Diary"
+  },
+  {
+    "id": "falador",
+    "name": "Falador Diary",
+    "region": "Falador",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "climb_over_the_western_falador_wall",
+            "description": "Climb over the western Falador wall",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 5
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Easy"
+          },
+          {
+            "id": "find_out_what_your_family_crest_is_from_sir_renitee",
+            "description": "Find out what your family crest is from Sir Renitee",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 16
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Easy"
+          },
+          {
+            "id": "smith_some_blurite_limbs_on_doric_s_anvil",
+            "description": "Smith some Blurite limbs on Doric's anvil",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 10
+              },
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 13
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_knight_s_sword"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "doric_s_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "squeeze_through_the_crevice_in_the_dwarven_mines",
+            "description": "Squeeze through the crevice in the Dwarven Mines",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 42
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "craft_a_fruit_basket_on_the_falador_farm_loom",
+            "description": "Craft a Fruit basket on the Falador farm loom",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 36
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "mine_some_gold_ore_at_the_crafting_guild",
+            "description": "Mine some Gold ore at the Crafting Guild",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 40
+              },
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "pray_at_the_altar_of_guthix_in_taverley_whilst_wearing_full_initiate_armour",
+            "description": "Pray at the Altar of Guthix in Taverley whilst wearing full Initiate armour",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 20
+              },
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 10
+              },
+              {
+                "type": "quest-complete",
+                "questId": "recruitment_drive"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "place_a_scarecrow_in_the_falador_farm_patch",
+            "description": "Place a Scarecrow in the Falador farm patch",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 23
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "chop_and_burn_some_willow_logs_in_taverley",
+            "description": "Chop and burn some Willow logs in Taverley",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 30
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "light_a_bullseye_lantern_at_the_chemist_s_in_rimmington",
+            "description": "Light a Bullseye lantern at the Chemist's in Rimmington",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 49
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "telegrab_some_wine_of_zamorak_at_the_chaos_temple_by_the_wilderness",
+            "description": "Telegrab some Wine of Zamorak at the Chaos Temple by the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 33
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "teleport_to_falador",
+            "description": "Teleport to Falador",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 37
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "kill_a_mogre_at_mudskipper_point",
+            "description": "Kill a Mogre at Mudskipper Point",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 32
+              },
+              {
+                "type": "quest-complete",
+                "questId": "skippy_and_the_mogres"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          },
+          {
+            "id": "pickpocket_a_falador_guard",
+            "description": "Pickpocket a Falador guard",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_falador_rooftop_agility_course",
+            "description": "Complete a lap of the Falador Rooftop Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "enter_the_warriors_guild",
+            "description": "Enter the Warriors' Guild",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "attack",
+                "level": 32
+              },
+              {
+                "type": "any-of",
+                "requirements": [
+                  {
+                    "type": "combined-skill-level",
+                    "skills": ["attack", "strength"],
+                    "totalLevel": 130
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "attack",
+                    "level": 99
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "strength",
+                    "level": 99
+                  }
+                ]
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "change_your_family_crest_to_the_saradomin_symbol",
+            "description": "Change your family crest to the Saradomin symbol",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 16
+              },
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 70
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "recharge_your_prayer_in_port_sarim_church_while_wearing_full_proselyte",
+            "description": "Recharge your prayer in Port Sarim church while wearing full Proselyte",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 30
+              },
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 20
+              },
+              {
+                "type": "quest-complete",
+                "questId": "slug_menace"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "equip_a_dwarven_helmet_within_the_dwarven_mines",
+            "description": "Equip a Dwarven helmet within the Dwarven mines",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "grim_tales"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "enter_the_mining_guild_while_wearing_a_prospector_helmet",
+            "description": "Enter the Mining Guild while wearing a prospector helmet .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "recharge_your_prayer_in_port_sarim_church_while_wearing_full_proselyte_armour",
+            "description": "Recharge your prayer in Port Sarim church while wearing full Proselyte armour",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 20
+              },
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 30
+              },
+              {
+                "type": "quest-complete",
+                "questId": "recruitment_drive"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "craft_140_mind_runes_simultaneously",
+            "description": "Craft 140 Mind runes simultaneously",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 56
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "kill_a_skeletal_wyvern_in_the_asgarnia_ice_dungeon",
+            "description": "Kill a Skeletal wyvern in the Asgarnia Ice Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 72
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          },
+          {
+            "id": "crack_a_wall_safe_within_the_rogues_den",
+            "description": "Crack a wall safe within the Rogues' Den",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "jump_over_the_strange_floor_in_taverley_dungeon",
+            "description": "Jump over the strange floor in Taverley Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 80
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Elite"
+          },
+          {
+            "id": "find_at_least_3_magic_roots_at_once_when_digging_up_your_magic_tree_in_falador",
+            "description": "Find at least 3 Magic roots at once when digging up your Magic tree in Falador",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 91
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Elite"
+          },
+          {
+            "id": "mix_a_saradomin_brew_in_falador_east_bank",
+            "description": "Mix a Saradomin brew in Falador east bank",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 81
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Elite"
+          },
+          {
+            "id": "craft_252_air_runes_at_once",
+            "description": "Craft 252 Air runes at once",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 88
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Falador_Diary"
+  },
+  {
+    "id": "fremennik",
+    "name": "Fremennik Diary",
+    "region": "Fremennik",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "craft_a_tiara_from_scratch_in_rellekka",
+            "description": "Craft a Tiara from scratch in Rellekka",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 23
+              },
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 20
+              },
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Easy"
+          },
+          {
+            "id": "chop_and_burn_some_oak_logs_in_the_fremennik_province",
+            "description": "Chop and burn some Oak logs in the Fremennik Province",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 15
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Easy"
+          },
+          {
+            "id": "catch_a_cerulean_twitch",
+            "description": "Catch a Cerulean twitch",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 11
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Easy"
+          },
+          {
+            "id": "steal_from_the_keldagrim_crafting_or_baker_s_stall",
+            "description": "Steal from the Keldagrim crafting or baker's stall",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 5
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_giant_dwarf"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "pick_up_your_pet_rock_from_your_poh_menagerie",
+            "description": "Pick up your Pet rock from your POH Menagerie",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 37
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_trials"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          },
+          {
+            "id": "catch_a_snowy_knight",
+            "description": "Catch a Snowy knight",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 35
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          },
+          {
+            "id": "mine_some_coal_in_rellekka",
+            "description": "Mine some Coal in Rellekka",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          },
+          {
+            "id": "mine_some_gold_at_the_arzinian_mine",
+            "description": "Mine some Gold at the Arzinian Mine",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "between_a_rock"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          },
+          {
+            "id": "slay_a_brine_rat",
+            "description": "Slay a Brine rat",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 47
+              },
+              {
+                "type": "quest-complete",
+                "questId": "olaf_s_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          },
+          {
+            "id": "steal_from_the_rellekka_fish_stalls",
+            "description": "Steal from the Rellekka Fish stalls",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 42
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_trials"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "mix_a_super_defence_potion_in_the_fremennik_province",
+            "description": "Mix a Super defence potion in the Fremennik Province",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 66
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "catch_a_sabre_toothed_kyatt",
+            "description": "Catch a sabre-toothed kyatt",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 55
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "teleport_to_trollheim",
+            "description": "Teleport to Trollheim",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 61
+              },
+              {
+                "type": "quest-complete",
+                "questId": "eadgar_s_ruse"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "teleport_to_waterbirth_island",
+            "description": "Teleport to Waterbirth Island",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 72
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lunar_diplomacy"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "mine_5_adamantite_ores_on_jatizso",
+            "description": "Mine 5 Adamantite ores on Jatizso",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_isles"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "obtain_the_blast_furnace_foreman_s_permission_to_use_the_blast_furnace_for_free",
+            "description": "Obtain the Blast Furnace Foreman 's permission to use the Blast Furnace for free",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 60
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_giant_dwarf"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "steal_from_the_keldagrim_gem_stall",
+            "description": "Steal from the Keldagrim gem stall",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 75
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_giant_dwarf"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          },
+          {
+            "id": "craft_a_fremennik_shield_on_neitiznot",
+            "description": "Craft a Fremennik shield on Neitiznot",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 56
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_isles"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "kill_the_generals_of_armadyl_bandos_saradomin_and_zamorak_in_the_god_wars_dungeon",
+            "description": "Kill the generals of Armadyl , Bandos , Saradomin , and Zamorak in the God Wars Dungeon .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "hitpoints",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "ranged",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "troll_stronghold"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+          },
+          {
+            "id": "complete_a_lap_of_the_rellekka_rooftop_course",
+            "description": "Complete a lap of the Rellekka Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 80
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_trials"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+          },
+          {
+            "id": "craft_a_dragonstone_amulet_in_the_neitiznot_furnace",
+            "description": "Craft a Dragonstone amulet in the Neitiznot furnace",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 80
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_fremennik_isles"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+          },
+          {
+            "id": "craft_56_astral_runes_at_once",
+            "description": "Craft 56 Astral runes at once",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 82
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lunar_diplomacy"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+          },
+          {
+            "id": "slay_a_spiritual_mage_within_the_god_wars_dungeon",
+            "description": "Slay a Spiritual mage within the God Wars Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 83
+              },
+              {
+                "type": "any-of",
+                "requirements": [
+                  {
+                    "type": "skill-level",
+                    "skill": "agility",
+                    "level": 60
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "strength",
+                    "level": 60
+                  }
+                ]
+              },
+              {
+                "type": "quest-complete",
+                "questId": "troll_stronghold"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Fremennik_Diary"
+  },
+  {
+    "id": "kandarin",
+    "name": "Kandarin Diary",
+    "region": "Kandarin",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "cross_the_coal_trucks_log_balance",
+            "description": "Cross the Coal Trucks log balance",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Easy"
+          },
+          {
+            "id": "plant_jute_seeds_in_the_farming_patch_north_of_mcgrubor_s_wood",
+            "description": "Plant Jute seeds in the farming patch north of McGrubor's Wood",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 13
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Easy"
+          },
+          {
+            "id": "catch_a_mackerel_at_catherby",
+            "description": "Catch a Mackerel at Catherby",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 16
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_barbarian_agility_course",
+            "description": "Complete a lap of the Barbarian Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 35
+              },
+              {
+                "type": "quest-complete",
+                "questId": "alfred_grimhand_s_barcrawl"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "catch_and_cook_a_bass_in_catherby",
+            "description": "Catch and cook a Bass in Catherby",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 43
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 46
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "pick_some_limpwurt_root_from_the_farming_patch_in_catherby",
+            "description": "Pick some Limpwurt root from the farming patch in Catherby",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 26
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "string_a_maple_shortbow_in_seers_village_bank",
+            "description": "String a Maple shortbow in Seers' Village bank",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "create_a_superantipoison_potion_from_scratch_in_the_seers_catherby_area",
+            "description": "Create a Superantipoison potion from scratch in the Seers' / Catherby area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 48
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "teleport_to_camelot",
+            "description": "Teleport to Camelot",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 45
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "mine_some_coal_near_the_coal_trucks",
+            "description": "Mine some Coal near the Coal trucks",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "enter_the_ranging_guild",
+            "description": "Enter the Ranging Guild",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "ranged",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          },
+          {
+            "id": "steal_from_the_chest_in_hemenster",
+            "description": "Steal from the chest in Hemenster",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 47
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "catch_a_leaping_sturgeon",
+            "description": "Catch a Leaping sturgeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 45
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 45
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_fishing"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "complete_a_lap_of_the_seers_village_rooftop_course",
+            "description": "Complete a lap of the Seers' Village Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "have_the_seers_estate_agent_decorate_your_house_with_fancy_stone",
+            "description": "Have the Seers' Estate agent decorate your house with Fancy Stone",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "create_a_yew_longbow_from_scratch_around_seers_village",
+            "description": "Create a Yew longbow from scratch around Seers' Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 10
+              },
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "purchase_and_equip_a_granite_body_from_barbarian_assault",
+            "description": "Purchase and equip a Granite body from Barbarian Assault",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "enter_the_seers_village_courthouse_with_piety_turned_on",
+            "description": "Enter the Seers' Village courthouse with Piety turned on",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "king_s_ransom"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "camelot_training_room"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "burn_some_maple_logs_with_a_bow_in_seers_village",
+            "description": "Burn some Maple logs with a bow in Seers' Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_firemaking"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "charge_a_water_orb",
+            "description": "Charge a water orb",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 56
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          },
+          {
+            "id": "smith_an_adamant_spear_at_otto_s_grotto",
+            "description": "Smith an Adamant spear at Otto's Grotto",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 75
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_smithing"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "mix_a_stamina_mix_on_top_of_the_seers_village_bank",
+            "description": "Mix a Stamina mix on top of the Seers' Village bank",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 60
+              },
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 86
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_herblore"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          },
+          {
+            "id": "fish_and_cook_5_sharks_in_catherby_using_the_cooking_gauntlets",
+            "description": "Fish and cook 5 Sharks in Catherby using the Cooking gauntlets",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 80
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 76
+              },
+              {
+                "type": "quest-complete",
+                "questId": "family_crest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          },
+          {
+            "id": "construct_a_pyre_ship_from_magic_logs",
+            "description": "Construct a pyre ship from Magic logs",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 85
+              },
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 85
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_firemaking"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          },
+          {
+            "id": "pick_some_dwarf_weed_from_the_herb_patch_at_catherby",
+            "description": "Pick some Dwarf weed from the herb patch at Catherby",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 79
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          },
+          {
+            "id": "teleport_to_catherby",
+            "description": "Teleport to Catherby",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 87
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lunar_diplomacy"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          },
+          {
+            "id": "smith_a_rune_hasta_at_otto_s_grotto",
+            "description": "Smith a Rune hasta at Otto's Grotto",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 90
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_smithing"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Kandarin_Diary"
+  },
+  {
+    "id": "karamja",
+    "name": "Karamja Diary",
+    "region": "Karamja",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "use_the_rope_swing_to_travel_to_the_moss_giant_island_north_west_of_karamja",
+            "description": "Use the rope swing to travel to the Moss Giant Island north-west of Karamja",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 10
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Easy"
+          },
+          {
+            "id": "explore_cairn_island_to_the_west_of_karamja",
+            "description": "Explore Cairn Island to the west of Karamja",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Easy"
+          },
+          {
+            "id": "mine_some_gold_from_the_rocks_on_the_north_west_peninsula_of_karamja",
+            "description": "Mine some Gold from the rocks on the north-west peninsula of Karamja",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "cross_the_lava_using_the_stepping_stones_within_brimhaven_dungeon",
+            "description": "Cross the lava using the stepping stones within Brimhaven Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 12
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "cook_a_spider_on_a_stick",
+            "description": "Cook a Spider on a stick",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 16
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "grow_a_healthy_fruit_tree_in_the_patch_near_brimhaven",
+            "description": "Grow a healthy Fruit tree in the patch near Brimhaven",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 27
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "catch_a_karambwan",
+            "description": "Catch a Karambwan",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "tai_bwo_wannai_trio"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "trap_a_horned_graahk",
+            "description": "Trap a Horned Graahk",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 41
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "mine_a_red_topaz_from_a_gem_rock",
+            "description": "Mine a Red topaz from a Gem rock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "shilo_village"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "jungle_potion"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "earn_100_favour_in_the_tai_bwo_wannai_cleanup_minigame",
+            "description": "Earn 100% favour in the Tai Bwo Wannai Cleanup minigame",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 10
+              },
+              {
+                "type": "quest-complete",
+                "questId": "jungle_potion"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "chop_the_vines_to_gain_deeper_access_to_brimhaven_dungeon",
+            "description": "Chop the vines to gain deeper access to Brimhaven Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 10
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "climb_the_stairs_within_brimhaven_dungeon",
+            "description": "Climb the stairs within Brimhaven Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 10
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "cut_a_log_from_a_teak",
+            "description": "Cut a log from a Teak",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 35
+              },
+              {
+                "type": "quest-complete",
+                "questId": "jungle_potion"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "legends_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          },
+          {
+            "id": "cut_a_log_from_a_mahogany",
+            "description": "Cut a log from a Mahogany",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "kill_a_deathwing_in_the_dungeon_under_the_kharazi_jungle",
+            "description": "Kill a Deathwing in the dungeon under the Kharazi Jungle",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 15
+              },
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 52
+              },
+              {
+                "type": "quest-complete",
+                "questId": "legends_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+          },
+          {
+            "id": "cook_a_karambwan_thoroughly",
+            "description": "Cook a Karambwan thoroughly",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 30
+              },
+              {
+                "type": "quest-complete",
+                "questId": "tai_bwo_wannai_trio"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+          },
+          {
+            "id": "craft_some_nature_runes",
+            "description": "Craft some Nature runes",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 44
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+          },
+          {
+            "id": "be_assigned_a_slayer_task_by_the_slayer_master_in_shilo_village",
+            "description": "Be assigned a Slayer task by the Slayer Master in Shilo Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 50
+              },
+              {
+                "type": "combat-level",
+                "level": 100
+              },
+              {
+                "type": "quest-complete",
+                "questId": "shilo_village"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+          },
+          {
+            "id": "collect_5_palm_leaves",
+            "description": "Collect 5 Palm leaves",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 15
+              },
+              {
+                "type": "quest-complete",
+                "questId": "legends_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "check_the_health_of_a_palm_tree_in_brimhaven",
+            "description": "Check the health of a Palm tree in Brimhaven",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Elite"
+          },
+          {
+            "id": "check_the_health_of_your_calquat_tree_patch",
+            "description": "Check the health of your Calquat tree patch",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 72
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Elite"
+          },
+          {
+            "id": "create_an_anti_venom_potion_whilst_standing_in_the_horseshoe_mine",
+            "description": "Create an Anti-venom potion whilst standing in the Horseshoe mine",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 87
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Elite"
+          },
+          {
+            "id": "craft_56_nature_runes_at_once",
+            "description": "Craft 56 Nature runes at once",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 91
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Karamja_Diary"
+  },
+  {
+    "id": "kourend_and_kebos",
+    "name": "Kourend & Kebos Diary",
+    "region": "Kourend & Kebos",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "enter_your_player_owned_house_from_hosidius",
+            "description": "Enter your player-owned house from Hosidius .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 25
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+          },
+          {
+            "id": "fish_a_trout_from_the_river_molch",
+            "description": "Fish a Trout from the River Molch .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+          },
+          {
+            "id": "create_a_strength_potion_in_the_the_deeper_lode_pub",
+            "description": "Create a strength potion in the The Deeper Lode pub.",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 12
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+          },
+          {
+            "id": "mine_some_iron_ore_at_the_mount_karuulm_mine",
+            "description": "Mine some iron ore at the Mount Karuulm mine .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+          },
+          {
+            "id": "steal_from_a_hosidius_food_stall",
+            "description": "Steal from a Hosidius Food Stall .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 25
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "use_the_boulder_leap_shortcut_in_the_dense_essence_mine",
+            "description": "Use the boulder leap shortcut in the dense essence mine .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 49
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "repair_a_crane_within_port_piscarilius",
+            "description": "Repair a crane within Port Piscarilius .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "enter_the_farming_guild",
+            "description": "Enter the Farming Guild .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 45
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "subdue_the_wintertodt",
+            "description": "Subdue the Wintertodt .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "catch_a_bluegill_on_lake_molch",
+            "description": "Catch a Bluegill on Lake Molch .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 43
+              },
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 35
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "catch_a_chinchompa_in_the_kourend_woodland",
+            "description": "Catch a chinchompa in the Kourend Woodland .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 53
+              },
+              {
+                "type": "quest-complete",
+                "questId": "eagles_peak"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "mine_some_volcanic_sulphur",
+            "description": "Mine some volcanic sulphur .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 42
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          },
+          {
+            "id": "chop_some_mahogany_logs_north_of_the_farming_guild",
+            "description": "Chop some mahogany logs north of the Farming Guild .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "plant_some_logavano_seeds_at_the_tithe_farm",
+            "description": "Plant some Logavano seeds at the Tithe Farm .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 74
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "cast_monster_examine_on_a_mountain_troll_south_of_mount_quidamortem",
+            "description": "Cast Monster Examine on a mountain troll south of Mount Quidamortem .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 66
+              },
+              {
+                "type": "quest-complete",
+                "questId": "dream_mentor"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "mine_some_lovakite_ore",
+            "description": "Mine some Lovakite ore .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 65
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "kill_a_wyrm_in_the_karuulm_slayer_dungeon",
+            "description": "Kill a wyrm in the Karuulm Slayer Dungeon .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 62
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "smelt_an_adamantite_bar_in_the_forsaken_tower",
+            "description": "Smelt an adamantite bar in The Forsaken Tower .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_forsaken_tower"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "deliver_an_artefact_to_captain_khaled",
+            "description": "Deliver an artefact to Captain Khaled .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 49
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          },
+          {
+            "id": "enter_the_woodcutting_guild",
+            "description": "Enter the Woodcutting Guild .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "catch_an_anglerfish_and_cook_it_whilst_in_great_kourend",
+            "description": "Catch an anglerfish and cook it whilst in Great Kourend .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 84
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 82
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "craft_one_or_more_blood_runes_from_dark_essence_fragments",
+            "description": "Craft one or more blood runes from Dark essence fragments",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 38
+              },
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 38
+              },
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 77
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "create_your_own_battlestaff_from_scratch_within_the_farming_guild",
+            "description": "Create your own battlestaff from scratch within the Farming Guild .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 85
+              },
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "create_an_ape_atoll_teleport_tablet",
+            "description": "Create an Ape Atoll teleport tablet .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 90
+              },
+              {
+                "type": "quest-complete",
+                "questId": "monkey_madness_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "craft_one_or_more_blood_runes",
+            "description": "Craft one or more blood runes .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 38
+              },
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 38
+              },
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 77
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "kill_a_hydra_in_the_karuulm_slayer_dungeon",
+            "description": "Kill a hydra in the Karuulm Slayer Dungeon .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 95
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          },
+          {
+            "id": "chop_some_redwood_logs",
+            "description": "Chop some redwood logs .",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 90
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Kourend_%26_Kebos_Diary"
+  },
+  {
+    "id": "lumbridge_and_draynor",
+    "name": "Lumbridge & Draynor Diary",
+    "region": "Lumbridge & Draynor",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_draynor_village_rooftop_course",
+            "description": "Complete a lap of the Draynor Village Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 10
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          },
+          {
+            "id": "chop_and_burn_some_oak_logs_in_lumbridge",
+            "description": "Chop and burn some Oak logs in Lumbridge",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 15
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          },
+          {
+            "id": "catch_some_anchovies_in_al_kharid",
+            "description": "Catch some Anchovies in Al-Kharid",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          },
+          {
+            "id": "mine_some_iron_ore_at_the_al_kharid_mine",
+            "description": "Mine some Iron ore at the Al-Kharid mine",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          },
+          {
+            "id": "craft_some_water_runes",
+            "description": "Craft some Water runes",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 5
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          },
+          {
+            "id": "slay_a_cave_bug_in_the_lumbridge_swamp_caves",
+            "description": "Slay a Cave bug in the Lumbridge Swamp Caves",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 7
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_al_kharid_rooftop_course",
+            "description": "Complete a lap of the Al Kharid Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "craft_a_coif_in_the_lumbridge_cow_pen_eastern_cows",
+            "description": "Craft a Coif in the Lumbridge cow pen (eastern cows)",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 38
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "catch_some_salmon_in_lumbridge",
+            "description": "Catch some Salmon in Lumbridge",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "catch_an_essence_or_eclectic_impling_in_puro_puro",
+            "description": "Catch an Essence or Eclectic impling in Puro-Puro",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 42
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "cast_the_lumbridge_teleport_spell",
+            "description": "Cast the Lumbridge Teleport spell",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 31
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "purchase_an_upgraded_device_from_ava",
+            "description": "Purchase an upgraded device from Ava",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "ranged",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "animal_magnetism"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "craft_some_lava_runes_at_the_fire_altar_in_al_kharid",
+            "description": "Craft some Lava runes at the Fire Altar in Al-Kharid",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 23
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "pickpocket_martin_the_master_gardener",
+            "description": "Pickpocket Martin the Master Gardener",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 38
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          },
+          {
+            "id": "chop_some_willow_logs_in_draynor_village",
+            "description": "Chop some Willow logs in Draynor Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "squeeze_past_the_jutting_wall_on_your_way_to_the_cosmic_altar",
+            "description": "Squeeze past the jutting wall on your way to the Cosmic Altar",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 46
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lost_city"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "craft_string_and_enchant_an_amulet_of_power_in_lumbridge",
+            "description": "Craft, string, and enchant an Amulet of power in Lumbridge",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 57
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "pick_some_belladonna_from_the_farming_patch_at_draynor_manor",
+            "description": "Pick some Belladonna from the farming patch at Draynor Manor",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 63
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "light_your_mining_helmet_in_the_lumbridge_castle_basement",
+            "description": "Light your Mining helmet in the Lumbridge Castle basement",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_lost_tribe"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "craft_string_and_enchant_an_amulet_of_power_in_lumbridge_2",
+            "description": "Craft , string , and enchant an Amulet of power in Lumbridge",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 57
+              },
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 70
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "cast_bones_to_peaches_in_al_kharid_palace",
+            "description": "Cast Bones to Peaches in Al-Kharid Palace",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 60
+              },
+              {
+                "type": "quest-complete",
+                "questId": "mage_training_arena"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "recharge_your_prayer_at_the_emir_s_arena_with_smite_activated",
+            "description": "Recharge your prayer at the Emir's Arena with Smite activated",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 52
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "craft_56_cosmic_runes_simultaneously",
+            "description": "Craft 56 Cosmic runes simultaneously",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 59
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lost_city"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          },
+          {
+            "id": "travel_from_lumbridge_to_edgeville_on_a_waka_canoe",
+            "description": "Travel from Lumbridge to Edgeville on a Waka canoe",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 57
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "grapple_across_a_pylon_on_the_dorgesh_kaan_agility_course",
+            "description": "Grapple across a pylon on the Dorgesh-Kaan Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "ranged",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "death_to_the_dorgeshuun"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+          },
+          {
+            "id": "craft_140_or_more_water_runes_at_once",
+            "description": "Craft 140 or more Water runes at once",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 76
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+          },
+          {
+            "id": "smith_an_adamant_platebody_down_draynor_sewer",
+            "description": "Smith an Adamant platebody down Draynor sewer",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 88
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+          },
+          {
+            "id": "steal_from_a_dorgesh_kaan_rich_chest",
+            "description": "Steal from a Dorgesh-Kaan rich chest",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 78
+              },
+              {
+                "type": "quest-complete",
+                "questId": "death_to_the_dorgeshuun"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+          },
+          {
+            "id": "chop_some_magic_logs_at_the_mage_training_arena",
+            "description": "Chop some Magic logs at the Mage Training Arena",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary"
+  },
+  {
+    "id": "morytania",
+    "name": "Morytania Diary",
+    "region": "Morytania",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "cook_a_thin_snail_on_the_port_phasmatys_range",
+            "description": "Cook a Thin snail on the Port Phasmatys range",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 12
+              },
+              {
+                "type": "quest-complete",
+                "questId": "ghosts_ahoy"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Easy"
+          },
+          {
+            "id": "craft_any_snelm_from_scratch_in_morytania",
+            "description": "Craft any Snelm from scratch in Morytania",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Easy"
+          },
+          {
+            "id": "place_a_scarecrow_in_the_morytania_flower_patch",
+            "description": "Place a Scarecrow in the Morytania flower patch",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 23
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Easy"
+          },
+          {
+            "id": "kill_a_banshee_in_the_slayer_tower",
+            "description": "Kill a Banshee in the Slayer Tower",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_canifis_rooftop_agility_course",
+            "description": "Complete a lap of the Canifis Rooftop Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 40
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "complete_a_game_of_trouble_brewing",
+            "description": "Complete a game of Trouble Brewing",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "cabin_fever"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "mix_a_guthix_balance_potion_while_in_morytania_not_upstairs_at_ectofuntus",
+            "description": "Mix a Guthix balance potion while in Morytania (NOT upstairs at Ectofuntus)",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 22
+              },
+              {
+                "type": "quest-complete",
+                "questId": "in_aid_of_the_myreque"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "catch_a_swamp_lizard",
+            "description": "Catch a Swamp lizard",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 29
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "kill_a_terror_dog",
+            "description": "Kill a Terror dog",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "haunted_mine"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "kill_a_fever_spider_on_braindeath_island",
+            "description": "Kill a Fever spider on Braindeath Island",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 42
+              },
+              {
+                "type": "quest-complete",
+                "questId": "rum_deal"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "make_a_batch_of_steel_cannonballs_at_the_port_phasmatys_furnace",
+            "description": "Make a batch of steel cannonballs at the Port Phasmatys furnace",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 35
+              },
+              {
+                "type": "quest-complete",
+                "questId": "ghosts_ahoy"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "dwarf_cannon"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          },
+          {
+            "id": "obtain_some_bark_from_a_hollow_tree",
+            "description": "Obtain some Bark from a Hollow tree",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 45
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "use_the_shortcut_to_get_to_the_bridge_over_the_salve",
+            "description": "Use the shortcut to get to the bridge over the Salve",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 65
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "climb_the_advanced_spike_chain_within_the_slayer_tower",
+            "description": "Climb the advanced spike chain within the Slayer Tower",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 71
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "enter_the_kharyrll_portal_in_your_poh",
+            "description": "Enter the Kharyrll portal in your POH",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 66
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "pray_at_the_altar_of_nature_with_piety_activated",
+            "description": "Pray at the Altar of Nature with Piety activated",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 70
+              },
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "nature_spirit"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "king_s_ransom"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "camelot_training_room"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "harvest_some_watermelon_from_the_allotment_patch_on_harmony_island",
+            "description": "Harvest some Watermelon from the allotment patch on Harmony Island",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 47
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_great_brain_robbery"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "harvest_some_bittercap_mushrooms_from_the_patch_in_canifis",
+            "description": "Harvest some Bittercap mushrooms from the patch in Canifis",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 53
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "chop_and_burn_some_mahogany_logs_on_mos_le_harmless",
+            "description": "Chop and burn some Mahogany logs on Mos Le'Harmless",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "cabin_fever"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "mine_some_mithril_ore_in_the_abandoned_mine",
+            "description": "Mine some Mithril ore in the Abandoned Mine",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 55
+              },
+              {
+                "type": "quest-complete",
+                "questId": "haunted_mine"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          },
+          {
+            "id": "kill_a_cave_horror",
+            "description": "Kill a Cave horror",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 58
+              },
+              {
+                "type": "quest-complete",
+                "questId": "cabin_fever"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "loot_the_barrows_chest_while_wearing_any_complete_barrows_set",
+            "description": "Loot the Barrows chest while wearing any complete Barrows set",
+            "requirements": [
+              {
+                "type": "any-of",
+                "requirements": [
+                  {
+                    "type": "skill-level",
+                    "skill": "attack",
+                    "level": 70
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "ranged",
+                    "level": 70
+                  }
+                ]
+              },
+              {
+                "type": "skill-level",
+                "skill": "defence",
+                "level": 70
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          },
+          {
+            "id": "craft_a_black_dragonhide_body_in_canifis_bank",
+            "description": "Craft a Black dragonhide body in Canifis bank",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 84
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          },
+          {
+            "id": "cremate_any_shade_remains_on_a_magic_pyre",
+            "description": "Cremate any Shade remains on a Magic pyre",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 80
+              },
+              {
+                "type": "quest-complete",
+                "questId": "shades_of_mort_ton"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          },
+          {
+            "id": "catch_a_shark_in_burgh_de_rott_with_your_bare_hands",
+            "description": "Catch a Shark in Burgh de Rott with your bare hands",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 96
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 76
+              },
+              {
+                "type": "quest-complete",
+                "questId": "in_aid_of_the_myreque"
+              },
+              {
+                "type": "quest-complete",
+                "questId": "barbarian_fishing"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          },
+          {
+            "id": "fertilise_the_morytania_herb_patch_using_lunar_spells_fertile_soil",
+            "description": "Fertilise the Morytania herb patch using Lunar spells ( Fertile Soil )",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 83
+              },
+              {
+                "type": "quest-complete",
+                "questId": "lunar_diplomacy"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          },
+          {
+            "id": "kill_an_abyssal_demon_in_the_slayer_tower",
+            "description": "Kill an Abyssal demon in the Slayer Tower",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 85
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Morytania_Diary"
+  },
+  {
+    "id": "varrock",
+    "name": "Varrock Diary",
+    "region": "Varrock",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "jump_over_the_fence_south_of_varrock",
+            "description": "Jump over the fence south of Varrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 13
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          },
+          {
+            "id": "spin_a_bowl_on_the_pottery_wheel_and_fire_in_the_oven_in_barbarian_village",
+            "description": "Spin a Bowl on the pottery wheel and fire in the oven in Barbarian Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "crafting",
+                "level": 8
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          },
+          {
+            "id": "catch_some_trout_in_the_river_lum_at_barbarian_village",
+            "description": "Catch some Trout in the River Lum at Barbarian Village",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          },
+          {
+            "id": "mine_some_iron_in_the_south_east_mining_patch_near_varrock",
+            "description": "Mine some Iron in the south-east mining patch near Varrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          },
+          {
+            "id": "craft_some_earth_runes",
+            "description": "Craft some Earth runes",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 9
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          },
+          {
+            "id": "steal_from_the_tea_stall_in_varrock",
+            "description": "Steal from the Tea stall in Varrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 5
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_varrock_rooftop_course",
+            "description": "Complete a lap of the Varrock Rooftop Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 30
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Medium"
+          },
+          {
+            "id": "use_the_balloon_to_travel_from_varrock",
+            "description": "Use the balloon to travel from Varrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "enlightened_journey"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Medium"
+          },
+          {
+            "id": "cast_the_teleport_to_varrock_spell",
+            "description": "Cast the Teleport to Varrock spell",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 25
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Medium"
+          },
+          {
+            "id": "teleport_to_the_digsite_using_a_digsite_pendant",
+            "description": "Teleport to the Digsite using a Digsite pendant",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 49
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_dig_site"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "squeeze_through_the_obstacle_pipe_in_edgeville_dungeon",
+            "description": "Squeeze through the obstacle pipe in Edgeville Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 51
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "have_the_varrock_estate_agent_decorate_your_house_with_fancy_stone",
+            "description": "Have the Varrock Estate agent decorate your house with Fancy Stone",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 50
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "collect_at_least_2_yew_roots_from_the_tree_patch_in_varrock_palace",
+            "description": "Collect at least 2 Yew roots from the tree patch in Varrock Palace",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 68
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "chop_some_yew_logs_in_varrock_and_burn_them_at_the_top_of_the_varrock_church",
+            "description": "Chop some Yew logs in Varrock and burn them at the top of the Varrock church",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 60
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "trade_furs_with_the_fancy_dress_seller_for_a_spottier_cape_and_equip_it",
+            "description": "Trade furs with the Fancy Dress Seller for a Spottier cape and equip it",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 66
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "teleport_to_paddewwa",
+            "description": "Teleport to Paddewwa",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 54
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "pray_at_the_altar_in_varrock_palace_with_smite_active",
+            "description": "Pray at the altar in Varrock Palace with Smite active",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "prayer",
+                "level": 52
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "make_a_waka_canoe_near_edgeville",
+            "description": "Make a Waka canoe near Edgeville",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 57
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          },
+          {
+            "id": "collect_at_least_2_yew_roots_from_the_tree_patch_in_varrock_palace_2",
+            "description": "Collect at least 2 Yew roots from the Tree patch in Varrock Palace",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 60
+              },
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "bake_a_summer_pie_in_the_cooking_guild",
+            "description": "Bake a Summer pie in the Cooking Guild",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 95
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+          },
+          {
+            "id": "smith_and_fletch_10_rune_darts_within_varrock",
+            "description": "Smith and fletch 10 Rune darts within Varrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 81
+              },
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 89
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_tourist_trap"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+          },
+          {
+            "id": "create_a_super_combat_potion_in_varrock_west_bank",
+            "description": "Create a Super combat potion in Varrock west bank",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "herblore",
+                "level": 90
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+          },
+          {
+            "id": "use_lunar_magic_to_make_20_mahogany_planks_at_the_lumber_yard_plank_make",
+            "description": "Use Lunar magic to make 20 Mahogany planks at the Lumber Yard ( Plank Make )",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 86
+              },
+              {
+                "type": "quest-complete",
+                "questId": "dream_mentor"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+          },
+          {
+            "id": "craft_100_or_more_earth_runes_simultaneously",
+            "description": "Craft 100 or more Earth runes simultaneously",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "runecraft",
+                "level": 78
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Varrock_Diary"
+  },
+  {
+    "id": "western_provinces",
+    "name": "Western Provinces Diary",
+    "region": "Western Provinces",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "fletch_an_oak_shortbow_in_the_gnome_stronghold",
+            "description": "Fletch an Oak shortbow in the Gnome Stronghold",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 20
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Easy"
+          },
+          {
+            "id": "catch_a_copper_longtail",
+            "description": "Catch a Copper longtail",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 9
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Easy"
+          },
+          {
+            "id": "mine_some_iron_ore_near_piscatoris",
+            "description": "Mine some Iron ore near Piscatoris",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "take_the_agility_shortcut_from_the_grand_tree_to_otto_s_grotto",
+            "description": "Take the Agility shortcut from the Grand Tree to Otto's Grotto",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 37
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          },
+          {
+            "id": "make_a_chocolate_bomb_at_the_grand_tree",
+            "description": "Make a Chocolate bomb at the Grand Tree",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 42
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          },
+          {
+            "id": "chop_and_burn_some_teak_logs_on_ape_atoll",
+            "description": "Chop and burn some Teak logs on Ape Atoll",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 35
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 35
+              },
+              {
+                "type": "quest-complete",
+                "questId": "monkey_madness_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          },
+          {
+            "id": "fish_some_bass_on_ape_atoll",
+            "description": "Fish some Bass on Ape Atoll",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 46
+              },
+              {
+                "type": "quest-complete",
+                "questId": "monkey_madness_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          },
+          {
+            "id": "trap_a_spined_larupia",
+            "description": "Trap a Spined Larupia",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 31
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          },
+          {
+            "id": "mine_some_gold_ore_underneath_the_grand_tree",
+            "description": "Mine some Gold ore underneath the Grand Tree",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 40
+              },
+              {
+                "type": "quest-complete",
+                "questId": "the_grand_tree"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_ape_atoll_agility_course",
+            "description": "Complete a lap of the Ape Atoll Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 48
+              },
+              {
+                "type": "quest-complete",
+                "questId": "monkey_madness_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "kill_an_elf_with_a_crystal_bow",
+            "description": "Kill an Elf with a Crystal bow",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "ranged",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "roving_elves"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "build_an_isafdar_painting_in_your_poh_quest_hall",
+            "description": "Build an Isafdar painting in your POH Quest Hall",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "construction",
+                "level": 65
+              },
+              {
+                "type": "quest-complete",
+                "questId": "roving_elves"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "catch_and_cook_a_monkfish_in_piscatoris",
+            "description": "Catch and cook a Monkfish in Piscatoris",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 62
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 62
+              },
+              {
+                "type": "quest-complete",
+                "questId": "swan_song"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "check_the_health_of_your_palm_tree_in_lletya",
+            "description": "Check the health of your Palm tree in Lletya",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 68
+              },
+              {
+                "type": "quest-complete",
+                "questId": "mourning_s_end_part_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "chop_and_burn_some_mahogany_logs_on_ape_atoll",
+            "description": "Chop and burn some Mahogany logs on Ape Atoll",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 50
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "monkey_madness_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "catch_a_dashing_kebbit",
+            "description": "Catch a Dashing kebbit",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 69
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "teleport_to_ape_atoll",
+            "description": "Teleport to Ape Atoll",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 64
+              },
+              {
+                "type": "quest-complete",
+                "questId": "recipe_for_disaster"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "mine_some_adamantite_ore_in_tirannwn",
+            "description": "Mine some Adamantite ore in Tirannwn",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 70
+              },
+              {
+                "type": "quest-complete",
+                "questId": "regicide"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          },
+          {
+            "id": "pickpocket_a_gnome",
+            "description": "Pickpocket a Gnome",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "use_the_elven_overpass_advanced_cliffside_shortcut",
+            "description": "Use the Elven Overpass advanced cliffside shortcut",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 85
+              },
+              {
+                "type": "quest-complete",
+                "questId": "underground_pass"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+          },
+          {
+            "id": "have_prissy_scilla_protect_your_magic_tree",
+            "description": "Have Prissy Scilla protect your Magic tree",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "farming",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+          },
+          {
+            "id": "fletch_a_magic_longbow_in_the_elven_lands",
+            "description": "Fletch a Magic longbow in the Elven lands",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fletching",
+                "level": 85
+              },
+              {
+                "type": "quest-complete",
+                "questId": "regicide"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+          },
+          {
+            "id": "kill_the_thermonuclear_smoke_devil",
+            "description": "Kill the thermonuclear smoke devil",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 93
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+          },
+          {
+            "id": "pickpocket_an_elf",
+            "description": "Pickpocket an Elf",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 85
+              },
+              {
+                "type": "quest-complete",
+                "questId": "mourning_s_end_part_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary"
+  },
+  {
+    "id": "wilderness",
+    "name": "Wilderness Diary",
+    "region": "Wilderness",
+    "tiers": [
+      {
+        "tier": "easy",
+        "name": "Easy",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "kill_an_earth_warrior_in_the_wilderness_beneath_edgeville",
+            "description": "Kill an Earth warrior in the Wilderness beneath Edgeville",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Easy"
+          },
+          {
+            "id": "cast_low_alchemy_at_the_fountain_of_rune",
+            "description": "Cast Low Alchemy at the Fountain of Rune",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 21
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Easy"
+          },
+          {
+            "id": "mine_some_iron_ore_in_the_wilderness",
+            "description": "Mine some Iron ore in the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 15
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Easy"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Easy"
+      },
+      {
+        "tier": "medium",
+        "name": "Medium",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "complete_a_lap_of_the_wilderness_agility_course",
+            "description": "Complete a lap of the Wilderness Agility Course",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 52
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "enter_the_wilderness_god_wars_dungeon",
+            "description": "Enter the Wilderness God Wars Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 60
+              },
+              {
+                "type": "skill-level",
+                "skill": "strength",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "charge_an_earth_orb",
+            "description": "Charge an earth orb",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 60
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "mine_some_mithril_ore_in_the_wilderness",
+            "description": "Mine some Mithril ore in the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 55
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "kill_a_bloodveld_in_the_wilderness_god_wars_dungeon",
+            "description": "Kill a Bloodveld in the Wilderness God Wars Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 50
+              },
+              {
+                "type": "any-of",
+                "requirements": [
+                  {
+                    "type": "skill-level",
+                    "skill": "agility",
+                    "level": 60
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "strength",
+                    "level": 60
+                  }
+                ]
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "smith_a_gold_helmet_in_the_resource_area",
+            "description": "Smith a Gold helmet in the Resource Area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 50
+              },
+              {
+                "type": "quest-complete",
+                "questId": "between_a_rock"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          },
+          {
+            "id": "chop_some_yew_logs_from_an_ent",
+            "description": "Chop some Yew logs from an Ent",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 61
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Medium"
+      },
+      {
+        "tier": "hard",
+        "name": "Hard",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "take_the_agility_shortcut_from_trollheim_into_the_wilderness",
+            "description": "Take the Agility shortcut from Trollheim into the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 64
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "fish_some_raw_lava_eel_in_the_wilderness",
+            "description": "Fish some Raw lava eel in the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 53
+              },
+              {
+                "type": "quest-complete",
+                "questId": "heroes_quest"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "catch_a_black_salamander",
+            "description": "Catch a Black salamander",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "hunter",
+                "level": 67
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "cast_one_of_the_3_god_spells_against_another_player_in_the_wilderness",
+            "description": "Cast one of the 3 God spells against another player in the Wilderness",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 60
+              },
+              {
+                "type": "quest-complete",
+                "questId": "mage_arena"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "charge_an_air_orb",
+            "description": "Charge an air orb",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 66
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "kill_a_spiritual_warrior_in_the_wilderness_god_wars_dungeon",
+            "description": "Kill a Spiritual warrior in the Wilderness God Wars Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "slayer",
+                "level": 68
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          },
+          {
+            "id": "smith_an_adamant_scimitar_in_the_resource_area",
+            "description": "Smith an Adamant scimitar in the Resource Area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Hard"
+      },
+      {
+        "tier": "elite",
+        "name": "Elite",
+        "requirements": [],
+        "tasks": [
+          {
+            "id": "slay_a_spiritual_mage_within_the_wilderness_god_wars_dungeon",
+            "description": "Slay a Spiritual mage within the Wilderness God Wars Dungeon",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "agility",
+                "level": 60
+              },
+              {
+                "type": "any-of",
+                "requirements": [
+                  {
+                    "type": "skill-level",
+                    "skill": "strength",
+                    "level": 60
+                  },
+                  {
+                    "type": "skill-level",
+                    "skill": "slayer",
+                    "level": 83
+                  }
+                ]
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          },
+          {
+            "id": "fish_and_cook_a_dark_crab_in_the_resource_area",
+            "description": "Fish and cook a Dark crab in the Resource Area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "cooking",
+                "level": 90
+              },
+              {
+                "type": "skill-level",
+                "skill": "fishing",
+                "level": 85
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          },
+          {
+            "id": "cut_and_burn_some_magic_logs_in_the_resource_area",
+            "description": "Cut and burn some Magic logs in the Resource Area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "firemaking",
+                "level": 75
+              },
+              {
+                "type": "skill-level",
+                "skill": "woodcutting",
+                "level": 75
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          },
+          {
+            "id": "teleport_to_ghorrock",
+            "description": "Teleport to Ghorrock",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "magic",
+                "level": 96
+              },
+              {
+                "type": "quest-complete",
+                "questId": "desert_treasure_i"
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          },
+          {
+            "id": "smith_a_rune_scimitar_from_scratch_in_the_resource_area",
+            "description": "Smith a Rune scimitar from scratch in the Resource Area",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "mining",
+                "level": 85
+              },
+              {
+                "type": "skill-level",
+                "skill": "smithing",
+                "level": 90
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          },
+          {
+            "id": "steal_from_the_chest_rogues_castle",
+            "description": "Steal from the Chest (Rogues' Castle)",
+            "requirements": [
+              {
+                "type": "skill-level",
+                "skill": "thieving",
+                "level": 84
+              }
+            ],
+            "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+          }
+        ],
+        "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary#Elite"
+      }
+    ],
+    "wikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_Diary"
+  }
+]

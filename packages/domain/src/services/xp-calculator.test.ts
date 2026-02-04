@@ -4,9 +4,11 @@ import { getXpForLevel } from '../data/xp-table';
 
 import {
   calculateActionsNeeded,
+  calculateActionPlan,
   calculateNextMilestone,
   calculateXpFromActions,
   calculateXpToLevel,
+  calculateXpToTargetXp,
   estimateTimeToComplete,
   type XpAction,
 } from './xp-calculator';
@@ -74,6 +76,40 @@ describe('calculateXpToLevel', () => {
   it('should throw error for invalid target level', () => {
     expect(() => calculateXpToLevel(0, 0)).toThrow();
     expect(() => calculateXpToLevel(0, 100)).toThrow();
+  });
+});
+
+describe('calculateXpToTargetXp', () => {
+  it('should calculate XP needed to reach a target XP within same level', () => {
+    const targetXp = 40;
+    const result = calculateXpToTargetXp(0, targetXp);
+
+    expect(result.currentLevel).toBe(1);
+    expect(result.targetLevel).toBe(1);
+    expect(result.xpRemaining).toBe(40);
+    expect(result.progressPercentage).toBe(0);
+  });
+
+  it('should calculate XP needed to reach a higher target XP', () => {
+    const targetXp = getXpForLevel(10);
+    const result = calculateXpToTargetXp(0, targetXp);
+
+    expect(result.targetLevel).toBe(10);
+    expect(result.xpRemaining).toBe(targetXp);
+    expect(result.levelsRemaining).toBe(9);
+  });
+
+  it('should return 0 remaining if already at target XP', () => {
+    const targetXp = getXpForLevel(30);
+    const result = calculateXpToTargetXp(targetXp, targetXp);
+
+    expect(result.xpRemaining).toBe(0);
+    expect(result.progressPercentage).toBe(100);
+  });
+
+  it('should throw error for invalid XP values', () => {
+    expect(() => calculateXpToTargetXp(-1, 100)).toThrow();
+    expect(() => calculateXpToTargetXp(0, 200_000_001)).toThrow();
   });
 });
 
@@ -150,6 +186,25 @@ describe('calculateXpFromActions', () => {
     expect(() =>
       calculateXpFromActions(0, { ...burningLogs, actionsCompleted: -1 })
     ).toThrow();
+  });
+});
+
+describe('calculateActionPlan', () => {
+  it('should apply multiple actions in sequence', () => {
+    const plan = calculateActionPlan(0, [
+      { name: 'Small action', xpPerAction: 40, actionsCompleted: 10 },
+      { name: 'Bigger action', xpPerAction: 100, actionsCompleted: 5 },
+    ]);
+
+    expect(plan.actions).toHaveLength(2);
+    expect(plan.startXp).toBe(0);
+    expect(plan.totalXpGained).toBe(40 * 10 + 100 * 5);
+    expect(plan.endXp).toBe(plan.totalXpGained);
+    expect(plan.endLevel).toBeGreaterThanOrEqual(plan.startLevel);
+  });
+
+  it('should throw when action plan is empty', () => {
+    expect(() => calculateActionPlan(0, [])).toThrow();
   });
 });
 

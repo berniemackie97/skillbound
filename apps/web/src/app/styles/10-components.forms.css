@@ -1,0 +1,30 @@
+/* Components: Form controls (base look-and-feel)
+   Keep these low-specificity so pages can override as needed.
+*/
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+input,
+select {
+  padding: 9px 12px;
+}
+
+textarea {
+  padding: 10px 12px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+}
