@@ -3,7 +3,7 @@ export function SiteFooter() {
     <footer className="footer">
       <div>
         <strong>SkillBound</strong>
-        <span>OSRS progression intelligence - Local build UI</span>
+        <span>OSRS progression tracker - 2026</span>
       </div>
       <div className="footer-links">
         <a href="/api/health">Status</a>
