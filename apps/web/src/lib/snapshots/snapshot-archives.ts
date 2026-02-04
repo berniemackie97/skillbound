@@ -3,6 +3,8 @@ import { Readable } from 'stream';
 import { promisify } from 'util';
 import { gzip as gzipCallback, gunzip as gunzipCallback } from 'zlib';
 
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import {
   and,
   characterSnapshots,
@@ -12,11 +14,10 @@ import {
   type NewCharacterSnapshot,
   type SnapshotArchive,
 } from '@skillbound/database';
-import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 import { getDbClient } from '../db';
 import { logger } from '../logging/logger';
+
 import type { RetentionTier } from './snapshot-retention';
 
 export type SnapshotArchiveReason = 'promotion' | 'expiration' | 'manual';
@@ -33,7 +34,7 @@ type SnapshotArchiveConfig = {
 };
 
 type SnapshotArchivePayload = {
-  version: 1;
+  version: number;
   archivedAt: string;
   profileId: string;
   sourceTier: RetentionTier;

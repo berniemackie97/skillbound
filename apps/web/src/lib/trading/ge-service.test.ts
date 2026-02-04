@@ -20,12 +20,11 @@ const createWikiPricesClientMock = vi.hoisted(() =>
 );
 
 vi.mock('@skillbound/wiki-api', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
-  const mocked: Record<string, unknown> = {
+  const actual = (await importOriginal()) as typeof WikiApi;
+  return {
     ...actual,
     createWikiPricesClient: createWikiPricesClientMock,
   };
-  return mocked;
 });
 
 describe('getItemTimeseries', () => {

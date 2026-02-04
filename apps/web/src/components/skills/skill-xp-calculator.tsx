@@ -6,7 +6,6 @@ import {
   getXpForLevel,
   SKILLS,
   SKILL_DISPLAY_NAMES,
-  type SkillName,
 } from '@skillbound/domain';
 import type { HiscoresResponse } from '@skillbound/hiscores';
 import { useCallback, useMemo, useState } from 'react';

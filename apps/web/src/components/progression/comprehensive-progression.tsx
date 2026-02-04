@@ -302,7 +302,7 @@ export function ComprehensiveProgression({
           setLoading(false);
         }
       } catch (_err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        setError(_err instanceof Error ? _err.message : 'Unknown error');
         setLoading(false);
       }
     }
@@ -333,7 +333,7 @@ export function ComprehensiveProgression({
         setRequirementsData(result.data.requirements ?? null);
         setRequirementsError(result.meta?.requirementsError ?? null);
       } catch (_err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        setError(_err instanceof Error ? _err.message : 'Unknown error');
       } finally {
         setLoading(false);
       }
