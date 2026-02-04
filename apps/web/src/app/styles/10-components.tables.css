@@ -754,6 +754,44 @@
     height: 20px;
   }
 
+  /* Filter popover - reposition for mobile to prevent truncation */
+  .exchange-table .filter-popover {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    border-radius: var(--radius) var(--radius) 0 0;
+    min-width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 16px;
+    z-index: 100;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .exchange-table .filter-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exchange-table .filter-inputs input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .exchange-table .filter-actions {
+    margin-top: 4px;
+  }
+
+  .exchange-table .filter-clear,
+  .exchange-table .filter-apply {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
   /* Trade table mobile */
   .trade-table {
     min-width: 500px;
