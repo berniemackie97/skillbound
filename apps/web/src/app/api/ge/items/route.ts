@@ -2,6 +2,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 import {
   filterGeItems,
   getGeExchangeItems,
@@ -10,8 +12,6 @@ import {
   type SortDirection,
   type SortField,
 } from '@/lib/trading/ge-service';
-import { createProblemDetails } from '@/lib/api/problem-details';
-import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 export const dynamic = 'force-dynamic';
 
@@ -269,6 +269,7 @@ export async function GET(request: NextRequest) {
           totalPages: 1,
         },
       });
+      response.headers.set('Cache-Control', 'no-store, max-age=0');
 
       return applyRateLimitHeaders(response, rateLimitResult);
     }
@@ -327,6 +328,7 @@ export async function GET(request: NextRequest) {
         order: orderList.join(','),
       },
     });
+    response.headers.set('Cache-Control', 'no-store, max-age=0');
 
     return applyRateLimitHeaders(response, rateLimitResult);
   } catch (error) {

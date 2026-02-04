@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 
-import { getSessionUser } from '@/lib/auth/auth-helpers';
-import { getUserCharacters } from '@/lib/character/character-selection';
 
 import { ActivityTilesPanel } from '@/components/lookup/activity-tiles-panel';
 import { LookupPanel } from '@/components/lookup/lookup-panel';
 import { SkillTilesPanel } from '@/components/lookup/skill-tiles-panel';
+import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { getUserCharacters } from '@/lib/character/character-selection';
 import { fetchLookup, getOverallSkill, getTopActivities, getTopSkills, isCharacterSaved } from '@/lib/lookup/lookup-data';
 import { parseLookupSearchParams, type LookupSearchParamsInput } from '@/lib/lookup/search-params';
 
@@ -40,15 +40,15 @@ export default async function LookupPage({
   return (
     <main className="page">
       <LookupPanel
-        username={username}
-        mode={mode}
-        lookup={lookup}
-        error={error}
-        sessionUser={sessionUser}
-        isSaved={saved}
-        overall={overall}
-        skillTiles={skillTiles}
         activityTiles={activityTiles}
+        error={error}
+        isSaved={saved}
+        lookup={lookup}
+        mode={mode}
+        overall={overall}
+        sessionUser={sessionUser}
+        skillTiles={skillTiles}
+        username={username}
       />
 
       {lookup ? <SkillTilesPanel skills={skillTiles} /> : null}

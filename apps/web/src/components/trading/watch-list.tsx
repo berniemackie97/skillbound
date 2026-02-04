@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { ItemSearch, type ItemSearchResult } from '../ge/item-search';
 import { formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
+
+import { ItemSearch, type ItemSearchResult } from '../ge/item-search';
+
 import { useLiveGeItems } from './use-live-ge-items';
 
 interface ErrorResponse {
@@ -358,10 +360,10 @@ export function WatchList({ characterId, items }: WatchListProps) {
 
       <div className="watch-list-search">
         <input
+          placeholder="Filter watch list..."
           type="text"
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
-          placeholder="Filter watch list..."
         />
       </div>
 
@@ -371,17 +373,17 @@ export function WatchList({ characterId, items }: WatchListProps) {
             <label className="form-field">
               <span>Item</span>
               <ItemSearch
-                onSelect={handleSearchSelect}
                 placeholder="Search items..."
+                onSelect={handleSearchSelect}
               />
             </label>
             <label className="form-field flex-grow">
               <span>Selected Item</span>
               <input
+                readOnly
+                placeholder="Select from search..."
                 type="text"
                 value={itemName}
-                placeholder="Select from search..."
-                readOnly
               />
             </label>
           </div>
@@ -390,28 +392,28 @@ export function WatchList({ characterId, items }: WatchListProps) {
             <label className="form-field">
               <span>Alert on margin (GP)</span>
               <input
+                placeholder="Optional"
                 type="number"
                 value={alertOnMargin}
                 onChange={(e) => setAlertOnMargin(e.target.value)}
-                placeholder="Optional"
               />
             </label>
             <label className="form-field">
               <span>Alert buy price ≤</span>
               <input
+                placeholder="Optional"
                 type="number"
                 value={alertOnBuyPrice}
                 onChange={(e) => setAlertOnBuyPrice(e.target.value)}
-                placeholder="Optional"
               />
             </label>
             <label className="form-field">
               <span>Alert sell price ≥</span>
               <input
+                placeholder="Optional"
                 type="number"
                 value={alertOnSellPrice}
                 onChange={(e) => setAlertOnSellPrice(e.target.value)}
-                placeholder="Optional"
               />
             </label>
           </div>
@@ -419,14 +421,14 @@ export function WatchList({ characterId, items }: WatchListProps) {
           <label className="form-field">
             <span>Notes</span>
             <input
+              placeholder="Optional notes..."
               type="text"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Optional notes..."
             />
           </label>
 
-          <button type="submit" className="button" disabled={isSubmitting}>
+          <button className="button" disabled={isSubmitting} type="submit">
             {isSubmitting ? 'Adding...' : 'Add to Watch List'}
           </button>
 
@@ -514,17 +516,17 @@ export function WatchList({ characterId, items }: WatchListProps) {
                 <div className="watch-item-info">
                   {geItem?.icon && (
                     <img
-                      src={getItemIconUrl(geItem.icon)}
                       alt=""
-                      width={28}
-                      height={28}
                       className="watch-item-icon"
+                      height={28}
+                      src={getItemIconUrl(geItem.icon)}
+                      width={28}
                     />
                   )}
                   <div className="watch-item-meta">
                     <Link
-                      href={`/trading/item/${item.itemId}`}
                       className="item-name"
+                      href={`/trading/item/${item.itemId}`}
                     >
                       {item.itemName}
                     </Link>
@@ -644,15 +646,15 @@ export function WatchList({ characterId, items }: WatchListProps) {
                   </label>
                   <div className="watch-item-actions">
                     <button
-                      type="button"
                       className="button ghost small"
+                      type="button"
                       onClick={() => saveEdit(item.id)}
                     >
                       Save
                     </button>
                     <button
-                      type="button"
                       className="button ghost small"
+                      type="button"
                       onClick={cancelEdit}
                     >
                       Cancel
@@ -668,8 +670,8 @@ export function WatchList({ characterId, items }: WatchListProps) {
               <div className="watch-item-actions">
                 <button
                   className="button ghost small"
-                  onClick={() => handleToggleActive(item.id, item.isActive)}
                   title={item.isActive ? 'Pause alerts' : 'Resume alerts'}
+                  onClick={() => handleToggleActive(item.id, item.isActive)}
                 >
                   {item.isActive ? 'Pause' : 'Resume'}
                 </button>
@@ -681,8 +683,8 @@ export function WatchList({ characterId, items }: WatchListProps) {
                 </button>
                 <button
                   className="button ghost small danger"
-                  onClick={() => handleRemove(item.id, item.itemId)}
                   disabled={removingId === item.id}
+                  onClick={() => handleRemove(item.id, item.itemId)}
                 >
                   {removingId === item.id ? '...' : 'Remove'}
                 </button>

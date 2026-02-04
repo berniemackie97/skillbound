@@ -2,9 +2,9 @@ import { eq, userSettings } from '@skillbound/database';
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 const refreshSchema = z.object({
   intervalMs: z.number().int(),

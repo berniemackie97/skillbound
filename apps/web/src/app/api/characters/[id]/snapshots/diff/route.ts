@@ -10,8 +10,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getDbClient } from '@/lib/db';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getDbClient } from '@/lib/db';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 const paramsSchema = z.object({

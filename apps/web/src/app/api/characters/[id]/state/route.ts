@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import {
   deleteState,
@@ -18,7 +19,6 @@ import {
   type StateDomain,
   type StateSource,
 } from '@/lib/character/character-state-service';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 const paramsSchema = z.object({
   id: z.string().uuid(),

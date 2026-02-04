@@ -20,29 +20,29 @@ export function ExchangeTopbar({
       <div className="table-search topbar-search">
         <svg
           className="search-icon"
-          viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
+          viewBox="0 0 24 24"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />
         </svg>
         <input
+          className="table-search-input"
+          placeholder="Search items..."
           type="text"
           value={searchFilter}
           onChange={(e) => onSearchChange(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onSearchSubmit()}
-          placeholder="Search items..."
-          className="table-search-input"
         />
       </div>
       <div className="top-pagination">
         <button
-          type="button"
           className="page-btn"
-          onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage <= 1}
+          type="button"
+          onClick={() => onPageChange(currentPage - 1)}
         >
           ‹
         </button>
@@ -51,8 +51,8 @@ export function ExchangeTopbar({
           return (
             <button
               key={pageNum}
-              type="button"
               className={`page-btn ${currentPage === pageNum ? 'active' : ''}`}
+              type="button"
               onClick={() => onPageChange(pageNum)}
             >
               {pageNum}
@@ -66,10 +66,10 @@ export function ExchangeTopbar({
           </>
         )}
         <button
-          type="button"
           className="page-btn"
-          onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= totalPages}
+          type="button"
+          onClick={() => onPageChange(currentPage + 1)}
         >
           ›
         </button>

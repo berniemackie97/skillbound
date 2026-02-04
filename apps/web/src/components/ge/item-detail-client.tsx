@@ -51,23 +51,23 @@ export function ItemDetailClient({
   return (
     <div className="item-actions">
       <button
-        type="button"
-        className={`favorite-btn large ${isFavorite ? 'active' : ''}`}
-        onClick={toggleFavorite}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        className={`favorite-btn large ${isFavorite ? 'active' : ''}`}
+        type="button"
+        onClick={toggleFavorite}
       >
-        <svg viewBox="0 0 24 24" width="20" height="20">
+        <svg height="20" viewBox="0 0 24 24" width="20">
           <path
+            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
             fill={isFavorite ? '#ffd700' : 'none'}
             stroke={isFavorite ? '#ffd700' : 'currentColor'}
             strokeWidth="2"
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
           />
         </svg>
       </button>
       <Link
-        href={`/trading?addTrade=${itemId}`}
         className="action-btn add-to-list"
+        href={`/trading?addTrade=${itemId}`}
       >
         + Add to List
       </Link>

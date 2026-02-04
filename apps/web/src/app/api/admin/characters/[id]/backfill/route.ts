@@ -3,8 +3,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getDbClient } from '@/lib/db';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getDbClient } from '@/lib/db';
 import { importWiseOldManSnapshots } from '@/lib/integrations/wise-old-man-import';
 
 const paramsSchema = z.object({

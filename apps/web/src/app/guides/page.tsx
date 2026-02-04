@@ -51,14 +51,14 @@ export default async function GuidesPage() {
         </div>
         {activeCharacter ? (
           <div className="guides-character-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
             {activeCharacter.displayName}
           </div>
         ) : user ? (
-          <Link href="/characters" className="guides-character-link">
+          <Link className="guides-character-link" href="/characters">
             Select a character
           </Link>
         ) : null}
@@ -67,10 +67,10 @@ export default async function GuidesPage() {
       {/* Main Panel with Gold Border */}
       <div className="guides-panel">
         <GuidesClient
-          guides={guidesWithProgress}
-          allTags={allTags}
-          isLoggedIn={Boolean(user)}
           activeCharacterId={activeCharacter?.id ?? null}
+          allTags={allTags}
+          guides={guidesWithProgress}
+          isLoggedIn={Boolean(user)}
         />
       </div>
     </div>

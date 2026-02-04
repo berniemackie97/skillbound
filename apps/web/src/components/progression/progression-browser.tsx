@@ -1,8 +1,8 @@
 'use client';
 
 import type { HiscoresResponse } from '@skillbound/hiscores';
-import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 import { ComprehensiveProgression } from '@/components/progression/comprehensive-progression';
 
@@ -129,8 +129,8 @@ export function ProgressionBrowser({
           </select>
           <button
             className="button"
-            onClick={() => handleLookup()}
             disabled={isLoading}
+            onClick={() => handleLookup()}
           >
             {isLoading ? 'Fetching…' : 'Fetch player'}
           </button>
@@ -160,9 +160,9 @@ export function ProgressionBrowser({
 
       {profileId ? (
         <ComprehensiveProgression
-          profileId={profileId}
-          characterName={displayName}
           readOnly
+          characterName={displayName}
+          profileId={profileId}
         />
       ) : (
         <div className="progression-empty">

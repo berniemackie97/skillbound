@@ -1,10 +1,10 @@
+import { auth } from '@/lib/auth/auth';
 import {
   magicLinkAction,
   registerAction,
   signInAction,
   signOutAction,
 } from '@/lib/auth/auth-actions';
-import { auth } from '@/lib/auth/auth';
 import { getAuthProviderFlags } from '@/lib/auth/auth-providers';
 
 import { AuthButtons } from '../auth/auth-buttons';
@@ -18,18 +18,18 @@ export async function NavAuth() {
 
   return (
     <AuthButtons
-      isSignedIn={Boolean(user)}
-      userEmail={user?.email}
-      userName={user?.name}
-      hasGoogle={hasGoogle}
-      hasGitHub={hasGitHub}
       hasFacebook={hasFacebook}
-      hasTwitter={hasTwitter}
+      hasGitHub={hasGitHub}
+      hasGoogle={hasGoogle}
       hasMagicLink={hasMagicLink}
+      hasTwitter={hasTwitter}
+      isSignedIn={Boolean(user)}
+      magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+      registerAction={registerAction}
       signInAction={signInAction}
       signOutAction={signOutAction}
-      registerAction={registerAction}
-      magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+      userEmail={user?.email}
+      userName={user?.name}
     />
   );
 }

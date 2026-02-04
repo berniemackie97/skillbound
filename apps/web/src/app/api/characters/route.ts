@@ -17,18 +17,18 @@ import { z } from 'zod';
 
 import { mapErrorToResponse } from '@/lib/api/api-error-mapper';
 import { applyRateLimitHeaders } from '@/lib/api/api-middleware';
-import { getSessionUser } from '@/lib/auth/auth-helpers';
-import { parseCharacterListQuery } from '@/lib/character/character-list';
-import { lookupPlayerWithAutoMode } from '@/lib/lookup/character-lookup';
-import { getDbClient } from '@/lib/db';
-import { hiscoresModeToDbMode } from '@/lib/character/game-mode';
-import { logger } from '@/lib/logging/logger';
-import { resolveLookupMode } from '@/lib/lookup/lookup-mode';
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
+import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { parseCharacterListQuery } from '@/lib/character/character-list';
+import { hiscoresModeToDbMode } from '@/lib/character/game-mode';
 import { syncCharacterStateFromRunelite } from '@/lib/character/runelite-state';
-import { buildSnapshotInsert } from '@/lib/snapshots/snapshots';
+import { getDbClient } from '@/lib/db';
 import { importWiseOldManSnapshots } from '@/lib/integrations/wise-old-man-import';
+import { logger } from '@/lib/logging/logger';
+import { lookupPlayerWithAutoMode } from '@/lib/lookup/character-lookup';
+import { resolveLookupMode } from '@/lib/lookup/lookup-mode';
+import { buildSnapshotInsert } from '@/lib/snapshots/snapshots';
 
 const payloadSchema = z.object({
   displayName: z

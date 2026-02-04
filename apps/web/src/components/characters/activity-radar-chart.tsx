@@ -38,12 +38,12 @@ export function ActivityRadarChart({ activities }: ActivityRadarChartProps) {
 
   return (
     <div className="chart-container">
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={150}>
+      <ResponsiveContainer height="100%" minHeight={150} minWidth={0} width="100%">
         <RadarChart
           cx="50%"
           cy="50%"
-          outerRadius="70%"
           data={dataWithMarks}
+          outerRadius="70%"
         >
           <PolarGrid
             stroke="rgba(226, 176, 101, 0.15)"
@@ -78,11 +78,11 @@ export function ActivityRadarChart({ activities }: ActivityRadarChartProps) {
             ]}
           />
           <Radar
-            name="Activity"
             dataKey="value"
-            stroke="#d4af37"
             fill="#d4af37"
             fillOpacity={0.3}
+            name="Activity"
+            stroke="#d4af37"
             strokeWidth={2}
           />
         </RadarChart>

@@ -707,7 +707,12 @@ function getSortValue(
     case 'potentialProfit':
       return item.potentialProfit;
     case 'lastTrade':
-      return item.buyPriceTime ?? item.sellPriceTime;
+      if (item.buyPriceTime && item.sellPriceTime) {
+        return item.buyPriceTime > item.sellPriceTime
+          ? item.buyPriceTime
+          : item.sellPriceTime;
+      }
+      return item.buyPriceTime ?? item.sellPriceTime ?? null;
   }
 }
 

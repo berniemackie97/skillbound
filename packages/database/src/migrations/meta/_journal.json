@@ -134,6 +134,13 @@
       "when": 1770173291937,
       "tag": "0017_quest_points",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1770234639000,
+      "tag": "0018_snapshot_archives",
+      "breakpoints": true
     }
   ]
 }

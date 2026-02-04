@@ -301,7 +301,7 @@ export function ComprehensiveProgression({
           setRequirementsError(result.meta.requirementsError ?? null);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (_err) {
         setError(err instanceof Error ? err.message : 'Unknown error');
         setLoading(false);
       }
@@ -332,7 +332,7 @@ export function ComprehensiveProgression({
         setData(result.data);
         setRequirementsData(result.data.requirements ?? null);
         setRequirementsError(result.meta?.requirementsError ?? null);
-      } catch (err) {
+      } catch (_err) {
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
@@ -390,7 +390,7 @@ export function ComprehensiveProgression({
           data: { obtained: !currentState },
         }),
       });
-    } catch (err) {
+    } catch (_err) {
       setData(data); // Revert
       setError('Failed to update gear');
     }
@@ -423,7 +423,7 @@ export function ComprehensiveProgression({
           data: { achieved: !currentState },
         }),
       });
-    } catch (err) {
+    } catch (_err) {
       setData(data); // Revert
       setError('Failed to update milestone');
     }
@@ -456,7 +456,7 @@ export function ComprehensiveProgression({
           data: { killcount: newKC },
         }),
       });
-    } catch (err) {
+    } catch (_err) {
       setData(data); // Revert
       setError('Failed to update boss KC');
     }
@@ -533,7 +533,7 @@ export function ComprehensiveProgression({
       if (!response.ok) {
         throw new Error('Failed to save override');
       }
-    } catch (err) {
+    } catch (_err) {
       setRequirementsData((prev) => {
         if (!prev) return prev;
         return {
@@ -813,11 +813,11 @@ export function ComprehensiveProgression({
                       <div className="boss-kc">
                         <label>KC:</label>
                         <input
-                          type="number"
+                          className="kc-input"
                           min="0"
+                          type="number"
                           value={boss.killcount}
                           onChange={(e) => updateBossKC(boss.bossName, parseInt(e.target.value) || 0)}
-                          className="kc-input"
                         />
                       </div>
                     </div>
@@ -843,8 +843,8 @@ export function ComprehensiveProgression({
                     <div key={item.id} className={`gear-item ${item.obtained ? 'obtained' : ''}`}>
                       <label className="gear-checkbox">
                         <input
-                          type="checkbox"
                           checked={item.obtained}
+                          type="checkbox"
                           onChange={() => toggleGear(item.id, item.obtained)}
                         />
                         <div className="gear-content">
@@ -875,8 +875,8 @@ export function ComprehensiveProgression({
                     <div key={item.id} className={`milestone-item ${item.achieved ? 'achieved' : ''}`}>
                       <label className="milestone-checkbox">
                         <input
-                          type="checkbox"
                           checked={item.achieved}
+                          type="checkbox"
                           onChange={() => toggleMilestone(item.id, item.achieved)}
                         />
                         <div className="milestone-content">
@@ -910,9 +910,9 @@ export function ComprehensiveProgression({
           <div className="requirements-controls">
             <div className="requirements-search">
               <input
+                placeholder="Search quests"
                 value={questSearch}
                 onChange={(event) => setQuestSearch(event.target.value)}
-                placeholder="Search quests"
               />
             </div>
           </div>
@@ -938,14 +938,14 @@ export function ComprehensiveProgression({
                         )}
                       </div>
                       <button
-                        type="button"
                         className={`${statusClass(item.completionStatus)} clickable requirement-status-button ${isUpdating ? 'updating' : ''}`}
+                        disabled={isUpdating}
+                        type="button"
                         onClick={(event) => {
                           event.preventDefault();
                           event.stopPropagation();
                           void toggleQuestStatus(item.quest.id, item.completionStatus);
                         }}
-                        disabled={isUpdating}
                       >
                         {item.completionStatus}
                       </button>
@@ -999,9 +999,9 @@ export function ComprehensiveProgression({
                     <p className="muted">Track regional tiers and tasks.</p>
                   </div>
                   <input
+                    placeholder="Search diaries"
                     value={diarySearch}
                     onChange={(event) => setDiarySearch(event.target.value)}
-                    placeholder="Search diaries"
                   />
                 </div>
                 <div className="requirements-stack">
@@ -1090,9 +1090,9 @@ export function ComprehensiveProgression({
                     <p className="muted">Track tiers and boss tasks.</p>
                   </div>
                   <input
+                    placeholder="Search combat achievements"
                     value={combatSearch}
                     onChange={(event) => setCombatSearch(event.target.value)}
-                    placeholder="Search combat achievements"
                   />
                 </div>
                 <div className="requirements-stack">

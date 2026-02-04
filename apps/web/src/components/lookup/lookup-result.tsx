@@ -1,7 +1,6 @@
 import { formatNumber } from '@/lib/format/format-number';
-
-import type { LookupResponse } from '@/lib/lookup/lookup-types';
 import type { getOverallSkill, getTopActivities, getTopSkills } from '@/lib/lookup/lookup-data';
+import type { LookupResponse } from '@/lib/lookup/lookup-types';
 
 export function LookupResult({
   lookup,

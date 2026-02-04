@@ -13,6 +13,7 @@ export * from './auth/user-settings';
 export * from './characters/characters';
 export * from './characters/character-state'; // Unified state table (scalable sync)
 export * from './characters/snapshots';
+export * from './characters/snapshot-archives';
 export * from './characters/overrides'; // Legacy - prefer character_state for new features
 
 // Content & Guides

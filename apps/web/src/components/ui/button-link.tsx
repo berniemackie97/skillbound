@@ -47,8 +47,8 @@ export function ButtonLink(props: ButtonLinkProps) {
       <a
         className={classes}
         href={props.href}
-        target="_blank"
         rel="noopener noreferrer"
+        target="_blank"
       >
         {children}
       </a>

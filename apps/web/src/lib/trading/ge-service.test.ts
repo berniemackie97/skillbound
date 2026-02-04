@@ -55,9 +55,7 @@ describe('getItemTimeseries', () => {
 
     await getItemTimeseries(42, '1w');
 
-    const options = getTimeseriesMock.mock.calls[0]?.[0] as
-      | GetTimeseriesOptions
-      | undefined;
+    const options = getTimeseriesMock.mock.calls[0]?.[0];
 
     // Wiki API timeseries endpoint doesn't support start/end params,
     // we only pass itemId and timestep, then filter client-side

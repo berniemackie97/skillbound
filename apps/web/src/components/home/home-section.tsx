@@ -1,6 +1,6 @@
+import { ButtonLink } from '@/components/ui/button-link';
 import { formatNumber } from '@/lib/format/format-number';
 import type { HomeCard, HomeSectionModel } from '@/lib/home/home-types';
-import { ButtonLink } from '@/components/ui/button-link';
 
 type Props = HomeSectionModel;
 

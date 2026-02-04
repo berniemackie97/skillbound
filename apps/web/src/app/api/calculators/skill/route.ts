@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { isSkillName } from '@skillbound/domain';
+import { NextResponse } from 'next/server';
 
 import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
 

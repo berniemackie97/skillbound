@@ -13,9 +13,9 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getDbClient } from '@/lib/db';
-import { getHiscoresClient } from '@/lib/character/hiscores-client';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getHiscoresClient } from '@/lib/character/hiscores-client';
+import { getDbClient } from '@/lib/db';
 import { buildSnapshotInsert } from '@/lib/snapshots/snapshots';
 
 const paramsSchema = z.object({

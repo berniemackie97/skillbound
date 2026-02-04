@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './styles/globals.css';
 
-import { SiteFooter } from '@/components/site/site-footer';
 import { SiteNav } from '@/components/nav/site-nav';
+import { SiteFooter } from '@/components/site/site-footer';
 
 // If you deploy to a stable production URL, set this to your canonical.
 // Example: new URL('https://skillbound.gg')
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <div className="shell">
           <SiteNav />
 
-          <main id="main" className="page">
+          <main className="page" id="main">
             {children}
           </main>
 

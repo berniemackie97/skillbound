@@ -72,49 +72,52 @@ export function ProgressionChart({
 
   return (
     <div className="chart-container large">
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={160}>
+      <ResponsiveContainer height="100%" minHeight={160} minWidth={0} width="100%">
         <AreaChart
           data={data}
           margin={{ top: 8, right: 8, left: -10, bottom: 0 }}
         >
           <defs>
-            <linearGradient id="gradientXp" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="gradientXp" x1="0" x2="0" y1="0" y2="1">
               <stop offset="5%" stopColor={COLORS.totalXp} stopOpacity={0.3} />
               <stop offset="95%" stopColor={COLORS.totalXp} stopOpacity={0.05} />
             </linearGradient>
-            <linearGradient id="gradientLevel" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="gradientLevel" x1="0" x2="0" y1="0" y2="1">
               <stop offset="5%" stopColor={COLORS.totalLevel} stopOpacity={0.3} />
               <stop offset="95%" stopColor={COLORS.totalLevel} stopOpacity={0.05} />
             </linearGradient>
-            <linearGradient id="gradientCombat" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="gradientCombat" x1="0" x2="0" y1="0" y2="1">
               <stop offset="5%" stopColor={COLORS.combatLevel} stopOpacity={0.3} />
               <stop offset="95%" stopColor={COLORS.combatLevel} stopOpacity={0.05} />
             </linearGradient>
           </defs>
           <CartesianGrid
-            strokeDasharray="3 3"
             stroke="rgba(226, 176, 101, 0.08)"
+            strokeDasharray="3 3"
             vertical={false}
           />
           <XAxis
+            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
             dataKey="timestamp"
-            tickFormatter={formatTimestamp}
+            interval="preserveStartEnd"
             stroke="var(--text-muted)"
             tick={{ fontSize: 9 }}
+            tickFormatter={formatTimestamp}
             tickLine={false}
-            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
-            interval="preserveStartEnd"
           />
           <YAxis
+            axisLine={false}
             stroke="var(--text-muted)"
             tick={{ fontSize: 9 }}
             tickFormatter={formatXpValue}
             tickLine={false}
-            axisLine={false}
             width={50}
           />
           <Tooltip
             cursor={{ stroke: 'rgba(212, 175, 55, 0.3)', strokeWidth: 1 }}
+            itemStyle={{ padding: '2px 0' }}
+            labelFormatter={(label) => formatTimestamp(String(label))}
+            labelStyle={{ color: 'var(--text-muted)', marginBottom: 8 }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
@@ -122,8 +125,6 @@ export function ProgressionChart({
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
               fontSize: '0.85rem',
             }}
-            labelStyle={{ color: 'var(--text-muted)', marginBottom: 8 }}
-            itemStyle={{ padding: '2px 0' }}
             formatter={(value, name) => {
               const numValue = typeof value === 'number' ? value : 0;
               const strName = String(name);
@@ -132,7 +133,6 @@ export function ProgressionChart({
                 LABELS[strName as keyof typeof LABELS] || strName,
               ];
             }}
-            labelFormatter={(label) => formatTimestamp(String(label))}
           />
           {showAll && (
             <Legend
@@ -146,13 +146,13 @@ export function ProgressionChart({
           )}
           {(showAll || metric === 'totalXp') && (
             <Area
-              type="monotone"
               dataKey="totalXp"
-              stroke={COLORS.totalXp}
-              strokeWidth={2}
+              dot={false}
               fill="url(#gradientXp)"
               name="totalXp"
-              dot={false}
+              stroke={COLORS.totalXp}
+              strokeWidth={2}
+              type="monotone"
               activeDot={{
                 r: 4,
                 fill: COLORS.totalXp,
@@ -163,13 +163,13 @@ export function ProgressionChart({
           )}
           {(showAll || metric === 'totalLevel') && (
             <Area
-              type="monotone"
               dataKey="totalLevel"
-              stroke={COLORS.totalLevel}
-              strokeWidth={2}
+              dot={false}
               fill="url(#gradientLevel)"
               name="totalLevel"
-              dot={false}
+              stroke={COLORS.totalLevel}
+              strokeWidth={2}
+              type="monotone"
               activeDot={{
                 r: 4,
                 fill: COLORS.totalLevel,
@@ -180,13 +180,13 @@ export function ProgressionChart({
           )}
           {(showAll || metric === 'combatLevel') && (
             <Area
-              type="monotone"
               dataKey="combatLevel"
-              stroke={COLORS.combatLevel}
-              strokeWidth={2}
+              dot={false}
               fill="url(#gradientCombat)"
               name="combatLevel"
-              dot={false}
+              stroke={COLORS.combatLevel}
+              strokeWidth={2}
+              type="monotone"
               activeDot={{
                 r: 4,
                 fill: COLORS.combatLevel,

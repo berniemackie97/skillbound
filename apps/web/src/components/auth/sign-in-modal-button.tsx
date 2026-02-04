@@ -21,16 +21,16 @@ export function SignInModalButton({
 
   return (
     <SignInModalTrigger
-      label={label}
       className={className}
-      hasGoogle={hasGoogle}
-      hasGitHub={hasGitHub}
       hasFacebook={hasFacebook}
-      hasTwitter={hasTwitter}
+      hasGitHub={hasGitHub}
+      hasGoogle={hasGoogle}
       hasMagicLink={hasMagicLink}
-      signInAction={signInAction}
-      registerAction={registerAction}
+      hasTwitter={hasTwitter}
+      label={label}
       magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+      registerAction={registerAction}
+      signInAction={signInAction}
     />
   );
 }

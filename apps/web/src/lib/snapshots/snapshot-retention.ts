@@ -28,6 +28,7 @@ import {
 
 import { getDbClient } from '../db';
 import { logger } from '../logging/logger';
+import { archiveSnapshotsBatch, getSnapshotArchivePolicy } from './snapshot-archives';
 
 /**
  * Retention tier configuration
@@ -71,6 +72,10 @@ export interface RetentionJobResult {
   stats: {
     promoted: Record<RetentionTier, number>;
     deleted: number;
+    archived: number;
+    archivedBytes: number;
+    archiveSkipped: number;
+    archiveErrors: number;
     preserved: number;
     errors: number;
   };
@@ -141,7 +146,7 @@ export function calculateExpirationDate(
  * Determine if a snapshot should be promoted to a higher tier
  */
 export function shouldPromote(snapshot: CharacterSnapshot): boolean {
-  const tier = snapshot.retentionTier as RetentionTier;
+  const tier = snapshot.retentionTier;
   const config = RETENTION_CONFIG[tier];
 
   // Milestones and monthly snapshots don't promote
@@ -227,6 +232,10 @@ export async function runRetentionJob(
       milestone: 0,
     },
     deleted: 0,
+    archived: 0,
+    archivedBytes: 0,
+    archiveSkipped: 0,
+    archiveErrors: 0,
     preserved: 0,
     errors: 0,
   };
@@ -234,6 +243,19 @@ export async function runRetentionJob(
   logger.info({ dryRun, batchSize, profileIds }, 'Starting retention job');
 
   const db = getDbClient();
+  const archivePolicy = getSnapshotArchivePolicy();
+
+  if (!archivePolicy.enabled) {
+    logger.warn(
+      { reason: archivePolicy.reason },
+      'Snapshot archiving disabled - deletions will be skipped'
+    );
+  } else if (!archivePolicy.allowDelete) {
+    logger.info(
+      { reason: archivePolicy.reason },
+      'Snapshot archiving enabled in archive-only mode'
+    );
+  }
 
   try {
     // Process each tier that can be promoted (realtime -> hourly -> daily -> weekly)
@@ -304,13 +326,16 @@ export async function runRetentionJob(
 
       // Process each character's buckets
       for (const [_charId, buckets] of groupedSnapshots) {
-        for (const [_bucketKey, bucketSnapshots] of buckets) {
+        for (const [bucketKey, bucketSnapshots] of buckets) {
           try {
             // Select the best snapshot to keep
             const bestSnapshot = selectBestSnapshot(bucketSnapshots);
             const snapshotsToDelete = bucketSnapshots.filter(
               (s) => s.id !== bestSnapshot.id
             );
+            let archiveResult: Awaited<
+              ReturnType<typeof archiveSnapshotsBatch>
+            > | null = null;
 
             if (!dryRun) {
               // Promote the best snapshot to the target tier
@@ -329,14 +354,60 @@ export async function runRetentionJob(
 
               // Delete the redundant snapshots
               if (snapshotsToDelete.length > 0) {
-                await db.delete(characterSnapshots).where(
-                  sql`${characterSnapshots.id} = ANY(${snapshotsToDelete.map((s) => s.id)})`
-                );
+                archiveResult = await archiveSnapshotsBatch({
+                  profileId: bestSnapshot.profileId,
+                  sourceTier: tier,
+                  targetTier,
+                  reason: 'promotion',
+                  bucketKey,
+                  snapshots: snapshotsToDelete,
+                });
+
+                if (archiveResult.status === 'archived') {
+                  stats.archived += snapshotsToDelete.length;
+                  stats.archivedBytes += archiveResult.sizeBytes;
+                } else if (archiveResult.status === 'exists') {
+                  stats.archived += snapshotsToDelete.length;
+                } else if (
+                  archiveResult.status === 'disabled' ||
+                  archiveResult.status === 'skipped'
+                ) {
+                  stats.archiveSkipped += snapshotsToDelete.length;
+                } else if (archiveResult.status === 'failed') {
+                  stats.archiveErrors += 1;
+                  stats.errors += 1;
+                  errors.push(`Archive failed for bucket: ${archiveResult.error}`);
+                }
+
+                const archiveSucceeded =
+                  archiveResult.status === 'archived' ||
+                  archiveResult.status === 'exists';
+
+                if (archivePolicy.allowDelete && archiveSucceeded) {
+                  await db.delete(characterSnapshots).where(
+                    sql`${characterSnapshots.id} = ANY(${snapshotsToDelete.map((s) => s.id)})`
+                  );
+                  stats.deleted += snapshotsToDelete.length;
+                } else {
+                  logger.warn(
+                    {
+                      profileId: bestSnapshot.profileId,
+                      bucketKey,
+                      tier,
+                      targetTier,
+                      allowDelete: archivePolicy.allowDelete,
+                      archiveStatus: archiveResult.status,
+                    },
+                    'Skipped snapshot deletion (archive not ready or deletions disabled)'
+                  );
+                }
               }
+            } else if (snapshotsToDelete.length > 0) {
+              stats.archiveSkipped += snapshotsToDelete.length;
+              stats.deleted += snapshotsToDelete.length;
             }
 
             stats.promoted[tier]++;
-            stats.deleted += snapshotsToDelete.length;
           } catch (err) {
             const errorMessage =
               err instanceof Error ? err.message : 'Unknown error';
@@ -368,16 +439,103 @@ export async function runRetentionJob(
       );
     }
 
-    if (!dryRun) {
-      const deleteResult = await db
-        .delete(characterSnapshots)
-        .where(and(...expiredConditions))
-        .returning({ id: characterSnapshots.id });
+    const expiredSnapshots = await db
+      .select()
+      .from(characterSnapshots)
+      .where(and(...expiredConditions))
+      .orderBy(characterSnapshots.capturedAt)
+      .limit(batchSize);
 
-      stats.deleted += deleteResult.length;
-      logger.info({ count: deleteResult.length }, 'Deleted expired snapshots');
-    } else {
-      // Count what would be deleted in dry run
+    if (expiredSnapshots.length > 0) {
+      const groupedExpired = new Map<
+        string,
+        Map<RetentionTier, Map<string, CharacterSnapshot[]>>
+      >();
+
+      for (const snapshot of expiredSnapshots) {
+        const profileId = snapshot.profileId;
+        const tier = snapshot.retentionTier;
+        const bucketKey = getBucketKey(snapshot.capturedAt, tier);
+
+        let profileBuckets = groupedExpired.get(profileId);
+        if (!profileBuckets) {
+          profileBuckets = new Map();
+          groupedExpired.set(profileId, profileBuckets);
+        }
+
+        let tierBuckets = profileBuckets.get(tier);
+        if (!tierBuckets) {
+          tierBuckets = new Map();
+          profileBuckets.set(tier, tierBuckets);
+        }
+
+        let bucketSnapshots = tierBuckets.get(bucketKey);
+        if (!bucketSnapshots) {
+          bucketSnapshots = [];
+          tierBuckets.set(bucketKey, bucketSnapshots);
+        }
+
+        bucketSnapshots.push(snapshot);
+      }
+
+      for (const [profileId, tiers] of groupedExpired) {
+        for (const [tier, buckets] of tiers) {
+          for (const [bucketKey, bucketSnapshots] of buckets) {
+            if (dryRun) {
+              stats.archiveSkipped += bucketSnapshots.length;
+              stats.deleted += bucketSnapshots.length;
+              continue;
+            }
+
+            const archiveResult = await archiveSnapshotsBatch({
+              profileId,
+              sourceTier: tier,
+              reason: 'expiration',
+              bucketKey,
+              snapshots: bucketSnapshots,
+            });
+
+            if (archiveResult.status === 'archived') {
+              stats.archived += bucketSnapshots.length;
+              stats.archivedBytes += archiveResult.sizeBytes;
+            } else if (archiveResult.status === 'exists') {
+              stats.archived += bucketSnapshots.length;
+            } else if (
+              archiveResult.status === 'disabled' ||
+              archiveResult.status === 'skipped'
+            ) {
+              stats.archiveSkipped += bucketSnapshots.length;
+            } else if (archiveResult.status === 'failed') {
+              stats.archiveErrors += 1;
+              stats.errors += 1;
+              errors.push(`Archive failed for expired bucket: ${archiveResult.error}`);
+            }
+
+            const archiveSucceeded =
+              archiveResult.status === 'archived' ||
+              archiveResult.status === 'exists';
+
+            if (archivePolicy.allowDelete && archiveSucceeded) {
+              await db.delete(characterSnapshots).where(
+                sql`${characterSnapshots.id} = ANY(${bucketSnapshots.map((s) => s.id)})`
+              );
+              stats.deleted += bucketSnapshots.length;
+            } else {
+              logger.warn(
+                {
+                  profileId,
+                  bucketKey,
+                  tier,
+                  allowDelete: archivePolicy.allowDelete,
+                  archiveStatus: archiveResult.status,
+                },
+                'Skipped expired snapshot deletion (archive not ready or deletions disabled)'
+              );
+            }
+          }
+        }
+      }
+    } else if (dryRun) {
       const expiredCount = await db
         .select({ count: sql<number>`count(*)` })
         .from(characterSnapshots)
@@ -589,7 +747,7 @@ export async function getCharacterRetentionStats(
   let newestSnapshot: Date | null = null;
 
   for (const row of results) {
-    const tier = row.tier as RetentionTier;
+    const tier = row.tier;
     const count = Number(row.count);
     byTier[tier] = count;
     total += count;
@@ -650,7 +808,7 @@ export async function getGlobalRetentionStats(): Promise<{
 
   let totalSnapshots = 0;
   for (const row of tierResults) {
-    const tier = row.tier as RetentionTier;
+    const tier = row.tier;
     const count = Number(row.count);
     byTier[tier] = count;
     totalSnapshots += count;

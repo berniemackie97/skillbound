@@ -194,13 +194,13 @@ export function ProgressionWidget({
 
       <div className="progression-widget-summary">
         <div className="progression-widget-circle">
-          <svg viewBox="0 0 100 100" className="progress-ring">
+          <svg className="progress-ring" viewBox="0 0 100 100">
             <circle
               className="progress-ring-background"
               cx="50"
               cy="50"
-              r="45"
               fill="none"
+              r="45"
               stroke="rgba(212, 175, 55, 0.1)"
               strokeWidth="8"
             />
@@ -208,12 +208,12 @@ export function ProgressionWidget({
               className="progress-ring-progress"
               cx="50"
               cy="50"
-              r="45"
               fill="none"
+              r="45"
               stroke="var(--accent-alt)"
-              strokeWidth="8"
-              strokeLinecap="round"
               strokeDasharray={`${completionPercent * 2.827} 282.7`}
+              strokeLinecap="round"
+              strokeWidth="8"
               transform="rotate(-90 50 50)"
             />
           </svg>

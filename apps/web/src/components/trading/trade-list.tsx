@@ -173,17 +173,17 @@ function TradeDetailView({ trade, characterId, onEdit, onDelete, isDeleting }: T
         <div className="delete-confirm-actions">
           <button
             className="button ghost"
-            onClick={handleCancelDelete}
             disabled={isDeleting}
             type="button"
+            onClick={handleCancelDelete}
           >
             Cancel
           </button>
           <button
             className="button danger"
-            onClick={handleConfirmDelete}
             disabled={isDeleting || loadingImpact}
             type="button"
+            onClick={handleConfirmDelete}
           >
             {isDeleting ? 'Deleting...' : 'Yes, Delete'}
           </button>
@@ -257,13 +257,13 @@ function TradeDetailView({ trade, characterId, onEdit, onDelete, isDeleting }: T
       <div className="trade-detail-actions">
         <button
           className="button danger-outline"
-          onClick={handleDeleteClick}
           disabled={isDeleting || loadingImpact}
           type="button"
+          onClick={handleDeleteClick}
         >
           {loadingImpact ? 'Loading...' : 'Delete Trade'}
         </button>
-        <button className="button primary" onClick={onEdit} type="button">
+        <button className="button primary" type="button" onClick={onEdit}>
           Edit Trade
         </button>
       </div>
@@ -347,21 +347,21 @@ function EditTradeForm({ trade, characterId, onSave, onCancel }: EditFormProps) 
         <label className="form-field">
           <span>Quantity</span>
           <input
+            required
+            min="1"
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            min="1"
-            required
           />
         </label>
         <label className="form-field">
           <span>Price per item (GP)</span>
           <input
+            required
+            min="0"
             type="number"
             value={pricePerItem}
             onChange={(e) => setPricePerItem(e.target.value)}
-            min="0"
-            required
           />
         </label>
       </div>
@@ -385,20 +385,20 @@ function EditTradeForm({ trade, characterId, onSave, onCancel }: EditFormProps) 
       <label className="form-field">
         <span>Notes (optional)</span>
         <input
+          placeholder="Any notes about this trade..."
           type="text"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          placeholder="Any notes about this trade..."
         />
       </label>
 
       {error && <div className="error">{error}</div>}
 
       <div className="trade-edit-actions">
-        <button className="button ghost" onClick={onCancel} disabled={isSaving} type="button">
+        <button className="button ghost" disabled={isSaving} type="button" onClick={onCancel}>
           Cancel
         </button>
-        <button className="button primary" onClick={handleSave} disabled={isSaving} type="button">
+        <button className="button primary" disabled={isSaving} type="button" onClick={handleSave}>
           {isSaving ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
@@ -488,9 +488,9 @@ export function TradeList({
               <tr
                 key={trade.id}
                 className={trade.tradeType}
-                onClick={() => handleRowClick(trade)}
                 role="button"
                 tabIndex={0}
+                onClick={() => handleRowClick(trade)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -548,9 +548,9 @@ export function TradeList({
           <div
             key={trade.id}
             className={`trade-card ${trade.tradeType}`}
-            onClick={() => handleRowClick(trade)}
             role="button"
             tabIndex={0}
+            onClick={() => handleRowClick(trade)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -614,8 +614,8 @@ export function TradeList({
         <div className="pagination">
           <button
             className="button ghost small"
-            onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage <= 1}
+            onClick={() => handlePageChange(currentPage - 1)}
           >
             Previous
           </button>
@@ -624,8 +624,8 @@ export function TradeList({
           </span>
           <button
             className="button ghost small"
-            onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage >= totalPages}
+            onClick={() => handlePageChange(currentPage + 1)}
           >
             Next
           </button>
@@ -635,23 +635,23 @@ export function TradeList({
       {/* Trade Detail/Edit Modal */}
       <Modal
         isOpen={selectedTrade !== null}
-        onClose={handleCloseModal}
-        title={modalMode === 'view' ? 'Trade Details' : 'Edit Trade'}
         size="md"
+        title={modalMode === 'view' ? 'Trade Details' : 'Edit Trade'}
+        onClose={handleCloseModal}
       >
         {selectedTrade && modalMode === 'view' && (
           <TradeDetailView
-            trade={selectedTrade}
             characterId={characterId}
-            onEdit={() => setModalMode('edit')}
-            onDelete={handleDelete}
             isDeleting={isDeleting}
+            trade={selectedTrade}
+            onDelete={handleDelete}
+            onEdit={() => setModalMode('edit')}
           />
         )}
         {selectedTrade && modalMode === 'edit' && (
           <EditTradeForm
-            trade={selectedTrade}
             characterId={characterId}
+            trade={selectedTrade}
             onCancel={() => setModalMode('view')}
             onSave={() => {
               handleCloseModal();

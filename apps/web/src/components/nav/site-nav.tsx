@@ -1,13 +1,13 @@
-import Link from 'next/link';
 import { unstable_noStore as noStore } from 'next/cache';
+import Link from 'next/link';
 
+import { auth } from '@/lib/auth/auth';
 import {
   magicLinkAction,
   registerAction,
   signInAction,
   signOutAction,
 } from '@/lib/auth/auth-actions';
-import { auth } from '@/lib/auth/auth';
 import { getAuthProviderFlags } from '@/lib/auth/auth-providers';
 import {
   getActiveCharacter,
@@ -54,20 +54,20 @@ export async function SiteNav() {
         ))}
       </nav>
       <NavActions
-        characters={characters}
         activeCharacterId={activeCharacterId}
-        isSignedIn={Boolean(user)}
-        userEmail={user?.email}
-        userName={user?.name}
-        hasGoogle={hasGoogle}
-        hasGitHub={hasGitHub}
+        characters={characters}
         hasFacebook={hasFacebook}
-        hasTwitter={hasTwitter}
+        hasGitHub={hasGitHub}
+        hasGoogle={hasGoogle}
         hasMagicLink={hasMagicLink}
+        hasTwitter={hasTwitter}
+        isSignedIn={Boolean(user)}
+        magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+        registerAction={registerAction}
         signInAction={signInAction}
         signOutAction={signOutAction}
-        registerAction={registerAction}
-        magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+        userEmail={user?.email}
+        userName={user?.name}
       />
     </header>
   );

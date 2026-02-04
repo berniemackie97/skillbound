@@ -301,7 +301,7 @@ export default function SkillXpCalculator({
           >
             {SKILLS.map((skillKey) => (
               <option key={skillKey} value={skillKey}>
-                {SKILL_DISPLAY_NAMES[skillKey as SkillName]}
+                {SKILL_DISPLAY_NAMES[skillKey]}
               </option>
             ))}
           </select>
@@ -333,9 +333,9 @@ export default function SkillXpCalculator({
         <div className="form-actions">
           <button
             className="button ghost"
+            disabled={lookupStatus === 'loading'}
             type="button"
             onClick={handleLookup}
-            disabled={lookupStatus === 'loading'}
           >
             {lookupStatus === 'loading' ? 'Looking up…' : 'Lookup'}
           </button>

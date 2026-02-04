@@ -81,9 +81,9 @@ export default async function ItemDetailPage({
 
   return (
     <main className="page item-detail-page">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
+      <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/trading">GE Exchange</Link>
-        <span className="separator" aria-hidden="true">
+        <span aria-hidden="true" className="separator">
           ›
         </span>
         <span aria-current="page">{item.name}</span>
@@ -93,12 +93,12 @@ export default async function ItemDetailPage({
         <div className="item-title">
           {/* Keep <img> to avoid Next/Image remote-domain config footguns. */}
           <img
-            src={getItemIconUrl(item.icon)}
             alt={`${item.name} icon`}
             className="item-icon-large"
-            width={48}
             height={48}
             loading="eager"
+            src={getItemIconUrl(item.icon)}
+            width={48}
           />
 
           <div>
@@ -120,7 +120,7 @@ export default async function ItemDetailPage({
             </span>
           )}
 
-          <ItemDetailClient itemId={item.id} initialFavorite={false} />
+          <ItemDetailClient initialFavorite={false} itemId={item.id} />
         </div>
       </header>
 
@@ -128,7 +128,7 @@ export default async function ItemDetailPage({
         <div className="price-card buy">
           <span className="price-label">BUY PRICE</span>
           <div className="price-value">
-            <span className="price-indicator" aria-hidden="true">
+            <span aria-hidden="true" className="price-indicator">
               ▼
             </span>
             <span className="price-amount">
@@ -144,7 +144,7 @@ export default async function ItemDetailPage({
         <div className="price-card sell">
           <span className="price-label">SELL PRICE</span>
           <div className="price-value">
-            <span className="price-indicator" aria-hidden="true">
+            <span aria-hidden="true" className="price-indicator">
               ▲
             </span>
             <span className="price-amount">
@@ -230,20 +230,20 @@ export default async function ItemDetailPage({
       </details>
 
       <PriceChartPanel
+        itemIcon={item.icon}
         itemId={item.id}
         itemName={item.name}
-        itemIcon={item.icon}
         variant="detail"
       />
 
       <section className="actions-section">
         <a
-          href={wikiUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="action-link wiki"
+          href={wikiUrl}
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+          <svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16">
             <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
             <path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z" />
           </svg>

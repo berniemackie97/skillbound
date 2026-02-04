@@ -1,6 +1,5 @@
 'use client';
 
-import type { HiscoresResponse } from '@skillbound/hiscores';
 import {
   ARTISAN_SKILLS,
   COMBAT_SKILLS,
@@ -14,6 +13,7 @@ import {
   getXpForLevel,
   type SkillName,
 } from '@skillbound/domain';
+import type { HiscoresResponse } from '@skillbound/hiscores';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type {
@@ -960,7 +960,7 @@ export default function SkillCalculator({
           <div className="calc-header-badges">
             {activeCharacterName && (
               <span className="calc-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   <circle cx="12" cy="7" r="4" />
                 </svg>
@@ -969,7 +969,7 @@ export default function SkillCalculator({
             )}
             {lookupLabel && (
               <span className="calc-badge accent">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
@@ -989,8 +989,8 @@ export default function SkillCalculator({
               {group.skills.map((skillKey) => (
                 <button
                   key={skillKey}
-                  type="button"
                   className={`calc-skill-btn ${skill === skillKey ? 'active' : ''}`}
+                  type="button"
                   onClick={() => handleSkillChange(skillKey)}
                 >
                   {SKILL_DISPLAY_NAMES[skillKey]}
@@ -1014,10 +1014,10 @@ export default function SkillCalculator({
               <div className="calc-input-group">
                 <label>Display name</label>
                 <input
+                  placeholder="Enter username"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Enter username"
                 />
               </div>
               <div className="calc-input-group">
@@ -1032,15 +1032,15 @@ export default function SkillCalculator({
               </div>
               <div className="calc-card-actions">
                 <button
-                  type="button"
                   className="calc-btn"
-                  onClick={handleLookup}
                   disabled={lookupStatus === 'loading'}
+                  type="button"
+                  onClick={handleLookup}
                 >
                   {lookupStatus === 'loading' ? 'Loading...' : 'Fetch hiscores'}
                 </button>
                 {activeCharacterName && (
-                  <button type="button" className="calc-btn ghost" onClick={handleUseActive}>
+                  <button className="calc-btn ghost" type="button" onClick={handleUseActive}>
                     Use active
                   </button>
                 )}
@@ -1060,9 +1060,9 @@ export default function SkillCalculator({
                 <div className="calc-input-group">
                   <label>Current level</label>
                   <input
-                    type="number"
-                    min={1}
                     max={MAX_LEVEL}
+                    min={1}
+                    type="number"
                     value={currentLevel}
                     onChange={(e) => handleCurrentLevelChange(e.target.value)}
                   />
@@ -1070,9 +1070,9 @@ export default function SkillCalculator({
                 <div className="calc-input-group">
                   <label>Target level</label>
                   <input
-                    type="number"
-                    min={1}
                     max={MAX_LEVEL}
+                    min={1}
+                    type="number"
                     value={targetLevelInput}
                     onChange={(e) => handleTargetLevelChange(e.target.value)}
                   />
@@ -1080,9 +1080,9 @@ export default function SkillCalculator({
                 <div className="calc-input-group">
                   <label>Current XP</label>
                   <input
-                    type="number"
-                    min={0}
                     max={MAX_XP}
+                    min={0}
+                    type="number"
                     value={currentXp}
                     onChange={(e) => handleCurrentXpChange(e.target.value)}
                   />
@@ -1090,9 +1090,9 @@ export default function SkillCalculator({
                 <div className="calc-input-group">
                   <label>Target XP</label>
                   <input
-                    type="number"
-                    min={0}
                     max={MAX_XP}
+                    min={0}
+                    type="number"
                     value={targetXp}
                     onChange={(e) => handleTargetXpChange(e.target.value)}
                   />
@@ -1130,8 +1130,8 @@ export default function SkillCalculator({
                       {skillData.bonuses.map((bonus, index) => (
                         <label key={`${bonus.name}-${index}`} className="calc-checkbox">
                           <input
-                            type="checkbox"
                             checked={selectedBonuses.includes(index)}
+                            type="checkbox"
                             onChange={() => {
                               setSelectedBonuses((prev) => {
                                 const bonusItem = skillData.bonuses[index];
@@ -1173,10 +1173,10 @@ export default function SkillCalculator({
                   <div className="calc-input-group">
                     <label>Search actions</label>
                     <input
+                      placeholder="Filter by name..."
                       type="text"
                       value={filter}
                       onChange={(e) => setFilter(e.target.value)}
-                      placeholder="Filter by name..."
                     />
                   </div>
                   {categoryOptions.length > 0 && (
@@ -1198,19 +1198,19 @@ export default function SkillCalculator({
                   <div className="calc-input-group">
                     <label>Actions per hour</label>
                     <input
-                      type="number"
                       min={0}
+                      placeholder="For XP/hr calc"
+                      type="number"
                       value={actionsPerHourInput}
                       onChange={(e) => setActionsPerHourInput(e.target.value)}
-                      placeholder="For XP/hr calc"
                     />
                   </div>
                   <div className="calc-checkbox-list">
                     {!skillData.members_only && (
                       <label className="calc-checkbox">
                         <input
-                          type="checkbox"
                           checked={hideMembers}
+                          type="checkbox"
                           onChange={(e) => setHideMembers(e.target.checked)}
                         />
                         <span>Hide members-only</span>
@@ -1219,8 +1219,8 @@ export default function SkillCalculator({
                     {skillData.profit_loss_settings.real_time_prices && (
                       <label className="calc-checkbox">
                         <input
-                          type="checkbox"
                           checked={useRealTimePrices}
+                          type="checkbox"
                           onChange={(e) => setUseRealTimePrices(e.target.checked)}
                         />
                         <span>Use real-time prices</span>
@@ -1256,8 +1256,8 @@ export default function SkillCalculator({
                   {showControlledToggle && (
                     <label className="calc-checkbox">
                       <input
-                        type="checkbox"
                         checked={usingControlled}
+                        type="checkbox"
                         onChange={(e) => setUsingControlled(e.target.checked)}
                       />
                       <span>Using controlled style</span>
@@ -1277,26 +1277,26 @@ export default function SkillCalculator({
                   <div className="calc-input-group">
                     <label>Search monsters</label>
                     <input
+                      placeholder="Filter by name..."
                       type="text"
                       value={filter}
                       onChange={(e) => setFilter(e.target.value)}
-                      placeholder="Filter by name..."
                     />
                   </div>
                   <div className="calc-input-group">
                     <label>Kills per hour</label>
                     <input
-                      type="number"
                       min={0}
+                      placeholder="For XP/hr calc"
+                      type="number"
                       value={killsPerHourInput}
                       onChange={(e) => setKillsPerHourInput(e.target.value)}
-                      placeholder="For XP/hr calc"
                     />
                   </div>
                   <label className="calc-checkbox">
                     <input
-                      type="checkbox"
                       checked={hideMembers}
+                      type="checkbox"
                       onChange={(e) => setHideMembers(e.target.checked)}
                     />
                     <span>Hide members-only</span>
@@ -1311,8 +1311,8 @@ export default function SkillCalculator({
                 <div className="calc-card-body">
                   {!isAddingMonster ? (
                     <button
-                      type="button"
                       className="calc-btn ghost full-width"
+                      type="button"
                       onClick={() => setIsAddingMonster(true)}
                     >
                       + Add custom monster
@@ -1322,10 +1322,10 @@ export default function SkillCalculator({
                       <div className="calc-input-group">
                         <label>Name</label>
                         <input
+                          placeholder="Monster name"
                           type="text"
                           value={newMonsterName}
                           onChange={(e) => setNewMonsterName(e.target.value)}
-                          placeholder="Monster name"
                         />
                       </div>
                       <div className="calc-level-grid">
@@ -1349,18 +1349,18 @@ export default function SkillCalculator({
                       <div className="calc-input-group">
                         <label>XP bonus multiplier</label>
                         <input
-                          type="number"
+                          placeholder="1.0 (optional)"
                           step="0.1"
+                          type="number"
                           value={newMonsterBonus}
                           onChange={(e) => setNewMonsterBonus(e.target.value)}
-                          placeholder="1.0 (optional)"
                         />
                       </div>
                       <div className="calc-card-actions">
-                        <button type="button" className="calc-btn ghost" onClick={() => setIsAddingMonster(false)}>
+                        <button className="calc-btn ghost" type="button" onClick={() => setIsAddingMonster(false)}>
                           Cancel
                         </button>
-                        <button type="button" className="calc-btn" onClick={handleAddMonster}>
+                        <button className="calc-btn" type="button" onClick={handleAddMonster}>
                           Add monster
                         </button>
                       </div>
@@ -1416,12 +1416,12 @@ export default function SkillCalculator({
                   {computedActions.length === 0 ? (
                     <tr>
                       <td
+                        className="calc-empty"
                         colSpan={
                           5 +
                           (skillData.profit_loss_settings.show_components ? 1 : 0) +
                           (skillData.profit_loss_settings.enabled ? 1 : 0)
                         }
-                        className="calc-empty"
                       >
                         No actions match your filters.
                       </td>
@@ -1446,17 +1446,17 @@ export default function SkillCalculator({
                               <a
                                 className="calc-action-link"
                                 href={actionHref}
-                                target="_blank"
                                 rel="noreferrer"
+                                target="_blank"
                                 title={`Open ${action.name} on the OSRS Wiki`}
                               >
                                 {actionImage && (
                                   <img
-                                    src={actionImage}
                                     alt=""
-                                    loading="lazy"
-                                    width={24}
                                     height={24}
+                                    loading="lazy"
+                                    src={actionImage}
+                                    width={24}
                                   />
                                 )}
                                 <div className="calc-action-info">
@@ -1530,7 +1530,7 @@ export default function SkillCalculator({
                 <tbody>
                   {combatRows.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="calc-empty">
+                      <td className="calc-empty" colSpan={5}>
                         No monsters match your filters.
                       </td>
                     </tr>
@@ -1546,17 +1546,17 @@ export default function SkillCalculator({
                               <a
                                 className="calc-action-link"
                                 href={monsterHref}
-                                target="_blank"
                                 rel="noreferrer"
+                                target="_blank"
                                 title={`Open ${entry.monster.name} on the OSRS Wiki`}
                               >
                                 {monsterImage && (
                                   <img
-                                    src={monsterImage}
                                     alt=""
-                                    loading="lazy"
-                                    width={24}
                                     height={24}
+                                    loading="lazy"
+                                    src={monsterImage}
+                                    width={24}
                                   />
                                 )}
                                 <div className="calc-action-info">
@@ -1571,10 +1571,10 @@ export default function SkillCalculator({
                               </a>
                               {entry.isCustom && entry.customIndex !== undefined && (
                                 <button
-                                  type="button"
                                   className="calc-remove-btn"
-                                  onClick={() => removeCustomMonster(entry.customIndex!)}
                                   title="Remove"
+                                  type="button"
+                                  onClick={() => removeCustomMonster(entry.customIndex)}
                                 >
                                   ×
                                 </button>

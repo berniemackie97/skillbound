@@ -8,11 +8,11 @@ import {
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import { syncCharacter } from '@/lib/character/character-sync';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
-import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 export async function POST(request: NextRequest) {
   const user = await getSessionUser();

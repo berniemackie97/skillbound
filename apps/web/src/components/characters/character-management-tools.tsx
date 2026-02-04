@@ -133,8 +133,8 @@ export function CharacterManagementTools({
       <div className="management-controls">
         <label className="checkbox-row">
           <input
-            type="checkbox"
             checked={settings.enabled}
+            type="checkbox"
             onChange={(event) =>
               handleSaveSettings({
                 ...settings,

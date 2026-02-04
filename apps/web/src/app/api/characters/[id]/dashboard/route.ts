@@ -12,13 +12,13 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { mapErrorToResponse } from '@/lib/api/api-error-mapper';
-import { getLatestContentBundle } from '@/lib/content/content-bundles';
-import { summarizeCompletion } from '@/lib/progression/dashboard-summary';
-import { getDbClient } from '@/lib/db';
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { dbModeToHiscoresMode } from '@/lib/character/game-mode';
 import { getHiscoresClient } from '@/lib/character/hiscores-client';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
+import { getDbClient } from '@/lib/db';
 import { logger } from '@/lib/logging/logger';
-import { createProblemDetails } from '@/lib/api/problem-details';
+import { summarizeCompletion } from '@/lib/progression/dashboard-summary';
 import { buildCharacterFactsFromSnapshot } from '@/lib/requirements/requirements-context';
 import {
   evaluateBundleDiaries,

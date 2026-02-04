@@ -4,13 +4,13 @@ import { join } from 'path';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   generateContentBundle,
   saveBundleRecord,
 } from '@/lib/content/bundle-generator';
 import { invalidateContentBundleCache } from '@/lib/content/content-bundles';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   syncAllFromWiki,
   syncCombatAchievements,

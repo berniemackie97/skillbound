@@ -26,9 +26,9 @@ export function CharacterSwitcher({
   return (
     <form
       ref={formRef}
+      action="/api/characters/active"
       className="character-switcher"
       method="post"
-      action="/api/characters/active"
     >
       <label>
         <span className="sr-only">Active character</span>
@@ -37,7 +37,7 @@ export function CharacterSwitcher({
           value={activeCharacterId ?? ''}
           onChange={() => formRef.current?.submit()}
         >
-          <option value="" disabled>
+          <option disabled value="">
             Select character…
           </option>
           {characters.map((character) => (

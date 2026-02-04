@@ -2,15 +2,14 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import {
   createTrade,
   getCharacterTrades,
   getTradingOverview,
   TradeValidationError,
   verifyCharacterOwnership,
-  type TimePeriod,
 } from '@/lib/trading/trading-service';
 
 const paramsSchema = z.object({
@@ -115,7 +114,7 @@ export async function GET(
 
     // Get trades with filters
     const { trades, total } = await getCharacterTrades(characterId, {
-      period: parsedQuery.data.period as TimePeriod | undefined,
+      period: parsedQuery.data.period,
       itemId: parsedQuery.data.itemId,
       tradeType: parsedQuery.data.tradeType,
       search: parsedQuery.data.search,

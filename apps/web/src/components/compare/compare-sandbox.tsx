@@ -44,6 +44,38 @@ export function CompareSandbox({
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const selectedSet = useMemo(() => new Set(selectedIds), [selectedIds]);
+
+  const handleQuickCompare = useCallback(() => {
+    const sorted = [...characters].sort((a, b) => {
+      const aTime = a.lastSyncedAt ? new Date(a.lastSyncedAt).getTime() : 0;
+      const bTime = b.lastSyncedAt ? new Date(b.lastSyncedAt).getTime() : 0;
+      return bTime - aTime;
+    });
+
+    const picks: string[] = [];
+    if (activeCharacterId) {
+      picks.push(activeCharacterId);
+    }
+
+    for (const character of sorted) {
+      if (picks.length >= 4) {
+        break;
+      }
+      if (!picks.includes(character.id)) {
+        picks.push(character.id);
+      }
+    }
+
+    setSelectedIds(picks);
+  }, [activeCharacterId, characters]);
+
+  useEffect(() => {
+    if (selectedIds.length === 0 && characters.length > 0) {
+      handleQuickCompare();
+    }
+  }, [characters.length, handleQuickCompare, selectedIds.length]);
+
   if (characters.length === 0) {
     return (
       <div className="compare-sandbox">
@@ -82,11 +114,6 @@ export function CompareSandbox({
     setStatus(null);
   }
 
-  const selectedSet = useMemo(
-    () => new Set(selectedIds),
-    [selectedIds]
-  );
-
   function toggleCharacter(id: string) {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((entry) => entry !== id) : [...prev, id]
@@ -100,36 +127,6 @@ export function CompareSandbox({
   function selectAll() {
     setSelectedIds(characters.map((character) => character.id));
   }
-
-  const handleQuickCompare = useCallback(() => {
-    const sorted = [...characters].sort((a, b) => {
-      const aTime = a.lastSyncedAt ? new Date(a.lastSyncedAt).getTime() : 0;
-      const bTime = b.lastSyncedAt ? new Date(b.lastSyncedAt).getTime() : 0;
-      return bTime - aTime;
-    });
-
-    const picks: string[] = [];
-    if (activeCharacterId) {
-      picks.push(activeCharacterId);
-    }
-
-    for (const character of sorted) {
-      if (picks.length >= 4) {
-        break;
-      }
-      if (!picks.includes(character.id)) {
-        picks.push(character.id);
-      }
-    }
-
-    setSelectedIds(picks);
-  }, [activeCharacterId, characters]);
-
-  useEffect(() => {
-    if (selectedIds.length === 0 && characters.length > 0) {
-      handleQuickCompare();
-    }
-  }, [characters.length, handleQuickCompare, selectedIds.length]);
 
   const diffSkills = diff
     ? Object.entries(diff.skillDeltas)
@@ -185,9 +182,9 @@ export function CompareSandbox({
         </div>
         <button
           className="button"
+          disabled={selectedIds.length < 2}
           type="button"
           onClick={handleCompare}
-          disabled={selectedIds.length < 2}
         >
           Compare now
         </button>

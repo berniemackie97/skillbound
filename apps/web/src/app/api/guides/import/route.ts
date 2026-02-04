@@ -9,10 +9,10 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { getSessionUser } from '@/lib/auth/auth-helpers';
 import { getDbClient } from '@/lib/db';
 import { ensureGuideTemplates } from '@/lib/guides/guide-templates';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 const payloadSchema = z.object({
   characterId: z.string().uuid(),

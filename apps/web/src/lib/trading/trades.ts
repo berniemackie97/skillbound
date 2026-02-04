@@ -15,6 +15,8 @@ import {
 
 import { getDbClient } from '../db';
 import { logger } from '../logging/logger';
+
+import { adjustBankroll, getBankroll, recalculateBankroll } from './bankroll';
 import { getPeriodStartDate } from './helpers';
 import {
   getInventoryPosition,
@@ -22,7 +24,6 @@ import {
   updateInventoryOnBuy,
   updateInventoryOnSell,
 } from './inventory';
-import { adjustBankroll, getBankroll, recalculateBankroll } from './bankroll';
 import {
   type DeleteTradeImpact,
   type ItemProfitBreakdown,

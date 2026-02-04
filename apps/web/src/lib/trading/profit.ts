@@ -11,8 +11,9 @@ import {
 } from '@skillbound/database';
 
 import { getDbClient } from '../db';
-import { getGeExchangeItems, getItemIconUrl } from './ge-service';
 import { logger } from '../logging/logger';
+
+import { getGeExchangeItems, getItemIconUrl } from './ge-service';
 import { getPeriodStartDate } from './helpers';
 import { getInventoryPositions } from './inventory';
 import type { ProfitSummary, TimePeriod } from './types';
@@ -211,7 +212,7 @@ async function calculateUnrealizedPnL(characterId: string): Promise<{
   }
 
   // Get current market prices and icons
-  let marketPrices: Map<number, number | null> = new Map();
+  const marketPrices: Map<number, number | null> = new Map();
   try {
     const geItems = await getGeExchangeItems();
     for (const item of geItems) {
@@ -501,7 +502,7 @@ async function calculateUserUnrealizedPnL(
   }
 
   // Get current market prices and icons
-  let marketPrices: Map<number, number | null> = new Map();
+  const marketPrices: Map<number, number | null> = new Map();
   try {
     const geItems = await getGeExchangeItems();
     for (const item of geItems) {

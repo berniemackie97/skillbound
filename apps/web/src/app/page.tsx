@@ -1,7 +1,7 @@
-import { getLatestContentBundle } from '@/lib/content/content-bundles';
+import { HomeFeatureGrid } from '@/components/home/home-feature-grid';
 import { HomeHero } from '@/components/home/home-hero';
 import { HomeSection } from '@/components/home/home-section';
-import { HomeFeatureGrid } from '@/components/home/home-feature-grid';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { buildHomeCounts, buildHomeSections } from '@/lib/home/home-page-data';
 
 export default async function HomePage() {
@@ -17,9 +17,9 @@ export default async function HomePage() {
       {sections.map((section) => (
         <HomeSection
           key={section.title}
-          title={section.title}
-          description={section.description}
           cards={section.cards}
+          description={section.description}
+          title={section.title}
         />
       ))}
     </>

@@ -2,8 +2,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import {
   deleteTrade,
   getDeleteTradeImpact,

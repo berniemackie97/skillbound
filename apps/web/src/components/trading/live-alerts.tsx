@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 
 import { calculateGeTax, formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
+
 import { useLiveGeItems } from './use-live-ge-items';
 
 type InventoryPosition = {
@@ -211,16 +212,16 @@ export function LiveAlerts({ inventory, watchItems }: LiveAlertsProps) {
               <div className="live-alert-header">
                 {alert.icon ? (
                   <img
+                    alt=""
+                    className="live-alert-icon"
+                    height={28}
+                    width={28}
                     src={
                       alert.icon.startsWith('http') ||
                       alert.icon.startsWith('data:')
                         ? alert.icon
                         : getItemIconUrl(alert.icon)
                     }
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="live-alert-icon"
                   />
                 ) : (
                   <span className="live-alert-icon placeholder" />

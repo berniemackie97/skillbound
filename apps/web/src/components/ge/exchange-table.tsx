@@ -111,15 +111,15 @@ const SortHeader = memo(function SortHeader({
           )}
           {filterKey && (
             <button
-              type="button"
+              aria-label={`Filter ${label}`}
               className={`filter-btn ${columnFilters[filterKey].min || columnFilters[filterKey].max ? 'active' : ''}`}
+              type="button"
               onClick={(event) => {
                 event.stopPropagation();
                 onOpenFilter(openFilter === filterKey ? null : filterKey);
               }}
-              aria-label={`Filter ${label}`}
             >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <svg fill="currentColor" height="16" viewBox="0 0 24 24" width="16">
                 <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
               </svg>
             </button>
@@ -132,8 +132,8 @@ const SortHeader = memo(function SortHeader({
           <div className="filter-inputs">
             <input
               ref={inputMinRef}
-              type="text"
               placeholder="Min"
+              type="text"
               value={columnFilters[filterKey].min}
               onChange={(event) =>
                 onColumnFilterChange(filterKey, 'min', event.target.value)
@@ -150,8 +150,8 @@ const SortHeader = memo(function SortHeader({
             />
             <input
               ref={inputMaxRef}
-              type="text"
               placeholder="Max"
+              type="text"
               value={columnFilters[filterKey].max}
               onChange={(event) =>
                 onColumnFilterChange(filterKey, 'max', event.target.value)
@@ -169,8 +169,8 @@ const SortHeader = memo(function SortHeader({
           </div>
           <div className="filter-actions">
             <button
-              type="button"
               className="filter-clear"
+              type="button"
               onClick={() => {
                 onColumnFilterClear(filterKey);
                 onOpenFilter(null);
@@ -179,8 +179,8 @@ const SortHeader = memo(function SortHeader({
               Clear
             </button>
             <button
-              type="button"
               className="filter-apply"
+              type="button"
               onClick={() => {
                 onColumnFilterApply(filterKey);
                 onOpenFilter(null);
@@ -340,7 +340,7 @@ export function ExchangeTable({
   };
 
   return (
-    <div className="exchange-table-container" ref={tableRef}>
+    <div ref={tableRef} className="exchange-table-container">
       <table className="exchange-table">
         <colgroup>
           <col className="col-star" />
@@ -361,75 +361,73 @@ export function ExchangeTable({
           <tr className="update-row">
             <th colSpan={13}>
               <div className="update-indicator">
-                <span className="update-dot" aria-hidden="true" />
+                <span aria-hidden="true" className="update-dot" />
                 Updating in {refreshLabel}
               </div>
             </th>
           </tr>
           <tr>
-            <th className="col-star" aria-label="Favorite"></th>
+            <th aria-label="Favorite" className="col-star"></th>
             <th className="col-expand"></th>
-            <SortHeader field="name" label="Name" className="col-name" {...sortHeaderProps} />
+            <SortHeader className="col-name" field="name" label="Name" {...sortHeaderProps} />
             <SortHeader
+              className="col-price"
               field="buyPrice"
-              label="Buy Price"
-              className="col-price"
               filterKey="buyPrice"
+              label="Buy Price"
               {...sortHeaderProps}
             />
             <SortHeader
-              field="sellPrice"
-              label="Sell Price"
               className="col-price"
+              field="sellPrice"
               filterKey="sellPrice"
+              label="Sell Price"
               {...sortHeaderProps}
             />
             <SortHeader
-              field="margin"
-              label="Margin"
               className="col-margin"
+              field="margin"
               filterKey="margin"
+              label="Margin"
               {...sortHeaderProps}
             />
-            <SortHeader field="tax" label="Tax" className="col-tax" {...sortHeaderProps} />
+            <SortHeader className="col-tax" field="tax" label="Tax" {...sortHeaderProps} />
             <SortHeader
-              field="profit"
-              label="Profit"
               className="col-profit"
+              field="profit"
               filterKey="profit"
+              label="Profit"
               {...sortHeaderProps}
             />
             <SortHeader
-              field="roiPercent"
-              label="ROI %"
               className="col-roi"
+              field="roiPercent"
               filterKey="roi"
+              label="ROI %"
               {...sortHeaderProps}
             />
             <SortHeader
-              field="volume"
-              label="Volume"
               className="col-volume"
+              field="volume"
               filterKey="volume"
+              label="Volume"
               {...sortHeaderProps}
             />
-            <SortHeader field="buyLimit" label="Limit" className="col-limit" {...sortHeaderProps} />
+            <SortHeader className="col-limit" field="buyLimit" label="Limit" {...sortHeaderProps} />
             <SortHeader
-              field="potentialProfit"
-              label="Pot. Profit"
               className="col-potential"
+              field="potentialProfit"
               filterKey="potentialProfit"
+              label="Pot. Profit"
               {...sortHeaderProps}
             />
-            <SortHeader field="lastTrade" label="Last" className="col-time" {...sortHeaderProps} />
+            <SortHeader className="col-time" field="lastTrade" label="Last" {...sortHeaderProps} />
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
             <Fragment key={item.id}>
               <tr
-                className={`item-row ${expandedItemId === item.id ? 'expanded' : ''}`}
-                onClick={() => handleRowClick(item)}
                 ref={(node) => {
                   if (!node) {
                     rowRefs.current.delete(item.id);
@@ -437,35 +435,37 @@ export function ExchangeTable({
                     rowRefs.current.set(item.id, node);
                   }
                 }}
+                className={`item-row ${expandedItemId === item.id ? 'expanded' : ''}`}
+                onClick={() => handleRowClick(item)}
               >
                 <td className="col-star">
                   <button
-                    type="button"
+                    aria-label={favorites.has(item.id) ? 'Unstar' : 'Star'}
                     className={`star-btn ${favorites.has(item.id) ? 'active' : ''}`}
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       onToggleFavorite(item.id);
                     }}
-                    aria-label={favorites.has(item.id) ? 'Unstar' : 'Star'}
                   >
-                    <svg viewBox="0 0 24 24" width="18" height="18">
+                    <svg height="18" viewBox="0 0 24 24" width="18">
                       <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                         fill={favorites.has(item.id) ? '#ffd700' : 'none'}
                         stroke={favorites.has(item.id) ? '#ffd700' : 'currentColor'}
                         strokeWidth="2"
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                       />
                     </svg>
                   </button>
                 </td>
                 <td className="col-expand">
                   <button
-                    type="button"
-                    className={`expand-btn ${expandedItemId === item.id ? 'active' : ''}`}
-                    onClick={(e) => handleExpandClick(e, item.id)}
                     aria-label={expandedItemId === item.id ? 'Collapse' : 'Expand'}
+                    className={`expand-btn ${expandedItemId === item.id ? 'active' : ''}`}
+                    type="button"
+                    onClick={(e) => handleExpandClick(e, item.id)}
                   >
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
                       <path d="M7 10l5 5 5-5z" />
                     </svg>
                   </button>
@@ -473,12 +473,12 @@ export function ExchangeTable({
                 <td className="col-name">
                   <div className="item-name-cell">
                     <img
-                      src={getItemIconUrl(item.icon)}
                       alt=""
                       className="item-icon"
-                      width={24}
                       height={24}
                       loading="lazy"
+                      src={getItemIconUrl(item.icon)}
+                      width={24}
                     />
                     <span className="item-name">{item.name}</span>
                   </div>
@@ -526,9 +526,9 @@ export function ExchangeTable({
                   <td colSpan={13}>
                     <div className="expanded-content">
                       <PriceChartPanel
+                        itemIcon={item.icon}
                         itemId={item.id}
                         itemName={item.name}
-                        itemIcon={item.icon}
                         variant="table"
                       />
                     </div>
@@ -548,10 +548,10 @@ export function ExchangeTable({
         </span>
         <div className="pagination-controls">
           <button
-            type="button"
             className="pagination-btn"
-            onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage <= 1}
+            type="button"
+            onClick={() => onPageChange(currentPage - 1)}
           >
             ‹
           </button>
@@ -569,8 +569,8 @@ export function ExchangeTable({
             return (
               <button
                 key={pageNum}
-                type="button"
                 className={`pagination-btn ${currentPage === pageNum ? 'active' : ''}`}
+                type="button"
                 onClick={() => onPageChange(pageNum)}
               >
                 {pageNum}
@@ -581,8 +581,8 @@ export function ExchangeTable({
             <>
               <span className="pagination-ellipsis">...</span>
               <button
-                type="button"
                 className="pagination-btn"
+                type="button"
                 onClick={() => onPageChange(totalPages)}
               >
                 {totalPages}
@@ -590,10 +590,10 @@ export function ExchangeTable({
             </>
           )}
           <button
-            type="button"
             className="pagination-btn"
-            onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage >= totalPages}
+            type="button"
+            onClick={() => onPageChange(currentPage + 1)}
           >
             ›
           </button>

@@ -219,6 +219,7 @@ export default async function CharactersPage() {
             {activeCharacters.map((character) => (
               <CharacterCard
                 key={character.id}
+                isActive={activeCharacterId === character.id}
                 character={{
                   id: character.id,
                   displayName: character.displayName,
@@ -233,7 +234,6 @@ export default async function CharactersPage() {
                     ? character.archivedAt.toISOString()
                     : null,
                 }}
-                isActive={activeCharacterId === character.id}
               />
             ))}
           </div>
@@ -245,6 +245,7 @@ export default async function CharactersPage() {
               {archivedCharacters.map((character) => (
                 <CharacterCard
                   key={character.id}
+                  isActive={activeCharacterId === character.id}
                   character={{
                     id: character.id,
                     displayName: character.displayName,
@@ -259,7 +260,6 @@ export default async function CharactersPage() {
                       ? character.archivedAt.toISOString()
                       : null,
                   }}
-                  isActive={activeCharacterId === character.id}
                 />
               ))}
             </div>
@@ -378,7 +378,7 @@ export default async function CharactersPage() {
                       <strong>+{activity.delta.toLocaleString()}</strong>
                     </div>
                     <div className="sparkline">
-                      <svg viewBox="0 0 180 64" role="img" aria-hidden="true">
+                      <svg aria-hidden="true" role="img" viewBox="0 0 180 64">
                         <polyline
                           className="sparkline-line"
                           points={buildSparklinePoints(activity.values, 180, 64)}
@@ -421,6 +421,7 @@ export default async function CharactersPage() {
           </div>
         </div>
         <CompareSandbox
+          activeCharacterId={activeCharacterId}
           characters={activeCharacters.map((character) => ({
             id: character.id,
             displayName: character.displayName,
@@ -429,7 +430,6 @@ export default async function CharactersPage() {
               ? character.lastSyncedAt.toISOString()
               : null,
           }))}
-          activeCharacterId={activeCharacterId}
         />
       </section>
     </>

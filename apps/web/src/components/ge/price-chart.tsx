@@ -301,11 +301,11 @@ export function PriceChart({
         {!compact && (
           <div className="chart-item-info">
             <img
-              src={getItemIconUrl(itemIcon)}
               alt=""
               className="item-icon"
-              width={32}
               height={32}
+              src={getItemIconUrl(itemIcon)}
+              width={32}
             />
             <div className="item-details">
               <span className="item-name">{itemName}</span>
@@ -320,8 +320,8 @@ export function PriceChart({
           {PERIODS.map((p) => (
             <button
               key={p.value}
-              type="button"
               className={`period-btn ${period === p.value ? 'active' : ''}`}
+              type="button"
               onClick={() => setPeriod(p.value)}
             >
               {p.label}
@@ -385,19 +385,19 @@ export function PriceChart({
           <div className="chart-container">
             <svg
               ref={priceChartRef}
-              viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               className="price-svg"
               preserveAspectRatio="xMidYMid meet"
-              onMouseMove={handleMouseMove}
+              viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               onMouseLeave={handleMouseLeave}
+              onMouseMove={handleMouseMove}
             >
               <defs>
                 {/* Gradient fills */}
-                <linearGradient id="buyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="buyGradient" x1="0%" x2="0%" y1="0%" y2="100%">
                   <stop offset="0%" stopColor="var(--color-success)" stopOpacity="0.3" />
                   <stop offset="100%" stopColor="var(--color-success)" stopOpacity="0.02" />
                 </linearGradient>
-                <linearGradient id="sellGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="sellGradient" x1="0%" x2="0%" y1="0%" y2="100%">
                   <stop offset="0%" stopColor="var(--color-error)" stopOpacity="0.2" />
                   <stop offset="100%" stopColor="var(--color-error)" stopOpacity="0.02" />
                 </linearGradient>
@@ -408,51 +408,51 @@ export function PriceChart({
                 {yAxisLabels.map((label, i) => (
                   <line
                     key={i}
-                    x1={padding.left}
-                    y1={label.y}
-                    x2={chartWidth - padding.right}
-                    y2={label.y}
+                    opacity="0.4"
                     stroke="var(--border)"
                     strokeDasharray="2,4"
-                    opacity="0.4"
+                    x1={padding.left}
+                    x2={chartWidth - padding.right}
+                    y1={label.y}
+                    y2={label.y}
                   />
                 ))}
                 {xAxisLabels.map((label, i) => (
                   <line
                     key={i}
-                    x1={label.x}
-                    y1={padding.top}
-                    x2={label.x}
-                    y2={chartHeight - padding.bottom}
+                    opacity="0.2"
                     stroke="var(--border)"
                     strokeDasharray="2,4"
-                    opacity="0.2"
+                    x1={label.x}
+                    x2={label.x}
+                    y1={padding.top}
+                    y2={chartHeight - padding.bottom}
                   />
                 ))}
               </g>
 
               {/* Area fills */}
-              <path d={buyAreaPath} fill="url(#buyGradient)" className="buy-area" />
-              <path d={sellAreaPath} fill="url(#sellGradient)" className="sell-area" />
+              <path className="buy-area" d={buyAreaPath} fill="url(#buyGradient)" />
+              <path className="sell-area" d={sellAreaPath} fill="url(#sellGradient)" />
 
               {/* Price lines */}
               <path
+                className="buy-line"
                 d={buyPath}
                 fill="none"
                 stroke="var(--color-success)"
-                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="buy-line"
+                strokeWidth="2.5"
               />
               <path
+                className="sell-line"
                 d={sellPath}
                 fill="none"
                 stroke="var(--color-error)"
-                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="sell-line"
+                strokeWidth="2.5"
               />
 
               {/* Y-axis labels */}
@@ -460,12 +460,12 @@ export function PriceChart({
                 {yAxisLabels.map((label, i) => (
                   <text
                     key={i}
-                    x={padding.left - 12}
-                    y={label.y + 4}
-                    textAnchor="end"
+                    fill="var(--text-muted)"
                     fontSize="11"
                     fontWeight="500"
-                    fill="var(--text-muted)"
+                    textAnchor="end"
+                    x={padding.left - 12}
+                    y={label.y + 4}
                   >
                     {formatNumber(label.price)}
                   </text>
@@ -477,12 +477,12 @@ export function PriceChart({
                 {xAxisLabels.map((label, i) => (
                   <text
                     key={i}
-                    x={label.x}
-                    y={chartHeight - 10}
-                    textAnchor="middle"
+                    fill="var(--text-muted)"
                     fontSize="11"
                     fontWeight="500"
-                    fill="var(--text-muted)"
+                    textAnchor="middle"
+                    x={label.x}
+                    y={chartHeight - 10}
                   >
                     {label.label}
                   </text>
@@ -494,26 +494,26 @@ export function PriceChart({
                 <g className="hover-elements">
                   {/* Vertical line */}
                   <line
-                    x1={hoverData.x}
-                    y1={padding.top}
-                    x2={hoverData.x}
-                    y2={chartHeight - padding.bottom}
-                    stroke="var(--accent)"
-                    strokeWidth="1"
-                    strokeDasharray="4,4"
                     opacity="0.7"
+                    stroke="var(--accent)"
+                    strokeDasharray="4,4"
+                    strokeWidth="1"
+                    x1={hoverData.x}
+                    x2={hoverData.x}
+                    y1={padding.top}
+                    y2={chartHeight - padding.bottom}
                   />
                   {/* Horizontal line at buy price */}
                   {hoverData.point.buyPrice && (
                     <line
-                      x1={padding.left}
-                      y1={scaleY(hoverData.point.buyPrice)}
-                      x2={chartWidth - padding.right}
-                      y2={scaleY(hoverData.point.buyPrice)}
-                      stroke="var(--color-success)"
-                      strokeWidth="1"
-                      strokeDasharray="4,4"
                       opacity="0.5"
+                      stroke="var(--color-success)"
+                      strokeDasharray="4,4"
+                      strokeWidth="1"
+                      x1={padding.left}
+                      x2={chartWidth - padding.right}
+                      y1={scaleY(hoverData.point.buyPrice)}
+                      y2={scaleY(hoverData.point.buyPrice)}
                     />
                   )}
                   {/* Data point highlights */}
@@ -521,8 +521,8 @@ export function PriceChart({
                     <circle
                       cx={hoverData.x}
                       cy={scaleY(hoverData.point.buyPrice)}
-                      r="6"
                       fill="var(--color-success)"
+                      r="6"
                       stroke="var(--bg)"
                       strokeWidth="2"
                     />
@@ -531,8 +531,8 @@ export function PriceChart({
                     <circle
                       cx={hoverData.x}
                       cy={scaleY(hoverData.point.sellPrice)}
-                      r="6"
                       fill="var(--color-error)"
+                      r="6"
                       stroke="var(--bg)"
                       strokeWidth="2"
                     />
@@ -542,11 +542,11 @@ export function PriceChart({
 
               {/* Invisible hover area */}
               <rect
+                fill="transparent"
+                height={chartHeight - padding.top - padding.bottom}
+                width={chartWidth - padding.left - padding.right}
                 x={padding.left}
                 y={padding.top}
-                width={chartWidth - padding.left - padding.right}
-                height={chartHeight - padding.top - padding.bottom}
-                fill="transparent"
               />
             </svg>
 
@@ -612,28 +612,28 @@ export function PriceChart({
                 <span className="volume-total">Total: {formatVolume(totalVolume)}</span>
               </div>
               <svg
-                viewBox={`0 0 ${chartWidth} ${volumeHeight}`}
                 className="volume-svg"
                 preserveAspectRatio="xMidYMid meet"
+                viewBox={`0 0 ${chartWidth} ${volumeHeight}`}
               >
                 {/* Volume Y-axis grid */}
                 {volumeYLabels.map((label, i) => (
                   <g key={i}>
                     <line
-                      x1={padding.left}
-                      y1={label.y}
-                      x2={chartWidth - padding.right}
-                      y2={label.y}
+                      opacity="0.3"
                       stroke="var(--border)"
                       strokeDasharray="2,4"
-                      opacity="0.3"
+                      x1={padding.left}
+                      x2={chartWidth - padding.right}
+                      y1={label.y}
+                      y2={label.y}
                     />
                     <text
+                      fill="var(--text-muted)"
+                      fontSize="10"
+                      textAnchor="end"
                       x={padding.left - 12}
                       y={label.y + 4}
-                      textAnchor="end"
-                      fontSize="10"
-                      fill="var(--text-muted)"
                     >
                       {formatVolume(label.value)}
                     </text>
@@ -661,13 +661,13 @@ export function PriceChart({
                     return (
                       <rect
                         key={i}
-                        x={x}
-                        y={y}
-                        width={barWidth}
-                        height={height}
                         fill={isUp ? 'var(--color-success)' : 'var(--color-error)'}
+                        height={height}
                         opacity={isHovered ? 1 : 0.6}
                         rx="1"
+                        width={barWidth}
+                        x={x}
+                        y={y}
                       />
                     );
                   })}
@@ -676,14 +676,14 @@ export function PriceChart({
                 {/* Hover indicator line */}
                 {hoverData && (
                   <line
-                    x1={hoverData.x}
-                    y1={10}
-                    x2={hoverData.x}
-                    y2={volumeHeight - 20}
-                    stroke="var(--accent)"
-                    strokeWidth="1"
-                    strokeDasharray="4,4"
                     opacity="0.7"
+                    stroke="var(--accent)"
+                    strokeDasharray="4,4"
+                    strokeWidth="1"
+                    x1={hoverData.x}
+                    x2={hoverData.x}
+                    y1={10}
+                    y2={volumeHeight - 20}
                   />
                 )}
               </svg>

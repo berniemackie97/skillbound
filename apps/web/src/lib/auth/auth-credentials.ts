@@ -2,6 +2,7 @@ import { eq, userCredentials, users } from '@skillbound/database';
 import { z } from 'zod';
 
 import { getDbClient } from '../db';
+
 import { hashPassword, verifyPassword } from './passwords';
 
 const emailSchema = z

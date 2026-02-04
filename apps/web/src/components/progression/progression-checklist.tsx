@@ -264,11 +264,11 @@ export function ProgressionChecklist({
           </div>
           <div className="progression-filters">
             <select
+              className="filter-select"
               value={filter}
               onChange={(e) =>
                 setFilter(e.target.value as 'all' | 'pending' | 'completed')
               }
-              className="filter-select"
             >
               <option value="all">All Items</option>
               <option value="pending">Pending</option>
@@ -328,8 +328,8 @@ export function ProgressionChecklist({
                         >
                           <label className="item-checkbox">
                             <input
-                              type="checkbox"
                               checked={item.completed}
+                              type="checkbox"
                               onChange={() =>
                                 void handleToggleItem(item.id, item.completed)
                               }
@@ -377,11 +377,11 @@ export function ProgressionChecklist({
         </div>
         <div className="progression-filters">
           <select
+            className="filter-select"
             value={filter}
             onChange={(e) =>
               setFilter(e.target.value as 'all' | 'pending' | 'completed')
             }
-            className="filter-select"
           >
             <option value="all">All Items</option>
             <option value="pending">Pending</option>
@@ -441,8 +441,8 @@ export function ProgressionChecklist({
                       >
                         <label className="item-checkbox">
                           <input
-                            type="checkbox"
                             checked={item.completed}
+                            type="checkbox"
                             onChange={() =>
                               void handleToggleItem(item.id, item.completed)
                             }

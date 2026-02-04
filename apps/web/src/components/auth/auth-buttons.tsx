@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { AuthModal } from './auth-modal';
 
 type AuthButtonsProps = {
@@ -39,16 +40,16 @@ export function AuthButtons({
       {isSignedIn ? (
         <button
           className="button ghost"
-          onClick={() => setShowModal('signout')}
           type="button"
+          onClick={() => setShowModal('signout')}
         >
           Sign out
         </button>
       ) : (
         <button
           className="button ghost"
-          onClick={() => setShowModal('signin')}
           type="button"
+          onClick={() => setShowModal('signin')}
         >
           Sign in
         </button>
@@ -56,15 +57,15 @@ export function AuthButtons({
 
       {showModal === 'signin' && (
         <AuthModal
-          mode="signin"
-          hasGoogle={hasGoogle}
-          hasGitHub={hasGitHub}
           hasFacebook={hasFacebook}
-          hasTwitter={hasTwitter}
+          hasGitHub={hasGitHub}
+          hasGoogle={hasGoogle}
           hasMagicLink={hasMagicLink}
+          hasTwitter={hasTwitter}
+          mode="signin"
           onClose={() => setShowModal(null)}
-          onSignIn={signInAction}
           onRegister={registerAction}
+          onSignIn={signInAction}
           {...(magicLinkAction ? { onMagicLink: magicLinkAction } : {})}
         />
       )}

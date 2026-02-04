@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 
 import { calculateGeTax, formatGp } from '@/lib/trading/ge-service';
+
 import { useLiveGeItems } from './use-live-ge-items';
 
 interface InventoryPosition {
@@ -110,19 +111,19 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
             <div
               key={position.itemId}
               className="inventory-item"
-              onClick={() => onItemClick?.(position.itemId)}
               role={onItemClick ? 'button' : undefined}
-              tabIndex={onItemClick ? 0 : undefined}
               style={onItemClick ? { cursor: 'pointer' } : undefined}
+              tabIndex={onItemClick ? 0 : undefined}
+              onClick={() => onItemClick?.(position.itemId)}
             >
               {position.iconUrl && (
                 <img
-                  src={position.iconUrl}
                   alt=""
                   className="inventory-item-icon"
-                  width={32}
                   height={32}
                   loading="lazy"
+                  src={position.iconUrl}
+                  width={32}
                 />
               )}
               <div className="inventory-item-info">

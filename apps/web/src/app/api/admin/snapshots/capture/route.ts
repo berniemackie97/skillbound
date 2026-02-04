@@ -3,9 +3,9 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { syncCharacter } from '@/lib/character/character-sync';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   captureSnapshots,
   planSnapshotCapture,

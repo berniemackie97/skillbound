@@ -19,8 +19,9 @@ import Google from 'next-auth/providers/google';
 import Nodemailer from 'next-auth/providers/nodemailer';
 import Twitter from 'next-auth/providers/twitter';
 
-import { credentialsSchema, verifyUserCredentials } from './auth-credentials';
 import { getDbClient } from '../db';
+
+import { credentialsSchema, verifyUserCredentials } from './auth-credentials';
 import '../config/env';
 
 const googleId = process.env['AUTH_GOOGLE_ID'];

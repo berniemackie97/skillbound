@@ -40,8 +40,8 @@ export default async function ComparePage() {
         </div>
       </div>
       <CompareSandbox
-        characters={roster}
         activeCharacterId={activeCharacterId}
+        characters={roster}
       />
     </section>
   );

@@ -52,10 +52,10 @@ export default async function ProgressionPage({ searchParams }: PageProps) {
         />
       ) : (
         <ProgressionBrowser
-          initialUsername={initialUsername}
-          initialMode={initialMode}
-          signedIn={Boolean(user)}
           hasActiveCharacter={Boolean(character)}
+          initialMode={initialMode}
+          initialUsername={initialUsername}
+          signedIn={Boolean(user)}
         />
       )}
     </main>

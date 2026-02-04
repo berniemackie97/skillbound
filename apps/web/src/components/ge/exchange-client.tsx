@@ -4,14 +4,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
-  ExchangeTable,
-  type SortDirection,
-  type SortField,
-  type SortState,
-} from './exchange-table';
-import { ExchangeControls } from './exchange-controls';
-import { ExchangeTopbar } from './exchange-topbar';
-import {
   DEFAULT_FILTERS,
   DEFAULT_REFRESH_INTERVAL,
   FAVORITES_META_STORAGE_KEY,
@@ -35,6 +27,14 @@ import {
   parseParam,
   parseSorts,
 } from './exchange-client.utils';
+import { ExchangeControls } from './exchange-controls';
+import {
+  ExchangeTable,
+  type SortDirection,
+  type SortField,
+  type SortState,
+} from './exchange-table';
+import { ExchangeTopbar } from './exchange-topbar';
 import type { ItemSearchResult } from './item-search';
 
 export function ExchangeClient({
@@ -448,7 +448,9 @@ export function ExchangeClient({
           queryParams.set('minRoi', '0');
         }
 
-        const response = await fetch(`/api/ge/items?${queryParams.toString()}`);
+        const response = await fetch(`/api/ge/items?${queryParams.toString()}`, {
+          cache: 'no-store',
+        });
         if (response.ok) {
           const data = (await response.json()) as ItemsApiResponse;
           setItems(data.data ?? []);
@@ -821,28 +823,28 @@ export function ExchangeClient({
   return (
     <div className="exchange-client">
       <ExchangeControls
-        viewMode={viewMode}
-        onViewModeChange={handleViewModeChange}
-        onSearchSelect={handleSearchSelect}
-        membersFilter={membersFilter}
-        onMembersFilterChange={setMembersFilter}
-        presetValue={presetValue}
-        savedPresets={savedPresets}
-        onPresetSelect={handleSavedPresetSelect}
-        onSavePreset={handleSavePreset}
-        stackPresets={stackPresets}
-        onToggleStackPresets={() => setStackPresets((prev) => !prev)}
         hideNegativeMargin={hideNegativeMargin}
         hideNegativeRoi={hideNegativeRoi}
-        onToggleNegative={handleNegativeToggle}
-        onResetFilters={handleResetFilters}
-        refreshInterval={refreshInterval}
-        onRefreshIntervalChange={handleRefreshIntervalChange}
         isRefreshPaused={isRefreshPaused}
-        onToggleRefreshPaused={handleToggleRefreshPaused}
-        nextRefreshLabel={nextRefreshLabel}
         lastUpdatedLabel={lastUpdatedLabel}
+        membersFilter={membersFilter}
+        nextRefreshLabel={nextRefreshLabel}
         now={now}
+        presetValue={presetValue}
+        refreshInterval={refreshInterval}
+        savedPresets={savedPresets}
+        stackPresets={stackPresets}
+        viewMode={viewMode}
+        onMembersFilterChange={setMembersFilter}
+        onPresetSelect={handleSavedPresetSelect}
+        onRefreshIntervalChange={handleRefreshIntervalChange}
+        onResetFilters={handleResetFilters}
+        onSavePreset={handleSavePreset}
+        onSearchSelect={handleSearchSelect}
+        onToggleNegative={handleNegativeToggle}
+        onToggleRefreshPaused={handleToggleRefreshPaused}
+        onToggleStackPresets={() => setStackPresets((prev) => !prev)}
+        onViewModeChange={handleViewModeChange}
       />
 
       {isLoading && (
@@ -854,30 +856,30 @@ export function ExchangeClient({
 
       <div className="exchange-table-shell">
         <ExchangeTopbar
-          searchFilter={searchFilter}
-          onSearchChange={setSearchFilter}
-          onSearchSubmit={handleSearchSubmit}
           currentPage={meta.page}
+          searchFilter={searchFilter}
           totalPages={meta.totalPages}
           onPageChange={handlePageChange}
+          onSearchChange={setSearchFilter}
+          onSearchSubmit={handleSearchSubmit}
         />
 
         <ExchangeTable
-          items={displayItems}
-          favorites={favorites}
-          onToggleFavorite={handleToggleFavorite}
-          onItemClick={handleItemClick}
-          sorts={sorts}
-          onSort={handleSort}
-          currentPage={meta.page}
-          totalPages={meta.totalPages}
-          total={meta.total}
-          onPageChange={handlePageChange}
           columnFilters={filters}
-          onColumnFilterChange={updateFilterValue}
-          onColumnFilterApply={applyColumnFilters}
-          onColumnFilterClear={clearColumnFilter}
+          currentPage={meta.page}
+          favorites={favorites}
+          items={displayItems}
           refreshLabel={nextRefreshLabel}
+          sorts={sorts}
+          total={meta.total}
+          totalPages={meta.totalPages}
+          onColumnFilterApply={applyColumnFilters}
+          onColumnFilterChange={updateFilterValue}
+          onColumnFilterClear={clearColumnFilter}
+          onItemClick={handleItemClick}
+          onPageChange={handlePageChange}
+          onSort={handleSort}
+          onToggleFavorite={handleToggleFavorite}
         />
       </div>
     </div>

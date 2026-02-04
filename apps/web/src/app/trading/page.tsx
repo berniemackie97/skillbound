@@ -292,8 +292,8 @@ async function TradeTrackerContent({
       <div className="tracker-grid">
         <div className="tracker-primary">
           <BankrollCard
-            characterId={characterId}
             bankroll={bankroll ?? { currentBankroll: 0, initialBankroll: 0 }}
+            characterId={characterId}
             totalProfit={profitSummary.totalProfit}
           />
 
@@ -305,8 +305,8 @@ async function TradeTrackerContent({
               )}
             </div>
             <TradeForm
-              characterId={characterId}
               availableBankroll={bankroll?.currentBankroll ?? 0}
+              characterId={characterId}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
             />
           </div>
@@ -330,26 +330,26 @@ async function TradeTrackerContent({
             </div>
 
             <TradeFilters
-              characters={characters}
               activeCharacterId={characterId}
               activeCharacterName={characterName}
+              characters={characters}
+              period={period}
               scope={scope}
+              search={search}
               selectedCharacterId={scope === 'all' ? null : characterId}
               tradeType={tradeType}
-              search={search}
-              period={period}
             />
 
             <TradeList
               characterId={characterId}
+              currentPage={page}
+              pageSize={pageSize}
+              total={tradesResult.total}
               trades={tradesResult.trades.map((t) => ({
                 ...t,
                 characterId: t.userCharacterId,
                 tradedAt: t.tradedAt.toISOString(),
               }))}
-              total={tradesResult.total}
-              currentPage={page}
-              pageSize={pageSize}
             />
           </div>
         </div>
@@ -423,18 +423,18 @@ export default async function TradingPage({ searchParams }: PageProps) {
 
         <nav className="trading-tabs" role="tablist">
           <a
-            href="/trading?tab=exchange"
-            className={`tab-btn ${activeTab === 'exchange' ? 'active' : ''}`}
-            role="tab"
             aria-selected={activeTab === 'exchange'}
+            className={`tab-btn ${activeTab === 'exchange' ? 'active' : ''}`}
+            href="/trading?tab=exchange"
+            role="tab"
           >
             <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
               fill="none"
+              height="18"
               stroke="currentColor"
               strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="18"
             >
               <path d="M3 3h18v18H3z" />
               <path d="M3 9h18M9 21V9" />
@@ -443,18 +443,18 @@ export default async function TradingPage({ searchParams }: PageProps) {
           </a>
 
           <a
-            href="/trading?tab=tracker"
-            className={`tab-btn ${activeTab === 'tracker' ? 'active' : ''}`}
-            role="tab"
             aria-selected={activeTab === 'tracker'}
+            className={`tab-btn ${activeTab === 'tracker' ? 'active' : ''}`}
+            href="/trading?tab=tracker"
+            role="tab"
           >
             <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
               fill="none"
+              height="18"
               stroke="currentColor"
               strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="18"
             >
               <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
             </svg>
@@ -468,10 +468,10 @@ export default async function TradingPage({ searchParams }: PageProps) {
         <section className="ge-exchange-section">
           <Suspense fallback={<ExchangeLoading />}>
             <GEExchangeContent
-              sort={sort}
               order={order}
               page={exchangePage}
               search={exchangeSearch}
+              sort={sort}
             />
           </Suspense>
         </section>
@@ -487,8 +487,8 @@ export default async function TradingPage({ searchParams }: PageProps) {
                 saved per character and are completely private.
               </p>
               <a
-                href="/login?redirect=/trading?tab=tracker"
                 className="button"
+                href="/login?redirect=/trading?tab=tracker"
               >
                 Login to Track Trades
               </a>
@@ -501,23 +501,23 @@ export default async function TradingPage({ searchParams }: PageProps) {
                 character has its own trade history.
               </p>
               <a
-                href="/characters?redirect=/trading?tab=tracker"
                 className="button"
+                href="/characters?redirect=/trading?tab=tracker"
               >
                 Select Character
               </a>
             </div>
           ) : (
             <TradeTrackerContent
-              userId={user.id}
               characterId={character.id}
               characterName={character.displayName}
-              period={period}
-              page={trackerPage}
-              scope={scope}
-              tradeType={tradeType}
-              search={trackerSearch}
               characters={characters}
+              page={trackerPage}
+              period={period}
+              scope={scope}
+              search={trackerSearch}
+              tradeType={tradeType}
+              userId={user.id}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
             />
           )}

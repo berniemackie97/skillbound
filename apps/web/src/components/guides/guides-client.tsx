@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useState, useMemo } from 'react';
 
 type GuideWithProgress = {
   id: string;
@@ -94,22 +94,22 @@ export function GuidesClient({
         <div className="guides-search-box">
           <svg
             className="guides-search-icon"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
             fill="none"
+            height="18"
             stroke="currentColor"
             strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="18"
           >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
           <input
-            type="text"
+            className="guides-search-input"
             placeholder="Search guides..."
+            type="text"
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="guides-search-input"
           />
         </div>
 
@@ -134,7 +134,7 @@ export function GuidesClient({
                 className={`guides-filter-btn ${showTrackedOnly ? 'active' : ''}`}
                 onClick={handleTrackedToggle}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
@@ -182,10 +182,10 @@ export function GuidesClient({
         <div className="guides-pagination">
           <button
             className="guides-page-btn"
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
               <polyline points="15 18 9 12 15 6" />
             </svg>
             Prev
@@ -205,11 +205,11 @@ export function GuidesClient({
 
           <button
             className="guides-page-btn"
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
           >
             Next
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
@@ -226,20 +226,20 @@ function GuideCard({ guide }: { guide: GuideWithProgress }) {
       : 0;
 
   return (
-    <Link href={`/guides/${guide.id}`} className="guide-card">
+    <Link className="guide-card" href={`/guides/${guide.id}`}>
       <div className="guide-card-body">
         <div className="guide-card-top">
           <h3 className="guide-card-title">{guide.title}</h3>
           {guide.isCompleted && (
             <span className="guide-card-status completed" title="Completed">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+              <svg fill="none" height="14" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" width="14">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </span>
           )}
           {guide.isTracking && !guide.isCompleted && (
             <span className="guide-card-status tracking" title="In Progress">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>

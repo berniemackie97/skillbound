@@ -16,11 +16,13 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
-import { getLatestContentBundle } from '@/lib/content/content-bundles';
-import { mapCombatAchievementsToContentIds } from '@/lib/content/combat-achievement-mapper';
-import { getDbClient } from '@/lib/db';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
+import { applyQuestPoints } from '@/lib/character/quest-points';
+import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
+import { mapCombatAchievementsToContentIds } from '@/lib/content/combat-achievement-mapper';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
+import { getDbClient } from '@/lib/db';
 import {
   applyOverrides,
   applyCharacterState,
@@ -31,8 +33,6 @@ import {
   evaluateBundleDiaries,
   evaluateBundleQuests,
 } from '@/lib/requirements/requirements-evaluator';
-import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
-import { applyQuestPoints } from '@/lib/character/quest-points';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 const querySchema = z.object({

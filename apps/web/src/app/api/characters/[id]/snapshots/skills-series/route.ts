@@ -11,8 +11,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getDbClient } from '@/lib/db';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getDbClient } from '@/lib/db';
 import { type SnapshotSeriesBucket } from '@/lib/snapshots/snapshot-buckets';
 import { buildSkillSeries } from '@/lib/snapshots/snapshot-skill-series';
 

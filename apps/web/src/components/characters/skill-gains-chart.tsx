@@ -81,31 +81,32 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
 
   return (
     <div className="chart-container">
-      <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={140}>
+      <ResponsiveContainer height="100%" minHeight={140} minWidth={0} width="100%">
         <BarChart
           data={chartData}
           layout="vertical"
           margin={{ top: 5, right: 8, left: 0, bottom: 5 }}
         >
           <XAxis
-            type="number"
+            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
             stroke="var(--text-muted)"
             tick={{ fontSize: 9 }}
             tickFormatter={formatXp}
             tickLine={false}
-            axisLine={{ stroke: 'rgba(226, 176, 101, 0.15)' }}
+            type="number"
           />
           <YAxis
-            type="category"
+            axisLine={false}
             dataKey="name"
             stroke="var(--text-muted)"
             tick={{ fontSize: 10 }}
             tickLine={false}
-            axisLine={false}
+            type="category"
             width={70}
           />
           <Tooltip
             cursor={{ fill: 'rgba(212, 175, 55, 0.1)' }}
+            labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
@@ -113,7 +114,6 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
               fontSize: '0.85rem',
             }}
-            labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
             formatter={(value, name) => {
               const numValue = typeof value === 'number' ? value : 0;
               const strName = String(name);
@@ -125,8 +125,8 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
           />
           <Bar
             dataKey="deltaXp"
-            radius={[0, 3, 3, 0]}
             maxBarSize={20}
+            radius={[0, 3, 3, 0]}
           >
             {chartData.map((entry, index) => (
               <Cell

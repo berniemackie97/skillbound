@@ -353,15 +353,15 @@ export function TradeForm({
     <form className="trade-form" onSubmit={handleSubmit}>
       <div className="trade-type-toggle">
         <button
-          type="button"
           className={`toggle-btn ${tradeType === 'buy' ? 'active' : ''}`}
+          type="button"
           onClick={() => setTradeType('buy')}
         >
           Buy
         </button>
         <button
-          type="button"
           className={`toggle-btn ${tradeType === 'sell' ? 'active sell' : ''}`}
+          type="button"
           onClick={() => setTradeType('sell')}
         >
           Sell
@@ -375,39 +375,39 @@ export function TradeForm({
           <div className="search-input-container">
             {selectedItem && (
               <img
-                src={getItemIconUrl(selectedItem.icon)}
                 alt=""
                 className="selected-item-icon"
-                width={24}
                 height={24}
+                src={getItemIconUrl(selectedItem.icon)}
+                width={24}
               />
             )}
             <input
               ref={searchInputRef}
+              autoComplete="off"
+              className={selectedItem ? 'has-selection' : ''}
               id="item-search"
+              placeholder="Search for an item..."
               type="text"
               value={itemSearchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
+              onKeyDown={handleKeyDown}
               onFocus={() =>
                 itemSearchQuery && searchResults.length > 0 && setShowDropdown(true)
               }
-              onKeyDown={handleKeyDown}
-              placeholder="Search for an item..."
-              className={selectedItem ? 'has-selection' : ''}
-              autoComplete="off"
             />
             {isSearching && <span className="search-spinner" />}
             {selectedItem && (
               <button
-                type="button"
+                aria-label="Clear selection"
                 className="clear-selection"
+                type="button"
                 onClick={() => {
                   setSelectedItem(null);
                   setItemSearchQuery('');
                   setPricePerItem('');
                   searchInputRef.current?.focus();
                 }}
-                aria-label="Clear selection"
               >
                 ×
               </button>
@@ -419,18 +419,18 @@ export function TradeForm({
               {searchResults.map((item, index) => (
                 <button
                   key={item.id}
-                  type="button"
                   className={`dropdown-item ${index === selectedIndex ? 'selected' : ''}`}
+                  type="button"
                   onClick={() => handleSelectItem(item)}
                   onMouseEnter={() => setSelectedIndex(index)}
                 >
                   <img
-                    src={getItemIconUrl(item.icon)}
                     alt=""
                     className="item-icon"
-                    width={32}
                     height={32}
                     loading="lazy"
+                    src={getItemIconUrl(item.icon)}
+                    width={32}
                   />
                   <div className="item-details">
                     <span className="item-name">{item.name}</span>
@@ -469,23 +469,23 @@ export function TradeForm({
         <label className="form-field">
           <span>Quantity</span>
           <input
+            required
+            min="1"
+            placeholder="1"
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            placeholder="1"
-            min="1"
-            required
           />
         </label>
         <label className="form-field">
           <span>Price per item (GP)</span>
           <input
+            required
+            min="0"
+            placeholder="0"
             type="number"
             value={pricePerItem}
             onChange={(e) => setPricePerItem(e.target.value)}
-            placeholder="0"
-            min="0"
-            required
           />
         </label>
       </div>
@@ -505,17 +505,17 @@ export function TradeForm({
       <label className="form-field">
         <span>Notes (optional)</span>
         <input
+          placeholder="Any notes about this trade..."
           type="text"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          placeholder="Any notes about this trade..."
         />
       </label>
 
       <button
-        type="submit"
         className={`button submit-btn ${tradeType}`}
         disabled={isSubmitting || !selectedItem || exceedsBankroll}
+        type="submit"
       >
         {isSubmitting
           ? 'Recording...'

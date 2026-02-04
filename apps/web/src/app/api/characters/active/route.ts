@@ -7,11 +7,11 @@ import {
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { getSessionUser, unauthorizedResponse } from '@/lib/auth/auth-helpers';
 import { getHiscoresCacheTtlMs } from '@/lib/cache/cache';
 import { isHiscoresError, syncCharacter } from '@/lib/character/character-sync';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 const payloadSchema = z.object({
   characterId: z.string().uuid(),

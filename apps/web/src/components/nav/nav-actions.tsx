@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
-import { CharacterSwitcher } from '../characters/character-switcher';
 import { AuthButtons } from '../auth/auth-buttons';
+import { CharacterSwitcher } from '../characters/character-switcher';
 
 type CharacterOption = {
   id: string;
@@ -48,23 +48,23 @@ export function NavActions({
     <div className="nav-actions">
       {isSignedIn && characters.length > 0 && (
         <CharacterSwitcher
-          characters={characters}
           activeCharacterId={activeCharacterId}
+          characters={characters}
         />
       )}
       <AuthButtons
-        isSignedIn={isSignedIn}
-        userEmail={userEmail}
-        userName={userName}
-        hasGoogle={hasGoogle}
-        hasGitHub={hasGitHub}
         hasFacebook={hasFacebook}
-        hasTwitter={hasTwitter}
+        hasGitHub={hasGitHub}
+        hasGoogle={hasGoogle}
         hasMagicLink={hasMagicLink}
+        hasTwitter={hasTwitter}
+        isSignedIn={isSignedIn}
+        magicLinkAction={magicLinkAction}
+        registerAction={registerAction}
         signInAction={signInAction}
         signOutAction={signOutAction}
-        registerAction={registerAction}
-        magicLinkAction={magicLinkAction}
+        userEmail={userEmail}
+        userName={userName}
       />
       <Link className="button" href="/lookup">
         New lookup

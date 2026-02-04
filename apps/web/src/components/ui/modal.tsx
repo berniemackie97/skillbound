@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useId, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useId, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -24,13 +24,14 @@ export function Modal({
   children,
   footer,
 }: ModalProps) {
-  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+  const portalTargetRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const subtitleId = useId();
 
-  useEffect(() => {
-    setPortalTarget(document.body);
-  }, []);
+  // Initialize portal target synchronously to avoid flickering
+  if (portalTargetRef.current === null && typeof document !== 'undefined') {
+    portalTargetRef.current = document.body;
+  }
 
   // Close on escape key
   useEffect(() => {
@@ -47,7 +48,7 @@ export function Modal({
 
   // Prevent body scroll when modal is open
   useEffect(() => {
-    if (!isOpen || !portalTarget) return;
+    if (!isOpen || !portalTargetRef.current) return;
 
     const body = document.body;
     const shell = document.querySelector('.shell');
@@ -83,7 +84,7 @@ export function Modal({
         shell.removeAttribute('aria-hidden');
       }
     };
-  }, [isOpen, portalTarget]);
+  }, [isOpen]);
 
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent) => {
@@ -94,37 +95,53 @@ export function Modal({
     [onClose]
   );
 
-  if (!isOpen || !portalTarget) {
+  const handleBackdropKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
+  if (!isOpen || !portalTargetRef.current) {
     return null;
   }
 
   const sizeClass = `modal-${size}`;
 
   const modalContent = (
-    <div className="modal-backdrop" onClick={handleBackdropClick}>
+    <div
+      className="modal-backdrop"
+      role="button"
+      tabIndex={0}
+      onClick={handleBackdropClick}
+      onKeyDown={handleBackdropKeyDown}
+    >
       <div
+        aria-describedby={subtitle ? subtitleId : undefined}
+        aria-labelledby={titleId}
+        aria-modal="true"
         className={`modal-container ${sizeClass}`}
         role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        aria-describedby={subtitle ? subtitleId : undefined}
       >
         <button
-          className="modal-close"
-          onClick={onClose}
-          type="button"
           aria-label="Close modal"
+          className="modal-close"
+          type="button"
+          onClick={onClose}
         >
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
             fill="none"
+            height="20"
             stroke="currentColor"
             strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="20"
           >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" x2="6" y1="6" y2="18" />
+            <line x1="6" x2="18" y1="6" y2="18" />
           </svg>
         </button>
 
@@ -144,5 +161,5 @@ export function Modal({
     </div>
   );
 
-  return createPortal(modalContent, portalTarget);
+  return createPortal(modalContent, portalTargetRef.current);
 }

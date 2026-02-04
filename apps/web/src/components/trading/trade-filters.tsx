@@ -148,32 +148,32 @@ export function TradeFilters({
       {/* Top filter bar */}
       <div className="filter-bar">
         <div className="filter-search-wrapper">
-          <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="search-icon" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
           <input
+            className="filter-search-input"
+            placeholder="Search trades..."
             type="text"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit()}
-            placeholder="Search trades..."
-            className="filter-search-input"
           />
         </div>
 
         <div className="filter-controls">
           <div className="filter-segment">
             <button
-              type="button"
               className={`segment-btn ${scopeValue === 'character' ? 'active' : ''}`}
+              type="button"
               onClick={() => handleScopeChange('character')}
             >
               Character
             </button>
             <button
-              type="button"
               className={`segment-btn ${scopeValue === 'all' ? 'active' : ''}`}
+              type="button"
               onClick={() => handleScopeChange('all')}
             >
               All
@@ -213,8 +213,8 @@ export function TradeFilters({
           {(['today', 'week', 'month', 'year', 'all'] as TimePeriod[]).map((value) => (
             <button
               key={value}
-              type="button"
               className={`period-tab ${period === value ? 'active' : ''}`}
+              type="button"
               onClick={() => handlePeriodChange(value)}
             >
               {value === 'today' ? 'Today' : value === 'week' ? 'Week' : value === 'month' ? 'Month' : value === 'year' ? 'Year' : 'All Time'}
@@ -222,8 +222,8 @@ export function TradeFilters({
           ))}
         </div>
 
-        <button type="button" className="reset-filters-btn" onClick={handleReset}>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+        <button className="reset-filters-btn" type="button" onClick={handleReset}>
+          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>

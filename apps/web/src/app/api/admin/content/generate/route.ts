@@ -3,12 +3,12 @@ import { join } from 'path';
 
 import { NextResponse } from 'next/server';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import {
   generateContentBundle,
   saveBundleRecord,
 } from '@/lib/content/bundle-generator';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 /**
  * Generate content bundle from database

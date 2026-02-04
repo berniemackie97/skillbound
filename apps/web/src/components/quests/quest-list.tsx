@@ -66,8 +66,8 @@ export function QuestList({ initialResults, characterId }: QuestListProps) {
       {results.map((item) => (
         <QuestCard
           key={item.quest.id}
-          quest={item.quest}
           initialStatus={item.completionStatus}
+          quest={item.quest}
           requirements={item.requirements}
           {...(characterId && { characterId })}
           onStatusChange={handleStatusChange}

@@ -10,12 +10,12 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 import {
   getIntegrationsCache,
   getIntegrationsCacheTtlMs,
 } from '@/lib/cache/integrations-cache';
-import { createProblemDetails } from '@/lib/api/problem-details';
-import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 const querySchema = z.object({
   username: z

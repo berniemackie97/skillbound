@@ -1,8 +1,8 @@
 import { progressionCategories } from '@skillbound/database';
 import { NextResponse } from 'next/server';
 
-import { getDbClient } from '@/lib/db';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getDbClient } from '@/lib/db';
 
 /**
  * GET /api/progression/categories

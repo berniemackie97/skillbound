@@ -1,6 +1,7 @@
 import type { ParsedRuneLiteData } from '@skillbound/hiscores';
 
 import { getLatestContentBundle } from '../content/content-bundles';
+
 import { setStates, type BatchStateUpdate } from './character-state-service';
 import { normalizeDiaryRegion, normalizeQuestName } from './runelite-facts';
 

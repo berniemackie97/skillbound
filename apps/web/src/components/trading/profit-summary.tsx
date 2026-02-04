@@ -175,20 +175,20 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
         <div className="unrealized-section">
           <button
             className="unrealized-toggle"
-            onClick={() => setShowUnrealizedDetails(!showUnrealizedDetails)}
             type="button"
+            onClick={() => setShowUnrealizedDetails(!showUnrealizedDetails)}
           >
             <span className="unrealized-toggle-label">
               Open Positions ({summary.unrealizedPositions.length})
             </span>
             <svg
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
+              className={`unrealized-toggle-icon ${showUnrealizedDetails ? 'open' : ''}`}
               fill="none"
+              height="16"
               stroke="currentColor"
               strokeWidth="2"
-              className={`unrealized-toggle-icon ${showUnrealizedDetails ? 'open' : ''}`}
+              viewBox="0 0 24 24"
+              width="16"
             >
               <path d="M6 9l6 6 6-6" />
             </svg>
@@ -200,12 +200,12 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                 <div key={pos.itemId} className="unrealized-position">
                   {pos.iconUrl && (
                     <img
-                      src={pos.iconUrl}
                       alt=""
                       className="unrealized-item-icon"
-                      width={24}
                       height={24}
                       loading="lazy"
+                      src={pos.iconUrl}
+                      width={24}
                     />
                   )}
                   <div className="unrealized-position-info">
@@ -250,12 +250,12 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                   <div className="flip-header">
                     {flip.iconUrl && (
                       <img
-                        src={flip.iconUrl}
                         alt=""
                         className="item-icon"
-                        width={24}
                         height={24}
                         loading="lazy"
+                        src={flip.iconUrl}
+                        width={24}
                       />
                     )}
                     <div className="flip-info">
@@ -296,12 +296,12 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                   <div className="flip-header">
                     {flip.iconUrl && (
                       <img
-                        src={flip.iconUrl}
                         alt=""
                         className="item-icon"
-                        width={24}
                         height={24}
                         loading="lazy"
+                        src={flip.iconUrl}
+                        width={24}
                       />
                     )}
                     <div className="flip-info">

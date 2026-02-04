@@ -84,11 +84,11 @@ export function QuestCard({
       <div className="quest-card-header">
         <h3>{quest.name}</h3>
         <button
-          type="button"
           className={`${statusClass(status)} clickable ${isUpdating ? 'updating' : ''}`}
-          onClick={handleStatusClick}
           disabled={isUpdating}
           title="Click to toggle quest completion status"
+          type="button"
+          onClick={handleStatusClick}
         >
           {status}
         </button>

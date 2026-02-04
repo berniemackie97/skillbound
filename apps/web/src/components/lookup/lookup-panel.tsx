@@ -1,9 +1,10 @@
-import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { type getSessionUser } from '@/lib/auth/auth-helpers';
+import type { getOverallSkill, getTopActivities, getTopSkills } from '@/lib/lookup/lookup-data';
+import type { ModeValue, LookupResponse } from '@/lib/lookup/lookup-types';
 
 import { LookupForm } from './lookup-form';
 import { LookupResult } from './lookup-result';
-import type { ModeValue, LookupResponse } from '@/lib/lookup/lookup-types';
-import type { getOverallSkill, getTopActivities, getTopSkills } from '@/lib/lookup/lookup-data';
+
 
 type LookupPanelProps = {
   username: string;
@@ -42,8 +43,8 @@ export function LookupPanel({
           <a
             className="chip"
             href="/api/characters/lookup"
-            target="_blank"
             rel="noreferrer"
+            target="_blank"
           >
             Endpoint
           </a>
@@ -52,13 +53,13 @@ export function LookupPanel({
             isSaved ? (
               <span className="pill subtle">Saved</span>
             ) : (
-              <form method="post" action="/api/characters">
+              <form action="/api/characters" method="post">
                 <input
-                  type="hidden"
                   name="displayName"
+                  type="hidden"
                   value={lookup.data.displayName}
                 />
-                <input type="hidden" name="mode" value={lookup.data.mode} />
+                <input name="mode" type="hidden" value={lookup.data.mode} />
                 <button className="button" type="submit">
                   Save character
                 </button>
@@ -74,7 +75,7 @@ export function LookupPanel({
         </div>
       </div>
 
-      <LookupForm username={username} mode={mode} />
+      <LookupForm mode={mode} username={username} />
 
       <div className="result-card">
         {error ? <div className="error">{error}</div> : null}
@@ -87,10 +88,10 @@ export function LookupPanel({
 
         {lookup ? (
           <LookupResult
+            activityTiles={activityTiles}
             lookup={lookup}
             overall={overall}
             skillTiles={skillTiles}
-            activityTiles={activityTiles}
           />
         ) : null}
       </div>

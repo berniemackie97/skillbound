@@ -1,10 +1,5 @@
 import type { DbClient } from '@skillbound/database';
 import {
-  SKILLS,
-  type Requirement,
-  type SkillName,
-} from '@skillbound/domain';
-import {
   combatAchievementDefinitions,
   diaryDefinitions,
   diaryTaskDefinitions,
@@ -12,6 +7,11 @@ import {
   questDefinitions,
   eq,
 } from '@skillbound/database';
+import {
+  SKILLS,
+  type Requirement,
+  type SkillName,
+} from '@skillbound/domain';
 import {
   createMediaWikiClient,
   createWikiBucketClient,
@@ -21,6 +21,7 @@ import {
 } from '@skillbound/wiki-api';
 
 import { logger } from '../logging/logger';
+
 import {
   buildWikiUrl,
   normalizeItemName,

@@ -184,6 +184,7 @@ export class WikiPricesClient {
 
         const response = await fetch(url, {
           signal: controller.signal,
+          cache: 'no-store',
           headers: {
             'User-Agent': this.userAgent,
             Accept: 'application/json',
@@ -253,6 +254,7 @@ export class WikiPricesClient {
 
         const response = await fetch(url, {
           signal: controller.signal,
+          cache: 'no-store',
           headers: {
             'User-Agent': this.userAgent,
             Accept: 'application/json',
@@ -394,6 +396,7 @@ export class WikiPricesClient {
 
         let response = await fetch(primaryUrl, {
           signal: controller.signal,
+          cache: 'no-store',
           headers: {
             'User-Agent': this.userAgent,
             Accept: 'application/json',
@@ -408,6 +411,7 @@ export class WikiPricesClient {
           );
           response = await fetch(fallbackUrl, {
             signal: fallbackController.signal,
+            cache: 'no-store',
             headers: {
               'User-Agent': this.userAgent,
               Accept: 'application/json',

@@ -10,10 +10,12 @@ import {
 } from '@skillbound/hiscores';
 
 import { updateContentDefinitionsFromSnapshot } from '../content/content-sync';
-import { dbModeToHiscoresMode, hiscoresModeToDbMode } from './game-mode';
 import { logger } from '../logging/logger';
-import { syncCharacterStateFromRunelite } from './runelite-state';
 import { buildSnapshotInsert } from '../snapshots/snapshots';
+
+import { dbModeToHiscoresMode, hiscoresModeToDbMode } from './game-mode';
+import { syncCharacterStateFromRunelite } from './runelite-state';
+
 
 export type CharacterSyncResult = {
   snapshot: typeof characterSnapshots.$inferSelect;

@@ -20,10 +20,10 @@ export default async function LogoutPage() {
       <div className="auth-container">
         <div className="auth-card auth-card-single">
           <div className="auth-card-icon warning">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg fill="none" height="32" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="32">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16,17 21,12 16,7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
+              <line x1="21" x2="9" y1="12" y2="12" />
             </svg>
           </div>
           <h1>Sign out</h1>

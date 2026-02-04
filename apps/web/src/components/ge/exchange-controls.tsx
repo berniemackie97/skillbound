@@ -1,10 +1,10 @@
-import { ItemSearch, type ItemSearchResult } from './item-search';
 import { REFRESH_OPTIONS } from './exchange-client.constants';
 import type {
   MembersFilter,
   SavedPreset,
   ViewMode,
 } from './exchange-client.types';
+import { ItemSearch, type ItemSearchResult } from './item-search';
 
 interface ExchangeControlsProps {
   viewMode: ViewMode;
@@ -60,26 +60,26 @@ export function ExchangeControls({
       <div className="controls-row controls-top">
         <div className="jump-search">
           <ItemSearch
-            onSelect={onSearchSelect}
-            placeholder="Jump to item..."
             className="main-search"
+            placeholder="Jump to item..."
+            onSelect={onSearchSelect}
           />
         </div>
 
         <div className="view-selector">
           <button
-            type="button"
             className={`view-btn ${viewMode === 'catalog' ? 'active' : ''}`}
+            type="button"
             onClick={() => onViewModeChange('catalog')}
           >
             Full Catalog
           </button>
           <button
-            type="button"
             className={`view-btn ${viewMode === 'favorites' ? 'active' : ''}`}
+            type="button"
             onClick={() => onViewModeChange('favorites')}
           >
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             Favorites
@@ -117,7 +117,7 @@ export function ExchangeControls({
             <option value="low-price">Low Price</option>
             <option value="high-price">High Price</option>
             {savedPresets.length > 0 && (
-              <option value="" disabled>
+              <option disabled value="">
                 ───
               </option>
             )}
@@ -129,8 +129,8 @@ export function ExchangeControls({
           </select>
         </div>
 
-        <button type="button" className="save-preset-btn" onClick={onSavePreset}>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+        <button className="save-preset-btn" type="button" onClick={onSavePreset}>
+          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
             <path d="M12 5v14M5 12h14" />
           </svg>
           Save Preset
@@ -139,32 +139,32 @@ export function ExchangeControls({
         <div className="filter-toggles">
           <label className={`toggle-chip ${stackPresets ? 'active' : ''}`}>
             <input
-              type="checkbox"
               checked={stackPresets}
+              type="checkbox"
               onChange={onToggleStackPresets}
             />
             <span>Stack Presets</span>
           </label>
           <label className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}>
             <input
-              type="checkbox"
               checked={hideNegativeMargin}
+              type="checkbox"
               onChange={() => onToggleNegative('margin')}
             />
             <span>Hide -Margin</span>
           </label>
           <label className={`toggle-chip ${hideNegativeRoi ? 'active' : ''}`}>
             <input
-              type="checkbox"
               checked={hideNegativeRoi}
+              type="checkbox"
               onChange={() => onToggleNegative('roi')}
             />
             <span>Hide -ROI</span>
           </label>
         </div>
 
-        <button type="button" className="reset-btn" onClick={onResetFilters}>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+        <button className="reset-btn" type="button" onClick={onResetFilters}>
+          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>
@@ -201,17 +201,17 @@ export function ExchangeControls({
           </div>
 
           <button
-            type="button"
-            className={`pause-btn ${isRefreshPaused ? 'paused' : ''}`}
-            onClick={onToggleRefreshPaused}
             aria-label={isRefreshPaused ? 'Resume' : 'Pause'}
+            className={`pause-btn ${isRefreshPaused ? 'paused' : ''}`}
+            type="button"
+            onClick={onToggleRefreshPaused}
           >
             {isRefreshPaused ? (
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
                 <path d="M8 5v14l11-7z" />
               </svg>
             ) : (
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
                 <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
               </svg>
             )}

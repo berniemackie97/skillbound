@@ -2,9 +2,9 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { searchItems } from '@/lib/trading/ge-service';
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
+import { searchItems } from '@/lib/trading/ge-service';
 
 const querySchema = z.object({
   q: z.string().min(1).max(100),

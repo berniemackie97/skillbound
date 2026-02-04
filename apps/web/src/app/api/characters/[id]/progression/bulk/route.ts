@@ -10,9 +10,9 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { mapErrorToResponse } from '@/lib/api/api-error-mapper';
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { getDbClient } from '@/lib/db';
 import { logger } from '@/lib/logging/logger';
-import { createProblemDetails } from '@/lib/api/problem-details';
 
 const paramsSchema = z.object({
   id: z.string().uuid(),

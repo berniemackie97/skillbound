@@ -34,7 +34,7 @@ export async function mapCombatAchievementsToContentIds(
         })
         .from(combatAchievementDefinitions)
         .where(inArray(combatAchievementDefinitions.runeliteId, runeliteIds));
-    } catch (error) {
+    } catch (_error) {
       // If sync fails, fall back to empty mapping to avoid failing the request.
       return {};
     }

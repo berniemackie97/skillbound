@@ -1,3 +1,11 @@
+import {
+  characterProfiles,
+  characterSnapshots,
+  desc,
+  eq,
+  ilike,
+  and,
+} from '@skillbound/database';
 import type { GameMode } from '@skillbound/hiscores';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
@@ -8,24 +16,16 @@ import {
   applyRateLimitHeaders,
   buildHiscoresCacheKey,
 } from '@/lib/api/api-middleware';
-import { getHiscoresCache, getHiscoresCacheTtlMs } from '@/lib/cache/cache';
-import { lookupPlayerWithAutoMode } from '@/lib/lookup/character-lookup';
-import { getDbClient } from '@/lib/db';
-import { hiscoresModeToDbMode } from '@/lib/character/game-mode';
-import { logger } from '@/lib/logging/logger';
-import { AUTO_MODE_ORDER, resolveLookupMode } from '@/lib/lookup/lookup-mode';
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
-import { buildSnapshotInsert } from '@/lib/snapshots/snapshots';
+import { getHiscoresCache, getHiscoresCacheTtlMs } from '@/lib/cache/cache';
+import { hiscoresModeToDbMode } from '@/lib/character/game-mode';
+import { getDbClient } from '@/lib/db';
 import { importWiseOldManSnapshots } from '@/lib/integrations/wise-old-man-import';
-import {
-  characterProfiles,
-  characterSnapshots,
-  desc,
-  eq,
-  ilike,
-  and,
-} from '@skillbound/database';
+import { logger } from '@/lib/logging/logger';
+import { lookupPlayerWithAutoMode } from '@/lib/lookup/character-lookup';
+import { AUTO_MODE_ORDER, resolveLookupMode } from '@/lib/lookup/lookup-mode';
+import { buildSnapshotInsert } from '@/lib/snapshots/snapshots';
 
 const lookupSchema = z.object({
   username: z

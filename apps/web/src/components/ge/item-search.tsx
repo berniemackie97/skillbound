@@ -158,38 +158,38 @@ export function ItemSearch({
       <div className="search-input-wrapper">
         <svg
           className="search-icon"
-          viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
+          viewBox="0 0 24 24"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />
         </svg>
         <input
           ref={inputRef}
+          autoFocus={autoFocus}
+          className="search-input"
+          placeholder={placeholder}
           type="text"
           value={query}
           onChange={(e) => handleQueryChange(e.target.value)}
           onFocus={() => query && results.length > 0 && setIsOpen(true)}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          className="search-input"
         />
         {query && (
           <button
-            type="button"
+            aria-label="Clear search"
             className="clear-button"
+            type="button"
             onClick={() => {
               setQuery('');
               setResults([]);
               setIsOpen(false);
               inputRef.current?.focus();
             }}
-            aria-label="Clear search"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor">
+            <svg fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
             </svg>
           </button>
@@ -207,12 +207,12 @@ export function ItemSearch({
               onMouseEnter={() => setSelectedIndex(index)}
             >
               <img
-                src={getItemIconUrl(item.icon)}
                 alt=""
                 className="item-icon"
-                width={32}
                 height={32}
                 loading="lazy"
+                src={getItemIconUrl(item.icon)}
+                width={32}
               />
               <div className="item-info">
                 <span className="item-name">{item.name}</span>

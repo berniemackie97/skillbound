@@ -157,9 +157,9 @@ export function BankrollCard({
           <div className="bankroll-actions">
             <button
               className="button ghost small"
-              onClick={handleSync}
               disabled={isSyncing}
               title="Recalculate bankroll from trades"
+              onClick={handleSync}
             >
               {isSyncing ? 'Syncing...' : 'Sync'}
             </button>
@@ -219,10 +219,10 @@ export function BankrollCard({
         ) : (
           <form className="bankroll-edit-form" onSubmit={handleSubmit}>
             <div className="bankroll-edit-warning">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
                 <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                <line x1="12" y1="9" x2="12" y2="13" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
+                <line x1="12" x2="12" y1="9" y2="13" />
+                <line x1="12" x2="12.01" y1="17" y2="17" />
               </svg>
               <div className="warning-text">
                 <strong>Affects profit &amp; ROI calculations</strong>
@@ -233,11 +233,11 @@ export function BankrollCard({
               <label className="bankroll-edit-field">
                 <span className="field-label">Current Bankroll</span>
                 <input
+                  autoFocus
+                  placeholder="e.g. 4m, 500k, 1000000"
                   type="text"
                   value={currentInput}
                   onChange={(e) => setCurrentInput(e.target.value)}
-                  placeholder="e.g. 4m, 500k, 1000000"
-                  autoFocus
                 />
                 {currentInput && parseGp(currentInput) !== null && (
                   <span className="field-preview">
@@ -248,10 +248,10 @@ export function BankrollCard({
               <label className="bankroll-edit-field">
                 <span className="field-label">Starting Bankroll</span>
                 <input
+                  placeholder="e.g. 4m, 500k, 1000000"
                   type="text"
                   value={startingInput}
                   onChange={(e) => setStartingInput(e.target.value)}
-                  placeholder="e.g. 4m, 500k, 1000000"
                 />
                 {startingInput && parseGp(startingInput) !== null && (
                   <span className="field-preview">
@@ -262,17 +262,17 @@ export function BankrollCard({
             </div>
             <div className="bankroll-edit-actions">
               <button
-                type="submit"
                 className="button primary small"
                 disabled={isSubmitting}
+                type="submit"
               >
                 {isSubmitting ? 'Saving...' : 'Save'}
               </button>
               <button
-                type="button"
                 className="button ghost small"
-                onClick={handleCancel}
                 disabled={isSubmitting}
+                type="button"
+                onClick={handleCancel}
               >
                 Cancel
               </button>
@@ -286,7 +286,7 @@ export function BankrollCard({
         {!isEditing && isAddingFunds && (
           <form className="bankroll-add-funds-form" onSubmit={handleAddFunds}>
             <div className="add-funds-info">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 16v-4" />
                 <path d="M12 8h.01" />
@@ -297,13 +297,13 @@ export function BankrollCard({
               <span className="field-label">Amount to Add</span>
               <div className="add-funds-input-row">
                 <input
+                  autoFocus
+                  placeholder="e.g. 2m, 500k"
                   type="text"
                   value={fundsInput}
                   onChange={(e) => setFundsInput(e.target.value)}
-                  placeholder="e.g. 2m, 500k"
-                  autoFocus
                 />
-                <button type="submit" className="button primary small" disabled={isAdding}>
+                <button className="button primary small" disabled={isAdding} type="submit">
                   {isAdding ? 'Adding...' : 'Add Funds'}
                 </button>
               </div>

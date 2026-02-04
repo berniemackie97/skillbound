@@ -58,7 +58,7 @@ function isMeaninglessLine(value: string): boolean {
 }
 
 function stripLinePrefix(value: string): string {
-  return value.replace(/^[*#:\-]+/, '').trim();
+  return value.replace(/^[*#:/-]+/, '').trim();
 }
 
 function splitWikitextLines(raw: string): string[] {

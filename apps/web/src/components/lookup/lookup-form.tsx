@@ -9,21 +9,21 @@ export function LookupForm({
   mode: ModeValue;
 }) {
   return (
-    <form className="form-grid" method="get" action="/lookup">
+    <form action="/lookup" className="form-grid" method="get">
       <label>
         <span>Username</span>
         <input
-          name="username"
-          defaultValue={username}
-          placeholder="e.g. Lynx Titan"
           autoComplete="off"
+          defaultValue={username}
+          name="username"
+          placeholder="e.g. Lynx Titan"
           spellCheck={false}
         />
       </label>
 
       <label>
         <span>Mode</span>
-        <select name="mode" defaultValue={mode}>
+        <select defaultValue={mode} name="mode">
           {MODE_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

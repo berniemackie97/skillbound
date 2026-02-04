@@ -5,11 +5,11 @@ import { z } from 'zod';
 
 import { mapErrorToResponse } from '@/lib/api/api-error-mapper';
 import { applyRateLimitHeaders } from '@/lib/api/api-middleware';
+import { createProblemDetails } from '@/lib/api/problem-details';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 import { syncCharacter } from '@/lib/character/character-sync';
 import { getDbClient } from '@/lib/db';
 import { logger } from '@/lib/logging/logger';
-import { createProblemDetails } from '@/lib/api/problem-details';
-import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 const paramsSchema = z.object({
   id: z.string().uuid(),

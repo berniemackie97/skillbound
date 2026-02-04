@@ -34,25 +34,25 @@ export function SignInModalTrigger({
   return (
     <>
       <button
-        className={className}
-        onClick={() => setIsOpen(true)}
-        type="button"
-        aria-haspopup="dialog"
         aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        className={className}
+        type="button"
+        onClick={() => setIsOpen(true)}
       >
         {label}
       </button>
       {isOpen && (
         <AuthModal
-          mode="signin"
-          hasGoogle={hasGoogle}
-          hasGitHub={hasGitHub}
           hasFacebook={hasFacebook}
-          hasTwitter={hasTwitter}
+          hasGitHub={hasGitHub}
+          hasGoogle={hasGoogle}
           hasMagicLink={hasMagicLink}
+          hasTwitter={hasTwitter}
+          mode="signin"
           onClose={() => setIsOpen(false)}
-          onSignIn={signInAction}
           onRegister={registerAction}
+          onSignIn={signInAction}
           {...(magicLinkAction ? { onMagicLink: magicLinkAction } : {})}
         />
       )}

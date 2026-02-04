@@ -151,10 +151,10 @@ export default async function GuideDetailPage({
       <GuideStepList
         chapters={chapters}
         characterId={activeCharacter?.id ?? null}
-        templateId={template.id}
-        version={template.version}
         initialCompleted={progress?.completedSteps ?? []}
         isImported={Boolean(progress)}
+        templateId={template.id}
+        version={template.version}
       />
     </section>
   );

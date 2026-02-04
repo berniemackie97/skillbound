@@ -7,9 +7,9 @@ import {
 
 import SkillCalculator from '@/components/skills/skill-calculator';
 import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
 import { getActiveCharacter } from '@/lib/character/character-selection';
 import { getLatestCharacterSnapshot } from '@/lib/character/character-snapshots';
-import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
 
 type SearchParams = Promise<{
   skill?: string | string[];
@@ -104,18 +104,18 @@ export default async function CalculatorsPage({
   return (
     <SkillCalculator
       activeCharacterName={activeCharacter?.displayName ?? null}
-      snapshotSkills={activeSnapshot?.skills ?? null}
-      initialSkill={skill}
       initialCalculator={calculator}
       initialMode={mode}
+      initialSkill={skill}
+      initialTargetLevel={targetLevelParam}
       initialUsername={usernameParam || activeCharacter?.displayName || ''}
+      snapshotSkills={activeSnapshot?.skills ?? null}
       initialCurrentLevel={
         resolvedCurrentLevel?.toString() ?? currentLevelParam
       }
       initialCurrentXp={
         resolvedCurrentXp !== null ? String(resolvedCurrentXp) : currentXpParam
       }
-      initialTargetLevel={targetLevelParam}
     />
   );
 }

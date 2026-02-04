@@ -305,11 +305,11 @@ export function GuideStepList({
 
         <div className="guide-search">
           <input
-            type="text"
+            className="search-input"
             placeholder="Search steps..."
+            type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
           />
         </div>
 
@@ -373,8 +373,8 @@ export function GuideStepList({
                               >
                                 <div className="guide-step-header">
                                   <input
-                                    type="checkbox"
                                     checked={isChecked}
+                                    type="checkbox"
                                     onChange={() => toggleStep(step.stepNumber)}
                                   />
                                   <span className="guide-step-number">
@@ -416,10 +416,10 @@ export function GuideStepList({
                                                     onClick={(event) =>
                                                       event.stopPropagation()
                                                     }
-                                                    onPointerDown={(event) =>
+                                                    onDoubleClick={(event) =>
                                                       event.stopPropagation()
                                                     }
-                                                    onDoubleClick={(event) =>
+                                                    onPointerDown={(event) =>
                                                       event.stopPropagation()
                                                     }
                                                   >
@@ -427,19 +427,19 @@ export function GuideStepList({
                                                       <a
                                                         className="instruction-media-link"
                                                         href={instruction.imageLink}
-                                                        target="_blank"
                                                         rel="noreferrer"
+                                                        target="_blank"
                                                       >
                                                         <div className="instruction-image">
                                                           <Image
+                                                            className="instruction-img"
+                                                            height={320}
                                                             src={instruction.imageUrl}
+                                                            width={320}
                                                             alt={
                                                               instruction.imageAlt ||
                                                               `Instruction ${idx + 1} reference image`
                                                             }
-                                                            width={320}
-                                                            height={320}
-                                                            className="instruction-img"
                                                           />
                                                         </div>
                                                         <span className="instruction-media-label">
@@ -449,14 +449,14 @@ export function GuideStepList({
                                                     ) : (
                                                       <div className="instruction-image">
                                                         <Image
+                                                          className="instruction-img"
+                                                          height={320}
                                                           src={instruction.imageUrl}
+                                                          width={320}
                                                           alt={
                                                             instruction.imageAlt ||
                                                             `Instruction ${idx + 1} reference image`
                                                           }
-                                                          width={320}
-                                                          height={320}
-                                                          className="instruction-img"
                                                         />
                                                       </div>
                                                     )}

@@ -32,8 +32,8 @@ export function MilestoneList({ milestones }: MilestoneListProps) {
         return (
           <li key={milestone.id} className="milestone-item">
             <button
-              type="button"
               className="milestone-trigger"
+              type="button"
               onClick={() => setOpenId(isOpen ? null : milestone.id)}
             >
               <span>{milestone.label}</span>

@@ -1,0 +1,27 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/snapshots?minAgeHours=24&limit=100&delayMs=250",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/retention?batchSize=1000",
+      "schedule": "30 3 * * 0"
+    },
+    {
+      "path": "/api/cron/content?type=all",
+      "schedule": "0 4 * * 0"
+    }
+  ],
+  "functions": {
+    "src/app/api/cron/snapshots/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/retention/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/content/route.ts": {
+      "maxDuration": 300
+    }
+  }
+}

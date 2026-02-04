@@ -12,8 +12,11 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { applyQuestPoints } from '@/lib/character/quest-points';
+import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
+import { getDbClient } from '@/lib/db';
 import {
   buildCharacterFactsFromSnapshot,
 } from '@/lib/requirements/requirements-context';
@@ -22,10 +25,7 @@ import {
   evaluateBundleDiaries,
   evaluateBundleQuests,
 } from '@/lib/requirements/requirements-evaluator';
-import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
-import { applyQuestPoints } from '@/lib/character/quest-points';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
-import { getDbClient } from '@/lib/db';
 
 const querySchema = z.object({
   profileId: z.string().uuid(),

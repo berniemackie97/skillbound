@@ -175,9 +175,9 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
       <div className="character-actions">
         <button
           className="button ghost"
+          disabled={isActive}
           type="button"
           onClick={handleSetActive}
-          disabled={isActive}
         >
           {isActive ? 'Active' : 'Set active'}
         </button>
@@ -217,16 +217,16 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
           </label>
           <label className="checkbox-row">
             <input
-              type="checkbox"
               checked={isPublic}
+              type="checkbox"
               onChange={(event) => setIsPublic(event.target.checked)}
             />
             <span>Public profile</span>
           </label>
           <label className="checkbox-row">
             <input
-              type="checkbox"
               checked={isArchived}
+              type="checkbox"
               onChange={(event) => setIsArchived(event.target.checked)}
             />
             <span>Archived</span>

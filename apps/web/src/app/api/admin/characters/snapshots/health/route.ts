@@ -12,8 +12,8 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { createProblemDetails } from '@/lib/api/problem-details';
-import { getDbClient } from '@/lib/db';
 import { getCronMetadata } from '@/lib/cron/cron-metadata';
+import { getDbClient } from '@/lib/db';
 
 const querySchema = z.object({
   cadence: z.enum(['hourly', 'daily']).optional().default('hourly'),

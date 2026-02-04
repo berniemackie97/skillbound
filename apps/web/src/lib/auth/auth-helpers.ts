@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 
-import { auth } from './auth';
 import { createProblemDetails } from '../api/problem-details';
+
+import { auth } from './auth';
 
 export type SessionUser = {
   id: string;

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { createProblemDetails } from '@/lib/api/problem-details';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
 
 export async function GET() {
   try {

@@ -12,8 +12,9 @@ import {
 } from '@skillbound/database';
 
 import { getDbClient } from '../db';
-import { getGeExchangeItems, getItemIconUrl } from './ge-service';
 import { logger } from '../logging/logger';
+
+import { getGeExchangeItems, getItemIconUrl } from './ge-service';
 
 /**
  * Get all inventory positions for a character

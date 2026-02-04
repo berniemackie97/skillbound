@@ -10,9 +10,9 @@ import { diffSnapshots } from '@skillbound/domain';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+import { createProblemDetails } from '@/lib/api/problem-details';
 import { buildLatestSnapshotMap, parseCompareQuery } from '@/lib/compare/compare';
 import { getDbClient } from '@/lib/db';
-import { createProblemDetails } from '@/lib/api/problem-details';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 export async function GET(request: NextRequest) {

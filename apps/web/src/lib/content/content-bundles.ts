@@ -58,7 +58,7 @@ async function fetchLocalGeneratedBundle(): Promise<ContentBundle | null> {
     const bundleJson = await readFile(bundlePath, 'utf-8');
     const json = JSON.parse(bundleJson) as unknown;
     return parseContentBundle(json);
-  } catch (error) {
+  } catch (_error) {
     // Local bundle doesn't exist or is invalid
     return null;
   }

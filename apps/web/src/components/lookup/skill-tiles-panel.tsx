@@ -1,5 +1,4 @@
 import { formatNumber } from '@/lib/format/format-number';
-
 import type { getTopSkills } from '@/lib/lookup/lookup-data';
 
 export function SkillTilesPanel({
