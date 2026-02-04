@@ -14,6 +14,7 @@ import {
   getUserCharacters,
 } from '@/lib/character/character-selection';
 
+import { MobileMenu } from './mobile-menu';
 import { NavActions } from './nav-actions';
 
 const NAV_LINKS = [
@@ -37,22 +38,27 @@ export async function SiteNav() {
   const { hasGoogle, hasGitHub, hasFacebook, hasTwitter, hasMagicLink } =
     getAuthProviderFlags();
 
+  // Filter links based on auth status
+  const visibleLinks = user
+    ? NAV_LINKS
+    : NAV_LINKS.filter((link) => link.href !== '/characters');
+
   return (
     <header className="nav">
       <Link className="brand" href="/">
         <span className="brand-mark">SB</span>
         <span className="brand-name">SkillBound</span>
       </Link>
+      {/* Desktop nav links */}
       <nav className="nav-links">
-        {(user
-          ? NAV_LINKS
-          : NAV_LINKS.filter((link) => link.href !== '/characters')
-        ).map((link) => (
+        {visibleLinks.map((link) => (
           <Link key={link.href} href={link.href}>
             {link.label}
           </Link>
         ))}
       </nav>
+      {/* Mobile hamburger menu */}
+      <MobileMenu links={visibleLinks} />
       <NavActions
         activeCharacterId={activeCharacterId}
         characters={characters}

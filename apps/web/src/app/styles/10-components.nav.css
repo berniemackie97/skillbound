@@ -148,7 +148,16 @@
 }
 
 /* ==========================================================================
-   Mobile Navigation - Compact single-row layout
+   Mobile Menu - Hamburger button and slide-out panel
+   ========================================================================== */
+
+/* Hide hamburger on desktop */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* ==========================================================================
+   Mobile Navigation - Compact single-row layout with hamburger
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -182,9 +191,117 @@
     font-size: 0.95rem;
   }
 
-  /* Hide nav links on mobile - would need hamburger menu for these */
+  /* Hide desktop nav links on mobile - use hamburger menu instead */
   .nav-links {
     display: none;
+  }
+
+  /* Show hamburger button on mobile */
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    order: -1; /* Place before nav-actions */
+  }
+
+  .mobile-menu-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+  .mobile-menu-toggle .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Animate to X when active */
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Mobile menu backdrop */
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    animation: fadeIn 0.2s ease;
+  }
+
+  /* Mobile menu slide-out panel */
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(280px, 80vw);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg) 100%);
+    border-right: 1px solid var(--border);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .mobile-menu-panel.open {
+    transform: translateX(0);
+  }
+
+  /* Mobile menu nav links */
+  .mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .mobile-menu-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-menu-link:hover {
+    background: rgba(212, 175, 55, 0.08);
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  .mobile-menu-link.active {
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--accent);
+    border-left-color: var(--accent);
   }
 
   .nav-actions {
@@ -226,6 +343,12 @@
 
   .brand-name {
     display: none;
+  }
+
+  .mobile-menu-toggle {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
   }
 
   .character-switcher select {
