@@ -255,13 +255,26 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   .progression-header {
     flex-direction: column;
     align-items: stretch;
   }
 
+  .progression-header h2 {
+    font-size: 1.6rem;
+  }
+
   .progression-filters {
-    justify-content: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .progression-filters input,
+  .progression-filters .filter-select,
+  .progression-filters .button {
+    width: 100%;
+    flex: none;
   }
 
   .filter-select {
@@ -286,6 +299,10 @@
 
   .category-meta {
     gap: 12px;
+  }
+
+  .category-description {
+    display: none;
   }
 }
 

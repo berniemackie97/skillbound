@@ -396,6 +396,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .status-card h3 {
@@ -651,4 +653,147 @@ textarea {
 .character-edit {
   display: grid;
   gap: 12px;
+}
+
+/* Mobile responsiveness for home page */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-panel {
+    gap: 12px;
+  }
+
+  .status-card,
+  .stack-card {
+    padding: 16px;
+  }
+
+  .status-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .status-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .character-hub-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-active-card {
+    padding: 16px;
+  }
+
+  .hero-active-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .hero-kpis {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-chip {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .stat-chip span {
+    font-size: 0.8rem;
+  }
+
+  .stat-chip strong {
+    font-size: 1rem;
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .meta-card {
+    padding: 12px;
+  }
+
+  .meta-card strong {
+    font-size: 1.1rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .panel {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .panel-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .button {
+    flex: none;
+    width: 100%;
+  }
+
+  .stack-card.wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-copy h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  .panel-header h2 {
+    font-size: 1.3rem;
+  }
 }

@@ -628,3 +628,193 @@
   font-size: 0.85rem;
   opacity: 0.8;
 }
+
+/* ================================
+   Mobile responsive styles
+   ================================ */
+
+@media (max-width: 1024px) {
+  /* Hide less important columns on tablets */
+  .exchange-table col.col-tax,
+  .exchange-table col.col-volume,
+  .exchange-table col.col-time,
+  .exchange-table th.col-tax,
+  .exchange-table td.col-tax,
+  .exchange-table th.col-volume,
+  .exchange-table td.col-volume,
+  .exchange-table th.col-time,
+  .exchange-table td.col-time {
+    display: none;
+  }
+
+  .exchange-table col.col-name {
+    width: 30%;
+  }
+
+  .exchange-table col.col-price {
+    width: 10%;
+  }
+
+  .exchange-table col.col-margin {
+    width: 9%;
+  }
+
+  .exchange-table col.col-profit {
+    width: 10%;
+  }
+
+  .exchange-table col.col-roi {
+    width: 8%;
+  }
+
+  .exchange-table col.col-limit {
+    width: 8%;
+  }
+
+  .exchange-table col.col-potential {
+    width: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Exchange table - hide more columns and adjust for mobile */
+  .exchange-table col.col-star,
+  .exchange-table col.col-expand,
+  .exchange-table col.col-tax,
+  .exchange-table col.col-volume,
+  .exchange-table col.col-limit,
+  .exchange-table col.col-potential,
+  .exchange-table col.col-time,
+  .exchange-table th.col-star,
+  .exchange-table td.col-star,
+  .exchange-table th.col-expand,
+  .exchange-table td.col-expand,
+  .exchange-table th.col-tax,
+  .exchange-table td.col-tax,
+  .exchange-table th.col-volume,
+  .exchange-table td.col-volume,
+  .exchange-table th.col-limit,
+  .exchange-table td.col-limit,
+  .exchange-table th.col-potential,
+  .exchange-table td.col-potential,
+  .exchange-table th.col-time,
+  .exchange-table td.col-time {
+    display: none;
+  }
+
+  .exchange-table-container {
+    overflow-x: auto;
+  }
+
+  .exchange-table {
+    min-width: 480px;
+  }
+
+  .exchange-table col.col-name {
+    width: 40%;
+  }
+
+  .exchange-table col.col-price {
+    width: 15%;
+  }
+
+  .exchange-table col.col-margin {
+    width: 15%;
+  }
+
+  .exchange-table col.col-profit {
+    width: 15%;
+  }
+
+  .exchange-table col.col-roi {
+    width: 15%;
+  }
+
+  .exchange-table th,
+  .exchange-table td {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+
+  .exchange-table .item-name-cell {
+    gap: 6px;
+  }
+
+  .exchange-table .item-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .exchange-table .header-grid {
+    gap: 2px;
+  }
+
+  .exchange-table .filter-btn {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Trade table mobile */
+  .trade-table {
+    min-width: 500px;
+  }
+
+  .trade-table th,
+  .trade-table td {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even more compact on very small screens */
+  .exchange-table {
+    min-width: 400px;
+  }
+
+  .exchange-table col.col-margin,
+  .exchange-table th.col-margin,
+  .exchange-table td.col-margin {
+    display: none;
+  }
+
+  .exchange-table col.col-name {
+    width: 45%;
+  }
+
+  .exchange-table col.col-price {
+    width: 20%;
+  }
+
+  .exchange-table col.col-profit {
+    width: 17%;
+  }
+
+  .exchange-table col.col-roi {
+    width: 18%;
+  }
+
+  .exchange-table th,
+  .exchange-table td {
+    padding: 6px 4px;
+    font-size: 0.75rem;
+  }
+
+  .exchange-table .item-icon {
+    display: none;
+  }
+
+  .exchange-table .item-name {
+    font-size: 0.8rem;
+  }
+
+  .trade-table {
+    min-width: 420px;
+  }
+
+  .trade-table th,
+  .trade-table td {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+}
