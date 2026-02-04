@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useState } from 'react';
 
 type NavLink = {
@@ -15,6 +16,7 @@ type MobileMenuProps = {
 
 export function MobileMenu({ links }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
 
   const toggleMenu = useCallback(() => {
@@ -31,6 +33,10 @@ export function MobileMenu({ links }: MobileMenuProps) {
   }, [pathname, closeMenu]);
 
   // Close menu on escape key
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -65,30 +71,39 @@ export function MobileMenu({ links }: MobileMenuProps) {
         <span className="hamburger-line" />
       </button>
 
-      {/* Backdrop */}
-      {isOpen && (
-        <div
-          aria-hidden="true"
-          className="mobile-menu-backdrop"
-          onClick={closeMenu}
-        />
-      )}
+      {isMounted &&
+        createPortal(
+          <>
+            {/* Backdrop */}
+            {isOpen && (
+              <div
+                aria-hidden="true"
+                className="mobile-menu-backdrop"
+                onClick={closeMenu}
+              />
+            )}
 
-      {/* Slide-out menu panel */}
-      <div className={`mobile-menu-panel ${isOpen ? 'open' : ''}`}>
-        <nav className="mobile-menu-nav">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
-              href={link.href}
-              onClick={closeMenu}
+            {/* Slide-out menu panel */}
+            <div
+              aria-hidden={!isOpen}
+              className={`mobile-menu-panel ${isOpen ? 'open' : ''}`}
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
+              <nav className="mobile-menu-nav">
+                {links.map((link) => (
+                  <Link
+                    key={link.href}
+                    className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
+                    href={link.href}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </>,
+          document.body
+        )}
     </>
   );
 }
