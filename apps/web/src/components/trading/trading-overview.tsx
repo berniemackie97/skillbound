@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type UnrealizedPosition = {
   itemId: number;
@@ -81,12 +81,31 @@ export function TradingOverview({
   periodLabel,
 }: TradingOverviewProps) {
   const [showUnrealizedDetails, setShowUnrealizedDetails] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const winRate =
     summary.tradeCount > 0
       ? Math.round((summary.profitableTradeCount / summary.tradeCount) * 100)
       : 0;
   const hasUnrealized =
     summary.unrealizedPositions && summary.unrealizedPositions.length > 0;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(max-width: 640px), (max-height: 520px)');
+    const handleChange = () => {
+      const compact = media.matches;
+      setIsCompact(compact);
+      setDetailsOpen(!compact);
+    };
+    handleChange();
+    if (media.addEventListener) {
+      media.addEventListener('change', handleChange);
+      return () => media.removeEventListener('change', handleChange);
+    }
+    media.addListener(handleChange);
+    return () => media.removeListener(handleChange);
+  }, []);
 
   return (
     <div className="trading-overview">
@@ -132,34 +151,29 @@ export function TradingOverview({
           </div>
         </div>
 
-        <div className="profit-cards">
-          <div className="profit-card">
-            <span className="label">Revenue</span>
-            <span className="value">{formatGp(summary.totalRevenue)} GP</span>
-          </div>
-
-          <div className="profit-card">
-            <span className="label">Expenses</span>
-            <span className="value cost">{formatGp(summary.totalCost)} GP</span>
-          </div>
-
-          <div className="profit-card">
-            <span className="label">Trades</span>
-            <span className="value">{summary.tradeCount}</span>
-          </div>
-
-          <div className="profit-card">
-            <span className="label">Win Rate</span>
-            <span className="value">{winRate}%</span>
-          </div>
-
-          <div className="profit-card">
-            <span className="label">Avg Profit/Trade</span>
-            <span
-              className={`value ${summary.averageProfitPerTrade >= 0 ? 'positive' : 'negative'}`}
-            >
-              {formatGp(Math.round(summary.averageProfitPerTrade))} GP
-            </span>
+        <div className="overview-section overview-highlights">
+          <div className="overview-section-title">Highlights</div>
+          <div className="overview-grid overview-quick-grid">
+            <div className="overview-card highlight">
+              <span className="label">Trades</span>
+              <span className="value">{summary.tradeCount}</span>
+            </div>
+            <div className="overview-card highlight">
+              <span className="label">Win Rate</span>
+              <span className="value">{winRate}%</span>
+            </div>
+            <div className="overview-card">
+              <span className="label">Avg Profit/Trade</span>
+              <span
+                className={`value ${summary.averageProfitPerTrade >= 0 ? 'positive' : 'negative'}`}
+              >
+                {formatGp(Math.round(summary.averageProfitPerTrade))} GP
+              </span>
+            </div>
+            <div className="overview-card">
+              <span className="label">Total Volume</span>
+              <span className="value">{formatGp(overview.totalVolume)} GP</span>
+            </div>
           </div>
         </div>
 
@@ -232,60 +246,100 @@ export function TradingOverview({
         )}
       </div>
 
-      <div className="overview-section">
-        <div className="overview-section-title">Activity &amp; scale</div>
-        <div className="overview-grid">
-          <div className="overview-card">
-            <span className="label">Total Volume</span>
-            <span className="value">{formatGp(overview.totalVolume)} GP</span>
+      <details
+        className={`overview-details ${detailsOpen ? 'open' : ''}`}
+        open={detailsOpen}
+        onToggle={(event) => {
+          if (isCompact) {
+            setDetailsOpen((event.target as HTMLDetailsElement).open);
+          }
+        }}
+      >
+        <summary className="overview-summary">
+          <span className="summary-label">More stats</span>
+          <span className="summary-meta">
+            {overview.uniqueItems} items · {overview.watchListCount} watching
+          </span>
+          <svg
+            aria-hidden="true"
+            className="summary-icon"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </summary>
+
+        <div className="overview-details-content">
+          <div className="overview-section">
+            <div className="overview-section-title">Revenue &amp; costs</div>
+            <div className="overview-grid">
+              <div className="overview-card">
+                <span className="label">Revenue</span>
+                <span className="value">
+                  {formatGp(summary.totalRevenue)} GP
+                </span>
+              </div>
+
+              <div className="overview-card">
+                <span className="label">Expenses</span>
+                <span className="value negative">
+                  {formatGp(summary.totalCost)} GP
+                </span>
+              </div>
+
+              <div className="overview-card">
+                <span className="label">Avg Trade Size</span>
+                <span className="value">
+                  {formatGp(Math.round(overview.averageTradeValue))} GP
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="overview-card">
-            <span className="label">Total Trades</span>
-            <span className="value">{overview.totalTrades}</span>
-          </div>
+          <div className="overview-section">
+            <div className="overview-section-title">Activity &amp; scale</div>
+            <div className="overview-grid">
+              <div className="overview-card">
+                <span className="label">Buys / Sells</span>
+                <span className="value">
+                  <span className="buy">{overview.buyTrades}</span>
+                  {' / '}
+                  <span className="sell">{overview.sellTrades}</span>
+                </span>
+              </div>
 
-          <div className="overview-card">
-            <span className="label">Buys / Sells</span>
-            <span className="value">
-              <span className="buy">{overview.buyTrades}</span>
-              {' / '}
-              <span className="sell">{overview.sellTrades}</span>
-            </span>
-          </div>
+              <div className="overview-card">
+                <span className="label">Unique Items</span>
+                <span className="value">{overview.uniqueItems}</span>
+              </div>
 
-          <div className="overview-card">
-            <span className="label">Unique Items</span>
-            <span className="value">{overview.uniqueItems}</span>
-          </div>
+              <div className="overview-card">
+                <span className="label">Watching</span>
+                <span className="value">{overview.watchListCount} items</span>
+              </div>
 
-          <div className="overview-card">
-            <span className="label">Watching</span>
-            <span className="value">{overview.watchListCount} items</span>
-          </div>
+              <div className="overview-card">
+                <span className="label">First Trade</span>
+                <span className="value small">
+                  {formatDate(overview.oldestTrade)}
+                </span>
+              </div>
 
-          <div className="overview-card">
-            <span className="label">Avg Trade Size</span>
-            <span className="value">
-              {formatGp(Math.round(overview.averageTradeValue))} GP
-            </span>
-          </div>
-
-          <div className="overview-card">
-            <span className="label">First Trade</span>
-            <span className="value small">
-              {formatDate(overview.oldestTrade)}
-            </span>
-          </div>
-
-          <div className="overview-card">
-            <span className="label">Last Trade</span>
-            <span className="value small">
-              {formatDate(overview.newestTrade)}
-            </span>
+              <div className="overview-card">
+                <span className="label">Last Trade</span>
+                <span className="value small">
+                  {formatDate(overview.newestTrade)}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </details>
     </div>
   );
 }

@@ -1186,6 +1186,59 @@
   gap: var(--space-3);
 }
 
+.trading-overview .overview-quick-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.trading-overview .overview-details {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3);
+}
+
+.trading-overview .overview-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  cursor: pointer;
+  user-select: none;
+}
+
+.trading-overview .overview-summary::-webkit-details-marker {
+  display: none;
+}
+
+.trading-overview .summary-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trading-overview .summary-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.trading-overview .summary-icon {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.trading-overview .overview-details[open] .summary-icon {
+  transform: rotate(180deg);
+}
+
+.trading-overview .overview-details-content {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
 .trading-overview .overview-profit {
   margin: 0;
 }
@@ -4787,6 +4840,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .trading-overview .overview-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .trading-overview .overview-header {
     align-items: flex-start;
     flex-direction: column;
@@ -4794,6 +4851,31 @@
 
   .trading-overview .overview-period {
     align-self: flex-start;
+  }
+
+  .trading-overview .overview-summary {
+    padding: 8px 10px;
+  }
+
+  .trading-overview .summary-meta {
+    display: none;
+  }
+
+  .profit-summary .profit-hero {
+    padding: 12px;
+    margin-bottom: var(--space-3);
+  }
+
+  .profit-summary .profit-hero-main .value {
+    font-size: 1.4rem;
+  }
+
+  .profit-summary .profit-hero-breakdown {
+    gap: var(--space-2);
+  }
+
+  .profit-summary .profit-breakdown-divider {
+    height: 22px;
   }
 
   .bankroll-header {
