@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from 'next';
 
 import './styles/globals.css';
 
-import { Analytics } from "@vercel/analytics/next"
 import { SiteNav } from '@/components/nav/site-nav';
 import { SiteFooter } from '@/components/site/site-footer';
 
