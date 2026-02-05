@@ -168,7 +168,7 @@
 
 @media (max-width: 768px) {
   .nav {
-    gap: var(--space-2);
+    gap: 12px;
     padding: 8px 12px;
     border-width: 1px;
     border-image: none;
@@ -217,7 +217,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    order: 2;
+    order: 3;
   }
 
   .mobile-menu-toggle:hover {
@@ -265,14 +265,14 @@
     display: block;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     bottom: 0;
     width: min(280px, 80vw);
     background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg) 100%);
-    border-right: 1px solid var(--border);
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
     z-index: 100;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -303,25 +303,27 @@
     font-weight: 500;
     color: var(--text);
     text-decoration: none;
-    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
     transition: all 0.2s ease;
   }
 
   .mobile-menu-link:hover {
     background: rgba(212, 175, 55, 0.08);
     color: var(--accent);
-    border-left-color: var(--accent);
+    border-right-color: var(--accent);
   }
 
   .mobile-menu-link.active {
     background: rgba(212, 175, 55, 0.12);
     color: var(--accent);
-    border-left-color: var(--accent);
+    border-right-color: var(--accent);
   }
 
   .nav-actions {
-    gap: var(--space-2);
+    margin-left: auto;
+    gap: 8px;
     flex-wrap: nowrap;
+    order: 2;
   }
 
   .character-switcher select {

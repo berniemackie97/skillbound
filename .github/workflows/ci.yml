@@ -186,6 +186,31 @@ jobs:
     name: E2E Tests (${{ matrix.browser }})
     runs-on: ubuntu-latest
     needs: [lint, test-unit, test-integration]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: skillbound
+          POSTGRES_PASSWORD: skillbound
+          POSTGRES_DB: skillbound_e2e
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     strategy:
       fail-fast: false
       matrix:
@@ -208,6 +233,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Run database migrations
+        run: pnpm db:migrate
+        env:
+          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_e2e
+
       - name: Install Playwright browsers
         working-directory: apps/web
         run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
@@ -216,6 +246,8 @@ jobs:
         run: pnpm build
         env:
           SKIP_ENV_VALIDATION: true
+          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_e2e
+          REDIS_URL: redis://localhost:6379
 
       - name: Run E2E tests
         working-directory: apps/web
@@ -223,6 +255,8 @@ jobs:
         env:
           CI: true
           PLAYWRIGHT_BASE_URL: http://localhost:3000
+          DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_e2e
+          REDIS_URL: redis://localhost:6379
 
       - name: Upload test results
         if: always()

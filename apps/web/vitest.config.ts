@@ -7,6 +7,7 @@ export default defineConfig({
     include: ['src/**/*.test.ts'],
     exclude: ['node_modules', '.next', 'dist'],
     coverage: {
+      enabled: true,
       provider: 'v8',
       reporter: ['text', 'json', 'html', 'lcov'],
       include: ['src/lib/**/*.{ts,tsx}'],

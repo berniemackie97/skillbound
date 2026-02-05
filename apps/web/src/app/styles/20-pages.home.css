@@ -144,6 +144,11 @@
   margin-top: 22px;
 }
 
+.hero-mobile-features {
+  display: none;
+  margin-top: 20px;
+}
+
 .stat-chip {
   padding: 12px 16px;
   border-radius: 999px;
@@ -811,6 +816,39 @@ textarea {
 
   .stack-card.wide {
     grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-panel {
+    display: none;
+  }
+
+  .hero-kpis {
+    display: none;
+  }
+
+  .hero-mobile-features {
+    display: block;
+  }
+
+  .hero-mobile-features .feature-grid {
+    gap: 12px;
+  }
+
+  .hero-mobile-features .feature-card {
+    padding: 14px;
+    min-height: auto;
+  }
+
+  .home-feature-grid {
+    display: none;
+  }
+
+  .panel .panel-grid .stack-card .button {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
   }
 }
 

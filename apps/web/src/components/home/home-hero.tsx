@@ -2,6 +2,7 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { formatNumber } from '@/lib/format/format-number';
 
 import type { HomeCounts } from '../../lib/home/home-types';
+import { HOME_FEATURES } from './home-feature-grid';
 
 type Props = {
   counts: HomeCounts;
@@ -35,6 +36,17 @@ export function HomeHero({ counts }: Props) {
           >
             Explore progression
           </ButtonLink>
+        </div>
+
+        <div className="hero-mobile-features">
+          <div className="feature-grid hero-feature-grid">
+            {HOME_FEATURES.map((feature) => (
+              <article key={feature.title} className="feature-card">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className="hero-kpis">
