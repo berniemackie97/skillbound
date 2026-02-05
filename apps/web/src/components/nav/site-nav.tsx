@@ -50,7 +50,17 @@ export async function SiteNav() {
   return (
     <header className="nav">
       <Link className="brand" href="/">
-        <span className="brand-mark">SB</span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          className="brand-mark"
+          decoding="async"
+          fetchPriority="high"
+          height={40}
+          loading="eager"
+          src="/icon.svg"
+          width={40}
+        />
         <span className="brand-name">SkillBound</span>
       </Link>
       {/* Desktop nav links */}

@@ -43,7 +43,7 @@ export function HomeHero({ counts }: Props) {
           <div className="feature-grid hero-feature-grid">
             {HOME_FEATURES.map((feature) => (
               <article key={feature.title} className="feature-card">
-                <h3>{feature.title}</h3>
+                <h2>{feature.title}</h2>
                 <p>{feature.description}</p>
               </article>
             ))}
@@ -68,7 +68,7 @@ export function HomeHero({ counts }: Props) {
 
       <div className="hero-panel">
         <div className="stack-card compact">
-          <h3>Getting started</h3>
+          <h2>Getting started</h2>
           <ul>
             <li>Look up any character by username</li>
             <li>Track quests, diaries, and combat goals</li>
@@ -77,7 +77,7 @@ export function HomeHero({ counts }: Props) {
         </div>
 
         <div className="stack-card accent compact">
-          <h3>Community powered</h3>
+          <h2>Community powered</h2>
           <ul>
             <li>OSRS Wiki Sync integration</li>
             <li>RuneLite crowdsourced prices</li>

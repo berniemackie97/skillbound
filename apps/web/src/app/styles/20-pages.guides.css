@@ -16,7 +16,7 @@
 }
 
 .progression-header h2 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 2rem;
   color: var(--rs-gold);
   margin-bottom: 8px;
@@ -131,7 +131,7 @@
   font-size: 1.3rem;
   color: var(--accent);
   margin: 0;
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
 }
 
 .category-description {
@@ -347,7 +347,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent);
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
 }
 
 .progression-widget-stats {
@@ -725,7 +725,7 @@
   font-size: 1.5rem;
   color: var(--accent);
   margin-bottom: 16px;
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
 }
 
 .boss-grid {
@@ -793,7 +793,7 @@
   font-size: 1.5rem;
   color: var(--accent);
   margin-bottom: 16px;
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
 }
 
 .gear-list {
@@ -873,7 +873,7 @@
   font-size: 1.5rem;
   color: var(--accent);
   margin-bottom: 16px;
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
 }
 
 .milestone-list {
@@ -1322,7 +1322,7 @@
 }
 
 .guides-header-content h1 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 2rem;
   color: var(--rs-gold);
   margin: 0 0 4px;
@@ -1563,7 +1563,7 @@
 }
 
 .guide-card-title {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text);

@@ -57,13 +57,11 @@
 }
 
 .brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   width: 40px;
   height: 40px;
   border-radius: 6px;
-  background: url('/icon.svg') center/contain no-repeat;
+  object-fit: contain;
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.6),
     0 0 16px rgba(212, 175, 55, 0.2);
@@ -80,7 +78,7 @@
 }
 
 .brand-name {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 1.2rem;
   letter-spacing: 0.02em;
 }

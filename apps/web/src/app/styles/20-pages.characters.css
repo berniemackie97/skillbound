@@ -17,7 +17,7 @@
 }
 
 .character-hub-hero .hero-copy h2 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 2rem;
   background: linear-gradient(180deg, var(--rs-gold) 0%, var(--accent) 100%);
   -webkit-background-clip: text;

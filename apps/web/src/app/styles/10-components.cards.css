@@ -429,7 +429,7 @@
 }
 
 .guide-chapter h3 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 1.4rem;
   margin-bottom: 12px;
 }

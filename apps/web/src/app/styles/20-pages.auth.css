@@ -23,7 +23,7 @@
 }
 
 .auth-header h1 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 2rem;
   color: var(--rs-gold);
   margin-bottom: 8px;
@@ -76,7 +76,7 @@
 }
 
 .auth-card-single h1 {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   color: var(--text);
   margin-bottom: 8px;
@@ -465,7 +465,7 @@ to {
 }
 
 .modal-title {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text);

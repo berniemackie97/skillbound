@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
+import { Fraunces, Space_Grotesk } from 'next/font/google';
 
 import './styles/globals.css';
 
@@ -12,6 +13,20 @@ import { SiteFooter } from '@/components/site/site-footer';
 const siteUrl = process.env['NEXT_PUBLIC_SITE_URL']
   ? new URL(process.env['NEXT_PUBLIC_SITE_URL'])
   : undefined;
+
+const bodyFont = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-body',
+});
+
+const displayFont = Fraunces({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  display: 'swap',
+  variable: '--font-display',
+});
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -57,7 +72,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
         {/* Skip link: cheap accessibility win, zero design impact unless focused */}
         <a className="skip-link" href="#main">
           Skip to content
