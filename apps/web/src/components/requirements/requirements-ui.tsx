@@ -5,7 +5,14 @@ import type {
   RequirementResult,
   RequirementStatus,
 } from '@skillbound/domain';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react';
 
 function titleize(value: string) {
   return value
@@ -21,6 +28,10 @@ export function statusClass(status: RequirementStatus) {
 type ItemNameMap = Record<number, string>;
 
 const ItemNameContext = createContext<ItemNameMap | null>(null);
+
+type RequirementItemsInput =
+  | RequirementResult[]
+  | Array<RequirementResult[] | null | undefined>;
 
 const UNTRACKED_TYPES = new Set<Requirement['type']>([
   'item-possessed',
@@ -65,9 +76,35 @@ function collectItemIds(items: RequirementResult[]): number[] {
 }
 
 const itemNameCache = new Map<number, string>();
+const inFlightItemIds = new Set<number>();
+
+function buildItemNameMap(itemIds: number[]): ItemNameMap {
+  const names: ItemNameMap = {};
+  for (const id of itemIds) {
+    const name = itemNameCache.get(id);
+    if (name) {
+      names[id] = name;
+    }
+  }
+  return names;
+}
+
+function normalizeRequirementItems(
+  items: RequirementItemsInput
+): RequirementResult[] {
+  if (items.length === 0) return [];
+  if (Array.isArray(items[0])) {
+    return (items as Array<RequirementResult[] | null | undefined>).flatMap(
+      (entry) => entry ?? []
+    );
+  }
+  return items as RequirementResult[];
+}
 
 async function fetchItemNames(ids: number[]): Promise<void> {
-  const missing = ids.filter((id) => !itemNameCache.has(id));
+  const missing = ids.filter(
+    (id) => !itemNameCache.has(id) && !inFlightItemIds.has(id)
+  );
   if (missing.length === 0) {
     return;
   }
@@ -78,24 +115,85 @@ async function fetchItemNames(ids: number[]): Promise<void> {
     chunks.push(missing.slice(i, i + chunkSize));
   }
 
+  chunks.forEach((chunk) => {
+    chunk.forEach((id) => inFlightItemIds.add(id));
+  });
+
   await Promise.all(
     chunks.map(async (chunk) => {
-      const params = new URLSearchParams({
-        ids: chunk.join(','),
-      });
-      const response = await fetch(`/api/ge/mapping?${params.toString()}`);
-      if (!response.ok) {
-        return;
-      }
-      const payload = (await response.json()) as {
-        data?: Array<{ id: number; name: string }>;
-      };
-      for (const item of payload.data ?? []) {
-        if (Number.isFinite(item.id) && item.name) {
-          itemNameCache.set(item.id, item.name);
+      try {
+        const params = new URLSearchParams({
+          ids: chunk.join(','),
+        });
+        const response = await fetch(`/api/ge/mapping?${params.toString()}`);
+        if (!response.ok) {
+          return;
         }
+        const payload = (await response.json()) as {
+          data?: Array<{ id: number; name: string }>;
+        };
+        for (const item of payload.data ?? []) {
+          if (Number.isFinite(item.id) && item.name) {
+            itemNameCache.set(item.id, item.name);
+          }
+        }
+      } finally {
+        chunk.forEach((id) => inFlightItemIds.delete(id));
       }
     })
+  );
+}
+
+type RequirementNamesProviderProps = {
+  items: RequirementItemsInput;
+  children: ReactNode;
+};
+
+export function RequirementNamesProvider({
+  items,
+  children,
+}: RequirementNamesProviderProps) {
+  const normalizedItems = useMemo(
+    () => normalizeRequirementItems(items),
+    [items]
+  );
+  const itemIds = useMemo(
+    () => collectItemIds(normalizedItems),
+    [normalizedItems]
+  );
+  const itemIdKey = useMemo(
+    () =>
+      itemIds
+        .slice()
+        .sort((a, b) => a - b)
+        .join(','),
+    [itemIds]
+  );
+
+  const [itemNames, setItemNames] = useState<ItemNameMap>({});
+
+  useEffect(() => {
+    if (itemIds.length === 0) {
+      setItemNames({});
+      return;
+    }
+
+    let cancelled = false;
+    void (async () => {
+      await fetchItemNames(itemIds);
+      if (cancelled) return;
+      setItemNames(buildItemNameMap(itemIds));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [itemIdKey, itemIds]);
+
+  return (
+    <ItemNameContext.Provider value={itemNames}>
+      {children}
+    </ItemNameContext.Provider>
   );
 }
 
@@ -193,17 +291,13 @@ export function RequirementList({ items }: { items: RequirementResult[] }) {
     void (async () => {
       await fetchItemNames(itemIds);
       if (cancelled) return;
-      const next: ItemNameMap = {};
-      for (const [id, name] of itemNameCache.entries()) {
-        next[id] = name;
-      }
-      setItemNames(next);
+      setItemNames(buildItemNameMap(itemIds));
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [isRoot, itemIdKey]);
+  }, [isRoot, itemIdKey, itemIds]);
 
   if (!isRoot) {
     return <RequirementListInner items={items} />;

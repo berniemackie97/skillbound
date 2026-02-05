@@ -12,37 +12,41 @@ export function HomeHero({ counts }: Props) {
     <section className="hero">
       <div className="hero-copy">
         <div className="eyebrow">
-          Your hub for everything Old School RuneScape
+          Old School RuneScape toolkit
+          <span className="hero-status">Live</span>
         </div>
 
-        <h1>You could go to five or six sites, or just one!</h1>
+        <h1>Track OSRS progress, prices, and guides in one place.</h1>
 
         <p>
-          Tired of having 3 spreadsheets and 20 wiki tabs open at all times? Do
-          you have multiple copies of the same spreadsheet saved for your many
-          alts? Skillbound brings all your favorite tools and guides into just 1
-          website. Track progression for multiple characters, plan your next
-          moves with action planners, and integrate with popular community
-          guides. More features coming soon!
+          Skillbound keeps quests, diaries, combat goals, and GE tools together.
+          Sync multiple characters, plan next steps, and trade smarter without
+          spreadsheet chaos.
         </p>
 
         <div className="hero-actions">
-          <ButtonLink href="/lookup">Look up a character</ButtonLink>
-          <ButtonLink href="/progression" variant="ghost">
-            View progression tracker
+          <ButtonLink className="hero-primary" href="/lookup">
+            Look up a character
+          </ButtonLink>
+          <ButtonLink
+            className="hero-secondary"
+            href="/progression"
+            variant="ghost"
+          >
+            Explore progression
           </ButtonLink>
         </div>
 
-        <div className="hero-meta">
-          <div className="meta-card">
+        <div className="hero-kpis">
+          <div className="stat-chip">
             <span>Content version</span>
             <strong>{counts.version}</strong>
           </div>
-          <div className="meta-card">
+          <div className="stat-chip">
             <span>Quests tracked</span>
             <strong>{formatNumber(counts.questCount)}</strong>
           </div>
-          <div className="meta-card">
+          <div className="stat-chip">
             <span>Diaries tracked</span>
             <strong>{formatNumber(counts.diaryCount)}</strong>
           </div>
@@ -50,29 +54,20 @@ export function HomeHero({ counts }: Props) {
       </div>
 
       <div className="hero-panel">
-        <div className="status-card">
-          <div>
-            <span className="label">Platform status</span>
-            <h3>Operational</h3>
-          </div>
-          <span className="badge">Live</span>
-        </div>
-
-        <div className="stack-card">
+        <div className="stack-card compact">
           <h3>Getting started</h3>
           <ul>
             <li>Look up any character by username</li>
-            <li>Track quests, diaries, and combat achievements</li>
-            <li>Monitor GE prices and track your trades</li>
-            <li>Follow community guides step-by-step</li>
+            <li>Track quests, diaries, and combat goals</li>
+            <li>Monitor GE prices and your trades</li>
           </ul>
         </div>
 
-        <div className="stack-card accent">
-          <h3>Powered by community data</h3>
+        <div className="stack-card accent compact">
+          <h3>Community powered</h3>
           <ul>
-            <li>OSRS Wiki Sync API integration</li>
-            <li>Real-time Grand Exchange prices</li>
+            <li>OSRS Wiki Sync integration</li>
+            <li>RuneLite crowdsourced prices</li>
             <li>Hiscores data for all account types</li>
           </ul>
         </div>

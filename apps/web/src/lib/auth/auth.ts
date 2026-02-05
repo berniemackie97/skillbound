@@ -111,7 +111,7 @@ const buildAuthConfig = (): NextAuthConfig => ({
     authenticatorsTable: authenticators,
   }),
   session: {
-    strategy: 'database',
+    strategy: 'jwt',
   },
   providers,
   pages: {
@@ -119,9 +119,15 @@ const buildAuthConfig = (): NextAuthConfig => ({
     signOut: '/logout',
   },
   callbacks: {
-    session({ session, user }) {
+    jwt({ token, user }) {
+      if (user?.id) {
+        token.sub = user.id;
+      }
+      return token;
+    },
+    session({ session, token, user }) {
       if (session.user) {
-        session.user.id = user.id;
+        session.user.id = user?.id ?? token.sub ?? session.user.id;
       }
       return session;
     },

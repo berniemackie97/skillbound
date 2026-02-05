@@ -525,7 +525,9 @@ export function ExchangeTable({
                       <path
                         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                         fill={favorites.has(item.id) ? '#ffd700' : 'none'}
-                        stroke={favorites.has(item.id) ? '#ffd700' : 'currentColor'}
+                        stroke={
+                          favorites.has(item.id) ? '#ffd700' : 'currentColor'
+                        }
                         strokeWidth="2"
                       />
                     </svg>
@@ -533,7 +535,9 @@ export function ExchangeTable({
                 </td>
                 <td className="col-expand">
                   <button
-                    aria-label={expandedItemId === item.id ? 'Collapse' : 'Expand'}
+                    aria-label={
+                      expandedItemId === item.id ? 'Collapse' : 'Expand'
+                    }
                     className={`expand-btn ${expandedItemId === item.id ? 'active' : ''}`}
                     type="button"
                     onClick={(e) => handleExpandClick(e, item.id)}

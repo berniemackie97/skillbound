@@ -1,4 +1,4 @@
-import { eq, userCredentials, users } from '@skillbound/database';
+import { eq, or, userCredentials, users } from '@skillbound/database';
 import { z } from 'zod';
 
 import { getDbClient } from '../db';
@@ -120,12 +120,7 @@ export async function verifyUserCredentials(input: CredentialsInput) {
   const parsed = credentialsSchema.parse(input);
   const db = getDbClient();
 
-  let identifier: ParsedIdentifier;
-  try {
-    identifier = parseLoginIdentifier(parsed.identifier);
-  } catch {
-    return null;
-  }
+  const normalizedIdentifier = parsed.identifier.trim().toLowerCase();
 
   const [record] = await db
     .select({
@@ -135,9 +130,10 @@ export async function verifyUserCredentials(input: CredentialsInput) {
     .from(users)
     .innerJoin(userCredentials, eq(users.id, userCredentials.userId))
     .where(
-      identifier.type === 'email'
-        ? eq(users.email, identifier.value)
-        : eq(users.username, identifier.value)
+      or(
+        eq(users.email, normalizedIdentifier),
+        eq(users.username, normalizedIdentifier)
+      )
     )
     .limit(1);
 

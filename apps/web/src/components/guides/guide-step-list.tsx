@@ -6,7 +6,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { RequirementList } from '../requirements/requirements-ui';
+import {
+  RequirementList,
+  RequirementNamesProvider,
+} from '../requirements/requirements-ui';
 
 export type GuideStepView = {
   stepNumber: number;
@@ -65,6 +68,21 @@ function formatGpStack(gp?: { note?: string; min?: number; max?: number }) {
   }
 
   return `${min.toLocaleString()} gp`;
+}
+
+function collectGuideRequirementGroups(
+  steps: GuideStepView[]
+): RequirementResult[][] {
+  const groups: RequirementResult[][] = [];
+  for (const step of steps) {
+    if (step.required.length > 0) {
+      groups.push(step.required);
+    }
+    if (step.optional.length > 0) {
+      groups.push(step.optional);
+    }
+  }
+  return groups;
 }
 
 export function GuideStepList({
@@ -362,93 +380,121 @@ export function GuideStepList({
                         )}
                       </div>
                       {isSectionExpanded && (
-                        <ol className="guide-step-list">
-                          {section.steps.map((step) => {
-                            const isChecked = completed.has(step.stepNumber);
-                            const hasRequirements =
-                              step.required.length > 0 ||
-                              step.optional.length > 0;
+                        <RequirementNamesProvider
+                          items={collectGuideRequirementGroups(section.steps)}
+                        >
+                          <ol className="guide-step-list">
+                            {section.steps.map((step) => {
+                              const isChecked = completed.has(step.stepNumber);
+                              const hasRequirements =
+                                step.required.length > 0 ||
+                                step.optional.length > 0;
 
-                            return (
-                              <li
-                                key={step.stepNumber}
-                                className={`guide-step ${isChecked ? 'completed' : ''}`}
-                              >
-                                <div className="guide-step-header">
-                                  <input
-                                    checked={isChecked}
-                                    type="checkbox"
-                                    onChange={() => toggleStep(step.stepNumber)}
-                                  />
-                                  <span className="guide-step-number">
-                                    Step {step.stepNumber}
-                                  </span>
-                                </div>
-                                {step.instructions &&
-                                  step.instructions.length > 0 && (
-                                    <div className="guide-step-content">
-                                      {/* Render instructions as a clickable list */}
-                                      <ol className="guide-instructions-list">
-                                        {step.instructions.map(
-                                          (instruction, idx) => {
-                                            const instructionKey = `${step.stepNumber}-instruction-${idx}`;
-                                            const isReady =
-                                              readyItems.has(instructionKey);
-                                            const hasImage = Boolean(
-                                              instruction.imageUrl
-                                            );
+                              return (
+                                <li
+                                  key={step.stepNumber}
+                                  className={`guide-step ${isChecked ? 'completed' : ''}`}
+                                >
+                                  <div className="guide-step-header">
+                                    <input
+                                      checked={isChecked}
+                                      type="checkbox"
+                                      onChange={() =>
+                                        toggleStep(step.stepNumber)
+                                      }
+                                    />
+                                    <span className="guide-step-number">
+                                      Step {step.stepNumber}
+                                    </span>
+                                  </div>
+                                  {step.instructions &&
+                                    step.instructions.length > 0 && (
+                                      <div className="guide-step-content">
+                                        {/* Render instructions as a clickable list */}
+                                        <ol className="guide-instructions-list">
+                                          {step.instructions.map(
+                                            (instruction, idx) => {
+                                              const instructionKey = `${step.stepNumber}-instruction-${idx}`;
+                                              const isReady =
+                                                readyItems.has(instructionKey);
+                                              const hasImage = Boolean(
+                                                instruction.imageUrl
+                                              );
 
-                                            return (
-                                              <li
-                                                key={idx}
-                                                className={`guide-instruction-item ${isReady ? 'ready' : ''}`}
-                                                onClick={() =>
-                                                  toggleReadyItem(
-                                                    instructionKey
-                                                  )
-                                                }
-                                              >
-                                                <div className="instruction-content">
-                                                  <div className="instruction-body">
-                                                    <span className="instruction-text">
-                                                      {instruction.text}
-                                                    </span>
-                                                    {instruction.note && (
-                                                      <span className="instruction-note">
-                                                        {instruction.note}
+                                              return (
+                                                <li
+                                                  key={idx}
+                                                  className={`guide-instruction-item ${isReady ? 'ready' : ''}`}
+                                                  onClick={() =>
+                                                    toggleReadyItem(
+                                                      instructionKey
+                                                    )
+                                                  }
+                                                >
+                                                  <div className="instruction-content">
+                                                    <div className="instruction-body">
+                                                      <span className="instruction-text">
+                                                        {instruction.text}
                                                       </span>
-                                                    )}
-                                                  </div>
-                                                  {hasImage &&
-                                                    instruction.imageUrl && (
-                                                      <div
-                                                        className="instruction-media"
-                                                        onClick={(event) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                        onDoubleClick={(
-                                                          event
-                                                        ) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                        onPointerDown={(
-                                                          event
-                                                        ) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                      >
-                                                        {instruction.imageLink ? (
-                                                          <a
-                                                            className="instruction-media-link"
-                                                            href={instruction.imageLink}
-                                                            rel="noreferrer"
-                                                            target="_blank"
-                                                          >
+                                                      {instruction.note && (
+                                                        <span className="instruction-note">
+                                                          {instruction.note}
+                                                        </span>
+                                                      )}
+                                                    </div>
+                                                    {hasImage &&
+                                                      instruction.imageUrl && (
+                                                        <div
+                                                          className="instruction-media"
+                                                          onClick={(event) =>
+                                                            event.stopPropagation()
+                                                          }
+                                                          onDoubleClick={(
+                                                            event
+                                                          ) =>
+                                                            event.stopPropagation()
+                                                          }
+                                                          onPointerDown={(
+                                                            event
+                                                          ) =>
+                                                            event.stopPropagation()
+                                                          }
+                                                        >
+                                                          {instruction.imageLink ? (
+                                                            <a
+                                                              className="instruction-media-link"
+                                                              href={
+                                                                instruction.imageLink
+                                                              }
+                                                              rel="noreferrer"
+                                                              target="_blank"
+                                                            >
+                                                              <div className="instruction-image">
+                                                                <Image
+                                                                  className="instruction-img"
+                                                                  height={320}
+                                                                  src={
+                                                                    instruction.imageUrl
+                                                                  }
+                                                                  width={320}
+                                                                  alt={
+                                                                    instruction.imageAlt ||
+                                                                    `Instruction ${idx + 1} reference image`
+                                                                  }
+                                                                />
+                                                              </div>
+                                                              <span className="instruction-media-label">
+                                                                View on wiki
+                                                              </span>
+                                                            </a>
+                                                          ) : (
                                                             <div className="instruction-image">
                                                               <Image
                                                                 className="instruction-img"
                                                                 height={320}
-                                                                src={instruction.imageUrl}
+                                                                src={
+                                                                  instruction.imageUrl
+                                                                }
                                                                 width={320}
                                                                 alt={
                                                                   instruction.imageAlt ||
@@ -456,250 +502,236 @@ export function GuideStepList({
                                                                 }
                                                               />
                                                             </div>
-                                                            <span className="instruction-media-label">
-                                                              View on wiki
-                                                            </span>
-                                                          </a>
-                                                        ) : (
-                                                          <div className="instruction-image">
-                                                            <Image
-                                                              className="instruction-img"
-                                                              height={320}
-                                                              src={instruction.imageUrl}
-                                                              width={320}
-                                                              alt={
-                                                                instruction.imageAlt ||
-                                                                `Instruction ${idx + 1} reference image`
-                                                              }
-                                                            />
-                                                          </div>
+                                                          )}
+                                                        </div>
+                                                      )}
+                                                  </div>
+                                                </li>
+                                              );
+                                            }
+                                          )}
+                                        </ol>
+                                        <div className="guide-step-meta">
+                                          {/* 1) GP Stack */}
+                                          <div className="meta-item">
+                                            <strong>GP Stack:</strong>
+                                            <span>
+                                              {step.meta?.gpStack?.note
+                                                ? `${formatGpStack(step.meta.gpStack)} — ${step.meta.gpStack.note}`
+                                                : formatGpStack(
+                                                    step.meta?.gpStack
+                                                  )}
+                                            </span>
+                                          </div>
+
+                                          {/* 2) Items Needed - clickable to mark as ready */}
+                                          <div className="meta-item">
+                                            <strong>Items Needed:</strong>
+                                            {step.meta &&
+                                            step.meta.itemsNeeded.length > 0 ? (
+                                              <ul className="meta-items-list">
+                                                {step.meta.itemsNeeded.map(
+                                                  (item, idx) => {
+                                                    const itemKey = `${step.stepNumber}-item-${idx}`;
+                                                    const isItemReady =
+                                                      readyItems.has(itemKey);
+
+                                                    return (
+                                                      <li
+                                                        key={idx}
+                                                        className={
+                                                          isItemReady
+                                                            ? 'ready'
+                                                            : ''
+                                                        }
+                                                        onClick={() =>
+                                                          toggleReadyItem(
+                                                            itemKey
+                                                          )
+                                                        }
+                                                      >
+                                                        {item.icon && (
+                                                          <span className="item-icon">
+                                                            {item.icon}
+                                                          </span>
                                                         )}
-                                                      </div>
-                                                    )}
-                                                </div>
-                                              </li>
-                                            );
-                                          }
-                                        )}
-                                      </ol>
-                                      <div className="guide-step-meta">
-                                        {/* 1) GP Stack */}
-                                        <div className="meta-item">
-                                          <strong>GP Stack:</strong>
-                                          <span>
-                                            {step.meta?.gpStack?.note
-                                              ? `${formatGpStack(step.meta.gpStack)} — ${step.meta.gpStack.note}`
-                                              : formatGpStack(
-                                                  step.meta?.gpStack
+                                                        <span className="item-qty">
+                                                          {item.qty}×
+                                                        </span>{' '}
+                                                        <span className="item-name">
+                                                          {item.name}
+                                                        </span>
+                                                        {item.note && (
+                                                          <span className="item-note">
+                                                            ({item.note})
+                                                          </span>
+                                                        )}
+                                                      </li>
+                                                    );
+                                                  }
                                                 )}
-                                          </span>
-                                        </div>
+                                              </ul>
+                                            ) : (
+                                              <span>N/A</span>
+                                            )}
+                                          </div>
 
-                                        {/* 2) Items Needed - clickable to mark as ready */}
-                                        <div className="meta-item">
-                                          <strong>Items Needed:</strong>
-                                          {step.meta &&
-                                          step.meta.itemsNeeded.length > 0 ? (
-                                            <ul className="meta-items-list">
-                                              {step.meta.itemsNeeded.map(
-                                                (item, idx) => {
-                                                  const itemKey = `${step.stepNumber}-item-${idx}`;
-                                                  const isItemReady =
-                                                    readyItems.has(itemKey);
+                                          {/* 3) Stats - Required and After */}
+                                          <div className="meta-item">
+                                            <strong>Stats:</strong>
+                                            {step.meta?.stats &&
+                                            (step.meta.stats.required.length >
+                                              0 ||
+                                              step.meta.stats.after.length >
+                                                0) ? (
+                                              <div className="meta-stats-sections">
+                                                {step.meta.stats.required
+                                                  .length > 0 && (
+                                                  <div className="stats-subsection">
+                                                    <span className="stats-label required">
+                                                      Need
+                                                    </span>
+                                                    <ul className="meta-stats-list">
+                                                      {step.meta.stats.required.map(
+                                                        (stat, idx) => {
+                                                          const statKey = `${step.stepNumber}-stat-req-${idx}`;
+                                                          const isStatReady =
+                                                            readyItems.has(
+                                                              statKey
+                                                            );
 
-                                                  return (
-                                                    <li
-                                                      key={idx}
-                                                      className={
-                                                        isItemReady
-                                                          ? 'ready'
-                                                          : ''
-                                                      }
-                                                      onClick={() =>
-                                                        toggleReadyItem(itemKey)
-                                                      }
-                                                    >
-                                                      {item.icon && (
-                                                        <span className="item-icon">
-                                                          {item.icon}
-                                                        </span>
+                                                          return (
+                                                            <li
+                                                              key={idx}
+                                                              className={
+                                                                isStatReady
+                                                                  ? 'ready'
+                                                                  : ''
+                                                              }
+                                                              onClick={() =>
+                                                                toggleReadyItem(
+                                                                  statKey
+                                                                )
+                                                              }
+                                                            >
+                                                              <span className="stat-level">
+                                                                {stat.level}
+                                                              </span>
+                                                              <span className="stat-skill">
+                                                                {stat.skill}
+                                                              </span>
+                                                              {stat.note && (
+                                                                <span className="stat-note">
+                                                                  ({stat.note})
+                                                                </span>
+                                                              )}
+                                                            </li>
+                                                          );
+                                                        }
                                                       )}
-                                                      <span className="item-qty">
-                                                        {item.qty}×
-                                                      </span>{' '}
-                                                      <span className="item-name">
-                                                        {item.name}
-                                                      </span>
-                                                      {item.note && (
-                                                        <span className="item-note">
-                                                          ({item.note})
-                                                        </span>
+                                                    </ul>
+                                                  </div>
+                                                )}
+                                                {step.meta.stats.after.length >
+                                                  0 && (
+                                                  <div className="stats-subsection">
+                                                    <span className="stats-label after">
+                                                      After
+                                                    </span>
+                                                    <ul className="meta-stats-list">
+                                                      {step.meta.stats.after.map(
+                                                        (stat, idx) => {
+                                                          const statKey = `${step.stepNumber}-stat-after-${idx}`;
+                                                          const isStatReady =
+                                                            readyItems.has(
+                                                              statKey
+                                                            );
+
+                                                          return (
+                                                            <li
+                                                              key={idx}
+                                                              className={
+                                                                isStatReady
+                                                                  ? 'ready'
+                                                                  : ''
+                                                              }
+                                                              onClick={() =>
+                                                                toggleReadyItem(
+                                                                  statKey
+                                                                )
+                                                              }
+                                                            >
+                                                              <span className="stat-level">
+                                                                {stat.level}
+                                                              </span>
+                                                              <span className="stat-skill">
+                                                                {stat.skill}
+                                                              </span>
+                                                              {stat.note && (
+                                                                <span className="stat-note">
+                                                                  ({stat.note})
+                                                                </span>
+                                                              )}
+                                                            </li>
+                                                          );
+                                                        }
                                                       )}
+                                                    </ul>
+                                                  </div>
+                                                )}
+                                              </div>
+                                            ) : (
+                                              <span>N/A</span>
+                                            )}
+                                          </div>
+
+                                          {/* 4) Alternative Routes */}
+                                          <div className="meta-item">
+                                            <strong>Alternative routes:</strong>
+                                            {step.meta &&
+                                            step.meta.alternativeRoutes.length >
+                                              0 ? (
+                                              <ul className="meta-alternatives-list">
+                                                {step.meta.alternativeRoutes.map(
+                                                  (alt, idx) => (
+                                                    <li key={idx}>
+                                                      {alt.title && (
+                                                        <strong>
+                                                          {alt.title}:
+                                                        </strong>
+                                                      )}{' '}
+                                                      {alt.text}
                                                     </li>
-                                                  );
-                                                }
-                                              )}
-                                            </ul>
-                                          ) : (
-                                            <span>N/A</span>
-                                          )}
-                                        </div>
-
-                                        {/* 3) Stats - Required and After */}
-                                        <div className="meta-item">
-                                          <strong>Stats:</strong>
-                                          {step.meta?.stats &&
-                                          (step.meta.stats.required.length >
-                                            0 ||
-                                            step.meta.stats.after.length >
-                                              0) ? (
-                                            <div className="meta-stats-sections">
-                                              {step.meta.stats.required.length >
-                                                0 && (
-                                                <div className="stats-subsection">
-                                                  <span className="stats-label required">
-                                                    Need
-                                                  </span>
-                                                  <ul className="meta-stats-list">
-                                                    {step.meta.stats.required.map(
-                                                      (stat, idx) => {
-                                                        const statKey = `${step.stepNumber}-stat-req-${idx}`;
-                                                        const isStatReady =
-                                                          readyItems.has(
-                                                            statKey
-                                                          );
-
-                                                        return (
-                                                          <li
-                                                            key={idx}
-                                                            className={
-                                                              isStatReady
-                                                                ? 'ready'
-                                                                : ''
-                                                            }
-                                                            onClick={() =>
-                                                              toggleReadyItem(
-                                                                statKey
-                                                              )
-                                                            }
-                                                          >
-                                                            <span className="stat-level">
-                                                              {stat.level}
-                                                            </span>
-                                                            <span className="stat-skill">
-                                                              {stat.skill}
-                                                            </span>
-                                                            {stat.note && (
-                                                              <span className="stat-note">
-                                                                ({stat.note})
-                                                              </span>
-                                                            )}
-                                                          </li>
-                                                        );
-                                                      }
-                                                    )}
-                                                  </ul>
-                                                </div>
-                                              )}
-                                              {step.meta.stats.after.length >
-                                                0 && (
-                                                <div className="stats-subsection">
-                                                  <span className="stats-label after">
-                                                    After
-                                                  </span>
-                                                  <ul className="meta-stats-list">
-                                                    {step.meta.stats.after.map(
-                                                      (stat, idx) => {
-                                                        const statKey = `${step.stepNumber}-stat-after-${idx}`;
-                                                        const isStatReady =
-                                                          readyItems.has(
-                                                            statKey
-                                                          );
-
-                                                        return (
-                                                          <li
-                                                            key={idx}
-                                                            className={
-                                                              isStatReady
-                                                                ? 'ready'
-                                                                : ''
-                                                            }
-                                                            onClick={() =>
-                                                              toggleReadyItem(
-                                                                statKey
-                                                              )
-                                                            }
-                                                          >
-                                                            <span className="stat-level">
-                                                              {stat.level}
-                                                            </span>
-                                                            <span className="stat-skill">
-                                                              {stat.skill}
-                                                            </span>
-                                                            {stat.note && (
-                                                              <span className="stat-note">
-                                                                ({stat.note})
-                                                              </span>
-                                                            )}
-                                                          </li>
-                                                        );
-                                                      }
-                                                    )}
-                                                  </ul>
-                                                </div>
-                                              )}
-                                            </div>
-                                          ) : (
-                                            <span>N/A</span>
-                                          )}
-                                        </div>
-
-                                        {/* 4) Alternative Routes */}
-                                        <div className="meta-item">
-                                          <strong>Alternative routes:</strong>
-                                          {step.meta &&
-                                          step.meta.alternativeRoutes.length >
-                                            0 ? (
-                                            <ul className="meta-alternatives-list">
-                                              {step.meta.alternativeRoutes.map(
-                                                (alt, idx) => (
-                                                  <li key={idx}>
-                                                    {alt.title && (
-                                                      <strong>
-                                                        {alt.title}:
-                                                      </strong>
-                                                    )}{' '}
-                                                    {alt.text}
-                                                  </li>
-                                                )
-                                              )}
-                                            </ul>
-                                          ) : (
-                                            <span>N/A</span>
-                                          )}
+                                                  )
+                                                )}
+                                              </ul>
+                                            ) : (
+                                              <span>N/A</span>
+                                            )}
+                                          </div>
                                         </div>
                                       </div>
+                                    )}
+                                  {hasRequirements && (
+                                    <div className="guide-step-requirements">
+                                      <RequirementList items={step.required} />
+                                      {step.optional.length > 0 && (
+                                        <>
+                                          <div className="muted">
+                                            Optional requirements
+                                          </div>
+                                          <RequirementList
+                                            items={step.optional}
+                                          />
+                                        </>
+                                      )}
                                     </div>
                                   )}
-                                {hasRequirements && (
-                                  <div className="guide-step-requirements">
-                                    <RequirementList items={step.required} />
-                                    {step.optional.length > 0 && (
-                                      <>
-                                        <div className="muted">
-                                          Optional requirements
-                                        </div>
-                                        <RequirementList
-                                          items={step.optional}
-                                        />
-                                      </>
-                                    )}
-                                  </div>
-                                )}
-                              </li>
-                            );
-                          })}
-                        </ol>
+                                </li>
+                              );
+                            })}
+                          </ol>
+                        </RequirementNamesProvider>
                       )}
                     </div>
                   );

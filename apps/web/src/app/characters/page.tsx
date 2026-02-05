@@ -22,6 +22,7 @@ import {
   getUserCharacters,
 } from '@/lib/character/character-selection';
 import { getCharacterStateSummary } from '@/lib/character/character-state-service';
+import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { getDbClient } from '@/lib/db';
 
 export default async function CharactersPage() {
@@ -126,7 +127,16 @@ export default async function CharactersPage() {
   const [activeCharacters, archivedCharacters] = splitArchived(savedCharacters);
   const weeklySummary = buildWeeklyGainsSummary(pulseSnapshots);
   const recentUpdates = stateSummary?.recentUpdates ?? [];
-  const recentHighlights = recentUpdates.slice(0, 6).map(formatStateUpdate);
+  let combatAchievementLabelMap: Record<string, string> | null = null;
+  if (recentUpdates.some((update) => update.domain === 'combat_achievement')) {
+    const bundle = await getLatestContentBundle();
+    combatAchievementLabelMap = buildCombatAchievementLabelMap(
+      bundle.combatAchievements ?? []
+    );
+  }
+  const recentHighlights = recentUpdates
+    .slice(0, 6)
+    .map((update) => formatStateUpdate(update, combatAchievementLabelMap));
 
   return (
     <>
@@ -624,13 +634,16 @@ function formatDelta(value: number) {
   return `${sign}${Math.abs(value).toLocaleString()}`;
 }
 
-function formatStateUpdate(state: {
-  id: string;
-  domain: string;
-  key: string;
-  value: unknown;
-  updatedAt: Date;
-}) {
+function formatStateUpdate(
+  state: {
+    id: string;
+    domain: string;
+    key: string;
+    value: unknown;
+    updatedAt: Date;
+  },
+  combatAchievementLabelMap?: Record<string, string> | null
+) {
   const value = state.value as Record<string, unknown>;
   let label = `${state.domain.replace(/_/g, ' ')} • ${state.key}`;
 
@@ -642,9 +655,10 @@ function formatStateUpdate(state: {
     label = `${completed ? 'Diary complete' : 'Diary updated'} • ${state.key}`;
   } else if (state.domain === 'combat_achievement') {
     const completed = Boolean(value['completed']);
+    const combatLabel = combatAchievementLabelMap?.[state.key] ?? state.key;
     label = `${
       completed ? 'Combat achievement complete' : 'Combat achievement'
-    } • ${state.key}`;
+    } • ${combatLabel}`;
   } else if (state.domain === 'milestone') {
     label = `Milestone • ${state.key}`;
   }
@@ -654,4 +668,40 @@ function formatStateUpdate(state: {
     label,
     timestamp: state.updatedAt.toLocaleString(),
   };
+}
+
+function buildCombatAchievementLabelMap(
+  achievements: Array<{
+    id: string;
+    name: string;
+    monster?: string | null | undefined;
+    runeliteId?: number | null | undefined;
+  }>
+) {
+  const map: Record<string, string> = {};
+
+  for (const achievement of achievements) {
+    const label = formatCombatAchievementLabel(achievement);
+    if (achievement.id) {
+      map[achievement.id] = label;
+    }
+    if (
+      achievement.runeliteId !== undefined &&
+      achievement.runeliteId !== null
+    ) {
+      map[String(achievement.runeliteId)] = label;
+    }
+  }
+
+  return map;
+}
+
+function formatCombatAchievementLabel(achievement: {
+  name: string;
+  monster?: string | null | undefined;
+}) {
+  if (achievement.monster) {
+    return `${achievement.monster} - ${achievement.name}`;
+  }
+  return achievement.name;
 }

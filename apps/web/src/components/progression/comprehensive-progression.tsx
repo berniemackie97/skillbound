@@ -9,7 +9,13 @@ import type {
 } from '@skillbound/content';
 import type { RequirementResult, RequirementStatus } from '@skillbound/domain';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
+
+import {
+  RequirementList,
+  RequirementNamesProvider,
+  statusClass,
+} from '../requirements/requirements-ui';
 
 const numberFormatter = new Intl.NumberFormat('en-US');
 
@@ -17,7 +23,74 @@ function formatNumber(value: number) {
   return numberFormatter.format(value);
 }
 
-import { RequirementList, statusClass } from '../requirements/requirements-ui';
+type LazyDetailsProps = {
+  className?: string;
+  defaultOpen?: boolean;
+  summary: ReactNode;
+  children: ReactNode;
+};
+
+function LazyDetails({
+  className,
+  defaultOpen = false,
+  summary,
+  children,
+}: LazyDetailsProps) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  useEffect(() => {
+    if (!hasInteracted) {
+      setIsOpen(defaultOpen);
+    }
+  }, [defaultOpen, hasInteracted]);
+
+  return (
+    <details
+      className={className}
+      open={isOpen}
+      onToggle={(event) => {
+        setHasInteracted(true);
+        setIsOpen(event.currentTarget.open);
+      }}
+    >
+      {summary}
+      {isOpen ? children : null}
+    </details>
+  );
+}
+
+function collectRequirementGroups(
+  groups: Array<RequirementResult[] | null | undefined>
+): RequirementResult[][] {
+  const normalized: RequirementResult[][] = [];
+  for (const group of groups) {
+    if (group && group.length > 0) {
+      normalized.push(group);
+    }
+  }
+  return normalized;
+}
+
+function collectRequirementGroupsFromTasks(
+  tasks: Array<{
+    requirements: {
+      required: RequirementResult[];
+      optional: RequirementResult[];
+    };
+  }>
+): RequirementResult[][] {
+  const groups: RequirementResult[][] = [];
+  for (const task of tasks) {
+    if (task.requirements.required.length > 0) {
+      groups.push(task.requirements.required);
+    }
+    if (task.requirements.optional.length > 0) {
+      groups.push(task.requirements.optional);
+    }
+  }
+  return groups;
+}
 
 type ProgressionData = {
   bosses: Array<{
@@ -1050,45 +1123,57 @@ export function ComprehensiveProgression({
               )}
               {filteredQuests.map((item, index) => {
                 const isUpdating = questUpdating.has(item.quest.id);
+                const requirementGroups = collectRequirementGroups([
+                  item.requirements.required,
+                  item.requirements.optional,
+                ]);
                 return (
-                  <details
+                  <LazyDetails
                     key={item.quest.id}
                     className="requirement-card"
-                    open={index < 4}
+                    defaultOpen={index < 4}
+                    summary={
+                      <summary>
+                        <div className="requirement-summary">
+                          <strong>{item.quest.name}</strong>
+                          {item.quest.difficulty && (
+                            <span className="muted">
+                              {item.quest.difficulty}
+                            </span>
+                          )}
+                        </div>
+                        <button
+                          className={`${statusClass(item.completionStatus)} clickable requirement-status-button ${isUpdating ? 'updating' : ''}`}
+                          disabled={isUpdating}
+                          type="button"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            void toggleQuestStatus(
+                              item.quest.id,
+                              item.completionStatus
+                            );
+                          }}
+                        >
+                          {item.completionStatus}
+                        </button>
+                      </summary>
+                    }
                   >
-                    <summary>
-                      <div className="requirement-summary">
-                        <strong>{item.quest.name}</strong>
-                        {item.quest.difficulty && (
-                          <span className="muted">{item.quest.difficulty}</span>
+                    <RequirementNamesProvider items={requirementGroups}>
+                      <div className="requirement-card-body">
+                        <RequirementList items={item.requirements.required} />
+                        {item.requirements.optional.length > 0 && (
+                          <>
+                            <div className="label">Optional</div>
+                            <RequirementList
+                              items={item.requirements.optional}
+                            />
+                          </>
                         )}
                       </div>
-                      <button
-                        className={`${statusClass(item.completionStatus)} clickable requirement-status-button ${isUpdating ? 'updating' : ''}`}
-                        disabled={isUpdating}
-                        type="button"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                          void toggleQuestStatus(
-                            item.quest.id,
-                            item.completionStatus
-                          );
-                        }}
-                      >
-                        {item.completionStatus}
-                      </button>
-                    </summary>
-                    <div className="requirement-card-body">
-                      <RequirementList items={item.requirements.required} />
-                      {item.requirements.optional.length > 0 && (
-                        <>
-                          <div className="label">Optional</div>
-                          <RequirementList items={item.requirements.optional} />
-                        </>
-                      )}
-                    </div>
-                  </details>
+                    </RequirementNamesProvider>
+                  </LazyDetails>
                 );
               })}
             </div>
@@ -1145,92 +1230,114 @@ export function ComprehensiveProgression({
                     );
 
                     return (
-                      <details
+                      <LazyDetails
                         key={entry.diary.id}
                         className="requirement-card"
-                        open={index < 2}
+                        defaultOpen={index < 2}
+                        summary={
+                          <summary>
+                            <div className="requirement-summary">
+                              <strong>{entry.diary.name}</strong>
+                              <span className="muted">
+                                {entry.diary.region}
+                              </span>
+                            </div>
+                            <span className={statusClass(status)}>
+                              {status}
+                            </span>
+                          </summary>
+                        }
                       >
-                        <summary>
-                          <div className="requirement-summary">
-                            <strong>{entry.diary.name}</strong>
-                            <span className="muted">{entry.diary.region}</span>
-                          </div>
-                          <span className={statusClass(status)}>{status}</span>
-                        </summary>
                         <div className="requirement-card-body">
                           {entry.tiers.map((tier) => {
                             const tierStatus = summarizeStatus(
                               tier.tasks.map((task) => task.completionStatus)
                             );
+                            const tierRequirementGroups = [
+                              ...collectRequirementGroups([
+                                tier.requirements.required,
+                                tier.requirements.optional,
+                              ]),
+                              ...collectRequirementGroupsFromTasks(tier.tasks),
+                            ];
+
                             return (
-                              <details
+                              <LazyDetails
                                 key={`${entry.diary.id}-${tier.tier.tier}`}
                                 className="requirement-subcard"
-                              >
-                                <summary>
-                                  <div className="requirement-summary">
-                                    <strong>
-                                      {tier.tier.name ?? tier.tier.tier}
-                                    </strong>
-                                    <span className="muted">
-                                      {tier.tasks.length} tasks
+                                summary={
+                                  <summary>
+                                    <div className="requirement-summary">
+                                      <strong>
+                                        {tier.tier.name ?? tier.tier.tier}
+                                      </strong>
+                                      <span className="muted">
+                                        {tier.tasks.length} tasks
+                                      </span>
+                                    </div>
+                                    <span className={statusClass(tierStatus)}>
+                                      {tierStatus}
                                     </span>
-                                  </div>
-                                  <span className={statusClass(tierStatus)}>
-                                    {tierStatus}
-                                  </span>
-                                </summary>
-                                <div className="requirement-card-body">
-                                  <RequirementList
-                                    items={tier.requirements.required}
-                                  />
-                                  {tier.requirements.optional.length > 0 && (
-                                    <>
-                                      <div className="label">Optional</div>
-                                      <RequirementList
-                                        items={tier.requirements.optional}
-                                      />
-                                    </>
-                                  )}
-                                  <div className="requirement-task-list">
-                                    {tier.tasks.map((task) => (
-                                      <div
-                                        key={task.task.id}
-                                        className="requirement-task"
-                                      >
-                                        <div className="requirement-task-header">
-                                          <span>{task.task.description}</span>
-                                          <span
-                                            className={statusClass(
-                                              task.completionStatus
-                                            )}
-                                          >
-                                            {task.completionStatus}
-                                          </span>
-                                        </div>
+                                  </summary>
+                                }
+                              >
+                                <RequirementNamesProvider
+                                  items={tierRequirementGroups}
+                                >
+                                  <div className="requirement-card-body">
+                                    <RequirementList
+                                      items={tier.requirements.required}
+                                    />
+                                    {tier.requirements.optional.length > 0 && (
+                                      <>
+                                        <div className="label">Optional</div>
                                         <RequirementList
-                                          items={task.requirements.required}
+                                          items={tier.requirements.optional}
                                         />
-                                        {task.requirements.optional.length >
-                                          0 && (
-                                          <>
-                                            <div className="label">
-                                              Optional
-                                            </div>
-                                            <RequirementList
-                                              items={task.requirements.optional}
-                                            />
-                                          </>
-                                        )}
-                                      </div>
-                                    ))}
+                                      </>
+                                    )}
+                                    <div className="requirement-task-list">
+                                      {tier.tasks.map((task) => (
+                                        <div
+                                          key={task.task.id}
+                                          className="requirement-task"
+                                        >
+                                          <div className="requirement-task-header">
+                                            <span>{task.task.description}</span>
+                                            <span
+                                              className={statusClass(
+                                                task.completionStatus
+                                              )}
+                                            >
+                                              {task.completionStatus}
+                                            </span>
+                                          </div>
+                                          <RequirementList
+                                            items={task.requirements.required}
+                                          />
+                                          {task.requirements.optional.length >
+                                            0 && (
+                                            <>
+                                              <div className="label">
+                                                Optional
+                                              </div>
+                                              <RequirementList
+                                                items={
+                                                  task.requirements.optional
+                                                }
+                                              />
+                                            </>
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
                                   </div>
-                                </div>
-                              </details>
+                                </RequirementNamesProvider>
+                              </LazyDetails>
                             );
                           })}
                         </div>
-                      </details>
+                      </LazyDetails>
                     );
                   })}
                 </div>
@@ -1258,58 +1365,68 @@ export function ComprehensiveProgression({
                     const status = summarizeStatus(
                       items.map((item) => item.completionStatus)
                     );
+                    const requirementGroups =
+                      collectRequirementGroupsFromTasks(items);
 
                     return (
-                      <details
+                      <LazyDetails
                         key={tier}
                         className="requirement-card"
-                        open={index < 2}
+                        defaultOpen={index < 2}
+                        summary={
+                          <summary>
+                            <div className="requirement-summary">
+                              <strong>{tier}</strong>
+                              <span className="muted">
+                                {items.length} tasks
+                              </span>
+                            </div>
+                            <span className={statusClass(status)}>
+                              {status}
+                            </span>
+                          </summary>
+                        }
                       >
-                        <summary>
-                          <div className="requirement-summary">
-                            <strong>{tier}</strong>
-                            <span className="muted">{items.length} tasks</span>
-                          </div>
-                          <span className={statusClass(status)}>{status}</span>
-                        </summary>
-                        <div className="requirement-card-body">
-                          <div className="requirement-task-list">
-                            {items.map((item) => (
-                              <div
-                                key={item.achievement.id}
-                                className="requirement-task"
-                              >
-                                <div className="requirement-task-header">
-                                  <span>{item.achievement.name}</span>
-                                  <span
-                                    className={statusClass(
-                                      item.completionStatus
-                                    )}
-                                  >
-                                    {item.completionStatus}
-                                  </span>
+                        <RequirementNamesProvider items={requirementGroups}>
+                          <div className="requirement-card-body">
+                            <div className="requirement-task-list">
+                              {items.map((item) => (
+                                <div
+                                  key={item.achievement.id}
+                                  className="requirement-task"
+                                >
+                                  <div className="requirement-task-header">
+                                    <span>{item.achievement.name}</span>
+                                    <span
+                                      className={statusClass(
+                                        item.completionStatus
+                                      )}
+                                    >
+                                      {item.completionStatus}
+                                    </span>
+                                  </div>
+                                  {item.achievement.description && (
+                                    <p className="muted">
+                                      {item.achievement.description}
+                                    </p>
+                                  )}
+                                  <RequirementList
+                                    items={item.requirements.required}
+                                  />
+                                  {item.requirements.optional.length > 0 && (
+                                    <>
+                                      <div className="label">Optional</div>
+                                      <RequirementList
+                                        items={item.requirements.optional}
+                                      />
+                                    </>
+                                  )}
                                 </div>
-                                {item.achievement.description && (
-                                  <p className="muted">
-                                    {item.achievement.description}
-                                  </p>
-                                )}
-                                <RequirementList
-                                  items={item.requirements.required}
-                                />
-                                {item.requirements.optional.length > 0 && (
-                                  <>
-                                    <div className="label">Optional</div>
-                                    <RequirementList
-                                      items={item.requirements.optional}
-                                    />
-                                  </>
-                                )}
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      </details>
+                        </RequirementNamesProvider>
+                      </LazyDetails>
                     );
                   })}
                 </div>

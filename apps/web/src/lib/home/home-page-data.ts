@@ -19,17 +19,16 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
   return [
     {
       title: 'Track your journey',
-      description:
-        'Everything you need to track quests, diaries, and combat achievements in one place.',
+      description: 'Quests, diaries, and combat goals together in one view.',
       cards: [
         {
           title: 'Quest tracker',
-          description: `Track ${counts.questCount} quests with full requirement breakdowns. See which quests you can start, what skills you need, and plan your path to Quest Cape.`,
+          description: `Track ${counts.questCount} quests with clear requirements and next steps.`,
           cta: { label: 'View quests', href: '/progression?tab=quests' },
         },
         {
           title: 'Achievement diaries',
-          description: `Monitor progress across all ${counts.diaryCount} diary regions and tiers. Track task completion and see exactly what's left for your diary cape.`,
+          description: `See ${counts.diaryCount} diary regions, tiers, and remaining tasks at a glance.`,
           cta: {
             label: 'View diaries',
             href: '/progression?tab=achievements&req=diaries',
@@ -37,7 +36,7 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
         },
         {
           title: 'Combat achievements',
-          description: `Track ${counts.combatAchievementCount} combat achievement tasks across all tiers. Plan your bossing goals and monitor your progress.`,
+          description: `Track ${counts.combatAchievementCount} tasks and plan bossing goals by tier.`,
           cta: {
             label: 'View combat achievements',
             href: '/progression?tab=achievements&req=combat',
@@ -51,20 +50,17 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
       cards: [
         {
           title: 'Price lookup',
-          description:
-            'Search any item to see current GE prices, historical trends, and price charts. Make informed decisions before buying or selling.',
+          description: 'Search items for current prices, trends, and charts.',
           cta: { label: 'Browse exchange', href: '/trading' },
         },
         {
           title: 'Trade journal',
-          description:
-            'Log your trades and track profit over time. Perfect for flippers and anyone wanting to understand their gold flow.',
+          description: 'Log trades and see profit trends over time.',
           cta: { label: 'View trades', href: '/trading' },
         },
         {
           title: 'Watch list',
-          description:
-            "Keep an eye on items you're interested in. Get a quick overview of prices for your favorite items without searching each time.",
+          description: 'Pin items and monitor prices without re-searching.',
           cta: { label: 'Manage watch list', href: '/trading' },
         },
       ],
@@ -76,19 +72,18 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
         {
           title: 'Character lookup',
           description:
-            'Look up any OSRS character to see their stats, quest points, and activity scores. Works with mains, ironmen, and all account types.',
+            'Pull stats, quest points, and activity scores for any account.',
           cta: { label: 'Look up a character', href: '/lookup' },
         },
         {
           title: 'Compare accounts',
-          description:
-            "Compare two or more accounts side-by-side. See who's ahead in each skill and track your progress against friends or alts.",
+          description: 'Compare skills and progress side-by-side.',
           cta: { label: 'Compare characters', href: '/compare' },
         },
         {
           title: 'Snapshot history',
           description:
-            'Track your gains over time with automatic snapshots. See XP gained, levels earned, and activities completed day by day.',
+            'Automatic snapshots for XP, levels, and activity trends.',
           cta: { label: 'View snapshots', href: '/snapshots' },
         },
       ],

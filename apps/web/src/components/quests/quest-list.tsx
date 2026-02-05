@@ -4,6 +4,8 @@ import type { Quest } from '@skillbound/content';
 import type { RequirementResult, RequirementStatus } from '@skillbound/domain';
 import { useEffect, useState } from 'react';
 
+import { RequirementNamesProvider } from '../requirements/requirements-ui';
+
 import { QuestCard } from './quest-card';
 
 type QuestResult = {
@@ -61,18 +63,30 @@ export function QuestList({ initialResults, characterId }: QuestListProps) {
     );
   };
 
+  const requirementGroups: RequirementResult[][] = [];
+  for (const result of results) {
+    if (result.requirements.required.length > 0) {
+      requirementGroups.push(result.requirements.required);
+    }
+    if (result.requirements.optional.length > 0) {
+      requirementGroups.push(result.requirements.optional);
+    }
+  }
+
   return (
-    <div className="quest-grid">
-      {results.map((item) => (
-        <QuestCard
-          key={item.quest.id}
-          initialStatus={item.completionStatus}
-          quest={item.quest}
-          requirements={item.requirements}
-          {...(characterId && { characterId })}
-          onStatusChange={handleStatusChange}
-        />
-      ))}
-    </div>
+    <RequirementNamesProvider items={requirementGroups}>
+      <div className="quest-grid">
+        {results.map((item) => (
+          <QuestCard
+            key={item.quest.id}
+            initialStatus={item.completionStatus}
+            quest={item.quest}
+            requirements={item.requirements}
+            {...(characterId && { characterId })}
+            onStatusChange={handleStatusChange}
+          />
+        ))}
+      </div>
+    </RequirementNamesProvider>
   );
 }
