@@ -42,6 +42,10 @@ export async function SiteNav() {
   const visibleLinks = user
     ? NAV_LINKS
     : NAV_LINKS.filter((link) => link.href !== '/characters');
+  const hasCharacterSwitcher = Boolean(user) && characters.length > 0;
+  const mobileExtraLinks = hasCharacterSwitcher
+    ? [{ href: '/lookup', label: 'New lookup' }]
+    : [];
 
   return (
     <header className="nav">
@@ -58,7 +62,7 @@ export async function SiteNav() {
         ))}
       </nav>
       {/* Mobile hamburger menu */}
-      <MobileMenu links={visibleLinks} />
+      <MobileMenu extraLinks={mobileExtraLinks} links={visibleLinks} />
       <NavActions
         activeCharacterId={activeCharacterId}
         characters={characters}

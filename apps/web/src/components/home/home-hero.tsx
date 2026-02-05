@@ -2,6 +2,7 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { formatNumber } from '@/lib/format/format-number';
 
 import type { HomeCounts } from '../../lib/home/home-types';
+
 import { HOME_FEATURES } from './home-feature-grid';
 
 type Props = {

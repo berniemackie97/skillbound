@@ -1,10 +1,17 @@
 import { REFRESH_OPTIONS } from './exchange-client.constants';
 import type {
+  ColumnFilterKey,
+  ColumnFilterState,
   MembersFilter,
   SavedPreset,
   ViewMode,
 } from './exchange-client.types';
 import { ItemSearch, type ItemSearchResult } from './item-search';
+
+type SortOption = {
+  value: string;
+  label: string;
+};
 
 interface ExchangeControlsProps {
   viewMode: ViewMode;
@@ -12,6 +19,16 @@ interface ExchangeControlsProps {
   onSearchSelect: (item: ItemSearchResult) => void;
   membersFilter: MembersFilter;
   onMembersFilterChange: (value: MembersFilter) => void;
+  sortOptions: SortOption[];
+  sortValue: string;
+  onSortChange: (value: string) => void;
+  filters: ColumnFilterState;
+  onFilterChange: (
+    key: ColumnFilterKey,
+    field: 'min' | 'max',
+    value: string
+  ) => void;
+  onApplyFilters: () => void;
   presetValue: string;
   savedPresets: SavedPreset[];
   onPresetSelect: (value: string) => void;
@@ -29,6 +46,9 @@ interface ExchangeControlsProps {
   nextRefreshLabel: string;
   lastUpdatedLabel: string;
   now: number;
+  isRefineOpen: boolean;
+  onOpenRefine: () => void;
+  onCloseRefine: () => void;
 }
 
 export function ExchangeControls({
@@ -37,6 +57,12 @@ export function ExchangeControls({
   onSearchSelect,
   membersFilter,
   onMembersFilterChange,
+  sortOptions,
+  sortValue,
+  onSortChange,
+  filters,
+  onFilterChange,
+  onApplyFilters,
   presetValue,
   savedPresets,
   onPresetSelect,
@@ -54,6 +80,9 @@ export function ExchangeControls({
   nextRefreshLabel,
   lastUpdatedLabel,
   now,
+  isRefineOpen,
+  onOpenRefine,
+  onCloseRefine,
 }: ExchangeControlsProps) {
   return (
     <div className="exchange-controls">
@@ -194,6 +223,30 @@ export function ExchangeControls({
         </button>
       </div>
 
+      <div className="controls-row controls-mobile">
+        <div className="mobile-sort">
+          <label className="filter-label" htmlFor="mobile-sort">
+            Sort by
+          </label>
+          <select
+            className="filter-select"
+            id="mobile-sort"
+            value={sortValue}
+            onChange={(e) => onSortChange(e.target.value)}
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button className="refine-toggle" type="button" onClick={onOpenRefine}>
+          Filters &amp; details
+        </button>
+      </div>
+
       <div className="controls-row controls-status">
         <div className="live-indicator">
           <span className="live-dot" />
@@ -260,6 +313,205 @@ export function ExchangeControls({
           </span>
         </div>
       </div>
+
+      {isRefineOpen && (
+        <>
+          <div className="exchange-refine-backdrop" onClick={onCloseRefine} />
+          <div
+            aria-modal="true"
+            className="exchange-refine-panel"
+            role="dialog"
+          >
+            <div className="refine-header">
+              <div>
+                <h3>Refine Exchange</h3>
+                <p>Adjust filters and presets for the GE list.</p>
+              </div>
+              <button
+                aria-label="Close filters"
+                className="refine-close"
+                type="button"
+                onClick={onCloseRefine}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="refine-section">
+              <label className="filter-label" htmlFor="refine-sort">
+                Sort
+              </label>
+              <select
+                className="filter-select"
+                id="refine-sort"
+                value={sortValue}
+                onChange={(e) => onSortChange(e.target.value)}
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="refine-section refine-grid">
+              {(
+                [
+                  ['buyPrice', 'Buy Price'],
+                  ['sellPrice', 'Sell Price'],
+                  ['margin', 'Margin'],
+                  ['profit', 'Profit'],
+                  ['roi', 'ROI %'],
+                  ['volume', 'Volume'],
+                  ['potentialProfit', 'Potential Profit'],
+                ] as const
+              ).map(([key, label]) => (
+                <div key={key} className="refine-field">
+                  <span className="filter-label">{label}</span>
+                  <div className="range-inputs">
+                    <input
+                      placeholder="Min"
+                      type="text"
+                      value={filters[key].min}
+                      onChange={(e) =>
+                        onFilterChange(key, 'min', e.target.value)
+                      }
+                    />
+                    <input
+                      placeholder="Max"
+                      type="text"
+                      value={filters[key].max}
+                      onChange={(e) =>
+                        onFilterChange(key, 'max', e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="refine-section refine-row">
+              <div className="filter-group">
+                <label className="filter-label">Items</label>
+                <select
+                  className="filter-select"
+                  value={membersFilter}
+                  onChange={(e) =>
+                    onMembersFilterChange(e.target.value as MembersFilter)
+                  }
+                >
+                  <option value="all">All Items</option>
+                  <option value="members">Members</option>
+                  <option value="f2p">F2P</option>
+                </select>
+              </div>
+
+              <div className="filter-group">
+                <label className="filter-label">Preset</label>
+                <select
+                  className="filter-select"
+                  value={presetValue}
+                  onChange={(e) => onPresetSelect(e.target.value)}
+                >
+                  <option value="custom">Custom</option>
+                  <option value="high-margin">High Margin</option>
+                  <option value="high-roi">High ROI</option>
+                  <option value="high-volume">High Volume</option>
+                  <option value="high-profit">High Profit</option>
+                  <option value="high-potential">High Potential</option>
+                  <option value="low-price">Low Price</option>
+                  <option value="high-price">High Price</option>
+                  {savedPresets.length > 0 && (
+                    <option disabled value="">
+                      ───
+                    </option>
+                  )}
+                  {savedPresets.map((preset) => (
+                    <option key={preset.id} value={preset.id}>
+                      {preset.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="refine-section refine-row">
+              <button
+                className="save-preset-btn"
+                type="button"
+                onClick={onSavePreset}
+              >
+                <svg
+                  fill="none"
+                  height="14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Save Preset
+              </button>
+
+              <label className={`toggle-chip ${stackPresets ? 'active' : ''}`}>
+                <input
+                  checked={stackPresets}
+                  type="checkbox"
+                  onChange={onToggleStackPresets}
+                />
+                <span>Stack Presets</span>
+              </label>
+
+              <label
+                className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}
+              >
+                <input
+                  checked={hideNegativeMargin}
+                  type="checkbox"
+                  onChange={() => onToggleNegative('margin')}
+                />
+                <span>Hide -Margin</span>
+              </label>
+
+              <label
+                className={`toggle-chip ${hideNegativeRoi ? 'active' : ''}`}
+              >
+                <input
+                  checked={hideNegativeRoi}
+                  type="checkbox"
+                  onChange={() => onToggleNegative('roi')}
+                />
+                <span>Hide -ROI</span>
+              </label>
+            </div>
+
+            <div className="refine-actions">
+              <button
+                className="button"
+                type="button"
+                onClick={() => {
+                  onApplyFilters();
+                  onCloseRefine();
+                }}
+              >
+                Apply filters
+              </button>
+              <button
+                className="button ghost"
+                type="button"
+                onClick={() => {
+                  onResetFilters();
+                  onCloseRefine();
+                }}
+              >
+                Reset all
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

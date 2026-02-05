@@ -54,9 +54,13 @@ export function NavActions({
   registerAction,
   magicLinkAction,
 }: NavActionsProps) {
+  const hasCharacterSwitcher = isSignedIn && characters.length > 0;
+
   return (
-    <div className="nav-actions">
-      {isSignedIn && characters.length > 0 && (
+    <div
+      className={`nav-actions ${hasCharacterSwitcher ? 'has-character' : ''}`}
+    >
+      {hasCharacterSwitcher && (
         <CharacterSwitcher
           activeCharacterId={activeCharacterId}
           characters={characters}
@@ -76,7 +80,7 @@ export function NavActions({
         userEmail={userEmail}
         userName={userName}
       />
-      <Link className="button" href="/lookup">
+      <Link className="button nav-lookup" href="/lookup">
         New lookup
       </Link>
     </div>

@@ -6,7 +6,6 @@ import {
   BankrollCard,
   LiveAlerts,
   InventoryCard,
-  ProfitSummary,
   TradeForm,
   TradeFilters,
   TradeList,
@@ -14,7 +13,10 @@ import {
   WatchList,
 } from '@/components/trading';
 import { getSessionUser } from '@/lib/auth/auth-helpers';
-import { getTradableCharacters } from '@/lib/character/character-selection';
+import {
+  getTradableCharacters,
+  getUserCharacters,
+} from '@/lib/character/character-selection';
 import {
   getGeExchangeItems,
   sortItemsMulti,
@@ -174,11 +176,13 @@ async function GEExchangeContent({
   order,
   page,
   search,
+  isSignedIn,
 }: {
   sort: string;
   order: string;
   page: number;
   search: string;
+  isSignedIn: boolean;
 }) {
   let items = await getGeExchangeItems();
 
@@ -214,6 +218,7 @@ async function GEExchangeContent({
   return (
     <ExchangeClient
       initialItems={serializedItems}
+      isSignedIn={isSignedIn}
       initialMeta={{
         total,
         page,
@@ -298,7 +303,11 @@ async function TradeTrackerContent({
   return (
     <div className="tracker-layout">
       <section className="tracker-stats">
-        <TradingOverview overview={overview} />
+        <TradingOverview
+          overview={overview}
+          periodLabel={periodLabel(period)}
+          summary={profitSummary}
+        />
       </section>
 
       <div className="tracker-grid">
@@ -321,14 +330,6 @@ async function TradeTrackerContent({
               characterId={characterId}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
             />
-          </div>
-
-          <div className="tracker-card">
-            <div className="tracker-card-header">
-              <h3>Profit Analysis</h3>
-              <span className="card-subtitle">{periodLabel(period)}</span>
-            </div>
-            <ProfitSummary summary={profitSummary} />
           </div>
         </div>
 
@@ -415,9 +416,13 @@ export default async function TradingPage({ searchParams }: PageProps) {
     | Awaited<ReturnType<typeof getTradableCharacters>>[number]
     | null = null;
   let characters: Awaited<ReturnType<typeof getTradableCharacters>> = [];
+  let hasOnlyIronmanCharacters = false;
 
   if (user) {
+    const allCharacters = await getUserCharacters(user.id);
     characters = await getTradableCharacters(user.id);
+    hasOnlyIronmanCharacters =
+      allCharacters.length > 0 && characters.length === 0;
     character =
       (selectedCharacterId
         ? characters.find((entry) => entry.id === selectedCharacterId)
@@ -483,6 +488,7 @@ export default async function TradingPage({ searchParams }: PageProps) {
         <section className="ge-exchange-section">
           <Suspense fallback={<ExchangeLoading />}>
             <GEExchangeContent
+              isSignedIn={Boolean(user)}
               order={order}
               page={exchangePage}
               search={exchangeSearch}
@@ -507,17 +513,36 @@ export default async function TradingPage({ searchParams }: PageProps) {
             </div>
           ) : !character ? (
             <div className="character-prompt">
-              <h2>Select a Character</h2>
-              <p>
-                You need to select an active character to track trades. Each
-                character has its own trade history.
-              </p>
-              <a
-                className="button"
-                href="/characters?redirect=/trading?tab=tracker"
-              >
-                Select Character
-              </a>
+              {hasOnlyIronmanCharacters ? (
+                <>
+                  <h2>Trading Needs a Standard Character</h2>
+                  <p>
+                    Your saved characters are all Ironman accounts, which cannot
+                    trade on the Grand Exchange. Add or switch to a standard
+                    character to track trades here.
+                  </p>
+                  <a
+                    className="button"
+                    href="/characters?redirect=/trading?tab=tracker"
+                  >
+                    Manage Characters
+                  </a>
+                </>
+              ) : (
+                <>
+                  <h2>Select a Character</h2>
+                  <p>
+                    You need to select an active character to track trades. Each
+                    character has its own trade history.
+                  </p>
+                  <a
+                    className="button"
+                    href="/characters?redirect=/trading?tab=tracker"
+                  >
+                    Select Character
+                  </a>
+                </>
+              )}
             </div>
           ) : (
             <TradeTrackerContent

@@ -48,4 +48,5 @@ export interface ExchangeClientProps {
     sort: string;
     order: string;
   };
+  isSignedIn?: boolean;
 }

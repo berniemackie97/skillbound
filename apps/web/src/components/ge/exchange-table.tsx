@@ -264,6 +264,7 @@ export function ExchangeTable({
   const [openFilter, setOpenFilter] = useState<ColumnFilterKey | null>(null);
   const [now, setNow] = useState<Date | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const tableRef = useRef<HTMLDivElement | null>(null);
   const rowRefs = useRef<Map<number, HTMLTableRowElement>>(new Map());
   const rowPositions = useRef<Map<number, number>>(new Map());
@@ -290,6 +291,29 @@ export function ExchangeTable({
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const widthMedia = window.matchMedia('(max-width: 640px)');
+    const heightMedia = window.matchMedia('(max-height: 520px)');
+    const handleChange = () =>
+      setIsCompact(widthMedia.matches || heightMedia.matches);
+    handleChange();
+    if (widthMedia.addEventListener) {
+      widthMedia.addEventListener('change', handleChange);
+      heightMedia.addEventListener('change', handleChange);
+      return () => {
+        widthMedia.removeEventListener('change', handleChange);
+        heightMedia.removeEventListener('change', handleChange);
+      };
+    }
+    widthMedia.addListener(handleChange);
+    heightMedia.addListener(handleChange);
+    return () => {
+      widthMedia.removeListener(handleChange);
+      heightMedia.removeListener(handleChange);
+    };
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (!tableRef.current) return;
       const target = event.target as Node;
@@ -309,6 +333,11 @@ export function ExchangeTable({
   }, []);
 
   useLayoutEffect(() => {
+    if (isCompact) {
+      rowRefs.current.clear();
+      rowPositions.current.clear();
+      return;
+    }
     const newPositions = new Map<number, number>();
     rowRefs.current.forEach((node, id) => {
       newPositions.set(id, node.getBoundingClientRect().top);
@@ -331,7 +360,7 @@ export function ExchangeTable({
     });
 
     rowPositions.current = newPositions;
-  }, [items]);
+  }, [items, isCompact]);
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -391,6 +420,190 @@ export function ExchangeTable({
     if (!sellTime) return buyTime;
     return buyTime > sellTime ? buyTime : sellTime;
   };
+
+  if (isCompact) {
+    return (
+      <div ref={tableRef} className="exchange-table-container compact">
+        <div className="exchange-mobile-status">
+          <span aria-hidden="true" className="update-dot" />
+          Updating in {refreshLabel}
+        </div>
+
+        <div className="exchange-card-list">
+          {items.map((item) => {
+            const isFavorite = favorites.has(item.id);
+            const lastTrade = now
+              ? formatTimeAgo(getLastTradeTime(item), now)
+              : '-';
+
+            return (
+              <div
+                key={item.id}
+                className="exchange-card"
+                role="button"
+                tabIndex={0}
+                onClick={() => handleRowClick(item)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handleRowClick(item);
+                  }
+                }}
+              >
+                <div className="exchange-card-header">
+                  <button
+                    aria-label={isFavorite ? 'Unstar' : 'Star'}
+                    className={`star-btn ${isFavorite ? 'active' : ''}`}
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onToggleFavorite(item.id);
+                    }}
+                  >
+                    <svg height="18" viewBox="0 0 24 24" width="18">
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                        fill={isFavorite ? '#ffd700' : 'none'}
+                        stroke={isFavorite ? '#ffd700' : 'currentColor'}
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </button>
+                  <img
+                    alt=""
+                    className="item-icon"
+                    height={28}
+                    loading="lazy"
+                    src={getItemIconUrl(item.icon)}
+                    width={28}
+                  />
+                  <div className="exchange-card-title">
+                    <span className="item-name">{item.name}</span>
+                    <span className="item-meta">
+                      {item.members ? 'Members' : 'F2P'} · Limit{' '}
+                      {item.buyLimit?.toLocaleString() ?? '—'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="exchange-card-metrics">
+                  <div className="exchange-metric">
+                    <span>Buy</span>
+                    <strong>
+                      {item.buyPrice !== null ? formatGp(item.buyPrice) : '-'}
+                    </strong>
+                  </div>
+                  <div className="exchange-metric">
+                    <span>Sell</span>
+                    <strong>
+                      {item.sellPrice !== null ? formatGp(item.sellPrice) : '-'}
+                    </strong>
+                  </div>
+                  <div className="exchange-metric">
+                    <span>Margin</span>
+                    <strong>{formatGp(item.margin)}</strong>
+                  </div>
+                  <div className="exchange-metric">
+                    <span>Profit</span>
+                    <strong
+                      className={
+                        item.profit !== null && item.profit >= 0
+                          ? 'positive'
+                          : 'negative'
+                      }
+                    >
+                      {formatGp(item.profit)}
+                    </strong>
+                  </div>
+                  <div className="exchange-metric">
+                    <span>ROI</span>
+                    <strong
+                      className={
+                        item.roiPercent !== null && item.roiPercent >= 0
+                          ? 'positive'
+                          : 'negative'
+                      }
+                    >
+                      {formatRoi(item.roiPercent)}
+                    </strong>
+                  </div>
+                  <div className="exchange-metric">
+                    <span>Volume</span>
+                    <strong>{item.volume?.toLocaleString() ?? '-'}</strong>
+                  </div>
+                </div>
+
+                <div className="exchange-card-footer">
+                  <span>Last trade: {lastTrade}</span>
+                  <span className="exchange-card-link">View details →</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="table-pagination">
+          <span className="pagination-info">
+            Showing {(currentPage - 1) * 25 + 1}-
+            {Math.min(currentPage * 25, total)} of {total.toLocaleString()}{' '}
+            items
+          </span>
+          <div className="pagination-controls">
+            <button
+              className="pagination-btn"
+              disabled={currentPage <= 1}
+              type="button"
+              onClick={() => onPageChange(currentPage - 1)}
+            >
+              ‹
+            </button>
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              let pageNum: number;
+              if (totalPages <= 5) {
+                pageNum = i + 1;
+              } else if (currentPage <= 3) {
+                pageNum = i + 1;
+              } else if (currentPage >= totalPages - 2) {
+                pageNum = totalPages - 4 + i;
+              } else {
+                pageNum = currentPage - 2 + i;
+              }
+              return (
+                <button
+                  key={pageNum}
+                  className={`pagination-btn ${currentPage === pageNum ? 'active' : ''}`}
+                  type="button"
+                  onClick={() => onPageChange(pageNum)}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+            {totalPages > 5 && currentPage < totalPages - 2 && (
+              <>
+                <span className="pagination-ellipsis">...</span>
+                <button
+                  className="pagination-btn"
+                  type="button"
+                  onClick={() => onPageChange(totalPages)}
+                >
+                  {totalPages}
+                </button>
+              </>
+            )}
+            <button
+              className="pagination-btn"
+              disabled={currentPage >= totalPages}
+              type="button"
+              onClick={() => onPageChange(currentPage + 1)}
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={tableRef} className="exchange-table-container">

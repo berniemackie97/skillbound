@@ -126,6 +126,33 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 960px) {
+  .nav {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 0.85rem;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .nav-actions .button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .character-switcher select {
+    min-width: 140px;
+    padding: 7px 12px;
+    font-size: 0.85rem;
+  }
+}
+
 .character-switcher select {
   min-width: 200px;
   padding: 9px 14px;
@@ -166,7 +193,7 @@
    Mobile Navigation - Compact single-row layout with hamburger
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 520px) {
   .nav {
     gap: 12px;
     padding: 8px 12px;
@@ -326,6 +353,10 @@
     order: 2;
   }
 
+  .nav-actions.has-character .nav-lookup {
+    display: none;
+  }
+
   .character-switcher select {
     min-width: 0;
     width: auto;
@@ -347,7 +378,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px), (max-height: 420px) {
   .nav {
     padding: 6px 10px;
     gap: var(--space-1);

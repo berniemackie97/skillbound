@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   DEFAULT_FILTERS,
@@ -40,6 +40,7 @@ import type { ItemSearchResult } from './item-search';
 export function ExchangeClient({
   initialItems,
   initialMeta,
+  isSignedIn = false,
 }: ExchangeClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -107,6 +108,7 @@ export function ExchangeClient({
     DEFAULT_REFRESH_INTERVAL
   );
   const [isRefreshPaused, setIsRefreshPaused] = useState(false);
+  const [isRefineOpen, setIsRefineOpen] = useState(false);
   const sortsRef = useRef(sorts);
   const [activeCharacterId, setActiveCharacterId] = useState<string | null>(
     null
@@ -127,6 +129,7 @@ export function ExchangeClient({
   }, []);
 
   useEffect(() => {
+    if (!isSignedIn) return;
     let active = true;
     const loadPresets = async () => {
       try {
@@ -144,9 +147,10 @@ export function ExchangeClient({
     return () => {
       active = false;
     };
-  }, []);
+  }, [isSignedIn]);
 
   useEffect(() => {
+    if (!isSignedIn) return;
     let active = true;
     const loadActiveCharacter = async () => {
       try {
@@ -165,10 +169,10 @@ export function ExchangeClient({
     return () => {
       active = false;
     };
-  }, []);
+  }, [isSignedIn]);
 
   useEffect(() => {
-    if (!activeCharacterId) return;
+    if (!isSignedIn || !activeCharacterId) return;
     let active = true;
     const loadWatchMap = async () => {
       try {
@@ -193,9 +197,10 @@ export function ExchangeClient({
     return () => {
       active = false;
     };
-  }, [activeCharacterId]);
+  }, [activeCharacterId, isSignedIn]);
 
   useEffect(() => {
+    if (!isSignedIn) return;
     let active = true;
     const loadRefreshSettings = async () => {
       try {
@@ -219,10 +224,11 @@ export function ExchangeClient({
     return () => {
       active = false;
     };
-  }, []);
+  }, [isSignedIn]);
 
   const saveRefreshSettings = useCallback(
     async (intervalMs: number, paused: boolean) => {
+      if (!isSignedIn) return;
       try {
         await fetch('/api/settings/ge-refresh', {
           method: 'PUT',
@@ -233,7 +239,7 @@ export function ExchangeClient({
         // Ignore refresh settings save errors
       }
     },
-    []
+    [isSignedIn]
   );
 
   const handleRefreshIntervalChange = useCallback(
@@ -275,17 +281,21 @@ export function ExchangeClient({
     []
   );
 
-  const savePresets = useCallback(async (presets: SavedPreset[]) => {
-    try {
-      await fetch('/api/settings/ge-presets', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(presets),
-      });
-    } catch {
-      // Ignore preset save errors
-    }
-  }, []);
+  const savePresets = useCallback(
+    async (presets: SavedPreset[]) => {
+      if (!isSignedIn) return;
+      try {
+        await fetch('/api/settings/ge-presets', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(presets),
+        });
+      } catch {
+        // Ignore preset save errors
+      }
+    },
+    [isSignedIn]
+  );
 
   const handleToggleFavorite = useCallback(
     (itemId: number) => {
@@ -309,7 +319,7 @@ export function ExchangeClient({
         if (next.has(itemId)) {
           next.delete(itemId);
           delete nextMeta[itemId];
-          if (activeCharacterId && watchMap[itemId]) {
+          if (isSignedIn && activeCharacterId && watchMap[itemId]) {
             void fetch(`/api/characters/${activeCharacterId}/watchlist`, {
               method: 'DELETE',
               headers: { 'Content-Type': 'application/json' },
@@ -331,7 +341,7 @@ export function ExchangeClient({
               icon: item.icon,
             };
           }
-          if (activeCharacterId && !watchMap[itemId]) {
+          if (isSignedIn && activeCharacterId && !watchMap[itemId]) {
             const itemName = item?.name ?? `Item #${itemId}`;
             void fetch(`/api/characters/${activeCharacterId}/watchlist`, {
               method: 'POST',
@@ -359,7 +369,14 @@ export function ExchangeClient({
         return next;
       });
     },
-    [activeCharacterId, items, saveFavoriteMeta, saveFavorites, watchMap]
+    [
+      activeCharacterId,
+      isSignedIn,
+      items,
+      saveFavoriteMeta,
+      saveFavorites,
+      watchMap,
+    ]
   );
 
   const fetchItems = useCallback(
@@ -512,13 +529,44 @@ export function ExchangeClient({
 
   const fetchItemsRef = useRef(fetchItems);
 
+  const sortOptions = useMemo(
+    () => [
+      { value: 'profit:desc', label: 'Profit (High to Low)' },
+      { value: 'profit:asc', label: 'Profit (Low to High)' },
+      { value: 'margin:desc', label: 'Margin (High to Low)' },
+      { value: 'margin:asc', label: 'Margin (Low to High)' },
+      { value: 'roiPercent:desc', label: 'ROI (High to Low)' },
+      { value: 'roiPercent:asc', label: 'ROI (Low to High)' },
+      { value: 'tax:desc', label: 'Tax (High to Low)' },
+      { value: 'tax:asc', label: 'Tax (Low to High)' },
+      { value: 'buyPrice:desc', label: 'Buy Price (High to Low)' },
+      { value: 'buyPrice:asc', label: 'Buy Price (Low to High)' },
+      { value: 'sellPrice:desc', label: 'Sell Price (High to Low)' },
+      { value: 'sellPrice:asc', label: 'Sell Price (Low to High)' },
+      { value: 'volume:desc', label: 'Volume (High to Low)' },
+      { value: 'volume:asc', label: 'Volume (Low to High)' },
+      { value: 'buyLimit:desc', label: 'Buy Limit (High to Low)' },
+      { value: 'buyLimit:asc', label: 'Buy Limit (Low to High)' },
+      {
+        value: 'potentialProfit:desc',
+        label: 'Potential Profit (High to Low)',
+      },
+      { value: 'potentialProfit:asc', label: 'Potential Profit (Low to High)' },
+      { value: 'lastTrade:desc', label: 'Last Trade (Newest)' },
+      { value: 'lastTrade:asc', label: 'Last Trade (Oldest)' },
+      { value: 'name:asc', label: 'Name (A to Z)' },
+      { value: 'name:desc', label: 'Name (Z to A)' },
+    ],
+    []
+  );
+
   useEffect(() => {
     fetchItemsRef.current = fetchItems;
   }, [fetchItems]);
 
   useEffect(() => {
     sortsRef.current = sorts;
-  }, [sorts]);
+  }, [sortOptions, sorts]);
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -541,6 +589,32 @@ export function ExchangeClient({
       void fetchItems({ page: 1, sorts: nextSorts });
     },
     [fetchItems, sorts]
+  );
+
+  const sortValue = useMemo(() => {
+    const primary = sorts[0];
+    const value = primary
+      ? `${primary.field}:${primary.direction}`
+      : 'profit:desc';
+    return sortOptions.some((option) => option.value === value)
+      ? value
+      : 'profit:desc';
+  }, [sortOptions, sorts]);
+
+  const handleSortChange = useCallback(
+    (value: string) => {
+      const [field, direction] = value.split(':');
+      if (!field) return;
+      const nextSorts: SortState[] = [
+        {
+          field: field as SortField,
+          direction: direction === 'asc' ? 'asc' : 'desc',
+        },
+      ];
+      setSorts(nextSorts);
+      void fetchItems({ page: 1, sorts: nextSorts });
+    },
+    [fetchItems]
   );
 
   const handlePageChange = useCallback(
@@ -852,8 +926,10 @@ export function ExchangeClient({
   return (
     <div className="exchange-client">
       <ExchangeControls
+        filters={filters}
         hideNegativeMargin={hideNegativeMargin}
         hideNegativeRoi={hideNegativeRoi}
+        isRefineOpen={isRefineOpen}
         isRefreshPaused={isRefreshPaused}
         lastUpdatedLabel={lastUpdatedLabel}
         membersFilter={membersFilter}
@@ -862,14 +938,21 @@ export function ExchangeClient({
         presetValue={presetValue}
         refreshInterval={refreshInterval}
         savedPresets={savedPresets}
+        sortOptions={sortOptions}
+        sortValue={sortValue}
         stackPresets={stackPresets}
         viewMode={viewMode}
+        onApplyFilters={() => applyColumnFilters()}
+        onCloseRefine={() => setIsRefineOpen(false)}
+        onFilterChange={updateFilterValue}
         onMembersFilterChange={setMembersFilter}
+        onOpenRefine={() => setIsRefineOpen(true)}
         onPresetSelect={handleSavedPresetSelect}
         onRefreshIntervalChange={handleRefreshIntervalChange}
         onResetFilters={handleResetFilters}
         onSavePreset={handleSavePreset}
         onSearchSelect={handleSearchSelect}
+        onSortChange={handleSortChange}
         onToggleNegative={handleNegativeToggle}
         onToggleRefreshPaused={handleToggleRefreshPaused}
         onToggleStackPresets={() => setStackPresets((prev) => !prev)}

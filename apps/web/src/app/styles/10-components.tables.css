@@ -489,6 +489,30 @@
   transform: rotate(180deg);
 }
 
+.exchange-card .star-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exchange-card .star-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+}
+
+.exchange-card .star-btn.active {
+  color: #ffd700;
+}
+
 /* Item name cell */
 .exchange-table .item-name-cell {
   display: flex;
@@ -501,6 +525,12 @@
   flex-shrink: 0;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
+}
+
+.exchange-card .item-icon {
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
 }
 
 .exchange-table .item-name {
@@ -602,6 +632,131 @@
   border-radius: 50%;
   margin-right: 6px;
   opacity: 0.7;
+}
+
+/* ================================
+   Compact Exchange Cards (Mobile)
+   ================================ */
+
+.exchange-table-container.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exchange-mobile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+
+.exchange-mobile-status .update-dot {
+  width: 6px;
+  height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.exchange-card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.exchange-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exchange-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+}
+
+.exchange-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exchange-card-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exchange-card-title .item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exchange-card-title .item-meta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.exchange-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+
+.exchange-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exchange-metric span {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.exchange-metric strong {
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.exchange-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.exchange-card-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.exchange-card .positive {
+  color: #b6f1b6;
+}
+
+.exchange-card .negative {
+  color: #ff9a9a;
 }
 
 /* -----------------------------

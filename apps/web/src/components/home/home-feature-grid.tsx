@@ -11,11 +11,13 @@ export const HOME_FEATURES: HomeFeature[] = [
   },
   {
     title: 'Trade & price tracking',
-    description: 'Live GE prices, margins, and trade history in one clean view.',
+    description:
+      'Live GE prices, margins, and trade history in one clean view.',
   },
   {
     title: 'Integrated with popular guides',
-    description: 'Follow community guides and keep steps synced to your character.',
+    description:
+      'Follow community guides and keep steps synced to your character.',
   },
 ];
 

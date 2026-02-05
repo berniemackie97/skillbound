@@ -12,9 +12,10 @@ type NavLink = {
 
 type MobileMenuProps = {
   links: NavLink[];
+  extraLinks?: NavLink[];
 };
 
-export function MobileMenu({ links }: MobileMenuProps) {
+export function MobileMenu({ links, extraLinks = [] }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
@@ -89,7 +90,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
               className={`mobile-menu-panel ${isOpen ? 'open' : ''}`}
             >
               <nav className="mobile-menu-nav">
-                {links.map((link) => (
+                {[...links, ...extraLinks].map((link) => (
                   <Link
                     key={link.href}
                     className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
