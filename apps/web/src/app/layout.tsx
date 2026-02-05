@@ -1,4 +1,6 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from 'next';
+
 import './styles/globals.css';
 
 import { SiteNav } from '@/components/nav/site-nav';
@@ -69,6 +71,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
           <SiteFooter />
         </div>
+        <Analytics />
       </body>
     </html>
   );
