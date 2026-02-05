@@ -103,6 +103,7 @@ providers.push(
 );
 
 const buildAuthConfig = (): NextAuthConfig => ({
+  secret: process.env['AUTH_SECRET'] ?? process.env['NEXTAUTH_SECRET'],
   adapter: DrizzleAdapter(getDbClient(), {
     usersTable: users,
     accountsTable: accounts,
