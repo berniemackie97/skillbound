@@ -45,7 +45,7 @@ interface ExchangeControlsProps {
   onToggleRefreshPaused: () => void;
   nextRefreshLabel: string;
   lastUpdatedLabel: string;
-  now: number;
+  now: number | null;
   isRefineOpen: boolean;
   onOpenRefine: () => void;
   onCloseRefine: () => void;
@@ -252,11 +252,13 @@ export function ExchangeControls({
           <span className="live-dot" />
           <span className="live-label">Live</span>
           <span className="live-time">
-            {new Date(now).toLocaleTimeString('en-US', {
-              hour: 'numeric',
-              minute: '2-digit',
-              hour12: true,
-            })}
+            {now
+              ? new Date(now).toLocaleTimeString('en-US', {
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true,
+                })
+              : '—'}
           </span>
         </div>
 

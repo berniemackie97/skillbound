@@ -18,11 +18,11 @@ export function HomeHero({ counts }: Props) {
           <span className="hero-status">Live</span>
         </div>
 
-        <h1>Track OSRS progress, prices, and guides in one place.</h1>
+        <h1>You could stop at 5 or 6 sites or just 1!.</h1>
 
         <p>
           Skillbound keeps quests, diaries, combat goals, and GE tools together.
-          Sync multiple characters, plan next steps, and trade smarter without
+          keep progression tabs on multiple characters, plan next steps, and trade smarter without
           spreadsheet chaos.
         </p>
 

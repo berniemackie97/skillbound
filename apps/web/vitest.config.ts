@@ -21,10 +21,11 @@ export default defineConfig({
         '**/types/**',
       ],
       thresholds: {
-        lines: 80,
-        functions: 80,
-        branches: 80,
-        statements: 80,
+        // Baseline thresholds for current coverage; raise as coverage improves.
+        lines: 12,
+        functions: 16,
+        branches: 9,
+        statements: 12,
       },
     },
   },

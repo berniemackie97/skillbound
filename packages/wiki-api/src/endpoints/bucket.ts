@@ -239,7 +239,10 @@ export class WikiBucketClient {
     this.userAgent = config.userAgent;
     this.retries = config.retries ?? 3;
     this.timeoutMs = config.timeoutMs ?? 10000;
-    this.cache = config.cache ?? new MemoryCache<BucketResult>();
+    this.cache =
+      config.cache === undefined
+        ? new MemoryCache<BucketResult>()
+        : config.cache;
     this.cacheTtlMs = config.cacheTtlMs ?? 10 * 60 * 1000;
   }
 
@@ -370,10 +373,7 @@ export class WikiBucketClient {
       return null;
     }
 
-    const row = results[0];
-    if (!row) {
-      return null;
-    }
+    const row = results[0] ?? {};
 
     const parsedItemId = toNumberValue(row['item_id']);
     const itemName = toStringValue(row['item_name']);
@@ -543,10 +543,7 @@ export class WikiBucketClient {
       return null;
     }
 
-    const row = results[0];
-    if (!row) {
-      return null;
-    }
+    const row = results[0] ?? {};
 
     const monsterName = toStringValue(row['name']);
     if (!monsterName) {

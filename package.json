@@ -56,6 +56,8 @@
   },
   "prettier": "@skillbound/prettier-config",
   "dependencies": {
+    "@fontsource/fraunces": "^5.2.9",
+    "@fontsource/space-grotesk": "^5.2.10",
     "recharts": "^3.7.0"
   }
 }

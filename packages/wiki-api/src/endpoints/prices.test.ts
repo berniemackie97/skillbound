@@ -65,6 +65,51 @@ describe('WikiPricesClient', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
+  it('requests the all-items latest endpoint when no item id is provided', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      createJsonResponse({
+        data: {
+          '1': { high: 10, highTime: 1, low: 9, lowTime: 2 },
+        },
+      })
+    );
+
+    const client = new WikiPricesClient({
+      userAgent: 'Skillbound test',
+      retries: 0,
+    });
+    await client.getLatestPrices();
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/latest'),
+      expect.any(Object)
+    );
+  });
+
+  it('skips cache when cache is null for latest prices', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementation(() =>
+      Promise.resolve(
+        createJsonResponse({
+          data: {
+            '200': { high: 20, highTime: 1, low: 18, lowTime: 2 },
+          },
+        })
+      )
+    );
+
+    const client = new WikiPricesClient({
+      userAgent: 'Skillbound test',
+      retries: 0,
+      cache: null,
+    });
+    await client.getLatestPrices(200);
+    await client.getLatestPrices(200);
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
   it('parses 5-minute prices with array payloads', async () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock.mockResolvedValueOnce(
@@ -117,6 +162,57 @@ describe('WikiPricesClient', () => {
     const price = result.prices.get(3);
     expect(price?.avgLowPrice).toBe(950);
     expect(price?.highPriceVolume).toBe(1);
+  });
+
+  it('derives volume from high/low volumes when missing', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      createJsonResponse({
+        data: [
+          {
+            id: 7,
+            avgHighPrice: 500,
+            avgLowPrice: 450,
+            highPriceVolume: 3,
+            lowPriceVolume: 2,
+          },
+        ],
+      })
+    );
+
+    const client = new WikiPricesClient({
+      userAgent: 'Skillbound test',
+      retries: 0,
+    });
+    const result = await client.get5MinutePrices();
+
+    const price = result.prices.get(7);
+    expect(price?.volume).toBe(5);
+  });
+
+  it('falls back to null volume when derived volume is zero', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      createJsonResponse({
+        data: {
+          '8': {
+            avgHighPrice: 500,
+            avgLowPrice: 450,
+            highPriceVolume: 0,
+            lowPriceVolume: 0,
+          },
+        },
+      })
+    );
+
+    const client = new WikiPricesClient({
+      userAgent: 'Skillbound test',
+      retries: 0,
+    });
+    const result = await client.get5MinutePrices();
+
+    const price = result.prices.get(8);
+    expect(price?.volume).toBeNull();
   });
 
   it('falls back to legacy 5-minute endpoint when needed', async () => {
@@ -254,6 +350,35 @@ describe('WikiPricesClient', () => {
 
     expect(result.itemId).toBe(4151);
     expect(result.points[0]?.avgLowPrice).toBe(90);
+  });
+
+  it('defaults timeseries timestep to 5m', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      createJsonResponse({
+        data: [
+          {
+            timestamp: 1700000002,
+            avgHighPrice: 300,
+            avgLowPrice: 290,
+            highPriceVolume: 3,
+            lowPriceVolume: 1,
+          },
+        ],
+      })
+    );
+
+    const client = new WikiPricesClient({
+      userAgent: 'Skillbound test',
+      retries: 0,
+    });
+    const result = await client.getTimeseries({ itemId: 99 });
+
+    expect(result.timestep).toBe('5m');
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('timestep=5m'),
+      expect.any(Object)
+    );
   });
 
   it('caches timeseries data', async () => {

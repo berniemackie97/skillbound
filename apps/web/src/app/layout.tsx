@@ -1,8 +1,13 @@
+import '@fontsource/fraunces/400.css';
+import '@fontsource/fraunces/600.css';
+import '@fontsource/fraunces/700.css';
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Space_Grotesk } from 'next/font/google';
-
 import './styles/globals.css';
 
 import { SiteNav } from '@/components/nav/site-nav';
@@ -13,20 +18,6 @@ import { SiteFooter } from '@/components/site/site-footer';
 const siteUrl = process.env['NEXT_PUBLIC_SITE_URL']
   ? new URL(process.env['NEXT_PUBLIC_SITE_URL'])
   : undefined;
-
-const bodyFont = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  display: 'swap',
-  variable: '--font-body',
-});
-
-const displayFont = Fraunces({
-  subsets: ['latin'],
-  weight: ['600', '700'],
-  display: 'swap',
-  variable: '--font-display',
-});
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -72,7 +63,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
+      <body>
         {/* Skip link: cheap accessibility win, zero design impact unless focused */}
         <a className="skip-link" href="#main">
           Skip to content

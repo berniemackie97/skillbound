@@ -103,7 +103,7 @@ export function ExchangeClient({
   const [stackPresets, setStackPresets] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [nextRefreshAt, setNextRefreshAt] = useState<number | null>(null);
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState<number | null>(null);
   const [refreshInterval, setRefreshInterval] = useState<number>(
     DEFAULT_REFRESH_INTERVAL
   );
@@ -566,7 +566,7 @@ export function ExchangeClient({
 
   useEffect(() => {
     sortsRef.current = sorts;
-  }, [sortOptions, sorts]);
+  }, [sorts]);
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -641,6 +641,7 @@ export function ExchangeClient({
   }, [searchFilter, membersFilter]);
 
   useEffect(() => {
+    setNow(Date.now());
     const intervalId = window.setInterval(() => {
       setNow(Date.now());
     }, 1000);
@@ -912,7 +913,7 @@ export function ExchangeClient({
 
   const nextRefreshLabel = isRefreshPaused
     ? 'Paused'
-    : nextRefreshAt
+    : nextRefreshAt && now
       ? formatCountdown(nextRefreshAt - now)
       : 'Calculating...';
   const lastUpdatedLabel = lastUpdated

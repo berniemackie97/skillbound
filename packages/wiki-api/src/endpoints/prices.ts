@@ -155,7 +155,7 @@ export class WikiPricesClient {
     this.userAgent = config.userAgent;
     this.retries = config.retries ?? 3;
     this.timeoutMs = config.timeoutMs ?? 10000;
-    this.cache = config.cache ?? new MemoryCache();
+    this.cache = config.cache === undefined ? new MemoryCache() : config.cache;
     this.cacheTtlMs = config.cacheTtlMs ?? 10 * 60 * 1000;
   }
 
