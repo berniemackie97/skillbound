@@ -102,8 +102,13 @@ providers.push(
   })
 );
 
+const authSecret = process.env['AUTH_SECRET'] ?? process.env['NEXTAUTH_SECRET'];
+if (!authSecret) {
+  throw new Error('AUTH_SECRET is required for authentication.');
+}
+
 const authConfig: NextAuthConfig = {
-  secret: process.env['AUTH_SECRET'] ?? process.env['NEXTAUTH_SECRET'],
+  secret: authSecret,
   adapter: DrizzleAdapter(getDbClient(), {
     usersTable: users,
     accountsTable: accounts,
