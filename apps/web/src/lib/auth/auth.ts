@@ -102,7 +102,7 @@ providers.push(
   })
 );
 
-const buildAuthConfig = (): NextAuthConfig => ({
+const authConfig: NextAuthConfig = {
   secret: process.env['AUTH_SECRET'] ?? process.env['NEXTAUTH_SECRET'],
   adapter: DrizzleAdapter(getDbClient(), {
     usersTable: users,
@@ -133,9 +133,9 @@ const buildAuthConfig = (): NextAuthConfig => ({
       return session;
     },
   },
-});
+};
 
-const authResult = NextAuth(() => buildAuthConfig());
+const authResult = NextAuth(authConfig) as NextAuthResult;
 
 type RouteHandler = (req: NextRequest) => Promise<Response>;
 

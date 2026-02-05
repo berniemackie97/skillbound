@@ -242,12 +242,23 @@ jobs:
         working-directory: apps/web
         run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
 
+      - name: Configure Auth secret
+        shell: bash
+        run: |
+          AUTH_SECRET_VALUE="${{ secrets.AUTH_SECRET }}"
+          if [ -z "$AUTH_SECRET_VALUE" ]; then
+            AUTH_SECRET_VALUE="${{ secrets.NEXTAUTH_SECRET }}"
+          fi
+          if [ -z "$AUTH_SECRET_VALUE" ]; then
+            AUTH_SECRET_VALUE="$(openssl rand -base64 32)"
+          fi
+          echo "AUTH_SECRET=$AUTH_SECRET_VALUE" >> $GITHUB_ENV
+          echo "NEXTAUTH_SECRET=$AUTH_SECRET_VALUE" >> $GITHUB_ENV
+
       - name: Build application
         run: pnpm build
         env:
           SKIP_ENV_VALIDATION: true
-          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
-          NEXTAUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_e2e
           REDIS_URL: redis://localhost:6379
 
@@ -257,8 +268,6 @@ jobs:
         env:
           CI: true
           PLAYWRIGHT_BASE_URL: http://localhost:3000
-          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
-          NEXTAUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           DATABASE_URL: postgresql://skillbound:skillbound@localhost:5432/skillbound_e2e
           REDIS_URL: redis://localhost:6379
 
@@ -291,6 +300,19 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Configure Auth secret
+        shell: bash
+        run: |
+          AUTH_SECRET_VALUE="${{ secrets.AUTH_SECRET }}"
+          if [ -z "$AUTH_SECRET_VALUE" ]; then
+            AUTH_SECRET_VALUE="${{ secrets.NEXTAUTH_SECRET }}"
+          fi
+          if [ -z "$AUTH_SECRET_VALUE" ]; then
+            AUTH_SECRET_VALUE="$(openssl rand -base64 32)"
+          fi
+          echo "AUTH_SECRET=$AUTH_SECRET_VALUE" >> $GITHUB_ENV
+          echo "NEXTAUTH_SECRET=$AUTH_SECRET_VALUE" >> $GITHUB_ENV
 
       - name: Build all packages
         run: pnpm build

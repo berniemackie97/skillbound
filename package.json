@@ -2,7 +2,6 @@
   "name": "skillbound",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=8.0.0"
@@ -54,10 +53,5 @@
       "prettier --write"
     ]
   },
-  "prettier": "@skillbound/prettier-config",
-  "dependencies": {
-    "@fontsource/fraunces": "^5.2.9",
-    "@fontsource/space-grotesk": "^5.2.10",
-    "recharts": "^3.7.0"
-  }
+  "prettier": "@skillbound/prettier-config"
 }
