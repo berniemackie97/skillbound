@@ -22,8 +22,8 @@ export function HomeHero({ counts }: Props) {
 
         <p>
           Skillbound keeps quests, diaries, combat goals, and GE tools together.
-          keep progression tabs on multiple characters, plan next steps, and trade smarter without
-          spreadsheet chaos.
+          keep progression tabs on multiple characters, plan next steps, and
+          trade smarter without spreadsheet chaos.
         </p>
 
         <div className="hero-actions">
