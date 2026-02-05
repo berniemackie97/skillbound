@@ -37,6 +37,20 @@ const sampleResponse = {
   },
 };
 
+const getRequestUrl = (input: unknown): string => {
+  if (typeof input === 'string') {
+    return input;
+  }
+  if (input instanceof URL) {
+    return input.toString();
+  }
+  if (input && typeof input === 'object' && 'url' in input) {
+    const url = (input as { url?: unknown }).url;
+    return typeof url === 'string' ? url : '';
+  }
+  return '';
+};
+
 describe('CollectionLogClient', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', vi.fn());
@@ -57,6 +71,25 @@ describe('CollectionLogClient', () => {
     expect(first.collectionLog.username).toBe('Test');
     expect(second.collectionLog.uniqueItems).toBe(2);
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('passes user agent headers when provided', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementationOnce((input, init) => {
+      const requestUrl = getRequestUrl(input);
+      expect(requestUrl).toContain('collectionlog');
+      const headers = new Headers(init?.headers);
+      expect(headers.get('user-agent')).toBe('SkillboundTest');
+      return Promise.resolve(createJsonResponse(sampleResponse));
+    });
+
+    const client = createCollectionLogClient({
+      cache: new MemoryCache(),
+      userAgent: 'SkillboundTest',
+    });
+
+    const result = await client.getUserCollectionLog('Test');
+    expect(result.collectionLogId).toBe(10);
   });
 
   it('throws not found errors for 404 responses', async () => {
@@ -87,6 +120,19 @@ describe('CollectionLogClient', () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock.mockImplementation(() =>
       Promise.resolve(createJsonResponse({ message: 'bad' }, 500))
+    );
+
+    const client = createCollectionLogClient({ cache: new MemoryCache() });
+
+    await expect(
+      client.getUserCollectionLog('ServerError')
+    ).rejects.toBeInstanceOf(CollectionLogServerError);
+  });
+
+  it('surfaces error envelopes with error fields', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementation(() =>
+      Promise.resolve(createJsonResponse({ error: 'Boom' }, 500))
     );
 
     const client = createCollectionLogClient({ cache: new MemoryCache() });

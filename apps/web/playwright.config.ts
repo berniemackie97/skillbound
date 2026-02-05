@@ -16,7 +16,7 @@ const config: PlaywrightTestConfig = {
   workers: process.env['CI'] ? 1 : 4,
   reporter: process.env['CI'] ? 'github' : 'html',
   use: {
-    baseURL: process.env['PLAYWRIGHT_BASE_URL'] ?? 'http://localhost:3000',
+    baseURL: process.env['PLAYWRIGHT_BASE_URL'] ?? 'http://127.0.0.1:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -37,11 +37,11 @@ const config: PlaywrightTestConfig = {
   outputDir: 'test-results',
 };
 
-// Only add webServer config for local development
-if (!process.env['CI']) {
+// Allow disabling the web server when an external dev server is already running.
+if (process.env['PLAYWRIGHT_SKIP_WEBSERVER'] !== 'true') {
   config.webServer = {
     command: 'pnpm dev',
-    url: 'http://localhost:3000',
+    url: process.env['PLAYWRIGHT_BASE_URL'] ?? 'http://127.0.0.1:3000',
     reuseExistingServer: true,
     timeout: 120000,
   };

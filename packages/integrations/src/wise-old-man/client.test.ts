@@ -24,6 +24,31 @@ const samplePlayer = {
   exp: 123456,
 };
 
+const sampleSnapshots = [
+  {
+    id: 1,
+    playerId: 123,
+    createdAt: '2024-01-01T00:00:00.000Z',
+    data: {
+      skills: {},
+    },
+  },
+];
+
+const getRequestUrl = (input: unknown): string => {
+  if (typeof input === 'string') {
+    return input;
+  }
+  if (input instanceof URL) {
+    return input.toString();
+  }
+  if (input && typeof input === 'object' && 'url' in input) {
+    const url = (input as { url?: unknown }).url;
+    return typeof url === 'string' ? url : '';
+  }
+  return '';
+};
+
 describe('WiseOldManClient', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', vi.fn());
@@ -90,10 +115,49 @@ describe('WiseOldManClient', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
+  it('fetches snapshots with query options and user agent', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementationOnce((input, init) => {
+      const requestUrl = getRequestUrl(input);
+      expect(requestUrl).toContain('period=week');
+      expect(requestUrl).toContain('startDate=2024-01-01');
+      expect(requestUrl).toContain('endDate=2024-01-31');
+
+      const headers = new Headers(init?.headers);
+      expect(headers.get('user-agent')).toBe('SkillboundTest');
+
+      return Promise.resolve(createJsonResponse(sampleSnapshots));
+    });
+
+    const client = createWiseOldManClient({ userAgent: 'SkillboundTest' });
+    const result = await client.getPlayerSnapshots('Test Player', {
+      period: 'week',
+      startDate: '2024-01-01',
+      endDate: '2024-01-31',
+    });
+
+    expect(result).toHaveLength(1);
+  });
+
   it('throws server errors for 500 responses', async () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock.mockImplementation(() =>
       Promise.resolve(createJsonResponse({}, 500))
+    );
+
+    const client = createWiseOldManClient({ cache: new MemoryCache() });
+
+    await expect(client.getPlayer('ServerError')).rejects.toBeInstanceOf(
+      WiseOldManServerError
+    );
+  });
+
+  it('falls back to generic server errors when no message is provided', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementation(() =>
+      Promise.resolve(
+        new Response(JSON.stringify({ statusCode: 500 }), { status: 500 })
+      )
     );
 
     const client = createWiseOldManClient({ cache: new MemoryCache() });

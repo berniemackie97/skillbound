@@ -3,7 +3,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createHiscoresClient } from '../index';
 
 import { HiscoresClient } from './client';
-import { HiscoresNotFoundError, HiscoresRateLimitError } from './types';
+import {
+  HiscoresNotFoundError,
+  HiscoresRateLimitError,
+  HiscoresServerError,
+} from './types';
 
 const createJsonResponse = (payload: unknown, status = 200) =>
   new Response(JSON.stringify(payload), {
@@ -65,6 +69,17 @@ describe('HiscoresClient', () => {
     );
   });
 
+  it('treats 303 responses as not found', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(createJsonResponse({}, 303));
+
+    const client = new HiscoresClient({ retries: 0 });
+
+    await expect(client.lookup('Missing', 'normal')).rejects.toBeInstanceOf(
+      HiscoresNotFoundError
+    );
+  });
+
   it('throws rate limit errors for 429 responses', async () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock.mockResolvedValueOnce(createJsonResponse({}, 429));
@@ -73,6 +88,17 @@ describe('HiscoresClient', () => {
 
     await expect(client.lookup('RateLimited', 'normal')).rejects.toBeInstanceOf(
       HiscoresRateLimitError
+    );
+  });
+
+  it('throws server errors for 500 responses', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(createJsonResponse({}, 500));
+
+    const client = new HiscoresClient({ retries: 0 });
+
+    await expect(client.lookup('ServerError', 'normal')).rejects.toBeInstanceOf(
+      HiscoresServerError
     );
   });
 

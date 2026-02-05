@@ -8,7 +8,9 @@ test.describe('Smoke Tests', () => {
 
   test('lookup page is accessible', async ({ page }) => {
     await page.goto('/lookup');
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /character lookup/i })
+    ).toBeVisible();
   });
 
   test('calculators page is accessible', async ({ page }) => {
@@ -23,6 +25,8 @@ test.describe('Smoke Tests', () => {
 
   test('progression page is accessible', async ({ page }) => {
     await page.goto('/progression');
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /progression tracker/i })
+    ).toBeVisible();
   });
 });

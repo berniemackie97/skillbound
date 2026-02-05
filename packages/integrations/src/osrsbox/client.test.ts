@@ -26,6 +26,20 @@ const sampleMonster = {
   name: 'KBD',
 };
 
+const getRequestUrl = (input: unknown): string => {
+  if (typeof input === 'string') {
+    return input;
+  }
+  if (input instanceof URL) {
+    return input.toString();
+  }
+  if (input && typeof input === 'object' && 'url' in input) {
+    const url = (input as { url?: unknown }).url;
+    return typeof url === 'string' ? url : '';
+  }
+  return '';
+};
+
 describe('OsrsBoxClient', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', vi.fn());
@@ -82,6 +96,37 @@ describe('OsrsBoxClient', () => {
 
     expect(items).toHaveLength(2);
     expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('fetches multiple monsters', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock
+      .mockResolvedValueOnce(createJsonResponse(sampleMonster))
+      .mockResolvedValueOnce(
+        createJsonResponse({ id: 52, name: 'Kalphite Queen' })
+      );
+
+    const client = createOsrsBoxClient({ cache: new MemoryCache() });
+    const monsters = await client.getMonsters([50, 52]);
+
+    expect(monsters).toHaveLength(2);
+    expect(monsters[1]?.name).toBe('Kalphite Queen');
+  });
+
+  it('passes user agent headers when provided', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementationOnce((input, init) => {
+      const requestUrl = getRequestUrl(input);
+      expect(requestUrl).toContain('items-json');
+      const headers = new Headers(init?.headers);
+      expect(headers.get('user-agent')).toBe('SkillboundTest');
+      return Promise.resolve(createJsonResponse(sampleItem));
+    });
+
+    const client = createOsrsBoxClient({ userAgent: 'SkillboundTest' });
+    const result = await client.getItem(4151);
+
+    expect(result.name).toBe('Abyssal whip');
   });
 
   it('throws server errors for 500 responses', async () => {

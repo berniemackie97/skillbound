@@ -7,6 +7,7 @@ const nextConfig = {
     '@skillbound/hiscores',
   ],
   serverExternalPackages: ['@neondatabase/serverless'],
+  allowedDevOrigins: ['http://127.0.0.1:3000', 'http://localhost:3000'],
   images: {
     remotePatterns: [
       {

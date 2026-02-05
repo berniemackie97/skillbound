@@ -32,6 +32,20 @@ const sampleArray = {
   ],
 };
 
+const getRequestUrl = (input: unknown): string => {
+  if (typeof input === 'string') {
+    return input;
+  }
+  if (input instanceof URL) {
+    return input.toString();
+  }
+  if (input && typeof input === 'object' && 'url' in input) {
+    const url = (input as { url?: unknown }).url;
+    return typeof url === 'string' ? url : '';
+  }
+  return '';
+};
+
 describe('TempleClient', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', vi.fn());
@@ -60,6 +74,18 @@ describe('TempleClient', () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock.mockResolvedValueOnce(
       createJsonResponse({ status: 'error', error: 'Player not found' }, 200)
+    );
+
+    const client = createTempleClient({ cache: new MemoryCache() });
+    await expect(client.getPlayerInfo('Missing')).rejects.toBeInstanceOf(
+      TempleServerError
+    );
+  });
+
+  it('throws when success envelopes include an error field', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      createJsonResponse({ status: 'success', error: 'Boom' }, 200)
     );
 
     const client = createTempleClient({ cache: new MemoryCache() });
@@ -117,6 +143,27 @@ describe('TempleClient', () => {
 
     expect(Array.isArray(gains)).toBe(true);
     expect(Array.isArray(datapoints)).toBe(true);
+  });
+
+  it('passes user agent headers when provided', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockImplementationOnce((input, init) => {
+      const requestUrl = getRequestUrl(input);
+      expect(requestUrl).toContain('player_info.php');
+      const headers = new Headers(init?.headers);
+      expect(headers.get('user-agent')).toBe('SkillboundTest');
+      return Promise.resolve(createJsonResponse(sampleInfo));
+    });
+
+    const client = createTempleClient({
+      cache: new MemoryCache(),
+      userAgent: 'SkillboundTest',
+    });
+    const result = await client.getPlayerInfo('Mikael');
+
+    if (!Array.isArray(result)) {
+      expect(result['username']).toBe('Mikael');
+    }
   });
 
   it('accepts unwrapped array payloads', async () => {
