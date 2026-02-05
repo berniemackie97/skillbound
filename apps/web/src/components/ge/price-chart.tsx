@@ -2,7 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { formatGp, getItemIconUrl, type ChartPeriod } from '@/lib/trading/ge-service';
+import {
+  formatGp,
+  getItemIconUrl,
+  type ChartPeriod,
+} from '@/lib/trading/ge-service';
 
 interface PricePoint {
   timestamp: string;
@@ -125,12 +129,14 @@ export function PriceChart({
   // Calculate stats
   const latestPoint = data[data.length - 1];
   const firstPoint = data[0];
-  const priceChange = latestPoint && firstPoint && latestPoint.buyPrice && firstPoint.buyPrice
-    ? latestPoint.buyPrice - firstPoint.buyPrice
-    : 0;
-  const priceChangePercent = firstPoint?.buyPrice && priceChange
-    ? (priceChange / firstPoint.buyPrice) * 100
-    : 0;
+  const priceChange =
+    latestPoint && firstPoint && latestPoint.buyPrice && firstPoint.buyPrice
+      ? latestPoint.buyPrice - firstPoint.buyPrice
+      : 0;
+  const priceChangePercent =
+    firstPoint?.buyPrice && priceChange
+      ? (priceChange / firstPoint.buyPrice) * 100
+      : 0;
 
   // Scale functions
   const priceRange = maxPrice - minPrice || 1;
@@ -150,9 +156,7 @@ export function PriceChart({
     volumeHeight - 20 - (volume / (maxVolume || 1)) * (volumeHeight - 40);
 
   // Generate smooth path data
-  const generatePath = (
-    accessor: (p: PricePoint) => number | null
-  ): string => {
+  const generatePath = (accessor: (p: PricePoint) => number | null): string => {
     let path = '';
     let started = false;
     data.forEach((point, i) => {
@@ -237,10 +241,14 @@ export function PriceChart({
   const numLabels = 5;
   for (let i = 0; i < numLabels; i++) {
     const price =
-      minPrice - pricePadding + ((priceRange + pricePadding * 2) * i) / (numLabels - 1);
+      minPrice -
+      pricePadding +
+      ((priceRange + pricePadding * 2) * i) / (numLabels - 1);
     yAxisLabels.push({
       price: maxPrice + pricePadding - (price - (minPrice - pricePadding)),
-      y: padding.top + ((chartHeight - padding.top - padding.bottom) * i) / (numLabels - 1),
+      y:
+        padding.top +
+        ((chartHeight - padding.top - padding.bottom) * i) / (numLabels - 1),
     });
   }
 
@@ -283,7 +291,9 @@ export function PriceChart({
 
       if (point) {
         const pointX = scaleX(clampedIndex);
-        const pointY = point.buyPrice ? scaleY(point.buyPrice) : chartHeight / 2;
+        const pointY = point.buyPrice
+          ? scaleY(point.buyPrice)
+          : chartHeight / 2;
         setHoverData({ point, index: clampedIndex, x: pointX, y: pointY });
       }
     },
@@ -310,7 +320,9 @@ export function PriceChart({
             <div className="item-details">
               <span className="item-name">{itemName}</span>
               {latestPoint?.buyPrice && (
-                <span className="current-price">{formatGp(latestPoint.buyPrice)} gp</span>
+                <span className="current-price">
+                  {formatGp(latestPoint.buyPrice)} gp
+                </span>
               )}
             </div>
           </div>
@@ -331,10 +343,19 @@ export function PriceChart({
 
         {!compact && (
           <div className="chart-stats">
-            <div className={`stat-change ${priceChange >= 0 ? 'positive' : 'negative'}`}>
-              <span className="change-icon">{priceChange >= 0 ? '▲' : '▼'}</span>
-              <span className="change-value">{formatGp(Math.abs(priceChange))}</span>
-              <span className="change-percent">({priceChangePercent >= 0 ? '+' : ''}{priceChangePercent.toFixed(2)}%)</span>
+            <div
+              className={`stat-change ${priceChange >= 0 ? 'positive' : 'negative'}`}
+            >
+              <span className="change-icon">
+                {priceChange >= 0 ? '▲' : '▼'}
+              </span>
+              <span className="change-value">
+                {formatGp(Math.abs(priceChange))}
+              </span>
+              <span className="change-percent">
+                ({priceChangePercent >= 0 ? '+' : ''}
+                {priceChangePercent.toFixed(2)}%)
+              </span>
             </div>
           </div>
         )}
@@ -376,7 +397,9 @@ export function PriceChart({
       {error && <div className="chart-error">Error: {error}</div>}
 
       {!isLoading && !error && data.length === 0 && (
-        <div className="chart-empty">No price data available for this period</div>
+        <div className="chart-empty">
+          No price data available for this period
+        </div>
       )}
 
       {!isLoading && !error && data.length > 0 && (
@@ -393,13 +416,41 @@ export function PriceChart({
             >
               <defs>
                 {/* Gradient fills */}
-                <linearGradient id="buyGradient" x1="0%" x2="0%" y1="0%" y2="100%">
-                  <stop offset="0%" stopColor="var(--color-success)" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="var(--color-success)" stopOpacity="0.02" />
+                <linearGradient
+                  id="buyGradient"
+                  x1="0%"
+                  x2="0%"
+                  y1="0%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="var(--color-success)"
+                    stopOpacity="0.3"
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--color-success)"
+                    stopOpacity="0.02"
+                  />
                 </linearGradient>
-                <linearGradient id="sellGradient" x1="0%" x2="0%" y1="0%" y2="100%">
-                  <stop offset="0%" stopColor="var(--color-error)" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="var(--color-error)" stopOpacity="0.02" />
+                <linearGradient
+                  id="sellGradient"
+                  x1="0%"
+                  x2="0%"
+                  y1="0%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="var(--color-error)"
+                    stopOpacity="0.2"
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--color-error)"
+                    stopOpacity="0.02"
+                  />
                 </linearGradient>
               </defs>
 
@@ -432,8 +483,16 @@ export function PriceChart({
               </g>
 
               {/* Area fills */}
-              <path className="buy-area" d={buyAreaPath} fill="url(#buyGradient)" />
-              <path className="sell-area" d={sellAreaPath} fill="url(#sellGradient)" />
+              <path
+                className="buy-area"
+                d={buyAreaPath}
+                fill="url(#buyGradient)"
+              />
+              <path
+                className="sell-area"
+                d={sellAreaPath}
+                fill="url(#sellGradient)"
+              />
 
               {/* Price lines */}
               <path
@@ -559,34 +618,47 @@ export function PriceChart({
                   top: '10px',
                 }}
               >
-                <div className="tooltip-time">{formatFullTimestamp(hoverData.point.timestamp)}</div>
+                <div className="tooltip-time">
+                  {formatFullTimestamp(hoverData.point.timestamp)}
+                </div>
                 <div className="tooltip-prices">
                   {hoverData.point.buyPrice !== null && (
                     <div className="tooltip-row buy">
                       <span className="tooltip-label">Buy:</span>
-                      <span className="tooltip-value">{formatGp(hoverData.point.buyPrice)} gp</span>
+                      <span className="tooltip-value">
+                        {formatGp(hoverData.point.buyPrice)} gp
+                      </span>
                     </div>
                   )}
                   {hoverData.point.sellPrice !== null && (
                     <div className="tooltip-row sell">
                       <span className="tooltip-label">Sell:</span>
-                      <span className="tooltip-value">{formatGp(hoverData.point.sellPrice)} gp</span>
-                    </div>
-                  )}
-                  {hoverData.point.buyPrice !== null && hoverData.point.sellPrice !== null && (
-                    <div className="tooltip-row margin">
-                      <span className="tooltip-label">Margin:</span>
                       <span className="tooltip-value">
-                        {formatGp(hoverData.point.buyPrice - hoverData.point.sellPrice)} gp
+                        {formatGp(hoverData.point.sellPrice)} gp
                       </span>
                     </div>
                   )}
-                  {hoverData.point.volume !== null && hoverData.point.volume > 0 && (
-                    <div className="tooltip-row volume">
-                      <span className="tooltip-label">Volume:</span>
-                      <span className="tooltip-value">{hoverData.point.volume.toLocaleString()}</span>
-                    </div>
-                  )}
+                  {hoverData.point.buyPrice !== null &&
+                    hoverData.point.sellPrice !== null && (
+                      <div className="tooltip-row margin">
+                        <span className="tooltip-label">Margin:</span>
+                        <span className="tooltip-value">
+                          {formatGp(
+                            hoverData.point.buyPrice - hoverData.point.sellPrice
+                          )}{' '}
+                          gp
+                        </span>
+                      </div>
+                    )}
+                  {hoverData.point.volume !== null &&
+                    hoverData.point.volume > 0 && (
+                      <div className="tooltip-row volume">
+                        <span className="tooltip-label">Volume:</span>
+                        <span className="tooltip-value">
+                          {hoverData.point.volume.toLocaleString()}
+                        </span>
+                      </div>
+                    )}
                 </div>
               </div>
             )}
@@ -609,7 +681,9 @@ export function PriceChart({
             <div className="volume-chart-container">
               <div className="volume-header">
                 <span className="volume-title">Volume</span>
-                <span className="volume-total">Total: {formatVolume(totalVolume)}</span>
+                <span className="volume-total">
+                  Total: {formatVolume(totalVolume)}
+                </span>
               </div>
               <svg
                 className="volume-svg"
@@ -645,10 +719,13 @@ export function PriceChart({
                     if (point.volume === null || point.volume <= 0) return null;
                     const barWidth = Math.max(
                       3,
-                      (chartWidth - padding.left - padding.right) / data.length - 2
+                      (chartWidth - padding.left - padding.right) /
+                        data.length -
+                        2
                     );
                     const x = scaleX(i) - barWidth / 2;
-                    const height = volumeHeight - 20 - scaleVolumeY(point.volume);
+                    const height =
+                      volumeHeight - 20 - scaleVolumeY(point.volume);
                     const y = volumeHeight - 20 - height;
 
                     // Color based on price movement
@@ -661,13 +738,15 @@ export function PriceChart({
                     return (
                       <rect
                         key={i}
-                        fill={isUp ? 'var(--color-success)' : 'var(--color-error)'}
                         height={height}
                         opacity={isHovered ? 1 : 0.6}
                         rx="1"
                         width={barWidth}
                         x={x}
                         y={y}
+                        fill={
+                          isUp ? 'var(--color-success)' : 'var(--color-error)'
+                        }
                       />
                     );
                   })}

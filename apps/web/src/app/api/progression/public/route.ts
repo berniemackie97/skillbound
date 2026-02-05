@@ -17,9 +17,7 @@ import { applyQuestPoints } from '@/lib/character/quest-points';
 import { enrichFactsWithRuneLiteData } from '@/lib/character/runelite-facts';
 import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { getDbClient } from '@/lib/db';
-import {
-  buildCharacterFactsFromSnapshot,
-} from '@/lib/requirements/requirements-context';
+import { buildCharacterFactsFromSnapshot } from '@/lib/requirements/requirements-context';
 import {
   evaluateBundleCombatAchievements,
   evaluateBundleDiaries,
@@ -81,13 +79,11 @@ export async function GET(request: NextRequest) {
     } | null = null;
 
     let requirementsError: string | null = null;
-    let requirementsMeta:
-      | {
-          capturedAt?: string;
-          dataSource?: string | null;
-          dataSourceWarning?: string | null;
-        }
-      | null = null;
+    let requirementsMeta: {
+      capturedAt?: string;
+      dataSource?: string | null;
+      dataSourceWarning?: string | null;
+    } | null = null;
 
     if (latestSnapshot) {
       const progressSnapshot = toProgressSnapshot(latestSnapshot);

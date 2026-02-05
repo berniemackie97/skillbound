@@ -13,7 +13,14 @@ import { z } from 'zod';
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { getDbClient } from '@/lib/db';
 
-const tiers = ['realtime', 'hourly', 'daily', 'weekly', 'monthly', 'milestone'] as const;
+const tiers = [
+  'realtime',
+  'hourly',
+  'daily',
+  'weekly',
+  'monthly',
+  'milestone',
+] as const;
 const reasons = ['promotion', 'expiration', 'manual'] as const;
 
 const querySchema = z.object({

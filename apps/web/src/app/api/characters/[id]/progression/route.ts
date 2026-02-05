@@ -131,7 +131,9 @@ export async function GET(
           totalItems,
           completedItems,
           completionPercentage:
-            totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0,
+            totalItems > 0
+              ? Math.round((completedItems / totalItems) * 100)
+              : 0,
         },
       },
     });

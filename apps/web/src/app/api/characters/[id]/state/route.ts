@@ -148,9 +148,10 @@ export async function GET(
     ? domainParam.split(',').filter((d) => domainSchema.safeParse(d).success)
     : undefined;
   const sourceParam = searchParams.get('source');
-  const source = sourceParam && sourceSchema.safeParse(sourceParam).success
-    ? (sourceParam as StateSource)
-    : undefined;
+  const source =
+    sourceParam && sourceSchema.safeParse(sourceParam).success
+      ? (sourceParam as StateSource)
+      : undefined;
   const achievedOnly = searchParams.get('achievedOnly') === 'true';
   const key = searchParams.get('key');
 
@@ -181,7 +182,10 @@ export async function GET(
   // Get domain state if single domain specified without key
   if (domains && domains.length === 1 && !key) {
     try {
-      const states = await getDomainState(characterId, domains[0] as StateDomain);
+      const states = await getDomainState(
+        characterId,
+        domains[0] as StateDomain
+      );
       return NextResponse.json({
         data: states,
         meta: { count: states.length, domain: domains[0] },

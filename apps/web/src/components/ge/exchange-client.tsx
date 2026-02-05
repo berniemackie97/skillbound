@@ -108,7 +108,9 @@ export function ExchangeClient({
   );
   const [isRefreshPaused, setIsRefreshPaused] = useState(false);
   const sortsRef = useRef(sorts);
-  const [activeCharacterId, setActiveCharacterId] = useState<string | null>(null);
+  const [activeCharacterId, setActiveCharacterId] = useState<string | null>(
+    null
+  );
   const [watchMap, setWatchMap] = useState<Record<number, string>>({});
   const inFlightRef = useRef(false);
 
@@ -289,7 +291,10 @@ export function ExchangeClient({
     (itemId: number) => {
       setFavorites((prev) => {
         const next = new Set(prev);
-        let nextMeta: Record<number, { id: number; name: string; icon: string }> = {};
+        let nextMeta: Record<
+          number,
+          { id: number; name: string; icon: string }
+        > = {};
         try {
           const stored = localStorage.getItem(FAVORITES_META_STORAGE_KEY);
           if (stored) {
@@ -320,7 +325,11 @@ export function ExchangeClient({
           next.add(itemId);
           const item = items.find((entry) => entry.id === itemId);
           if (item) {
-            nextMeta[itemId] = { id: item.id, name: item.name, icon: item.icon };
+            nextMeta[itemId] = {
+              id: item.id,
+              name: item.name,
+              icon: item.icon,
+            };
           }
           if (activeCharacterId && !watchMap[itemId]) {
             const itemName = item?.name ?? `Item #${itemId}`;
@@ -330,7 +339,9 @@ export function ExchangeClient({
               body: JSON.stringify({ itemId, itemName }),
             }).then(async (response) => {
               if (!response.ok) return;
-              const payload = (await response.json()) as { data?: { id: string } };
+              const payload = (await response.json()) as {
+                data?: { id: string };
+              };
               if (payload.data?.id) {
                 setWatchMap((prevMap) => ({
                   ...prevMap,
@@ -396,8 +407,7 @@ export function ExchangeClient({
         const nextFilters = params.filters ?? filters;
         const nextHideNegativeMargin =
           params.hideNegativeMargin ?? hideNegativeMargin;
-        const nextHideNegativeRoi =
-          params.hideNegativeRoi ?? hideNegativeRoi;
+        const nextHideNegativeRoi = params.hideNegativeRoi ?? hideNegativeRoi;
 
         if (nextFilters.buyPrice.min) {
           queryParams.set('minPrice', nextFilters.buyPrice.min);
@@ -436,10 +446,16 @@ export function ExchangeClient({
           queryParams.set('maxVolume', nextFilters.volume.max);
         }
         if (nextFilters.potentialProfit.min) {
-          queryParams.set('minPotentialProfit', nextFilters.potentialProfit.min);
+          queryParams.set(
+            'minPotentialProfit',
+            nextFilters.potentialProfit.min
+          );
         }
         if (nextFilters.potentialProfit.max) {
-          queryParams.set('maxPotentialProfit', nextFilters.potentialProfit.max);
+          queryParams.set(
+            'maxPotentialProfit',
+            nextFilters.potentialProfit.max
+          );
         }
         if (nextHideNegativeMargin && !nextFilters.margin.min) {
           queryParams.set('minMargin', '0');
@@ -448,9 +464,12 @@ export function ExchangeClient({
           queryParams.set('minRoi', '0');
         }
 
-        const response = await fetch(`/api/ge/items?${queryParams.toString()}`, {
-          cache: 'no-store',
-        });
+        const response = await fetch(
+          `/api/ge/items?${queryParams.toString()}`,
+          {
+            cache: 'no-store',
+          }
+        );
         if (response.ok) {
           const data = (await response.json()) as ItemsApiResponse;
           setItems(data.data ?? []);
@@ -694,7 +713,10 @@ export function ExchangeClient({
           nextFilters = { ...baseFilters, buyPrice: { min: '', max: '50000' } };
           break;
         case 'high-price':
-          nextFilters = { ...baseFilters, buyPrice: { min: '1000000', max: '' } };
+          nextFilters = {
+            ...baseFilters,
+            buyPrice: { min: '1000000', max: '' },
+          };
           break;
         case 'reset':
           nextFilters = DEFAULT_FILTERS;
@@ -739,7 +761,14 @@ export function ExchangeClient({
     setSavedPresets(updated);
     void savePresets(updated);
     setPresetValue(preset.id);
-  }, [filters, membersFilter, hideNegativeMargin, hideNegativeRoi, savedPresets, savePresets]);
+  }, [
+    filters,
+    membersFilter,
+    hideNegativeMargin,
+    hideNegativeRoi,
+    savedPresets,
+    savePresets,
+  ]);
 
   const handleSavedPresetSelect = useCallback(
     (value: string) => {
@@ -810,8 +839,8 @@ export function ExchangeClient({
   const nextRefreshLabel = isRefreshPaused
     ? 'Paused'
     : nextRefreshAt
-    ? formatCountdown(nextRefreshAt - now)
-    : 'Calculating...';
+      ? formatCountdown(nextRefreshAt - now)
+      : 'Calculating...';
   const lastUpdatedLabel = lastUpdated
     ? lastUpdated.toLocaleTimeString('en-US', {
         hour: 'numeric',

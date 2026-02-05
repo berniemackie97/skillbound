@@ -51,7 +51,9 @@ export const progressionCategories = pgTable(
     // UNIQUE CONSTRAINT: Category names must be unique
     nameUnique: unique('progression_categories_name_unique').on(table.name),
     // Index for ordering categories
-    orderIndexIdx: index('progression_categories_order_idx').on(table.orderIndex),
+    orderIndexIdx: index('progression_categories_order_idx').on(
+      table.orderIndex
+    ),
   })
 );
 

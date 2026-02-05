@@ -16,7 +16,10 @@ type RegisterPayload = {
   callbackUrl?: string;
 };
 
-export async function signInAction(provider: string, payload?: CredentialsPayload) {
+export async function signInAction(
+  provider: string,
+  payload?: CredentialsPayload
+) {
   if (provider === 'credentials') {
     if (!payload?.identifier || !payload?.password) {
       throw new Error('MissingFields');
@@ -56,7 +59,10 @@ export async function registerAction(payload: RegisterPayload) {
   });
 }
 
-export async function magicLinkAction(payload: { email: string; callbackUrl?: string }) {
+export async function magicLinkAction(payload: {
+  email: string;
+  callbackUrl?: string;
+}) {
   const email = payload?.email;
   if (typeof email !== 'string' || email.trim().length === 0) {
     throw new Error('EmailRequired');

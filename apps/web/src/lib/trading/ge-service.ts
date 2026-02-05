@@ -138,12 +138,13 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
   const latestClient = getWikiClient('latest');
   const intervalClient = getWikiClient('interval');
 
-  const [mappings, latestPrices, intervalPrices, hourlyPrices] = await Promise.all([
-    mappingClient.getItemMappings(),
-    latestClient.getLatestPrices(),
-    intervalClient.get5MinutePrices(),
-    intervalClient.get1HourPrices(),
-  ]);
+  const [mappings, latestPrices, intervalPrices, hourlyPrices] =
+    await Promise.all([
+      mappingClient.getItemMappings(),
+      latestClient.getLatestPrices(),
+      intervalClient.get5MinutePrices(),
+      intervalClient.get1HourPrices(),
+    ]);
 
   const items: GeExchangeItem[] = [];
 
@@ -163,8 +164,7 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
     const tax = buyPrice !== null ? calculateGeTax(buyPrice) : null;
 
     // Profit is margin minus tax
-    const profit =
-      margin !== null && tax !== null ? margin - tax : null;
+    const profit = margin !== null && tax !== null ? margin - tax : null;
 
     // ROI percentage (profit / buy-now price (sell price) * 100)
     const roiPercent =
@@ -175,9 +175,7 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
     // Potential profit based on buy limit
     const buyLimit = mapping.limit ?? null;
     const potentialProfit =
-      profit !== null && buyLimit !== null
-        ? profit * buyLimit
-        : null;
+      profit !== null && buyLimit !== null ? profit * buyLimit : null;
 
     const volume5m = interval?.volume ?? null;
     const volume1h = hourlyInterval?.volume ?? null;
@@ -199,12 +197,8 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
 
       buyPrice,
       sellPrice,
-      buyPriceTime: latest?.highTime
-        ? new Date(latest.highTime * 1000)
-        : null,
-      sellPriceTime: latest?.lowTime
-        ? new Date(latest.lowTime * 1000)
-        : null,
+      buyPriceTime: latest?.highTime ? new Date(latest.highTime * 1000) : null,
+      sellPriceTime: latest?.lowTime ? new Date(latest.lowTime * 1000) : null,
 
       margin,
       tax,
@@ -356,7 +350,9 @@ export function filterGeItems(
 /**
  * Get a single item by ID with full details
  */
-export async function getGeItem(itemId: number): Promise<GeExchangeItem | null> {
+export async function getGeItem(
+  itemId: number
+): Promise<GeExchangeItem | null> {
   const items = await getGeExchangeItems();
   return items.find((item) => item.id === itemId) ?? null;
 }
@@ -498,7 +494,9 @@ export async function getItemTimeseries(
   const hasVolume = points.some((point) => (point.volume ?? 0) > 0);
   if (!hasVolume) {
     const fallbackInterval =
-      timestep === '5m' ? await client.get5MinutePrices() : await client.get1HourPrices();
+      timestep === '5m'
+        ? await client.get5MinutePrices()
+        : await client.get1HourPrices();
     const fallbackVolume = fallbackInterval.prices.get(itemId)?.volume ?? null;
     if (fallbackVolume && fallbackVolume > 0) {
       points = points.map((point) => ({
@@ -522,7 +520,8 @@ export function getItemIconUrl(iconName: string): string {
 }
 
 // Cache for item mappings to avoid repeated API calls
-let itemMappingsCache: Map<number, { name: string; icon: string }> | null = null;
+let itemMappingsCache: Map<number, { name: string; icon: string }> | null =
+  null;
 let itemMappingsCacheTime = 0;
 const ITEM_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
@@ -598,7 +597,11 @@ export function parseGp(input: string): number | null {
   if (!input || typeof input !== 'string') return null;
 
   // Clean the input: remove commas, spaces, and convert to lowercase
-  const cleaned = input.replace(/,/g, '').replace(/\s/g, '').toLowerCase().trim();
+  const cleaned = input
+    .replace(/,/g, '')
+    .replace(/\s/g, '')
+    .toLowerCase()
+    .trim();
 
   if (!cleaned) return null;
 
@@ -627,7 +630,10 @@ export function parseGp(input: string): number | null {
 /**
  * Format time ago (e.g., "5 minutes ago", "2 hours ago")
  */
-export function formatTimeAgo(date: Date | null, now: Date = new Date()): string {
+export function formatTimeAgo(
+  date: Date | null,
+  now: Date = new Date()
+): string {
   if (!date) return 'Unknown';
 
   const diffMs = now.getTime() - date.getTime();
@@ -636,8 +642,10 @@ export function formatTimeAgo(date: Date | null, now: Date = new Date()): string
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
   if (diffMinutes < 1) return 'Just now';
-  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes === 1 ? '' : 's'} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? '' : 's'} ago`;
+  if (diffMinutes < 60)
+    return `${diffMinutes} minute${diffMinutes === 1 ? '' : 's'} ago`;
+  if (diffHours < 24)
+    return `${diffHours} hour${diffHours === 1 ? '' : 's'} ago`;
   return `${diffDays} day${diffDays === 1 ? '' : 's'} ago`;
 }
 

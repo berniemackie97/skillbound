@@ -29,7 +29,9 @@ export async function fetchLookup(args: { username: string; mode: ModeValue }) {
   if (!response.ok) {
     return {
       lookup: null as LookupResponse | null,
-      error: (payload as ProblemDetails).detail ?? 'Lookup failed. Please try again.',
+      error:
+        (payload as ProblemDetails).detail ??
+        'Lookup failed. Please try again.',
     };
   }
 
@@ -70,7 +72,8 @@ export function isCharacterSaved(args: {
 
   return savedCharacters.some((character) => {
     const sameName =
-      normalizeName(character.displayName) === normalizeName(lookup.data.displayName);
+      normalizeName(character.displayName) ===
+      normalizeName(lookup.data.displayName);
     const sameMode = character.mode === lookup.data.mode;
     return sameName && sameMode;
   });

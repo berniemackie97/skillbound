@@ -24,10 +24,9 @@ type AuthButtonsProps = {
     username?: string;
     callbackUrl?: string;
   }) => Promise<void>;
-  magicLinkAction?: ((payload: {
-    email: string;
-    callbackUrl?: string;
-  }) => Promise<void>) | undefined;
+  magicLinkAction?:
+    | ((payload: { email: string; callbackUrl?: string }) => Promise<void>)
+    | undefined;
 };
 
 export function AuthButtons({

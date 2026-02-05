@@ -33,11 +33,17 @@ const EXTRA_SLUGS = ['combat-training'];
 
 function resolveRepoRoot(): string {
   const cwd = process.cwd();
-  if (existsSync(path.join(cwd, 'apps')) && existsSync(path.join(cwd, 'packages'))) {
+  if (
+    existsSync(path.join(cwd, 'apps')) &&
+    existsSync(path.join(cwd, 'packages'))
+  ) {
     return cwd;
   }
   const nested = path.join(cwd, 'skillbound');
-  if (existsSync(path.join(nested, 'apps')) && existsSync(path.join(nested, 'packages'))) {
+  if (
+    existsSync(path.join(nested, 'apps')) &&
+    existsSync(path.join(nested, 'packages'))
+  ) {
     return nested;
   }
   throw new Error('Unable to locate skillbound repo root from cwd: ' + cwd);
@@ -57,7 +63,9 @@ function extractWindowData(html: string): unknown {
   return JSON.parse(raw);
 }
 
-async function fetchCalculatorPayload(slug: string): Promise<CalculatorPayload> {
+async function fetchCalculatorPayload(
+  slug: string
+): Promise<CalculatorPayload> {
   const url = `https://oldschool.tools/calculators/skill/${slug}`;
   const response = await fetch(url);
   if (!response.ok) {

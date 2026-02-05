@@ -52,7 +52,9 @@ export function TradeFilters({
   const [searchValue, setSearchValue] = useState(search);
   const [tradeTypeValue, setTradeTypeValue] = useState(tradeType);
   const [scopeValue, setScopeValue] = useState(scope);
-  const [characterValue, setCharacterValue] = useState(selectedCharacterId ?? '');
+  const [characterValue, setCharacterValue] = useState(
+    selectedCharacterId ?? ''
+  );
 
   useEffect(() => {
     setSearchValue(search);
@@ -89,7 +91,8 @@ export function TradeFilters({
       applyFilters({
         page: '1',
         scope: nextScope === 'all' ? 'all' : null,
-        characterId: nextScope === 'all' ? null : characterValue || activeCharacterId,
+        characterId:
+          nextScope === 'all' ? null : characterValue || activeCharacterId,
       });
     },
     [applyFilters, characterValue, activeCharacterId]
@@ -100,7 +103,11 @@ export function TradeFilters({
       setCharacterValue(nextCharacterId);
       applyFilters({
         page: '1',
-        scope: nextCharacterId ? 'character' : scopeValue === 'all' ? 'all' : null,
+        scope: nextCharacterId
+          ? 'character'
+          : scopeValue === 'all'
+            ? 'all'
+            : null,
         characterId: nextCharacterId || null,
       });
     },
@@ -148,7 +155,13 @@ export function TradeFilters({
       {/* Top filter bar */}
       <div className="filter-bar">
         <div className="filter-search-wrapper">
-          <svg className="search-icon" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg
+            className="search-icon"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
@@ -198,7 +211,9 @@ export function TradeFilters({
           <select
             className="filter-select compact"
             value={tradeTypeValue}
-            onChange={(e) => handleTradeTypeChange(e.target.value as 'buy' | 'sell' | 'all')}
+            onChange={(e) =>
+              handleTradeTypeChange(e.target.value as 'buy' | 'sell' | 'all')
+            }
           >
             <option value="all">All Types</option>
             <option value="buy">Buys</option>
@@ -210,20 +225,41 @@ export function TradeFilters({
       {/* Period selector */}
       <div className="filter-period">
         <div className="period-tabs">
-          {(['today', 'week', 'month', 'year', 'all'] as TimePeriod[]).map((value) => (
-            <button
-              key={value}
-              className={`period-tab ${period === value ? 'active' : ''}`}
-              type="button"
-              onClick={() => handlePeriodChange(value)}
-            >
-              {value === 'today' ? 'Today' : value === 'week' ? 'Week' : value === 'month' ? 'Month' : value === 'year' ? 'Year' : 'All Time'}
-            </button>
-          ))}
+          {(['today', 'week', 'month', 'year', 'all'] as TimePeriod[]).map(
+            (value) => (
+              <button
+                key={value}
+                className={`period-tab ${period === value ? 'active' : ''}`}
+                type="button"
+                onClick={() => handlePeriodChange(value)}
+              >
+                {value === 'today'
+                  ? 'Today'
+                  : value === 'week'
+                    ? 'Week'
+                    : value === 'month'
+                      ? 'Month'
+                      : value === 'year'
+                        ? 'Year'
+                        : 'All Time'}
+              </button>
+            )
+          )}
         </div>
 
-        <button className="reset-filters-btn" type="button" onClick={handleReset}>
-          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+        <button
+          className="reset-filters-btn"
+          type="button"
+          onClick={handleReset}
+        >
+          <svg
+            fill="none"
+            height="14"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="14"
+          >
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>

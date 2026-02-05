@@ -20,7 +20,14 @@ export default async function LogoutPage() {
       <div className="auth-container">
         <div className="auth-card auth-card-single">
           <div className="auth-card-icon warning">
-            <svg fill="none" height="32" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="32">
+            <svg
+              fill="none"
+              height="32"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="32"
+            >
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16,17 21,12 16,7" />
               <line x1="21" x2="9" y1="12" y2="12" />
@@ -29,10 +36,13 @@ export default async function LogoutPage() {
           <h1>Sign out</h1>
           <p className="auth-subtitle">
             You are currently signed in as{' '}
-            <strong>{session.user.email ?? session.user.name ?? 'Player'}</strong>
+            <strong>
+              {session.user.email ?? session.user.name ?? 'Player'}
+            </strong>
           </p>
           <p className="auth-description">
-            Are you sure you want to sign out? You can always sign back in to access your saved characters and progress.
+            Are you sure you want to sign out? You can always sign back in to
+            access your saved characters and progress.
           </p>
           <div className="auth-actions">
             <form action={handleSignOut}>

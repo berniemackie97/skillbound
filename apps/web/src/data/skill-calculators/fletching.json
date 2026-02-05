@@ -29,9 +29,7 @@
         "action_members": true,
         "level_req": 1,
         "exp_given": 5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -58,9 +56,7 @@
         "action_members": true,
         "level_req": 1,
         "exp_given": 1,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -93,9 +89,7 @@
         "action_members": true,
         "level_req": 1,
         "exp_given": 1.33,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -128,9 +122,7 @@
         "action_members": true,
         "level_req": 3,
         "exp_given": 1,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -163,9 +155,7 @@
         "action_members": true,
         "level_req": 5,
         "exp_given": 1,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -198,9 +188,7 @@
         "action_members": true,
         "level_req": 5,
         "exp_given": 5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -227,9 +215,7 @@
         "action_members": true,
         "level_req": 5,
         "exp_given": 5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -262,9 +248,7 @@
         "action_members": true,
         "level_req": 9,
         "exp_given": 0.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -297,9 +281,7 @@
         "action_members": true,
         "level_req": 9,
         "exp_given": 6,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -326,9 +308,7 @@
         "action_members": true,
         "level_req": 9,
         "exp_given": 12,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -361,9 +341,7 @@
         "action_members": true,
         "level_req": 9,
         "exp_given": 6,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -396,9 +374,7 @@
         "action_members": true,
         "level_req": 10,
         "exp_given": 1.8,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -431,9 +407,7 @@
         "action_members": true,
         "level_req": 10,
         "exp_given": 10,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -466,9 +440,7 @@
         "action_members": true,
         "level_req": 10,
         "exp_given": 10,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -495,9 +467,7 @@
         "action_members": true,
         "level_req": 11,
         "exp_given": 1.6,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -530,9 +500,7 @@
         "action_members": true,
         "level_req": 15,
         "exp_given": 2.5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -565,9 +533,7 @@
         "action_members": true,
         "level_req": 17,
         "exp_given": 2,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -600,9 +566,7 @@
         "action_members": true,
         "level_req": 20,
         "exp_given": 16.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -629,9 +593,7 @@
         "action_members": true,
         "level_req": 20,
         "exp_given": 16.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -664,9 +626,7 @@
         "action_members": true,
         "level_req": 22,
         "exp_given": 3.8,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -699,9 +659,7 @@
         "action_members": true,
         "level_req": 24,
         "exp_given": 16,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -728,9 +686,7 @@
         "action_members": true,
         "level_req": 24,
         "exp_given": 32,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null
       },
       {
@@ -741,9 +697,7 @@
         "action_members": true,
         "level_req": 24,
         "exp_given": 16,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null
       },
       {
@@ -754,9 +708,7 @@
         "action_members": true,
         "level_req": 25,
         "exp_given": 25,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -783,9 +735,7 @@
         "action_members": true,
         "level_req": 25,
         "exp_given": 25,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -818,9 +768,7 @@
         "action_members": true,
         "level_req": 27,
         "exp_given": 50,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -847,9 +795,7 @@
         "action_members": true,
         "level_req": 30,
         "exp_given": 5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -882,9 +828,7 @@
         "action_members": true,
         "level_req": 32,
         "exp_given": 6,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -911,9 +855,7 @@
         "action_members": true,
         "level_req": 32,
         "exp_given": 5,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -946,9 +888,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 33.3,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -975,9 +915,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 33.2,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1010,9 +948,7 @@
         "action_members": true,
         "level_req": 37,
         "exp_given": 7.5,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -1045,9 +981,7 @@
         "action_members": true,
         "level_req": 39,
         "exp_given": 1.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1080,9 +1014,7 @@
         "action_members": true,
         "level_req": 39,
         "exp_given": 22,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1109,9 +1041,7 @@
         "action_members": true,
         "level_req": 39,
         "exp_given": 44,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1144,9 +1074,7 @@
         "action_members": true,
         "level_req": 39,
         "exp_given": 22,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1179,9 +1107,7 @@
         "action_members": true,
         "level_req": 40,
         "exp_given": 41.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1208,9 +1134,7 @@
         "action_members": true,
         "level_req": 40,
         "exp_given": 41.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1243,9 +1167,7 @@
         "action_members": true,
         "level_req": 41,
         "exp_given": 3.2,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1278,9 +1200,7 @@
         "action_members": true,
         "level_req": 42,
         "exp_given": 83,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -1307,9 +1227,7 @@
         "action_members": true,
         "level_req": 42,
         "exp_given": 8,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1336,9 +1254,7 @@
         "action_members": true,
         "level_req": 43,
         "exp_given": 2.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1371,9 +1287,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 7.5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -1406,9 +1320,7 @@
         "action_members": true,
         "level_req": 46,
         "exp_given": 3.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1441,9 +1353,7 @@
         "action_members": true,
         "level_req": 46,
         "exp_given": 27,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1470,9 +1380,7 @@
         "action_members": true,
         "level_req": 46,
         "exp_given": 54,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1505,9 +1413,7 @@
         "action_members": true,
         "level_req": 46,
         "exp_given": 27,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1540,9 +1446,7 @@
         "action_members": true,
         "level_req": 47,
         "exp_given": 8,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -1575,9 +1479,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 50,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1604,9 +1506,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 50,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1639,9 +1539,7 @@
         "action_members": true,
         "level_req": 51,
         "exp_given": 9.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1674,9 +1572,7 @@
         "action_members": true,
         "level_req": 52,
         "exp_given": 11.2,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -1709,9 +1605,7 @@
         "action_members": true,
         "level_req": 52,
         "exp_given": 10,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null
       },
       {
@@ -1749,9 +1643,7 @@
         "action_members": true,
         "level_req": 54,
         "exp_given": 32,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1784,9 +1676,7 @@
         "action_members": true,
         "level_req": 54,
         "exp_given": 32,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1813,9 +1703,7 @@
         "action_members": true,
         "level_req": 54,
         "exp_given": 5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1848,9 +1736,7 @@
         "action_members": true,
         "level_req": 54,
         "exp_given": 64,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -1883,9 +1769,7 @@
         "action_members": true,
         "level_req": 55,
         "exp_given": 58.3,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1912,9 +1796,7 @@
         "action_members": true,
         "level_req": 55,
         "exp_given": 3,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -1947,9 +1829,7 @@
         "action_members": true,
         "level_req": 55,
         "exp_given": 58.2,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -1982,9 +1862,7 @@
         "action_members": true,
         "level_req": 56,
         "exp_given": 4.7,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2017,9 +1895,7 @@
         "action_members": true,
         "level_req": 57,
         "exp_given": 116.5,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -2046,9 +1922,7 @@
         "action_members": true,
         "level_req": 58,
         "exp_given": 5.5,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2081,9 +1955,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 10,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -2116,9 +1988,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 7,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2151,9 +2021,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 41,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2180,9 +2048,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 82,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2215,9 +2081,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 41,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2250,9 +2114,7 @@
         "action_members": true,
         "level_req": 62,
         "exp_given": 10,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -2285,9 +2147,7 @@
         "action_members": true,
         "level_req": 63,
         "exp_given": 6.3,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2320,9 +2180,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 7,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2355,9 +2213,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 67.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -2390,9 +2246,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 67.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -2419,9 +2273,7 @@
         "action_members": true,
         "level_req": 67,
         "exp_given": 15,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -2454,9 +2306,7 @@
         "action_members": true,
         "level_req": 69,
         "exp_given": 100,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2489,9 +2339,7 @@
         "action_members": true,
         "level_req": 69,
         "exp_given": 50,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2524,9 +2372,7 @@
         "action_members": true,
         "level_req": 69,
         "exp_given": 50,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2553,9 +2399,7 @@
         "action_members": true,
         "level_req": 69,
         "exp_given": 10,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2588,9 +2432,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 75,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -2623,9 +2465,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 75,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -2652,9 +2492,7 @@
         "action_members": true,
         "level_req": 71,
         "exp_given": 8.2,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2687,9 +2525,7 @@
         "action_members": true,
         "level_req": 72,
         "exp_given": 150,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -2716,9 +2552,7 @@
         "action_members": true,
         "level_req": 73,
         "exp_given": 9.4,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2751,9 +2585,7 @@
         "action_members": true,
         "level_req": 75,
         "exp_given": 12.5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -2786,9 +2618,7 @@
         "action_members": true,
         "level_req": 76,
         "exp_given": 10.6,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -2821,9 +2651,7 @@
         "action_members": true,
         "level_req": 77,
         "exp_given": 12.4,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -2856,9 +2684,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 70,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2885,9 +2711,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 135,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2920,9 +2744,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 70,
-        "categories": [
-          47
-        ],
+        "categories": [47],
         "link": null,
         "components": [
           {
@@ -2955,9 +2777,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 83.3,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -2990,9 +2810,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 83.3,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3019,9 +2837,7 @@
         "action_members": true,
         "level_req": 81,
         "exp_given": 18.8,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -3054,9 +2870,7 @@
         "action_members": true,
         "level_req": 82,
         "exp_given": 13.5,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3089,9 +2903,7 @@
         "action_members": true,
         "level_req": 84,
         "exp_given": 13.5,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -3124,9 +2936,7 @@
         "action_members": true,
         "level_req": 84,
         "exp_given": 12,
-        "categories": [
-          46
-        ],
+        "categories": [46],
         "link": null,
         "components": [
           {
@@ -3159,9 +2969,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 91.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3194,9 +3002,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 91.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3223,9 +3029,7 @@
         "action_members": true,
         "level_req": 87,
         "exp_given": 183,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -3252,9 +3056,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 15,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3287,9 +3089,7 @@
         "action_members": true,
         "level_req": 92,
         "exp_given": 216,
-        "categories": [
-          49
-        ],
+        "categories": [49],
         "link": null,
         "components": [
           {
@@ -3316,9 +3116,7 @@
         "action_members": true,
         "level_req": 92,
         "exp_given": 15,
-        "categories": [
-          44
-        ],
+        "categories": [44],
         "link": null,
         "components": [
           {
@@ -3351,9 +3149,7 @@
         "action_members": true,
         "level_req": 95,
         "exp_given": 25,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -3386,9 +3182,7 @@
         "action_members": true,
         "level_req": 15,
         "exp_given": 10,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3415,9 +3209,7 @@
         "action_members": true,
         "level_req": 30,
         "exp_given": 15,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3444,9 +3236,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 20,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3473,9 +3263,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 25,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3502,9 +3290,7 @@
         "action_members": true,
         "level_req": 75,
         "exp_given": 30,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3531,9 +3317,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 35,
-        "categories": [
-          43
-        ],
+        "categories": [43],
         "link": null,
         "components": [
           {
@@ -3560,9 +3344,7 @@
         "action_members": true,
         "level_req": 5,
         "exp_given": 10,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3595,9 +3377,7 @@
         "action_members": true,
         "level_req": 10,
         "exp_given": 20,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3630,9 +3410,7 @@
         "action_members": true,
         "level_req": 20,
         "exp_given": 33,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3665,9 +3443,7 @@
         "action_members": true,
         "level_req": 25,
         "exp_given": 50,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3700,9 +3476,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 66.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3735,9 +3509,7 @@
         "action_members": true,
         "level_req": 40,
         "exp_given": 83,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3770,9 +3542,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 21,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -3805,9 +3575,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 100,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3840,9 +3608,7 @@
         "action_members": true,
         "level_req": 55,
         "exp_given": 116.5,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3875,9 +3641,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 135,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3910,9 +3674,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 150,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3945,9 +3707,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 166.6,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -3980,9 +3740,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 183,
-        "categories": [
-          45
-        ],
+        "categories": [45],
         "link": null,
         "components": [
           {
@@ -4015,9 +3773,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 30,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -4044,9 +3800,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 1,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -4079,9 +3833,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 9.5,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {
@@ -4114,9 +3866,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 10,
-        "categories": [
-          48
-        ],
+        "categories": [48],
         "link": null,
         "components": [
           {

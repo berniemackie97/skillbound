@@ -172,7 +172,13 @@ export function RequirementList({ items }: { items: RequirementResult[] }) {
     [isRoot, items]
   );
   const itemIdKey = useMemo(
-    () => (isRoot ? itemIds.slice().sort((a, b) => a - b).join(',') : ''),
+    () =>
+      isRoot
+        ? itemIds
+            .slice()
+            .sort((a, b) => a - b)
+            .join(',')
+        : '',
     [isRoot, itemIds]
   );
 

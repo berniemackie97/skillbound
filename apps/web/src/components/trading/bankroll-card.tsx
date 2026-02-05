@@ -163,10 +163,7 @@ export function BankrollCard({
             >
               {isSyncing ? 'Syncing...' : 'Sync'}
             </button>
-            <button
-              className="button ghost small"
-              onClick={handleEdit}
-            >
+            <button className="button ghost small" onClick={handleEdit}>
               Edit
             </button>
             <button
@@ -219,14 +216,24 @@ export function BankrollCard({
         ) : (
           <form className="bankroll-edit-form" onSubmit={handleSubmit}>
             <div className="bankroll-edit-warning">
-              <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
+              <svg
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="16"
+              >
                 <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
                 <line x1="12" x2="12" y1="9" y2="13" />
                 <line x1="12" x2="12.01" y1="17" y2="17" />
               </svg>
               <div className="warning-text">
                 <strong>Affects profit &amp; ROI calculations</strong>
-                <span>To add funds without affecting calculations, use <em>Add Funds</em> instead.</span>
+                <span>
+                  To add funds without affecting calculations, use{' '}
+                  <em>Add Funds</em> instead.
+                </span>
               </div>
             </div>
             <div className="bankroll-edit-fields">
@@ -286,12 +293,21 @@ export function BankrollCard({
         {!isEditing && isAddingFunds && (
           <form className="bankroll-add-funds-form" onSubmit={handleAddFunds}>
             <div className="add-funds-info">
-              <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+              <svg
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="14"
+              >
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 16v-4" />
                 <path d="M12 8h.01" />
               </svg>
-              <span>Adds to your bankroll without affecting ROI calculations.</span>
+              <span>
+                Adds to your bankroll without affecting ROI calculations.
+              </span>
             </div>
             <label className="add-funds-field">
               <span className="field-label">Amount to Add</span>
@@ -303,7 +319,11 @@ export function BankrollCard({
                   value={fundsInput}
                   onChange={(e) => setFundsInput(e.target.value)}
                 />
-                <button className="button primary small" disabled={isAdding} type="submit">
+                <button
+                  className="button primary small"
+                  disabled={isAdding}
+                  type="submit"
+                >
                   {isAdding ? 'Adding...' : 'Add Funds'}
                 </button>
               </div>

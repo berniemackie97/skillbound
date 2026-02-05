@@ -142,112 +142,117 @@ export async function POST(request: NextRequest) {
     const db = getDbClient();
 
     // Use transaction to ensure atomic character creation + snapshot + settings update
-    const { character, profile, snapshot } = await db.transaction(async (tx) => {
-      const mode = hiscoresModeToDbMode(playerData.hiscores.mode);
-      let profileRow: CharacterProfile | undefined;
-      let userCharacter: UserCharacter | undefined;
+    const { character, profile, snapshot } = await db.transaction(
+      async (tx) => {
+        const mode = hiscoresModeToDbMode(playerData.hiscores.mode);
+        let profileRow: CharacterProfile | undefined;
+        let userCharacter: UserCharacter | undefined;
 
-      const [existingProfile] = await tx
-        .select()
-        .from(characterProfiles)
-        .where(
-          and(
-            eq(characterProfiles.displayName, playerData.hiscores.displayName),
-            eq(characterProfiles.mode, mode)
-          )
-        )
-        .limit(1);
-
-      if (existingProfile) {
-        profileRow = existingProfile;
-      } else {
-        const [createdProfile] = await tx
-          .insert(characterProfiles)
-          .values(
-            toProfileInsert(
-              playerData.hiscores.displayName,
-              mode,
-              playerData.timestamp.toISOString()
-            )
-          )
-          .returning();
-        profileRow = createdProfile;
-      }
-
-      if (!profileRow) {
-        throw new Error('Failed to create profile');
-      }
-
-      if (sessionUser) {
-        const [existingUserCharacter] = await tx
+        const [existingProfile] = await tx
           .select()
-          .from(userCharacters)
+          .from(characterProfiles)
           .where(
             and(
-              eq(userCharacters.userId, sessionUser.id),
-              eq(userCharacters.profileId, profileRow.id)
+              eq(
+                characterProfiles.displayName,
+                playerData.hiscores.displayName
+              ),
+              eq(characterProfiles.mode, mode)
             )
           )
           .limit(1);
 
-        if (existingUserCharacter) {
-          userCharacter = existingUserCharacter;
+        if (existingProfile) {
+          profileRow = existingProfile;
         } else {
-          const [createdUserCharacter] = await tx
-            .insert(userCharacters)
+          const [createdProfile] = await tx
+            .insert(characterProfiles)
             .values(
-              toUserCharacterInsert(
-                sessionUser.id,
-                profileRow.id,
-                parsed.data
+              toProfileInsert(
+                playerData.hiscores.displayName,
+                mode,
+                playerData.timestamp.toISOString()
               )
             )
             .returning();
-          userCharacter = createdUserCharacter;
+          profileRow = createdProfile;
         }
-      }
 
-      const snapshotInsert = buildSnapshotInsert(
-        profileRow.id,
-        playerData.hiscores,
-        playerData.source,
-        playerData.warning,
-        playerData.runelite
-      );
-      const [snap] = await tx
-        .insert(characterSnapshots)
-        .values(snapshotInsert)
-        .returning();
+        if (!profileRow) {
+          throw new Error('Failed to create profile');
+        }
 
-      if (!snap) {
-        throw new Error('Failed to create snapshot');
-      }
+        if (sessionUser) {
+          const [existingUserCharacter] = await tx
+            .select()
+            .from(userCharacters)
+            .where(
+              and(
+                eq(userCharacters.userId, sessionUser.id),
+                eq(userCharacters.profileId, profileRow.id)
+              )
+            )
+            .limit(1);
 
-      if (sessionUser && userCharacter) {
-        const now = new Date();
-        await tx
-          .insert(userSettings)
-          .values({
-            userId: sessionUser.id,
-            activeCharacterId: userCharacter.id,
-            createdAt: now,
-            updatedAt: now,
-          })
-          .onConflictDoUpdate({
-            target: userSettings.userId,
-            set: {
+          if (existingUserCharacter) {
+            userCharacter = existingUserCharacter;
+          } else {
+            const [createdUserCharacter] = await tx
+              .insert(userCharacters)
+              .values(
+                toUserCharacterInsert(
+                  sessionUser.id,
+                  profileRow.id,
+                  parsed.data
+                )
+              )
+              .returning();
+            userCharacter = createdUserCharacter;
+          }
+        }
+
+        const snapshotInsert = buildSnapshotInsert(
+          profileRow.id,
+          playerData.hiscores,
+          playerData.source,
+          playerData.warning,
+          playerData.runelite
+        );
+        const [snap] = await tx
+          .insert(characterSnapshots)
+          .values(snapshotInsert)
+          .returning();
+
+        if (!snap) {
+          throw new Error('Failed to create snapshot');
+        }
+
+        if (sessionUser && userCharacter) {
+          const now = new Date();
+          await tx
+            .insert(userSettings)
+            .values({
+              userId: sessionUser.id,
               activeCharacterId: userCharacter.id,
+              createdAt: now,
               updatedAt: now,
-            },
-          });
-      }
+            })
+            .onConflictDoUpdate({
+              target: userSettings.userId,
+              set: {
+                activeCharacterId: userCharacter.id,
+                updatedAt: now,
+              },
+            });
+        }
 
-      return {
-        character: userCharacter ?? null,
-        profile: profileRow,
-        snapshot: snap,
-      };
-    });
+        return {
+          character: userCharacter ?? null,
+          profile: profileRow,
+          snapshot: snap,
+        };
+      }
+    );
 
     if (playerData.runelite && character) {
       try {

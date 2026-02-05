@@ -10,7 +10,8 @@ export function buildHomeCounts(bundle: BundleForHomeCounts): HomeCounts {
     questCount: bundle.metadata.questCount ?? bundle.quests.length,
     diaryCount: bundle.metadata.diaryCount ?? bundle.diaries.length,
     combatAchievementCount:
-      bundle.metadata.combatAchievementCount ?? bundle.combatAchievements.length,
+      bundle.metadata.combatAchievementCount ??
+      bundle.combatAchievements.length,
   };
 }
 

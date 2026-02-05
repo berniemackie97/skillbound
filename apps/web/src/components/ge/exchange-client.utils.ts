@@ -1,7 +1,4 @@
-import type {
-  ColumnFilterState,
-  MembersFilter,
-} from './exchange-client.types';
+import type { ColumnFilterState, MembersFilter } from './exchange-client.types';
 import type { SortDirection, SortField, SortState } from './exchange-table';
 
 export const formatCountdown = (ms: number) => {
@@ -40,19 +37,42 @@ export function parseCompactNumber(value: string): string {
   if (!Number.isFinite(num)) return '';
   const suffix = match[3];
   const multiplier =
-    suffix === 'b' ? 1_000_000_000 : suffix === 'm' ? 1_000_000 : suffix === 'k' ? 1_000 : 1;
+    suffix === 'b'
+      ? 1_000_000_000
+      : suffix === 'm'
+        ? 1_000_000
+        : suffix === 'k'
+          ? 1_000
+          : 1;
   return String(Math.round(num * multiplier));
 }
 
-export function normalizeFilters(filters: ColumnFilterState): ColumnFilterState {
+export function normalizeFilters(
+  filters: ColumnFilterState
+): ColumnFilterState {
   const normalize = (value: string) => parseCompactNumber(value);
   return {
-    buyPrice: { min: normalize(filters.buyPrice.min), max: normalize(filters.buyPrice.max) },
-    sellPrice: { min: normalize(filters.sellPrice.min), max: normalize(filters.sellPrice.max) },
-    margin: { min: normalize(filters.margin.min), max: normalize(filters.margin.max) },
-    profit: { min: normalize(filters.profit.min), max: normalize(filters.profit.max) },
+    buyPrice: {
+      min: normalize(filters.buyPrice.min),
+      max: normalize(filters.buyPrice.max),
+    },
+    sellPrice: {
+      min: normalize(filters.sellPrice.min),
+      max: normalize(filters.sellPrice.max),
+    },
+    margin: {
+      min: normalize(filters.margin.min),
+      max: normalize(filters.margin.max),
+    },
+    profit: {
+      min: normalize(filters.profit.min),
+      max: normalize(filters.profit.max),
+    },
     roi: { min: normalize(filters.roi.min), max: normalize(filters.roi.max) },
-    volume: { min: normalize(filters.volume.min), max: normalize(filters.volume.max) },
+    volume: {
+      min: normalize(filters.volume.min),
+      max: normalize(filters.volume.max),
+    },
     potentialProfit: {
       min: normalize(filters.potentialProfit.min),
       max: normalize(filters.potentialProfit.max),
@@ -64,14 +84,21 @@ export function parseSorts(
   sort: string | undefined,
   order: string | undefined
 ): SortState[] {
-  const sortParts = (sort ?? '').split(',').map((value) => value.trim()).filter(Boolean);
-  const orderParts = (order ?? '').split(',').map((value) => value.trim()).filter(Boolean);
+  const sortParts = (sort ?? '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const orderParts = (order ?? '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
   if (sortParts.length === 0) {
     return [{ field: 'profit', direction: 'desc' }];
   }
   return sortParts
     .map((field, index) => {
-      const direction: SortDirection = orderParts[index] === 'asc' ? 'asc' : 'desc';
+      const direction: SortDirection =
+        orderParts[index] === 'asc' ? 'asc' : 'desc';
       return { field: field as SortField, direction };
     })
     .filter((entry) =>

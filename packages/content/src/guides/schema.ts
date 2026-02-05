@@ -17,10 +17,9 @@ export const guideRequirementSchema = z.object({
 const guideImageUrlSchema = z
   .string()
   .min(1)
-  .refine(
-    (value) => value.startsWith('/') || value.startsWith('http'),
-    { message: 'imageUrl must be an absolute URL or root-relative path' }
-  );
+  .refine((value) => value.startsWith('/') || value.startsWith('http'), {
+    message: 'imageUrl must be an absolute URL or root-relative path',
+  });
 
 export const guideInstructionSchema = z.object({
   /** The instruction text describing what to do */
@@ -137,7 +136,9 @@ export const guideTemplateSchema = z.object({
 });
 
 export type GuideInstructionSeed = z.infer<typeof guideInstructionSchema>;
-export type GuideStatRequirementSeed = z.infer<typeof guideStatRequirementSchema>;
+export type GuideStatRequirementSeed = z.infer<
+  typeof guideStatRequirementSchema
+>;
 export type GuideItemNeededSeed = z.infer<typeof guideItemNeededSchema>;
 export type GuideRequirementSeed = z.infer<typeof guideRequirementSchema>;
 export type GuideStepSeed = z.infer<typeof guideStepSchema>;

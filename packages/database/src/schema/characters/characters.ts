@@ -86,7 +86,9 @@ export const userCharacters = pgTable(
     userIdIdx: index('user_characters_user_id_idx').on(table.userId),
     profileIdIdx: index('user_characters_profile_id_idx').on(table.profileId),
     isPublicIdx: index('user_characters_is_public_idx').on(table.isPublic),
-    archivedAtIdx: index('user_characters_archived_at_idx').on(table.archivedAt),
+    archivedAtIdx: index('user_characters_archived_at_idx').on(
+      table.archivedAt
+    ),
     userProfileUnique: unique('user_characters_user_profile_unique').on(
       table.userId,
       table.profileId

@@ -62,7 +62,7 @@ const createMockPlayerData = (
   },
   music_tracks: {
     'Newbie Melody': true,
-    'Adventure': true,
+    Adventure: true,
     'Unknown Track': false,
   },
   combat_achievements: [],

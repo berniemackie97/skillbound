@@ -122,7 +122,12 @@ export async function POST(request: NextRequest) {
         milestonesToInsert.push({
           userCharacterId: parsed.data.characterId,
           categoryId: null,
-          difficulty: difficulty as 'easy' | 'medium' | 'hard' | 'elite' | 'master',
+          difficulty: difficulty as
+            | 'easy'
+            | 'medium'
+            | 'hard'
+            | 'elite'
+            | 'master',
           name: item.name,
           description: item.description ?? null,
           requirements: (item.requirements ?? null) as Array<{

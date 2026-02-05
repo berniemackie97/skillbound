@@ -32,7 +32,9 @@ export const EASY_MILESTONES: MilestoneTemplate[] = [
   {
     name: 'Ardougne cloak 1',
     description: 'Easy Ardougne diary reward',
-    requirements: [{ type: 'custom', name: 'Ardougne Easy Diary', value: true }],
+    requirements: [
+      { type: 'custom', name: 'Ardougne Easy Diary', value: true },
+    ],
   },
   {
     name: 'Bird house trapping',
@@ -45,7 +47,7 @@ export const EASY_MILESTONES: MilestoneTemplate[] = [
     requirements: [{ type: 'quest', name: 'Death Plateau', value: true }],
   },
   {
-    name: 'Ava\'s attractor',
+    name: "Ava's attractor",
     description: 'Ranged ammo retrieval',
     requirements: [{ type: 'quest', name: 'Animal Magnetism', value: true }],
   },
@@ -75,7 +77,7 @@ export const MEDIUM_MILESTONES: MilestoneTemplate[] = [
   {
     name: 'Dragon Battleaxe',
     description: 'Spec weapon',
-    requirements: [{ type: 'quest', name: 'Heroes\' Quest', value: true }],
+    requirements: [{ type: 'quest', name: "Heroes' Quest", value: true }],
   },
   {
     name: 'Prayer Potions',
@@ -98,7 +100,7 @@ export const MEDIUM_MILESTONES: MilestoneTemplate[] = [
     requirements: [
       { type: 'skill', name: 'Attack', value: 60 },
       { type: 'skill', name: 'Defence', value: 60 },
-      { type: 'custom', name: 'Warriors\' Guild tokens', value: 260 },
+      { type: 'custom', name: "Warriors' Guild tokens", value: 260 },
     ],
   },
   {
@@ -228,12 +230,14 @@ export const ELITE_MILESTONES: MilestoneTemplate[] = [
   {
     name: 'Armadyl armor',
     description: 'Chestplate + chainskirt',
-    requirements: [{ type: 'killcount', name: 'Kree\'arra', value: 100 }],
+    requirements: [{ type: 'killcount', name: "Kree'arra", value: 100 }],
   },
   {
     name: 'Ancestral robes',
     description: 'Full set from CoX',
-    requirements: [{ type: 'killcount', name: 'Chambers of Xeric', value: 100 }],
+    requirements: [
+      { type: 'killcount', name: 'Chambers of Xeric', value: 100 },
+    ],
   },
   {
     name: 'Dragon Warhammer',
@@ -256,7 +260,9 @@ export const MASTER_MILESTONES: MilestoneTemplate[] = [
   {
     name: 'Twisted bow',
     description: 'BiS ranged weapon',
-    requirements: [{ type: 'killcount', name: 'Chambers of Xeric', value: 500 }],
+    requirements: [
+      { type: 'killcount', name: 'Chambers of Xeric', value: 500 },
+    ],
   },
   {
     name: 'Scythe of vitur',
@@ -264,7 +270,7 @@ export const MASTER_MILESTONES: MilestoneTemplate[] = [
     requirements: [{ type: 'killcount', name: 'Theatre of Blood', value: 500 }],
   },
   {
-    name: 'Tumeken\'s shadow',
+    name: "Tumeken's shadow",
     description: 'BiS magic weapon',
     requirements: [{ type: 'killcount', name: 'Tombs of Amascut', value: 500 }],
   },

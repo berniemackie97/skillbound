@@ -1,4 +1,8 @@
-import { defineConfig, devices, type PlaywrightTestConfig } from '@playwright/test';
+import {
+  defineConfig,
+  devices,
+  type PlaywrightTestConfig,
+} from '@playwright/test';
 
 /**
  * Playwright E2E test configuration for Skillbound web app.

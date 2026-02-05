@@ -103,7 +103,9 @@ export function SnapshotDetailModal({
           <span className="label">Total Level</span>
           <strong>{snapshot.totalLevel.toLocaleString()}</strong>
           {overallDelta && overallDelta.totalLevel !== 0 && (
-            <span className={`delta ${overallDelta.totalLevel > 0 ? 'positive' : 'negative'}`}>
+            <span
+              className={`delta ${overallDelta.totalLevel > 0 ? 'positive' : 'negative'}`}
+            >
               {overallDelta.totalLevel > 0 ? '+' : ''}
               {overallDelta.totalLevel}
             </span>
@@ -113,7 +115,9 @@ export function SnapshotDetailModal({
           <span className="label">Total XP</span>
           <strong>{formatXp(snapshot.totalXp)}</strong>
           {overallDelta && overallDelta.totalXp !== 0 && (
-            <span className={`delta ${overallDelta.totalXp > 0 ? 'positive' : 'negative'}`}>
+            <span
+              className={`delta ${overallDelta.totalXp > 0 ? 'positive' : 'negative'}`}
+            >
               {formatDelta(overallDelta.totalXp)}
             </span>
           )}
@@ -122,7 +126,9 @@ export function SnapshotDetailModal({
           <span className="label">Combat Level</span>
           <strong>{snapshot.combatLevel}</strong>
           {overallDelta && overallDelta.combatLevel !== 0 && (
-            <span className={`delta ${overallDelta.combatLevel > 0 ? 'positive' : 'negative'}`}>
+            <span
+              className={`delta ${overallDelta.combatLevel > 0 ? 'positive' : 'negative'}`}
+            >
               {overallDelta.combatLevel > 0 ? '+' : ''}
               {overallDelta.combatLevel}
             </span>
@@ -138,7 +144,14 @@ export function SnapshotDetailModal({
       {snapshot.isMilestone && snapshot.milestoneType && (
         <div className="snapshot-milestone-badge">
           <span className="milestone-icon">
-            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
+            <svg
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="16"
+            >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </span>

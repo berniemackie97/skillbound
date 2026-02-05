@@ -140,8 +140,8 @@ export function ProgressionBrowser({
       <div className="callout">
         <h4>Guest mode enabled</h4>
         <p>
-          You can edit progression in this session. Changes are saved locally
-          in your browser unless you sign in to sync across devices.
+          You can edit progression in this session. Changes are saved locally in
+          your browser unless you sign in to sync across devices.
         </p>
       </div>
 

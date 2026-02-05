@@ -50,9 +50,7 @@
         "action_members": false,
         "level_req": 1,
         "exp_given": 5,
-        "categories": [
-          66
-        ],
+        "categories": [66],
         "link": null,
         "products": [
           {
@@ -71,9 +69,7 @@
         "action_members": false,
         "level_req": 1,
         "exp_given": 17.5,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -92,9 +88,7 @@
         "action_members": false,
         "level_req": 1,
         "exp_given": 17.5,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -113,9 +107,7 @@
         "action_members": true,
         "level_req": 10,
         "exp_given": 26.5,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -134,9 +126,7 @@
         "action_members": false,
         "level_req": 15,
         "exp_given": 35,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -155,9 +145,7 @@
         "action_members": false,
         "level_req": 20,
         "exp_given": 40,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -176,9 +164,7 @@
         "action_members": true,
         "level_req": 30,
         "exp_given": 5,
-        "categories": [
-          66
-        ],
+        "categories": [66],
         "link": null,
         "products": [
           {
@@ -197,9 +183,7 @@
         "action_members": false,
         "level_req": 30,
         "exp_given": 50,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -218,9 +202,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 60,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -239,9 +221,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 50,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -260,9 +240,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 40,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -281,9 +259,7 @@
         "action_members": true,
         "level_req": 35,
         "exp_given": 30,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -302,9 +278,7 @@
         "action_members": true,
         "level_req": 38,
         "exp_given": 12,
-        "categories": [
-          66
-        ],
+        "categories": [66],
         "link": null
       },
       {
@@ -315,9 +289,7 @@
         "action_members": false,
         "level_req": 40,
         "exp_given": 65,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -336,9 +308,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 50,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -357,9 +327,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 60,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -378,9 +346,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 75,
-        "categories": [
-          68
-        ],
+        "categories": [68],
         "link": null,
         "products": [
           {
@@ -399,9 +365,7 @@
         "action_members": false,
         "level_req": 55,
         "exp_given": 80,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -420,9 +384,7 @@
         "action_members": false,
         "level_req": 70,
         "exp_given": 95,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -441,9 +403,7 @@
         "action_members": false,
         "level_req": 85,
         "exp_given": 125,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -525,9 +485,7 @@
         "action_members": true,
         "level_req": 25,
         "exp_given": 45,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {
@@ -546,9 +504,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 80.5,
-        "categories": [
-          67
-        ],
+        "categories": [67],
         "link": null,
         "products": [
           {

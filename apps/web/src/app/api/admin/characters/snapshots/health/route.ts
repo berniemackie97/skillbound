@@ -38,9 +38,7 @@ function resolveCronSecret(request: NextRequest): string | null {
 }
 
 function cadenceMs(cadence: 'hourly' | 'daily') {
-  return cadence === 'hourly'
-    ? 60 * 60 * 1000
-    : 24 * 60 * 60 * 1000;
+  return cadence === 'hourly' ? 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
 }
 
 export async function GET(request: NextRequest) {
@@ -109,7 +107,9 @@ export async function GET(request: NextRequest) {
   }>(`snapshots:${cadence}`);
 
   const nextCronAt = lastRun?.ranAt
-    ? new Date(new Date(lastRun.ranAt).getTime() + cadenceMs(cadence)).toISOString()
+    ? new Date(
+        new Date(lastRun.ranAt).getTime() + cadenceMs(cadence)
+      ).toISOString()
     : new Date(Date.now() + cadenceMs(cadence)).toISOString();
 
   return NextResponse.json({

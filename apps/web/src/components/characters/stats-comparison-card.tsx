@@ -15,7 +15,10 @@ interface StatsComparisonCardProps {
   showDeltas?: boolean;
 }
 
-function formatValue(value: number, format: StatData['format'] = 'number'): string {
+function formatValue(
+  value: number,
+  format: StatData['format'] = 'number'
+): string {
   if (format === 'xp') {
     if (value >= 1_000_000_000) {
       return `${(value / 1_000_000_000).toFixed(2)}B`;
@@ -30,7 +33,11 @@ function formatValue(value: number, format: StatData['format'] = 'number'): stri
   return value.toLocaleString();
 }
 
-function formatDelta(current: number, previous: number | undefined, format: StatData['format'] = 'number'): string | null {
+function formatDelta(
+  current: number,
+  previous: number | undefined,
+  format: StatData['format'] = 'number'
+): string | null {
   if (previous === undefined) return null;
   const delta = current - previous;
   if (delta === 0) return null;
@@ -50,9 +57,13 @@ export function StatsComparisonCard({
       <h3>{title}</h3>
       <div className="stats-list">
         {stats.map((stat) => {
-          const delta = showDeltas ? formatDelta(stat.current, stat.previous, stat.format) : null;
-          const isPositive = stat.previous !== undefined && stat.current > stat.previous;
-          const isNegative = stat.previous !== undefined && stat.current < stat.previous;
+          const delta = showDeltas
+            ? formatDelta(stat.current, stat.previous, stat.format)
+            : null;
+          const isPositive =
+            stat.previous !== undefined && stat.current > stat.previous;
+          const isNegative =
+            stat.previous !== undefined && stat.current < stat.previous;
 
           return (
             <div
@@ -76,7 +87,9 @@ export function StatsComparisonCard({
               </div>
               {hoveredStat === stat.label && stat.previous !== undefined && (
                 <div className="stat-tooltip">
-                  <span>Previous: {formatValue(stat.previous, stat.format)}</span>
+                  <span>
+                    Previous: {formatValue(stat.previous, stat.format)}
+                  </span>
                 </div>
               )}
             </div>

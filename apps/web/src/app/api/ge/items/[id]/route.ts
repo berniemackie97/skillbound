@@ -4,7 +4,11 @@ import { z } from 'zod';
 
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
-import { getGeItem, getItemTimeseries, type ChartPeriod } from '@/lib/trading/ge-service';
+import {
+  getGeItem,
+  getItemTimeseries,
+  type ChartPeriod,
+} from '@/lib/trading/ge-service';
 
 const paramsSchema = z.object({
   id: z.string().transform((v) => parseInt(v, 10)),

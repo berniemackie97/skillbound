@@ -1,4 +1,11 @@
-import { boolean, integer, jsonb, pgTable, timestamp, uuid } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  integer,
+  jsonb,
+  pgTable,
+  timestamp,
+  uuid,
+} from 'drizzle-orm/pg-core';
 
 import { userCharacters } from '../characters/characters';
 
@@ -24,7 +31,9 @@ export const userSettings = pgTable('user_settings', {
     .notNull()
     .default(24),
   gePresets: jsonb('ge_presets').$type<unknown[]>().default([]),
-  geRefreshIntervalMs: integer('ge_refresh_interval_ms').notNull().default(45000),
+  geRefreshIntervalMs: integer('ge_refresh_interval_ms')
+    .notNull()
+    .default(45000),
   geRefreshPaused: boolean('ge_refresh_paused').notNull().default(false),
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()

@@ -63,7 +63,10 @@ export async function setBankroll(
     throw new Error('Failed to set bankroll');
   }
 
-  logger.info({ characterId, currentBankroll: input.currentBankroll }, 'Updated bankroll');
+  logger.info(
+    { characterId, currentBankroll: input.currentBankroll },
+    'Updated bankroll'
+  );
   return bankroll;
 }
 

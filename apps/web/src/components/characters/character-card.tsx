@@ -191,7 +191,11 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
         >
           {isEditing ? 'Close edit' : 'Edit details'}
         </button>
-        <button className="button ghost" type="button" onClick={handleArchiveToggle}>
+        <button
+          className="button ghost"
+          type="button"
+          onClick={handleArchiveToggle}
+        >
           {isArchived ? 'Restore' : 'Archive'}
         </button>
         <button className="button danger" type="button" onClick={handleDelete}>

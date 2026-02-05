@@ -82,8 +82,7 @@ export async function GET(
     return NextResponse.json(problem, { status: problem.status });
   }
 
-  const activeOnly =
-    request.nextUrl.searchParams.get('activeOnly') !== 'false';
+  const activeOnly = request.nextUrl.searchParams.get('activeOnly') !== 'false';
 
   try {
     const watchList = await getWatchList(characterId, activeOnly);
@@ -272,14 +271,18 @@ export async function PATCH(
   }
 
   try {
-    const updated = await updateWatchItem(characterId, parsed.data.watchItemId, {
-      alertOnMargin: parsed.data.alertOnMargin,
-      alertOnBuyPrice: parsed.data.alertOnBuyPrice,
-      alertOnSellPrice: parsed.data.alertOnSellPrice,
-      alertOnVolume: parsed.data.alertOnVolume,
-      isActive: parsed.data.isActive,
-      notes: parsed.data.notes,
-    });
+    const updated = await updateWatchItem(
+      characterId,
+      parsed.data.watchItemId,
+      {
+        alertOnMargin: parsed.data.alertOnMargin,
+        alertOnBuyPrice: parsed.data.alertOnBuyPrice,
+        alertOnSellPrice: parsed.data.alertOnSellPrice,
+        alertOnVolume: parsed.data.alertOnVolume,
+        isActive: parsed.data.isActive,
+        notes: parsed.data.notes,
+      }
+    );
 
     if (!updated) {
       const problem = createProblemDetails({

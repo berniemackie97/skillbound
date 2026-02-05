@@ -3,17 +3,8 @@
   "description": "Comprehensive OSRS Ironman guide. Parsed from the HTML export with structured instructions, items, and skill requirements.",
   "version": 3,
   "status": "published",
-  "recommendedModes": [
-    "ironman",
-    "hardcore-ironman",
-    "ultimate-ironman"
-  ],
-  "tags": [
-    "ironman",
-    "efficient",
-    "comprehensive",
-    "bruhsailer"
-  ],
+  "recommendedModes": ["ironman", "hardcore-ironman", "ultimate-ironman"],
+  "tags": ["ironman", "efficient", "comprehensive", "bruhsailer"],
   "steps": [
     {
       "stepNumber": 1,

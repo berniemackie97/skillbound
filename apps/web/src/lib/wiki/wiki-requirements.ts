@@ -263,7 +263,9 @@ function parseQuestRequirements(
     if (!link) continue;
 
     const normalizedLink = link.toLowerCase();
-    if (ignoredLinkPrefixes.some((prefix) => normalizedLink.startsWith(prefix))) {
+    if (
+      ignoredLinkPrefixes.some((prefix) => normalizedLink.startsWith(prefix))
+    ) {
       continue;
     }
     if (normalizedLink === 'quest points') {
@@ -294,7 +296,9 @@ function lineHasQuestLink(line: string, knownQuestIds: Set<string>): boolean {
     const link = (match[1] ?? '').trim();
     if (!link) continue;
     const normalizedLink = link.toLowerCase();
-    if (ignoredLinkPrefixes.some((prefix) => normalizedLink.startsWith(prefix))) {
+    if (
+      ignoredLinkPrefixes.some((prefix) => normalizedLink.startsWith(prefix))
+    ) {
       continue;
     }
     const questId = normalizeQuestName(link);

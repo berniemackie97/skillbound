@@ -372,11 +372,7 @@ describe('State Domain Grouping', () => {
     ];
 
     // Progress-related
-    const progressDomains: StateDomain[] = [
-      'skill',
-      'boss',
-      'activity',
-    ];
+    const progressDomains: StateDomain[] = ['skill', 'boss', 'activity'];
 
     // Unlock-related
     const unlockDomains: StateDomain[] = [

@@ -122,7 +122,9 @@ export async function POST(
             })
             .returning();
           if (!newCategory) {
-            throw new Error(`Failed to create category: ${categoryTemplate.name}`);
+            throw new Error(
+              `Failed to create category: ${categoryTemplate.name}`
+            );
           }
           categoryId = newCategory.id;
         } else {

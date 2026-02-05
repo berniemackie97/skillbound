@@ -1,5 +1,9 @@
 import type { DbClient, CharacterProfile } from '@skillbound/database';
-import { characterProfiles, characterSnapshots, eq } from '@skillbound/database';
+import {
+  characterProfiles,
+  characterSnapshots,
+  eq,
+} from '@skillbound/database';
 import {
   HiscoresNotFoundError,
   HiscoresRateLimitError,
@@ -15,7 +19,6 @@ import { buildSnapshotInsert } from '../snapshots/snapshots';
 
 import { dbModeToHiscoresMode, hiscoresModeToDbMode } from './game-mode';
 import { syncCharacterStateFromRunelite } from './runelite-state';
-
 
 export type CharacterSyncResult = {
   snapshot: typeof characterSnapshots.$inferSelect;

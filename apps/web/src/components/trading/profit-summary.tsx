@@ -265,7 +265,8 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                           {flip.flipCount} flip{flip.flipCount !== 1 ? 's' : ''}
                         </span>
                         <span className="flip-prices">
-                          {formatGp(flip.avgBuyPrice)} → {formatGp(flip.avgSellPrice)}
+                          {formatGp(flip.avgBuyPrice)} →{' '}
+                          {formatGp(flip.avgSellPrice)}
                         </span>
                       </div>
                     </div>
@@ -311,7 +312,8 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                           {flip.flipCount} flip{flip.flipCount !== 1 ? 's' : ''}
                         </span>
                         <span className="flip-prices">
-                          {formatGp(flip.avgBuyPrice)} → {formatGp(flip.avgSellPrice)}
+                          {formatGp(flip.avgBuyPrice)} →{' '}
+                          {formatGp(flip.avgSellPrice)}
                         </span>
                       </div>
                     </div>

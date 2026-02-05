@@ -29,7 +29,10 @@ import {
 import { getDbClient } from '../db';
 import { logger } from '../logging/logger';
 
-import { archiveSnapshotsBatch, getSnapshotArchivePolicy } from './snapshot-archives';
+import {
+  archiveSnapshotsBatch,
+  getSnapshotArchivePolicy,
+} from './snapshot-archives';
 
 /**
  * Retention tier configuration
@@ -117,7 +120,9 @@ function getBucketKey(date: Date, tier: RetentionTier): string {
       const daysSinceFirstDay = Math.floor(
         (date.getTime() - firstDayOfYear.getTime()) / (24 * 60 * 60 * 1000)
       );
-      const weekNumber = Math.ceil((daysSinceFirstDay + firstDayOfYear.getUTCDay() + 1) / 7);
+      const weekNumber = Math.ceil(
+        (daysSinceFirstDay + firstDayOfYear.getUTCDay() + 1) / 7
+      );
       return `${year}-W${String(weekNumber).padStart(2, '0')}`;
     }
     case 'monthly':
@@ -260,7 +265,12 @@ export async function runRetentionJob(
 
   try {
     // Process each tier that can be promoted (realtime -> hourly -> daily -> weekly)
-    const promotableTiers: RetentionTier[] = ['realtime', 'hourly', 'daily', 'weekly'];
+    const promotableTiers: RetentionTier[] = [
+      'realtime',
+      'hourly',
+      'daily',
+      'weekly',
+    ];
 
     for (const tier of promotableTiers) {
       const config = RETENTION_CONFIG[tier];
@@ -377,7 +387,9 @@ export async function runRetentionJob(
                 } else if (archiveResult.status === 'failed') {
                   stats.archiveErrors += 1;
                   stats.errors += 1;
-                  errors.push(`Archive failed for bucket: ${archiveResult.error}`);
+                  errors.push(
+                    `Archive failed for bucket: ${archiveResult.error}`
+                  );
                 }
 
                 const archiveSucceeded =
@@ -385,9 +397,11 @@ export async function runRetentionJob(
                   archiveResult.status === 'exists';
 
                 if (archivePolicy.allowDelete && archiveSucceeded) {
-                  await db.delete(characterSnapshots).where(
-                    sql`${characterSnapshots.id} = ANY(${snapshotsToDelete.map((s) => s.id)})`
-                  );
+                  await db
+                    .delete(characterSnapshots)
+                    .where(
+                      sql`${characterSnapshots.id} = ANY(${snapshotsToDelete.map((s) => s.id)})`
+                    );
                   stats.deleted += snapshotsToDelete.length;
                 } else {
                   logger.warn(
@@ -509,7 +523,9 @@ export async function runRetentionJob(
             } else if (archiveResult.status === 'failed') {
               stats.archiveErrors += 1;
               stats.errors += 1;
-              errors.push(`Archive failed for expired bucket: ${archiveResult.error}`);
+              errors.push(
+                `Archive failed for expired bucket: ${archiveResult.error}`
+              );
             }
 
             const archiveSucceeded =
@@ -517,9 +533,11 @@ export async function runRetentionJob(
               archiveResult.status === 'exists';
 
             if (archivePolicy.allowDelete && archiveSucceeded) {
-              await db.delete(characterSnapshots).where(
-                sql`${characterSnapshots.id} = ANY(${bucketSnapshots.map((s) => s.id)})`
-              );
+              await db
+                .delete(characterSnapshots)
+                .where(
+                  sql`${characterSnapshots.id} = ANY(${bucketSnapshots.map((s) => s.id)})`
+                );
               stats.deleted += bucketSnapshots.length;
             } else {
               logger.warn(
@@ -649,9 +667,15 @@ export function detectMilestones(
       }
       // Every 10 levels milestone for combat stats
       else if (
-        ['attack', 'strength', 'defence', 'hitpoints', 'ranged', 'magic', 'prayer'].includes(
-          currentSkill.name.toLowerCase()
-        )
+        [
+          'attack',
+          'strength',
+          'defence',
+          'hitpoints',
+          'ranged',
+          'magic',
+          'prayer',
+        ].includes(currentSkill.name.toLowerCase())
       ) {
         const prevTens = Math.floor(previousSkill.level / 10);
         const currTens = Math.floor(currentSkill.level / 10);
@@ -710,9 +734,7 @@ export function detectMilestones(
 /**
  * Get retention statistics for a character
  */
-export async function getCharacterRetentionStats(
-  profileId: string
-): Promise<{
+export async function getCharacterRetentionStats(profileId: string): Promise<{
   total: number;
   byTier: Record<RetentionTier, number>;
   milestones: number;
@@ -821,7 +843,9 @@ export async function getGlobalRetentionStats(): Promise<{
     .where(eq(characterSnapshots.isMilestone, true));
 
   const [characterResult] = await db
-    .select({ count: sql<number>`count(distinct ${characterSnapshots.profileId})` })
+    .select({
+      count: sql<number>`count(distinct ${characterSnapshots.profileId})`,
+    })
     .from(characterSnapshots);
 
   const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);

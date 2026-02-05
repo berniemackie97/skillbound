@@ -43,12 +43,16 @@ const querySchema = z.object({
   limit: z
     .string()
     .optional()
-    .transform((v) => Math.min(Math.max(1, parseInt(v ?? '25', 10) || 25), 100)),
+    .transform((v) =>
+      Math.min(Math.max(1, parseInt(v ?? '25', 10) || 25), 100)
+    ),
   search: z.string().optional(),
   members: z
     .string()
     .optional()
-    .transform((v) => (v === 'true' ? true : v === 'false' ? false : undefined)),
+    .transform((v) =>
+      v === 'true' ? true : v === 'false' ? false : undefined
+    ),
   minProfit: z
     .string()
     .optional()
@@ -122,11 +126,16 @@ function parseSortList(value?: string): SortField[] {
     .split(',')
     .map((entry) => entry.trim())
     .filter(Boolean);
-  const valid = candidates.filter((entry) => sortFields.includes(entry as SortField));
+  const valid = candidates.filter((entry) =>
+    sortFields.includes(entry as SortField)
+  );
   return valid.length > 0 ? (valid as SortField[]) : ['profit'];
 }
 
-function parseOrderList(value: string | undefined, length: number): SortDirection[] {
+function parseOrderList(
+  value: string | undefined,
+  length: number
+): SortDirection[] {
   const candidates = (value ?? '')
     .split(',')
     .map((entry) => entry.trim().toLowerCase())

@@ -236,19 +236,17 @@ export const geInventoryPositions = pgTable(
   },
   (table) => ({
     // UNIQUE CONSTRAINT: One position per character/item
-    characterItemUnique: unique('ge_inventory_positions_character_item_unique').on(
-      table.userCharacterId,
-      table.itemId
-    ),
+    characterItemUnique: unique(
+      'ge_inventory_positions_character_item_unique'
+    ).on(table.userCharacterId, table.itemId),
     // Index for querying all positions for a character
     characterIdIdx: index('ge_inventory_positions_character_id_idx').on(
       table.userCharacterId
     ),
     // Index for positions with remaining items
-    characterRemainingIdx: index('ge_inventory_positions_character_remaining_idx').on(
-      table.userCharacterId,
-      table.remainingQuantity
-    ),
+    characterRemainingIdx: index(
+      'ge_inventory_positions_character_remaining_idx'
+    ).on(table.userCharacterId, table.remainingQuantity),
   })
 );
 

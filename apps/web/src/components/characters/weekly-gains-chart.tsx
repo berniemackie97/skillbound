@@ -31,7 +31,10 @@ function formatXp(value: number): string {
   return value.toLocaleString();
 }
 
-export function WeeklyGainsChart({ gains, maxItems = 10 }: WeeklyGainsChartProps) {
+export function WeeklyGainsChart({
+  gains,
+  maxItems = 10,
+}: WeeklyGainsChartProps) {
   if (gains.length === 0) {
     return (
       <div className="chart-empty">
@@ -48,7 +51,12 @@ export function WeeklyGainsChart({ gains, maxItems = 10 }: WeeklyGainsChartProps
 
   return (
     <div className="chart-container large">
-      <ResponsiveContainer height="100%" minHeight={160} minWidth={0} width="100%">
+      <ResponsiveContainer
+        height="100%"
+        minHeight={160}
+        minWidth={0}
+        width="100%"
+      >
         <BarChart
           data={chartData}
           margin={{ top: 8, right: 8, left: -10, bottom: 5 }}
@@ -77,7 +85,6 @@ export function WeeklyGainsChart({ gains, maxItems = 10 }: WeeklyGainsChartProps
           />
           <Tooltip
             cursor={{ fill: 'rgba(212, 175, 55, 0.1)' }}
-            labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
@@ -94,6 +101,11 @@ export function WeeklyGainsChart({ gains, maxItems = 10 }: WeeklyGainsChartProps
                 return [`+${numValue}`, 'Levels'];
               }
               return [String(numValue), String(name)];
+            }}
+            labelStyle={{
+              color: 'var(--text)',
+              fontWeight: 600,
+              marginBottom: 4,
             }}
           />
           <Bar

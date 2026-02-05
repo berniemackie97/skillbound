@@ -1,6 +1,12 @@
 'use client';
 
-import type { CombatAchievement, Diary, DiaryTask, DiaryTier, Quest } from '@skillbound/content';
+import type {
+  CombatAchievement,
+  Diary,
+  DiaryTask,
+  DiaryTier,
+  Quest,
+} from '@skillbound/content';
 import type { RequirementResult, RequirementStatus } from '@skillbound/domain';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
@@ -138,12 +144,12 @@ export function ComprehensiveProgression({
       : initialTab === 'achievements'
         ? 'achievements'
         : initialTab === 'clues'
-            ? 'clues'
-            : initialTab === 'pvp'
-              ? 'pvp'
-              : initialTab === 'requirements'
-                ? 'quests'
-                : 'bosses'
+          ? 'clues'
+          : initialTab === 'pvp'
+            ? 'pvp'
+            : initialTab === 'requirements'
+              ? 'quests'
+              : 'bosses'
   );
   const [requirementsData, setRequirementsData] =
     useState<RequirementsData | null>(null);
@@ -293,8 +299,11 @@ export function ComprehensiveProgression({
             ? applyLocalProgress(result.data, localOverrides)
             : result.data;
           const mergedRequirements = localOverrides
-            ? applyLocalQuestStatus(result.data.requirements ?? null, localOverrides)
-            : result.data.requirements ?? null;
+            ? applyLocalQuestStatus(
+                result.data.requirements ?? null,
+                localOverrides
+              )
+            : (result.data.requirements ?? null);
 
           setData(mergedData);
           setRequirementsData(mergedRequirements);
@@ -468,7 +477,9 @@ export function ComprehensiveProgression({
     return 'MET';
   };
 
-  const summarizeStatus = (statuses: RequirementStatus[]): RequirementStatus => {
+  const summarizeStatus = (
+    statuses: RequirementStatus[]
+  ): RequirementStatus => {
     if (statuses.length === 0) return 'UNKNOWN';
     if (statuses.every((status) => status === 'MET')) return 'MET';
     const hasMet = statuses.some((status) => status === 'MET');
@@ -559,19 +570,91 @@ export function ComprehensiveProgression({
     if (!data) return {};
 
     return {
-      'Slayer': data.bosses.filter((b) => ['Abyssal Sire', 'Alchemical Hydra', 'Cerberus', 'Kraken', 'Thermonuclear Smoke Devil', 'Grotesque Guardians'].includes(b.bossName)),
-      'God Wars': data.bosses.filter((b) => ['Commander Zilyana', 'General Graardor', 'Kree\'arra', 'K\'ril Tsutsaroth', 'Nex'].includes(b.bossName)),
-      'Wilderness': data.bosses.filter((b) => ['Callisto', 'Calvar\'ion', 'Chaos Elemental', 'Chaos Fanatic', 'Crazy Archaeologist', 'Scorpia', 'Spindel', 'Venenatis', 'Vet\'ion', 'Artio'].includes(b.bossName)),
-      'Raids': data.bosses.filter((b) => b.bossName.includes('Chambers') || b.bossName.includes('Theatre') || b.bossName.includes('Tombs')),
-      'Other': data.bosses.filter((b) => !['Slayer', 'God Wars', 'Wilderness', 'Raids'].some(cat =>
-        data.bosses.filter((boss) => {
-          if (cat === 'Slayer') return ['Abyssal Sire', 'Alchemical Hydra', 'Cerberus', 'Kraken', 'Thermonuclear Smoke Devil', 'Grotesque Guardians'].includes(boss.bossName);
-          if (cat === 'God Wars') return ['Commander Zilyana', 'General Graardor', 'Kree\'arra', 'K\'ril Tsutsaroth', 'Nex'].includes(boss.bossName);
-          if (cat === 'Wilderness') return ['Callisto', 'Calvar\'ion', 'Chaos Elemental', 'Chaos Fanatic', 'Crazy Archaeologist', 'Scorpia', 'Spindel', 'Venenatis', 'Vet\'ion', 'Artio'].includes(boss.bossName);
-          if (cat === 'Raids') return boss.bossName.includes('Chambers') || boss.bossName.includes('Theatre') || boss.bossName.includes('Tombs');
-          return false;
-        }).includes(b)
-      )),
+      Slayer: data.bosses.filter((b) =>
+        [
+          'Abyssal Sire',
+          'Alchemical Hydra',
+          'Cerberus',
+          'Kraken',
+          'Thermonuclear Smoke Devil',
+          'Grotesque Guardians',
+        ].includes(b.bossName)
+      ),
+      'God Wars': data.bosses.filter((b) =>
+        [
+          'Commander Zilyana',
+          'General Graardor',
+          "Kree'arra",
+          "K'ril Tsutsaroth",
+          'Nex',
+        ].includes(b.bossName)
+      ),
+      Wilderness: data.bosses.filter((b) =>
+        [
+          'Callisto',
+          "Calvar'ion",
+          'Chaos Elemental',
+          'Chaos Fanatic',
+          'Crazy Archaeologist',
+          'Scorpia',
+          'Spindel',
+          'Venenatis',
+          "Vet'ion",
+          'Artio',
+        ].includes(b.bossName)
+      ),
+      Raids: data.bosses.filter(
+        (b) =>
+          b.bossName.includes('Chambers') ||
+          b.bossName.includes('Theatre') ||
+          b.bossName.includes('Tombs')
+      ),
+      Other: data.bosses.filter(
+        (b) =>
+          !['Slayer', 'God Wars', 'Wilderness', 'Raids'].some((cat) =>
+            data.bosses
+              .filter((boss) => {
+                if (cat === 'Slayer')
+                  return [
+                    'Abyssal Sire',
+                    'Alchemical Hydra',
+                    'Cerberus',
+                    'Kraken',
+                    'Thermonuclear Smoke Devil',
+                    'Grotesque Guardians',
+                  ].includes(boss.bossName);
+                if (cat === 'God Wars')
+                  return [
+                    'Commander Zilyana',
+                    'General Graardor',
+                    "Kree'arra",
+                    "K'ril Tsutsaroth",
+                    'Nex',
+                  ].includes(boss.bossName);
+                if (cat === 'Wilderness')
+                  return [
+                    'Callisto',
+                    "Calvar'ion",
+                    'Chaos Elemental',
+                    'Chaos Fanatic',
+                    'Crazy Archaeologist',
+                    'Scorpia',
+                    'Spindel',
+                    'Venenatis',
+                    "Vet'ion",
+                    'Artio',
+                  ].includes(boss.bossName);
+                if (cat === 'Raids')
+                  return (
+                    boss.bossName.includes('Chambers') ||
+                    boss.bossName.includes('Theatre') ||
+                    boss.bossName.includes('Tombs')
+                  );
+                return false;
+              })
+              .includes(b)
+          )
+      ),
     };
   }, [data]);
 
@@ -639,8 +722,14 @@ export function ComprehensiveProgression({
       { key: 'deadman_points', label: 'Deadman points' },
       { key: 'bounty_hunter_hunter', label: 'Bounty hunter - Hunter' },
       { key: 'bounty_hunter_rogue', label: 'Bounty hunter - Rogue' },
-      { key: 'bounty_hunter_legacy_hunter', label: 'Bounty hunter (legacy) - Hunter' },
-      { key: 'bounty_hunter_legacy_rogue', label: 'Bounty hunter (legacy) - Rogue' },
+      {
+        key: 'bounty_hunter_legacy_hunter',
+        label: 'Bounty hunter (legacy) - Hunter',
+      },
+      {
+        key: 'bounty_hunter_legacy_rogue',
+        label: 'Bounty hunter (legacy) - Rogue',
+      },
       { key: 'lms_rank', label: 'Last Man Standing' },
       { key: 'pvp_arena_rank', label: 'PvP Arena' },
     ],
@@ -672,7 +761,11 @@ export function ComprehensiveProgression({
       { id: 'collections_700', label: '700 Collections Logged', target: 700 },
       { id: 'collections_900', label: '900 Collections Logged', target: 900 },
       { id: 'collections_1000', label: '1k Collections Logged', target: 1000 },
-      { id: 'collections_1100', label: '1.1k Collections Logged', target: 1100 },
+      {
+        id: 'collections_1100',
+        label: '1.1k Collections Logged',
+        target: 1100,
+      },
     ],
     []
   );
@@ -723,7 +816,9 @@ export function ComprehensiveProgression({
   }, [filteredCombat]);
 
   if (loading) {
-    return <div className="progression-loading">Loading progression data...</div>;
+    return (
+      <div className="progression-loading">Loading progression data...</div>
+    );
   }
 
   if (error) {
@@ -760,7 +855,8 @@ export function ComprehensiveProgression({
           className={`tab ${activeTab === 'bosses' ? 'active' : ''}`}
           onClick={() => setActiveTab('bosses')}
         >
-          Bosses ({data.bosses.filter((b) => b.killcount > 0).length}/{data.bosses.length})
+          Bosses ({data.bosses.filter((b) => b.killcount > 0).length}/
+          {data.bosses.length})
         </button>
         <button
           className={`tab ${activeTab === 'gear' ? 'active' : ''}`}
@@ -772,7 +868,8 @@ export function ComprehensiveProgression({
           className={`tab ${activeTab === 'milestones' ? 'active' : ''}`}
           onClick={() => setActiveTab('milestones')}
         >
-          Milestones ({data.milestones.filter((m) => m.achieved).length}/{data.milestones.length})
+          Milestones ({data.milestones.filter((m) => m.achieved).length}/
+          {data.milestones.length})
         </button>
         <button
           className={`tab ${activeTab === 'quests' ? 'active' : ''}`}
@@ -784,7 +881,8 @@ export function ComprehensiveProgression({
           className={`tab ${activeTab === 'achievements' ? 'active' : ''}`}
           onClick={() => setActiveTab('achievements')}
         >
-          Achievements ({achievementsSummary.complete}/{achievementsSummary.total})
+          Achievements ({achievementsSummary.complete}/
+          {achievementsSummary.total})
         </button>
         <button
           className={`tab ${activeTab === 'clues' ? 'active' : ''}`}
@@ -802,96 +900,120 @@ export function ComprehensiveProgression({
 
       {activeTab === 'bosses' && (
         <div className="bosses-section">
-          {Object.entries(bossCategories).map(([category, bosses]) => (
-            bosses.length > 0 && (
-              <div key={category} className="boss-category">
-                <h3>{category}</h3>
-                <div className="boss-grid">
-                  {bosses.map((boss) => (
-                    <div key={boss.id} className="boss-item">
-                      <div className="boss-name">{boss.bossName}</div>
-                      <div className="boss-kc">
-                        <label>KC:</label>
-                        <input
-                          className="kc-input"
-                          min="0"
-                          type="number"
-                          value={boss.killcount}
-                          onChange={(e) => updateBossKC(boss.bossName, parseInt(e.target.value) || 0)}
-                        />
+          {Object.entries(bossCategories).map(
+            ([category, bosses]) =>
+              bosses.length > 0 && (
+                <div key={category} className="boss-category">
+                  <h3>{category}</h3>
+                  <div className="boss-grid">
+                    {bosses.map((boss) => (
+                      <div key={boss.id} className="boss-item">
+                        <div className="boss-name">{boss.bossName}</div>
+                        <div className="boss-kc">
+                          <label>KC:</label>
+                          <input
+                            className="kc-input"
+                            min="0"
+                            type="number"
+                            value={boss.killcount}
+                            onChange={(e) =>
+                              updateBossKC(
+                                boss.bossName,
+                                parseInt(e.target.value) || 0
+                              )
+                            }
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )
-          ))}
+              )
+          )}
         </div>
       )}
 
       {activeTab === 'gear' && (
         <div className="gear-section">
-          {(['early', 'mid', 'late', 'end', 'specialized'] as const).map((stage) => {
-            const stageGear = data.gear.filter((g) => g.gameStage === stage);
-            if (stageGear.length === 0) return null;
+          {(['early', 'mid', 'late', 'end', 'specialized'] as const).map(
+            (stage) => {
+              const stageGear = data.gear.filter((g) => g.gameStage === stage);
+              if (stageGear.length === 0) return null;
 
-            return (
-              <div key={stage} className="gear-stage">
-                <h3>{stage.charAt(0).toUpperCase() + stage.slice(1)} Game</h3>
-                <div className="gear-list">
-                  {stageGear.map((item) => (
-                    <div key={item.id} className={`gear-item ${item.obtained ? 'obtained' : ''}`}>
-                      <label className="gear-checkbox">
-                        <input
-                          checked={item.obtained}
-                          type="checkbox"
-                          onChange={() => toggleGear(item.id, item.obtained)}
-                        />
-                        <div className="gear-content">
-                          <div className="gear-name">{item.itemName}</div>
-                          <div className="gear-source">{item.source}</div>
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+              return (
+                <div key={stage} className="gear-stage">
+                  <h3>{stage.charAt(0).toUpperCase() + stage.slice(1)} Game</h3>
+                  <div className="gear-list">
+                    {stageGear.map((item) => (
+                      <div
+                        key={item.id}
+                        className={`gear-item ${item.obtained ? 'obtained' : ''}`}
+                      >
+                        <label className="gear-checkbox">
+                          <input
+                            checked={item.obtained}
+                            type="checkbox"
+                            onChange={() => toggleGear(item.id, item.obtained)}
+                          />
+                          <div className="gear-content">
+                            <div className="gear-name">{item.itemName}</div>
+                            <div className="gear-source">{item.source}</div>
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            }
+          )}
         </div>
       )}
 
       {activeTab === 'milestones' && (
         <div className="milestones-section">
-          {(['easy', 'medium', 'hard', 'elite', 'master'] as const).map((difficulty) => {
-            const difficultyMilestones = data.milestones.filter((m) => m.difficulty === difficulty);
-            if (difficultyMilestones.length === 0) return null;
+          {(['easy', 'medium', 'hard', 'elite', 'master'] as const).map(
+            (difficulty) => {
+              const difficultyMilestones = data.milestones.filter(
+                (m) => m.difficulty === difficulty
+              );
+              if (difficultyMilestones.length === 0) return null;
 
-            return (
-              <div key={difficulty} className="milestone-difficulty">
-                <h3>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</h3>
-                <div className="milestone-list">
-                  {difficultyMilestones.map((item) => (
-                    <div key={item.id} className={`milestone-item ${item.achieved ? 'achieved' : ''}`}>
-                      <label className="milestone-checkbox">
-                        <input
-                          checked={item.achieved}
-                          type="checkbox"
-                          onChange={() => toggleMilestone(item.id, item.achieved)}
-                        />
-                        <div className="milestone-content">
-                          <div className="milestone-name">{item.name}</div>
-                          {item.description && (
-                            <div className="milestone-description">{item.description}</div>
-                          )}
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+              return (
+                <div key={difficulty} className="milestone-difficulty">
+                  <h3>
+                    {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+                  </h3>
+                  <div className="milestone-list">
+                    {difficultyMilestones.map((item) => (
+                      <div
+                        key={item.id}
+                        className={`milestone-item ${item.achieved ? 'achieved' : ''}`}
+                      >
+                        <label className="milestone-checkbox">
+                          <input
+                            checked={item.achieved}
+                            type="checkbox"
+                            onChange={() =>
+                              toggleMilestone(item.id, item.achieved)
+                            }
+                          />
+                          <div className="milestone-content">
+                            <div className="milestone-name">{item.name}</div>
+                            {item.description && (
+                              <div className="milestone-description">
+                                {item.description}
+                              </div>
+                            )}
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            }
+          )}
         </div>
       )}
 
@@ -929,7 +1051,11 @@ export function ComprehensiveProgression({
               {filteredQuests.map((item, index) => {
                 const isUpdating = questUpdating.has(item.quest.id);
                 return (
-                  <details key={item.quest.id} className="requirement-card" open={index < 4}>
+                  <details
+                    key={item.quest.id}
+                    className="requirement-card"
+                    open={index < 4}
+                  >
                     <summary>
                       <div className="requirement-summary">
                         <strong>{item.quest.name}</strong>
@@ -944,7 +1070,10 @@ export function ComprehensiveProgression({
                         onClick={(event) => {
                           event.preventDefault();
                           event.stopPropagation();
-                          void toggleQuestStatus(item.quest.id, item.completionStatus);
+                          void toggleQuestStatus(
+                            item.quest.id,
+                            item.completionStatus
+                          );
                         }}
                       >
                         {item.completionStatus}
@@ -1016,15 +1145,17 @@ export function ComprehensiveProgression({
                     );
 
                     return (
-                      <details key={entry.diary.id} className="requirement-card" open={index < 2}>
+                      <details
+                        key={entry.diary.id}
+                        className="requirement-card"
+                        open={index < 2}
+                      >
                         <summary>
                           <div className="requirement-summary">
                             <strong>{entry.diary.name}</strong>
                             <span className="muted">{entry.diary.region}</span>
                           </div>
-                          <span className={statusClass(status)}>
-                            {status}
-                          </span>
+                          <span className={statusClass(status)}>{status}</span>
                         </summary>
                         <div className="requirement-card-body">
                           {entry.tiers.map((tier) => {
@@ -1032,49 +1163,71 @@ export function ComprehensiveProgression({
                               tier.tasks.map((task) => task.completionStatus)
                             );
                             return (
-                            <details
-                              key={`${entry.diary.id}-${tier.tier.tier}`}
-                              className="requirement-subcard"
-                            >
-                              <summary>
-                                <div className="requirement-summary">
-                                  <strong>{tier.tier.name ?? tier.tier.tier}</strong>
-                                  <span className="muted">{tier.tasks.length} tasks</span>
-                                </div>
-                                <span className={statusClass(tierStatus)}>
-                                  {tierStatus}
-                                </span>
-                              </summary>
-                              <div className="requirement-card-body">
-                                <RequirementList items={tier.requirements.required} />
-                                {tier.requirements.optional.length > 0 && (
-                                  <>
-                                    <div className="label">Optional</div>
-                                    <RequirementList items={tier.requirements.optional} />
-                                  </>
-                                )}
-                                <div className="requirement-task-list">
-                                  {tier.tasks.map((task) => (
-                                    <div key={task.task.id} className="requirement-task">
-                                      <div className="requirement-task-header">
-                                        <span>{task.task.description}</span>
-                                        <span className={statusClass(task.completionStatus)}>
-                                          {task.completionStatus}
-                                        </span>
+                              <details
+                                key={`${entry.diary.id}-${tier.tier.tier}`}
+                                className="requirement-subcard"
+                              >
+                                <summary>
+                                  <div className="requirement-summary">
+                                    <strong>
+                                      {tier.tier.name ?? tier.tier.tier}
+                                    </strong>
+                                    <span className="muted">
+                                      {tier.tasks.length} tasks
+                                    </span>
+                                  </div>
+                                  <span className={statusClass(tierStatus)}>
+                                    {tierStatus}
+                                  </span>
+                                </summary>
+                                <div className="requirement-card-body">
+                                  <RequirementList
+                                    items={tier.requirements.required}
+                                  />
+                                  {tier.requirements.optional.length > 0 && (
+                                    <>
+                                      <div className="label">Optional</div>
+                                      <RequirementList
+                                        items={tier.requirements.optional}
+                                      />
+                                    </>
+                                  )}
+                                  <div className="requirement-task-list">
+                                    {tier.tasks.map((task) => (
+                                      <div
+                                        key={task.task.id}
+                                        className="requirement-task"
+                                      >
+                                        <div className="requirement-task-header">
+                                          <span>{task.task.description}</span>
+                                          <span
+                                            className={statusClass(
+                                              task.completionStatus
+                                            )}
+                                          >
+                                            {task.completionStatus}
+                                          </span>
+                                        </div>
+                                        <RequirementList
+                                          items={task.requirements.required}
+                                        />
+                                        {task.requirements.optional.length >
+                                          0 && (
+                                          <>
+                                            <div className="label">
+                                              Optional
+                                            </div>
+                                            <RequirementList
+                                              items={task.requirements.optional}
+                                            />
+                                          </>
+                                        )}
                                       </div>
-                                      <RequirementList items={task.requirements.required} />
-                                      {task.requirements.optional.length > 0 && (
-                                        <>
-                                          <div className="label">Optional</div>
-                                          <RequirementList items={task.requirements.optional} />
-                                        </>
-                                      )}
-                                    </div>
-                                  ))}
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            </details>
-                          );
+                              </details>
+                            );
                           })}
                         </div>
                       </details>
@@ -1097,7 +1250,9 @@ export function ComprehensiveProgression({
                 </div>
                 <div className="requirements-stack">
                   {filteredCombat.length === 0 && (
-                    <div className="muted">No combat achievements match your search.</div>
+                    <div className="muted">
+                      No combat achievements match your search.
+                    </div>
                   )}
                   {Object.entries(combatByTier).map(([tier, items], index) => {
                     const status = summarizeStatus(
@@ -1105,34 +1260,49 @@ export function ComprehensiveProgression({
                     );
 
                     return (
-                      <details key={tier} className="requirement-card" open={index < 2}>
+                      <details
+                        key={tier}
+                        className="requirement-card"
+                        open={index < 2}
+                      >
                         <summary>
                           <div className="requirement-summary">
                             <strong>{tier}</strong>
                             <span className="muted">{items.length} tasks</span>
                           </div>
-                          <span className={statusClass(status)}>
-                            {status}
-                          </span>
+                          <span className={statusClass(status)}>{status}</span>
                         </summary>
                         <div className="requirement-card-body">
                           <div className="requirement-task-list">
                             {items.map((item) => (
-                              <div key={item.achievement.id} className="requirement-task">
+                              <div
+                                key={item.achievement.id}
+                                className="requirement-task"
+                              >
                                 <div className="requirement-task-header">
                                   <span>{item.achievement.name}</span>
-                                  <span className={statusClass(item.completionStatus)}>
+                                  <span
+                                    className={statusClass(
+                                      item.completionStatus
+                                    )}
+                                  >
                                     {item.completionStatus}
                                   </span>
                                 </div>
                                 {item.achievement.description && (
-                                  <p className="muted">{item.achievement.description}</p>
+                                  <p className="muted">
+                                    {item.achievement.description}
+                                  </p>
                                 )}
-                                <RequirementList items={item.requirements.required} />
+                                <RequirementList
+                                  items={item.requirements.required}
+                                />
                                 {item.requirements.optional.length > 0 && (
                                   <>
                                     <div className="label">Optional</div>
-                                    <RequirementList items={item.requirements.optional} />
+                                    <RequirementList
+                                      items={item.requirements.optional}
+                                    />
                                   </>
                                 )}
                               </div>
@@ -1152,13 +1322,18 @@ export function ComprehensiveProgression({
               <div className="achievement-panel-header">
                 <div>
                   <h3>Skillbound achievements</h3>
-                  <p className="muted">Progress milestones powered by your activity stats.</p>
+                  <p className="muted">
+                    Progress milestones powered by your activity stats.
+                  </p>
                 </div>
               </div>
               <div className="requirements-stack">
                 {activityAchievements.map((achievement) => {
                   const current = activityMap['collections_logged'] ?? 0;
-                  const progress = Math.min(100, (current / achievement.target) * 100);
+                  const progress = Math.min(
+                    100,
+                    (current / achievement.target) * 100
+                  );
                   const remaining = Math.max(achievement.target - current, 0);
                   const completed = current >= achievement.target;
 
@@ -1174,8 +1349,11 @@ export function ComprehensiveProgression({
                                 : `${formatNumber(remaining)} left`}
                             </span>
                           </div>
-                          <span className={`status-pill ${completed ? 'met' : 'unknown'}`}>
-                            {formatNumber(current)} / {formatNumber(achievement.target)}
+                          <span
+                            className={`status-pill ${completed ? 'met' : 'unknown'}`}
+                          >
+                            {formatNumber(current)} /{' '}
+                            {formatNumber(achievement.target)}
                           </span>
                         </div>
                         <div className="achievement-progress">
@@ -1201,22 +1379,22 @@ export function ComprehensiveProgression({
             </div>
           </div>
           <div className="requirements-stack">
-          {clueActivities.map((item) => (
-            <div key={item.key} className="requirement-card">
-              <div className="requirement-card-body">
-                <div className="requirement-task-header">
-                  <span>{item.label}</span>
-                  <span className="status-pill met">
-                    {formatNumber(activityMap?.[item.key] ?? 0)}
-                  </span>
+            {clueActivities.map((item) => (
+              <div key={item.key} className="requirement-card">
+                <div className="requirement-card-body">
+                  <div className="requirement-task-header">
+                    <span>{item.label}</span>
+                    <span className="status-pill met">
+                      {formatNumber(activityMap?.[item.key] ?? 0)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
             {!activityMap && (
               <div className="requirements-error">
-                No activity data available yet. Sync your character to load
-                clue scroll counts.
+                No activity data available yet. Sync your character to load clue
+                scroll counts.
               </div>
             )}
           </div>

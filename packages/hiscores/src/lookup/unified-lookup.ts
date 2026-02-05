@@ -4,7 +4,10 @@ import {
   fetchAndParseRuneLitePlayer,
   RuneLiteAPIError,
 } from '../runelite/runelite-client';
-import type { AccountType, ParsedRuneLiteData } from '../runelite/runelite-types';
+import type {
+  AccountType,
+  ParsedRuneLiteData,
+} from '../runelite/runelite-types';
 
 export type DataSource = 'runelite' | 'hiscores';
 

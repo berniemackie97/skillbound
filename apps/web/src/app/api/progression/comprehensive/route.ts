@@ -87,41 +87,48 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch all progression data in parallel
-    const [bosses, collectionLog, gear, goals, latestSnapshot, overrides, stateData] =
-      await Promise.all([
-        db
-          .select()
-          .from(bossKillcounts)
-          .where(eq(bossKillcounts.userCharacterId, parsed.data.characterId)),
-        db
-          .select()
-          .from(collectionLogItems)
-          .where(eq(collectionLogItems.userCharacterId, parsed.data.characterId)),
-        db
-          .select()
-          .from(gearProgression)
-          .where(eq(gearProgression.userCharacterId, parsed.data.characterId)),
-        db
-          .select()
-          .from(milestones)
-          .where(eq(milestones.userCharacterId, parsed.data.characterId)),
-        db
-          .select()
-          .from(characterSnapshots)
-          .where(eq(characterSnapshots.profileId, character.profile.id))
-          .orderBy(desc(characterSnapshots.capturedAt))
-          .limit(1)
-          .then((rows) => rows[0]),
-        db
-          .select()
-          .from(characterOverrides)
-          .where(eq(characterOverrides.userCharacterId, parsed.data.characterId)),
-        // Fetch character_state data for quests, diaries, combat achievements
-        db
-          .select()
-          .from(characterState)
-          .where(eq(characterState.userCharacterId, parsed.data.characterId)),
-      ]);
+    const [
+      bosses,
+      collectionLog,
+      gear,
+      goals,
+      latestSnapshot,
+      overrides,
+      stateData,
+    ] = await Promise.all([
+      db
+        .select()
+        .from(bossKillcounts)
+        .where(eq(bossKillcounts.userCharacterId, parsed.data.characterId)),
+      db
+        .select()
+        .from(collectionLogItems)
+        .where(eq(collectionLogItems.userCharacterId, parsed.data.characterId)),
+      db
+        .select()
+        .from(gearProgression)
+        .where(eq(gearProgression.userCharacterId, parsed.data.characterId)),
+      db
+        .select()
+        .from(milestones)
+        .where(eq(milestones.userCharacterId, parsed.data.characterId)),
+      db
+        .select()
+        .from(characterSnapshots)
+        .where(eq(characterSnapshots.profileId, character.profile.id))
+        .orderBy(desc(characterSnapshots.capturedAt))
+        .limit(1)
+        .then((rows) => rows[0]),
+      db
+        .select()
+        .from(characterOverrides)
+        .where(eq(characterOverrides.userCharacterId, parsed.data.characterId)),
+      // Fetch character_state data for quests, diaries, combat achievements
+      db
+        .select()
+        .from(characterState)
+        .where(eq(characterState.userCharacterId, parsed.data.characterId)),
+    ]);
 
     const bundle = await getLatestContentBundle();
 
@@ -143,13 +150,11 @@ export async function GET(request: NextRequest) {
       : null;
 
     let requirementsError: string | null = null;
-    let requirementsMeta:
-      | {
-          capturedAt?: string;
-          dataSource?: string | null;
-          dataSourceWarning?: string | null;
-        }
-      | null = null;
+    let requirementsMeta: {
+      capturedAt?: string;
+      dataSource?: string | null;
+      dataSourceWarning?: string | null;
+    } | null = null;
 
     if (canEvaluate && requirements) {
       // Build facts from snapshot if available, otherwise start with empty facts
@@ -203,7 +208,8 @@ export async function GET(request: NextRequest) {
       } else {
         requirementsMeta = {
           dataSource: 'character_state',
-          dataSourceWarning: 'No hiscores snapshot - using saved state data only',
+          dataSourceWarning:
+            'No hiscores snapshot - using saved state data only',
         };
       }
     } else {

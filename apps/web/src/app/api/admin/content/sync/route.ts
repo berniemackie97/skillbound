@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
   const typeParam = request.nextUrl.searchParams.get('type')?.toLowerCase();
   const type =
     typeParam && ['combat', 'quests', 'diaries', 'all'].includes(typeParam)
-    ? typeParam
-    : 'combat';
+      ? typeParam
+      : 'combat';
 
   try {
     const db = getDbClient();

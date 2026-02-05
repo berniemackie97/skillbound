@@ -3,7 +3,10 @@ import type { ProfitMatch, TimePeriod } from './types';
 /**
  * Calculate total value from quantity and price per item
  */
-export function calculateTotalValue(quantity: number, pricePerItem: number): number {
+export function calculateTotalValue(
+  quantity: number,
+  pricePerItem: number
+): number {
   return quantity * pricePerItem;
 }
 
@@ -12,7 +15,11 @@ export function calculateTotalValue(quantity: number, pricePerItem: number): num
  * Takes available buy trades and matches them with a sell trade
  */
 export function calculateFifoProfit(
-  availableBuys: Array<{ tradeId: string; remaining: number; pricePerItem: number }>,
+  availableBuys: Array<{
+    tradeId: string;
+    remaining: number;
+    pricePerItem: number;
+  }>,
   sellPricePerItem: number,
   sellQuantity: number
 ): { profit: number; matches: ProfitMatch[] } {

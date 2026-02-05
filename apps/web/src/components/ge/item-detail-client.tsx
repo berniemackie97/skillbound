@@ -32,7 +32,9 @@ export function ItemDetailClient({
   const toggleFavorite = useCallback(() => {
     try {
       const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
-      const favorites: number[] = stored ? (JSON.parse(stored) as number[]) : [];
+      const favorites: number[] = stored
+        ? (JSON.parse(stored) as number[])
+        : [];
 
       if (favorites.includes(itemId)) {
         const updated = favorites.filter((id) => id !== itemId);

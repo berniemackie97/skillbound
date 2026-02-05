@@ -324,7 +324,9 @@ export function TradeForm({
               );
               break;
             default:
-              setError(validationError.message || data.detail || 'Validation failed.');
+              setError(
+                validationError.message || data.detail || 'Validation failed.'
+              );
           }
         } else {
           setError(data.detail ?? 'Failed to create trade.');
@@ -393,7 +395,9 @@ export function TradeForm({
               onChange={(e) => handleSearchChange(e.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={() =>
-                itemSearchQuery && searchResults.length > 0 && setShowDropdown(true)
+                itemSearchQuery &&
+                searchResults.length > 0 &&
+                setShowDropdown(true)
               }
             />
             {isSearching && <span className="search-spinner" />}

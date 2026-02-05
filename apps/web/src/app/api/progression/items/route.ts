@@ -88,11 +88,15 @@ export async function GET(request: NextRequest) {
       ];
 
       if (parsed.data.categoryId) {
-        filters.push(eq(characterProgressionItems.categoryId, parsed.data.categoryId));
+        filters.push(
+          eq(characterProgressionItems.categoryId, parsed.data.categoryId)
+        );
       }
 
       if (parsed.data.completed !== undefined) {
-        filters.push(eq(characterProgressionItems.completed, parsed.data.completed));
+        filters.push(
+          eq(characterProgressionItems.completed, parsed.data.completed)
+        );
       }
 
       const whereClause = filters.length === 1 ? filters[0] : and(...filters);

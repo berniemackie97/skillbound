@@ -74,8 +74,11 @@ export default async function ItemDetailPage({
   if (!item) notFound();
 
   // Prefer whichever timestamp we have.
-  const lastTradeTime: Date | null = item.buyPriceTime ?? item.sellPriceTime ?? null;
-  const lastTradeDate = lastTradeTime ? formatLocalTimestamp(lastTradeTime) : null;
+  const lastTradeTime: Date | null =
+    item.buyPriceTime ?? item.sellPriceTime ?? null;
+  const lastTradeDate = lastTradeTime
+    ? formatLocalTimestamp(lastTradeTime)
+    : null;
 
   const wikiUrl = buildWikiUrl(item.name);
 
@@ -103,7 +106,9 @@ export default async function ItemDetailPage({
 
           <div>
             <h1>{item.name}</h1>
-            <p className="item-subtitle">Live Grand Exchange pricing information</p>
+            <p className="item-subtitle">
+              Live Grand Exchange pricing information
+            </p>
             {lastTradeTime && lastTradeDate && (
               <p className="last-trade-info">
                 Last Trade: {formatTimeAgo(lastTradeTime)} • {lastTradeDate}
@@ -132,7 +137,9 @@ export default async function ItemDetailPage({
               ▼
             </span>
             <span className="price-amount">
-              {item.buyPrice !== null ? item.buyPrice.toLocaleString() : 'Unknown'}
+              {item.buyPrice !== null
+                ? item.buyPrice.toLocaleString()
+                : 'Unknown'}
             </span>
             <span className="price-unit">gp</span>
           </div>
@@ -148,7 +155,9 @@ export default async function ItemDetailPage({
               ▲
             </span>
             <span className="price-amount">
-              {item.sellPrice !== null ? item.sellPrice.toLocaleString() : 'Unknown'}
+              {item.sellPrice !== null
+                ? item.sellPrice.toLocaleString()
+                : 'Unknown'}
             </span>
             <span className="price-unit">gp</span>
           </div>
@@ -169,18 +178,24 @@ export default async function ItemDetailPage({
 
         <div className="stat-item">
           <span className="stat-label">POTENTIAL PROFIT</span>
-          <span className="stat-value positive">{formatGp(item.potentialProfit)}</span>
+          <span className="stat-value positive">
+            {formatGp(item.potentialProfit)}
+          </span>
         </div>
 
         <div className="stat-item">
           <span className="stat-label">VOLUME</span>
-          <span className="stat-value">{item.volume?.toLocaleString() ?? '-'}</span>
+          <span className="stat-value">
+            {item.volume?.toLocaleString() ?? '-'}
+          </span>
           <span className="stat-unit">/day</span>
         </div>
 
         <div className="stat-item">
           <span className="stat-label">BUY LIMIT</span>
-          <span className="stat-value">{item.buyLimit?.toLocaleString() ?? '-'}</span>
+          <span className="stat-value">
+            {item.buyLimit?.toLocaleString() ?? '-'}
+          </span>
           <span className="stat-unit">/4hrs</span>
         </div>
       </section>
@@ -209,12 +224,16 @@ export default async function ItemDetailPage({
 
           <div className="detail-item">
             <span className="detail-label">High Alch</span>
-            <span className="detail-value">{item.highAlch ? formatGp(item.highAlch) : '-'}</span>
+            <span className="detail-value">
+              {item.highAlch ? formatGp(item.highAlch) : '-'}
+            </span>
           </div>
 
           <div className="detail-item">
             <span className="detail-label">Low Alch</span>
-            <span className="detail-value">{item.lowAlch ? formatGp(item.lowAlch) : '-'}</span>
+            <span className="detail-value">
+              {item.lowAlch ? formatGp(item.lowAlch) : '-'}
+            </span>
           </div>
 
           <div className="detail-item">
@@ -243,7 +262,13 @@ export default async function ItemDetailPage({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16">
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
             <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
             <path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z" />
           </svg>

@@ -55,7 +55,17 @@ const decimalFormatter = new Intl.NumberFormat('en-US', {
 });
 
 const RUNECRAFT_MULTIPLIERS: Record<string, Record<number, number>> = {
-  'Air rune': { 11: 2, 22: 3, 33: 4, 44: 5, 55: 6, 66: 7, 77: 8, 88: 9, 99: 10 },
+  'Air rune': {
+    11: 2,
+    22: 3,
+    33: 4,
+    44: 5,
+    55: 6,
+    66: 7,
+    77: 8,
+    88: 9,
+    99: 10,
+  },
   'Mind rune': { 14: 2, 28: 3, 42: 4, 56: 5, 70: 6, 84: 7, 98: 8 },
   'Water rune': { 19: 2, 38: 3, 57: 4, 76: 5, 95: 6 },
   'Earth rune': { 26: 2, 52: 3, 78: 4, 104: 5 },
@@ -151,15 +161,25 @@ function normalizeWikiKey(value: string): string {
   return value.toLowerCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function getSkillEntryFromLookup(lookup: HiscoresResponse | null, skill: SkillName) {
+function getSkillEntryFromLookup(
+  lookup: HiscoresResponse | null,
+  skill: SkillName
+) {
   if (!lookup) {
     return null;
   }
   return lookup.skills.find((entry) => entry.key === skill) ?? null;
 }
 
-function getItemPrice(item: CalculatorItem, useRealTimePrices: boolean): number | null {
-  if (useRealTimePrices && item.real_time_price !== undefined && item.real_time_price !== null) {
+function getItemPrice(
+  item: CalculatorItem,
+  useRealTimePrices: boolean
+): number | null {
+  if (
+    useRealTimePrices &&
+    item.real_time_price !== undefined &&
+    item.real_time_price !== null
+  ) {
     return item.real_time_price;
   }
   if (item.price !== undefined && item.price !== null) {
@@ -168,7 +188,10 @@ function getItemPrice(item: CalculatorItem, useRealTimePrices: boolean): number 
   return null;
 }
 
-function sumItemValue(items: CalculatorItem[] | null | undefined, useRealTimePrices: boolean) {
+function sumItemValue(
+  items: CalculatorItem[] | null | undefined,
+  useRealTimePrices: boolean
+) {
   if (!items || items.length === 0) {
     return 0;
   }
@@ -201,8 +224,14 @@ function calculateRunecraftProfit({
     return null;
   }
 
-  const revenuePerEssence = sumItemValue(action.products ?? null, useRealTimePrices);
-  const costPerEssence = sumItemValue(action.components ?? null, useRealTimePrices);
+  const revenuePerEssence = sumItemValue(
+    action.products ?? null,
+    useRealTimePrices
+  );
+  const costPerEssence = sumItemValue(
+    action.components ?? null,
+    useRealTimePrices
+  );
   let totalProfit = 0;
   let xpCursor = currentXp;
 
@@ -220,11 +249,14 @@ function calculateRunecraftProfit({
       }
     }
 
-    const nextXp = nextThreshold ? safeGetXpForLevel(nextThreshold) ?? targetXp : targetXp;
+    const nextXp = nextThreshold
+      ? (safeGetXpForLevel(nextThreshold) ?? targetXp)
+      : targetXp;
     const targetSegmentXp = Math.min(nextXp, targetXp);
     const xpDelta = Math.max(0, targetSegmentXp - xpCursor);
     const actionsNeeded = Math.ceil(xpDelta / action.exp_given);
-    totalProfit += actionsNeeded * (revenuePerEssence - costPerEssence) * runeMultiplier;
+    totalProfit +=
+      actionsNeeded * (revenuePerEssence - costPerEssence) * runeMultiplier;
     xpCursor += actionsNeeded * action.exp_given;
 
     if (actionsNeeded === 0) {
@@ -293,7 +325,8 @@ export default function SkillCalculator({
   initialTargetLevel,
 }: SkillCalculatorProps) {
   const [skill, setSkill] = useState<SkillName>(initialSkill);
-  const [calculator, setCalculator] = useState<CalculatorDataResponse>(initialCalculator);
+  const [calculator, setCalculator] =
+    useState<CalculatorDataResponse>(initialCalculator);
   const [loadingCalculator, setLoadingCalculator] = useState(false);
   const [calculatorError, setCalculatorError] = useState<string | null>(null);
 
@@ -314,8 +347,7 @@ export default function SkillCalculator({
     1,
     MAX_LEVEL
   );
-  const initialTargetXpValue =
-    safeGetXpForLevel(initialTargetLevelValue) ?? 83;
+  const initialTargetXpValue = safeGetXpForLevel(initialTargetLevelValue) ?? 83;
 
   const [currentLevel, setCurrentLevel] = useState(initialCurrentLevelValue);
   const [currentXp, setCurrentXp] = useState(initialCurrentXpValue);
@@ -327,7 +359,9 @@ export default function SkillCalculator({
 
   const [lookupData, setLookupData] = useState<HiscoresResponse | null>(null);
   const [lookupMeta, setLookupMeta] = useState<LookupMeta | null>(null);
-  const [lookupStatus, setLookupStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [lookupStatus, setLookupStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
   const [lookupError, setLookupError] = useState<string | null>(null);
 
   const [filter, setFilter] = useState('');
@@ -341,7 +375,9 @@ export default function SkillCalculator({
   >('level');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
-  const [combatStyle, setCombatStyle] = useState<'melee' | 'magic' | 'ranged'>('melee');
+  const [combatStyle, setCombatStyle] = useState<'melee' | 'magic' | 'ranged'>(
+    'melee'
+  );
   const [usingControlled, setUsingControlled] = useState(false);
   const [killsPerHourInput, setKillsPerHourInput] = useState('');
   const [customMonsters, setCustomMonsters] = useState<CombatMonster[]>([]);
@@ -350,7 +386,9 @@ export default function SkillCalculator({
   const [newMonsterLevel, setNewMonsterLevel] = useState('');
   const [newMonsterHitpoints, setNewMonsterHitpoints] = useState('');
   const [newMonsterBonus, setNewMonsterBonus] = useState('');
-  const [monsterImages, setMonsterImages] = useState<Record<string, string>>({});
+  const [monsterImages, setMonsterImages] = useState<Record<string, string>>(
+    {}
+  );
 
   useEffect(() => {
     setTargetLevelInput(String(targetLevel));
@@ -381,9 +419,19 @@ export default function SkillCalculator({
       ? 100
       : Math.min(100, (progressNumerator / progressDenominator) * 100);
   const showControlledToggle =
-    skill === 'attack' || skill === 'strength' || (skill === 'defence' && combatStyle === 'melee');
-  const actionsPerHour = clampNumber(parseNumber(actionsPerHourInput) ?? 0, 0, 1_000_000);
-  const killsPerHour = clampNumber(parseNumber(killsPerHourInput) ?? 0, 0, 1_000_000);
+    skill === 'attack' ||
+    skill === 'strength' ||
+    (skill === 'defence' && combatStyle === 'melee');
+  const actionsPerHour = clampNumber(
+    parseNumber(actionsPerHourInput) ?? 0,
+    0,
+    1_000_000
+  );
+  const killsPerHour = clampNumber(
+    parseNumber(killsPerHourInput) ?? 0,
+    0,
+    1_000_000
+  );
 
   const applySkillSnapshot = useCallback(
     (skillKey: SkillName) => {
@@ -441,12 +489,24 @@ export default function SkillCalculator({
     }
 
     try {
-      const response = await fetch(`/api/characters/lookup?${params.toString()}`);
+      const response = await fetch(
+        `/api/characters/lookup?${params.toString()}`
+      );
       if (!response.ok) {
-        const payload = (await response.json()) as { detail?: string; title?: string };
-        throw new Error(payload.detail ?? payload.title ?? 'Unable to load hiscores for that username.');
+        const payload = (await response.json()) as {
+          detail?: string;
+          title?: string;
+        };
+        throw new Error(
+          payload.detail ??
+            payload.title ??
+            'Unable to load hiscores for that username.'
+        );
       }
-      const payload = (await response.json()) as { data: HiscoresResponse; meta?: LookupMeta };
+      const payload = (await response.json()) as {
+        data: HiscoresResponse;
+        meta?: LookupMeta;
+      };
       setLookupData(payload.data);
       setLookupMeta(payload.meta ?? null);
       setLookupStatus('success');
@@ -457,7 +517,10 @@ export default function SkillCalculator({
         setLookupError('That lookup did not include data for this skill.');
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unable to load hiscores for that username.';
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Unable to load hiscores for that username.';
       setLookupStatus('error');
       setLookupError(message);
     }
@@ -502,7 +565,11 @@ export default function SkillCalculator({
       // Update URL without triggering server re-fetch
       const params = new URLSearchParams(window.location.search);
       params.set('skill', nextSkill);
-      window.history.replaceState(null, '', `/calculators?${params.toString()}`);
+      window.history.replaceState(
+        null,
+        '',
+        `/calculators?${params.toString()}`
+      );
 
       if (lookupData && applyLookupSkill(nextSkill, lookupData)) {
         return;
@@ -554,7 +621,10 @@ export default function SkillCalculator({
         if (!isActive) {
           return;
         }
-        const message = error instanceof Error ? error.message : 'Unable to load calculator data.';
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Unable to load calculator data.';
         setCalculatorError(message);
       })
       .finally(() => {
@@ -601,7 +671,9 @@ export default function SkillCalculator({
         }
         const hasValidCategory =
           bonus.validCategories.length === 0 ||
-          bonus.validCategories.some((categoryId) => action.categories.includes(categoryId));
+          bonus.validCategories.some((categoryId) =>
+            action.categories.includes(categoryId)
+          );
         if (!hasValidCategory) {
           continue;
         }
@@ -632,7 +704,10 @@ export default function SkillCalculator({
         if (categoryFilter && !action.categories.includes(categoryFilter)) {
           return false;
         }
-        if (loweredFilter && !action.name.toLowerCase().includes(loweredFilter)) {
+        if (
+          loweredFilter &&
+          !action.name.toLowerCase().includes(loweredFilter)
+        ) {
           return false;
         }
         return true;
@@ -640,11 +715,15 @@ export default function SkillCalculator({
       .map((action) => {
         const multiplier = bonusMultiplier(action);
         const xpPerAction = action.exp_given * multiplier;
-        const actionsNeeded = xpPerAction > 0 ? Math.ceil(xpRemaining / xpPerAction) : 0;
+        const actionsNeeded =
+          xpPerAction > 0 ? Math.ceil(xpRemaining / xpPerAction) : 0;
         let profit: number | null = null;
 
         if (skillData.profit_loss_settings.enabled) {
-          if (skillData.slug === 'runecrafting' && RUNECRAFT_MULTIPLIERS[action.name]) {
+          if (
+            skillData.slug === 'runecrafting' &&
+            RUNECRAFT_MULTIPLIERS[action.name]
+          ) {
             profit = calculateRunecraftProfit({
               action,
               xpRemaining,
@@ -714,13 +793,20 @@ export default function SkillCalculator({
     }
 
     const loweredFilter = filter.trim().toLowerCase();
-    const xpPerDamage = calculateCombatXpPerDamage({ skill, combatStyle, usingControlled });
+    const xpPerDamage = calculateCombatXpPerDamage({
+      skill,
+      combatStyle,
+      usingControlled,
+    });
 
     const baseRowsRaw = combatData.data.filter((monster) => {
       if (hideMembers && monster.members) {
         return false;
       }
-      if (loweredFilter && !monster.name.toLowerCase().includes(loweredFilter)) {
+      if (
+        loweredFilter &&
+        !monster.name.toLowerCase().includes(loweredFilter)
+      ) {
         return false;
       }
       return true;
@@ -729,15 +815,29 @@ export default function SkillCalculator({
     const customRows = customMonsters.map((monster, index) => {
       const bonus = monster.xp_bonus_multiplier ?? 1;
       const xpPerKill = monster.hitpoints * xpPerDamage * bonus;
-      const killsNeeded = xpPerKill > 0 ? Math.ceil(xpRemaining / xpPerKill) : 0;
-      return { monster, killsNeeded, xpPerKill, isCustom: true, customIndex: index };
+      const killsNeeded =
+        xpPerKill > 0 ? Math.ceil(xpRemaining / xpPerKill) : 0;
+      return {
+        monster,
+        killsNeeded,
+        xpPerKill,
+        isCustom: true,
+        customIndex: index,
+      };
     });
 
     const baseRows = baseRowsRaw.map((monster) => {
       const bonus = monster.xp_bonus_multiplier ?? 1;
       const xpPerKill = monster.hitpoints * xpPerDamage * bonus;
-      const killsNeeded = xpPerKill > 0 ? Math.ceil(xpRemaining / xpPerKill) : 0;
-      return { monster, killsNeeded, xpPerKill, isCustom: false as const, customIndex: undefined };
+      const killsNeeded =
+        xpPerKill > 0 ? Math.ceil(xpRemaining / xpPerKill) : 0;
+      return {
+        monster,
+        killsNeeded,
+        xpPerKill,
+        isCustom: false as const,
+        customIndex: undefined,
+      };
     });
 
     const rows = [...customRows, ...baseRows];
@@ -760,29 +860,43 @@ export default function SkillCalculator({
     });
 
     return sorted;
-  }, [combatData, combatStyle, customMonsters, filter, hideMembers, skill, sortBy, sortDirection, usingControlled, xpRemaining]);
+  }, [
+    combatData,
+    combatStyle,
+    customMonsters,
+    filter,
+    hideMembers,
+    skill,
+    sortBy,
+    sortDirection,
+    usingControlled,
+    xpRemaining,
+  ]);
 
-  const handleCurrentLevelChange = useCallback((value: string) => {
-    const parsed = parseNumber(value);
-    if (parsed === null) {
-      return;
-    }
-    const nextLevel = clampNumber(parsed, 1, MAX_LEVEL);
-    const xpForLevel = safeGetXpForLevel(nextLevel);
-    if (xpForLevel === null) {
-      return;
-    }
-    setCurrentLevel(nextLevel);
-    setCurrentXp(xpForLevel);
-    if (nextLevel >= targetLevel) {
-      const nextTarget = clampNumber(nextLevel + 1, 1, MAX_LEVEL);
-      setTargetLevel(nextTarget);
-      const nextTargetXp = safeGetXpForLevel(nextTarget);
-      if (nextTargetXp !== null) {
-        setTargetXp(nextTargetXp);
+  const handleCurrentLevelChange = useCallback(
+    (value: string) => {
+      const parsed = parseNumber(value);
+      if (parsed === null) {
+        return;
       }
-    }
-  }, [targetLevel]);
+      const nextLevel = clampNumber(parsed, 1, MAX_LEVEL);
+      const xpForLevel = safeGetXpForLevel(nextLevel);
+      if (xpForLevel === null) {
+        return;
+      }
+      setCurrentLevel(nextLevel);
+      setCurrentXp(xpForLevel);
+      if (nextLevel >= targetLevel) {
+        const nextTarget = clampNumber(nextLevel + 1, 1, MAX_LEVEL);
+        setTargetLevel(nextTarget);
+        const nextTargetXp = safeGetXpForLevel(nextTarget);
+        if (nextTargetXp !== null) {
+          setTargetXp(nextTargetXp);
+        }
+      }
+    },
+    [targetLevel]
+  );
 
   const handleTargetLevelChange = useCallback((value: string) => {
     setTargetLevelInput(value);
@@ -802,21 +916,26 @@ export default function SkillCalculator({
     setTargetXp(xpForLevel);
   }, []);
 
-  const handleCurrentXpChange = useCallback((value: string) => {
-    const parsed = parseNumber(value);
-    if (parsed === null) {
-      return;
-    }
-    const xp = clampNumber(parsed, 0, MAX_XP);
-    const level = Math.min(safeGetLevelForXp(xp) ?? 1, MAX_LEVEL);
-    setCurrentXp(xp);
-    setCurrentLevel(level);
-    if (xp >= targetXp) {
-      const nextTargetXp = clampNumber(xp + 1, 0, MAX_XP);
-      setTargetXp(nextTargetXp);
-      setTargetLevel(Math.min(safeGetLevelForXp(nextTargetXp) ?? MAX_LEVEL, MAX_LEVEL));
-    }
-  }, [targetXp]);
+  const handleCurrentXpChange = useCallback(
+    (value: string) => {
+      const parsed = parseNumber(value);
+      if (parsed === null) {
+        return;
+      }
+      const xp = clampNumber(parsed, 0, MAX_XP);
+      const level = Math.min(safeGetLevelForXp(xp) ?? 1, MAX_LEVEL);
+      setCurrentXp(xp);
+      setCurrentLevel(level);
+      if (xp >= targetXp) {
+        const nextTargetXp = clampNumber(xp + 1, 0, MAX_XP);
+        setTargetXp(nextTargetXp);
+        setTargetLevel(
+          Math.min(safeGetLevelForXp(nextTargetXp) ?? MAX_LEVEL, MAX_LEVEL)
+        );
+      }
+    },
+    [targetXp]
+  );
 
   const handleTargetXpChange = useCallback((value: string) => {
     const parsed = parseNumber(value);
@@ -828,18 +947,21 @@ export default function SkillCalculator({
     setTargetLevel(Math.min(safeGetLevelForXp(xp) ?? MAX_LEVEL, MAX_LEVEL));
   }, []);
 
-  const toggleSort = useCallback((field: typeof sortBy) => {
-    if (sortBy !== field) {
-      setSortBy(field);
-      setSortDirection('asc');
-      return;
-    }
-    if (sortDirection === 'asc') {
-      setSortDirection('desc');
-    } else {
-      setSortDirection('asc');
-    }
-  }, [sortBy, sortDirection]);
+  const toggleSort = useCallback(
+    (field: typeof sortBy) => {
+      if (sortBy !== field) {
+        setSortBy(field);
+        setSortDirection('asc');
+        return;
+      }
+      if (sortDirection === 'asc') {
+        setSortDirection('desc');
+      } else {
+        setSortDirection('asc');
+      }
+    },
+    [sortBy, sortDirection]
+  );
 
   const handleAddMonster = useCallback(() => {
     const level = parseNumber(newMonsterLevel);
@@ -900,7 +1022,11 @@ export default function SkillCalculator({
   }, [calculator.type, combatRows]);
 
   const monsterImageKey = useMemo(
-    () => monsterImageTargets.map((name) => normalizeWikiKey(name)).sort().join('|'),
+    () =>
+      monsterImageTargets
+        .map((name) => normalizeWikiKey(name))
+        .sort()
+        .join('|'),
     [monsterImageTargets]
   );
 
@@ -920,7 +1046,9 @@ export default function SkillCalculator({
           titles: chunk.join(','),
           size: '48',
         });
-        const response = await fetch(`/api/wiki/page-images?${params.toString()}`);
+        const response = await fetch(
+          `/api/wiki/page-images?${params.toString()}`
+        );
         if (!response.ok) {
           continue;
         }
@@ -954,13 +1082,23 @@ export default function SkillCalculator({
       <header className="calc-header">
         <div className="calc-header-content">
           <h1>Skill Calculators</h1>
-          <p>Plan your training with accurate XP calculations, costs, and methods.</p>
+          <p>
+            Plan your training with accurate XP calculations, costs, and
+            methods.
+          </p>
         </div>
         {(activeCharacterName || lookupLabel) && (
           <div className="calc-header-badges">
             {activeCharacterName && (
               <span className="calc-badge">
-                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+                <svg
+                  fill="none"
+                  height="14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                   <circle cx="12" cy="7" r="4" />
                 </svg>
@@ -969,11 +1107,19 @@ export default function SkillCalculator({
             )}
             {lookupLabel && (
               <span className="calc-badge accent">
-                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+                <svg
+                  fill="none"
+                  height="14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
-                {lookupLabel}{lookupMetaLabel}
+                {lookupLabel}
+                {lookupMetaLabel}
               </span>
             )}
           </div>
@@ -1040,7 +1186,11 @@ export default function SkillCalculator({
                   {lookupStatus === 'loading' ? 'Loading...' : 'Fetch hiscores'}
                 </button>
                 {activeCharacterName && (
-                  <button className="calc-btn ghost" type="button" onClick={handleUseActive}>
+                  <button
+                    className="calc-btn ghost"
+                    type="button"
+                    onClick={handleUseActive}
+                  >
                     Use active
                   </button>
                 )}
@@ -1053,7 +1203,9 @@ export default function SkillCalculator({
           <div className="calc-card">
             <div className="calc-card-header">
               <h3>Level setup</h3>
-              <span className="calc-card-tag">{SKILL_DISPLAY_NAMES[skill]}</span>
+              <span className="calc-card-tag">
+                {SKILL_DISPLAY_NAMES[skill]}
+              </span>
             </div>
             <div className="calc-card-body">
               <div className="calc-level-grid">
@@ -1109,7 +1261,9 @@ export default function SkillCalculator({
                 </div>
                 <div className="calc-progress-stats">
                   <span>{formatNumber(currentXp)} XP</span>
-                  <span className="calc-progress-remaining">{formatNumber(xpRemaining)} XP to go</span>
+                  <span className="calc-progress-remaining">
+                    {formatNumber(xpRemaining)} XP to go
+                  </span>
                   <span>{formatNumber(targetXp)} XP</span>
                 </div>
               </div>
@@ -1128,7 +1282,10 @@ export default function SkillCalculator({
                   <div className="calc-card-body">
                     <div className="calc-checkbox-list">
                       {skillData.bonuses.map((bonus, index) => (
-                        <label key={`${bonus.name}-${index}`} className="calc-checkbox">
+                        <label
+                          key={`${bonus.name}-${index}`}
+                          className="calc-checkbox"
+                        >
                           <input
                             checked={selectedBonuses.includes(index)}
                             type="checkbox"
@@ -1137,7 +1294,9 @@ export default function SkillCalculator({
                                 const bonusItem = skillData.bonuses[index];
                                 if (!bonusItem) return prev;
                                 if (prev.includes(index)) {
-                                  return prev.filter((entry) => entry !== index);
+                                  return prev.filter(
+                                    (entry) => entry !== index
+                                  );
                                 }
                                 if (bonusItem.validCategories.length === 0) {
                                   return [...prev, index];
@@ -1145,10 +1304,15 @@ export default function SkillCalculator({
                                 const filtered = prev.filter((entry) => {
                                   const existing = skillData.bonuses[entry];
                                   if (!existing) return false;
-                                  if (existing.validCategories.length === 0) return true;
-                                  const overlaps = existing.validCategories.some((categoryId) =>
-                                    bonusItem.validCategories.includes(categoryId)
-                                  );
+                                  if (existing.validCategories.length === 0)
+                                    return true;
+                                  const overlaps =
+                                    existing.validCategories.some(
+                                      (categoryId) =>
+                                        bonusItem.validCategories.includes(
+                                          categoryId
+                                        )
+                                    );
                                   return !overlaps;
                                 });
                                 return [...filtered, index];
@@ -1156,7 +1320,9 @@ export default function SkillCalculator({
                             }}
                           />
                           <span>{bonus.name}</span>
-                          <span className="calc-checkbox-bonus">+{Math.round((bonus.bonus - 1) * 100)}%</span>
+                          <span className="calc-checkbox-bonus">
+                            +{Math.round((bonus.bonus - 1) * 100)}%
+                          </span>
                         </label>
                       ))}
                     </div>
@@ -1184,7 +1350,9 @@ export default function SkillCalculator({
                       <label>Category</label>
                       <select
                         value={categoryFilter}
-                        onChange={(e) => setCategoryFilter(Number(e.target.value))}
+                        onChange={(e) =>
+                          setCategoryFilter(Number(e.target.value))
+                        }
                       >
                         <option value={0}>All categories</option>
                         {categoryOptions.map((option) => (
@@ -1221,7 +1389,9 @@ export default function SkillCalculator({
                         <input
                           checked={useRealTimePrices}
                           type="checkbox"
-                          onChange={(e) => setUseRealTimePrices(e.target.checked)}
+                          onChange={(e) =>
+                            setUseRealTimePrices(e.target.checked)
+                          }
                         />
                         <span>Use real-time prices</span>
                       </label>
@@ -1245,7 +1415,11 @@ export default function SkillCalculator({
                       <label>Combat style</label>
                       <select
                         value={combatStyle}
-                        onChange={(e) => setCombatStyle(e.target.value as 'melee' | 'magic' | 'ranged')}
+                        onChange={(e) =>
+                          setCombatStyle(
+                            e.target.value as 'melee' | 'magic' | 'ranged'
+                          )
+                        }
                       >
                         <option value="melee">Melee</option>
                         <option value="magic">Magic</option>
@@ -1264,7 +1438,9 @@ export default function SkillCalculator({
                     </label>
                   )}
                   {skill === 'slayer' && (
-                    <p className="calc-note">Slayer XP assumes on-task kills (XP = hitpoints × bonus).</p>
+                    <p className="calc-note">
+                      Slayer XP assumes on-task kills (XP = hitpoints × bonus).
+                    </p>
                   )}
                 </div>
               </div>
@@ -1342,7 +1518,9 @@ export default function SkillCalculator({
                           <input
                             type="number"
                             value={newMonsterHitpoints}
-                            onChange={(e) => setNewMonsterHitpoints(e.target.value)}
+                            onChange={(e) =>
+                              setNewMonsterHitpoints(e.target.value)
+                            }
                           />
                         </div>
                       </div>
@@ -1357,10 +1535,18 @@ export default function SkillCalculator({
                         />
                       </div>
                       <div className="calc-card-actions">
-                        <button className="calc-btn ghost" type="button" onClick={() => setIsAddingMonster(false)}>
+                        <button
+                          className="calc-btn ghost"
+                          type="button"
+                          onClick={() => setIsAddingMonster(false)}
+                        >
                           Cancel
                         </button>
-                        <button className="calc-btn" type="button" onClick={handleAddMonster}>
+                        <button
+                          className="calc-btn"
+                          type="button"
+                          onClick={handleAddMonster}
+                        >
                           Add monster
                         </button>
                       </div>
@@ -1391,23 +1577,65 @@ export default function SkillCalculator({
               <table className="calc-table">
                 <thead>
                   <tr>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('level')}>
-                      Level {sortBy === 'level' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('level')}
+                    >
+                      Level{' '}
+                      {sortBy === 'level' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('name')}>
-                      Action {sortBy === 'name' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('name')}
+                    >
+                      Action{' '}
+                      {sortBy === 'name' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('exp')}>
-                      XP {sortBy === 'exp' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('exp')}
+                    >
+                      XP{' '}
+                      {sortBy === 'exp' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('actions')}>
-                      Actions {sortBy === 'actions' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('actions')}
+                    >
+                      Actions{' '}
+                      {sortBy === 'actions' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
                     <th>XP/hr</th>
-                    {skillData.profit_loss_settings.show_components && <th>Materials</th>}
+                    {skillData.profit_loss_settings.show_components && (
+                      <th>Materials</th>
+                    )}
                     {skillData.profit_loss_settings.enabled && (
-                      <th className="calc-th-sortable" onClick={() => toggleSort('profit')}>
-                        Profit {sortBy === 'profit' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('profit')}
+                      >
+                        Profit{' '}
+                        {sortBy === 'profit' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
                       </th>
                     )}
                   </tr>
@@ -1419,7 +1647,9 @@ export default function SkillCalculator({
                         className="calc-empty"
                         colSpan={
                           5 +
-                          (skillData.profit_loss_settings.show_components ? 1 : 0) +
+                          (skillData.profit_loss_settings.show_components
+                            ? 1
+                            : 0) +
                           (skillData.profit_loss_settings.enabled ? 1 : 0)
                         }
                       >
@@ -1429,15 +1659,28 @@ export default function SkillCalculator({
                   ) : (
                     computedActions.map((entry, index) => {
                       const action = entry.action;
-                      const itemsUsed = itemsUsedForAction(action, entry.actionsNeeded);
+                      const itemsUsed = itemsUsedForAction(
+                        action,
+                        entry.actionsNeeded
+                      );
                       const levelMet = action.level_req <= currentLevel;
-                      const xpPerHour = actionsPerHour > 0 ? entry.xpPerAction * actionsPerHour : null;
+                      const xpPerHour =
+                        actionsPerHour > 0
+                          ? entry.xpPerAction * actionsPerHour
+                          : null;
                       const actionImage = resolveActionImage(action.image);
                       const actionHref = buildWikiUrl(action.name);
                       return (
-                        <tr key={`${action.name}-${index}`} className={levelMet ? 'calc-row-met' : 'calc-row-unmet'}>
+                        <tr
+                          key={`${action.name}-${index}`}
+                          className={
+                            levelMet ? 'calc-row-met' : 'calc-row-unmet'
+                          }
+                        >
                           <td>
-                            <span className={`calc-level-badge ${levelMet ? 'met' : 'unmet'}`}>
+                            <span
+                              className={`calc-level-badge ${levelMet ? 'met' : 'unmet'}`}
+                            >
                               {action.level_req}
                             </span>
                           </td>
@@ -1460,22 +1703,35 @@ export default function SkillCalculator({
                                   />
                                 )}
                                 <div className="calc-action-info">
-                                  <span className="calc-action-name">{action.name}</span>
-                                  {action.action_members && <span className="calc-member-tag">P2P</span>}
+                                  <span className="calc-action-name">
+                                    {action.name}
+                                  </span>
+                                  {action.action_members && (
+                                    <span className="calc-member-tag">P2P</span>
+                                  )}
                                 </div>
                               </a>
                             </div>
                           </td>
-                          <td className="calc-num">{formatDecimal(entry.xpPerAction)}</td>
-                          <td className="calc-num">{formatNumber(entry.actionsNeeded)}</td>
-                          <td className="calc-num">{xpPerHour === null ? '-' : formatNumber(Math.round(xpPerHour))}</td>
+                          <td className="calc-num">
+                            {formatDecimal(entry.xpPerAction)}
+                          </td>
+                          <td className="calc-num">
+                            {formatNumber(entry.actionsNeeded)}
+                          </td>
+                          <td className="calc-num">
+                            {xpPerHour === null
+                              ? '-'
+                              : formatNumber(Math.round(xpPerHour))}
+                          </td>
                           {skillData.profit_loss_settings.show_components && (
                             <td className="calc-materials">
                               {itemsUsed ? (
                                 <ul>
                                   {itemsUsed.map((item) => (
                                     <li key={item.name}>
-                                      {formatNumber(Math.round(item.amount))}× {item.name}
+                                      {formatNumber(Math.round(item.amount))}×{' '}
+                                      {item.name}
                                     </li>
                                   ))}
                                 </ul>
@@ -1494,7 +1750,9 @@ export default function SkillCalculator({
                                     : 'calc-loss'
                               }`}
                             >
-                              {entry.profit === null ? '-' : formatGp(Math.round(entry.profit))}
+                              {entry.profit === null
+                                ? '-'
+                                : formatGp(Math.round(entry.profit))}
                             </td>
                           )}
                         </tr>
@@ -1512,17 +1770,49 @@ export default function SkillCalculator({
               <table className="calc-table">
                 <thead>
                   <tr>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('name')}>
-                      Monster {sortBy === 'name' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('name')}
+                    >
+                      Monster{' '}
+                      {sortBy === 'name' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('level')}>
-                      Level {sortBy === 'level' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('level')}
+                    >
+                      Level{' '}
+                      {sortBy === 'level' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('hitpoints')}>
-                      HP {sortBy === 'hitpoints' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('hitpoints')}
+                    >
+                      HP{' '}
+                      {sortBy === 'hitpoints' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
-                    <th className="calc-th-sortable" onClick={() => toggleSort('actions')}>
-                      Kills {sortBy === 'actions' && <span className="calc-sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    <th
+                      className="calc-th-sortable"
+                      onClick={() => toggleSort('actions')}
+                    >
+                      Kills{' '}
+                      {sortBy === 'actions' && (
+                        <span className="calc-sort-icon">
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </span>
+                      )}
                     </th>
                     <th>XP/hr</th>
                   </tr>
@@ -1536,9 +1826,13 @@ export default function SkillCalculator({
                     </tr>
                   ) : (
                     combatRows.map((entry, index) => {
-                      const xpPerHour = killsPerHour > 0 ? entry.xpPerKill * killsPerHour : null;
+                      const xpPerHour =
+                        killsPerHour > 0
+                          ? entry.xpPerKill * killsPerHour
+                          : null;
                       const monsterHref = buildWikiUrl(entry.monster.name);
-                      const monsterImage = monsterImages[normalizeWikiKey(entry.monster.name)];
+                      const monsterImage =
+                        monsterImages[normalizeWikiKey(entry.monster.name)];
                       return (
                         <tr key={`${entry.monster.name}-${index}`}>
                           <td>
@@ -1560,31 +1854,53 @@ export default function SkillCalculator({
                                   />
                                 )}
                                 <div className="calc-action-info">
-                                  <span className="calc-action-name">{entry.monster.name}</span>
-                                  {entry.monster.members && <span className="calc-member-tag">P2P</span>}
-                                  {entry.monster.xp_bonus_multiplier && entry.monster.xp_bonus_multiplier !== 1 && (
-                                    <span className="calc-bonus-tag">
-                                      +{formatDecimal((entry.monster.xp_bonus_multiplier - 1) * 100)}%
-                                    </span>
+                                  <span className="calc-action-name">
+                                    {entry.monster.name}
+                                  </span>
+                                  {entry.monster.members && (
+                                    <span className="calc-member-tag">P2P</span>
                                   )}
+                                  {entry.monster.xp_bonus_multiplier &&
+                                    entry.monster.xp_bonus_multiplier !== 1 && (
+                                      <span className="calc-bonus-tag">
+                                        +
+                                        {formatDecimal(
+                                          (entry.monster.xp_bonus_multiplier -
+                                            1) *
+                                            100
+                                        )}
+                                        %
+                                      </span>
+                                    )}
                                 </div>
                               </a>
-                              {entry.isCustom && entry.customIndex !== undefined && (
-                                <button
-                                  className="calc-remove-btn"
-                                  title="Remove"
-                                  type="button"
-                                  onClick={() => removeCustomMonster(entry.customIndex)}
-                                >
-                                  ×
-                                </button>
-                              )}
+                              {entry.isCustom &&
+                                entry.customIndex !== undefined && (
+                                  <button
+                                    className="calc-remove-btn"
+                                    title="Remove"
+                                    type="button"
+                                    onClick={() =>
+                                      removeCustomMonster(entry.customIndex)
+                                    }
+                                  >
+                                    ×
+                                  </button>
+                                )}
                             </div>
                           </td>
                           <td className="calc-num">{entry.monster.level}</td>
-                          <td className="calc-num">{entry.monster.hitpoints}</td>
-                          <td className="calc-num">{formatNumber(entry.killsNeeded)}</td>
-                          <td className="calc-num">{xpPerHour === null ? '-' : formatNumber(Math.round(xpPerHour))}</td>
+                          <td className="calc-num">
+                            {entry.monster.hitpoints}
+                          </td>
+                          <td className="calc-num">
+                            {formatNumber(entry.killsNeeded)}
+                          </td>
+                          <td className="calc-num">
+                            {xpPerHour === null
+                              ? '-'
+                              : formatNumber(Math.round(xpPerHour))}
+                          </td>
                         </tr>
                       );
                     })

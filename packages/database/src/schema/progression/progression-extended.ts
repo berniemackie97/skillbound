@@ -65,9 +65,7 @@ export const bossKillcounts = pgTable(
       table.bossName
     ),
     // Index for querying all bosses for a character
-    characterIdIdx: index('boss_kc_character_id_idx').on(
-      table.userCharacterId
-    ),
+    characterIdIdx: index('boss_kc_character_id_idx').on(table.userCharacterId),
     // Index for leaderboard queries by boss
     bossNameIdx: index('boss_kc_boss_name_idx').on(table.bossName),
   })
@@ -105,11 +103,9 @@ export const collectionLogItems = pgTable(
   (table) => ({
     // UNIQUE CONSTRAINT: One entry per character/item/source combination
     // Prevents duplicate collection log entries
-    characterItemSourceUnique: unique('coll_log_character_item_source_unique').on(
-      table.userCharacterId,
-      table.itemId,
-      table.source
-    ),
+    characterItemSourceUnique: unique(
+      'coll_log_character_item_source_unique'
+    ).on(table.userCharacterId, table.itemId, table.source),
     // Index for querying all items for a character
     characterIdIdx: index('coll_log_character_id_idx').on(
       table.userCharacterId

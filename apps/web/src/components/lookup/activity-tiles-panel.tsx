@@ -22,7 +22,9 @@ export function ActivityTilesPanel({
           <div key={activity.key} className="skill-tile">
             <div className="skill-header">
               <span>{activity.name}</span>
-              <span className="pill subtle">{formatNumber(activity.score)}</span>
+              <span className="pill subtle">
+                {formatNumber(activity.score)}
+              </span>
             </div>
 
             <div className="skill-meta">
@@ -33,7 +35,9 @@ export function ActivityTilesPanel({
         ))}
 
         {!hasActivities ? (
-          <div className="skill-tile muted">No activity scores with non-zero values.</div>
+          <div className="skill-tile muted">
+            No activity scores with non-zero values.
+          </div>
         ) : null}
       </div>
     </section>

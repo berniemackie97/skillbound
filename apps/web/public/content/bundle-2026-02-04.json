@@ -2,10 +2,7 @@
   "metadata": {
     "version": "2026-02-04",
     "publishedAt": "2026-02-04T04:55:42.280Z",
-    "sources": [
-      "database",
-      "runelite-sync"
-    ],
+    "sources": ["database", "runelite-sync"],
     "checksum": "080ead76494ba772990e72ffe1d01e585627be5e698955ccfbadfb078444dd91",
     "questCount": 229,
     "diaryCount": 12

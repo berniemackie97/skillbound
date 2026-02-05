@@ -134,7 +134,14 @@ export function GuidesClient({
                 className={`guides-filter-btn ${showTrackedOnly ? 'active' : ''}`}
                 onClick={handleTrackedToggle}
               >
-                <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+                <svg
+                  fill="none"
+                  height="14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
@@ -185,7 +192,14 @@ export function GuidesClient({
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
           >
-            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
+            <svg
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="16"
+            >
               <polyline points="15 18 9 12 15 6" />
             </svg>
             Prev
@@ -209,7 +223,14 @@ export function GuidesClient({
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
           >
             Next
-            <svg fill="none" height="16" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="16">
+            <svg
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="16"
+            >
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
@@ -232,14 +253,28 @@ function GuideCard({ guide }: { guide: GuideWithProgress }) {
           <h3 className="guide-card-title">{guide.title}</h3>
           {guide.isCompleted && (
             <span className="guide-card-status completed" title="Completed">
-              <svg fill="none" height="14" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" width="14">
+              <svg
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                strokeWidth="3"
+                viewBox="0 0 24 24"
+                width="14"
+              >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </span>
           )}
           {guide.isTracking && !guide.isCompleted && (
             <span className="guide-card-status tracking" title="In Progress">
-              <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+              <svg
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="14"
+              >
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
@@ -258,10 +293,14 @@ function GuideCard({ guide }: { guide: GuideWithProgress }) {
           {guide.tags.length > 0 && (
             <div className="guide-card-tags">
               {guide.tags.slice(0, 2).map((tag) => (
-                <span key={tag} className="guide-card-tag">{tag}</span>
+                <span key={tag} className="guide-card-tag">
+                  {tag}
+                </span>
               ))}
               {guide.tags.length > 2 && (
-                <span className="guide-card-tag-overflow">+{guide.tags.length - 2}</span>
+                <span className="guide-card-tag-overflow">
+                  +{guide.tags.length - 2}
+                </span>
               )}
             </div>
           )}
@@ -270,7 +309,9 @@ function GuideCard({ guide }: { guide: GuideWithProgress }) {
         {guide.recommendedModes.length > 0 && (
           <div className="guide-card-modes">
             {guide.recommendedModes.map((mode) => (
-              <span key={mode} className="guide-card-mode">{mode}</span>
+              <span key={mode} className="guide-card-mode">
+                {mode}
+              </span>
             ))}
           </div>
         )}

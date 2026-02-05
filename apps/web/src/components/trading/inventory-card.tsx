@@ -76,7 +76,9 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
       <div className="inventory-summary">
         <div className="inventory-summary-item">
           <span className="label">Total Items:</span>
-          <span className="value">{inventory.totalHeldItems.toLocaleString()}</span>
+          <span className="value">
+            {inventory.totalHeldItems.toLocaleString()}
+          </span>
         </div>
         <div className="inventory-summary-item">
           <span className="label">Total Value:</span>
@@ -108,56 +110,60 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
                   : 'In Red';
 
             return (
-            <div
-              key={position.itemId}
-              className="inventory-item"
-              role={onItemClick ? 'button' : undefined}
-              style={onItemClick ? { cursor: 'pointer' } : undefined}
-              tabIndex={onItemClick ? 0 : undefined}
-              onClick={() => onItemClick?.(position.itemId)}
-            >
-              {position.iconUrl && (
-                <img
-                  alt=""
-                  className="inventory-item-icon"
-                  height={32}
-                  loading="lazy"
-                  src={position.iconUrl}
-                  width={32}
-                />
-              )}
-              <div className="inventory-item-info">
-                <span className="inventory-item-name">{position.itemName}</span>
-                <div className="inventory-item-meta">
-                  <span className="inventory-item-qty">
-                    x{position.remainingQuantity.toLocaleString()}
-                  </span>
-                  <span>@</span>
-                  <span>{formatGp(position.averageBuyPrice)} avg</span>
-                </div>
-                <div className="inventory-item-live">
-                  <span className={`inventory-pill ${status}`}>{statusLabel}</span>
-                  <span>Buy {formatGp(position.currentBuy)}</span>
-                  <span>Sell {formatGp(position.currentSell)}</span>
-                  <span>Margin {formatGp(position.margin)}</span>
-                  {position.breakEven !== null && (
-                    <span>Break-even {formatGp(position.breakEven)}</span>
-                  )}
-                </div>
-              </div>
-              <span className="inventory-item-value">
-                <span className="inventory-held">
-                  {formatGp(position.heldValue)}
-                </span>
-                {position.netTotal !== null && (
-                  <span className={`inventory-pnl ${status}`}>
-                    {position.netTotal >= 0 ? '+' : ''}
-                    {formatGp(position.netTotal)}
-                  </span>
+              <div
+                key={position.itemId}
+                className="inventory-item"
+                role={onItemClick ? 'button' : undefined}
+                style={onItemClick ? { cursor: 'pointer' } : undefined}
+                tabIndex={onItemClick ? 0 : undefined}
+                onClick={() => onItemClick?.(position.itemId)}
+              >
+                {position.iconUrl && (
+                  <img
+                    alt=""
+                    className="inventory-item-icon"
+                    height={32}
+                    loading="lazy"
+                    src={position.iconUrl}
+                    width={32}
+                  />
                 )}
-              </span>
-            </div>
-          );
+                <div className="inventory-item-info">
+                  <span className="inventory-item-name">
+                    {position.itemName}
+                  </span>
+                  <div className="inventory-item-meta">
+                    <span className="inventory-item-qty">
+                      x{position.remainingQuantity.toLocaleString()}
+                    </span>
+                    <span>@</span>
+                    <span>{formatGp(position.averageBuyPrice)} avg</span>
+                  </div>
+                  <div className="inventory-item-live">
+                    <span className={`inventory-pill ${status}`}>
+                      {statusLabel}
+                    </span>
+                    <span>Buy {formatGp(position.currentBuy)}</span>
+                    <span>Sell {formatGp(position.currentSell)}</span>
+                    <span>Margin {formatGp(position.margin)}</span>
+                    {position.breakEven !== null && (
+                      <span>Break-even {formatGp(position.breakEven)}</span>
+                    )}
+                  </div>
+                </div>
+                <span className="inventory-item-value">
+                  <span className="inventory-held">
+                    {formatGp(position.heldValue)}
+                  </span>
+                  {position.netTotal !== null && (
+                    <span className={`inventory-pnl ${status}`}>
+                      {position.netTotal >= 0 ? '+' : ''}
+                      {formatGp(position.netTotal)}
+                    </span>
+                  )}
+                </span>
+              </div>
+            );
           })}
         </div>
       )}

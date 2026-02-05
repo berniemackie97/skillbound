@@ -262,7 +262,8 @@ async function matchSellWithBuys(
     if (buy.remaining <= 0) continue;
 
     const matched = Math.min(sellRemaining, buy.remaining);
-    const profitOnMatched = (sellTrade.pricePerItem - buy.pricePerItem) * matched;
+    const profitOnMatched =
+      (sellTrade.pricePerItem - buy.pricePerItem) * matched;
 
     totalMatchedProfit += profitOnMatched;
     totalMatchedQty += matched;
@@ -276,7 +277,9 @@ async function matchSellWithBuys(
 
   // Calculate weighted average profit per item
   const profitPerItem =
-    totalMatchedQty > 0 ? Math.round(totalMatchedProfit / totalMatchedQty) : null;
+    totalMatchedQty > 0
+      ? Math.round(totalMatchedProfit / totalMatchedQty)
+      : null;
 
   // Update sell trade with profit info
   await db
@@ -370,7 +373,8 @@ export async function recalculateProfitMatches(
           if (buy.remaining <= 0) continue;
 
           const matched = Math.min(sellRemaining, buy.remaining);
-          const profitOnMatched = (trade.pricePerItem - buy.pricePerItem) * matched;
+          const profitOnMatched =
+            (trade.pricePerItem - buy.pricePerItem) * matched;
 
           totalMatchedProfit += profitOnMatched;
           totalMatchedQty += matched;
@@ -406,7 +410,10 @@ export async function recalculateProfitMatches(
     }
   }
 
-  logger.info({ characterId, matchesUpdated }, 'Recalculated profit matches (FIFO)');
+  logger.info(
+    { characterId, matchesUpdated },
+    'Recalculated profit matches (FIFO)'
+  );
 
   // Also recalculate inventory positions and bankroll
   await recalculateInventoryPositions(characterId);
@@ -529,7 +536,10 @@ export async function getUserTrades(
         characterName: characterProfiles.displayName,
       })
       .from(geTrades)
-      .innerJoin(userCharacters, eq(geTrades.userCharacterId, userCharacters.id))
+      .innerJoin(
+        userCharacters,
+        eq(geTrades.userCharacterId, userCharacters.id)
+      )
       .innerJoin(
         characterProfiles,
         eq(userCharacters.profileId, characterProfiles.id)
@@ -541,7 +551,10 @@ export async function getUserTrades(
     db
       .select({ count: sql<number>`count(*)` })
       .from(geTrades)
-      .innerJoin(userCharacters, eq(geTrades.userCharacterId, userCharacters.id))
+      .innerJoin(
+        userCharacters,
+        eq(geTrades.userCharacterId, userCharacters.id)
+      )
       .innerJoin(
         characterProfiles,
         eq(userCharacters.profileId, characterProfiles.id)
@@ -570,7 +583,9 @@ export async function getTrade(
   const [trade] = await db
     .select()
     .from(geTrades)
-    .where(and(eq(geTrades.id, tradeId), eq(geTrades.userCharacterId, characterId)))
+    .where(
+      and(eq(geTrades.id, tradeId), eq(geTrades.userCharacterId, characterId))
+    )
     .limit(1);
 
   return trade ?? null;
@@ -672,7 +687,10 @@ export async function getDeleteTradeImpact(
     }));
 
     if (matchedSells.length > 0) {
-      const totalAffectedQty = matchedSells.reduce((sum, s) => sum + s.quantity, 0);
+      const totalAffectedQty = matchedSells.reduce(
+        (sum, s) => sum + s.quantity,
+        0
+      );
       impact.warningMessage =
         `Deleting this buy will also delete ${matchedSells.length} linked sell trade(s) ` +
         `(${totalAffectedQty.toLocaleString()} items total).`;
@@ -732,9 +750,7 @@ export async function deleteTrade(
         await adjustBankroll(characterId, -sell.totalValue);
       }
 
-      await db
-        .delete(geTrades)
-        .where(eq(geTrades.matchedTradeId, tradeId));
+      await db.delete(geTrades).where(eq(geTrades.matchedTradeId, tradeId));
 
       deletedCount += matchedSells.length;
       logger.info(
@@ -756,7 +772,10 @@ export async function deleteTrade(
   // Recalculate matches for remaining trades
   await recalculateProfitMatches(characterId);
 
-  logger.info({ characterId, tradeId, totalDeleted: deletedCount }, 'Deleted trade');
+  logger.info(
+    { characterId, tradeId, totalDeleted: deletedCount },
+    'Deleted trade'
+  );
   return { success: true, deletedCount };
 }
 
@@ -772,7 +791,12 @@ export async function getItemProfitBreakdown(
   const trades = await db
     .select()
     .from(geTrades)
-    .where(and(eq(geTrades.userCharacterId, characterId), eq(geTrades.itemId, itemId)))
+    .where(
+      and(
+        eq(geTrades.userCharacterId, characterId),
+        eq(geTrades.itemId, itemId)
+      )
+    )
     .orderBy(desc(geTrades.tradedAt));
 
   if (trades.length === 0) {
@@ -794,8 +818,10 @@ export async function getItemProfitBreakdown(
     }
   }
 
-  const averageBuyPrice = totalBought > 0 ? Math.round(totalSpent / totalBought) : 0;
-  const averageSellPrice = totalSold > 0 ? Math.round(totalEarned / totalSold) : 0;
+  const averageBuyPrice =
+    totalBought > 0 ? Math.round(totalSpent / totalBought) : 0;
+  const averageSellPrice =
+    totalSold > 0 ? Math.round(totalEarned / totalSold) : 0;
   const averageMargin = averageSellPrice - averageBuyPrice;
   const marginPercent =
     averageBuyPrice > 0 ? (averageMargin / averageBuyPrice) * 100 : 0;

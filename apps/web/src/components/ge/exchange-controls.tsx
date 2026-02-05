@@ -93,7 +93,9 @@ export function ExchangeControls({
           <select
             className="filter-select"
             value={membersFilter}
-            onChange={(e) => onMembersFilterChange(e.target.value as MembersFilter)}
+            onChange={(e) =>
+              onMembersFilterChange(e.target.value as MembersFilter)
+            }
           >
             <option value="all">All Items</option>
             <option value="members">Members</option>
@@ -129,8 +131,19 @@ export function ExchangeControls({
           </select>
         </div>
 
-        <button className="save-preset-btn" type="button" onClick={onSavePreset}>
-          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+        <button
+          className="save-preset-btn"
+          type="button"
+          onClick={onSavePreset}
+        >
+          <svg
+            fill="none"
+            height="14"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="14"
+          >
             <path d="M12 5v14M5 12h14" />
           </svg>
           Save Preset
@@ -145,7 +158,9 @@ export function ExchangeControls({
             />
             <span>Stack Presets</span>
           </label>
-          <label className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}>
+          <label
+            className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}
+          >
             <input
               checked={hideNegativeMargin}
               type="checkbox"
@@ -164,7 +179,14 @@ export function ExchangeControls({
         </div>
 
         <button className="reset-btn" type="button" onClick={onResetFilters}>
-          <svg fill="none" height="14" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" width="14">
+          <svg
+            fill="none"
+            height="14"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="14"
+          >
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>
@@ -207,11 +229,21 @@ export function ExchangeControls({
             onClick={onToggleRefreshPaused}
           >
             {isRefreshPaused ? (
-              <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
+              <svg
+                fill="currentColor"
+                height="14"
+                viewBox="0 0 24 24"
+                width="14"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             ) : (
-              <svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14">
+              <svg
+                fill="currentColor"
+                height="14"
+                viewBox="0 0 24 24"
+                width="14"
+              >
                 <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
               </svg>
             )}

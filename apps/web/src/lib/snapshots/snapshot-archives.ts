@@ -3,7 +3,11 @@ import { Readable } from 'stream';
 import { promisify } from 'util';
 import { gzip as gzipCallback, gunzip as gunzipCallback } from 'zlib';
 
-import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import {
   and,
@@ -118,7 +122,8 @@ function getSnapshotArchiveConfig(): SnapshotArchiveConfig | null {
 
   const bucket = process.env['SNAPSHOT_ARCHIVE_BUCKET']?.trim();
   const accessKeyId = process.env['SNAPSHOT_ARCHIVE_ACCESS_KEY_ID']?.trim();
-  const secretAccessKey = process.env['SNAPSHOT_ARCHIVE_SECRET_ACCESS_KEY']?.trim();
+  const secretAccessKey =
+    process.env['SNAPSHOT_ARCHIVE_SECRET_ACCESS_KEY']?.trim();
 
   if (!bucket || !accessKeyId || !secretAccessKey) {
     return null;
@@ -126,12 +131,12 @@ function getSnapshotArchiveConfig(): SnapshotArchiveConfig | null {
 
   const region = process.env['SNAPSHOT_ARCHIVE_REGION']?.trim() || 'auto';
   const endpoint = process.env['SNAPSHOT_ARCHIVE_ENDPOINT']?.trim();
-  const prefix = process.env['SNAPSHOT_ARCHIVE_PREFIX']?.trim() || 'snapshot-archives';
-  const publicBaseUrl =
-    process.env['SNAPSHOT_ARCHIVE_PUBLIC_BASE_URL']?.trim();
+  const prefix =
+    process.env['SNAPSHOT_ARCHIVE_PREFIX']?.trim() || 'snapshot-archives';
+  const publicBaseUrl = process.env['SNAPSHOT_ARCHIVE_PUBLIC_BASE_URL']?.trim();
   const forcePathStyle =
-    process.env['SNAPSHOT_ARCHIVE_FORCE_PATH_STYLE']?.toLowerCase() === 'true' ||
-    Boolean(endpoint);
+    process.env['SNAPSHOT_ARCHIVE_FORCE_PATH_STYLE']?.toLowerCase() ===
+      'true' || Boolean(endpoint);
 
   const config: SnapshotArchiveConfig = {
     bucket,
@@ -262,7 +267,9 @@ function hydrateSnapshot(raw: CharacterSnapshot): NewCharacterSnapshot {
   return {
     ...raw,
     capturedAt: new Date(raw.capturedAt),
-    createdAt: raw.createdAt ? new Date(raw.createdAt) : new Date(raw.capturedAt),
+    createdAt: raw.createdAt
+      ? new Date(raw.createdAt)
+      : new Date(raw.capturedAt),
     expiresAt: raw.expiresAt ? new Date(raw.expiresAt) : null,
   };
 }
@@ -501,12 +508,18 @@ export async function restoreSnapshotArchive(
 
   if (parsed.profileId !== archive.profileId) {
     logger.warn(
-      { archiveId: archive.id, payloadProfileId: parsed.profileId, archiveProfileId: archive.profileId },
+      {
+        archiveId: archive.id,
+        payloadProfileId: parsed.profileId,
+        archiveProfileId: archive.profileId,
+      },
       'Archive profile mismatch during restore'
     );
   }
 
-  const snapshots = parsed.snapshots.map((snapshot) => hydrateSnapshot(snapshot));
+  const snapshots = parsed.snapshots.map((snapshot) =>
+    hydrateSnapshot(snapshot)
+  );
   const dryRun = options.dryRun ?? false;
   let inserted = 0;
 

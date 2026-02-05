@@ -5,7 +5,6 @@ import {
   type UnifiedPlayerData,
 } from '@skillbound/hiscores';
 
-
 /**
  * Maps game mode string to RuneLite account type
  */

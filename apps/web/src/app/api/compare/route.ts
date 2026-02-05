@@ -11,7 +11,10 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 import { createProblemDetails } from '@/lib/api/problem-details';
-import { buildLatestSnapshotMap, parseCompareQuery } from '@/lib/compare/compare';
+import {
+  buildLatestSnapshotMap,
+  parseCompareQuery,
+} from '@/lib/compare/compare';
 import { getDbClient } from '@/lib/db';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
@@ -44,9 +47,7 @@ export async function GET(request: NextRequest) {
     .where(inArray(userCharacters.id, characterIds));
 
   if (characterRows.length !== characterIds.length) {
-    const found = new Set(
-      characterRows.map((row) => row.userCharacter.id)
-    );
+    const found = new Set(characterRows.map((row) => row.userCharacter.id));
     const missing = characterIds.filter((id) => !found.has(id));
 
     const problem = createProblemDetails({
@@ -67,9 +68,7 @@ export async function GET(request: NextRequest) {
     .orderBy(desc(characterSnapshots.capturedAt));
 
   const latestSnapshots = buildLatestSnapshotMap(snapshotRows);
-  const missingSnapshots = profileIds.filter(
-    (id) => !latestSnapshots.has(id)
-  );
+  const missingSnapshots = profileIds.filter((id) => !latestSnapshots.has(id));
 
   if (missingSnapshots.length > 0) {
     const problem = createProblemDetails({

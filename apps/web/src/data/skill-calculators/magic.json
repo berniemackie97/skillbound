@@ -26,9 +26,7 @@
         "action_members": false,
         "level_req": 1,
         "exp_given": 5.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/wind-strike"
       },
       {
@@ -39,9 +37,7 @@
         "action_members": false,
         "level_req": 3,
         "exp_given": 13,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/confuse"
       },
       {
@@ -52,9 +48,7 @@
         "action_members": true,
         "level_req": 4,
         "exp_given": 9,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-opal"
       },
       {
@@ -65,9 +59,7 @@
         "action_members": false,
         "level_req": 5,
         "exp_given": 7.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/water-strike"
       },
       {
@@ -78,9 +70,7 @@
         "action_members": false,
         "level_req": 7,
         "exp_given": 17.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-1-enchant"
       },
       {
@@ -91,9 +81,7 @@
         "action_members": true,
         "level_req": 7,
         "exp_given": 17.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-sapphire"
       },
       {
@@ -104,9 +92,7 @@
         "action_members": false,
         "level_req": 9,
         "exp_given": 9.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/earth-strike"
       },
       {
@@ -117,9 +103,7 @@
         "action_members": false,
         "level_req": 11,
         "exp_given": 21,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/weaken"
       },
       {
@@ -130,9 +114,7 @@
         "action_members": false,
         "level_req": 13,
         "exp_given": 11.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/fire-strike"
       },
       {
@@ -143,9 +125,7 @@
         "action_members": true,
         "level_req": 14,
         "exp_given": 19,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-jade"
       },
       {
@@ -156,9 +136,7 @@
         "action_members": false,
         "level_req": 15,
         "exp_given": 25,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/bones-to-bananas"
       },
       {
@@ -169,9 +147,7 @@
         "action_members": true,
         "level_req": 17,
         "exp_given": 16,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/draynor-manor-teleport"
       },
       {
@@ -182,9 +158,7 @@
         "action_members": false,
         "level_req": 17,
         "exp_given": 13.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/wind-bolt"
       },
       {
@@ -195,9 +169,7 @@
         "action_members": false,
         "level_req": 19,
         "exp_given": 29,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/curse"
       },
       {
@@ -208,9 +180,7 @@
         "action_members": false,
         "level_req": 20,
         "exp_given": 30,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/bind"
       },
       {
@@ -221,9 +191,7 @@
         "action_members": false,
         "level_req": 21,
         "exp_given": 31,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/low-level-alchemy"
       },
       {
@@ -234,9 +202,7 @@
         "action_members": false,
         "level_req": 23,
         "exp_given": 16.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/water-bolt"
       },
       {
@@ -247,9 +213,7 @@
         "action_members": true,
         "level_req": 24,
         "exp_given": 29,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-pearl"
       },
       {
@@ -260,9 +224,7 @@
         "action_members": false,
         "level_req": 25,
         "exp_given": 35,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/varrock-teleport"
       },
       {
@@ -273,9 +235,7 @@
         "action_members": false,
         "level_req": 27,
         "exp_given": 37,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-2-enchant"
       },
       {
@@ -286,9 +246,7 @@
         "action_members": true,
         "level_req": 27,
         "exp_given": 37,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-emerald"
       },
       {
@@ -299,9 +257,7 @@
         "action_members": true,
         "level_req": 28,
         "exp_given": 22,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/mind-altar-teleport"
       },
       {
@@ -312,9 +268,7 @@
         "action_members": true,
         "level_req": 29,
         "exp_given": 33,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-red-topaz"
       },
       {
@@ -325,9 +279,7 @@
         "action_members": false,
         "level_req": 29,
         "exp_given": 19.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/earth-bolt"
       },
       {
@@ -338,9 +290,7 @@
         "action_members": false,
         "level_req": 31,
         "exp_given": 41,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lumbridge-teleport"
       },
       {
@@ -351,9 +301,7 @@
         "action_members": false,
         "level_req": 33,
         "exp_given": 43,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/telekinetic-grab"
       },
       {
@@ -364,9 +312,7 @@
         "action_members": true,
         "level_req": 34,
         "exp_given": 27,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/respawn-teleport"
       },
       {
@@ -377,9 +323,7 @@
         "action_members": false,
         "level_req": 35,
         "exp_given": 22.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/fire-bolt"
       },
       {
@@ -390,9 +334,7 @@
         "action_members": false,
         "level_req": 37,
         "exp_given": 48,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/falador-teleport"
       },
       {
@@ -403,9 +345,7 @@
         "action_members": false,
         "level_req": 39,
         "exp_given": 24.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/crumble-undead"
       },
       {
@@ -416,9 +356,7 @@
         "action_members": true,
         "level_req": 40,
         "exp_given": 30,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/salve-graveyard-teleport"
       },
       {
@@ -429,9 +367,7 @@
         "action_members": true,
         "level_req": 40,
         "exp_given": 30,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleport-to-house"
       },
       {
@@ -442,9 +378,7 @@
         "action_members": false,
         "level_req": 41,
         "exp_given": 25.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/wind-blast"
       },
       {
@@ -455,9 +389,7 @@
         "action_members": false,
         "level_req": 43,
         "exp_given": 53,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/superheat-item"
       },
       {
@@ -468,9 +400,7 @@
         "action_members": true,
         "level_req": 45,
         "exp_given": 55.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/camelot-teleport"
       },
       {
@@ -481,9 +411,7 @@
         "action_members": false,
         "level_req": 47,
         "exp_given": 28.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/water-blast"
       },
       {
@@ -494,9 +422,7 @@
         "action_members": true,
         "level_req": 48,
         "exp_given": 50,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/fenkenstrains-castle-teleport"
       },
       {
@@ -507,9 +433,7 @@
         "action_members": false,
         "level_req": 49,
         "exp_given": 59,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-3-enchant"
       },
       {
@@ -520,9 +444,7 @@
         "action_members": true,
         "level_req": 49,
         "exp_given": 59,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-ruby"
       },
       {
@@ -533,9 +455,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 30,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/iban-blast"
       },
       {
@@ -546,9 +466,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 30,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/smoke-rush"
       },
       {
@@ -559,9 +477,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 30,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/magic-dart"
       },
       {
@@ -572,9 +488,7 @@
         "action_members": true,
         "level_req": 50,
         "exp_given": 60,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/snare"
       },
       {
@@ -585,9 +499,7 @@
         "action_members": true,
         "level_req": 51,
         "exp_given": 61,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/ardougne-teleport"
       },
       {
@@ -598,9 +510,7 @@
         "action_members": true,
         "level_req": 52,
         "exp_given": 31,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/shadow-rush"
       },
       {
@@ -611,9 +521,7 @@
         "action_members": false,
         "level_req": 53,
         "exp_given": 31.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/earth-blast"
       },
       {
@@ -624,9 +532,7 @@
         "action_members": true,
         "level_req": 54,
         "exp_given": 64,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/paddewwa-teleport"
       },
       {
@@ -637,9 +543,7 @@
         "action_members": false,
         "level_req": 55,
         "exp_given": 65,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/high-level-alchemy"
       },
       {
@@ -650,9 +554,7 @@
         "action_members": true,
         "level_req": 56,
         "exp_given": 56,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/charge-water-orb"
       },
       {
@@ -663,9 +565,7 @@
         "action_members": true,
         "level_req": 56,
         "exp_given": 33,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/blood-rush"
       },
       {
@@ -676,9 +576,7 @@
         "action_members": true,
         "level_req": 57,
         "exp_given": 67,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-diamond"
       },
       {
@@ -689,9 +587,7 @@
         "action_members": false,
         "level_req": 57,
         "exp_given": 67,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-4-enchant"
       },
       {
@@ -702,9 +598,7 @@
         "action_members": true,
         "level_req": 58,
         "exp_given": 68,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/watchtower-teleport"
       },
       {
@@ -715,9 +609,7 @@
         "action_members": true,
         "level_req": 58,
         "exp_given": 34,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/ice-rush"
       },
       {
@@ -728,9 +620,7 @@
         "action_members": false,
         "level_req": 59,
         "exp_given": 34.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/fire-blast"
       },
       {
@@ -741,9 +631,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 70,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/senntisten-teleport"
       },
       {
@@ -754,9 +642,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 35,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/claws-of-guthix"
       },
       {
@@ -767,9 +653,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 35,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/flames-of-zamorak"
       },
       {
@@ -780,9 +664,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 35,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/saradomin-strike"
       },
       {
@@ -793,9 +675,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 70,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/charge-earth-orb"
       },
       {
@@ -806,9 +686,7 @@
         "action_members": true,
         "level_req": 60,
         "exp_given": 65,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/bones-to-peaches"
       },
       {
@@ -819,9 +697,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 68,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/west-ardougne-teleport"
       },
       {
@@ -832,9 +708,7 @@
         "action_members": true,
         "level_req": 61,
         "exp_given": 68,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/trollheim-teleport"
       },
       {
@@ -845,9 +719,7 @@
         "action_members": true,
         "level_req": 62,
         "exp_given": 36,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/smoke-burst"
       },
       {
@@ -858,9 +730,7 @@
         "action_members": true,
         "level_req": 62,
         "exp_given": 36,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/wind-wave"
       },
       {
@@ -871,9 +741,7 @@
         "action_members": true,
         "level_req": 63,
         "exp_given": 73,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/charge-fire-orb"
       },
       {
@@ -884,9 +752,7 @@
         "action_members": true,
         "level_req": 64,
         "exp_given": 37,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/shadow-burst"
       },
       {
@@ -897,9 +763,7 @@
         "action_members": true,
         "level_req": 64,
         "exp_given": 74,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleport-to-ape-atoll"
       },
       {
@@ -910,9 +774,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 60,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/bake-pie"
       },
       {
@@ -923,9 +785,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 74,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/harmony-island-teleport"
       },
       {
@@ -936,9 +796,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 60,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/geomancy"
       },
       {
@@ -949,9 +807,7 @@
         "action_members": true,
         "level_req": 65,
         "exp_given": 37.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/water-wave"
       },
       {
@@ -962,9 +818,7 @@
         "action_members": true,
         "level_req": 66,
         "exp_given": 76,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/charge-air-orb"
       },
       {
@@ -975,9 +829,7 @@
         "action_members": true,
         "level_req": 66,
         "exp_given": 60,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/cure-plant"
       },
       {
@@ -988,9 +840,7 @@
         "action_members": true,
         "level_req": 66,
         "exp_given": 76,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/kharyrll-teleport"
       },
       {
@@ -1001,9 +851,7 @@
         "action_members": true,
         "level_req": 66,
         "exp_given": 76,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/vulnerability"
       },
       {
@@ -1014,9 +862,7 @@
         "action_members": true,
         "level_req": 66,
         "exp_given": 61,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/monster-examine"
       },
       {
@@ -1027,9 +873,7 @@
         "action_members": true,
         "level_req": 67,
         "exp_given": 63,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/npc-contact"
       },
       {
@@ -1040,9 +884,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 39,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/blood-burst"
       },
       {
@@ -1053,9 +895,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 65,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/cure-other"
       },
       {
@@ -1066,9 +906,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 78,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-5-enchant"
       },
       {
@@ -1079,9 +917,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 78,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-dragonstone"
       },
       {
@@ -1092,9 +928,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 65,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/humidify"
       },
       {
@@ -1105,9 +939,7 @@
         "action_members": true,
         "level_req": 48,
         "exp_given": 58,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleport-to-kourend"
       },
       {
@@ -1118,9 +950,7 @@
         "action_members": true,
         "level_req": 69,
         "exp_given": 66,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/moonclan-teleport"
       },
       {
@@ -1131,9 +961,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 40,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/earth-wave"
       },
       {
@@ -1144,9 +972,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 40,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/ice-burst"
       },
       {
@@ -1157,9 +983,7 @@
         "action_members": true,
         "level_req": 70,
         "exp_given": 67,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-moonclan"
       },
       {
@@ -1170,9 +994,7 @@
         "action_members": true,
         "level_req": 71,
         "exp_given": 82,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/cemetery-teleport"
       },
       {
@@ -1183,9 +1005,7 @@
         "action_members": true,
         "level_req": 71,
         "exp_given": 69,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/cure-me"
       },
       {
@@ -1196,9 +1016,7 @@
         "action_members": true,
         "level_req": 71,
         "exp_given": 70,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/hunter-kit"
       },
       {
@@ -1209,9 +1027,7 @@
         "action_members": true,
         "level_req": 71,
         "exp_given": 69,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/ourania-teleport"
       },
       {
@@ -1222,9 +1038,7 @@
         "action_members": true,
         "level_req": 72,
         "exp_given": 82,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/lassar-teleport"
       },
       {
@@ -1235,9 +1049,7 @@
         "action_members": true,
         "level_req": 72,
         "exp_given": 71,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/waterbirth-teleport"
       },
       {
@@ -1248,9 +1060,7 @@
         "action_members": true,
         "level_req": 73,
         "exp_given": 72,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-waterbirth"
       },
       {
@@ -1261,9 +1071,7 @@
         "action_members": true,
         "level_req": 73,
         "exp_given": 83,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enfeeble"
       },
       {
@@ -1274,9 +1082,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 84,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleother-lumbridge"
       },
       {
@@ -1287,9 +1093,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 42,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/smoke-blitz"
       },
       {
@@ -1300,9 +1104,7 @@
         "action_members": true,
         "level_req": 74,
         "exp_given": 74,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/cure-group"
       },
       {
@@ -1313,9 +1115,7 @@
         "action_members": true,
         "level_req": 75,
         "exp_given": 76,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/stat-spy"
       },
       {
@@ -1326,9 +1126,7 @@
         "action_members": true,
         "level_req": 75,
         "exp_given": 76,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/barbarian-teleport"
       },
       {
@@ -1339,9 +1137,7 @@
         "action_members": true,
         "level_req": 75,
         "exp_given": 42.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/fire-wave"
       },
       {
@@ -1352,9 +1148,7 @@
         "action_members": true,
         "level_req": 76,
         "exp_given": 77,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-barbarian"
       },
       {
@@ -1365,9 +1159,7 @@
         "action_members": true,
         "level_req": 76,
         "exp_given": 43,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/shadow-blitz"
       },
       {
@@ -1378,9 +1170,7 @@
         "action_members": true,
         "level_req": 76,
         "exp_given": 75,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/spin-flax"
       },
       {
@@ -1391,9 +1181,7 @@
         "action_members": true,
         "level_req": 77,
         "exp_given": 78,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/superglass-make"
       },
       {
@@ -1404,9 +1192,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 81,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tan-leather"
       },
       {
@@ -1417,9 +1203,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 80,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/khazard-teleport"
       },
       {
@@ -1430,9 +1214,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 88,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/dareeyak-teleport"
       },
       {
@@ -1443,9 +1225,7 @@
         "action_members": true,
         "level_req": 78,
         "exp_given": 90,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/resurrect-crops"
       },
       {
@@ -1456,9 +1236,7 @@
         "action_members": true,
         "level_req": 79,
         "exp_given": 89,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/entangle"
       },
       {
@@ -1469,9 +1247,7 @@
         "action_members": true,
         "level_req": 79,
         "exp_given": 81,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-khazard"
       },
       {
@@ -1482,9 +1258,7 @@
         "action_members": true,
         "level_req": 79,
         "exp_given": 82,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/dream"
       },
       {
@@ -1495,9 +1269,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 180,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/charge"
       },
       {
@@ -1508,9 +1280,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 45,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/blood-blitz"
       },
       {
@@ -1521,9 +1291,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 90,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/stun"
       },
       {
@@ -1534,9 +1302,7 @@
         "action_members": true,
         "level_req": 80,
         "exp_given": 83,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/string-jewellery"
       },
       {
@@ -1547,9 +1313,7 @@
         "action_members": true,
         "level_req": 81,
         "exp_given": 84,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/stat-restore-pot-share"
       },
       {
@@ -1560,9 +1324,7 @@
         "action_members": true,
         "level_req": 81,
         "exp_given": 44.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/wind-surge"
       },
       {
@@ -1573,9 +1335,7 @@
         "action_members": true,
         "level_req": 82,
         "exp_given": 92,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleother-falador"
       },
       {
@@ -1586,9 +1346,7 @@
         "action_members": true,
         "level_req": 82,
         "exp_given": 86,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/magic-imbue"
       },
       {
@@ -1599,9 +1357,7 @@
         "action_members": true,
         "level_req": 82,
         "exp_given": 46,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/ice-blitz"
       },
       {
@@ -1612,9 +1368,7 @@
         "action_members": true,
         "level_req": 83,
         "exp_given": 87,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/fertile-soil"
       },
       {
@@ -1625,9 +1379,7 @@
         "action_members": true,
         "level_req": 83,
         "exp_given": 90,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/barrows-teleport"
       },
       {
@@ -1638,9 +1390,7 @@
         "action_members": true,
         "level_req": 84,
         "exp_given": 82,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/carrallangar-teleport"
       },
       {
@@ -1651,9 +1401,7 @@
         "action_members": true,
         "level_req": 84,
         "exp_given": 88,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/boost-potion-share"
       },
       {
@@ -1664,9 +1412,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 46.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/water-surge"
       },
       {
@@ -1677,9 +1423,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 89,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/fishing-guild-teleport"
       },
       {
@@ -1690,9 +1434,7 @@
         "action_members": false,
         "level_req": 85,
         "exp_given": 80,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/tele-block"
       },
       {
@@ -1703,11 +1445,7 @@
         "action_members": true,
         "level_req": 85,
         "exp_given": 45,
-        "categories": [
-          62,
-          65,
-          64
-        ],
+        "categories": [62, 65, 64],
         "link": "/guides/teleport-to-bounty-target"
       },
       {
@@ -1718,9 +1456,7 @@
         "action_members": true,
         "level_req": 86,
         "exp_given": 48,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/smoke-barrage"
       },
       {
@@ -1731,9 +1467,7 @@
         "action_members": true,
         "level_req": 86,
         "exp_given": 90,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-fishing-guild"
       },
       {
@@ -1744,9 +1478,7 @@
         "action_members": true,
         "level_req": 86,
         "exp_given": 90,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/plank-make"
       },
       {
@@ -1757,9 +1489,7 @@
         "action_members": true,
         "level_req": 87,
         "exp_given": 92,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/catherby-teleport"
       },
       {
@@ -1770,9 +1500,7 @@
         "action_members": true,
         "level_req": 87,
         "exp_given": 97,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-6-enchant"
       },
       {
@@ -1783,9 +1511,7 @@
         "action_members": true,
         "level_req": 87,
         "exp_given": 97,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/enchant-crossbow-bolt-onyx"
       },
       {
@@ -1796,9 +1522,7 @@
         "action_members": true,
         "level_req": 88,
         "exp_given": 48,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/shadow-barrage"
       },
       {
@@ -1809,9 +1533,7 @@
         "action_members": true,
         "level_req": 88,
         "exp_given": 93,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-catherby"
       },
       {
@@ -1822,9 +1544,7 @@
         "action_members": true,
         "level_req": 89,
         "exp_given": 96,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/ice-plateau-teleport"
       },
       {
@@ -1835,9 +1555,7 @@
         "action_members": true,
         "level_req": 89,
         "exp_given": 97.5,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/recharge-dragonstone"
       },
       {
@@ -1848,9 +1566,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 100,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/annakarl-teleport"
       },
       {
@@ -1861,9 +1577,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 48.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/earth-surge"
       },
       {
@@ -1874,9 +1588,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 99,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/tele-group-ice-plateau"
       },
       {
@@ -1887,9 +1599,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 100,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/teleother-camelot"
       },
       {
@@ -1900,9 +1610,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 100,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": "/guides/ape-atoll-teleport"
       },
       {
@@ -1913,9 +1621,7 @@
         "action_members": true,
         "level_req": 91,
         "exp_given": 100,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/energy-transfer"
       },
       {
@@ -1926,9 +1632,7 @@
         "action_members": true,
         "level_req": 92,
         "exp_given": 51,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/blood-barrage"
       },
       {
@@ -1939,9 +1643,7 @@
         "action_members": true,
         "level_req": 92,
         "exp_given": 101,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/heal-other"
       },
       {
@@ -1952,9 +1654,7 @@
         "action_members": true,
         "level_req": 93,
         "exp_given": 108,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/vengeance-other"
       },
       {
@@ -1965,9 +1665,7 @@
         "action_members": true,
         "level_req": 93,
         "exp_given": 110,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/lvl-7-enchant"
       },
       {
@@ -1978,9 +1676,7 @@
         "action_members": true,
         "level_req": 94,
         "exp_given": 52,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/ice-barrage"
       },
       {
@@ -1991,9 +1687,7 @@
         "action_members": true,
         "level_req": 94,
         "exp_given": 112,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/vengeance"
       },
       {
@@ -2004,9 +1698,7 @@
         "action_members": true,
         "level_req": 95,
         "exp_given": 124,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/heal-group"
       },
       {
@@ -2017,9 +1709,7 @@
         "action_members": true,
         "level_req": 95,
         "exp_given": 50.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": "/guides/fire-surge"
       },
       {
@@ -2030,9 +1720,7 @@
         "action_members": true,
         "level_req": 96,
         "exp_given": 106,
-        "categories": [
-          64
-        ],
+        "categories": [64],
         "link": "/guides/ghorrock-teleport"
       },
       {
@@ -2043,9 +1731,7 @@
         "action_members": true,
         "level_req": 96,
         "exp_given": 130,
-        "categories": [
-          65
-        ],
+        "categories": [65],
         "link": "/guides/spellbook-swap"
       },
       {
@@ -2056,9 +1742,7 @@
         "action_members": true,
         "level_req": 7,
         "exp_given": 14,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2069,9 +1753,7 @@
         "action_members": true,
         "level_req": 27,
         "exp_given": 28,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2082,9 +1764,7 @@
         "action_members": true,
         "level_req": 49,
         "exp_given": 45,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2095,9 +1775,7 @@
         "action_members": true,
         "level_req": 57,
         "exp_given": 50.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2108,9 +1786,7 @@
         "action_members": true,
         "level_req": 68,
         "exp_given": 58,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2121,9 +1797,7 @@
         "action_members": true,
         "level_req": 87,
         "exp_given": 72,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2134,9 +1808,7 @@
         "action_members": true,
         "level_req": 93,
         "exp_given": 87.5,
-        "categories": [
-          62
-        ],
+        "categories": [62],
         "link": null
       },
       {
@@ -2147,9 +1819,7 @@
         "action_members": true,
         "level_req": 16,
         "exp_given": 32,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": null
       },
       {
@@ -2160,9 +1830,7 @@
         "action_members": true,
         "level_req": 41,
         "exp_given": 80,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": null
       },
       {
@@ -2173,9 +1841,7 @@
         "action_members": true,
         "level_req": 72,
         "exp_given": 138,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": null
       },
       {
@@ -2186,9 +1852,7 @@
         "action_members": true,
         "level_req": 90,
         "exp_given": 170,
-        "categories": [
-          63
-        ],
+        "categories": [63],
         "link": null
       }
     ]

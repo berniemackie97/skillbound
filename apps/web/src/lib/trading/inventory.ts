@@ -155,7 +155,10 @@ export async function updateInventoryOnSell(
     return null;
   }
 
-  const newRemainingQuantity = Math.max(0, existing.remainingQuantity - quantity);
+  const newRemainingQuantity = Math.max(
+    0,
+    existing.remainingQuantity - quantity
+  );
 
   const [updated] = await db
     .update(geInventoryPositions)
@@ -256,7 +259,10 @@ export async function recalculateInventoryPositions(
     }
   }
 
-  logger.info({ characterId, positionsUpdated }, 'Recalculated inventory positions');
+  logger.info(
+    { characterId, positionsUpdated },
+    'Recalculated inventory positions'
+  );
   return { positionsUpdated };
 }
 

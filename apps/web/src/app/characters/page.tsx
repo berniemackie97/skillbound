@@ -135,8 +135,8 @@ export default async function CharactersPage() {
           <div className="hero-copy">
             <h2>Character Hub</h2>
             <p>
-              A single command center for snapshots, progression, recent activity,
-              and everything you track.
+              A single command center for snapshots, progression, recent
+              activity, and everything you track.
             </p>
             <CharacterHubActions activeCharacterId={activeCharacterId} />
           </div>
@@ -187,9 +187,7 @@ export default async function CharactersPage() {
           <div className="stat-chip">
             <span>Weekly XP</span>
             <strong>
-              {weeklySummary
-                ? formatDelta(weeklySummary.totalXpDelta)
-                : '—'}
+              {weeklySummary ? formatDelta(weeklySummary.totalXpDelta) : '—'}
             </strong>
           </div>
         </div>
@@ -331,17 +329,26 @@ export default async function CharactersPage() {
                   </div>
                   <div className="metric-row">
                     <span>Total level</span>
-                    <strong>{formatDelta(weeklySummary.totalLevelDelta)}</strong>
+                    <strong>
+                      {formatDelta(weeklySummary.totalLevelDelta)}
+                    </strong>
                   </div>
                   <div className="metric-row">
                     <span>Combat</span>
-                    <strong>{formatDelta(weeklySummary.combatLevelDelta)}</strong>
+                    <strong>
+                      {formatDelta(weeklySummary.combatLevelDelta)}
+                    </strong>
                   </div>
                 </div>
-                <WeeklyGainsChart gains={weeklySummary.topSkillGains} maxItems={8} />
+                <WeeklyGainsChart
+                  gains={weeklySummary.topSkillGains}
+                  maxItems={8}
+                />
               </>
             ) : (
-              <p className="muted">Capture a full week of snapshots to see gains.</p>
+              <p className="muted">
+                Capture a full week of snapshots to see gains.
+              </p>
             )}
           </div>
           <div className="stack-card">
@@ -381,7 +388,11 @@ export default async function CharactersPage() {
                       <svg aria-hidden="true" role="img" viewBox="0 0 180 64">
                         <polyline
                           className="sparkline-line"
-                          points={buildSparklinePoints(activity.values, 180, 64)}
+                          points={buildSparklinePoints(
+                            activity.values,
+                            180,
+                            64
+                          )}
                         />
                       </svg>
                     </div>
@@ -436,11 +447,7 @@ export default async function CharactersPage() {
   );
 }
 
-function buildSparklinePoints(
-  values: number[],
-  width: number,
-  height: number
-) {
+function buildSparklinePoints(values: number[], width: number, height: number) {
   if (values.length === 0) {
     return '';
   }
@@ -489,9 +496,7 @@ function findPreviousSnapshotWithChange(
   return snapshotsDesc[1] ?? null;
 }
 
-function buildActivitySeries(
-  snapshots: CharacterSnapshot[]
-): Array<{
+function buildActivitySeries(snapshots: CharacterSnapshot[]): Array<{
   name: string;
   values: number[];
   delta: number;

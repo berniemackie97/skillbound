@@ -7,11 +7,7 @@ import {
   questDefinitions,
   eq,
 } from '@skillbound/database';
-import {
-  SKILLS,
-  type Requirement,
-  type SkillName,
-} from '@skillbound/domain';
+import { SKILLS, type Requirement, type SkillName } from '@skillbound/domain';
 import {
   createMediaWikiClient,
   createWikiBucketClient,
@@ -317,23 +313,24 @@ export async function syncDiaries(db: DbClient): Promise<{
           ...skillRequirements
             .map((req) => toSkillRequirement(req))
             .filter((req): req is Requirement => Boolean(req)),
-          ...questRequirements
-            .map((questName) => {
-              const questId = normalizeQuestName(questName);
-              if (!questId || !knownQuestIds.has(questId)) {
-                return {
-                  type: 'manual-check',
-                  label: `Quest: ${questName}`,
-                } satisfies Requirement;
-              }
+          ...questRequirements.map((questName) => {
+            const questId = normalizeQuestName(questName);
+            if (!questId || !knownQuestIds.has(questId)) {
               return {
-                type: 'quest-complete',
-                questId,
+                type: 'manual-check',
+                label: `Quest: ${questName}`,
               } satisfies Requirement;
-            }),
+            }
+            return {
+              type: 'quest-complete',
+              questId,
+            } satisfies Requirement;
+          }),
           ...additionalRequirements
             .map((requirement) => requirement.trim())
-            .filter((label) => Boolean(label) && !/^[-\u2013\u2014]+$/.test(label))
+            .filter(
+              (label) => Boolean(label) && !/^[-\u2013\u2014]+$/.test(label)
+            )
             .map(
               (label) =>
                 ({
@@ -348,8 +345,7 @@ export async function syncDiaries(db: DbClient): Promise<{
             and(eq(t.diaryId, diaryId), eq(t.tier, tierKey)),
         });
 
-        const tierName =
-          tierKey.charAt(0).toUpperCase() + tierKey.slice(1);
+        const tierName = tierKey.charAt(0).toUpperCase() + tierKey.slice(1);
 
         if (tierRow) {
           await tx
@@ -488,7 +484,9 @@ function getUserAgent(): string {
   );
 }
 
-async function buildItemNameMap(userAgent: string): Promise<Map<string, number>> {
+async function buildItemNameMap(
+  userAgent: string
+): Promise<Map<string, number>> {
   const now = Date.now();
   if (cachedItemMap && now - cachedItemMapAt < ITEM_MAP_TTL_MS) {
     return cachedItemMap;
@@ -516,9 +514,10 @@ async function buildItemNameMap(userAgent: string): Promise<Map<string, number>>
   }
 }
 
-function parseQuestDetails(
-  page: WikiPage | undefined
-): { recommended?: string; questPoints?: number } {
+function parseQuestDetails(page: WikiPage | undefined): {
+  recommended?: string;
+  questPoints?: number;
+} {
   if (!page) return {};
   const details = parseInfobox(page.wikitext, 'Quest details', {
     clean: false,

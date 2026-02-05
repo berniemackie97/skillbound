@@ -1,10 +1,13 @@
 import { type getSessionUser } from '@/lib/auth/auth-helpers';
-import type { getOverallSkill, getTopActivities, getTopSkills } from '@/lib/lookup/lookup-data';
+import type {
+  getOverallSkill,
+  getTopActivities,
+  getTopSkills,
+} from '@/lib/lookup/lookup-data';
 import type { ModeValue, LookupResponse } from '@/lib/lookup/lookup-types';
 
 import { LookupForm } from './lookup-form';
 import { LookupResult } from './lookup-result';
-
 
 type LookupPanelProps = {
   username: string;

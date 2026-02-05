@@ -27,9 +27,15 @@ import {
   type WiseOldManSnapshot,
 } from '@skillbound/integrations/wise-old-man';
 
-import { getIntegrationsCache, getIntegrationsCacheTtlMs } from '../cache/integrations-cache';
+import {
+  getIntegrationsCache,
+  getIntegrationsCacheTtlMs,
+} from '../cache/integrations-cache';
 import { logger } from '../logging/logger';
-import { calculateExpirationDate, type RetentionTier } from '../snapshots/snapshot-retention';
+import {
+  calculateExpirationDate,
+  type RetentionTier,
+} from '../snapshots/snapshot-retention';
 
 type WiseOldManImportOptions = {
   period?: 'day' | 'week' | 'month' | 'year';
@@ -358,8 +364,7 @@ export async function importWiseOldManSnapshots(
   });
 
   const sorted = [...snapshots].sort(
-    (a, b) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
   const limited =
@@ -384,8 +389,12 @@ export async function importWiseOldManSnapshots(
     };
   }
 
-  const minDate = new Date(Math.min(...capturedDates.map((date) => date.getTime())));
-  const maxDate = new Date(Math.max(...capturedDates.map((date) => date.getTime())));
+  const minDate = new Date(
+    Math.min(...capturedDates.map((date) => date.getTime()))
+  );
+  const maxDate = new Date(
+    Math.max(...capturedDates.map((date) => date.getTime()))
+  );
 
   const hasEarlierHistory =
     existingOldest &&

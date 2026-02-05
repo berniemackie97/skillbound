@@ -29,7 +29,9 @@ async function seedProgressionCategories() {
       console.warn(
         'Progression categories already exist. Skipping seed operation.'
       );
-      console.warn('Run this script with --force to re-seed (not implemented).');
+      console.warn(
+        'Run this script with --force to re-seed (not implemented).'
+      );
       return;
     }
 

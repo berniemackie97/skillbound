@@ -81,7 +81,12 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
 
   return (
     <div className="chart-container">
-      <ResponsiveContainer height="100%" minHeight={140} minWidth={0} width="100%">
+      <ResponsiveContainer
+        height="100%"
+        minHeight={140}
+        minWidth={0}
+        width="100%"
+      >
         <BarChart
           data={chartData}
           layout="vertical"
@@ -106,7 +111,6 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
           />
           <Tooltip
             cursor={{ fill: 'rgba(212, 175, 55, 0.1)' }}
-            labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
             contentStyle={{
               backgroundColor: 'rgba(30, 25, 18, 0.95)',
               border: '1px solid rgba(226, 176, 101, 0.3)',
@@ -122,12 +126,13 @@ export function SkillGainsChart({ gains, maxItems = 8 }: SkillGainsChartProps) {
               }
               return [String(numValue), strName];
             }}
+            labelStyle={{
+              color: 'var(--text)',
+              fontWeight: 600,
+              marginBottom: 4,
+            }}
           />
-          <Bar
-            dataKey="deltaXp"
-            maxBarSize={20}
-            radius={[0, 3, 3, 0]}
-          >
+          <Bar dataKey="deltaXp" maxBarSize={20} radius={[0, 3, 3, 0]}>
             {chartData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}

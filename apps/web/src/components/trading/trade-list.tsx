@@ -96,7 +96,13 @@ interface TradeDetailViewProps {
   isDeleting: boolean;
 }
 
-function TradeDetailView({ trade, characterId, onEdit, onDelete, isDeleting }: TradeDetailViewProps) {
+function TradeDetailView({
+  trade,
+  characterId,
+  onEdit,
+  onDelete,
+  isDeleting,
+}: TradeDetailViewProps) {
   const [deleteImpact, setDeleteImpact] = useState<DeleteImpact | null>(null);
   const [loadingImpact, setLoadingImpact] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -154,21 +160,26 @@ function TradeDetailView({ trade, characterId, onEdit, onDelete, isDeleting }: T
           </div>
         )}
 
-        {deleteImpact?.affectedSells && deleteImpact.affectedSells.length > 0 && (
-          <div className="affected-trades">
-            <p className="affected-label">Sells that will be affected:</p>
-            <ul>
-              {deleteImpact.affectedSells.slice(0, 5).map((sell) => (
-                <li key={sell.id}>
-                  {formatDate(sell.tradedAt)} — {sell.quantity.toLocaleString()} items ({formatGp(sell.totalValue)} GP)
-                </li>
-              ))}
-              {deleteImpact.affectedSells.length > 5 && (
-                <li className="more">+{deleteImpact.affectedSells.length - 5} more</li>
-              )}
-            </ul>
-          </div>
-        )}
+        {deleteImpact?.affectedSells &&
+          deleteImpact.affectedSells.length > 0 && (
+            <div className="affected-trades">
+              <p className="affected-label">Sells that will be affected:</p>
+              <ul>
+                {deleteImpact.affectedSells.slice(0, 5).map((sell) => (
+                  <li key={sell.id}>
+                    {formatDate(sell.tradedAt)} —{' '}
+                    {sell.quantity.toLocaleString()} items (
+                    {formatGp(sell.totalValue)} GP)
+                  </li>
+                ))}
+                {deleteImpact.affectedSells.length > 5 && (
+                  <li className="more">
+                    +{deleteImpact.affectedSells.length - 5} more
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
 
         <div className="delete-confirm-actions">
           <button
@@ -212,7 +223,9 @@ function TradeDetailView({ trade, characterId, onEdit, onDelete, isDeleting }: T
         </div>
         <div className="trade-detail-row highlight">
           <span className="label">Total Value</span>
-          <span className={`value ${trade.tradeType === 'buy' ? 'cost' : 'revenue'}`}>
+          <span
+            className={`value ${trade.tradeType === 'buy' ? 'cost' : 'revenue'}`}
+          >
             {formatGp(trade.totalValue)} GP
           </span>
         </div>
@@ -278,7 +291,12 @@ interface EditFormProps {
   onCancel: () => void;
 }
 
-function EditTradeForm({ trade, characterId, onSave, onCancel }: EditFormProps) {
+function EditTradeForm({
+  trade,
+  characterId,
+  onSave,
+  onCancel,
+}: EditFormProps) {
   const [quantity, setQuantity] = useState(String(trade.quantity));
   const [pricePerItem, setPricePerItem] = useState(String(trade.pricePerItem));
   const [tradedAt, setTradedAt] = useState(formatDateForInput(trade.tradedAt));
@@ -332,7 +350,8 @@ function EditTradeForm({ trade, characterId, onSave, onCancel }: EditFormProps) 
     }
   }
 
-  const totalValue = (parseInt(quantity, 10) || 0) * (parseInt(pricePerItem, 10) || 0);
+  const totalValue =
+    (parseInt(quantity, 10) || 0) * (parseInt(pricePerItem, 10) || 0);
 
   return (
     <div className="trade-edit-form">
@@ -395,10 +414,20 @@ function EditTradeForm({ trade, characterId, onSave, onCancel }: EditFormProps) 
       {error && <div className="error">{error}</div>}
 
       <div className="trade-edit-actions">
-        <button className="button ghost" disabled={isSaving} type="button" onClick={onCancel}>
+        <button
+          className="button ghost"
+          disabled={isSaving}
+          type="button"
+          onClick={onCancel}
+        >
           Cancel
         </button>
-        <button className="button primary" disabled={isSaving} type="button" onClick={handleSave}>
+        <button
+          className="button primary"
+          disabled={isSaving}
+          type="button"
+          onClick={handleSave}
+        >
           {isSaving ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
@@ -500,8 +529,12 @@ export function TradeList({
               >
                 <td className="col-date">
                   <div className="date-cell">
-                    <span className="date-main">{formatDate(trade.tradedAt)}</span>
-                    <span className="date-time">{formatTime(trade.tradedAt)}</span>
+                    <span className="date-main">
+                      {formatDate(trade.tradedAt)}
+                    </span>
+                    <span className="date-time">
+                      {formatTime(trade.tradedAt)}
+                    </span>
                   </div>
                 </td>
                 <td className="col-item">
@@ -524,7 +557,9 @@ export function TradeList({
                   {trade.tradeType === 'sell' && trade.totalProfit !== null ? (
                     <span
                       className={
-                        trade.totalProfit >= 0 ? 'profit-positive' : 'profit-negative'
+                        trade.totalProfit >= 0
+                          ? 'profit-positive'
+                          : 'profit-negative'
                       }
                     >
                       {trade.totalProfit >= 0 ? '+' : ''}
@@ -580,7 +615,9 @@ export function TradeList({
               </div>
               <div className="trade-card-row">
                 <span className="label">Total</span>
-                <span className="value total">{formatGp(trade.totalValue)}</span>
+                <span className="value total">
+                  {formatGp(trade.totalValue)}
+                </span>
               </div>
               {trade.tradeType === 'sell' && (
                 <div className="trade-card-row">

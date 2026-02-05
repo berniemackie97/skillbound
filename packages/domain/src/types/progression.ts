@@ -2,7 +2,12 @@
  * Progression tracking types
  */
 
-export type ProgressionItemType = 'unlock' | 'item' | 'gear' | 'goal' | 'custom';
+export type ProgressionItemType =
+  | 'unlock'
+  | 'item'
+  | 'gear'
+  | 'goal'
+  | 'custom';
 
 export interface ProgressionItem {
   id: string;

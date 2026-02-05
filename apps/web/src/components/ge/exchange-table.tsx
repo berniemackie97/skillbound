@@ -1,8 +1,21 @@
 'use client';
 
-import { Fragment, memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { formatGp, formatRoi, formatTimeAgo, getItemIconUrl } from '@/lib/trading/ge-service';
+import {
+  formatGp,
+  formatRoi,
+  formatTimeAgo,
+  getItemIconUrl,
+} from '@/lib/trading/ge-service';
 
 import { MobileFilterSheet } from './mobile-filter-sheet';
 import { PriceChartPanel } from './price-chart-panel';
@@ -63,7 +76,11 @@ interface SortHeaderProps {
   columnFilters: Record<ColumnFilterKey, { min: string; max: string }>;
   onSort: (field: SortField, additive: boolean) => void;
   onOpenFilter: (key: ColumnFilterKey | null) => void;
-  onColumnFilterChange: (key: ColumnFilterKey, field: 'min' | 'max', value: string) => void;
+  onColumnFilterChange: (
+    key: ColumnFilterKey,
+    field: 'min' | 'max',
+    value: string
+  ) => void;
   onColumnFilterApply: (key?: ColumnFilterKey) => void;
   onColumnFilterClear: (key: ColumnFilterKey) => void;
 }
@@ -120,7 +137,12 @@ const SortHeader = memo(function SortHeader({
                 onOpenFilter(openFilter === filterKey ? null : filterKey);
               }}
             >
-              <svg fill="currentColor" height="16" viewBox="0 0 24 24" width="16">
+              <svg
+                fill="currentColor"
+                height="16"
+                viewBox="0 0 24 24"
+                width="16"
+              >
                 <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
               </svg>
             </button>
@@ -128,7 +150,10 @@ const SortHeader = memo(function SortHeader({
         </span>
       </span>
       {filterKey && openFilter === filterKey && (
-        <div className="filter-popover" onClick={(event) => event.stopPropagation()}>
+        <div
+          className="filter-popover"
+          onClick={(event) => event.stopPropagation()}
+        >
           <div className="filter-title">Filter {label}</div>
           <div className="filter-inputs">
             <input
@@ -299,7 +324,8 @@ export function ExchangeTable({
       node.style.transition = 'transform 0s';
       node.style.transform = `translateY(${delta}px)`;
       requestAnimationFrame(() => {
-        node.style.transition = 'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
+        node.style.transition =
+          'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
         node.style.transform = '';
       });
     });
@@ -396,7 +422,12 @@ export function ExchangeTable({
           <tr>
             <th aria-label="Favorite" className="col-star"></th>
             <th className="col-expand"></th>
-            <SortHeader className="col-name" field="name" label="Name" {...sortHeaderProps} />
+            <SortHeader
+              className="col-name"
+              field="name"
+              label="Name"
+              {...sortHeaderProps}
+            />
             <SortHeader
               className="col-price"
               field="buyPrice"
@@ -418,7 +449,12 @@ export function ExchangeTable({
               label="Margin"
               {...sortHeaderProps}
             />
-            <SortHeader className="col-tax" field="tax" label="Tax" {...sortHeaderProps} />
+            <SortHeader
+              className="col-tax"
+              field="tax"
+              label="Tax"
+              {...sortHeaderProps}
+            />
             <SortHeader
               className="col-profit"
               field="profit"
@@ -440,7 +476,12 @@ export function ExchangeTable({
               label="Volume"
               {...sortHeaderProps}
             />
-            <SortHeader className="col-limit" field="buyLimit" label="Limit" {...sortHeaderProps} />
+            <SortHeader
+              className="col-limit"
+              field="buyLimit"
+              label="Limit"
+              {...sortHeaderProps}
+            />
             <SortHeader
               className="col-potential"
               field="potentialProfit"
@@ -448,7 +489,12 @@ export function ExchangeTable({
               label="Pot. Profit"
               {...sortHeaderProps}
             />
-            <SortHeader className="col-time" field="lastTrade" label="Last" {...sortHeaderProps} />
+            <SortHeader
+              className="col-time"
+              field="lastTrade"
+              label="Last"
+              {...sortHeaderProps}
+            />
           </tr>
         </thead>
         <tbody>
@@ -492,7 +538,12 @@ export function ExchangeTable({
                     type="button"
                     onClick={(e) => handleExpandClick(e, item.id)}
                   >
-                    <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+                    <svg
+                      fill="currentColor"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      width="20"
+                    >
                       <path d="M7 10l5 5 5-5z" />
                     </svg>
                   </button>
@@ -514,7 +565,9 @@ export function ExchangeTable({
                   {item.buyPrice !== null ? (
                     <span className="price-cell">
                       <span className="price-indicator buy">▼</span>
-                      <span className="price-value">{formatGp(item.buyPrice)}</span>
+                      <span className="price-value">
+                        {formatGp(item.buyPrice)}
+                      </span>
                     </span>
                   ) : (
                     <span className="price-empty">-</span>
@@ -524,7 +577,9 @@ export function ExchangeTable({
                   {item.sellPrice !== null ? (
                     <span className="price-cell">
                       <span className="price-indicator sell">▲</span>
-                      <span className="price-value">{formatGp(item.sellPrice)}</span>
+                      <span className="price-value">
+                        {formatGp(item.sellPrice)}
+                      </span>
                     </span>
                   ) : (
                     <span className="price-empty">-</span>
@@ -534,15 +589,25 @@ export function ExchangeTable({
                 <td className="col-tax">
                   {item.tax !== null ? `-${formatGp(item.tax)}` : '-'}
                 </td>
-                <td className={`col-profit ${item.profit !== null && item.profit >= 0 ? 'positive' : 'negative'}`}>
+                <td
+                  className={`col-profit ${item.profit !== null && item.profit >= 0 ? 'positive' : 'negative'}`}
+                >
                   {formatGp(item.profit)}
                 </td>
-                <td className={`col-roi ${item.roiPercent !== null && item.roiPercent >= 0 ? 'positive' : 'negative'}`}>
+                <td
+                  className={`col-roi ${item.roiPercent !== null && item.roiPercent >= 0 ? 'positive' : 'negative'}`}
+                >
                   {formatRoi(item.roiPercent)}
                 </td>
-                <td className="col-volume">{item.volume?.toLocaleString() ?? '-'}</td>
-                <td className="col-limit">{item.buyLimit?.toLocaleString() ?? '-'}</td>
-                <td className="col-potential">{formatGp(item.potentialProfit)}</td>
+                <td className="col-volume">
+                  {item.volume?.toLocaleString() ?? '-'}
+                </td>
+                <td className="col-limit">
+                  {item.buyLimit?.toLocaleString() ?? '-'}
+                </td>
+                <td className="col-potential">
+                  {formatGp(item.potentialProfit)}
+                </td>
                 <td className="col-time">
                   <span className="time-indicator" />
                   {now ? formatTimeAgo(getLastTradeTime(item), now) : '-'}
@@ -577,16 +642,20 @@ export function ExchangeTable({
           onApply={() => onColumnFilterApply(openFilter)}
           onClear={() => onColumnFilterClear(openFilter)}
           onClose={() => setOpenFilter(null)}
-          onMaxChange={(value) => onColumnFilterChange(openFilter, 'max', value)}
-          onMinChange={(value) => onColumnFilterChange(openFilter, 'min', value)}
+          onMaxChange={(value) =>
+            onColumnFilterChange(openFilter, 'max', value)
+          }
+          onMinChange={(value) =>
+            onColumnFilterChange(openFilter, 'min', value)
+          }
         />
       )}
 
       {/* Pagination */}
       <div className="table-pagination">
         <span className="pagination-info">
-          Showing {(currentPage - 1) * 25 + 1}-{Math.min(currentPage * 25, total)} of{' '}
-          {total.toLocaleString()} items
+          Showing {(currentPage - 1) * 25 + 1}-
+          {Math.min(currentPage * 25, total)} of {total.toLocaleString()} items
         </span>
         <div className="pagination-controls">
           <button

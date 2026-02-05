@@ -472,9 +472,10 @@ export class WikiMediaWikiClient {
         params.set('cmcontinue', continueToken);
       }
 
-      const result = await this.fetchApi<
-        z.infer<typeof CategoryMembersSchema>
-      >(params, CategoryMembersSchema);
+      const result = await this.fetchApi<z.infer<typeof CategoryMembersSchema>>(
+        params,
+        CategoryMembersSchema
+      );
 
       if (result.query?.categorymembers) {
         results.push(...result.query.categorymembers);
@@ -845,10 +846,8 @@ export function parseDiaryQuestRequirements(
   let currentTier: DiaryTier | null = null;
   let inQuestTable = false;
 
-  const tierHeaderPattern =
-    /^\s*(easy|medium|hard|elite)\s*=/i;
-  const sectionHeaderPattern =
-    /^==+\s*(easy|medium|hard|elite)\s*==+/i;
+  const tierHeaderPattern = /^\s*(easy|medium|hard|elite)\s*=/i;
+  const sectionHeaderPattern = /^==+\s*(easy|medium|hard|elite)\s*==+/i;
 
   for (const line of lines) {
     const tierHeader = line.match(tierHeaderPattern);
@@ -908,10 +907,8 @@ export function parseDiaryAdditionalRequirements(
   let currentTier: DiaryTier | null = null;
   let inAdditionalTable = false;
 
-  const tierHeaderPattern =
-    /^\s*(easy|medium|hard|elite)\s*=/i;
-  const sectionHeaderPattern =
-    /^==+\s*(easy|medium|hard|elite)\s*==+/i;
+  const tierHeaderPattern = /^\s*(easy|medium|hard|elite)\s*=/i;
+  const sectionHeaderPattern = /^==+\s*(easy|medium|hard|elite)\s*==+/i;
 
   for (const line of lines) {
     const tierHeader = line.match(tierHeaderPattern);

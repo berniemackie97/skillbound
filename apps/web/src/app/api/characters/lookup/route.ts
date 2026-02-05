@@ -95,7 +95,11 @@ export async function GET(request: NextRequest) {
 
   try {
     const db = getDbClient();
-    async function ensureProfileId(data: { displayName: string; mode: GameMode; capturedAt: string }) {
+    async function ensureProfileId(data: {
+      displayName: string;
+      mode: GameMode;
+      capturedAt: string;
+    }) {
       const dbMode = hiscoresModeToDbMode(data.mode);
       const [existing] = await db
         .select()

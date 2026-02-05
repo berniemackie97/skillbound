@@ -680,7 +680,9 @@ export class WikiBucketClient {
   /**
    * Get equipment bonuses by item name
    */
-  async getEquipmentBonuses(itemName: string): Promise<EquipmentBonuses | null> {
+  async getEquipmentBonuses(
+    itemName: string
+  ): Promise<EquipmentBonuses | null> {
     const query = `bucket('infobox_bonuses').select('item_id','item_name','slot','astab','aslash','acrush','amagic','arange','dstab','dslash','dcrush','dmagic','drange','str','rstr','mdmg','prayer','aspeed','arange').where('item_name','${itemName}').limit(1).run()`;
 
     const results = await this.query(query);
@@ -738,10 +740,12 @@ export class WikiBucketClient {
     if (strengthBonus !== undefined) bonuses.strengthBonus = strengthBonus;
 
     const rangeStrengthBonus = toNumberValue(row['rstr']);
-    if (rangeStrengthBonus !== undefined) bonuses.rangeStrengthBonus = rangeStrengthBonus;
+    if (rangeStrengthBonus !== undefined)
+      bonuses.rangeStrengthBonus = rangeStrengthBonus;
 
     const magicDamageBonus = toNumberValue(row['mdmg']);
-    if (magicDamageBonus !== undefined) bonuses.magicDamageBonus = magicDamageBonus;
+    if (magicDamageBonus !== undefined)
+      bonuses.magicDamageBonus = magicDamageBonus;
 
     const prayerBonus = toNumberValue(row['prayer']);
     if (prayerBonus !== undefined) bonuses.prayerBonus = prayerBonus;

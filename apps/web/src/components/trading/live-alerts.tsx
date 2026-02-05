@@ -3,7 +3,11 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
 
-import { calculateGeTax, formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
+import {
+  calculateGeTax,
+  formatGp,
+  getItemIconUrl,
+} from '@/lib/trading/ge-service';
 
 import { useLiveGeItems } from './use-live-ge-items';
 
@@ -67,8 +71,7 @@ export function LiveAlerts({ inventory, watchItems }: LiveAlertsProps) {
 
       const details: string[] = [];
       if (live.avgHighPrice && live.buyPrice) {
-        const delta =
-          (live.buyPrice - live.avgHighPrice) / live.avgHighPrice;
+        const delta = (live.buyPrice - live.avgHighPrice) / live.avgHighPrice;
         if (delta >= PRICE_SPIKE_PCT) {
           details.push(`Price spike +${(delta * 100).toFixed(1)}%`);
         } else if (delta <= -PRICE_SPIKE_PCT) {
@@ -152,8 +155,7 @@ export function LiveAlerts({ inventory, watchItems }: LiveAlertsProps) {
       }
 
       if (live.avgHighPrice && live.buyPrice) {
-        const delta =
-          (live.buyPrice - live.avgHighPrice) / live.avgHighPrice;
+        const delta = (live.buyPrice - live.avgHighPrice) / live.avgHighPrice;
         if (delta >= PRICE_SPIKE_PCT) {
           details.push(`Price spike +${(delta * 100).toFixed(1)}%`);
         } else if (delta <= -PRICE_SPIKE_PCT) {
@@ -182,7 +184,9 @@ export function LiveAlerts({ inventory, watchItems }: LiveAlertsProps) {
         itemId: watch.itemId,
         itemName: watch.itemName,
         icon: live.icon ?? null,
-        status: details.some((detail) => detail.includes('dip')) ? 'negative' : 'positive',
+        status: details.some((detail) => detail.includes('dip'))
+          ? 'negative'
+          : 'positive',
         headline: 'Watchlist alert',
         details,
       });

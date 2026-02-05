@@ -94,12 +94,16 @@ export function TradingOverview({ overview }: TradingOverviewProps) {
 
         <div className="overview-card">
           <span className="label">Avg Trade Size</span>
-          <span className="value">{formatGp(Math.round(overview.averageTradeValue))} GP</span>
+          <span className="value">
+            {formatGp(Math.round(overview.averageTradeValue))} GP
+          </span>
         </div>
 
         <div className="overview-card">
           <span className="label">Avg Profit/Trade</span>
-          <span className={`value ${overview.averageProfitPerTrade >= 0 ? 'positive' : 'negative'}`}>
+          <span
+            className={`value ${overview.averageProfitPerTrade >= 0 ? 'positive' : 'negative'}`}
+          >
             {overview.averageProfitPerTrade >= 0 ? '+' : ''}
             {formatGp(Math.round(overview.averageProfitPerTrade))} GP
           </span>
@@ -107,12 +111,16 @@ export function TradingOverview({ overview }: TradingOverviewProps) {
 
         <div className="overview-card">
           <span className="label">First Trade</span>
-          <span className="value small">{formatDate(overview.oldestTrade)}</span>
+          <span className="value small">
+            {formatDate(overview.oldestTrade)}
+          </span>
         </div>
 
         <div className="overview-card">
           <span className="label">Last Trade</span>
-          <span className="value small">{formatDate(overview.newestTrade)}</span>
+          <span className="value small">
+            {formatDate(overview.newestTrade)}
+          </span>
         </div>
       </div>
     </div>

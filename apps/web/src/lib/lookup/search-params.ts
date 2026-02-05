@@ -3,7 +3,9 @@ import { MODE_VALUES } from './lookup-types';
 
 export type LookupSearchParamsInput = SearchParams | Promise<SearchParams>;
 
-async function resolveSearchParams(input?: LookupSearchParamsInput): Promise<SearchParams> {
+async function resolveSearchParams(
+  input?: LookupSearchParamsInput
+): Promise<SearchParams> {
   if (!input) return {};
   return Promise.resolve(input);
 }

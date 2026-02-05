@@ -220,13 +220,20 @@ export async function setState(
   const existing = await getState(characterId, domain, key);
 
   if (existing && !force) {
-    const existingPriority = SOURCE_PRIORITY[existing.source as StateSource] ?? 0;
+    const existingPriority =
+      SOURCE_PRIORITY[existing.source as StateSource] ?? 0;
     const newPriority = SOURCE_PRIORITY[source] ?? 0;
 
     // Don't overwrite with lower priority source
     if (newPriority < existingPriority) {
       logger.debug(
-        { characterId, domain, key, existingSource: existing.source, newSource: source },
+        {
+          characterId,
+          domain,
+          key,
+          existingSource: existing.source,
+          newSource: source,
+        },
         'Skipping state update due to lower priority source'
       );
       return existing;
@@ -263,8 +270,13 @@ export async function setState(
         sourceId: sourceId ?? null,
         confidence,
         note: note ?? null,
-        achievedAt: achievedAt ?? sql`COALESCE(${characterState.achievedAt}, ${achievedAt ?? null})`,
-        syncedAt: source === 'hiscores' || source === 'runelite' ? now : characterState.syncedAt,
+        achievedAt:
+          achievedAt ??
+          sql`COALESCE(${characterState.achievedAt}, ${achievedAt ?? null})`,
+        syncedAt:
+          source === 'hiscores' || source === 'runelite'
+            ? now
+            : characterState.syncedAt,
         updatedAt: now,
       },
     })
@@ -274,10 +286,7 @@ export async function setState(
     throw new Error('Failed to set character state');
   }
 
-  logger.debug(
-    { characterId, domain, key, source },
-    'Updated character state'
-  );
+  logger.debug({ characterId, domain, key, source }, 'Updated character state');
 
   return result;
 }
@@ -332,8 +341,13 @@ export async function setStates(
             sourceId: sourceId ?? null,
             confidence,
             note: note ?? null,
-            achievedAt: achievedAt ?? sql`COALESCE(${characterState.achievedAt}, ${achievedAt ?? null})`,
-            syncedAt: source === 'hiscores' || source === 'runelite' ? now : characterState.syncedAt,
+            achievedAt:
+              achievedAt ??
+              sql`COALESCE(${characterState.achievedAt}, ${achievedAt ?? null})`,
+            syncedAt:
+              source === 'hiscores' || source === 'runelite'
+                ? now
+                : characterState.syncedAt,
             updatedAt: now,
           },
         })
@@ -438,7 +452,7 @@ export async function setUnlock(
     },
     {
       ...options,
-      achievedAt: unlocked ? options.achievedAt ?? new Date() : undefined,
+      achievedAt: unlocked ? (options.achievedAt ?? new Date()) : undefined,
     }
   );
 }
@@ -463,7 +477,7 @@ export async function setQuestComplete(
     },
     {
       ...options,
-      achievedAt: completed ? options.achievedAt ?? new Date() : undefined,
+      achievedAt: completed ? (options.achievedAt ?? new Date()) : undefined,
     }
   );
 }
@@ -487,7 +501,7 @@ export async function setDiaryComplete(
     },
     {
       ...options,
-      achievedAt: completed ? options.achievedAt ?? new Date() : undefined,
+      achievedAt: completed ? (options.achievedAt ?? new Date()) : undefined,
     }
   );
 }
@@ -516,7 +530,7 @@ export async function setGuideStepComplete(
       source: 'guide',
       sourceId: guideId,
       ...options,
-      achievedAt: completed ? options.achievedAt ?? new Date() : undefined,
+      achievedAt: completed ? (options.achievedAt ?? new Date()) : undefined,
     }
   );
 }
@@ -544,7 +558,11 @@ export async function syncGuideStepUnlocks(
     switch (unlock.type) {
       case 'quest':
         domain = 'quest';
-        value = { completed: true, completedAt: new Date().toISOString(), state: 'completed' };
+        value = {
+          completed: true,
+          completedAt: new Date().toISOString(),
+          state: 'completed',
+        };
         break;
       case 'diary':
         domain = 'diary';
@@ -591,7 +609,9 @@ export async function syncGuideStepUnlocks(
  */
 export async function getAllUnlocks(
   characterId: string
-): Promise<Array<{ key: string; unlocked: boolean; unlockedAt: string | null }>> {
+): Promise<
+  Array<{ key: string; unlocked: boolean; unlockedAt: string | null }>
+> {
   const states = await getDomainState(characterId, 'unlock_flag');
 
   return states.map((state) => {
@@ -629,9 +649,7 @@ export async function getCompletedQuests(
 /**
  * Get character state summary for dashboard
  */
-export async function getCharacterStateSummary(
-  characterId: string
-): Promise<{
+export async function getCharacterStateSummary(characterId: string): Promise<{
   totalStates: number;
   byDomain: Record<StateDomain, number>;
   recentUpdates: CharacterState[];

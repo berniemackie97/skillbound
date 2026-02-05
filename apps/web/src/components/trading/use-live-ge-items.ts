@@ -33,7 +33,10 @@ type UseLiveGeItemsOptions = {
   refreshMs?: number;
 };
 
-export function useLiveGeItems(ids: number[], options: UseLiveGeItemsOptions = {}) {
+export function useLiveGeItems(
+  ids: number[],
+  options: UseLiveGeItemsOptions = {}
+) {
   const refreshMs = options.refreshMs ?? 45_000;
   const idsKey = useMemo(() => {
     const unique = Array.from(new Set(ids.filter((id) => Number.isFinite(id))));
@@ -41,7 +44,8 @@ export function useLiveGeItems(ids: number[], options: UseLiveGeItemsOptions = {
     return unique.join(',');
   }, [ids]);
   const normalizedIds = useMemo(
-    () => (idsKey ? idsKey.split(',').map((id) => Number.parseInt(id, 10)) : []),
+    () =>
+      idsKey ? idsKey.split(',').map((id) => Number.parseInt(id, 10)) : [],
     [idsKey]
   );
   const [items, setItems] = useState<Record<number, LiveItem>>({});

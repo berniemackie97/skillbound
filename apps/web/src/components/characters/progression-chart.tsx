@@ -72,7 +72,12 @@ export function ProgressionChart({
 
   return (
     <div className="chart-container large">
-      <ResponsiveContainer height="100%" minHeight={160} minWidth={0} width="100%">
+      <ResponsiveContainer
+        height="100%"
+        minHeight={160}
+        minWidth={0}
+        width="100%"
+      >
         <AreaChart
           data={data}
           margin={{ top: 8, right: 8, left: -10, bottom: 0 }}
@@ -80,15 +85,35 @@ export function ProgressionChart({
           <defs>
             <linearGradient id="gradientXp" x1="0" x2="0" y1="0" y2="1">
               <stop offset="5%" stopColor={COLORS.totalXp} stopOpacity={0.3} />
-              <stop offset="95%" stopColor={COLORS.totalXp} stopOpacity={0.05} />
+              <stop
+                offset="95%"
+                stopColor={COLORS.totalXp}
+                stopOpacity={0.05}
+              />
             </linearGradient>
             <linearGradient id="gradientLevel" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="5%" stopColor={COLORS.totalLevel} stopOpacity={0.3} />
-              <stop offset="95%" stopColor={COLORS.totalLevel} stopOpacity={0.05} />
+              <stop
+                offset="5%"
+                stopColor={COLORS.totalLevel}
+                stopOpacity={0.3}
+              />
+              <stop
+                offset="95%"
+                stopColor={COLORS.totalLevel}
+                stopOpacity={0.05}
+              />
             </linearGradient>
             <linearGradient id="gradientCombat" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="5%" stopColor={COLORS.combatLevel} stopOpacity={0.3} />
-              <stop offset="95%" stopColor={COLORS.combatLevel} stopOpacity={0.05} />
+              <stop
+                offset="5%"
+                stopColor={COLORS.combatLevel}
+                stopOpacity={0.3}
+              />
+              <stop
+                offset="95%"
+                stopColor={COLORS.combatLevel}
+                stopOpacity={0.05}
+              />
             </linearGradient>
           </defs>
           <CartesianGrid

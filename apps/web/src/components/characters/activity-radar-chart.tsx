@@ -38,17 +38,14 @@ export function ActivityRadarChart({ activities }: ActivityRadarChartProps) {
 
   return (
     <div className="chart-container">
-      <ResponsiveContainer height="100%" minHeight={150} minWidth={0} width="100%">
-        <RadarChart
-          cx="50%"
-          cy="50%"
-          data={dataWithMarks}
-          outerRadius="70%"
-        >
-          <PolarGrid
-            stroke="rgba(226, 176, 101, 0.15)"
-            strokeDasharray="3 3"
-          />
+      <ResponsiveContainer
+        height="100%"
+        minHeight={150}
+        minWidth={0}
+        width="100%"
+      >
+        <RadarChart cx="50%" cy="50%" data={dataWithMarks} outerRadius="70%">
+          <PolarGrid stroke="rgba(226, 176, 101, 0.15)" strokeDasharray="3 3" />
           <PolarAngleAxis
             dataKey="name"
             tick={{ fill: 'var(--text-muted)', fontSize: 10 }}

@@ -78,9 +78,7 @@ export async function GET(
     return NextResponse.json(problem, { status: problem.status });
   }
 
-  const conditions = [
-    eq(characterSnapshots.profileId, profileRow.profileId),
-  ];
+  const conditions = [eq(characterSnapshots.profileId, profileRow.profileId)];
 
   if (parsedQuery.data.from) {
     conditions.push(

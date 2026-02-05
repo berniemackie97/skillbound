@@ -68,7 +68,10 @@ export async function getTradingOverview(characterId: string): Promise<{
     .select({ count: sql<number>`count(*)` })
     .from(geWatchItems)
     .where(
-      and(eq(geWatchItems.userCharacterId, characterId), eq(geWatchItems.isActive, true))
+      and(
+        eq(geWatchItems.userCharacterId, characterId),
+        eq(geWatchItems.isActive, true)
+      )
     );
 
   return {
@@ -121,7 +124,10 @@ export async function getUserTradingOverview(userId: string): Promise<{
       eq(userCharacters.profileId, characterProfiles.id)
     )
     .where(
-      and(eq(userCharacters.userId, userId), eq(characterProfiles.mode, 'normal'))
+      and(
+        eq(userCharacters.userId, userId),
+        eq(characterProfiles.mode, 'normal')
+      )
     );
 
   const [watchCount] = await db

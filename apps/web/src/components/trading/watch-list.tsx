@@ -37,7 +37,6 @@ type FavoriteItem = {
   icon?: string | null;
 };
 
-
 const FAVORITES_STORAGE_KEY = 'skillbound:ge-favorites';
 const FAVORITES_META_STORAGE_KEY = 'skillbound:ge-favorites-meta';
 
@@ -163,7 +162,6 @@ export function WatchList({ characterId, items }: WatchListProps) {
     return items.filter((item) => item.itemName.toLowerCase().includes(needle));
   }, [filterText, items]);
 
-
   const removeFavoriteLocal = (itemIdToRemove: number) => {
     try {
       const storedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
@@ -218,7 +216,10 @@ export function WatchList({ characterId, items }: WatchListProps) {
     }
   }
 
-  async function handleToggleActive(watchItemId: string, currentlyActive: boolean) {
+  async function handleToggleActive(
+    watchItemId: string,
+    currentlyActive: boolean
+  ) {
     try {
       await fetch(`/api/characters/${characterId}/watchlist`, {
         method: 'PATCH',
@@ -253,7 +254,9 @@ export function WatchList({ characterId, items }: WatchListProps) {
         body: JSON.stringify({
           itemId: parsedItemId,
           itemName: itemName.trim(),
-          alertOnMargin: alertOnMargin ? parseInt(alertOnMargin, 10) : undefined,
+          alertOnMargin: alertOnMargin
+            ? parseInt(alertOnMargin, 10)
+            : undefined,
           alertOnBuyPrice: alertOnBuyPrice
             ? parseInt(alertOnBuyPrice, 10)
             : undefined,
@@ -355,7 +358,8 @@ export function WatchList({ characterId, items }: WatchListProps) {
         </button>
       </div>
       <p className="watch-list-hint">
-        Pause disables alerts without removing the item. Remove deletes it from your list.
+        Pause disables alerts without removing the item. Remove deletes it from
+        your list.
       </p>
 
       <div className="watch-list-search">
@@ -462,7 +466,9 @@ export function WatchList({ characterId, items }: WatchListProps) {
               }
               if (item.alertOnSellPrice && geItem.sellPrice !== null) {
                 if (geItem.sellPrice >= item.alertOnSellPrice) {
-                  alertReasons.push(`Sell ≥ ${formatGp(item.alertOnSellPrice)}`);
+                  alertReasons.push(
+                    `Sell ≥ ${formatGp(item.alertOnSellPrice)}`
+                  );
                 }
               }
               if (item.alertOnVolume && geItem.volume !== null) {
@@ -475,25 +481,20 @@ export function WatchList({ characterId, items }: WatchListProps) {
 
               if (geItem.avgHighPrice && geItem.buyPrice) {
                 const delta =
-                  (geItem.buyPrice - geItem.avgHighPrice) /
-                  geItem.avgHighPrice;
+                  (geItem.buyPrice - geItem.avgHighPrice) / geItem.avgHighPrice;
                 if (delta >= 0.08) {
                   alertReasons.push(
                     `Price spike +${(delta * 100).toFixed(1)}%`
                   );
                 } else if (delta <= -0.08) {
-                  alertReasons.push(
-                    `Price dip ${(delta * 100).toFixed(1)}%`
-                  );
+                  alertReasons.push(`Price dip ${(delta * 100).toFixed(1)}%`);
                 }
               }
 
               if (geItem.margin && geItem.avgHighPrice) {
                 const marginPct = geItem.margin / geItem.avgHighPrice;
                 if (marginPct >= 0.03) {
-                  alertReasons.push(
-                    `Wide margin ${formatGp(geItem.margin)}`
-                  );
+                  alertReasons.push(`Wide margin ${formatGp(geItem.margin)}`);
                 }
               }
 
@@ -541,160 +542,159 @@ export function WatchList({ characterId, items }: WatchListProps) {
                   <span>Vol {geItem?.volume?.toLocaleString() ?? '-'}</span>
                 </div>
 
-              <div className="watch-item-alerts">
-                {item.alertOnMargin && (
-                  <span className="alert-badge">
-                    Margin ≥ {formatGp(item.alertOnMargin)}
-                  </span>
-                )}
+                <div className="watch-item-alerts">
+                  {item.alertOnMargin && (
+                    <span className="alert-badge">
+                      Margin ≥ {formatGp(item.alertOnMargin)}
+                    </span>
+                  )}
                   {item.alertOnBuyPrice && (
                     <span className="alert-badge buy">
                       Buy ≤ {formatGp(item.alertOnBuyPrice)}
                     </span>
                   )}
-                {item.alertOnSellPrice && (
-                  <span className="alert-badge sell">
-                    Sell ≥ {formatGp(item.alertOnSellPrice)}
-                  </span>
-                )}
-                {item.alertOnVolume && (
-                  <span className="alert-badge">
-                    Vol ≥ {item.alertOnVolume.toLocaleString()}
-                  </span>
-                )}
-              </div>
-
-              {alertReasons.length > 0 && (
-                <div className="watch-item-live-alerts">
-                  <span className="alert-pill">Alert</span>
-                  {alertReasons.map((reason) => (
-                    <span key={reason} className="alert-reason">
-                      {reason}
+                  {item.alertOnSellPrice && (
+                    <span className="alert-badge sell">
+                      Sell ≥ {formatGp(item.alertOnSellPrice)}
                     </span>
-                  ))}
+                  )}
+                  {item.alertOnVolume && (
+                    <span className="alert-badge">
+                      Vol ≥ {item.alertOnVolume.toLocaleString()}
+                    </span>
+                  )}
                 </div>
-              )}
 
-              {editingId === item.id && (
-                <div className="watch-item-edit">
-                  <div className="form-row">
-                    <label className="form-field">
-                      <span>Margin ≥</span>
-                      <input
-                        type="number"
-                        value={editFields.alertOnMargin}
-                        onChange={(e) =>
-                          setEditFields((prev) => ({
-                            ...prev,
-                            alertOnMargin: e.target.value,
-                          }))
-                        }
-                      />
-                    </label>
-                    <label className="form-field">
-                      <span>Buy ≤</span>
-                      <input
-                        type="number"
-                        value={editFields.alertOnBuyPrice}
-                        onChange={(e) =>
-                          setEditFields((prev) => ({
-                            ...prev,
-                            alertOnBuyPrice: e.target.value,
-                          }))
-                        }
-                      />
-                    </label>
-                    <label className="form-field">
-                      <span>Sell ≥</span>
-                      <input
-                        type="number"
-                        value={editFields.alertOnSellPrice}
-                        onChange={(e) =>
-                          setEditFields((prev) => ({
-                            ...prev,
-                            alertOnSellPrice: e.target.value,
-                          }))
-                        }
-                      />
-                    </label>
-                    <label className="form-field">
-                      <span>Volume ≥</span>
-                      <input
-                        type="number"
-                        value={editFields.alertOnVolume}
-                        onChange={(e) =>
-                          setEditFields((prev) => ({
-                            ...prev,
-                            alertOnVolume: e.target.value,
-                          }))
-                        }
-                      />
-                    </label>
+                {alertReasons.length > 0 && (
+                  <div className="watch-item-live-alerts">
+                    <span className="alert-pill">Alert</span>
+                    {alertReasons.map((reason) => (
+                      <span key={reason} className="alert-reason">
+                        {reason}
+                      </span>
+                    ))}
                   </div>
-                  <label className="form-field">
-                    <span>Notes</span>
-                    <input
-                      type="text"
-                      value={editFields.notes}
-                      onChange={(e) =>
-                        setEditFields((prev) => ({
-                          ...prev,
-                          notes: e.target.value,
-                        }))
-                      }
-                    />
-                  </label>
-                  <div className="watch-item-actions">
-                    <button
-                      className="button ghost small"
-                      type="button"
-                      onClick={() => saveEdit(item.id)}
-                    >
-                      Save
-                    </button>
-                    <button
-                      className="button ghost small"
-                      type="button"
-                      onClick={cancelEdit}
-                    >
-                      Cancel
-                    </button>
+                )}
+
+                {editingId === item.id && (
+                  <div className="watch-item-edit">
+                    <div className="form-row">
+                      <label className="form-field">
+                        <span>Margin ≥</span>
+                        <input
+                          type="number"
+                          value={editFields.alertOnMargin}
+                          onChange={(e) =>
+                            setEditFields((prev) => ({
+                              ...prev,
+                              alertOnMargin: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                      <label className="form-field">
+                        <span>Buy ≤</span>
+                        <input
+                          type="number"
+                          value={editFields.alertOnBuyPrice}
+                          onChange={(e) =>
+                            setEditFields((prev) => ({
+                              ...prev,
+                              alertOnBuyPrice: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                      <label className="form-field">
+                        <span>Sell ≥</span>
+                        <input
+                          type="number"
+                          value={editFields.alertOnSellPrice}
+                          onChange={(e) =>
+                            setEditFields((prev) => ({
+                              ...prev,
+                              alertOnSellPrice: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                      <label className="form-field">
+                        <span>Volume ≥</span>
+                        <input
+                          type="number"
+                          value={editFields.alertOnVolume}
+                          onChange={(e) =>
+                            setEditFields((prev) => ({
+                              ...prev,
+                              alertOnVolume: e.target.value,
+                            }))
+                          }
+                        />
+                      </label>
+                    </div>
+                    <label className="form-field">
+                      <span>Notes</span>
+                      <input
+                        type="text"
+                        value={editFields.notes}
+                        onChange={(e) =>
+                          setEditFields((prev) => ({
+                            ...prev,
+                            notes: e.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <div className="watch-item-actions">
+                      <button
+                        className="button ghost small"
+                        type="button"
+                        onClick={() => saveEdit(item.id)}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="button ghost small"
+                        type="button"
+                        onClick={cancelEdit}
+                      >
+                        Cancel
+                      </button>
+                    </div>
                   </div>
+                )}
+
+                {item.notes && (
+                  <div className="watch-item-notes">{item.notes}</div>
+                )}
+
+                <div className="watch-item-actions">
+                  <button
+                    className="button ghost small"
+                    title={item.isActive ? 'Pause alerts' : 'Resume alerts'}
+                    onClick={() => handleToggleActive(item.id, item.isActive)}
+                  >
+                    {item.isActive ? 'Pause' : 'Resume'}
+                  </button>
+                  <button
+                    className="button ghost small"
+                    onClick={() => beginEdit(item)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="button ghost small danger"
+                    disabled={removingId === item.id}
+                    onClick={() => handleRemove(item.id, item.itemId)}
+                  >
+                    {removingId === item.id ? '...' : 'Remove'}
+                  </button>
                 </div>
-              )}
-
-              {item.notes && (
-                <div className="watch-item-notes">{item.notes}</div>
-              )}
-
-              <div className="watch-item-actions">
-                <button
-                  className="button ghost small"
-                  title={item.isActive ? 'Pause alerts' : 'Resume alerts'}
-                  onClick={() => handleToggleActive(item.id, item.isActive)}
-                >
-                  {item.isActive ? 'Pause' : 'Resume'}
-                </button>
-                <button
-                  className="button ghost small"
-                  onClick={() => beginEdit(item)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="button ghost small danger"
-                  disabled={removingId === item.id}
-                  onClick={() => handleRemove(item.id, item.itemId)}
-                >
-                  {removingId === item.id ? '...' : 'Remove'}
-                </button>
-              </div>
               </li>
             );
           })}
         </ul>
       )}
-
     </div>
   );
 }

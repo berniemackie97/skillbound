@@ -6,7 +6,10 @@ type PriceChartPanelProps = PriceChartProps & {
   variant?: 'detail' | 'table';
 };
 
-export function PriceChartPanel({ variant = 'detail', ...props }: PriceChartPanelProps) {
+export function PriceChartPanel({
+  variant = 'detail',
+  ...props
+}: PriceChartPanelProps) {
   return (
     <section className={`price-chart-panel ${variant}`}>
       <PriceChart {...props} />

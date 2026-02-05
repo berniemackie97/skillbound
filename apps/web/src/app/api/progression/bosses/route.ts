@@ -1,8 +1,4 @@
-import {
-  bossKillcounts,
-  eq,
-  userCharacters,
-} from '@skillbound/database';
+import { bossKillcounts, eq, userCharacters } from '@skillbound/database';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';

@@ -83,7 +83,8 @@ export async function GET(
     }
 
     // Check if delete impact is requested
-    const includeDeleteImpact = request.nextUrl.searchParams.get('includeDeleteImpact') === 'true';
+    const includeDeleteImpact =
+      request.nextUrl.searchParams.get('includeDeleteImpact') === 'true';
 
     if (includeDeleteImpact) {
       const deleteImpact = await getDeleteTradeImpact(characterId, tradeId);
@@ -186,12 +187,18 @@ export async function PATCH(
   try {
     // Build update object only with defined values to satisfy exactOptionalPropertyTypes
     const updateData: Parameters<typeof updateTrade>[2] = {};
-    if (parsed.data.itemId !== undefined) updateData.itemId = parsed.data.itemId;
-    if (parsed.data.itemName !== undefined) updateData.itemName = parsed.data.itemName;
-    if (parsed.data.quantity !== undefined) updateData.quantity = parsed.data.quantity;
-    if (parsed.data.pricePerItem !== undefined) updateData.pricePerItem = parsed.data.pricePerItem;
-    if (parsed.data.tradedAt !== undefined) updateData.tradedAt = new Date(parsed.data.tradedAt);
-    if (parsed.data.notes !== undefined) updateData.notes = parsed.data.notes ?? undefined;
+    if (parsed.data.itemId !== undefined)
+      updateData.itemId = parsed.data.itemId;
+    if (parsed.data.itemName !== undefined)
+      updateData.itemName = parsed.data.itemName;
+    if (parsed.data.quantity !== undefined)
+      updateData.quantity = parsed.data.quantity;
+    if (parsed.data.pricePerItem !== undefined)
+      updateData.pricePerItem = parsed.data.pricePerItem;
+    if (parsed.data.tradedAt !== undefined)
+      updateData.tradedAt = new Date(parsed.data.tradedAt);
+    if (parsed.data.notes !== undefined)
+      updateData.notes = parsed.data.notes ?? undefined;
 
     const updated = await updateTrade(characterId, tradeId, updateData);
 

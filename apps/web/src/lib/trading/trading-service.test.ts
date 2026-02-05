@@ -29,9 +29,7 @@ describe('calculateFifoProfit', () => {
   });
 
   it('matches single buy to sell with profit', () => {
-    const buys = [
-      { tradeId: 'buy-1', remaining: 10, pricePerItem: 80 },
-    ];
+    const buys = [{ tradeId: 'buy-1', remaining: 10, pricePerItem: 80 }];
     const result = calculateFifoProfit(buys, 100, 10);
 
     expect(result.profit).toBe(200); // (100 - 80) * 10
@@ -62,18 +60,14 @@ describe('calculateFifoProfit', () => {
   });
 
   it('handles loss scenario', () => {
-    const buys = [
-      { tradeId: 'buy-1', remaining: 10, pricePerItem: 120 },
-    ];
+    const buys = [{ tradeId: 'buy-1', remaining: 10, pricePerItem: 120 }];
     const result = calculateFifoProfit(buys, 100, 10);
 
     expect(result.profit).toBe(-200); // (100 - 120) * 10
   });
 
   it('only uses available remaining quantity', () => {
-    const buys = [
-      { tradeId: 'buy-1', remaining: 3, pricePerItem: 80 },
-    ];
+    const buys = [{ tradeId: 'buy-1', remaining: 3, pricePerItem: 80 }];
     const result = calculateFifoProfit(buys, 100, 10);
 
     expect(result.profit).toBe(60); // (100 - 80) * 3

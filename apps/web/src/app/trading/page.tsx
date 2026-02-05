@@ -109,7 +109,10 @@ function parseSortList(
   return valid.length > 0 ? (valid as SortField[]) : ['profit'];
 }
 
-function parseOrderList(value: string | undefined, length: number): SortDirection[] {
+function parseOrderList(
+  value: string | undefined,
+  length: number
+): SortDirection[] {
   const candidates = (value ?? '')
     .split(',')
     .map((entry) => entry.trim().toLowerCase())
@@ -181,7 +184,9 @@ async function GEExchangeContent({
 
   if (search) {
     const searchLower = search.toLowerCase();
-    items = items.filter((item) => item.name.toLowerCase().includes(searchLower));
+    items = items.filter((item) =>
+      item.name.toLowerCase().includes(searchLower)
+    );
   }
 
   const sortFields = parseSortList(sort);
@@ -250,7 +255,14 @@ async function TradeTrackerContent({
   const tradeTypeFilter = tradeType === 'all' ? undefined : tradeType;
   const searchFilter = search.trim() || undefined;
 
-  const [overview, profitSummary, tradesResult, watchItems, bankroll, inventory] =
+  const [
+    overview,
+    profitSummary,
+    tradesResult,
+    watchItems,
+    bankroll,
+    inventory,
+  ] =
     scope === 'all'
       ? await Promise.all([
           getUserTradingOverview(userId),
@@ -397,8 +409,9 @@ export default async function TradingPage({ searchParams }: PageProps) {
   const selectedCharacterId = params.characterId ?? null;
   const preselectedItemId = parseOptionalInt(params.addTrade);
 
-  let character: Awaited<ReturnType<typeof getTradableCharacters>>[number] | null =
-    null;
+  let character:
+    | Awaited<ReturnType<typeof getTradableCharacters>>[number]
+    | null = null;
   let characters: Awaited<ReturnType<typeof getTradableCharacters>> = [];
 
   if (user) {
@@ -486,10 +499,7 @@ export default async function TradingPage({ searchParams }: PageProps) {
                 You need to be logged in to track your trades. Your trades are
                 saved per character and are completely private.
               </p>
-              <a
-                className="button"
-                href="/login?redirect=/trading?tab=tracker"
-              >
+              <a className="button" href="/login?redirect=/trading?tab=tracker">
                 Login to Track Trades
               </a>
             </div>

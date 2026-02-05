@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 type NavLink = {
   href: string;

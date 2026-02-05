@@ -97,7 +97,9 @@ export const characterState = pgTable(
 
     // Confidence/priority for conflict resolution (higher = more authoritative)
     // RuneLite data > hiscores > manual > calculated
-    confidence: text('confidence').$type<'high' | 'medium' | 'low'>().default('medium'),
+    confidence: text('confidence')
+      .$type<'high' | 'medium' | 'low'>()
+      .default('medium'),
 
     // User note (for manual entries)
     note: text('note'),
@@ -116,11 +118,9 @@ export const characterState = pgTable(
   (table) => ({
     // UNIQUE CONSTRAINT: One state entry per character/domain/key
     // This is the core constraint enabling upsert operations
-    characterDomainKeyUnique: unique('character_state_char_domain_key_unique').on(
-      table.userCharacterId,
-      table.domain,
-      table.key
-    ),
+    characterDomainKeyUnique: unique(
+      'character_state_char_domain_key_unique'
+    ).on(table.userCharacterId, table.domain, table.key),
 
     // Primary query: Get all state for a character in a domain
     characterDomainIdx: index('character_state_char_domain_idx').on(

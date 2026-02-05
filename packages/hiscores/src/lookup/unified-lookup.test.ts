@@ -68,7 +68,9 @@ const createMockHiscoresResponse = (
 describe('lookupPlayer', () => {
   const mockLookup = vi.fn();
   const mockLookupAuto = vi.fn();
-  const mockFetchAndParse = vi.mocked(runeliteClient.fetchAndParseRuneLitePlayer);
+  const mockFetchAndParse = vi.mocked(
+    runeliteClient.fetchAndParseRuneLitePlayer
+  );
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -122,15 +124,25 @@ describe('lookupPlayer', () => {
 
     // First call (IRONMAN) fails, second call (STANDARD) succeeds
     mockFetchAndParse
-      .mockRejectedValueOnce(new runeliteClient.RuneLiteAPIError('Not found', 404))
+      .mockRejectedValueOnce(
+        new runeliteClient.RuneLiteAPIError('Not found', 404)
+      )
       .mockResolvedValueOnce(runeliteData);
     mockLookupAuto.mockResolvedValueOnce(hiscoresData);
 
     const result = await lookupPlayer('TestPlayer', { accountType: 'IRONMAN' });
 
     expect(mockFetchAndParse).toHaveBeenCalledTimes(2);
-    expect(mockFetchAndParse).toHaveBeenNthCalledWith(1, 'TestPlayer', 'IRONMAN');
-    expect(mockFetchAndParse).toHaveBeenNthCalledWith(2, 'TestPlayer', 'STANDARD');
+    expect(mockFetchAndParse).toHaveBeenNthCalledWith(
+      1,
+      'TestPlayer',
+      'IRONMAN'
+    );
+    expect(mockFetchAndParse).toHaveBeenNthCalledWith(
+      2,
+      'TestPlayer',
+      'STANDARD'
+    );
     expect(result.source).toBe('runelite');
   });
 
@@ -153,7 +165,9 @@ describe('lookupPlayer', () => {
     );
     mockLookup.mockResolvedValueOnce(hiscoresData);
 
-    const result = await lookupPlayer('TestPlayer', { hiscoresMode: 'ironman' });
+    const result = await lookupPlayer('TestPlayer', {
+      hiscoresMode: 'ironman',
+    });
 
     expect(mockLookup).toHaveBeenCalledWith('TestPlayer', 'ironman');
     expect(mockLookupAuto).not.toHaveBeenCalled();

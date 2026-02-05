@@ -14,10 +14,7 @@ type ContentBundle = {
   diaries: DiaryBundle[];
 };
 
-function toAchievedAt(
-  completed: boolean,
-  capturedAt: Date
-): Date | undefined {
+function toAchievedAt(completed: boolean, capturedAt: Date): Date | undefined {
   return completed ? capturedAt : undefined;
 }
 
@@ -131,7 +128,9 @@ export async function syncCharacterStateFromRunelite(
   capturedAtInput: Date
 ): Promise<number> {
   const capturedAt =
-    capturedAtInput instanceof Date ? capturedAtInput : new Date(capturedAtInput);
+    capturedAtInput instanceof Date
+      ? capturedAtInput
+      : new Date(capturedAtInput);
   const bundle = (await getLatestContentBundle()) as ContentBundle;
 
   const updates: BatchStateUpdate[] = [
@@ -147,4 +146,3 @@ export async function syncCharacterStateFromRunelite(
   await setStates(userCharacterId, updates);
   return updates.length;
 }
-

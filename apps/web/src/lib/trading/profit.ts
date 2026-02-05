@@ -101,10 +101,8 @@ export async function getProfitSummary(
     .where(and(...buyConditions));
 
   // Aggregate buy data per item
-  const buyData: Map<
-    number,
-    { totalBuyQty: number; totalBuyValue: number }
-  > = new Map();
+  const buyData: Map<number, { totalBuyQty: number; totalBuyValue: number }> =
+    new Map();
   let totalCost = 0;
 
   for (const trade of buyTrades) {
@@ -124,10 +122,15 @@ export async function getProfitSummary(
   // Build complete flip entries
   const flips = Array.from(flipData.entries()).map(([itemId, data]) => {
     const buy = buyData.get(itemId) ?? { totalBuyQty: 0, totalBuyValue: 0 };
-    const avgBuyPrice = buy.totalBuyQty > 0 ? Math.round(buy.totalBuyValue / buy.totalBuyQty) : 0;
-    const avgSellPrice = data.totalSellQty > 0 ? Math.round(data.totalSellValue / data.totalSellQty) : 0;
+    const avgBuyPrice =
+      buy.totalBuyQty > 0 ? Math.round(buy.totalBuyValue / buy.totalBuyQty) : 0;
+    const avgSellPrice =
+      data.totalSellQty > 0
+        ? Math.round(data.totalSellValue / data.totalSellQty)
+        : 0;
     const costBasis = data.totalSellQty * avgBuyPrice; // Approximate cost for sold items
-    const roi = costBasis > 0 ? Math.round((data.profit / costBasis) * 10000) / 100 : 0;
+    const roi =
+      costBasis > 0 ? Math.round((data.profit / costBasis) * 10000) / 100 : 0;
 
     return {
       itemId,
@@ -146,9 +149,7 @@ export async function getProfitSummary(
   // Sort flips by profit and split into winners/losers
   const sortedFlips = flips.sort((a, b) => b.profit - a.profit);
 
-  const topFlips = sortedFlips
-    .filter((f) => f.profit > 0)
-    .slice(0, 5);
+  const topFlips = sortedFlips.filter((f) => f.profit > 0).slice(0, 5);
 
   const topLossFlips = sortedFlips
     .filter((f) => f.profit < 0)
@@ -233,7 +234,9 @@ async function calculateUnrealizedPnL(characterId: string): Promise<{
     const currentPrice = marketPrices.get(position.itemId) ?? null;
     const costBasis = position.remainingQuantity * position.averageBuyPrice;
     const marketValue =
-      currentPrice !== null ? position.remainingQuantity * currentPrice : costBasis;
+      currentPrice !== null
+        ? position.remainingQuantity * currentPrice
+        : costBasis;
     const unrealizedPnL = marketValue - costBasis;
     const iconUrl = itemIcons.get(position.itemId) ?? '';
 
@@ -252,7 +255,9 @@ async function calculateUnrealizedPnL(characterId: string): Promise<{
   }
 
   // Sort by unrealized P&L (most profit/loss first)
-  positions.sort((a, b) => Math.abs(b.unrealizedPnL) - Math.abs(a.unrealizedPnL));
+  positions.sort(
+    (a, b) => Math.abs(b.unrealizedPnL) - Math.abs(a.unrealizedPnL)
+  );
 
   return { totalUnrealizedPnL, positions, itemIcons };
 }
@@ -384,10 +389,15 @@ export async function getUserProfitSummary(
   // Build complete flip entries
   const flips = Array.from(flipData.entries()).map(([itemId, data]) => {
     const buy = buyDataMap.get(itemId) ?? { totalBuyQty: 0, totalBuyValue: 0 };
-    const avgBuyPrice = buy.totalBuyQty > 0 ? Math.round(buy.totalBuyValue / buy.totalBuyQty) : 0;
-    const avgSellPrice = data.totalSellQty > 0 ? Math.round(data.totalSellValue / data.totalSellQty) : 0;
+    const avgBuyPrice =
+      buy.totalBuyQty > 0 ? Math.round(buy.totalBuyValue / buy.totalBuyQty) : 0;
+    const avgSellPrice =
+      data.totalSellQty > 0
+        ? Math.round(data.totalSellValue / data.totalSellQty)
+        : 0;
     const costBasis = data.totalSellQty * avgBuyPrice;
-    const roi = costBasis > 0 ? Math.round((data.profit / costBasis) * 10000) / 100 : 0;
+    const roi =
+      costBasis > 0 ? Math.round((data.profit / costBasis) * 10000) / 100 : 0;
 
     return {
       itemId,
@@ -406,9 +416,7 @@ export async function getUserProfitSummary(
   // Sort flips by profit and split into winners/losers
   const sortedFlips = flips.sort((a, b) => b.profit - a.profit);
 
-  const topFlips = sortedFlips
-    .filter((f) => f.profit > 0)
-    .slice(0, 5);
+  const topFlips = sortedFlips.filter((f) => f.profit > 0).slice(0, 5);
 
   const topLossFlips = sortedFlips
     .filter((f) => f.profit < 0)
@@ -475,7 +483,10 @@ async function calculateUserUnrealizedPnL(
       eq(userCharacters.profileId, characterProfiles.id)
     )
     .where(
-      and(eq(userCharacters.userId, userId), eq(characterProfiles.mode, 'normal'))
+      and(
+        eq(userCharacters.userId, userId),
+        eq(characterProfiles.mode, 'normal')
+      )
     );
 
   const characterIds = characterId
@@ -559,7 +570,9 @@ async function calculateUserUnrealizedPnL(
     });
   }
 
-  positions.sort((a, b) => Math.abs(b.unrealizedPnL) - Math.abs(a.unrealizedPnL));
+  positions.sort(
+    (a, b) => Math.abs(b.unrealizedPnL) - Math.abs(a.unrealizedPnL)
+  );
 
   return { totalUnrealizedPnL, positions, itemIcons };
 }

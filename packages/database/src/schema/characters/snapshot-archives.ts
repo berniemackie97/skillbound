@@ -48,12 +48,9 @@ export const snapshotArchives = pgTable(
       .defaultNow(),
   },
   (table) => ({
-    archiveUnique: unique('snapshot_archives_profile_source_reason_bucket_unique').on(
-      table.profileId,
-      table.sourceTier,
-      table.reason,
-      table.bucketKey
-    ),
+    archiveUnique: unique(
+      'snapshot_archives_profile_source_reason_bucket_unique'
+    ).on(table.profileId, table.sourceTier, table.reason, table.bucketKey),
     profileIdx: index('snapshot_archives_profile_idx').on(table.profileId),
     sourceTierIdx: index('snapshot_archives_source_tier_idx').on(
       table.sourceTier

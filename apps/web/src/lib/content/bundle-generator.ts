@@ -122,7 +122,10 @@ export async function generateContentBundle(
   return bundle;
 }
 
-function slugifyCombatAchievement(monster: string | null, name: string): string {
+function slugifyCombatAchievement(
+  monster: string | null,
+  name: string
+): string {
   const display = [monster, name].filter(Boolean).join(' ');
   if (!display) return '';
   return display
