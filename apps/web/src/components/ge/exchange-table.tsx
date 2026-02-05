@@ -498,141 +498,142 @@ export function ExchangeTable({
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
-            <Fragment key={item.id}>
-              <tr
-                ref={(node) => {
-                  if (!node) {
-                    rowRefs.current.delete(item.id);
-                  } else {
-                    rowRefs.current.set(item.id, node);
-                  }
-                }}
-                className={`item-row ${expandedItemId === item.id ? 'expanded' : ''}`}
-                onClick={() => handleRowClick(item)}
-              >
-                <td className="col-star">
-                  <button
-                    aria-label={favorites.has(item.id) ? 'Unstar' : 'Star'}
-                    className={`star-btn ${favorites.has(item.id) ? 'active' : ''}`}
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onToggleFavorite(item.id);
-                    }}
-                  >
-                    <svg height="18" viewBox="0 0 24 24" width="18">
-                      <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                        fill={favorites.has(item.id) ? '#ffd700' : 'none'}
-                        stroke={
-                          favorites.has(item.id) ? '#ffd700' : 'currentColor'
-                        }
-                        strokeWidth="2"
-                      />
-                    </svg>
-                  </button>
-                </td>
-                <td className="col-expand">
-                  <button
-                    aria-label={
-                      expandedItemId === item.id ? 'Collapse' : 'Expand'
+          {items.map((item) => {
+            const isFavorite = favorites.has(item.id);
+            const isExpanded = expandedItemId === item.id;
+
+            return (
+              <Fragment key={item.id}>
+                <tr
+                  ref={(node) => {
+                    if (!node) {
+                      rowRefs.current.delete(item.id);
+                    } else {
+                      rowRefs.current.set(item.id, node);
                     }
-                    className={`expand-btn ${expandedItemId === item.id ? 'active' : ''}`}
-                    type="button"
-                    onClick={(e) => handleExpandClick(e, item.id)}
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      width="20"
+                  }}
+                  className={`item-row ${isExpanded ? 'expanded' : ''}`}
+                  onClick={() => handleRowClick(item)}
+                >
+                  <td className="col-star">
+                    <button
+                      aria-label={isFavorite ? 'Unstar' : 'Star'}
+                      className={`star-btn ${isFavorite ? 'active' : ''}`}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onToggleFavorite(item.id);
+                      }}
                     >
-                      <path d="M7 10l5 5 5-5z" />
-                    </svg>
-                  </button>
-                </td>
-                <td className="col-name">
-                  <div className="item-name-cell">
-                    <img
-                      alt=""
-                      className="item-icon"
-                      height={24}
-                      loading="lazy"
-                      src={getItemIconUrl(item.icon)}
-                      width={24}
-                    />
-                    <span className="item-name">{item.name}</span>
-                  </div>
-                </td>
-                <td className="col-price buy">
-                  {item.buyPrice !== null ? (
-                    <span className="price-cell">
-                      <span className="price-indicator buy">▼</span>
-                      <span className="price-value">
-                        {formatGp(item.buyPrice)}
-                      </span>
-                    </span>
-                  ) : (
-                    <span className="price-empty">-</span>
-                  )}
-                </td>
-                <td className="col-price sell">
-                  {item.sellPrice !== null ? (
-                    <span className="price-cell">
-                      <span className="price-indicator sell">▲</span>
-                      <span className="price-value">
-                        {formatGp(item.sellPrice)}
-                      </span>
-                    </span>
-                  ) : (
-                    <span className="price-empty">-</span>
-                  )}
-                </td>
-                <td className="col-margin">{formatGp(item.margin)}</td>
-                <td className="col-tax">
-                  {item.tax !== null ? `-${formatGp(item.tax)}` : '-'}
-                </td>
-                <td
-                  className={`col-profit ${item.profit !== null && item.profit >= 0 ? 'positive' : 'negative'}`}
-                >
-                  {formatGp(item.profit)}
-                </td>
-                <td
-                  className={`col-roi ${item.roiPercent !== null && item.roiPercent >= 0 ? 'positive' : 'negative'}`}
-                >
-                  {formatRoi(item.roiPercent)}
-                </td>
-                <td className="col-volume">
-                  {item.volume?.toLocaleString() ?? '-'}
-                </td>
-                <td className="col-limit">
-                  {item.buyLimit?.toLocaleString() ?? '-'}
-                </td>
-                <td className="col-potential">
-                  {formatGp(item.potentialProfit)}
-                </td>
-                <td className="col-time">
-                  <span className="time-indicator" />
-                  {now ? formatTimeAgo(getLastTradeTime(item), now) : '-'}
-                </td>
-              </tr>
-              {expandedItemId === item.id && (
-                <tr className="expanded-row">
-                  <td colSpan={13}>
-                    <div className="expanded-content">
-                      <PriceChartPanel
-                        itemIcon={item.icon}
-                        itemId={item.id}
-                        itemName={item.name}
-                        variant="table"
+                      <svg height="18" viewBox="0 0 24 24" width="18">
+                        <path
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                          fill={isFavorite ? '#ffd700' : 'none'}
+                          stroke={isFavorite ? '#ffd700' : 'currentColor'}
+                          strokeWidth="2"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                  <td className="col-expand">
+                    <button
+                      aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                      className={`expand-btn ${isExpanded ? 'active' : ''}`}
+                      type="button"
+                      onClick={(e) => handleExpandClick(e, item.id)}
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        width="20"
+                      >
+                        <path d="M7 10l5 5 5-5z" />
+                      </svg>
+                    </button>
+                  </td>
+                  <td className="col-name">
+                    <div className="item-name-cell">
+                      <img
+                        alt=""
+                        className="item-icon"
+                        height={24}
+                        loading="lazy"
+                        src={getItemIconUrl(item.icon)}
+                        width={24}
                       />
+                      <span className="item-name">{item.name}</span>
                     </div>
                   </td>
+                  <td className="col-price buy">
+                    {item.buyPrice !== null ? (
+                      <span className="price-cell">
+                        <span className="price-indicator buy">▼</span>
+                        <span className="price-value">
+                          {formatGp(item.buyPrice)}
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="price-empty">-</span>
+                    )}
+                  </td>
+                  <td className="col-price sell">
+                    {item.sellPrice !== null ? (
+                      <span className="price-cell">
+                        <span className="price-indicator sell">▲</span>
+                        <span className="price-value">
+                          {formatGp(item.sellPrice)}
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="price-empty">-</span>
+                    )}
+                  </td>
+                  <td className="col-margin">{formatGp(item.margin)}</td>
+                  <td className="col-tax">
+                    {item.tax !== null ? `-${formatGp(item.tax)}` : '-'}
+                  </td>
+                  <td
+                    className={`col-profit ${item.profit !== null && item.profit >= 0 ? 'positive' : 'negative'}`}
+                  >
+                    {formatGp(item.profit)}
+                  </td>
+                  <td
+                    className={`col-roi ${item.roiPercent !== null && item.roiPercent >= 0 ? 'positive' : 'negative'}`}
+                  >
+                    {formatRoi(item.roiPercent)}
+                  </td>
+                  <td className="col-volume">
+                    {item.volume?.toLocaleString() ?? '-'}
+                  </td>
+                  <td className="col-limit">
+                    {item.buyLimit?.toLocaleString() ?? '-'}
+                  </td>
+                  <td className="col-potential">
+                    {formatGp(item.potentialProfit)}
+                  </td>
+                  <td className="col-time">
+                    <span className="time-indicator" />
+                    {now ? formatTimeAgo(getLastTradeTime(item), now) : '-'}
+                  </td>
                 </tr>
-              )}
-            </Fragment>
-          ))}
+                {expandedItemId === item.id && (
+                  <tr className="expanded-row">
+                    <td colSpan={13}>
+                      <div className="expanded-content">
+                        <PriceChartPanel
+                          itemIcon={item.icon}
+                          itemId={item.id}
+                          itemName={item.name}
+                          variant="table"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            );
+          })}
         </tbody>
       </table>
 

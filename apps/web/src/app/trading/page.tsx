@@ -333,7 +333,7 @@ async function TradeTrackerContent({
         </div>
 
         <div className="tracker-main">
-          <div className="tracker-card trades-card">
+          <div className="tracker-card trades-card" id="trade-history">
             <div className="tracker-card-header">
               <h3>Trade History</h3>
               <span className="card-subtitle">
@@ -367,10 +367,12 @@ async function TradeTrackerContent({
         </div>
 
         <div className="tracker-sidebar">
-          <LiveAlerts inventory={inventory} watchItems={watchItems} />
+          <div id="live-alerts">
+            <LiveAlerts inventory={inventory} watchItems={watchItems} />
+          </div>
           <InventoryCard inventory={inventory} />
 
-          <div className="tracker-card watchlist-card">
+          <div className="tracker-card watchlist-card" id="watch-list">
             <WatchList characterId={characterId} items={watchItems} />
           </div>
         </div>

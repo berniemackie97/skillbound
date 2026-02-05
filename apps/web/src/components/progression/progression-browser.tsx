@@ -140,8 +140,8 @@ export function ProgressionBrowser({
       <div className="callout">
         <h4>Guest mode enabled</h4>
         <p>
-          You can edit progression in this session. Changes are saved locally in
-          your browser unless you sign in to sync across devices.
+          Changes are saved locally in this browser. Sign in to sync across
+          devices and keep progression tied to your account.
         </p>
       </div>
 
@@ -163,6 +163,7 @@ export function ProgressionBrowser({
           readOnly
           characterName={displayName}
           profileId={profileId}
+          showGuestCallout={false}
         />
       ) : (
         <div className="progression-empty">

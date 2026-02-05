@@ -417,9 +417,15 @@ export function GuideStepList({
                                               const instructionKey = `${step.stepNumber}-instruction-${idx}`;
                                               const isReady =
                                                 readyItems.has(instructionKey);
-                                              const hasImage = Boolean(
-                                                instruction.imageUrl
-                                              );
+                                              const imageLink =
+                                                instruction.imageLink;
+                                              const imageUrl =
+                                                instruction.imageUrl;
+                                              const hasImage =
+                                                Boolean(imageUrl);
+                                              const imageAlt =
+                                                instruction.imageAlt ??
+                                                `Instruction ${idx + 1} reference image`;
 
                                               return (
                                                 <li
@@ -442,69 +448,56 @@ export function GuideStepList({
                                                         </span>
                                                       )}
                                                     </div>
-                                                    {hasImage &&
-                                                      instruction.imageUrl && (
-                                                        <div
-                                                          className="instruction-media"
-                                                          onClick={(event) =>
-                                                            event.stopPropagation()
-                                                          }
-                                                          onDoubleClick={(
-                                                            event
-                                                          ) =>
-                                                            event.stopPropagation()
-                                                          }
-                                                          onPointerDown={(
-                                                            event
-                                                          ) =>
-                                                            event.stopPropagation()
-                                                          }
-                                                        >
-                                                          {instruction.imageLink ? (
-                                                            <a
-                                                              className="instruction-media-link"
-                                                              href={
-                                                                instruction.imageLink
-                                                              }
-                                                              rel="noreferrer"
-                                                              target="_blank"
-                                                            >
-                                                              <div className="instruction-image">
-                                                                <Image
-                                                                  className="instruction-img"
-                                                                  height={320}
-                                                                  src={
-                                                                    instruction.imageUrl
-                                                                  }
-                                                                  width={320}
-                                                                  alt={
-                                                                    instruction.imageAlt ||
-                                                                    `Instruction ${idx + 1} reference image`
-                                                                  }
-                                                                />
-                                                              </div>
-                                                              <span className="instruction-media-label">
-                                                                View on wiki
-                                                              </span>
-                                                            </a>
-                                                          ) : (
+                                                    {hasImage && imageUrl && (
+                                                      <div
+                                                        className="instruction-media"
+                                                        onClick={(event) =>
+                                                          event.stopPropagation()
+                                                        }
+                                                        onDoubleClick={(
+                                                          event
+                                                        ) =>
+                                                          event.stopPropagation()
+                                                        }
+                                                        onPointerDown={(
+                                                          event
+                                                        ) =>
+                                                          event.stopPropagation()
+                                                        }
+                                                      >
+                                                        {instruction.imageLink ? (
+                                                          <a
+                                                            className="instruction-media-link"
+                                                            href={imageLink}
+                                                            rel="noreferrer"
+                                                            target="_blank"
+                                                          >
                                                             <div className="instruction-image">
                                                               <Image
+                                                                alt={imageAlt}
                                                                 className="instruction-img"
                                                                 height={320}
-                                                                src={
-                                                                  instruction.imageUrl
-                                                                }
+                                                                src={imageUrl}
                                                                 width={320}
-                                                                alt={
-                                                                  instruction.imageAlt ||
-                                                                  `Instruction ${idx + 1} reference image`
-                                                                }
                                                               />
                                                             </div>
-                                                          )}
-                                                        </div>
-                                                      )}
+                                                            <span className="instruction-media-label">
+                                                              View on wiki
+                                                            </span>
+                                                          </a>
+                                                        ) : (
+                                                          <div className="instruction-image">
+                                                            <Image
+                                                              alt={imageAlt}
+                                                              className="instruction-img"
+                                                              height={320}
+                                                              src={imageUrl}
+                                                              width={320}
+                                                            />
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    )}
                                                   </div>
                                                 </li>
                                               );

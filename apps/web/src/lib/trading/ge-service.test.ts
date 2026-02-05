@@ -28,8 +28,7 @@ const createWikiPricesClientMock = vi.hoisted(() =>
 );
 
 vi.mock('@skillbound/wiki-api', async (importOriginal) => {
-  const actual =
-    (await importOriginal()) as typeof import('@skillbound/wiki-api');
+  const actual = (await importOriginal()) as typeof WikiApi;
   return {
     ...actual,
     createWikiPricesClient: createWikiPricesClientMock,

@@ -176,6 +176,7 @@ type Props = {
   profileId?: string;
   characterName: string;
   readOnly?: boolean;
+  showGuestCallout?: boolean;
 };
 
 type LocalProgressState = {
@@ -197,6 +198,7 @@ export function ComprehensiveProgression({
   profileId,
   characterName,
   readOnly,
+  showGuestCallout = true,
 }: Props) {
   const [data, setData] = useState<ProgressionData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -913,7 +915,7 @@ export function ComprehensiveProgression({
         </div>
       </div>
 
-      {isReadOnly && (
+      {isReadOnly && showGuestCallout && (
         <div className="callout">
           <h4>Guest mode</h4>
           <p>

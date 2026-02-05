@@ -19,7 +19,7 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
   return [
     {
       title: 'Track your journey',
-      description: 'Quests, diaries, and combat goals together in one view.',
+      description: 'Quests, achievements, and guides together in one view.',
       cards: [
         {
           title: 'Quest tracker',
@@ -27,20 +27,18 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
           cta: { label: 'View quests', href: '/progression?tab=quests' },
         },
         {
-          title: 'Achievement diaries',
-          description: `See ${counts.diaryCount} diary regions, tiers, and remaining tasks at a glance.`,
+          title: 'Achievement tracker',
+          description: `Track ${counts.diaryCount} diary regions and ${counts.combatAchievementCount} combat tasks in one checklist.`,
           cta: {
-            label: 'View diaries',
-            href: '/progression?tab=achievements&req=diaries',
+            label: 'View achievements',
+            href: '/progression?tab=achievements',
           },
         },
         {
-          title: 'Combat achievements',
-          description: `Track ${counts.combatAchievementCount} tasks and plan bossing goals by tier.`,
-          cta: {
-            label: 'View combat achievements',
-            href: '/progression?tab=achievements&req=combat',
-          },
+          title: 'Guides & overlays',
+          description:
+            'Follow community guides with step-by-step requirements baked in.',
+          cta: { label: 'Open guides', href: '/guides' },
         },
       ],
     },
@@ -56,35 +54,18 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
         {
           title: 'Trade journal',
           description: 'Log trades and see profit trends over time.',
-          cta: { label: 'View trades', href: '/trading' },
+          cta: {
+            label: 'View trades',
+            href: '/trading?tab=tracker#trade-history',
+          },
         },
         {
-          title: 'Watch list',
-          description: 'Pin items and monitor prices without re-searching.',
-          cta: { label: 'Manage watch list', href: '/trading' },
-        },
-      ],
-    },
-    {
-      title: 'Compare & analyze',
-      description: 'See how you stack up and track gains over time.',
-      cards: [
-        {
-          title: 'Character lookup',
-          description:
-            'Pull stats, quest points, and activity scores for any account.',
-          cta: { label: 'Look up a character', href: '/lookup' },
-        },
-        {
-          title: 'Compare accounts',
-          description: 'Compare skills and progress side-by-side.',
-          cta: { label: 'Compare characters', href: '/compare' },
-        },
-        {
-          title: 'Snapshot history',
-          description:
-            'Automatic snapshots for XP, levels, and activity trends.',
-          cta: { label: 'View snapshots', href: '/snapshots' },
+          title: 'Live alerts',
+          description: 'Monitor inventory signals and watchlist thresholds.',
+          cta: {
+            label: 'View alerts',
+            href: '/trading?tab=tracker#live-alerts',
+          },
         },
       ],
     },
