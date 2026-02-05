@@ -43,15 +43,6 @@ export function LookupPanel({
         </div>
 
         <div className="panel-actions">
-          <a
-            className="chip"
-            href="/api/characters/lookup"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Endpoint
-          </a>
-
           {lookup && sessionUser ? (
             isSaved ? (
               <span className="pill subtle">Saved</span>

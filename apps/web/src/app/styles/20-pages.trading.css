@@ -1053,6 +1053,31 @@
   color: var(--text-muted);
 }
 
+.tracker-primary-mobile {
+  display: none;
+}
+
+.tracker-primary-desktop {
+  display: block;
+}
+
+.mobile-actions-card .card-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-actions-card .mobile-actions {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.mobile-actions-card .mobile-actions .button {
+  flex: 1;
+  justify-content: center;
+}
+
 /* Trades Card - specific styling */
 .trades-card {
   display: flex;
@@ -4733,16 +4758,16 @@
     order: 1;
   }
 
-  .tracker-primary > :nth-child(1) {
-    order: 2;
+  .tracker-primary > * {
+    order: initial;
   }
 
-  .tracker-primary > :nth-child(2) {
-    order: 1;
+  .tracker-primary-mobile {
+    display: block;
   }
 
-  .tracker-primary > :nth-child(3) {
-    order: 3;
+  .tracker-primary-desktop {
+    display: none;
   }
 
   .tracker-main {
@@ -4785,5 +4810,13 @@
 
   .bankroll-actions .button {
     flex: 1 1 auto;
+  }
+
+  .mobile-actions-card .mobile-actions {
+    flex-direction: column;
+  }
+
+  .mobile-actions-card .mobile-actions .button {
+    width: 100%;
   }
 }

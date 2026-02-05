@@ -268,6 +268,9 @@ export function ExchangeTable({
   const tableRef = useRef<HTMLDivElement | null>(null);
   const rowRefs = useRef<Map<number, HTMLTableRowElement>>(new Map());
   const rowPositions = useRef<Map<number, number>>(new Map());
+  const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const cardPositions = useRef<Map<number, number>>(new Map());
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
     setNow(new Date());
@@ -314,6 +317,21 @@ export function ExchangeTable({
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleChange = () => {
+      prefersReducedMotion.current = motionMedia.matches;
+    };
+    handleChange();
+    if (motionMedia.addEventListener) {
+      motionMedia.addEventListener('change', handleChange);
+      return () => motionMedia.removeEventListener('change', handleChange);
+    }
+    motionMedia.addListener(handleChange);
+    return () => motionMedia.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (!tableRef.current) return;
       const target = event.target as Node;
@@ -336,28 +354,61 @@ export function ExchangeTable({
     if (isCompact) {
       rowRefs.current.clear();
       rowPositions.current.clear();
+      const newPositions = new Map<number, number>();
+      cardRefs.current.forEach((node, id) => {
+        newPositions.set(id, node.getBoundingClientRect().top);
+      });
+
+      if (!prefersReducedMotion.current) {
+        const prevPositions = cardPositions.current;
+        cardRefs.current.forEach((node, id) => {
+          const prev = prevPositions.get(id);
+          const next = newPositions.get(id);
+          if (prev === undefined || next === undefined) return;
+          const delta = prev - next;
+          if (delta === 0) return;
+          node.style.transition = 'transform 0s';
+          node.style.transform = `translateY(${delta}px)`;
+          requestAnimationFrame(() => {
+            node.style.transition =
+              'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease';
+            node.style.transform = '';
+            window.setTimeout(() => {
+              node.style.transition = '';
+            }, 260);
+          });
+        });
+      }
+
+      cardPositions.current = newPositions;
       return;
     }
+
+    cardRefs.current.clear();
+    cardPositions.current.clear();
+
     const newPositions = new Map<number, number>();
     rowRefs.current.forEach((node, id) => {
       newPositions.set(id, node.getBoundingClientRect().top);
     });
 
-    const prevPositions = rowPositions.current;
-    rowRefs.current.forEach((node, id) => {
-      const prev = prevPositions.get(id);
-      const next = newPositions.get(id);
-      if (prev === undefined || next === undefined) return;
-      const delta = prev - next;
-      if (delta === 0) return;
-      node.style.transition = 'transform 0s';
-      node.style.transform = `translateY(${delta}px)`;
-      requestAnimationFrame(() => {
-        node.style.transition =
-          'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
-        node.style.transform = '';
+    if (!prefersReducedMotion.current) {
+      const prevPositions = rowPositions.current;
+      rowRefs.current.forEach((node, id) => {
+        const prev = prevPositions.get(id);
+        const next = newPositions.get(id);
+        if (prev === undefined || next === undefined) return;
+        const delta = prev - next;
+        if (delta === 0) return;
+        node.style.transition = 'transform 0s';
+        node.style.transform = `translateY(${delta}px)`;
+        requestAnimationFrame(() => {
+          node.style.transition =
+            'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
+          node.style.transform = '';
+        });
       });
-    });
+    }
 
     rowPositions.current = newPositions;
   }, [items, isCompact]);
@@ -439,6 +490,13 @@ export function ExchangeTable({
             return (
               <div
                 key={item.id}
+                ref={(node) => {
+                  if (!node) {
+                    cardRefs.current.delete(item.id);
+                  } else {
+                    cardRefs.current.set(item.id, node);
+                  }
+                }}
                 className="exchange-card"
                 role="button"
                 tabIndex={0}

@@ -9,6 +9,7 @@ import {
   TradeForm,
   TradeFilters,
   TradeList,
+  TradingMobileActions,
   TradingOverview,
   WatchList,
 } from '@/components/trading';
@@ -312,13 +313,26 @@ async function TradeTrackerContent({
 
       <div className="tracker-grid">
         <div className="tracker-primary">
-          <BankrollCard
-            bankroll={bankroll ?? { currentBankroll: 0, initialBankroll: 0 }}
-            characterId={characterId}
-            totalProfit={profitSummary.totalProfit}
-          />
+          <div className="tracker-primary-mobile">
+            <TradingMobileActions
+              availableBankroll={bankroll?.currentBankroll ?? 0}
+              bankroll={bankroll ?? { currentBankroll: 0, initialBankroll: 0 }}
+              characterId={characterId}
+              scope={scope}
+              totalProfit={profitSummary.totalProfit}
+              {...(preselectedItemId !== undefined && { preselectedItemId })}
+            />
+          </div>
 
-          <div className="tracker-card">
+          <div className="tracker-primary-desktop">
+            <BankrollCard
+              bankroll={bankroll ?? { currentBankroll: 0, initialBankroll: 0 }}
+              characterId={characterId}
+              totalProfit={profitSummary.totalProfit}
+            />
+          </div>
+
+          <div className="tracker-card tracker-primary-desktop">
             <div className="tracker-card-header">
               <h3>Record Trade</h3>
               {scope === 'all' && (

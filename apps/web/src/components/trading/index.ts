@@ -5,5 +5,6 @@ export { ProfitSummary } from './profit-summary';
 export { TradeForm } from './trade-form';
 export { TradeFilters } from './trade-filters';
 export { TradeList } from './trade-list';
+export { TradingMobileActions } from './trading-mobile-actions';
 export { TradingOverview } from './trading-overview';
 export { WatchList } from './watch-list';

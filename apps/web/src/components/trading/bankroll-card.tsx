@@ -14,12 +14,14 @@ interface BankrollCardProps {
   characterId: string;
   bankroll: BankrollData;
   totalProfit?: number;
+  hideTitle?: boolean;
 }
 
 export function BankrollCard({
   characterId,
   bankroll,
   totalProfit = 0,
+  hideTitle = false,
 }: BankrollCardProps) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
@@ -151,8 +153,8 @@ export function BankrollCard({
 
   return (
     <div className="bankroll-card">
-      <div className="bankroll-header">
-        <h3>Trading Bankroll</h3>
+      <div className={`bankroll-header ${hideTitle ? 'no-title' : ''}`}>
+        {!hideTitle && <h3>Trading Bankroll</h3>}
         {!isEditing && (
           <div className="bankroll-actions">
             <button
