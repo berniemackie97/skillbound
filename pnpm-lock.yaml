@@ -49,6 +49,12 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.896.0
         version: 3.982.0
+      '@fontsource/fraunces':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource/space-grotesk':
+        specifier: ^5.2.10
+        version: 5.2.10
       '@skillbound/cache':
         specifier: workspace:*
         version: link:../../packages/cache
