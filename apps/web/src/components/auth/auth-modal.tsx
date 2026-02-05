@@ -15,10 +15,10 @@ type AuthModalProps = {
   hasTwitter?: boolean | undefined;
   hasMagicLink?: boolean | undefined;
   onClose: () => void;
-  onSignIn?: ((provider: string, formData?: FormData) => Promise<void>) | undefined;
+  onSignIn?: ((provider: string, payload?: { identifier: string; password: string; callbackUrl?: string }) => Promise<void>) | undefined;
   onSignOut?: (() => Promise<void>) | undefined;
-  onRegister?: ((formData: FormData) => Promise<void>) | undefined;
-  onMagicLink?: ((formData: FormData) => Promise<void>) | undefined;
+  onRegister?: ((payload: { email: string; password: string; username?: string; callbackUrl?: string }) => Promise<void>) | undefined;
+  onMagicLink?: ((payload: { email: string; callbackUrl?: string }) => Promise<void>) | undefined;
 };
 
 export function AuthModal({
@@ -117,10 +117,16 @@ export function AuthModal({
 
       setError(null);
       const formData = new FormData(e.currentTarget);
+      const identifier = String(formData.get('identifier') ?? '').trim();
+      const password = String(formData.get('password') ?? '');
+      const callbackUrl =
+        typeof window !== 'undefined'
+          ? `${window.location.pathname}${window.location.search}`
+          : '/';
 
       startTransition(async () => {
         try {
-          await onSignIn('credentials', formData);
+          await onSignIn('credentials', { identifier, password, callbackUrl });
           router.refresh();
           onClose();
         } catch (err) {
@@ -139,10 +145,22 @@ export function AuthModal({
 
       setError(null);
       const formData = new FormData(e.currentTarget);
+      const email = String(formData.get('email') ?? '').trim();
+      const password = String(formData.get('password') ?? '');
+      const usernameRaw = String(formData.get('username') ?? '').trim();
+      const username = usernameRaw.length > 0 ? usernameRaw : undefined;
+      const callbackUrl =
+        typeof window !== 'undefined'
+          ? `${window.location.pathname}${window.location.search}`
+          : '/';
+      const payload =
+        username !== undefined
+          ? { email, password, username, callbackUrl }
+          : { email, password, callbackUrl };
 
       startTransition(async () => {
         try {
-          await onRegister(formData);
+          await onRegister(payload);
           router.refresh();
           onClose();
         } catch (err) {
@@ -180,10 +198,15 @@ export function AuthModal({
 
       setError(null);
       const formData = new FormData(e.currentTarget);
+      const email = String(formData.get('email') ?? '').trim();
+      const callbackUrl =
+        typeof window !== 'undefined'
+          ? `${window.location.pathname}${window.location.search}`
+          : '/';
 
       startTransition(async () => {
         try {
-          await onMagicLink(formData);
+          await onMagicLink({ email, callbackUrl });
         } catch (err) {
           if (isRedirectError(err)) throw err;
           setError('Unable to send magic link. Please try again.');

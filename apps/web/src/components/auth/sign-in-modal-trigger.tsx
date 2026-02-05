@@ -12,9 +12,20 @@ type SignInModalTriggerProps = {
   hasFacebook?: boolean | undefined;
   hasTwitter?: boolean | undefined;
   hasMagicLink?: boolean | undefined;
-  signInAction: (provider: string, formData?: FormData) => Promise<void>;
-  registerAction: (formData: FormData) => Promise<void>;
-  magicLinkAction?: ((formData: FormData) => Promise<void>) | undefined;
+  signInAction: (
+    provider: string,
+    payload?: { identifier: string; password: string; callbackUrl?: string }
+  ) => Promise<void>;
+  registerAction: (payload: {
+    email: string;
+    password: string;
+    username?: string;
+    callbackUrl?: string;
+  }) => Promise<void>;
+  magicLinkAction?: ((payload: {
+    email: string;
+    callbackUrl?: string;
+  }) => Promise<void>) | undefined;
 };
 
 export function SignInModalTrigger({

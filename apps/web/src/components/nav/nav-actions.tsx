@@ -22,10 +22,21 @@ type NavActionsProps = {
   hasFacebook: boolean;
   hasTwitter: boolean;
   hasMagicLink: boolean;
-  signInAction: (provider: string, formData?: FormData) => Promise<void>;
+  signInAction: (
+    provider: string,
+    payload?: { identifier: string; password: string; callbackUrl?: string }
+  ) => Promise<void>;
   signOutAction: () => Promise<void>;
-  registerAction: (formData: FormData) => Promise<void>;
-  magicLinkAction?: ((formData: FormData) => Promise<void>) | undefined;
+  registerAction: (payload: {
+    email: string;
+    password: string;
+    username?: string;
+    callbackUrl?: string;
+  }) => Promise<void>;
+  magicLinkAction?: ((payload: {
+    email: string;
+    callbackUrl?: string;
+  }) => Promise<void>) | undefined;
 };
 
 export function NavActions({
