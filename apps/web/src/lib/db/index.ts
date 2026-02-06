@@ -9,9 +9,16 @@ export function getDbClient(): DbClient {
     return cachedClient;
   }
 
-  const connectionString = process.env['DATABASE_URL'];
+  const connectionString =
+    process.env['DATABASE_URL'] ??
+    process.env['POSTGRES_URL'] ??
+    process.env['POSTGRES_URL_NON_POOLING'] ??
+    process.env['DATABASE_URL_UNPOOLED'] ??
+    process.env['POSTGRES_PRISMA_URL'];
   if (!connectionString) {
-    throw new Error('DATABASE_URL is not configured.');
+    throw new Error(
+      'DATABASE_URL is not configured. Set DATABASE_URL (preferred) or a supported Postgres env like POSTGRES_URL.'
+    );
   }
 
   cachedClient = createDbClient({ connectionString });

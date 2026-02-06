@@ -7,11 +7,7 @@ import {
   verificationTokens,
 } from '@skillbound/database';
 import type { NextRequest } from 'next/server';
-import NextAuth, {
-  type NextAuthConfig,
-  type NextAuthResult,
-  type Session,
-} from 'next-auth';
+import NextAuth, { type NextAuthConfig, type Session } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Facebook from 'next-auth/providers/facebook';
 import GitHub from 'next-auth/providers/github';
@@ -103,12 +99,12 @@ providers.push(
 );
 
 const authSecret = process.env['AUTH_SECRET'] ?? process.env['NEXTAUTH_SECRET'];
-if (!authSecret) {
-  throw new Error('AUTH_SECRET is required for authentication.');
+if (process.env.NODE_ENV === 'production' && !authSecret) {
+  throw new Error('AUTH_SECRET is required in production.');
 }
 
 const authConfig: NextAuthConfig = {
-  secret: authSecret,
+  ...(authSecret ? { secret: authSecret } : {}),
   adapter: DrizzleAdapter(getDbClient(), {
     usersTable: users,
     accountsTable: accounts,
@@ -140,13 +136,22 @@ const authConfig: NextAuthConfig = {
   },
 };
 
-const authResult = NextAuth(authConfig) as NextAuthResult;
+type SignInPayload = FormData | Record<string, unknown> | undefined;
+
+type AuthResult = {
+  handlers: { GET: RouteHandler; POST: RouteHandler };
+  auth: () => Promise<Session | null>;
+  signIn: (provider: string, options?: SignInPayload) => Promise<unknown>;
+  signOut: (options?: Record<string, unknown>) => Promise<unknown>;
+};
+
+const authResult = NextAuth(authConfig) as AuthResult;
 
 type RouteHandler = (req: NextRequest) => Promise<Response>;
 
 export const handlers: { GET: RouteHandler; POST: RouteHandler } =
   authResult.handlers;
 
-export const auth: () => Promise<Session | null> = () => authResult.auth();
-export const signIn: NextAuthResult['signIn'] = authResult.signIn;
-export const signOut: NextAuthResult['signOut'] = authResult.signOut;
+export const auth: AuthResult['auth'] = () => authResult.auth();
+export const signIn: AuthResult['signIn'] = authResult.signIn;
+export const signOut: AuthResult['signOut'] = authResult.signOut;
