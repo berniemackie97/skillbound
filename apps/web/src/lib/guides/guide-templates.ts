@@ -19,6 +19,7 @@ import {
 } from '@skillbound/database';
 
 import { getDbClient } from '../db';
+
 import { getGuideTemplateFromCatalog } from './guide-catalog';
 
 type GuideSeedKey = string;

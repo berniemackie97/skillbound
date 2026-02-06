@@ -13,7 +13,7 @@ afterEach(() => {
 
 describe('resolveSiteUrl', () => {
   it('resolves an explicit site url with scheme', async () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'https://skillbound.org';
+    process.env['NEXT_PUBLIC_SITE_URL'] = 'https://skillbound.org';
 
     const { resolveSiteOrigin, resolveSiteUrl } = await loadModule();
     const url = resolveSiteUrl();
@@ -23,7 +23,7 @@ describe('resolveSiteUrl', () => {
   });
 
   it('resolves an explicit site url without scheme', async () => {
-    process.env.NEXT_PUBLIC_SITE_URL = 'skillbound.org';
+    process.env['NEXT_PUBLIC_SITE_URL'] = 'skillbound.org';
 
     const { resolveSiteUrl } = await loadModule();
 
@@ -31,8 +31,8 @@ describe('resolveSiteUrl', () => {
   });
 
   it('falls back to the Vercel url when explicit url is missing', async () => {
-    delete process.env.NEXT_PUBLIC_SITE_URL;
-    process.env.VERCEL_URL = 'skillbound.vercel.app';
+    delete process.env['NEXT_PUBLIC_SITE_URL'];
+    process.env['VERCEL_URL'] = 'skillbound.vercel.app';
 
     const { resolveSiteUrl } = await loadModule();
 
@@ -40,7 +40,7 @@ describe('resolveSiteUrl', () => {
   });
 
   it('returns null for invalid explicit urls', async () => {
-    process.env.NEXT_PUBLIC_SITE_URL = '%%';
+    process.env['NEXT_PUBLIC_SITE_URL'] = '%%';
 
     const { resolveSiteUrl } = await loadModule();
 

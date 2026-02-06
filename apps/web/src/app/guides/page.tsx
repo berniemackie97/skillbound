@@ -9,7 +9,7 @@ export const metadata = buildPageMetadata({
   canonicalPath: '/guides',
 });
 
-export const revalidate = 60 * 60;
+export const revalidate = 3600;
 
 export default async function GuidesPage() {
   const templates = await getPublishedGuideCatalog();
