@@ -25,7 +25,7 @@
     "db:push": "pnpm --filter @skillbound/database push",
     "db:seed:progression": "pnpm --filter @skillbound/database seed:progression",
     "sync:skill-calculators": "tsx scripts/sync-skill-calculators.ts",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@skillbound/eslint-config": "workspace:*",

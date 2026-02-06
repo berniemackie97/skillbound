@@ -2,7 +2,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { config as loadEnv } from 'dotenv';
-import { defineConfig } from 'drizzle-kit';
 
 const envPath = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -10,7 +9,7 @@ const envPath = path.resolve(
 );
 loadEnv({ path: envPath });
 
-export default defineConfig({
+export default {
   schema: './src/schema/index.ts',
   out: './src/migrations',
   dialect: 'postgresql',
@@ -19,4 +18,4 @@ export default defineConfig({
   },
   verbose: true,
   strict: true,
-});
+};

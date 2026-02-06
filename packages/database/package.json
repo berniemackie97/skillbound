@@ -11,10 +11,10 @@
   "scripts": {
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts",
     "typecheck": "tsc --noEmit",
-    "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate",
-    "push": "drizzle-kit push",
-    "studio": "drizzle-kit studio",
+    "generate": "pnpm dlx drizzle-kit generate",
+    "migrate": "pnpm dlx drizzle-kit migrate",
+    "push": "pnpm dlx drizzle-kit push",
+    "studio": "pnpm dlx drizzle-kit studio",
     "seed:progression": "tsx src/scripts/seed-progression-categories.ts",
     "test": "vitest run",
     "test:unit": "vitest run"
@@ -31,7 +31,6 @@
     "@types/pg": "^8.16.0",
     "@vitest/coverage-v8": "^4.0.18",
     "dotenv": "^17.2.3",
-    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
