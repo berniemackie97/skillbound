@@ -108,6 +108,7 @@ export function ExchangeClient({
   const [isRefreshPaused, setIsRefreshPaused] = useState(false);
   const [isRefineOpen, setIsRefineOpen] = useState(false);
   const sortsRef = useRef(sorts);
+  const pageRef = useRef(meta.page);
   const [activeCharacterId, setActiveCharacterId] = useState<string | null>(
     null
   );
@@ -396,9 +397,6 @@ export function ExchangeClient({
       if (shouldShowLoading) {
         setIsLoading(true);
       }
-      if (!isRefreshPaused) {
-        setNextRefreshAt(Date.now() + refreshInterval);
-      }
       try {
         const queryParams = new URLSearchParams();
         queryParams.set('page', String(params.page ?? meta.page));
@@ -500,9 +498,6 @@ export function ExchangeClient({
           }
           const updatedAt = new Date();
           setLastUpdated(updatedAt);
-          if (!isRefreshPaused) {
-            setNextRefreshAt(updatedAt.getTime() + refreshInterval);
-          }
         }
       } catch (error) {
         console.error('Failed to fetch items:', error);
@@ -565,6 +560,10 @@ export function ExchangeClient({
   useEffect(() => {
     sortsRef.current = sorts;
   }, [sorts]);
+
+  useEffect(() => {
+    pageRef.current = meta.page;
+  }, [meta.page]);
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -648,11 +647,13 @@ export function ExchangeClient({
 
   useEffect(() => {
     if (isRefreshPaused) return;
-    const intervalId = window.setInterval(() => {
-      void fetchItemsRef.current({ page: meta.page, silent: true });
-    }, refreshInterval);
+    const tick = () => {
+      setNextRefreshAt(Date.now() + refreshInterval);
+      void fetchItemsRef.current({ page: pageRef.current, silent: true });
+    };
+    const intervalId = window.setInterval(tick, refreshInterval);
     return () => window.clearInterval(intervalId);
-  }, [meta.page, refreshInterval, isRefreshPaused]);
+  }, [refreshInterval, isRefreshPaused]);
 
   const handleItemClick = useCallback(
     (item: { id: number }) => {

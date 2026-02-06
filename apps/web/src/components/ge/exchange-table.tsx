@@ -358,21 +358,30 @@ function ExchangeTableBase({
       return;
     }
 
+    const overscan = 120;
+    const viewportTop = -overscan;
+    const viewportBottom = window.innerHeight + overscan;
+    const isVisible = (rect: DOMRect) =>
+      rect.bottom >= viewportTop && rect.top <= viewportBottom;
+
     if (isCompact) {
       rowRefs.current.clear();
       rowPositions.current.clear();
       const newPositions = new Map<number, number>();
       cardRefs.current.forEach((node, id) => {
-        newPositions.set(id, node.getBoundingClientRect().top);
+        const rect = node.getBoundingClientRect();
+        if (!isVisible(rect)) return;
+        newPositions.set(id, rect.top);
       });
 
       const prevPositions = cardPositions.current;
-      cardRefs.current.forEach((node, id) => {
+      newPositions.forEach((next, id) => {
         const prev = prevPositions.get(id);
-        const next = newPositions.get(id);
         if (prev === undefined || next === undefined) return;
         const delta = prev - next;
         if (delta === 0) return;
+        const node = cardRefs.current.get(id);
+        if (!node) return;
         node.style.transition = 'transform 0s';
         node.style.transform = `translateY(${delta}px)`;
         requestAnimationFrame(() => {
@@ -394,16 +403,19 @@ function ExchangeTableBase({
 
     const newPositions = new Map<number, number>();
     rowRefs.current.forEach((node, id) => {
-      newPositions.set(id, node.getBoundingClientRect().top);
+      const rect = node.getBoundingClientRect();
+      if (!isVisible(rect)) return;
+      newPositions.set(id, rect.top);
     });
 
     const prevPositions = rowPositions.current;
-    rowRefs.current.forEach((node, id) => {
+    newPositions.forEach((next, id) => {
       const prev = prevPositions.get(id);
-      const next = newPositions.get(id);
       if (prev === undefined || next === undefined) return;
       const delta = prev - next;
       if (delta === 0) return;
+      const node = rowRefs.current.get(id);
+      if (!node) return;
       node.style.transition = 'transform 0s';
       node.style.transform = `translateY(${delta}px)`;
       requestAnimationFrame(() => {

@@ -1,7 +1,5 @@
-import { unstable_noStore as noStore } from 'next/cache';
 import Link from 'next/link';
 
-import { auth } from '@/lib/auth/auth';
 import {
   magicLinkAction,
   registerAction,
@@ -9,13 +7,9 @@ import {
   signOutAction,
 } from '@/lib/auth/auth-actions';
 import { getAuthProviderFlags } from '@/lib/auth/auth-providers';
-import {
-  getActiveCharacter,
-  getUserCharacters,
-} from '@/lib/character/character-selection';
 
 import { MobileMenu } from './mobile-menu';
-import { NavActions } from './nav-actions';
+import { NavActionsClient } from './nav-actions-client';
 
 const NAV_LINKS = [
   // { href: '/', label: 'Overview' },
@@ -27,25 +21,18 @@ const NAV_LINKS = [
   // { href: '/snapshots', label: 'Snapshots' },
 ];
 
-export async function SiteNav() {
-  noStore();
-  const session = await auth();
-  const user = session?.user;
-  const characters = user ? await getUserCharacters(user.id) : [];
-  const activeSelection = user ? await getActiveCharacter(user.id) : null;
-  const activeCharacterId = activeSelection?.character?.id ?? null;
+export function SiteNav() {
+  const {
+    hasGoogle,
+    hasGitHub,
+    hasFacebook,
+    hasTwitter,
+    hasMagicLink,
+    hasOAuth,
+  } = getAuthProviderFlags();
 
-  const { hasGoogle, hasGitHub, hasFacebook, hasTwitter, hasMagicLink } =
-    getAuthProviderFlags();
-
-  // Filter links based on auth status
-  const visibleLinks = user
-    ? NAV_LINKS
-    : NAV_LINKS.filter((link) => link.href !== '/characters');
-  const hasCharacterSwitcher = Boolean(user) && characters.length > 0;
-  const mobileExtraLinks = hasCharacterSwitcher
-    ? [{ href: '/lookup', label: 'New lookup' }]
-    : [];
+  const visibleLinks = NAV_LINKS;
+  const mobileExtraLinks = [{ href: '/lookup', label: 'New lookup' }];
 
   return (
     <header className="nav">
@@ -73,21 +60,17 @@ export async function SiteNav() {
       </nav>
       {/* Mobile hamburger menu */}
       <MobileMenu extraLinks={mobileExtraLinks} links={visibleLinks} />
-      <NavActions
-        activeCharacterId={activeCharacterId}
-        characters={characters}
+      <NavActionsClient
         hasFacebook={hasFacebook}
         hasGitHub={hasGitHub}
         hasGoogle={hasGoogle}
         hasMagicLink={hasMagicLink}
+        hasOAuth={hasOAuth}
         hasTwitter={hasTwitter}
-        isSignedIn={Boolean(user)}
         magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
         registerAction={registerAction}
         signInAction={signInAction}
         signOutAction={signOutAction}
-        userEmail={user?.email}
-        userName={user?.name}
       />
     </header>
   );
