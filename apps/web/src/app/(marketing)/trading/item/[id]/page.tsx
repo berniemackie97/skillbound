@@ -46,9 +46,10 @@ function profitClass(profit: number | null): string {
 export async function generateMetadata({
   params,
 }: {
-  params: PageParams;
+  params: Promise<PageParams>;
 }): Promise<Metadata> {
-  const itemId = parseItemId(params.id);
+  const { id } = await params;
+  const itemId = parseItemId(id);
   if (!itemId) {
     return {
       title: 'Item Not Found - SkillBound',

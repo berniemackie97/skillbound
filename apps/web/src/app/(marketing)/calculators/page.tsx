@@ -5,11 +5,8 @@ import {
   SKILLS,
 } from '@skillbound/domain';
 
-import SkillCalculator from '@/components/skills/skill-calculator';
-import { getSessionUser } from '@/lib/auth/auth-helpers';
+import { SkillCalculatorClient } from '@/components/skills/skill-calculator-client';
 import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
-import { getActiveCharacter } from '@/lib/character/character-selection';
-import { getLatestCharacterSnapshot } from '@/lib/character/character-snapshots';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildPageMetadata({
@@ -49,14 +46,6 @@ export default async function CalculatorsPage({
   searchParams?: SearchParams;
 }) {
   const resolvedSearchParams = await searchParams;
-  const sessionUser = await getSessionUser();
-  const activeSelection = sessionUser
-    ? await getActiveCharacter(sessionUser.id)
-    : null;
-  const activeCharacter = activeSelection?.character ?? null;
-  const activeSnapshot = activeCharacter
-    ? await getLatestCharacterSnapshot(activeCharacter.id)
-    : null;
 
   const skillParam = getStringParam(resolvedSearchParams?.skill).toLowerCase();
   const skill = (
@@ -71,9 +60,6 @@ export default async function CalculatorsPage({
   const usernameParam = getStringParam(resolvedSearchParams?.username).trim();
   const mode = getStringParam(resolvedSearchParams?.mode) || 'auto';
 
-  const snapshotSkill = activeSnapshot?.skills.find(
-    (entry) => entry.name === skill
-  );
   const parsedLevel = parseNumber(currentLevelParam);
 
   let fallbackXpFromLevel: number | null = null;
@@ -85,8 +71,7 @@ export default async function CalculatorsPage({
     }
   }
 
-  const resolvedCurrentXp =
-    parseNumber(currentXpParam) ?? snapshotSkill?.xp ?? fallbackXpFromLevel;
+  const resolvedCurrentXp = parseNumber(currentXpParam) ?? fallbackXpFromLevel;
 
   let resolvedCurrentLevel: number | null = null;
   if (resolvedCurrentXp !== null) {
@@ -110,14 +95,12 @@ export default async function CalculatorsPage({
   const calculator = await getCalculatorDataForSkill(skill);
 
   return (
-    <SkillCalculator
-      activeCharacterName={activeCharacter?.displayName ?? null}
+    <SkillCalculatorClient
       initialCalculator={calculator}
       initialMode={mode}
       initialSkill={skill}
       initialTargetLevel={targetLevelParam}
-      initialUsername={usernameParam || activeCharacter?.displayName || ''}
-      snapshotSkills={activeSnapshot?.skills ?? null}
+      initialUsername={usernameParam}
       initialCurrentLevel={
         resolvedCurrentLevel?.toString() ?? currentLevelParam
       }

@@ -1,4 +1,5 @@
 export { ExchangeClient } from './exchange-client';
+export { ExchangeClientShell } from './exchange-client-shell';
 export {
   ExchangeTable,
   type ExchangeItem,

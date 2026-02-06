@@ -1,7 +1,4 @@
-import { ComprehensiveProgression } from '@/components/progression/comprehensive-progression';
-import { ProgressionBrowser } from '@/components/progression/progression-browser';
-import { getSessionUser } from '@/lib/auth/auth-helpers';
-import { getActiveCharacter } from '@/lib/character/character-selection';
+import { ProgressionPageClient } from '@/components/progression/progression-page-client';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 type SearchParams = {
@@ -41,29 +38,16 @@ function getStringParam(value: string | string[] | undefined): string {
 }
 
 export default async function ProgressionPage({ searchParams }: PageProps) {
-  const user = await getSessionUser();
-  const activeSelection = user ? await getActiveCharacter(user.id) : null;
-  const character = activeSelection?.character ?? null;
-
   const params = await resolveSearchParams(searchParams);
   const initialUsername = getStringParam(params.username).trim();
   const initialMode = getStringParam(params.mode).trim() || 'auto';
 
   return (
     <section>
-      {character ? (
-        <ComprehensiveProgression
-          characterId={character.id}
-          characterName={character.displayName}
-        />
-      ) : (
-        <ProgressionBrowser
-          hasActiveCharacter={Boolean(character)}
-          initialMode={initialMode}
-          initialUsername={initialUsername}
-          signedIn={Boolean(user)}
-        />
-      )}
+      <ProgressionPageClient
+        initialMode={initialMode}
+        initialUsername={initialUsername}
+      />
     </section>
   );
 }

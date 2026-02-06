@@ -1,4 +1,5 @@
-import { type getSessionUser } from '@/lib/auth/auth-helpers';
+import type { ReactNode } from 'react';
+
 import type {
   getOverallSkill,
   getTopActivities,
@@ -14,9 +15,7 @@ type LookupPanelProps = {
   mode: ModeValue;
   lookup: LookupResponse | null;
   error: string | null;
-
-  sessionUser: Awaited<ReturnType<typeof getSessionUser>>;
-  isSaved: boolean;
+  actions?: ReactNode;
 
   overall: ReturnType<typeof getOverallSkill>;
   skillTiles: ReturnType<typeof getTopSkills>;
@@ -28,8 +27,7 @@ export function LookupPanel({
   mode,
   lookup,
   error,
-  sessionUser,
-  isSaved,
+  actions,
   overall,
   skillTiles,
   activityTiles,
@@ -42,31 +40,7 @@ export function LookupPanel({
           <p>Fetch hiscores data and render a quick character dashboard.</p>
         </div>
 
-        <div className="panel-actions">
-          {lookup && sessionUser ? (
-            isSaved ? (
-              <span className="pill subtle">Saved</span>
-            ) : (
-              <form action="/api/characters" method="post">
-                <input
-                  name="displayName"
-                  type="hidden"
-                  value={lookup.data.displayName}
-                />
-                <input name="mode" type="hidden" value={lookup.data.mode} />
-                <button className="button" type="submit">
-                  Save character
-                </button>
-              </form>
-            )
-          ) : null}
-
-          {lookup && !sessionUser ? (
-            <a className="button ghost" href="/login">
-              Sign in to save
-            </a>
-          ) : null}
-        </div>
+        <div className="panel-actions">{actions}</div>
       </div>
 
       <LookupForm mode={mode} username={username} />

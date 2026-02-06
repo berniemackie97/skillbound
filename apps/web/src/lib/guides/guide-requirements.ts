@@ -1,4 +1,5 @@
-import type { GuideRequirement, GuideStep } from '@skillbound/database';
+import type { GuideRequirementSeed } from '@skillbound/content';
+import type { GuideRequirement } from '@skillbound/database';
 import {
   evaluateRequirementSet,
   isSkillName,
@@ -14,9 +15,16 @@ type GuideRequirementEvaluation = {
   status: RequirementStatus;
 };
 
+type GuideRequirementLike = GuideRequirement | GuideRequirementSeed;
+
+type GuideStepRequirements = {
+  requirements?: GuideRequirementLike[] | undefined;
+  optionalRequirements?: GuideRequirementLike[] | undefined;
+};
+
 const UNKNOWN_STATUS: RequirementStatus = 'UNKNOWN';
 
-function toRequirement(requirement: GuideRequirement): Requirement | null {
+function toRequirement(requirement: GuideRequirementLike): Requirement | null {
   switch (requirement.type) {
     case 'skill_level': {
       const skillValue = requirement.data['skill'];
@@ -90,7 +98,7 @@ function buildUnknownResult(requirements: Requirement[]): RequirementResult[] {
 }
 
 export function evaluateGuideStepRequirements(
-  step: GuideStep,
+  step: GuideStepRequirements,
   facts: CharacterFacts | null
 ): GuideRequirementEvaluation {
   const required = (step.requirements ?? [])

@@ -1,10 +1,7 @@
 import { getServerBaseUrl } from '@/lib/config/server-url';
 
 import type { LookupResponse, ModeValue, ProblemDetails } from './lookup-types';
-
-function normalizeName(name: string): string {
-  return name.trim().toLowerCase();
-}
+import { isCharacterSaved as isCharacterSavedUtil } from './lookup-utils';
 
 export async function fetchLookup(args: { username: string; mode: ModeValue }) {
   const baseUrl = await getServerBaseUrl();
@@ -67,14 +64,5 @@ export function isCharacterSaved(args: {
   lookup: LookupResponse | null;
   savedCharacters: Array<{ displayName: string; mode: string }>;
 }): boolean {
-  const { lookup, savedCharacters } = args;
-  if (!lookup) return false;
-
-  return savedCharacters.some((character) => {
-    const sameName =
-      normalizeName(character.displayName) ===
-      normalizeName(lookup.data.displayName);
-    const sameMode = character.mode === lookup.data.mode;
-    return sameName && sameMode;
-  });
+  return isCharacterSavedUtil(args);
 }

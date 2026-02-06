@@ -56,7 +56,7 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
           description: 'Log trades and see profit trends over time.',
           cta: {
             label: 'View trades',
-            href: '/trading?tab=tracker#trade-history',
+            href: '/trading/tracker#trade-history',
           },
         },
         {
@@ -64,7 +64,7 @@ export function buildHomeSections(counts: HomeCounts): HomeSectionModel[] {
           description: 'Monitor inventory signals and watchlist thresholds.',
           cta: {
             label: 'View alerts',
-            href: '/trading?tab=tracker#live-alerts',
+            href: '/trading/tracker#live-alerts',
           },
         },
       ],

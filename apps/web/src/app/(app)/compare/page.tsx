@@ -16,6 +16,8 @@ export const metadata = buildPageMetadata({
   noIndex: true,
 });
 
+export const dynamic = 'force-dynamic';
+
 export default async function ComparePage() {
   const sessionUser = await getSessionUser();
   if (!sessionUser) {

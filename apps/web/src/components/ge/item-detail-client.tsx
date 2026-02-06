@@ -69,7 +69,7 @@ export function ItemDetailClient({
       </button>
       <Link
         className="action-btn add-to-list"
-        href={`/trading?addTrade=${itemId}`}
+        href={`/trading/tracker?addTrade=${itemId}`}
       >
         + Add to List
       </Link>

@@ -185,7 +185,7 @@ export default async function CharactersPage() {
             </div>
             <div className="hero-links">
               <Link href="/progression">Open progression</Link>
-              <Link href="/trading?tab=tracker">Trade tracker</Link>
+              <Link href="/trading/tracker">Trade tracker</Link>
               <Link href="/guides">Guides</Link>
             </div>
           </div>

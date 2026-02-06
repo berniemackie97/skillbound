@@ -383,6 +383,7 @@ export default function SkillCalculator({
     'idle' | 'loading' | 'success' | 'error'
   >('idle');
   const [lookupError, setLookupError] = useState<string | null>(null);
+  const [autoAppliedSnapshot, setAutoAppliedSnapshot] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState(0);
@@ -413,6 +414,10 @@ export default function SkillCalculator({
   useEffect(() => {
     setTargetLevelInput(String(targetLevel));
   }, [targetLevel]);
+
+  useEffect(() => {
+    setAutoAppliedSnapshot(false);
+  }, [activeCharacterName]);
 
   const snapshotSkillMap = useMemo(() => {
     const map = new Map<SkillName, SkillSnapshot>();
@@ -607,6 +612,32 @@ export default function SkillCalculator({
     },
     [applyLookupSkill, applySkillSnapshot, lookupData, skill]
   );
+
+  useEffect(() => {
+    if (!snapshotSkills || snapshotSkills.length === 0) {
+      return;
+    }
+    if (autoAppliedSnapshot) {
+      return;
+    }
+
+    setLookupData(null);
+    setLookupMeta(null);
+    setLookupStatus('idle');
+    setLookupError(null);
+
+    if (activeCharacterName) {
+      setUsername(activeCharacterName);
+    }
+    applySkillSnapshot(skill);
+    setAutoAppliedSnapshot(true);
+  }, [
+    snapshotSkills,
+    autoAppliedSnapshot,
+    activeCharacterName,
+    applySkillSnapshot,
+    skill,
+  ]);
 
   useEffect(() => {
     if (skill === 'defence' && combatStyle !== 'melee' && usingControlled) {

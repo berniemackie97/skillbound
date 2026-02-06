@@ -4,10 +4,8 @@ import type { Metadata, Viewport } from 'next';
 import { Fraunces, Space_Grotesk } from 'next/font/google';
 import './styles/globals.css';
 
-import { SiteNav } from '@/components/nav/site-nav';
 import { GoogleAnalytics } from '@/components/seo/google-analytics';
 import { StructuredData } from '@/components/seo/structured-data';
-import { SiteFooter } from '@/components/site/site-footer';
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OPEN_GRAPH,
@@ -83,20 +81,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={`${fraunces.variable} ${spaceGrotesk.variable}`} lang="en">
       <body>
-        {/* Skip link: cheap accessibility win, zero design impact unless focused */}
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-
-        <div className="shell">
-          <SiteNav />
-
-          <main className="page" id="main">
-            {children}
-          </main>
-
-          <SiteFooter />
-        </div>
+        {children}
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics />

@@ -33,7 +33,7 @@ describe('buildHomeSections', () => {
       (card) => card.title === 'Live alerts'
     );
 
-    expect(tradeJournal?.cta.href).toBe('/trading?tab=tracker#trade-history');
-    expect(liveAlerts?.cta.href).toBe('/trading?tab=tracker#live-alerts');
+    expect(tradeJournal?.cta.href).toBe('/trading/tracker#trade-history');
+    expect(liveAlerts?.cta.href).toBe('/trading/tracker#live-alerts');
   });
 });

@@ -26,6 +26,7 @@ function buildUrl(
   updates: Record<string, string | null>
 ): string {
   const params = new URLSearchParams(searchParams.toString());
+  params.delete('tab');
   Object.entries(updates).forEach(([key, value]) => {
     if (value === null || value === '') {
       params.delete(key);
@@ -33,7 +34,7 @@ function buildUrl(
       params.set(key, value);
     }
   });
-  return `/trading?${params.toString()}`;
+  return `/trading/tracker?${params.toString()}`;
 }
 
 export function TradeFilters({
@@ -73,7 +74,7 @@ export function TradeFilters({
 
   const applyFilters = useCallback(
     (updates: Record<string, string | null>) => {
-      router.push(buildUrl(searchParams, { tab: 'tracker', ...updates }));
+      router.push(buildUrl(searchParams, updates));
     },
     [router, searchParams]
   );
