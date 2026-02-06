@@ -14,6 +14,8 @@ export const metadata = buildPageMetadata({
   canonicalPath: '/guides',
 });
 
+export const dynamic = 'force-dynamic';
+
 export default async function GuidesPage() {
   const user = await getSessionUser();
   const activeSelection = user ? await getActiveCharacter(user.id) : null;

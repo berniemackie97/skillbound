@@ -525,6 +525,8 @@ export function GuideStepList({
                                                     const itemKey = `${step.stepNumber}-item-${idx}`;
                                                     const isItemReady =
                                                       readyItems.has(itemKey);
+                                                    const toggleItemReady = () =>
+                                                      toggleReadyItem(itemKey);
 
                                                     return (
                                                       <li
@@ -536,16 +538,10 @@ export function GuideStepList({
                                                         }
                                                       >
                                                         <button
-                                                          aria-pressed={
-                                                            isItemReady
-                                                          }
+                                                          aria-pressed={isItemReady}
                                                           className="meta-item-toggle"
                                                           type="button"
-                                                          onClick={() =>
-                                                            toggleReadyItem(
-                                                              itemKey
-                                                            )
-                                                          }
+                                                          onClick={toggleItemReady}
                                                         >
                                                           {item.icon && (
                                                             <span className="item-icon">
@@ -597,6 +593,11 @@ export function GuideStepList({
                                                             readyItems.has(
                                                               statKey
                                                             );
+                                                          const toggleStatReady =
+                                                            () =>
+                                                              toggleReadyItem(
+                                                                statKey
+                                                              );
 
                                                           return (
                                                             <li
@@ -608,16 +609,10 @@ export function GuideStepList({
                                                               }
                                                             >
                                                               <button
-                                                                aria-pressed={
-                                                                  isStatReady
-                                                                }
+                                                                aria-pressed={isStatReady}
                                                                 className="meta-item-toggle"
                                                                 type="button"
-                                                                onClick={() =>
-                                                                  toggleReadyItem(
-                                                                    statKey
-                                                                  )
-                                                                }
+                                                                onClick={toggleStatReady}
                                                               >
                                                                 <span className="stat-level">
                                                                   {stat.level}
@@ -653,6 +648,11 @@ export function GuideStepList({
                                                             readyItems.has(
                                                               statKey
                                                             );
+                                                          const toggleStatReady =
+                                                            () =>
+                                                              toggleReadyItem(
+                                                                statKey
+                                                              );
 
                                                           return (
                                                             <li
@@ -664,16 +664,10 @@ export function GuideStepList({
                                                               }
                                                             >
                                                               <button
-                                                                aria-pressed={
-                                                                  isStatReady
-                                                                }
+                                                                aria-pressed={isStatReady}
                                                                 className="meta-item-toggle"
                                                                 type="button"
-                                                                onClick={() =>
-                                                                  toggleReadyItem(
-                                                                    statKey
-                                                                  )
-                                                                }
+                                                                onClick={toggleStatReady}
                                                               >
                                                                 <span className="stat-level">
                                                                   {stat.level}
