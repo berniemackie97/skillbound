@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { REFRESH_OPTIONS } from './exchange-client.constants';
 import type {
   ColumnFilterKey,
@@ -6,6 +8,7 @@ import type {
   SavedPreset,
   ViewMode,
 } from './exchange-client.types';
+import { formatCountdown } from './exchange-client.utils';
 import { ItemSearch, type ItemSearchResult } from './item-search';
 
 type SortOption = {
@@ -43,9 +46,8 @@ interface ExchangeControlsProps {
   onRefreshIntervalChange: (value: number) => void;
   isRefreshPaused: boolean;
   onToggleRefreshPaused: () => void;
-  nextRefreshLabel: string;
+  nextRefreshAt: number | null;
   lastUpdatedLabel: string;
-  now: number | null;
   isRefineOpen: boolean;
   onOpenRefine: () => void;
   onCloseRefine: () => void;
@@ -77,13 +79,34 @@ export function ExchangeControls({
   onRefreshIntervalChange,
   isRefreshPaused,
   onToggleRefreshPaused,
-  nextRefreshLabel,
+  nextRefreshAt,
   lastUpdatedLabel,
-  now,
   isRefineOpen,
   onOpenRefine,
   onCloseRefine,
 }: ExchangeControlsProps) {
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const updateNow = () => {
+      if (document.visibilityState === 'visible') {
+        setNow(Date.now());
+      }
+    };
+    updateNow();
+    const intervalId = window.setInterval(updateNow, 1_000);
+    document.addEventListener('visibilitychange', updateNow);
+    return () => {
+      window.clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', updateNow);
+    };
+  }, []);
+
+  const nextRefreshLabel = isRefreshPaused
+    ? 'Paused'
+    : nextRefreshAt
+      ? formatCountdown(Math.max(0, nextRefreshAt - now))
+      : 'Calculating...';
   return (
     <div className="exchange-controls">
       <div className="controls-row controls-top">

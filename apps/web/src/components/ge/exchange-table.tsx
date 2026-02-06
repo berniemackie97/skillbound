@@ -240,10 +240,9 @@ interface ExchangeTableProps {
   ) => void;
   onColumnFilterApply: (key?: ColumnFilterKey) => void;
   onColumnFilterClear: (key: ColumnFilterKey) => void;
-  refreshLabel: string;
 }
 
-export function ExchangeTable({
+function ExchangeTableBase({
   items,
   favorites,
   onToggleFavorite,
@@ -258,7 +257,6 @@ export function ExchangeTable({
   onColumnFilterChange,
   onColumnFilterApply,
   onColumnFilterClear,
-  refreshLabel,
 }: ExchangeTableProps) {
   const [expandedItemId, setExpandedItemId] = useState<number | null>(null);
   const [openFilter, setOpenFilter] = useState<ColumnFilterKey | null>(null);
@@ -270,7 +268,7 @@ export function ExchangeTable({
   const rowPositions = useRef<Map<number, number>>(new Map());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const cardPositions = useRef<Map<number, number>>(new Map());
-  const prefersReducedMotion = useRef(false);
+  const [allowMotion, setAllowMotion] = useState(true);
 
   useEffect(() => {
     setNow(new Date());
@@ -320,7 +318,7 @@ export function ExchangeTable({
     if (typeof window === 'undefined') return;
     const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handleChange = () => {
-      prefersReducedMotion.current = motionMedia.matches;
+      setAllowMotion(!motionMedia.matches);
     };
     handleChange();
     if (motionMedia.addEventListener) {
@@ -351,6 +349,15 @@ export function ExchangeTable({
   }, []);
 
   useLayoutEffect(() => {
+    const shouldAnimate = allowMotion && items.length <= 120;
+    if (!shouldAnimate) {
+      rowRefs.current.clear();
+      rowPositions.current.clear();
+      cardRefs.current.clear();
+      cardPositions.current.clear();
+      return;
+    }
+
     if (isCompact) {
       rowRefs.current.clear();
       rowPositions.current.clear();
@@ -359,26 +366,24 @@ export function ExchangeTable({
         newPositions.set(id, node.getBoundingClientRect().top);
       });
 
-      if (!prefersReducedMotion.current) {
-        const prevPositions = cardPositions.current;
-        cardRefs.current.forEach((node, id) => {
-          const prev = prevPositions.get(id);
-          const next = newPositions.get(id);
-          if (prev === undefined || next === undefined) return;
-          const delta = prev - next;
-          if (delta === 0) return;
-          node.style.transition = 'transform 0s';
-          node.style.transform = `translateY(${delta}px)`;
-          requestAnimationFrame(() => {
-            node.style.transition =
-              'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease';
-            node.style.transform = '';
-            window.setTimeout(() => {
-              node.style.transition = '';
-            }, 260);
-          });
+      const prevPositions = cardPositions.current;
+      cardRefs.current.forEach((node, id) => {
+        const prev = prevPositions.get(id);
+        const next = newPositions.get(id);
+        if (prev === undefined || next === undefined) return;
+        const delta = prev - next;
+        if (delta === 0) return;
+        node.style.transition = 'transform 0s';
+        node.style.transform = `translateY(${delta}px)`;
+        requestAnimationFrame(() => {
+          node.style.transition =
+            'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease';
+          node.style.transform = '';
+          window.setTimeout(() => {
+            node.style.transition = '';
+          }, 260);
         });
-      }
+      });
 
       cardPositions.current = newPositions;
       return;
@@ -392,26 +397,24 @@ export function ExchangeTable({
       newPositions.set(id, node.getBoundingClientRect().top);
     });
 
-    if (!prefersReducedMotion.current) {
-      const prevPositions = rowPositions.current;
-      rowRefs.current.forEach((node, id) => {
-        const prev = prevPositions.get(id);
-        const next = newPositions.get(id);
-        if (prev === undefined || next === undefined) return;
-        const delta = prev - next;
-        if (delta === 0) return;
-        node.style.transition = 'transform 0s';
-        node.style.transform = `translateY(${delta}px)`;
-        requestAnimationFrame(() => {
-          node.style.transition =
-            'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
-          node.style.transform = '';
-        });
+    const prevPositions = rowPositions.current;
+    rowRefs.current.forEach((node, id) => {
+      const prev = prevPositions.get(id);
+      const next = newPositions.get(id);
+      if (prev === undefined || next === undefined) return;
+      const delta = prev - next;
+      if (delta === 0) return;
+      node.style.transition = 'transform 0s';
+      node.style.transform = `translateY(${delta}px)`;
+      requestAnimationFrame(() => {
+        node.style.transition =
+          'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
+        node.style.transform = '';
       });
-    }
+    });
 
     rowPositions.current = newPositions;
-  }, [items, isCompact]);
+  }, [allowMotion, isCompact, items]);
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -477,7 +480,7 @@ export function ExchangeTable({
       <div ref={tableRef} className="exchange-table-container compact">
         <div className="exchange-mobile-status">
           <span aria-hidden="true" className="update-dot" />
-          Updating in {refreshLabel}
+          Live prices
         </div>
 
         <div className="exchange-card-list">
@@ -686,7 +689,7 @@ export function ExchangeTable({
             <th colSpan={13}>
               <div className="update-indicator">
                 <span aria-hidden="true" className="update-dot" />
-                Updating in {refreshLabel}
+                Live prices
               </div>
             </th>
           </tr>
@@ -989,3 +992,5 @@ export function ExchangeTable({
     </div>
   );
 }
+
+export const ExchangeTable = memo(ExchangeTableBase);

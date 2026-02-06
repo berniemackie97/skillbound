@@ -118,6 +118,10 @@
   overflow: hidden;
 }
 
+.ge-exchange-section {
+  min-height: 520px;
+}
+
 .ge-exchange-section::before,
 .trade-tracker-section::before {
   content: '';

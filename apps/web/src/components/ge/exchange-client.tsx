@@ -21,7 +21,6 @@ import type {
 } from './exchange-client.types';
 import {
   areSortsEqual,
-  formatCountdown,
   normalizeFilters,
   parseMembersFilter,
   parseParam,
@@ -103,7 +102,6 @@ export function ExchangeClient({
   const [stackPresets, setStackPresets] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [nextRefreshAt, setNextRefreshAt] = useState<number | null>(null);
-  const [now, setNow] = useState<number | null>(null);
   const [refreshInterval, setRefreshInterval] = useState<number>(
     DEFAULT_REFRESH_INTERVAL
   );
@@ -641,14 +639,6 @@ export function ExchangeClient({
   }, [searchFilter, membersFilter]);
 
   useEffect(() => {
-    setNow(Date.now());
-    const intervalId = window.setInterval(() => {
-      setNow(Date.now());
-    }, 1000);
-    return () => window.clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
     if (isRefreshPaused) {
       setNextRefreshAt(null);
       return;
@@ -906,16 +896,10 @@ export function ExchangeClient({
     ]
   );
 
-  const displayItems =
-    viewMode === 'favorites'
-      ? items.filter((item) => favorites.has(item.id))
-      : items;
-
-  const nextRefreshLabel = isRefreshPaused
-    ? 'Paused'
-    : nextRefreshAt && now
-      ? formatCountdown(nextRefreshAt - now)
-      : 'Calculating...';
+  const displayItems = useMemo(() => {
+    if (viewMode !== 'favorites') return items;
+    return items.filter((item) => favorites.has(item.id));
+  }, [favorites, items, viewMode]);
   const lastUpdatedLabel = lastUpdated
     ? lastUpdated.toLocaleTimeString('en-US', {
         hour: 'numeric',
@@ -934,8 +918,7 @@ export function ExchangeClient({
         isRefreshPaused={isRefreshPaused}
         lastUpdatedLabel={lastUpdatedLabel}
         membersFilter={membersFilter}
-        nextRefreshLabel={nextRefreshLabel}
-        now={now}
+        nextRefreshAt={nextRefreshAt}
         presetValue={presetValue}
         refreshInterval={refreshInterval}
         savedPresets={savedPresets}
@@ -982,7 +965,6 @@ export function ExchangeClient({
           currentPage={meta.page}
           favorites={favorites}
           items={displayItems}
-          refreshLabel={nextRefreshLabel}
           sorts={sorts}
           total={meta.total}
           totalPages={meta.totalPages}
