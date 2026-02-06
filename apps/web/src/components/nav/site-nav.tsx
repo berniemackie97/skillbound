@@ -9,12 +9,13 @@ import {
 } from '@/lib/auth/auth-actions';
 import { getAuthProviderFlags } from '@/lib/auth/auth-providers';
 
-import { MobileMenu } from './mobile-menu';
 import { NavActionsClient } from './nav-actions-client';
+import { NavLinksClient } from './nav-links-client';
+import { NavSessionProvider } from './nav-session-provider';
 
 const NAV_LINKS = [
   // { href: '/', label: 'Overview' },
-  { href: '/characters', label: 'Characters' },
+  { href: '/characters', label: 'Characters', requiresAuth: true },
   { href: '/progression', label: 'Progression' },
   { href: '/guides', label: 'Guides' },
   { href: '/trading', label: 'Trading' },
@@ -32,7 +33,6 @@ export function SiteNav() {
     hasOAuth,
   } = getAuthProviderFlags();
 
-  const visibleLinks = NAV_LINKS;
   const mobileExtraLinks = [{ href: '/lookup', label: 'New lookup' }];
 
   return (
@@ -48,28 +48,21 @@ export function SiteNav() {
         />
         <span className="brand-name">SkillBound</span>
       </Link>
-      {/* Desktop nav links */}
-      <nav className="nav-links">
-        {visibleLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-      {/* Mobile hamburger menu */}
-      <MobileMenu extraLinks={mobileExtraLinks} links={visibleLinks} />
-      <NavActionsClient
-        hasFacebook={hasFacebook}
-        hasGitHub={hasGitHub}
-        hasGoogle={hasGoogle}
-        hasMagicLink={hasMagicLink}
-        hasOAuth={hasOAuth}
-        hasTwitter={hasTwitter}
-        magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
-        registerAction={registerAction}
-        signInAction={signInAction}
-        signOutAction={signOutAction}
-      />
+      <NavSessionProvider>
+        <NavLinksClient links={NAV_LINKS} mobileExtraLinks={mobileExtraLinks} />
+        <NavActionsClient
+          hasFacebook={hasFacebook}
+          hasGitHub={hasGitHub}
+          hasGoogle={hasGoogle}
+          hasMagicLink={hasMagicLink}
+          hasOAuth={hasOAuth}
+          hasTwitter={hasTwitter}
+          magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+          registerAction={registerAction}
+          signInAction={signInAction}
+          signOutAction={signOutAction}
+        />
+      </NavSessionProvider>
     </header>
   );
 }

@@ -1,22 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import type { AuthProviderFlags } from '@/lib/auth/auth-providers';
 
 import { NavActions } from './nav-actions';
-
-type CharacterOption = {
-  id: string;
-  displayName: string;
-  mode: string;
-};
-
-type NavSessionResponse = {
-  user: { id: string; name?: string | null; email?: string | null } | null;
-  characters: CharacterOption[];
-  activeCharacterId: string | null;
-};
+import { useNavSession } from './nav-session-provider';
 
 type NavActionsClientProps = AuthProviderFlags & {
   signInAction: (
@@ -35,12 +22,6 @@ type NavActionsClientProps = AuthProviderFlags & {
     | undefined;
 };
 
-const emptySession: NavSessionResponse = {
-  user: null,
-  characters: [],
-  activeCharacterId: null,
-};
-
 export function NavActionsClient({
   hasGoogle,
   hasGitHub,
@@ -53,39 +34,7 @@ export function NavActionsClient({
   registerAction,
   magicLinkAction,
 }: NavActionsClientProps) {
-  const [session, setSession] = useState<NavSessionResponse>(emptySession);
-
-  useEffect(() => {
-    let active = true;
-    const loadSession = async () => {
-      try {
-        const response = await fetch('/api/nav/session', {
-          cache: 'no-store',
-        });
-        if (!response.ok) {
-          if (active) setSession(emptySession);
-          return;
-        }
-        const payload = (await response.json()) as NavSessionResponse;
-        if (active) {
-          setSession({
-            user: payload.user ?? null,
-            characters: payload.characters ?? [],
-            activeCharacterId: payload.activeCharacterId ?? null,
-          });
-        }
-      } catch {
-        if (active) setSession(emptySession);
-      }
-    };
-
-    void loadSession();
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const isSignedIn = Boolean(session.user?.id);
+  const { session, isSignedIn } = useNavSession();
 
   return (
     <NavActions
