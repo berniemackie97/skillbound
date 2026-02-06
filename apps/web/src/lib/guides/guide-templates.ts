@@ -5,6 +5,7 @@ import {
   type GuideTemplateSeed,
 } from '@skillbound/content';
 import {
+  and,
   eq,
   guideTemplates,
   type GuideInstruction,
@@ -18,6 +19,7 @@ import {
 } from '@skillbound/database';
 
 import { getDbClient } from '../db';
+import { getGuideTemplateFromCatalog } from './guide-catalog';
 
 type GuideSeedKey = string;
 
@@ -312,10 +314,49 @@ export async function getGuideTemplateById(
   await ensureGuideTemplates();
   const db = getDbClient();
 
+  const uuidPattern =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+  if (uuidPattern.test(templateId)) {
+    try {
+      const [template] = await db
+        .select()
+        .from(guideTemplates)
+        .where(eq(guideTemplates.id, templateId))
+        .limit(1);
+
+      return template ?? null;
+    } catch (error) {
+      if (
+        error &&
+        typeof error === 'object' &&
+        'cause' in error &&
+        error.cause &&
+        typeof error.cause === 'object' &&
+        'code' in error.cause &&
+        error.cause.code === '22P02'
+      ) {
+        // Invalid UUID from route params; fall back to catalog lookup.
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  const catalogEntry = await getGuideTemplateFromCatalog(templateId);
+  if (!catalogEntry) {
+    return null;
+  }
+
   const [template] = await db
     .select()
     .from(guideTemplates)
-    .where(eq(guideTemplates.id, templateId))
+    .where(
+      and(
+        eq(guideTemplates.title, catalogEntry.title),
+        eq(guideTemplates.version, catalogEntry.version)
+      )
+    )
     .limit(1);
 
   return template ?? null;

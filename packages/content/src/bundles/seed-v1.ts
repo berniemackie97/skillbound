@@ -1,4 +1,10 @@
-import type { CombatAchievement, ContentBundle, Diary, Quest } from '../schema';
+import type {
+  CombatAchievement,
+  ContentBundle,
+  Diary,
+  GuideTemplateBundle,
+  Quest,
+} from '../schema';
 
 import rawCombatAchievements from './combat-achievements-2024-01-31.json';
 import rawDiaries from './diaries-2026-01-22.json';
@@ -15,6 +21,8 @@ const diaries = rawDiaries as Diary[];
 
 const quests = rawQuestGuide as Quest[];
 
+const guides: GuideTemplateBundle[] = [];
+
 export const seedBundle: ContentBundle = {
   metadata: {
     version: 'seed-2026-01-22',
@@ -30,8 +38,10 @@ export const seedBundle: ContentBundle = {
       'Seed bundle is intentionally minimal. Replace with a generated bundle from authoritative sources before production use.',
     questCount: quests.length,
     diaryCount: diaries.length,
+    guideCount: 0,
   },
   quests,
   diaries,
   combatAchievements,
+  guides,
 };

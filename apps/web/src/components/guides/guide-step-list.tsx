@@ -525,8 +525,11 @@ export function GuideStepList({
                                                     const itemKey = `${step.stepNumber}-item-${idx}`;
                                                     const isItemReady =
                                                       readyItems.has(itemKey);
-                                                    const toggleItemReady = () =>
-                                                      toggleReadyItem(itemKey);
+                                                    const toggleItemReady =
+                                                      () =>
+                                                        toggleReadyItem(
+                                                          itemKey
+                                                        );
 
                                                     return (
                                                       <li
@@ -538,10 +541,14 @@ export function GuideStepList({
                                                         }
                                                       >
                                                         <button
-                                                          aria-pressed={isItemReady}
                                                           className="meta-item-toggle"
                                                           type="button"
-                                                          onClick={toggleItemReady}
+                                                          aria-pressed={
+                                                            isItemReady
+                                                          }
+                                                          onClick={
+                                                            toggleItemReady
+                                                          }
                                                         >
                                                           {item.icon && (
                                                             <span className="item-icon">
@@ -609,10 +616,14 @@ export function GuideStepList({
                                                               }
                                                             >
                                                               <button
-                                                                aria-pressed={isStatReady}
                                                                 className="meta-item-toggle"
                                                                 type="button"
-                                                                onClick={toggleStatReady}
+                                                                aria-pressed={
+                                                                  isStatReady
+                                                                }
+                                                                onClick={
+                                                                  toggleStatReady
+                                                                }
                                                               >
                                                                 <span className="stat-level">
                                                                   {stat.level}
@@ -664,10 +675,14 @@ export function GuideStepList({
                                                               }
                                                             >
                                                               <button
-                                                                aria-pressed={isStatReady}
                                                                 className="meta-item-toggle"
                                                                 type="button"
-                                                                onClick={toggleStatReady}
+                                                                aria-pressed={
+                                                                  isStatReady
+                                                                }
+                                                                onClick={
+                                                                  toggleStatReady
+                                                                }
                                                               >
                                                                 <span className="stat-level">
                                                                   {stat.level}

@@ -26,9 +26,10 @@ type GuideDetailPageProps = {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const template = await getGuideTemplateById(params.id);
+  const resolvedParams = await params;
+  const template = await getGuideTemplateById(resolvedParams.id);
   if (!template) {
     return {
       title: 'Guide Not Found - SkillBound',
@@ -39,7 +40,7 @@ export async function generateMetadata({
   return buildPageMetadata({
     title: `${template.title} - OSRS Progression Guide`,
     description: template.description,
-    canonicalPath: `/guides/${template.id}`,
+    canonicalPath: `/guides/${resolvedParams.id}`,
     openGraphType: 'article',
   });
 }

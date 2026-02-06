@@ -5,6 +5,7 @@ export {
   diarySchema,
   diaryTaskSchema,
   diaryTierSchema,
+  guideTemplateBundleSchema,
   questSchema,
   requirementSchema,
 } from './schema';
@@ -14,6 +15,7 @@ export type {
   Diary,
   DiaryTask,
   DiaryTier,
+  GuideTemplateBundle,
   Quest,
 } from './schema';
 

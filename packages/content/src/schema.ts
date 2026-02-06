@@ -6,6 +6,8 @@ import {
 } from '@skillbound/domain';
 import { z } from 'zod';
 
+import { guideTemplateSchema } from './guides/schema';
+
 const skillNameSchema = z.enum(
   SKILLS as unknown as [SkillName, ...SkillName[]]
 );
@@ -158,6 +160,10 @@ export const combatAchievementSchema = z.object({
   wikiUrl: z.string().url().optional(),
 });
 
+export const guideTemplateBundleSchema = guideTemplateSchema.extend({
+  id: z.string().min(1),
+});
+
 export const contentBundleMetadataSchema = z.object({
   version: z.string().min(1),
   publishedAt: z.string().datetime(),
@@ -167,6 +173,7 @@ export const contentBundleMetadataSchema = z.object({
   questCount: z.number().int().nonnegative().optional(),
   diaryCount: z.number().int().nonnegative().optional(),
   combatAchievementCount: z.number().int().nonnegative().optional(),
+  guideCount: z.number().int().nonnegative().optional(),
   itemCount: z.number().int().nonnegative().optional(),
 });
 
@@ -175,6 +182,7 @@ export const contentBundleSchema = z.object({
   quests: z.array(questSchema).default([]),
   diaries: z.array(diarySchema).default([]),
   combatAchievements: z.array(combatAchievementSchema).default([]),
+  guides: z.array(guideTemplateBundleSchema).default([]),
   items: z.array(z.unknown()).optional(),
 });
 
@@ -183,4 +191,5 @@ export type Diary = z.infer<typeof diarySchema>;
 export type DiaryTier = z.infer<typeof diaryTierSchema>;
 export type DiaryTask = z.infer<typeof diaryTaskSchema>;
 export type CombatAchievement = z.infer<typeof combatAchievementSchema>;
+export type GuideTemplateBundle = z.infer<typeof guideTemplateBundleSchema>;
 export type ContentBundle = z.infer<typeof contentBundleSchema>;

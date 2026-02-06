@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 
 import type { CombatAchievement, ContentBundle } from '@skillbound/content';
-import type { DbClient } from '@skillbound/database';
+import { eq, guideTemplates, type DbClient } from '@skillbound/database';
 import type { Requirement } from '@skillbound/domain';
 
 /**
@@ -28,6 +28,12 @@ export async function generateContentBundle(
   // Load all combat achievements
   const combatAchievementDefs =
     await db.query.combatAchievementDefinitions.findMany();
+
+  // Load published guide templates
+  const guideDefs = await db
+    .select()
+    .from(guideTemplates)
+    .where(eq(guideTemplates.status, 'published'));
 
   // Transform database records to bundle format
   const quests = questDefs.map((q) => ({
@@ -99,6 +105,17 @@ export async function generateContentBundle(
     } satisfies CombatAchievement;
   });
 
+  const guides = guideDefs.map((guide) => ({
+    id: guide.id,
+    title: guide.title,
+    description: guide.description,
+    version: guide.version,
+    status: guide.status,
+    recommendedModes: guide.recommendedModes ?? ['normal'],
+    tags: guide.tags ?? [],
+    steps: guide.steps,
+  }));
+
   // Generate bundle
   const bundle: ContentBundle = {
     metadata: {
@@ -108,10 +125,12 @@ export async function generateContentBundle(
       checksum: '', // Will be calculated below
       questCount: quests.length,
       diaryCount: diaries.length,
+      guideCount: guides.length,
     },
     quests,
     diaries,
     combatAchievements,
+    guides,
   };
 
   // Calculate checksum
@@ -158,6 +177,7 @@ export async function saveBundleRecord(
         generatedAt: bundle.metadata.publishedAt,
         questCount: bundle.metadata.questCount ?? 0,
         diaryCount: bundle.metadata.diaryCount ?? 0,
+        guideCount: bundle.metadata.guideCount ?? 0,
       },
       publishedAt: new Date(),
     })
@@ -171,6 +191,7 @@ export async function saveBundleRecord(
           generatedAt: bundle.metadata.publishedAt,
           questCount: bundle.metadata.questCount ?? 0,
           diaryCount: bundle.metadata.diaryCount ?? 0,
+          guideCount: bundle.metadata.guideCount ?? 0,
         },
         publishedAt: new Date(),
       },

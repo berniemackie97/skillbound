@@ -34,6 +34,7 @@ export const contentBundles = pgTable(
       generatedAt: string;
       questCount?: number;
       diaryCount?: number;
+      guideCount?: number;
       itemCount?: number;
     }>(),
     publishedAt: timestamp('published_at', { withTimezone: true }),

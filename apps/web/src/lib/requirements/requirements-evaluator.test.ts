@@ -13,6 +13,7 @@ const bundle: ContentBundle = {
   },
   quests: [],
   diaries: [],
+  guides: [],
   combatAchievements: [
     {
       id: 'barrows_novice',

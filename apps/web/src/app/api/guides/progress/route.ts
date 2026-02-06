@@ -21,10 +21,76 @@ const payloadSchema = z.object({
   currentStep: z.number().int().min(0).optional(),
 });
 
+const querySchema = z.object({
+  characterId: z.string().uuid(),
+});
+
 function normalizeSteps(steps: number[]): number[] {
   return Array.from(
     new Set(steps.filter((value) => Number.isFinite(value)))
   ).sort((a, b) => a - b);
+}
+
+export async function GET(request: NextRequest) {
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) {
+    const problem = createProblemDetails({
+      status: 401,
+      title: 'Authentication required',
+      detail: 'Sign in to view guide progress.',
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const parsed = querySchema.safeParse({
+    characterId: request.nextUrl.searchParams.get('characterId'),
+  });
+  if (!parsed.success) {
+    const problem = createProblemDetails({
+      status: 400,
+      title: 'Invalid request',
+      detail: 'Provide a valid character id.',
+      errors: parsed.error.issues,
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const db = getDbClient();
+
+  const [character] = await db
+    .select()
+    .from(userCharacters)
+    .where(
+      and(
+        eq(userCharacters.id, parsed.data.characterId),
+        eq(userCharacters.userId, sessionUser.id)
+      )
+    )
+    .limit(1);
+
+  if (!character) {
+    const problem = createProblemDetails({
+      status: 404,
+      title: 'Character not found',
+      detail: 'Unable to load guide progress for this character.',
+    });
+    return NextResponse.json(problem, { status: problem.status });
+  }
+
+  const entries = await db
+    .select({
+      guideTemplateId: guideProgress.guideTemplateId,
+      guideVersion: guideProgress.guideVersion,
+      completedSteps: guideProgress.completedSteps,
+      currentStep: guideProgress.currentStep,
+      updatedAt: guideProgress.updatedAt,
+    })
+    .from(guideProgress)
+    .where(eq(guideProgress.userCharacterId, character.id));
+
+  const response = NextResponse.json({ data: entries });
+  response.headers.set('Cache-Control', 'no-store, max-age=0');
+  return response;
 }
 
 export async function PUT(request: NextRequest) {

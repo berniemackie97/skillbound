@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { getPublishedGuideTemplates } from '@/lib/guides/guide-templates';
+import { getPublishedGuideCatalog } from '@/lib/guides/guide-catalog';
 import { resolveSiteOrigin } from '@/lib/seo/site-url';
 
 type StaticRoute = {
@@ -31,10 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let guideEntries: MetadataRoute.Sitemap = [];
   try {
-    const guideTemplates = await getPublishedGuideTemplates();
+    const guideTemplates = await getPublishedGuideCatalog();
     guideEntries = guideTemplates.map((template) => ({
       url: `${origin}/guides/${template.id}`,
-      lastModified: template.publishedAt ?? now,
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.6,
     }));
