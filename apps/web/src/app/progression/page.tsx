@@ -1,15 +1,8 @@
-import type { Metadata } from 'next';
-
 import { ComprehensiveProgression } from '@/components/progression/comprehensive-progression';
 import { ProgressionBrowser } from '@/components/progression/progression-browser';
 import { getSessionUser } from '@/lib/auth/auth-helpers';
 import { getActiveCharacter } from '@/lib/character/character-selection';
-
-export const metadata: Metadata = {
-  title: 'Progression Tracker - SkillBound',
-  description:
-    'Track your ironman progression: bosses, gear, milestones, quests, and achievements',
-};
+import { buildPageMetadata } from '@/lib/seo/metadata';
 
 type SearchParams = {
   username?: string | string[];
@@ -21,6 +14,19 @@ type PageProps = {
   // route configuration and framework version. Handle both.
   searchParams?: SearchParams | Promise<SearchParams>;
 };
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const params = await resolveSearchParams(searchParams);
+  const username = getStringParam(params.username).trim();
+
+  return buildPageMetadata({
+    title: 'OSRS Progression Tracker',
+    description:
+      'Track your Old School RuneScape progression: ironman milestones, bosses, gear unlocks, quests, diaries, and achievements.',
+    canonicalPath: '/progression',
+    noIndex: Boolean(username),
+  });
+}
 
 async function resolveSearchParams(
   searchParams: PageProps['searchParams']
@@ -44,7 +50,7 @@ export default async function ProgressionPage({ searchParams }: PageProps) {
   const initialMode = getStringParam(params.mode).trim() || 'auto';
 
   return (
-    <main className="page">
+    <section>
       {character ? (
         <ComprehensiveProgression
           characterId={character.id}
@@ -58,6 +64,6 @@ export default async function ProgressionPage({ searchParams }: PageProps) {
           signedIn={Boolean(user)}
         />
       )}
-    </main>
+    </section>
   );
 }

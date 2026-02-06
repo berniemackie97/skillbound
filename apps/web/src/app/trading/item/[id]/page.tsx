@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ItemDetailClient, PriceChartPanel } from '@/components/ge';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 import {
   formatGp,
   formatRoi,
@@ -47,18 +48,29 @@ export async function generateMetadata({
   params: PageParams;
 }): Promise<Metadata> {
   const itemId = parseItemId(params.id);
-  if (!itemId) return { title: 'Item Not Found - Skillbound' };
+  if (!itemId) {
+    return {
+      title: 'Item Not Found - SkillBound',
+      robots: { index: false, follow: true },
+    };
+  }
 
   const item = await getGeItem(itemId);
-  if (!item) return { title: 'Item Not Found - Skillbound' };
+  if (!item) {
+    return {
+      title: 'Item Not Found - SkillBound',
+      robots: { index: false, follow: true },
+    };
+  }
 
   const buy = item.buyPrice !== null ? formatGp(item.buyPrice) : 'Unknown';
   const sell = item.sellPrice !== null ? formatGp(item.sellPrice) : 'Unknown';
 
-  return {
-    title: `${item.name} - GE Prices - Skillbound`,
+  return buildPageMetadata({
+    title: `${item.name} - OSRS GE Price`,
     description: `Live Grand Exchange pricing for ${item.name}. Current buy price: ${buy}, sell price: ${sell}. Track margins, volume, and price history.`,
-  };
+    canonicalPath: `/trading/item/${item.id}`,
+  });
 }
 
 export default async function ItemDetailPage({
@@ -83,7 +95,7 @@ export default async function ItemDetailPage({
   const wikiUrl = buildWikiUrl(item.name);
 
   return (
-    <main className="page item-detail-page">
+    <section className="item-detail-page">
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/trading">GE Exchange</Link>
         <span aria-hidden="true" className="separator">
@@ -275,6 +287,6 @@ export default async function ItemDetailPage({
           Wiki
         </a>
       </section>
-    </main>
+    </section>
   );
 }

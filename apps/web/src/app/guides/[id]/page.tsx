@@ -1,4 +1,5 @@
 import { characterOverrides, eq } from '@skillbound/database';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { GuideImportButton } from '@/components/guides/guide-import-button';
@@ -15,11 +16,33 @@ import { getGuideProgressRecord } from '@/lib/guides/guide-progress';
 import { evaluateGuideStepRequirements } from '@/lib/guides/guide-requirements';
 import { getGuideTemplateById } from '@/lib/guides/guide-templates';
 import { buildCharacterFactsFromSnapshot } from '@/lib/requirements/requirements-context';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 import { toProgressSnapshot } from '@/lib/snapshots/snapshots';
 
 type GuideDetailPageProps = {
   params: Promise<{ id: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const template = await getGuideTemplateById(params.id);
+  if (!template) {
+    return {
+      title: 'Guide Not Found - SkillBound',
+      robots: { index: false, follow: true },
+    };
+  }
+
+  return buildPageMetadata({
+    title: `${template.title} - OSRS Progression Guide`,
+    description: template.description,
+    canonicalPath: `/guides/${template.id}`,
+    openGraphType: 'article',
+  });
+}
 
 export default async function GuideDetailPage({
   params,

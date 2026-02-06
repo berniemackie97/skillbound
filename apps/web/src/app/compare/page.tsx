@@ -6,6 +6,15 @@ import {
   getActiveCharacter,
   getUserCharacters,
 } from '@/lib/character/character-selection';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'Compare OSRS Characters',
+  description:
+    'Compare snapshots and progression data across multiple OSRS characters.',
+  canonicalPath: '/compare',
+  noIndex: true,
+});
 
 export default async function ComparePage() {
   const sessionUser = await getSessionUser();

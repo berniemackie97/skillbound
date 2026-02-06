@@ -10,6 +10,14 @@ import { getSessionUser } from '@/lib/auth/auth-helpers';
 import { getCalculatorDataForSkill } from '@/lib/calculators/skill-calculator-data';
 import { getActiveCharacter } from '@/lib/character/character-selection';
 import { getLatestCharacterSnapshot } from '@/lib/character/character-snapshots';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'OSRS Skill Calculators & XP Planner',
+  description:
+    'OSRS skill calculators for XP, levels, and targets. Plan efficient training routes with live data.',
+  canonicalPath: '/calculators',
+});
 
 type SearchParams = Promise<{
   skill?: string | string[];

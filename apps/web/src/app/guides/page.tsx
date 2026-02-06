@@ -5,6 +5,14 @@ import { getSessionUser } from '@/lib/auth/auth-helpers';
 import { getActiveCharacter } from '@/lib/character/character-selection';
 import { getGuideProgressForCharacter } from '@/lib/guides/guide-progress';
 import { getPublishedGuideTemplates } from '@/lib/guides/guide-templates';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'OSRS Progression Guides',
+  description:
+    'Curated Old School RuneScape progression guides with step-by-step checklists for ironman and main accounts.',
+  canonicalPath: '/guides',
+});
 
 export default async function GuidesPage() {
   const user = await getSessionUser();

@@ -2,6 +2,14 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import { auth, signOut } from '@/lib/auth/auth';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'Sign Out',
+  description: 'Sign out of SkillBound securely.',
+  canonicalPath: '/logout',
+  noIndex: true,
+});
 
 export default async function LogoutPage() {
   const session = await auth();

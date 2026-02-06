@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 import { ActivityTilesPanel } from '@/components/lookup/activity-tiles-panel';
 import { LookupPanel } from '@/components/lookup/lookup-panel';
 import { SkillTilesPanel } from '@/components/lookup/skill-tiles-panel';
@@ -16,12 +14,23 @@ import {
   parseLookupSearchParams,
   type LookupSearchParamsInput,
 } from '@/lib/lookup/search-params';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
-  title: 'Character Lookup - SkillBound',
-  description:
-    'Fetch OSRS hiscores data and render a quick character dashboard.',
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: LookupSearchParamsInput;
+}) {
+  const { username } = await parseLookupSearchParams(searchParams);
+
+  return buildPageMetadata({
+    title: 'OSRS Hiscores & Character Lookup',
+    description:
+      'Search OSRS hiscores and view a fast character summary with skills, activities, and rankings.',
+    canonicalPath: '/lookup',
+    noIndex: Boolean(username),
+  });
+}
 
 export default async function LookupPage({
   searchParams,
@@ -49,7 +58,7 @@ export default async function LookupPage({
   });
 
   return (
-    <main className="page">
+    <section>
       <LookupPanel
         activityTiles={activityTiles}
         error={error}
@@ -64,6 +73,6 @@ export default async function LookupPage({
 
       {lookup ? <SkillTilesPanel skills={skillTiles} /> : null}
       {lookup ? <ActivityTilesPanel activities={activityTiles} /> : null}
-    </main>
+    </section>
   );
 }

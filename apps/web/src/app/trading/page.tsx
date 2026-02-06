@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { ExchangeClient } from '@/components/ge';
@@ -18,6 +17,7 @@ import {
   getTradableCharacters,
   getUserCharacters,
 } from '@/lib/character/character-selection';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 import {
   getGeExchangeItems,
   sortItemsMulti,
@@ -37,11 +37,12 @@ import {
   type TimePeriod,
 } from '@/lib/trading/trading-service';
 
-export const metadata: Metadata = {
-  title: 'GE Exchange & Trading - Skillbound',
+export const metadata = buildPageMetadata({
+  title: 'OSRS GE Tracker & Flipping',
   description:
-    'Live Grand Exchange prices, flip tracking, and profit tracking for OSRS. Track margins, ROI, and your personal trades.',
-};
+    'Live Grand Exchange prices, flipping tools, margin tracking, and trade profit insights for OSRS.',
+  canonicalPath: '/trading',
+});
 
 const DEFAULT_SORT_FIELDS: SortField[] = [
   'name',

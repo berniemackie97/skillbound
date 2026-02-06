@@ -11,27 +11,33 @@ import type { Metadata, Viewport } from 'next';
 import './styles/globals.css';
 
 import { SiteNav } from '@/components/nav/site-nav';
+import { GoogleAnalytics } from '@/components/seo/google-analytics';
+import { StructuredData } from '@/components/seo/structured-data';
 import { SiteFooter } from '@/components/site/site-footer';
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OPEN_GRAPH,
+  DEFAULT_TITLE,
+  DEFAULT_TWITTER,
+  SITE_NAME,
+} from '@/lib/seo/metadata';
+import { resolveSiteUrl } from '@/lib/seo/site-url';
 
-// If you deploy to a stable production URL, set this to your canonical.
-// Example: new URL('https://skillbound.gg')
-const siteUrl = process.env['NEXT_PUBLIC_SITE_URL']
-  ? new URL(process.env['NEXT_PUBLIC_SITE_URL'])
-  : undefined;
+const siteUrl = resolveSiteUrl() ?? undefined;
+const isProduction = process.env['VERCEL_ENV'] === 'production';
+const googleSiteVerification =
+  process.env['NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'];
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: 'SkillBound - OSRS Progression Tracker',
-    template: '%s | SkillBound',
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: 'Track your Old School RuneScape character progression',
+  description: DEFAULT_DESCRIPTION,
 
-  applicationName: 'SkillBound',
+  applicationName: SITE_NAME,
   manifest: '/manifest.json',
-
-  // Helps prevent duplicate-content/canonical ambiguity once you have multiple routes.
-  alternates: siteUrl ? { canonical: siteUrl } : undefined,
 
   icons: {
     // Keep these paths aligned with /public
@@ -42,11 +48,16 @@ export const metadata: Metadata = {
     apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
   },
 
-  // Nice baseline. Can be expanded later (twitter/openGraph) when you have a public domain.
-  robots: {
-    index: true,
-    follow: true,
-  },
+  openGraph: DEFAULT_OPEN_GRAPH,
+  twitter: DEFAULT_TWITTER,
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
+
+  // Default: index in production, noindex elsewhere.
+  robots: isProduction
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
@@ -80,6 +91,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </div>
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics />
+        <StructuredData />
       </body>
     </html>
   );

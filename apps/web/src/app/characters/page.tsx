@@ -24,6 +24,15 @@ import {
 import { getCharacterStateSummary } from '@/lib/character/character-state-service';
 import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { getDbClient } from '@/lib/db';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'Character Hub',
+  description:
+    'Manage OSRS characters, snapshots, and progression data in one place.',
+  canonicalPath: '/characters',
+  noIndex: true,
+});
 
 export default async function CharactersPage() {
   const sessionUser = await getSessionUser();

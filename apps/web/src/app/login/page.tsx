@@ -3,6 +3,15 @@ import { redirect } from 'next/navigation';
 
 import { auth, signIn } from '@/lib/auth/auth';
 import { registerUserWithPassword } from '@/lib/auth/auth-credentials';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildPageMetadata({
+  title: 'Sign In',
+  description:
+    'Sign in to manage your OSRS characters, progression tracking, and saved guides.',
+  canonicalPath: '/login',
+  noIndex: true,
+});
 
 type SearchParams = Promise<{
   error?: string | string[];
