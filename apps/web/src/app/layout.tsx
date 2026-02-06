@@ -81,10 +81,7 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      className={`${fraunces.variable} ${spaceGrotesk.variable}`}
-      lang="en"
-    >
+    <html className={`${fraunces.variable} ${spaceGrotesk.variable}`} lang="en">
       <body>
         {/* Skip link: cheap accessibility win, zero design impact unless focused */}
         <a className="skip-link" href="#main">

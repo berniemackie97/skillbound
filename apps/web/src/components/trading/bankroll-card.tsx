@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { formatGp, parseGp } from '@/lib/trading/ge-service';
 
@@ -33,6 +33,20 @@ export function BankrollCard({
   const [isAdding, setIsAdding] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const currentInputRef = useRef<HTMLInputElement>(null);
+  const fundsInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isEditing) {
+      currentInputRef.current?.focus();
+    }
+  }, [isEditing]);
+
+  useEffect(() => {
+    if (!isEditing && isAddingFunds) {
+      fundsInputRef.current?.focus();
+    }
+  }, [isAddingFunds, isEditing]);
 
   // Calculate ROI based on total profit vs initial bankroll
   const roi =
@@ -242,7 +256,7 @@ export function BankrollCard({
               <label className="bankroll-edit-field">
                 <span className="field-label">Current Bankroll</span>
                 <input
-                  autoFocus
+                  ref={currentInputRef}
                   placeholder="e.g. 4m, 500k, 1000000"
                   type="text"
                   value={currentInput}
@@ -315,7 +329,7 @@ export function BankrollCard({
               <span className="field-label">Amount to Add</span>
               <div className="add-funds-input-row">
                 <input
-                  autoFocus
+                  ref={fundsInputRef}
                   placeholder="e.g. 2m, 500k"
                   type="text"
                   value={fundsInput}

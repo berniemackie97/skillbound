@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 
 import { REFRESH_OPTIONS } from './exchange-client.constants';
 import type {
@@ -85,7 +85,13 @@ export function ExchangeControls({
   onOpenRefine,
   onCloseRefine,
 }: ExchangeControlsProps) {
+  const idBase = useId();
   const [now, setNow] = useState(() => Date.now());
+  const itemsId = `${idBase}-items`;
+  const presetId = `${idBase}-preset`;
+  const refreshId = `${idBase}-refresh`;
+  const refineItemsId = `${idBase}-refine-items`;
+  const refinePresetId = `${idBase}-refine-preset`;
 
   useEffect(() => {
     const updateNow = () => {
@@ -141,9 +147,12 @@ export function ExchangeControls({
 
       <div className="controls-row controls-filters">
         <div className="filter-group">
-          <label className="filter-label">Items</label>
+          <label className="filter-label" htmlFor={itemsId}>
+            Items
+          </label>
           <select
             className="filter-select"
+            id={itemsId}
             value={membersFilter}
             onChange={(e) =>
               onMembersFilterChange(e.target.value as MembersFilter)
@@ -156,9 +165,12 @@ export function ExchangeControls({
         </div>
 
         <div className="filter-group">
-          <label className="filter-label">Preset</label>
+          <label className="filter-label" htmlFor={presetId}>
+            Preset
+          </label>
           <select
             className="filter-select"
+            id={presetId}
             value={presetValue}
             onChange={(e) => onPresetSelect(e.target.value)}
           >
@@ -287,8 +299,9 @@ export function ExchangeControls({
 
         <div className="refresh-controls">
           <div className="refresh-interval">
-            <label>Refresh</label>
+            <label htmlFor={refreshId}>Refresh</label>
             <select
+              id={refreshId}
               value={refreshInterval}
               onChange={(e) => onRefreshIntervalChange(Number(e.target.value))}
             >
@@ -341,7 +354,12 @@ export function ExchangeControls({
 
       {isRefineOpen && (
         <>
-          <div className="exchange-refine-backdrop" onClick={onCloseRefine} />
+          <button
+            aria-label="Close filters"
+            className="exchange-refine-backdrop"
+            type="button"
+            onClick={onCloseRefine}
+          />
           <div
             aria-modal="true"
             className="exchange-refine-panel"
@@ -418,9 +436,12 @@ export function ExchangeControls({
 
             <div className="refine-section refine-row">
               <div className="filter-group">
-                <label className="filter-label">Items</label>
+                <label className="filter-label" htmlFor={refineItemsId}>
+                  Items
+                </label>
                 <select
                   className="filter-select"
+                  id={refineItemsId}
                   value={membersFilter}
                   onChange={(e) =>
                     onMembersFilterChange(e.target.value as MembersFilter)
@@ -433,9 +454,12 @@ export function ExchangeControls({
               </div>
 
               <div className="filter-group">
-                <label className="filter-label">Preset</label>
+                <label className="filter-label" htmlFor={refinePresetId}>
+                  Preset
+                </label>
                 <select
                   className="filter-select"
+                  id={refinePresetId}
                   value={presetValue}
                   onChange={(e) => onPresetSelect(e.target.value)}
                 >

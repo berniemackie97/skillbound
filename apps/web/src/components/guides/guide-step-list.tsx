@@ -347,14 +347,18 @@ export function GuideStepList({
           return (
             <div key={chapter.title || 'Guide'} className="guide-chapter">
               {chapter.title && (
-                <h3
-                  className="chapter-title-toggle"
-                  onClick={() => toggleChapter(chapter.title)}
-                >
-                  <span className="toggle-icon">
-                    {isChapterExpanded ? '▼' : '▶'}
-                  </span>
-                  {chapter.title}
+                <h3 className="chapter-title">
+                  <button
+                    aria-expanded={isChapterExpanded}
+                    className="chapter-title-toggle"
+                    type="button"
+                    onClick={() => toggleChapter(chapter.title)}
+                  >
+                    <span className="toggle-icon">
+                      {isChapterExpanded ? '▼' : '▶'}
+                    </span>
+                    {chapter.title}
+                  </button>
                 </h3>
               )}
               {isChapterExpanded &&
@@ -363,8 +367,10 @@ export function GuideStepList({
 
                   return (
                     <div key={section.id} className="guide-section">
-                      <div
+                      <button
+                        aria-expanded={isSectionExpanded}
                         className="guide-section-header"
+                        type="button"
                         onClick={() => toggleSection(section.id)}
                       >
                         <h4>
@@ -378,7 +384,7 @@ export function GuideStepList({
                             {section.description}
                           </p>
                         )}
-                      </div>
+                      </button>
                       {isSectionExpanded && (
                         <RequirementNamesProvider
                           items={collectGuideRequirementGroups(section.steps)}
@@ -431,40 +437,31 @@ export function GuideStepList({
                                                 <li
                                                   key={idx}
                                                   className={`guide-instruction-item ${isReady ? 'ready' : ''}`}
-                                                  onClick={() =>
-                                                    toggleReadyItem(
-                                                      instructionKey
-                                                    )
-                                                  }
                                                 >
                                                   <div className="instruction-content">
-                                                    <div className="instruction-body">
-                                                      <span className="instruction-text">
-                                                        {instruction.text}
-                                                      </span>
-                                                      {instruction.note && (
-                                                        <span className="instruction-note">
-                                                          {instruction.note}
+                                                    <button
+                                                      aria-pressed={isReady}
+                                                      className="instruction-toggle"
+                                                      type="button"
+                                                      onClick={() =>
+                                                        toggleReadyItem(
+                                                          instructionKey
+                                                        )
+                                                      }
+                                                    >
+                                                      <div className="instruction-body">
+                                                        <span className="instruction-text">
+                                                          {instruction.text}
                                                         </span>
-                                                      )}
-                                                    </div>
+                                                        {instruction.note && (
+                                                          <span className="instruction-note">
+                                                            {instruction.note}
+                                                          </span>
+                                                        )}
+                                                      </div>
+                                                    </button>
                                                     {hasImage && imageUrl && (
-                                                      <div
-                                                        className="instruction-media"
-                                                        onClick={(event) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                        onDoubleClick={(
-                                                          event
-                                                        ) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                        onPointerDown={(
-                                                          event
-                                                        ) =>
-                                                          event.stopPropagation()
-                                                        }
-                                                      >
+                                                      <div className="instruction-media">
                                                         {instruction.imageLink ? (
                                                           <a
                                                             className="instruction-media-link"
@@ -537,28 +534,36 @@ export function GuideStepList({
                                                             ? 'ready'
                                                             : ''
                                                         }
-                                                        onClick={() =>
-                                                          toggleReadyItem(
-                                                            itemKey
-                                                          )
-                                                        }
                                                       >
-                                                        {item.icon && (
-                                                          <span className="item-icon">
-                                                            {item.icon}
+                                                        <button
+                                                          aria-pressed={
+                                                            isItemReady
+                                                          }
+                                                          className="meta-item-toggle"
+                                                          type="button"
+                                                          onClick={() =>
+                                                            toggleReadyItem(
+                                                              itemKey
+                                                            )
+                                                          }
+                                                        >
+                                                          {item.icon && (
+                                                            <span className="item-icon">
+                                                              {item.icon}
+                                                            </span>
+                                                          )}
+                                                          <span className="item-qty">
+                                                            {item.qty}×
+                                                          </span>{' '}
+                                                          <span className="item-name">
+                                                            {item.name}
                                                           </span>
-                                                        )}
-                                                        <span className="item-qty">
-                                                          {item.qty}×
-                                                        </span>{' '}
-                                                        <span className="item-name">
-                                                          {item.name}
-                                                        </span>
-                                                        {item.note && (
-                                                          <span className="item-note">
-                                                            ({item.note})
-                                                          </span>
-                                                        )}
+                                                          {item.note && (
+                                                            <span className="item-note">
+                                                              ({item.note})
+                                                            </span>
+                                                          )}
+                                                        </button>
                                                       </li>
                                                     );
                                                   }
@@ -601,23 +606,32 @@ export function GuideStepList({
                                                                   ? 'ready'
                                                                   : ''
                                                               }
-                                                              onClick={() =>
-                                                                toggleReadyItem(
-                                                                  statKey
-                                                                )
-                                                              }
                                                             >
-                                                              <span className="stat-level">
-                                                                {stat.level}
-                                                              </span>
-                                                              <span className="stat-skill">
-                                                                {stat.skill}
-                                                              </span>
-                                                              {stat.note && (
-                                                                <span className="stat-note">
-                                                                  ({stat.note})
+                                                              <button
+                                                                aria-pressed={
+                                                                  isStatReady
+                                                                }
+                                                                className="meta-item-toggle"
+                                                                type="button"
+                                                                onClick={() =>
+                                                                  toggleReadyItem(
+                                                                    statKey
+                                                                  )
+                                                                }
+                                                              >
+                                                                <span className="stat-level">
+                                                                  {stat.level}
                                                                 </span>
-                                                              )}
+                                                                <span className="stat-skill">
+                                                                  {stat.skill}
+                                                                </span>
+                                                                {stat.note && (
+                                                                  <span className="stat-note">
+                                                                    ({stat.note}
+                                                                    )
+                                                                  </span>
+                                                                )}
+                                                              </button>
                                                             </li>
                                                           );
                                                         }
@@ -648,23 +662,32 @@ export function GuideStepList({
                                                                   ? 'ready'
                                                                   : ''
                                                               }
-                                                              onClick={() =>
-                                                                toggleReadyItem(
-                                                                  statKey
-                                                                )
-                                                              }
                                                             >
-                                                              <span className="stat-level">
-                                                                {stat.level}
-                                                              </span>
-                                                              <span className="stat-skill">
-                                                                {stat.skill}
-                                                              </span>
-                                                              {stat.note && (
-                                                                <span className="stat-note">
-                                                                  ({stat.note})
+                                                              <button
+                                                                aria-pressed={
+                                                                  isStatReady
+                                                                }
+                                                                className="meta-item-toggle"
+                                                                type="button"
+                                                                onClick={() =>
+                                                                  toggleReadyItem(
+                                                                    statKey
+                                                                  )
+                                                                }
+                                                              >
+                                                                <span className="stat-level">
+                                                                  {stat.level}
                                                                 </span>
-                                                              )}
+                                                                <span className="stat-skill">
+                                                                  {stat.skill}
+                                                                </span>
+                                                                {stat.note && (
+                                                                  <span className="stat-note">
+                                                                    ({stat.note}
+                                                                    )
+                                                                  </span>
+                                                                )}
+                                                              </button>
                                                             </li>
                                                           );
                                                         }

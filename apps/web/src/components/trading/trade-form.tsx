@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -376,7 +377,7 @@ export function TradeForm({
         <div className="item-search-wrapper">
           <div className="search-input-container">
             {selectedItem && (
-              <img
+              <Image
                 alt=""
                 className="selected-item-icon"
                 height={24}
@@ -428,7 +429,7 @@ export function TradeForm({
                   onClick={() => handleSelectItem(item)}
                   onMouseEnter={() => setSelectedIndex(index)}
                 >
-                  <img
+                  <Image
                     alt=""
                     className="item-icon"
                     height={32}

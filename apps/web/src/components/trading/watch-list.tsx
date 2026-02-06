@@ -1,8 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import { formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
 
@@ -42,6 +43,7 @@ const FAVORITES_META_STORAGE_KEY = 'skillbound:ge-favorites-meta';
 
 export function WatchList({ characterId, items }: WatchListProps) {
   const router = useRouter();
+  const idBase = useId();
   const [removingId, setRemovingId] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [filterText, setFilterText] = useState('');
@@ -65,6 +67,7 @@ export function WatchList({ characterId, items }: WatchListProps) {
   const [notes, setNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const itemSearchId = `${idBase}-item-search`;
 
   useEffect(() => {
     const loadFavorites = () => {
@@ -374,9 +377,10 @@ export function WatchList({ characterId, items }: WatchListProps) {
       {showAddForm && (
         <form className="watch-add-form" onSubmit={handleAdd}>
           <div className="form-row">
-            <label className="form-field">
+            <label className="form-field" htmlFor={itemSearchId}>
               <span>Item</span>
               <ItemSearch
+                inputId={itemSearchId}
                 placeholder="Search items..."
                 onSelect={handleSearchSelect}
               />
@@ -516,10 +520,11 @@ export function WatchList({ characterId, items }: WatchListProps) {
               >
                 <div className="watch-item-info">
                   {geItem?.icon && (
-                    <img
-                      alt=""
+                    <Image
+                      alt={item.itemName}
                       className="watch-item-icon"
                       height={28}
+                      loading="lazy"
                       src={getItemIconUrl(geItem.icon)}
                       width={28}
                     />

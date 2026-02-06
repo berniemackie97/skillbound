@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import {
   Fragment,
   memo,
@@ -112,13 +113,14 @@ const SortHeader = memo(function SortHeader({
   }, [filterKey, openFilter]);
 
   return (
-    <th
-      className={`sortable ${sort ? 'sorted' : ''} ${className}`}
-      onClick={(event) => onSort(field, event.shiftKey)}
-    >
-      <span className="header-grid">
-        <span className="header-label">{label}</span>
-        <span className="header-actions">
+    <th className={`sortable ${sort ? 'sorted' : ''} ${className}`}>
+      <div className="header-grid">
+        <button
+          className="sort-button"
+          type="button"
+          onClick={(event) => onSort(field, event.shiftKey)}
+        >
+          <span className="header-label">{label}</span>
           {sort && (
             <span className="sort-indicator">
               {sort.direction === 'desc' ? '↓' : '↑'}
@@ -127,33 +129,24 @@ const SortHeader = memo(function SortHeader({
               )}
             </span>
           )}
-          {filterKey && (
-            <button
-              aria-label={`Filter ${label}`}
-              className={`filter-btn ${columnFilters[filterKey].min || columnFilters[filterKey].max ? 'active' : ''}`}
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                onOpenFilter(openFilter === filterKey ? null : filterKey);
-              }}
-            >
-              <svg
-                fill="currentColor"
-                height="16"
-                viewBox="0 0 24 24"
-                width="16"
-              >
-                <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
-              </svg>
-            </button>
-          )}
-        </span>
-      </span>
+        </button>
+        {filterKey && (
+          <button
+            aria-label={`Filter ${label}`}
+            className={`filter-btn ${columnFilters[filterKey].min || columnFilters[filterKey].max ? 'active' : ''}`}
+            type="button"
+            onClick={() =>
+              onOpenFilter(openFilter === filterKey ? null : filterKey)
+            }
+          >
+            <svg fill="currentColor" height="16" viewBox="0 0 24 24" width="16">
+              <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+            </svg>
+          </button>
+        )}
+      </div>
       {filterKey && openFilter === filterKey && (
-        <div
-          className="filter-popover"
-          onClick={(event) => event.stopPropagation()}
-        >
+        <div className="filter-popover">
           <div className="filter-title">Filter {label}</div>
           <div className="filter-inputs">
             <input
@@ -263,12 +256,17 @@ function ExchangeTableBase({
   const [now, setNow] = useState<Date | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
+  const [recentlyUpdatedIds, setRecentlyUpdatedIds] = useState<Set<number>>(
+    () => new Set()
+  );
   const tableRef = useRef<HTMLDivElement | null>(null);
   const rowRefs = useRef<Map<number, HTMLTableRowElement>>(new Map());
   const rowPositions = useRef<Map<number, number>>(new Map());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const cardPositions = useRef<Map<number, number>>(new Map());
   const [allowMotion, setAllowMotion] = useState(true);
+  const prevItemsRef = useRef<Map<number, ExchangeItem>>(new Map());
+  const updateTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     setNow(new Date());
@@ -277,6 +275,48 @@ function ExchangeTableBase({
     }, 60_000);
     return () => window.clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (updateTimeoutRef.current) {
+        window.clearTimeout(updateTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const prev = prevItemsRef.current;
+    const changed = new Set<number>();
+    items.forEach((item) => {
+      const prior = prev.get(item.id);
+      if (!prior) return;
+      if (
+        prior.buyPrice !== item.buyPrice ||
+        prior.sellPrice !== item.sellPrice ||
+        prior.margin !== item.margin ||
+        prior.tax !== item.tax ||
+        prior.profit !== item.profit ||
+        prior.roiPercent !== item.roiPercent ||
+        prior.volume !== item.volume ||
+        prior.potentialProfit !== item.potentialProfit ||
+        prior.buyPriceTime !== item.buyPriceTime ||
+        prior.sellPriceTime !== item.sellPriceTime
+      ) {
+        changed.add(item.id);
+      }
+    });
+
+    prevItemsRef.current = new Map(items.map((item) => [item.id, item]));
+
+    if (changed.size === 0) return;
+    setRecentlyUpdatedIds(changed);
+    if (updateTimeoutRef.current) {
+      window.clearTimeout(updateTimeoutRef.current);
+    }
+    updateTimeoutRef.current = window.setTimeout(() => {
+      setRecentlyUpdatedIds(new Set());
+    }, 900);
+  }, [items]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -512,7 +552,7 @@ function ExchangeTableBase({
                     cardRefs.current.set(item.id, node);
                   }
                 }}
-                className="exchange-card"
+                className={`exchange-card ${recentlyUpdatedIds.has(item.id) ? 'updated' : ''}`}
                 role="button"
                 tabIndex={0}
                 onClick={() => handleRowClick(item)}
@@ -542,7 +582,7 @@ function ExchangeTableBase({
                       />
                     </svg>
                   </button>
-                  <img
+                  <Image
                     alt=""
                     className="item-icon"
                     height={28}
@@ -798,7 +838,7 @@ function ExchangeTableBase({
                       rowRefs.current.set(item.id, node);
                     }
                   }}
-                  className={`item-row ${isExpanded ? 'expanded' : ''}`}
+                  className={`item-row ${isExpanded ? 'expanded' : ''} ${recentlyUpdatedIds.has(item.id) ? 'row-updated' : ''}`}
                   onClick={() => handleRowClick(item)}
                 >
                   <td className="col-star">
@@ -840,7 +880,7 @@ function ExchangeTableBase({
                   </td>
                   <td className="col-name">
                     <div className="item-name-cell">
-                      <img
+                      <Image
                         alt=""
                         className="item-icon"
                         height={24}

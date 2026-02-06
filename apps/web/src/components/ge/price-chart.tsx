@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   formatGp,
@@ -105,7 +106,10 @@ export function PriceChart({
   const chartWidth = 900;
   const chartHeight = 320;
   const volumeHeight = 100;
-  const padding = { top: 24, right: 70, bottom: 36, left: 70 };
+  const padding = useMemo(
+    () => ({ top: 24, right: 70, bottom: 36, left: 70 }),
+    []
+  );
 
   // Get min/max values for scaling
   const priceData = data.filter(
@@ -142,18 +146,27 @@ export function PriceChart({
   const priceRange = maxPrice - minPrice || 1;
   const pricePadding = priceRange * 0.1;
 
-  const scaleX = (index: number) =>
-    padding.left +
-    (index / (data.length - 1 || 1)) *
-      (chartWidth - padding.left - padding.right);
+  const scaleX = useCallback(
+    (index: number) =>
+      padding.left +
+      (index / (data.length - 1 || 1)) *
+        (chartWidth - padding.left - padding.right),
+    [chartWidth, data.length, padding]
+  );
 
-  const scaleY = (price: number) =>
-    padding.top +
-    ((maxPrice + pricePadding - price) / (priceRange + pricePadding * 2)) *
-      (chartHeight - padding.top - padding.bottom);
+  const scaleY = useCallback(
+    (price: number) =>
+      padding.top +
+      ((maxPrice + pricePadding - price) / (priceRange + pricePadding * 2)) *
+        (chartHeight - padding.top - padding.bottom),
+    [chartHeight, maxPrice, padding, pricePadding, priceRange]
+  );
 
-  const scaleVolumeY = (volume: number) =>
-    volumeHeight - 20 - (volume / (maxVolume || 1)) * (volumeHeight - 40);
+  const scaleVolumeY = useCallback(
+    (volume: number) =>
+      volumeHeight - 20 - (volume / (maxVolume || 1)) * (volumeHeight - 40),
+    [maxVolume, volumeHeight]
+  );
 
   // Generate smooth path data
   const generatePath = (accessor: (p: PricePoint) => number | null): string => {
@@ -188,8 +201,11 @@ export function PriceChart({
 
     if (validPoints.length < 2) return '';
 
-    const firstIndex = validPoints[0]!.index;
-    const lastIndex = validPoints[validPoints.length - 1]!.index;
+    const firstPoint = validPoints[0];
+    const lastPoint = validPoints[validPoints.length - 1];
+    if (!firstPoint || !lastPoint) return '';
+    const firstIndex = firstPoint.index;
+    const lastIndex = lastPoint.index;
     const bottomY = chartHeight - padding.bottom;
 
     return `${linePath} L ${scaleX(lastIndex)} ${bottomY} L ${scaleX(firstIndex)} ${bottomY} Z`;
@@ -310,7 +326,7 @@ export function PriceChart({
       <div className="chart-header">
         {!compact && (
           <div className="chart-item-info">
-            <img
+            <Image
               alt=""
               className="item-icon"
               height={32}

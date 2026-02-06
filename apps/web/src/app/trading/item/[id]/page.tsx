@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -106,12 +107,11 @@ export default async function ItemDetailPage({
 
       <header className="item-header">
         <div className="item-title">
-          {/* Keep <img> to avoid Next/Image remote-domain config footguns. */}
-          <img
+          <Image
+            priority
             alt={`${item.name} icon`}
             className="item-icon-large"
             height={48}
-            loading="eager"
             src={getItemIconUrl(item.icon)}
             width={48}
           />

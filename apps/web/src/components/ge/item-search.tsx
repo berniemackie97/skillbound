@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { formatGp, getItemIconUrl } from '@/lib/trading/ge-service';
@@ -25,6 +26,7 @@ interface ItemSearchProps {
   className?: string;
   initialValue?: string;
   showPrices?: boolean;
+  inputId?: string;
 }
 
 export function ItemSearch({
@@ -34,6 +36,7 @@ export function ItemSearch({
   className = '',
   initialValue = '',
   showPrices = false,
+  inputId,
 }: ItemSearchProps) {
   const [query, setQuery] = useState(initialValue);
   const [results, setResults] = useState<ItemSearchResult[]>([]);
@@ -153,6 +156,12 @@ export function ItemSearch({
     };
   }, []);
 
+  useEffect(() => {
+    if (autoFocus) {
+      inputRef.current?.focus();
+    }
+  }, [autoFocus]);
+
   return (
     <div ref={containerRef} className={`item-search ${className}`}>
       <div className="search-input-wrapper">
@@ -168,8 +177,8 @@ export function ItemSearch({
         </svg>
         <input
           ref={inputRef}
-          autoFocus={autoFocus}
           className="search-input"
+          id={inputId}
           placeholder={placeholder}
           type="text"
           value={query}
@@ -198,40 +207,42 @@ export function ItemSearch({
       </div>
 
       {isOpen && results.length > 0 && (
-        <ul className="search-results">
+        <ul className="search-results" role="listbox">
           {results.map((item, index) => (
-            <li
-              key={item.id}
-              className={`search-result ${index === selectedIndex ? 'selected' : ''}`}
-              onClick={() => handleSelect(item)}
-              onMouseEnter={() => setSelectedIndex(index)}
-            >
-              <img
-                alt=""
-                className="item-icon"
-                height={32}
-                loading="lazy"
-                src={getItemIconUrl(item.icon)}
-                width={32}
-              />
-              <div className="item-info">
-                <span className="item-name">{item.name}</span>
-                {showPrices && (
-                  <span className="item-prices">
-                    {item.buyPrice !== null && (
-                      <span className="buy-price">
-                        Buy: {formatGp(item.buyPrice)}
-                      </span>
-                    )}
-                    {item.sellPrice !== null && (
-                      <span className="sell-price">
-                        Sell: {formatGp(item.sellPrice)}
-                      </span>
-                    )}
-                  </span>
-                )}
-              </div>
-              {item.members && <span className="members-badge">P2P</span>}
+            <li key={item.id}>
+              <button
+                className={`search-result ${index === selectedIndex ? 'selected' : ''}`}
+                type="button"
+                onClick={() => handleSelect(item)}
+                onMouseEnter={() => setSelectedIndex(index)}
+              >
+                <Image
+                  alt=""
+                  className="item-icon"
+                  height={32}
+                  loading="lazy"
+                  src={getItemIconUrl(item.icon)}
+                  width={32}
+                />
+                <div className="item-info">
+                  <span className="item-name">{item.name}</span>
+                  {showPrices && (
+                    <span className="item-prices">
+                      {item.buyPrice !== null && (
+                        <span className="buy-price">
+                          Buy: {formatGp(item.buyPrice)}
+                        </span>
+                      )}
+                      {item.sellPrice !== null && (
+                        <span className="sell-price">
+                          Sell: {formatGp(item.sellPrice)}
+                        </span>
+                      )}
+                    </span>
+                  )}
+                </div>
+                {item.members && <span className="members-badge">P2P</span>}
+              </button>
             </li>
           ))}
         </ul>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import {
@@ -37,14 +38,11 @@ export function SiteNav() {
   return (
     <header className="nav">
       <Link className="brand" href="/">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
+          priority
           alt=""
           className="brand-mark"
-          decoding="async"
-          fetchPriority="high"
           height={40}
-          loading="eager"
           src="/icon.svg"
           width={40}
         />

@@ -51,3 +51,4 @@ refdocs/*
 .cache
 *.tsbuildinfo
 .vercel
+lh-desktop.json

@@ -55,7 +55,7 @@ export function buildPageMetadata({
     : `${title} | ${SITE_NAME}`;
 
   return {
-    title,
+    title: { absolute: brandedTitle },
     description,
     alternates: { canonical: canonicalPath },
     openGraph: {

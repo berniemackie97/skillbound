@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 type UnrealizedPosition = {
@@ -205,7 +206,7 @@ export function TradingOverview({
                 {summary.unrealizedPositions.slice(0, 10).map((pos) => (
                   <div key={pos.itemId} className="unrealized-position">
                     {pos.iconUrl && (
-                      <img
+                      <Image
                         alt=""
                         className="unrealized-item-icon"
                         height={24}

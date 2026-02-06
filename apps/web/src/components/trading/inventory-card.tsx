@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useMemo } from 'react';
 
 import { calculateGeTax, formatGp } from '@/lib/trading/ge-service';
@@ -117,9 +118,16 @@ export function InventoryCard({ inventory, onItemClick }: InventoryCardProps) {
                 style={onItemClick ? { cursor: 'pointer' } : undefined}
                 tabIndex={onItemClick ? 0 : undefined}
                 onClick={() => onItemClick?.(position.itemId)}
+                onKeyDown={(event) => {
+                  if (!onItemClick) return;
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    onItemClick(position.itemId);
+                  }
+                }}
               >
                 {position.iconUrl && (
-                  <img
+                  <Image
                     alt=""
                     className="inventory-item-icon"
                     height={32}

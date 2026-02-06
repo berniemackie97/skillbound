@@ -298,6 +298,10 @@
   padding: 10px 14px;
   cursor: pointer;
   transition: background 0.15s ease;
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
 }
 
 .item-search .search-result:hover,
@@ -580,6 +584,8 @@
   position: fixed;
   inset: 0;
   background: rgba(6, 5, 4, 0.7);
+  border: none;
+  padding: 0;
   z-index: 50;
 }
 

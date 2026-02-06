@@ -7,13 +7,25 @@ const nextConfig = {
     '@skillbound/hiscores',
   ],
   serverExternalPackages: ['@neondatabase/serverless'],
-  allowedDevOrigins: ['http://127.0.0.1:3000', 'http://localhost:3000'],
+  allowedDevOrigins: [
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://0.0.0.0:3000',
+    '127.0.0.1',
+    'localhost',
+    '0.0.0.0',
+  ],
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'oldschool.runescape.wiki',
         pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'general-543f.kxcdn.com',
+        pathname: '/items/**',
       },
     ],
   },

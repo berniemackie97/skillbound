@@ -1033,6 +1033,19 @@
   align-items: flex-start;
 }
 
+.instruction-toggle {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 .instruction-body {
   flex: 1;
   min-width: 0;
@@ -1109,6 +1122,21 @@
   padding: 4px 8px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+}
+
+.meta-item-toggle {
+  flex: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
 }
 
 .meta-items-list li::before {

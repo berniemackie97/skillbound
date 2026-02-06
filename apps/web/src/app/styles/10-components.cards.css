@@ -805,7 +805,12 @@
   color: var(--text-muted);
 }
 
+.chapter-title {
+  margin: 0;
+}
+
 .chapter-title-toggle {
+  appearance: none;
   cursor: pointer;
   user-select: none;
   display: flex;
@@ -826,6 +831,9 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  text-align: left;
+  font: inherit;
 }
 
 .chapter-title-toggle::before {
@@ -865,15 +873,20 @@
 }
 
 .guide-section-header {
+  appearance: none;
   cursor: pointer;
   user-select: none;
   padding: 14px 16px;
   margin-bottom: 16px;
   background: linear-gradient(90deg, rgba(212, 175, 55, 0.08), transparent);
-  border-left: 3px solid var(--accent);
   border-radius: 0 var(--radius) var(--radius) 0;
   transition: all 0.3s ease;
   position: relative;
+  border: 0;
+  border-left: 3px solid var(--accent);
+  width: 100%;
+  text-align: left;
+  font: inherit;
 }
 
 .guide-section-header::before {

@@ -33,10 +33,7 @@ export async function POST(request: Request) {
     if (formData) {
       const characterId = formData.get('characterId');
       payload = {
-        characterId:
-          typeof characterId === 'string'
-            ? characterId
-            : characterId?.toString(),
+        characterId: typeof characterId === 'string' ? characterId : null,
       };
     }
   }

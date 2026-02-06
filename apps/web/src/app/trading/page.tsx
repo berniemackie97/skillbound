@@ -59,6 +59,13 @@ const DEFAULT_SORT_FIELDS: SortField[] = [
 ];
 
 type TradingTab = 'exchange' | 'tracker';
+const PERIODS: Record<TimePeriod, true> = {
+  today: true,
+  week: true,
+  month: true,
+  year: true,
+  all: true,
+};
 
 type TradingSearchParams = {
   tab?: string;
@@ -129,9 +136,7 @@ function parseOrderList(
 
 function parsePeriod(value: string | undefined): TimePeriod {
   const v = value ?? '';
-  return (['today', 'week', 'month', 'year', 'all'] as const).includes(v as any)
-    ? (v as TimePeriod)
-    : 'all';
+  return v in PERIODS ? (v as TimePeriod) : 'all';
 }
 
 function periodLabel(period: TimePeriod): string {
@@ -456,12 +461,11 @@ export default async function TradingPage({ searchParams }: PageProps) {
           </p>
         </div>
 
-        <nav className="trading-tabs" role="tablist">
+        <nav aria-label="Trading sections" className="trading-tabs">
           <a
-            aria-selected={activeTab === 'exchange'}
+            aria-current={activeTab === 'exchange' ? 'page' : undefined}
             className={`tab-btn ${activeTab === 'exchange' ? 'active' : ''}`}
             href="/trading?tab=exchange"
-            role="tab"
           >
             <svg
               fill="none"
@@ -478,10 +482,9 @@ export default async function TradingPage({ searchParams }: PageProps) {
           </a>
 
           <a
-            aria-selected={activeTab === 'tracker'}
+            aria-current={activeTab === 'tracker' ? 'page' : undefined}
             className={`tab-btn ${activeTab === 'tracker' ? 'active' : ''}`}
             href="/trading?tab=tracker"
-            role="tab"
           >
             <svg
               fill="none"

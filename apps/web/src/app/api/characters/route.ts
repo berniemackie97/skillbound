@@ -101,10 +101,13 @@ export async function POST(request: NextRequest) {
   } else {
     const formData = await request.formData().catch(() => null);
     if (formData) {
+      const displayName = formData.get('displayName');
+      const mode = formData.get('mode');
+      const isPublic = formData.get('isPublic');
       payload = {
-        displayName: formData.get('displayName')?.toString() ?? '',
-        mode: formData.get('mode')?.toString() ?? 'auto',
-        isPublic: formData.get('isPublic')?.toString() === 'true',
+        displayName: typeof displayName === 'string' ? displayName : '',
+        mode: typeof mode === 'string' ? mode : 'auto',
+        isPublic: typeof isPublic === 'string' && isPublic === 'true',
       };
     }
   }

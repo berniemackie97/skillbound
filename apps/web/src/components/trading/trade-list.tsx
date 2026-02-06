@@ -53,6 +53,14 @@ interface DeleteImpact {
   warningMessage: string | null;
 }
 
+interface DeleteImpactResponse {
+  deleteImpact?: DeleteImpact;
+}
+
+interface ErrorResponse {
+  detail?: string;
+}
+
 function formatGp(value: number): string {
   if (value >= 1_000_000_000) {
     return `${(value / 1_000_000_000).toFixed(1)}b`;
@@ -116,8 +124,8 @@ function TradeDetailView({
           `/api/characters/${trade.characterId || characterId}/trades/${trade.id}?includeDeleteImpact=true`
         );
         if (response.ok) {
-          const data = await response.json();
-          setDeleteImpact(data.deleteImpact);
+          const data = (await response.json()) as DeleteImpactResponse;
+          setDeleteImpact(data.deleteImpact ?? null);
         }
       } catch {
         // If we can't fetch impact, proceed anyway
@@ -337,8 +345,8 @@ function EditTradeForm({
       );
 
       if (!response.ok) {
-        const data = await response.json();
-        setError(data.detail || 'Failed to update trade.');
+        const data = (await response.json()) as ErrorResponse;
+        setError(data.detail ?? 'Failed to update trade.');
         return;
       }
 

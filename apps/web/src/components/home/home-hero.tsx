@@ -1,5 +1,4 @@
 import { ButtonLink } from '@/components/ui/button-link';
-import { formatNumber } from '@/lib/format/format-number';
 
 import type { HomeCounts } from '../../lib/home/home-types';
 
@@ -9,7 +8,7 @@ type Props = {
   counts: HomeCounts;
 };
 
-export function HomeHero({ counts }: Props) {
+export function HomeHero({ counts: _counts }: Props) {
   return (
     <section className="hero">
       <div className="hero-copy">
@@ -50,7 +49,7 @@ export function HomeHero({ counts }: Props) {
           </div>
         </div>
 
-        <div className="hero-kpis">
+        {/* <div className="hero-kpis">
           <div className="stat-chip">
             <span>Content version</span>
             <strong>{counts.version}</strong>
@@ -63,7 +62,7 @@ export function HomeHero({ counts }: Props) {
             <span>Diaries tracked</span>
             <strong>{formatNumber(counts.diaryCount)}</strong>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="hero-panel">

@@ -14,7 +14,8 @@ import {
   type SkillName,
 } from '@skillbound/domain';
 import type { HiscoresResponse } from '@skillbound/hiscores';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
+import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 
 import type {
   CalculatorDataResponse,
@@ -332,6 +333,25 @@ export default function SkillCalculator({
 
   const [mode, setMode] = useState(initialMode);
   const [username, setUsername] = useState(initialUsername);
+  const idBase = useId();
+  const ids = {
+    displayName: `${idBase}-display-name`,
+    accountType: `${idBase}-account-type`,
+    currentLevel: `${idBase}-current-level`,
+    targetLevel: `${idBase}-target-level`,
+    currentXp: `${idBase}-current-xp`,
+    targetXp: `${idBase}-target-xp`,
+    actionSearch: `${idBase}-action-search`,
+    actionCategory: `${idBase}-action-category`,
+    actionsPerHour: `${idBase}-actions-per-hour`,
+    combatStyle: `${idBase}-combat-style`,
+    monsterSearch: `${idBase}-monster-search`,
+    killsPerHour: `${idBase}-kills-per-hour`,
+    customMonsterName: `${idBase}-monster-name`,
+    customMonsterLevel: `${idBase}-monster-level`,
+    customMonsterHitpoints: `${idBase}-monster-hitpoints`,
+    customMonsterBonus: `${idBase}-monster-bonus`,
+  };
   const initialCurrentLevelValue = clampNumber(
     parseNumber(initialCurrentLevel) ?? 1,
     1,
@@ -1158,8 +1178,9 @@ export default function SkillCalculator({
             </div>
             <div className="calc-card-body">
               <div className="calc-input-group">
-                <label>Display name</label>
+                <label htmlFor={ids.displayName}>Display name</label>
                 <input
+                  id={ids.displayName}
                   placeholder="Enter username"
                   type="text"
                   value={username}
@@ -1167,8 +1188,12 @@ export default function SkillCalculator({
                 />
               </div>
               <div className="calc-input-group">
-                <label>Account type</label>
-                <select value={mode} onChange={(e) => setMode(e.target.value)}>
+                <label htmlFor={ids.accountType}>Account type</label>
+                <select
+                  id={ids.accountType}
+                  value={mode}
+                  onChange={(e) => setMode(e.target.value)}
+                >
                   <option value="auto">Auto detect</option>
                   <option value="normal">Normal</option>
                   <option value="ironman">Ironman</option>
@@ -1210,8 +1235,9 @@ export default function SkillCalculator({
             <div className="calc-card-body">
               <div className="calc-level-grid">
                 <div className="calc-input-group">
-                  <label>Current level</label>
+                  <label htmlFor={ids.currentLevel}>Current level</label>
                   <input
+                    id={ids.currentLevel}
                     max={MAX_LEVEL}
                     min={1}
                     type="number"
@@ -1220,8 +1246,9 @@ export default function SkillCalculator({
                   />
                 </div>
                 <div className="calc-input-group">
-                  <label>Target level</label>
+                  <label htmlFor={ids.targetLevel}>Target level</label>
                   <input
+                    id={ids.targetLevel}
                     max={MAX_LEVEL}
                     min={1}
                     type="number"
@@ -1230,8 +1257,9 @@ export default function SkillCalculator({
                   />
                 </div>
                 <div className="calc-input-group">
-                  <label>Current XP</label>
+                  <label htmlFor={ids.currentXp}>Current XP</label>
                   <input
+                    id={ids.currentXp}
                     max={MAX_XP}
                     min={0}
                     type="number"
@@ -1240,8 +1268,9 @@ export default function SkillCalculator({
                   />
                 </div>
                 <div className="calc-input-group">
-                  <label>Target XP</label>
+                  <label htmlFor={ids.targetXp}>Target XP</label>
                   <input
+                    id={ids.targetXp}
                     max={MAX_XP}
                     min={0}
                     type="number"
@@ -1337,8 +1366,9 @@ export default function SkillCalculator({
                 </div>
                 <div className="calc-card-body">
                   <div className="calc-input-group">
-                    <label>Search actions</label>
+                    <label htmlFor={ids.actionSearch}>Search actions</label>
                     <input
+                      id={ids.actionSearch}
                       placeholder="Filter by name..."
                       type="text"
                       value={filter}
@@ -1347,8 +1377,9 @@ export default function SkillCalculator({
                   </div>
                   {categoryOptions.length > 0 && (
                     <div className="calc-input-group">
-                      <label>Category</label>
+                      <label htmlFor={ids.actionCategory}>Category</label>
                       <select
+                        id={ids.actionCategory}
                         value={categoryFilter}
                         onChange={(e) =>
                           setCategoryFilter(Number(e.target.value))
@@ -1364,8 +1395,9 @@ export default function SkillCalculator({
                     </div>
                   )}
                   <div className="calc-input-group">
-                    <label>Actions per hour</label>
+                    <label htmlFor={ids.actionsPerHour}>Actions per hour</label>
                     <input
+                      id={ids.actionsPerHour}
                       min={0}
                       placeholder="For XP/hr calc"
                       type="number"
@@ -1412,8 +1444,9 @@ export default function SkillCalculator({
                 <div className="calc-card-body">
                   {skill === 'defence' && (
                     <div className="calc-input-group">
-                      <label>Combat style</label>
+                      <label htmlFor={ids.combatStyle}>Combat style</label>
                       <select
+                        id={ids.combatStyle}
                         value={combatStyle}
                         onChange={(e) =>
                           setCombatStyle(
@@ -1451,8 +1484,9 @@ export default function SkillCalculator({
                 </div>
                 <div className="calc-card-body">
                   <div className="calc-input-group">
-                    <label>Search monsters</label>
+                    <label htmlFor={ids.monsterSearch}>Search monsters</label>
                     <input
+                      id={ids.monsterSearch}
                       placeholder="Filter by name..."
                       type="text"
                       value={filter}
@@ -1460,8 +1494,9 @@ export default function SkillCalculator({
                     />
                   </div>
                   <div className="calc-input-group">
-                    <label>Kills per hour</label>
+                    <label htmlFor={ids.killsPerHour}>Kills per hour</label>
                     <input
+                      id={ids.killsPerHour}
                       min={0}
                       placeholder="For XP/hr calc"
                       type="number"
@@ -1496,8 +1531,9 @@ export default function SkillCalculator({
                   ) : (
                     <div className="calc-monster-form">
                       <div className="calc-input-group">
-                        <label>Name</label>
+                        <label htmlFor={ids.customMonsterName}>Name</label>
                         <input
+                          id={ids.customMonsterName}
                           placeholder="Monster name"
                           type="text"
                           value={newMonsterName}
@@ -1506,16 +1542,20 @@ export default function SkillCalculator({
                       </div>
                       <div className="calc-level-grid">
                         <div className="calc-input-group">
-                          <label>Level</label>
+                          <label htmlFor={ids.customMonsterLevel}>Level</label>
                           <input
+                            id={ids.customMonsterLevel}
                             type="number"
                             value={newMonsterLevel}
                             onChange={(e) => setNewMonsterLevel(e.target.value)}
                           />
                         </div>
                         <div className="calc-input-group">
-                          <label>Hitpoints</label>
+                          <label htmlFor={ids.customMonsterHitpoints}>
+                            Hitpoints
+                          </label>
                           <input
+                            id={ids.customMonsterHitpoints}
                             type="number"
                             value={newMonsterHitpoints}
                             onChange={(e) =>
@@ -1525,8 +1565,11 @@ export default function SkillCalculator({
                         </div>
                       </div>
                       <div className="calc-input-group">
-                        <label>XP bonus multiplier</label>
+                        <label htmlFor={ids.customMonsterBonus}>
+                          XP bonus multiplier
+                        </label>
                         <input
+                          id={ids.customMonsterBonus}
                           placeholder="1.0 (optional)"
                           step="0.1"
                           type="number"
@@ -1694,7 +1737,7 @@ export default function SkillCalculator({
                                 title={`Open ${action.name} on the OSRS Wiki`}
                               >
                                 {actionImage && (
-                                  <img
+                                  <Image
                                     alt=""
                                     height={24}
                                     loading="lazy"
@@ -1845,7 +1888,7 @@ export default function SkillCalculator({
                                 title={`Open ${entry.monster.name} on the OSRS Wiki`}
                               >
                                 {monsterImage && (
-                                  <img
+                                  <Image
                                     alt=""
                                     height={24}
                                     loading="lazy"

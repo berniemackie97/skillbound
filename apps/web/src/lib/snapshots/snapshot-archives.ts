@@ -249,8 +249,18 @@ async function streamToBuffer(body: unknown): Promise<Buffer> {
 
   if (body instanceof Readable) {
     const chunks: Buffer[] = [];
-    for await (const chunk of body) {
-      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    for await (const chunk of body as AsyncIterable<
+      Buffer | Uint8Array | string
+    >) {
+      if (typeof chunk === 'string') {
+        chunks.push(Buffer.from(chunk));
+        continue;
+      }
+      if (Buffer.isBuffer(chunk)) {
+        chunks.push(chunk);
+        continue;
+      }
+      chunks.push(Buffer.from(chunk));
     }
     return Buffer.concat(chunks);
   }

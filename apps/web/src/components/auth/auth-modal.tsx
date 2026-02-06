@@ -115,24 +115,20 @@ export function AuthModal({
     };
   }, [portalTarget]);
 
-  const handleBackdropClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.target === e.currentTarget) {
-        onClose();
-      }
-    },
-    [onClose]
-  );
+  const readFormValue = (formData: FormData, key: string): string => {
+    const value = formData.get(key);
+    return typeof value === 'string' ? value : '';
+  };
 
   const handleCredentialsSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!onSignIn) return;
 
       setError(null);
       const formData = new FormData(e.currentTarget);
-      const identifier = String(formData.get('identifier') ?? '').trim();
-      const password = String(formData.get('password') ?? '');
+      const identifier = readFormValue(formData, 'identifier').trim();
+      const password = readFormValue(formData, 'password');
       const callbackUrl =
         typeof window !== 'undefined'
           ? `${window.location.pathname}${window.location.search}`
@@ -153,15 +149,15 @@ export function AuthModal({
   );
 
   const handleRegisterSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!onRegister) return;
 
       setError(null);
       const formData = new FormData(e.currentTarget);
-      const email = String(formData.get('email') ?? '').trim();
-      const password = String(formData.get('password') ?? '');
-      const usernameRaw = String(formData.get('username') ?? '').trim();
+      const email = readFormValue(formData, 'email').trim();
+      const password = readFormValue(formData, 'password');
+      const usernameRaw = readFormValue(formData, 'username').trim();
       const username = usernameRaw.length > 0 ? usernameRaw : undefined;
       const callbackUrl =
         typeof window !== 'undefined'
@@ -206,13 +202,13 @@ export function AuthModal({
   );
 
   const handleMagicLinkSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!onMagicLink) return;
 
       setError(null);
       const formData = new FormData(e.currentTarget);
-      const email = String(formData.get('email') ?? '').trim();
+      const email = readFormValue(formData, 'email').trim();
       const callbackUrl =
         typeof window !== 'undefined'
           ? `${window.location.pathname}${window.location.search}`
@@ -230,7 +226,7 @@ export function AuthModal({
     [onMagicLink]
   );
 
-  const handleSignOut = useCallback(async () => {
+  const handleSignOut = useCallback(() => {
     if (!onSignOut) return;
     startTransition(async () => {
       try {
@@ -246,7 +242,13 @@ export function AuthModal({
 
   const modalContent =
     mode === 'signout' ? (
-      <div className="modal-backdrop" onClick={handleBackdropClick}>
+      <div className="modal-backdrop">
+        <button
+          aria-label="Close modal"
+          className="modal-backdrop-button"
+          type="button"
+          onClick={onClose}
+        />
         <div
           aria-describedby={`${subtitleId} ${descriptionId}`}
           aria-labelledby={titleId}
@@ -316,7 +318,13 @@ export function AuthModal({
         </div>
       </div>
     ) : (
-      <div className="modal-backdrop" onClick={handleBackdropClick}>
+      <div className="modal-backdrop">
+        <button
+          aria-label="Close modal"
+          className="modal-backdrop-button"
+          type="button"
+          onClick={onClose}
+        />
         <div
           aria-describedby={subtitleId}
           aria-labelledby={titleId}
@@ -454,7 +462,6 @@ export function AuthModal({
               <div className="modal-input-group">
                 <label htmlFor="modal-identifier">Email or username</label>
                 <input
-                  autoFocus
                   required
                   autoComplete="username"
                   id="modal-identifier"
@@ -487,7 +494,6 @@ export function AuthModal({
               <div className="modal-input-group">
                 <label htmlFor="modal-reg-username">Username (optional)</label>
                 <input
-                  autoFocus
                   autoComplete="off"
                   id="modal-reg-username"
                   name="username"

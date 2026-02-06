@@ -1,4 +1,4 @@
-import type * as WikiApi from '@skillbound/wiki-api';
+import type { WikiPricesClient } from '@skillbound/wiki-api';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -7,11 +7,9 @@ import {
   type GeExchangeItem,
 } from './ge-service';
 
-type GetTimeseriesOptions = Parameters<
-  WikiApi.WikiPricesClient['getTimeseries']
->[0];
+type GetTimeseriesOptions = Parameters<WikiPricesClient['getTimeseries']>[0];
 type TimeseriesResponse = Awaited<
-  ReturnType<WikiApi.WikiPricesClient['getTimeseries']>
+  ReturnType<WikiPricesClient['getTimeseries']>
 >;
 
 const getTimeseriesMock = vi.hoisted(() =>
@@ -28,7 +26,7 @@ const createWikiPricesClientMock = vi.hoisted(() =>
 );
 
 vi.mock('@skillbound/wiki-api', async (importOriginal) => {
-  const actual = (await importOriginal()) as typeof WikiApi;
+  const actual = await importOriginal<Record<string, unknown>>();
   return {
     ...actual,
     createWikiPricesClient: createWikiPricesClientMock,

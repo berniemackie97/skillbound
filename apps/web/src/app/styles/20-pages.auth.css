@@ -373,6 +373,16 @@
   animation: modalFadeIn 0.2s ease-out;
 }
 
+.modal-backdrop-button {
+  position: absolute;
+  inset: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 to {
     opacity: 1;
   }
@@ -384,6 +394,7 @@ to {
 
 .modal-container {
   position: relative;
+  z-index: 1;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);

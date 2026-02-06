@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 
 type UnrealizedPosition = {
@@ -199,7 +200,7 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
               {summary.unrealizedPositions.slice(0, 10).map((pos) => (
                 <div key={pos.itemId} className="unrealized-position">
                   {pos.iconUrl && (
-                    <img
+                    <Image
                       alt=""
                       className="unrealized-item-icon"
                       height={24}
@@ -249,7 +250,7 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                 <li key={flip.itemId} className="flip-item">
                   <div className="flip-header">
                     {flip.iconUrl && (
-                      <img
+                      <Image
                         alt=""
                         className="item-icon"
                         height={24}
@@ -296,7 +297,7 @@ export function ProfitSummary({ summary }: ProfitSummaryProps) {
                 <li key={flip.itemId} className="flip-item">
                   <div className="flip-header">
                     {flip.iconUrl && (
-                      <img
+                      <Image
                         alt=""
                         className="item-icon"
                         height={24}

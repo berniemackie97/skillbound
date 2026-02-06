@@ -9,7 +9,13 @@ import type {
 } from '@skillbound/content';
 import type { RequirementResult, RequirementStatus } from '@skillbound/domain';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react';
 
 import {
   RequirementList,
@@ -246,7 +252,7 @@ export function ComprehensiveProgression({
 
   const activityMap = data?.activities ?? null;
 
-  function readLocalProgress(): LocalProgressState {
+  const readLocalProgress = useCallback((): LocalProgressState => {
     if (!localStorageKey || typeof window === 'undefined') {
       return emptyLocalProgress;
     }
@@ -265,7 +271,7 @@ export function ComprehensiveProgression({
     } catch {
       return emptyLocalProgress;
     }
-  }
+  }, [localStorageKey]);
 
   function writeLocalProgress(next: LocalProgressState) {
     if (!localStorageKey || typeof window === 'undefined') {
@@ -424,7 +430,7 @@ export function ComprehensiveProgression({
     }
 
     void loadData();
-  }, [characterId, profileId, isReadOnly, targetId]);
+  }, [characterId, profileId, isReadOnly, targetId, readLocalProgress]);
 
   useEffect(() => {
     const tab = searchParams.get('tab');
@@ -985,9 +991,10 @@ export function ComprehensiveProgression({
                       <div key={boss.id} className="boss-item">
                         <div className="boss-name">{boss.bossName}</div>
                         <div className="boss-kc">
-                          <label>KC:</label>
+                          <label htmlFor={`boss-kc-${boss.id}`}>KC:</label>
                           <input
                             className="kc-input"
+                            id={`boss-kc-${boss.id}`}
                             min="0"
                             type="number"
                             value={boss.killcount}
@@ -1024,7 +1031,10 @@ export function ComprehensiveProgression({
                         key={item.id}
                         className={`gear-item ${item.obtained ? 'obtained' : ''}`}
                       >
-                        <label className="gear-checkbox">
+                        <label
+                          aria-label={`Toggle ${item.itemName}`}
+                          className="gear-checkbox"
+                        >
                           <input
                             checked={item.obtained}
                             type="checkbox"

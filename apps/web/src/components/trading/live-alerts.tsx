@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
 
@@ -215,10 +216,11 @@ export function LiveAlerts({ inventory, watchItems }: LiveAlertsProps) {
             <li key={alert.key} className={`live-alert ${alert.status}`}>
               <div className="live-alert-header">
                 {alert.icon ? (
-                  <img
+                  <Image
                     alt=""
                     className="live-alert-icon"
                     height={28}
+                    unoptimized={alert.icon.startsWith('data:')}
                     width={28}
                     src={
                       alert.icon.startsWith('http') ||

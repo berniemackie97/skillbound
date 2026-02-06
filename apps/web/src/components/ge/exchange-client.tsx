@@ -351,10 +351,11 @@ export function ExchangeClient({
               const payload = (await response.json()) as {
                 data?: { id: string };
               };
-              if (payload.data?.id) {
+              const watchId = payload.data?.id;
+              if (watchId) {
                 setWatchMap((prevMap) => ({
                   ...prevMap,
-                  [itemId]: payload.data!.id,
+                  [itemId]: watchId,
                 }));
               }
             });
@@ -515,8 +516,6 @@ export function ExchangeClient({
       filters,
       hideNegativeMargin,
       hideNegativeRoi,
-      isRefreshPaused,
-      refreshInterval,
     ]
   );
 
