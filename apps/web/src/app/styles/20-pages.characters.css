@@ -633,10 +633,8 @@
 }
 
 .management-header {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) auto;
   align-items: center;
-  gap: 16px;
+  margin-bottom: 8px;
 }
 
 .management-header > div {
@@ -645,12 +643,29 @@
 
 .management-controls {
   display: grid;
-  grid-template-columns: minmax(220px, 1.2fr) minmax(160px, 0.8fr) minmax(
-      220px,
-      1fr
-    );
+  grid-template-columns: auto minmax(220px, 1fr) minmax(240px, 1fr) auto;
+  grid-template-areas: 'toggle select meta bulk';
   align-items: center;
-  gap: 16px;
+  justify-content: start;
+  column-gap: 20px;
+  row-gap: 12px;
+}
+
+.management-controls .checkbox-row {
+  grid-area: toggle;
+}
+
+.management-controls select {
+  grid-area: select;
+}
+
+.management-controls .management-meta {
+  grid-area: meta;
+}
+
+.management-controls .bulk-sync-button {
+  grid-area: bulk;
+  justify-self: end;
 }
 
 .management-controls select {
@@ -752,10 +767,13 @@
 
   .management-controls {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'select bulk'
+      'toggle meta';
   }
 
   .management-meta {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 }
 
@@ -788,9 +806,23 @@
   .management-controls {
     grid-template-columns: 1fr;
     gap: 12px;
+    grid-template-areas:
+      'bulk'
+      'select'
+      'toggle'
+      'meta';
   }
 
   .management-meta {
+    justify-content: flex-start;
+  }
+
+  .management-controls .bulk-sync-button {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .management-controls .checkbox-row {
     justify-content: flex-start;
   }
 }

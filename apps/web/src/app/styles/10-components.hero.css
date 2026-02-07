@@ -158,9 +158,9 @@
 }
 
 .hero-quick-stats > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
   align-items: baseline;
 }
 
@@ -171,7 +171,8 @@
 }
 
 .hero-quick-stats strong {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  white-space: nowrap;
 }
 
 .hero-links {
