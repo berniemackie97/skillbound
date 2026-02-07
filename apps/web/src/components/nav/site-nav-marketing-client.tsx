@@ -8,6 +8,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { AuthProviderFlags } from '@/lib/auth/auth-providers';
 
 import { MobileMenu } from './mobile-menu';
+import { MobileMenuAuth } from './mobile-menu-auth';
 import { NavActions } from './nav-actions';
 
 type NavSessionResponse = {
@@ -113,15 +114,8 @@ export function SiteNavMarketingClient({
     return [{ href: '/characters', label: 'Characters' }, ...BASE_LINKS];
   }, [isSignedIn]);
   const menuLinks = useMemo<NavLink[]>(
-    () => [
-      ...navLinks,
-      { href: '/lookup', label: 'New lookup' },
-      {
-        href: isSignedIn ? '/logout' : '/login',
-        label: isSignedIn ? 'Sign out' : 'Sign in',
-      },
-    ],
-    [navLinks, isSignedIn]
+    () => [...navLinks, { href: '/lookup', label: 'New lookup' }],
+    [navLinks]
   );
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
@@ -152,7 +146,22 @@ export function SiteNavMarketingClient({
         ))}
       </nav>
 
-      <MobileMenu links={menuLinks} />
+      <MobileMenu links={menuLinks}>
+        <MobileMenuAuth
+          hasFacebook={hasFacebook}
+          hasGitHub={hasGitHub}
+          hasGoogle={hasGoogle}
+          hasMagicLink={hasMagicLink}
+          hasTwitter={hasTwitter}
+          isSignedIn={isSignedIn}
+          magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+          registerAction={registerAction}
+          signInAction={signInAction}
+          signOutAction={signOutAction}
+          userEmail={session.user?.email}
+          userName={session.user?.name}
+        />
+      </MobileMenu>
 
       <NavActions
         activeCharacterId={session.activeCharacterId}

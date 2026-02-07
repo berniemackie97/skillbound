@@ -16,6 +16,7 @@ import {
 } from '@/lib/character/character-selection';
 
 import { MobileMenu } from './mobile-menu';
+import { MobileMenuAuth } from './mobile-menu-auth';
 import { NavActions } from './nav-actions';
 
 type NavLink = {
@@ -58,10 +59,6 @@ export async function SiteNavApp() {
   const menuLinks: NavLink[] = [
     ...visibleLinks,
     { href: '/lookup', label: 'New lookup' },
-    {
-      href: isSignedIn ? '/logout' : '/login',
-      label: isSignedIn ? 'Sign out' : 'Sign in',
-    },
   ];
 
   return (
@@ -90,7 +87,22 @@ export async function SiteNavApp() {
         ))}
       </nav>
 
-      <MobileMenu links={menuLinks} />
+      <MobileMenu links={menuLinks}>
+        <MobileMenuAuth
+          hasFacebook={hasFacebook}
+          hasGitHub={hasGitHub}
+          hasGoogle={hasGoogle}
+          hasMagicLink={hasMagicLink}
+          hasTwitter={hasTwitter}
+          isSignedIn={isSignedIn}
+          magicLinkAction={hasMagicLink ? magicLinkAction : undefined}
+          registerAction={registerAction}
+          signInAction={signInAction}
+          signOutAction={signOutAction}
+          userEmail={sessionUser?.email ?? null}
+          userName={sessionUser?.name ?? null}
+        />
+      </MobileMenu>
 
       <NavActions
         activeCharacterId={activeCharacterId}
