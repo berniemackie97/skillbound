@@ -19,6 +19,8 @@ export function MobileMenu({ links, extraLinks = [] }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+  const isActive = (href: string) =>
+    pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -93,7 +95,7 @@ export function MobileMenu({ links, extraLinks = [] }: MobileMenuProps) {
                 {[...links, ...extraLinks].map((link) => (
                   <Link
                     key={link.href}
-                    className={`mobile-menu-link ${pathname === link.href ? 'active' : ''}`}
+                    className={`mobile-menu-link ${isActive(link.href) ? 'active' : ''}`}
                     href={link.href}
                     onClick={closeMenu}
                   >

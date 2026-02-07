@@ -1,4 +1,5 @@
 import { formatNumber } from '@/lib/format/format-number';
+import { formatRank } from '@/lib/format/format-rank';
 import type { getTopSkills } from '@/lib/lookup/lookup-data';
 
 export function SkillTilesPanel({
@@ -30,7 +31,7 @@ export function SkillTilesPanel({
 
             <div className="skill-meta">
               <span>Rank</span>
-              <strong>{formatNumber(skill.rank)}</strong>
+              <strong>{formatRank(skill.rank)}</strong>
             </div>
           </div>
         ))}

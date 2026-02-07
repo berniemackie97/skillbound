@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import {
   buildCharacterFacts,
   buildCharacterFactsFromSnapshot,
+  buildSnapshotActivities,
 } from './requirements-context';
 
 describe('buildCharacterFactsFromSnapshot', () => {
@@ -115,5 +116,53 @@ describe('buildCharacterFacts', () => {
     expect(facts.skillLevels?.attack).toBe(50);
     expect(facts.activities?.['barrows']).toBe(15);
     expect(facts.combatAchievements?.['barrows_novice']).toBe(true);
+  });
+
+  it('normalizes baseline PvP arena scores to zero', () => {
+    const hiscores: HiscoresResponse = {
+      username: 'Test',
+      displayName: 'Test',
+      mode: 'normal',
+      capturedAt: '2026-01-22T00:00:00.000Z',
+      skills: [],
+      activities: [
+        {
+          id: 0,
+          name: 'PvP Arena',
+          key: 'pvp_arena_rank',
+          rank: -1,
+          score: 2500,
+        },
+      ],
+    };
+
+    const facts = buildCharacterFacts(hiscores, []);
+
+    expect(facts.activities?.['pvp_arena_rank']).toBe(0);
+  });
+});
+
+describe('buildSnapshotActivities', () => {
+  it('normalizes baseline PvP arena scores to zero', () => {
+    const hiscores: HiscoresResponse = {
+      username: 'Test',
+      displayName: 'Test',
+      mode: 'normal',
+      capturedAt: '2026-01-22T00:00:00.000Z',
+      skills: [],
+      activities: [
+        {
+          id: 0,
+          name: 'PvP Arena',
+          key: 'pvp_arena_rank',
+          rank: -1,
+          score: 2500,
+        },
+      ],
+    };
+
+    const activities = buildSnapshotActivities(hiscores);
+
+    expect(activities['pvp_arena_rank']).toBe(0);
   });
 });

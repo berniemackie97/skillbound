@@ -1,0 +1,56 @@
+/* Components: Character cards */
+
+.character-card {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: grid;
+  gap: 12px;
+}
+
+.character-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.character-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.character-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.character-actions .button.danger {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .character-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .character-actions .button.danger {
+    grid-column: auto;
+  }
+}
+
+.character-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.character-notes {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}

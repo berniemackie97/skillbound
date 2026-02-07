@@ -24,8 +24,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'oldschool.tools',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'general-543f.kxcdn.com',
-        pathname: '/items/**',
+        pathname: '/**/**',
       },
     ],
   },

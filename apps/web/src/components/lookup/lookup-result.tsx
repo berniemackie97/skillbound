@@ -31,16 +31,16 @@ export function LookupResult({
         </div>
 
         <div className="stat-row">
-          <div>
-            <span>Total level</span>
+          <div className="stat-kv">
+            <span className="label">Total level:</span>
             <strong>{overall?.level ?? '-'}</strong>
           </div>
-          <div>
-            <span>Total XP</span>
+          <div className="stat-kv">
+            <span className="label">Total XP:</span>
             <strong>{overall ? formatNumber(overall.xp) : '-'}</strong>
           </div>
-          <div>
-            <span>Captured</span>
+          <div className="stat-kv">
+            <span className="label">Captured:</span>
             <strong>{new Date(lookup.data.capturedAt).toLocaleString()}</strong>
           </div>
         </div>

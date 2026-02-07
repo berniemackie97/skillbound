@@ -1,4 +1,5 @@
 import { formatNumber } from '@/lib/format/format-number';
+import { formatRank } from '@/lib/format/format-rank';
 import type { getTopActivities } from '@/lib/lookup/lookup-data';
 
 export function ActivityTilesPanel({
@@ -29,7 +30,7 @@ export function ActivityTilesPanel({
 
             <div className="skill-meta">
               <span>Rank</span>
-              <strong>{formatNumber(activity.rank)}</strong>
+              <strong>{formatRank(activity.rank)}</strong>
             </div>
           </div>
         ))}

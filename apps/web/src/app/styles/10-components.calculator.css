@@ -1,20 +1,5 @@
 /* Components: Calculator + Data tables (shared) */
 
-.result-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-
-.checkbox-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
 .calculator {
   display: grid;
   gap: 16px;
@@ -278,43 +263,6 @@
   gap: 6px;
 }
 
-.result-summary h3 {
-  margin-top: 6px;
-  margin-bottom: 16px;
-}
-
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-}
-
-.stat-row span {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-.stat-row strong {
-  font-size: 1.1rem;
-}
-
-.result-list h4 {
-  margin-bottom: 10px;
-}
-
-.result-list ul {
-  list-style: none;
-  display: grid;
-  gap: 8px;
-  font-size: 0.95rem;
-}
-
-.result-list li {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-muted);
-}
-
 .trade-table-wrapper {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -404,4 +352,78 @@
 .trade-table .actions {
   text-align: center;
   width: 40px;
+}
+
+/* ========================================================================
+   Mobile calculator cards
+   ======================================================================== */
+
+.calc-mobile-list {
+  display: none;
+  gap: 12px;
+}
+
+.calc-mobile-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(20, 16, 10, 0.35);
+  padding: 12px 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.calc-mobile-card.calc-row-unmet {
+  opacity: 0.7;
+}
+
+.calc-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.calc-mobile-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-mobile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.calc-mobile-stats span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.calc-mobile-materials ul {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.calc-mobile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .calc-table-container {
+    display: none;
+  }
+
+  .calc-mobile-list {
+    display: grid;
+  }
 }

@@ -117,6 +117,27 @@
   gap: 6px;
 }
 
+.calc-skill-select {
+  display: none;
+}
+
+.calc-skill-select label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.calc-skill-select select {
+  width: 100%;
+}
+
+.calc-skill-groups {
+  display: grid;
+  gap: var(--space-4);
+}
+
 .calc-skill-btn {
   padding: 8px 14px;
   font-size: 0.85rem;
@@ -200,6 +221,20 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+.calc-desktop-only {
+  display: block;
+}
+
+.calc-mobile-only {
+  display: none;
+}
+
+.calc-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .calc-card-header {
@@ -650,7 +685,7 @@
 }
 
 /* Responsive */
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .calc-header-content h1 {
     font-size: 1.5rem;
   }
@@ -678,6 +713,22 @@
 
   .calc-table {
     min-width: 600px;
+  }
+
+  .calc-skill-groups {
+    display: none;
+  }
+
+  .calc-skill-select {
+    display: block;
+  }
+
+  .calc-desktop-only {
+    display: none;
+  }
+
+  .calc-mobile-only {
+    display: block;
   }
 }
 

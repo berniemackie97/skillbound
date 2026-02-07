@@ -1,0 +1,58 @@
+/* Components: Results grid summaries */
+
+.result-summary h3 {
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.stat-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-row > .stat-kv {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-row span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.stat-row strong {
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-list h4 {
+  margin-bottom: 10px;
+}
+
+.result-list ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.result-list li {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+}

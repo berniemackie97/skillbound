@@ -20,6 +20,7 @@ import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 import { getHiscoresCache, getHiscoresCacheTtlMs } from '@/lib/cache/cache';
 import { hiscoresModeToDbMode } from '@/lib/character/game-mode';
+import { normalizeActivityScore } from '@/lib/character/normalize-activity-score';
 import { getDbClient } from '@/lib/db';
 import { importWiseOldManSnapshots } from '@/lib/integrations/wise-old-man-import';
 import { logger } from '@/lib/logging/logger';
@@ -40,6 +41,27 @@ const lookupSchema = z.object({
     .default('auto')
     .transform((value) => value.toLowerCase()),
 });
+
+function normalizeHiscoresActivities<
+  T extends { activities?: Array<{ key: string; score: number }> },
+>(hiscores: T): T {
+  if (!hiscores.activities || hiscores.activities.length === 0) {
+    return hiscores;
+  }
+
+  const normalizedActivities = hiscores.activities.map((activity) => {
+    const normalizedScore = normalizeActivityScore(
+      activity.key,
+      activity.score
+    );
+    if (normalizedScore === activity.score) {
+      return activity;
+    }
+    return { ...activity, score: normalizedScore };
+  });
+
+  return { ...hiscores, activities: normalizedActivities };
+}
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -136,7 +158,7 @@ export async function GET(request: NextRequest) {
         if (cached) {
           const profileId = await ensureProfileId(cached);
           const response = NextResponse.json({
-            data: cached,
+            data: normalizeHiscoresActivities(cached),
             meta: { cached: true, mode, profileId },
           });
           return applyRateLimitHeaders(response, rateLimitResult);
@@ -152,7 +174,7 @@ export async function GET(request: NextRequest) {
       if (cached) {
         const profileId = await ensureProfileId(cached);
         const response = NextResponse.json({
-          data: cached,
+          data: normalizeHiscoresActivities(cached),
           meta: { cached: true, mode: resolvedMode, profileId },
         });
         return applyRateLimitHeaders(response, rateLimitResult);
@@ -245,7 +267,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = NextResponse.json({
-      data: playerData.hiscores,
+      data: normalizeHiscoresActivities(playerData.hiscores),
       meta: {
         cached: false,
         mode: detectedMode,

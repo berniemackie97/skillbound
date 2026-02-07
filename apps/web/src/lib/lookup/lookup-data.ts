@@ -1,42 +1,7 @@
-import { getServerBaseUrl } from '@/lib/config/server-url';
+import { normalizeActivityScore } from '@/lib/character/normalize-activity-score';
 
-import type { LookupResponse, ModeValue, ProblemDetails } from './lookup-types';
+import type { LookupResponse } from './lookup-types';
 import { isCharacterSaved as isCharacterSavedUtil } from './lookup-utils';
-
-export async function fetchLookup(args: { username: string; mode: ModeValue }) {
-  const baseUrl = await getServerBaseUrl();
-  const url = new URL('/api/characters/lookup', baseUrl);
-
-  url.searchParams.set('username', args.username);
-  url.searchParams.set('mode', args.mode);
-
-  const response = await fetch(url, { cache: 'no-store' });
-
-  let payload: LookupResponse | ProblemDetails;
-  try {
-    payload = (await response.json()) as LookupResponse | ProblemDetails;
-  } catch {
-    // If upstream returns non-JSON (proxy error, HTML, etc)
-    return {
-      lookup: null as LookupResponse | null,
-      error: 'Lookup failed (invalid response). Please try again.',
-    };
-  }
-
-  if (!response.ok) {
-    return {
-      lookup: null as LookupResponse | null,
-      error:
-        (payload as ProblemDetails).detail ??
-        'Lookup failed. Please try again.',
-    };
-  }
-
-  return {
-    lookup: payload as LookupResponse,
-    error: null as string | null,
-  };
-}
 
 export function getOverallSkill(lookup: LookupResponse | null) {
   return lookup?.data.skills.find((skill) => skill.key === 'overall') ?? null;
@@ -54,6 +19,10 @@ export function getTopSkills(lookup: LookupResponse | null) {
 export function getTopActivities(lookup: LookupResponse | null) {
   return (
     lookup?.data.activities
+      .map((activity) => ({
+        ...activity,
+        score: normalizeActivityScore(activity.key, activity.score),
+      }))
       .filter((activity) => activity.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 12) ?? []

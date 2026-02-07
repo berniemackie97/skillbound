@@ -1,0 +1,177 @@
+/* Components: Panels + stack cards (shared surfaces) */
+
+.panel {
+  padding: 26px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--bg-elev) 0%, rgba(42, 35, 24, 0.8) 100%);
+  border: 3px solid transparent;
+  border-image: linear-gradient(135deg, var(--rs-gold) 0%, var(--accent) 50%, var(--rs-tan) 100%) 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 223, 128, 0.15),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(212, 175, 55, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 223, 128, 0.4) 50%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.panel-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.panel-header p {
+  color: var(--text-muted);
+}
+
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Stack cards (baseline from the character hub) */
+.stack-card {
+  padding: 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(35, 30, 22, 0.9), rgba(25, 20, 15, 0.95));
+  border: 1px solid rgba(226, 176, 101, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 223, 128, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(226, 176, 101, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 223, 128, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.stack-card h2 {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+}
+
+.stack-card h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stack-card h3::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 16px;
+  background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+  border-radius: 2px;
+}
+
+.stack-card ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.stack-card .button {
+  margin-top: 14px;
+  align-self: flex-start;
+}
+
+.stack-card.wide {
+  grid-column: span 2;
+}
+
+.stack-card .muted {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.stack-card.accent {
+  border: 1px solid rgba(226, 176, 101, 0.4);
+  background: linear-gradient(135deg, rgba(226, 176, 101, 0.12), var(--bg-card));
+}
+
+@media (max-width: 640px) {
+  .panel .panel-grid .stack-card .button {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .panel-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .stack-card {
+    padding: 16px;
+  }
+
+  .stack-card.wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 14px;
+  }
+
+  .panel-header h2 {
+    font-size: 1.3rem;
+  }
+}
