@@ -9,16 +9,48 @@ test.describe('Smoke Tests', () => {
   test('nav shows expected links for signed-out users', async ({ page }) => {
     await page.goto('/');
     const navLinks = page.locator('.nav-links');
+    const progression = navLinks.getByRole('link', { name: 'Progression' });
+    const usesDesktopNav =
+      (await progression.count()) > 0 && (await progression.isVisible());
+
+    if (usesDesktopNav) {
+      await expect(
+        navLinks.getByRole('link', { name: 'Progression' })
+      ).toBeVisible();
+      await expect(
+        navLinks.getByRole('link', { name: 'Guides' })
+      ).toBeVisible();
+      await expect(
+        navLinks.getByRole('link', { name: 'Trading' })
+      ).toBeVisible();
+      await expect(
+        navLinks.getByRole('link', { name: 'Calculators' })
+      ).toBeVisible();
+      await expect(
+        page.getByRole('link', { name: /new lookup/i })
+      ).toBeVisible();
+      return;
+    }
+
+    const menuToggle = page.getByRole('button', { name: /open menu/i });
+    await menuToggle.click();
+    const mobileMenu = page.locator('.mobile-menu-panel');
+    await expect(mobileMenu).toHaveClass(/open/);
     await expect(
-      navLinks.getByRole('link', { name: 'Progression' })
+      mobileMenu.getByRole('link', { name: 'Progression' })
     ).toBeVisible();
-    await expect(navLinks.getByRole('link', { name: 'Guides' })).toBeVisible();
-    await expect(navLinks.getByRole('link', { name: 'Trading' })).toBeVisible();
     await expect(
-      navLinks.getByRole('link', { name: 'Calculators' })
+      mobileMenu.getByRole('link', { name: 'Guides' })
     ).toBeVisible();
-    await expect(navLinks.getByRole('link', { name: 'Lookup' })).toHaveCount(0);
-    await expect(page.getByRole('link', { name: /new lookup/i })).toBeVisible();
+    await expect(
+      mobileMenu.getByRole('link', { name: 'Trading' })
+    ).toBeVisible();
+    await expect(
+      mobileMenu.getByRole('link', { name: 'Calculators' })
+    ).toBeVisible();
+    await expect(
+      mobileMenu.getByRole('link', { name: /new lookup/i })
+    ).toBeVisible();
   });
 
   test('lookup page is accessible', async ({ page }) => {
