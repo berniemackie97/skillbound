@@ -48,10 +48,12 @@ export const metadata: Metadata = {
   icons: {
     // Keep these paths aligned with /public
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+      { url: '/favicon-48x48.png', type: 'image/png', sizes: '48x48' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
       { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' },
     ],
-    apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 
   openGraph: DEFAULT_OPEN_GRAPH,
