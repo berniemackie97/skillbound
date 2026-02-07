@@ -1245,30 +1245,15 @@
 @media (min-width: 1200px) {
   .profit-summary {
     display: grid;
-    grid-template-columns: minmax(320px, 1.15fr) minmax(240px, 0.85fr);
     gap: var(--space-4);
-    align-items: start;
   }
 
   .profit-summary .profit-hero {
     margin-bottom: 0;
   }
 
-  .profit-summary .profit-hero-main {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .profit-summary .profit-hero-breakdown {
-    justify-content: flex-start;
-  }
-
-  .profit-summary .overview-highlights {
-    align-self: stretch;
-  }
-
   .profit-summary .overview-highlights .overview-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .profit-summary .unrealized-section {
@@ -4110,9 +4095,9 @@
 
 /* Overview Cards */
 .overview-card {
-  flex: 1;
-  min-width: 120px;
-  max-width: 160px;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
   padding: 12px 16px;
   background: var(--bg-elev);
   border: 1px solid var(--border);
@@ -4121,9 +4106,6 @@
 }
 
 .overview-card.highlight {
-  flex: 1.5;
-  min-width: 180px;
-  max-width: 240px;
   background: linear-gradient(180deg, rgba(212, 175, 55, 0.1), var(--bg-elev));
   border-color: rgba(212, 175, 55, 0.3);
 }
@@ -4641,6 +4623,16 @@
 
   .watch-item-stats {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .trading-overview .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trading-overview .overview-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

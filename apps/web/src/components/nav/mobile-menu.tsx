@@ -2,7 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 
 type NavLink = {
@@ -13,9 +19,24 @@ type NavLink = {
 type MobileMenuProps = {
   links: NavLink[];
   extraLinks?: NavLink[];
+  children?: React.ReactNode;
 };
 
-export function MobileMenu({ links, extraLinks = [] }: MobileMenuProps) {
+type MobileMenuContextValue = {
+  closeMenu: () => void;
+};
+
+const MobileMenuContext = createContext<MobileMenuContextValue | null>(null);
+
+export function useMobileMenu() {
+  return useContext(MobileMenuContext);
+}
+
+export function MobileMenu({
+  links,
+  extraLinks = [],
+  children,
+}: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
@@ -91,18 +112,21 @@ export function MobileMenu({ links, extraLinks = [] }: MobileMenuProps) {
               aria-hidden={!isOpen}
               className={`mobile-menu-panel ${isOpen ? 'open' : ''}`}
             >
-              <nav className="mobile-menu-nav">
-                {[...links, ...extraLinks].map((link) => (
-                  <Link
-                    key={link.href}
-                    className={`mobile-menu-link ${isActive(link.href) ? 'active' : ''}`}
-                    href={link.href}
-                    onClick={closeMenu}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
+              <MobileMenuContext.Provider value={{ closeMenu }}>
+                <nav className="mobile-menu-nav">
+                  {[...links, ...extraLinks].map((link) => (
+                    <Link
+                      key={link.href}
+                      className={`mobile-menu-link ${isActive(link.href) ? 'active' : ''}`}
+                      href={link.href}
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+                {children}
+              </MobileMenuContext.Provider>
             </div>
           </>,
           document.body
