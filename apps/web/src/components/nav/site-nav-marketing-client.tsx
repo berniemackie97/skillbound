@@ -112,6 +112,17 @@ export function SiteNavMarketingClient({
     if (!isSignedIn) return BASE_LINKS;
     return [{ href: '/characters', label: 'Characters' }, ...BASE_LINKS];
   }, [isSignedIn]);
+  const menuLinks = useMemo<NavLink[]>(
+    () => [
+      ...navLinks,
+      { href: '/lookup', label: 'New lookup' },
+      {
+        href: isSignedIn ? '/logout' : '/login',
+        label: isSignedIn ? 'Sign out' : 'Sign in',
+      },
+    ],
+    [navLinks, isSignedIn]
+  );
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
@@ -141,7 +152,7 @@ export function SiteNavMarketingClient({
         ))}
       </nav>
 
-      <MobileMenu links={navLinks} />
+      <MobileMenu links={menuLinks} />
 
       <NavActions
         activeCharacterId={session.activeCharacterId}

@@ -940,7 +940,7 @@
   align-items: start;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1366px) {
   .tracker-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1240,6 +1240,44 @@
 /* Profit Summary */
 .profit-summary {
   padding: var(--space-4);
+}
+
+@media (min-width: 1200px) {
+  .profit-summary {
+    display: grid;
+    grid-template-columns: minmax(320px, 1.15fr) minmax(240px, 0.85fr);
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .profit-summary .profit-hero {
+    margin-bottom: 0;
+  }
+
+  .profit-summary .profit-hero-main {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .profit-summary .profit-hero-breakdown {
+    justify-content: flex-start;
+  }
+
+  .profit-summary .overview-highlights {
+    align-self: stretch;
+  }
+
+  .profit-summary .overview-highlights .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profit-summary .unrealized-section {
+    grid-column: 1 / -1;
+  }
+
+  .trading-overview .overview-details-content .overview-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .profit-summary-grid {
@@ -2705,7 +2743,7 @@
 }
 
 /* Responsive: Show cards on mobile, table on desktop */
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .trade-table-container {
     display: none;
   }
@@ -4529,7 +4567,7 @@
 
 /* ========== Responsive Styles ========== */
 
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .trading-content {
     grid-template-columns: 1fr;
   }

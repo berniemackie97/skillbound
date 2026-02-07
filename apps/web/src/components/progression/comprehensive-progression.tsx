@@ -254,7 +254,7 @@ export function ComprehensiveProgression({
 
   const activityMap = useMemo<Record<string, number> | null>(() => {
     if (!data?.activities) return null;
-    const base = data.activities as Record<string, number>;
+    const base = data.activities;
     return {
       ...base,
       pvp_arena_rank: normalizeActivityScore(
