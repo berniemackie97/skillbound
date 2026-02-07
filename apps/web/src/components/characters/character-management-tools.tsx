@@ -122,9 +122,6 @@ export function CharacterManagementTools({
         <div>
           <h3>Management tools</h3>
         </div>
-        <button className="button" type="button" onClick={handleBulkSync}>
-          Bulk sync now
-        </button>
       </div>
       <div className="management-controls">
         <label className="checkbox-row">
@@ -159,6 +156,13 @@ export function CharacterManagementTools({
           <span className="label">Next sync</span>
           <strong>{nextSync}</strong>
         </div>
+        <button
+          className="button bulk-sync-button"
+          type="button"
+          onClick={handleBulkSync}
+        >
+          Bulk sync now
+        </button>
       </div>
       {status && !error && <div className="status-note">{status}</div>}
       {error && <div className="error">{error}</div>}
