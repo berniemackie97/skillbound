@@ -142,7 +142,7 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1366px) {
   .nav {
     gap: 16px;
     flex-wrap: wrap;
@@ -220,7 +220,7 @@
    Mobile Navigation - Compact single-row layout with hamburger
    ========================================================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .nav {
     gap: 12px;
     padding: 8px 12px;
@@ -253,7 +253,7 @@
     font-size: 0.95rem;
   }
 
-  /* Hide desktop nav links on mobile - use hamburger menu instead */
+  /* Hide desktop nav links on tablet/mobile - use hamburger menu instead */
   .nav-links {
     display: none;
   }
@@ -375,15 +375,6 @@
     border-right-color: var(--accent);
   }
 
-  .nav-actions {
-    width: 100%;
-    margin-left: 0;
-    justify-content: flex-start;
-    gap: 8px;
-    flex-wrap: wrap;
-    order: 3;
-  }
-
   .character-switcher select {
     min-width: 0;
     width: 100%;
@@ -396,6 +387,12 @@
   .nav-actions {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+    order: 3;
   }
 
   .nav-actions > * {
@@ -406,21 +403,9 @@
     grid-column: 1 / -1;
   }
 
-  /* Make action buttons smaller on mobile */
+  /* Hide auth + lookup buttons on tablet/mobile (use hamburger menu) */
   .nav-actions .button {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    width: 100%;
-  }
-
-  .nav-actions .button.small {
-    padding: 4px 8px;
-    font-size: 0.75rem;
-  }
-
-  .nav-actions .nav-lookup {
-    width: 100%;
-    justify-content: center;
+    display: none;
   }
 }
 

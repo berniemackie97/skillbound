@@ -55,6 +55,15 @@ export async function SiteNavApp() {
   const isActive = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
+  const menuLinks: NavLink[] = [
+    ...visibleLinks,
+    { href: '/lookup', label: 'New lookup' },
+    {
+      href: isSignedIn ? '/logout' : '/login',
+      label: isSignedIn ? 'Sign out' : 'Sign in',
+    },
+  ];
+
   return (
     <header className="nav">
       <Link className="brand" href="/">
@@ -81,7 +90,7 @@ export async function SiteNavApp() {
         ))}
       </nav>
 
-      <MobileMenu links={visibleLinks} />
+      <MobileMenu links={menuLinks} />
 
       <NavActions
         activeCharacterId={activeCharacterId}
