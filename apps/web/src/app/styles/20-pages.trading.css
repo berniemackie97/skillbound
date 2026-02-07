@@ -829,7 +829,7 @@
   }
 }
 
-@media (max-width: 640px), (max-height: 520px) {
+@media (max-width: 640px) {
   .exchange-controls .controls-filters {
     display: none;
   }
@@ -851,58 +851,6 @@
   }
 }
 
-.archived-roster {
-  display: grid;
-  gap: 12px;
-}
-
-.archived-roster h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-.character-card {
-  padding: 18px;
-  border-radius: var(--radius);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  display: grid;
-  gap: 12px;
-}
-
-.character-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.character-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.character-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.character-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.character-notes {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
 /* Scoped composition tweaks for the exchange page only */
 .ge-exchange-page .result-grid {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(0, 0.8fr);
@@ -913,7 +861,7 @@
   min-width: 0;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .ge-exchange-page .result-grid {
     grid-template-columns: 1fr;
   }
@@ -1023,6 +971,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  position: sticky;
+  top: 20px;
 }
 
 /* Tracker Cards */
@@ -1039,7 +989,7 @@
   justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-4);
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-elev);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1047,6 +997,7 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+  color: var(--text);
 }
 
 .card-badge {
@@ -1201,13 +1152,13 @@
 }
 
 .trading-overview .overview-details {
-  border-top: 1px solid var(--border);
-  padding-top: var(--space-3);
+  border-top: none;
+  padding-top: 0;
 }
 
 .trading-overview .overview-summary {
   list-style: none;
-  display: flex;
+  display: none;
   align-items: center;
   gap: var(--space-3);
   padding: 10px 12px;
@@ -2754,7 +2705,7 @@
 }
 
 /* Responsive: Show cards on mobile, table on desktop */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .trade-table-container {
     display: none;
   }
@@ -2765,7 +2716,7 @@
 }
 
 /* Medium screens: tighter table */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 1025px) and (max-width: 1200px) {
   .trade-table th,
   .trade-table td {
     padding: 8px 6px;
@@ -4554,69 +4505,6 @@
   color: var(--text-muted);
 }
 
-/* Tracker Card Styles */
-.tracker-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.tracker-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-elev);
-}
-
-.tracker-card-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin: 0;
-}
-
-.tracker-card-header .card-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.tracker-card-header .card-badge {
-  font-size: 0.7rem;
-  padding: 4px 8px;
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--accent);
-  border-radius: 4px;
-}
-
-/* Tracker Layout */
-.tracker-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.tracker-stats {
-  margin-bottom: 4px;
-}
-
-.tracker-primary {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.tracker-main {
-  min-width: 0;
-}
-
-.tracker-sidebar {
-  position: sticky;
-  top: 20px;
-}
-
 /* Trades Card */
 .trades-card .trade-filters {
   border: none;
@@ -4647,22 +4535,27 @@
   }
 
   .tracker-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .tracker-sidebar {
-    grid-column: span 2;
-    position: static;
-  }
-}
-
-@media (max-width: 900px) {
-  .tracker-grid {
     grid-template-columns: 1fr;
   }
 
   .tracker-sidebar {
     grid-column: span 1;
+    position: static;
+  }
+
+  .tracker-primary,
+  .tracker-main,
+  .tracker-sidebar,
+  .tracker-card {
+    width: 100%;
+  }
+
+  .trade-list,
+  .trade-cards,
+  .trade-filters,
+  .mobile-actions-card {
+    width: 100%;
+    max-width: 100%;
   }
 
   .trade-filters .filter-bar {
@@ -4810,7 +4703,7 @@
   }
 }
 
-@media (max-width: 640px), (max-height: 520px) {
+@media (max-width: 640px) {
   .tracker-grid {
     display: flex;
     flex-direction: column;
@@ -4861,6 +4754,15 @@
 
   .trading-overview .overview-period {
     align-self: flex-start;
+  }
+
+  .trading-overview .overview-details {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-3);
+  }
+
+  .trading-overview .overview-summary {
+    display: flex;
   }
 
   .trading-overview .overview-summary {

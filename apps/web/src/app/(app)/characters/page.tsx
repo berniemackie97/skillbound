@@ -22,8 +22,10 @@ import {
   getUserCharacters,
 } from '@/lib/character/character-selection';
 import { getCharacterStateSummary } from '@/lib/character/character-state-service';
+import { normalizeActivityScore } from '@/lib/character/normalize-activity-score';
 import { getLatestContentBundle } from '@/lib/content/content-bundles';
 import { getDbClient } from '@/lib/db';
+import { formatNumber } from '@/lib/format/format-number';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildPageMetadata({
@@ -170,17 +172,27 @@ export default async function CharactersPage() {
               </p>
             </div>
             <div className="hero-quick-stats">
-              <div>
-                <span>Total level</span>
-                <strong>{latestSnapshot?.totalLevel ?? '—'}</strong>
+              <div className="stat-kv">
+                <span className="label">Total level:</span>
+                <strong>
+                  {latestSnapshot
+                    ? formatNumber(latestSnapshot.totalLevel)
+                    : '—'}
+                </strong>
               </div>
-              <div>
-                <span>Total XP</span>
-                <strong>{latestSnapshot?.totalXp ?? '—'}</strong>
+              <div className="stat-kv">
+                <span className="label">Total XP:</span>
+                <strong>
+                  {latestSnapshot ? formatNumber(latestSnapshot.totalXp) : '—'}
+                </strong>
               </div>
-              <div>
-                <span>Combat</span>
-                <strong>{latestSnapshot?.combatLevel ?? '—'}</strong>
+              <div className="stat-kv">
+                <span className="label">Combat:</span>
+                <strong>
+                  {latestSnapshot
+                    ? formatNumber(latestSnapshot.combatLevel)
+                    : '—'}
+                </strong>
               </div>
             </div>
             <div className="hero-links">
@@ -534,7 +546,9 @@ function buildActivitySeries(snapshots: CharacterSnapshot[]): Array<{
   const series = Array.from(activityNames).map((name) => {
     const values = snapshots.map((snapshot) => {
       const value = snapshot.activities?.[name];
-      return typeof value === 'number' ? value : 0;
+      return typeof value === 'number'
+        ? normalizeActivityScore(name, value)
+        : 0;
     });
     const first = values[0] ?? 0;
     const last = values[values.length - 1] ?? 0;

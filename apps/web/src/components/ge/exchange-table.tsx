@@ -315,7 +315,7 @@ function ExchangeTableBase({
     }
     updateTimeoutRef.current = window.setTimeout(() => {
       setRecentlyUpdatedIds(new Set());
-    }, 900);
+    }, 1600);
   }, [items]);
 
   useEffect(() => {
@@ -333,24 +333,18 @@ function ExchangeTableBase({
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const widthMedia = window.matchMedia('(max-width: 640px)');
-    const heightMedia = window.matchMedia('(max-height: 520px)');
-    const handleChange = () =>
-      setIsCompact(widthMedia.matches || heightMedia.matches);
+    const widthMedia = window.matchMedia('(max-width: 1024px)');
+    const handleChange = () => setIsCompact(widthMedia.matches);
     handleChange();
     if (widthMedia.addEventListener) {
       widthMedia.addEventListener('change', handleChange);
-      heightMedia.addEventListener('change', handleChange);
       return () => {
         widthMedia.removeEventListener('change', handleChange);
-        heightMedia.removeEventListener('change', handleChange);
       };
     }
     widthMedia.addListener(handleChange);
-    heightMedia.addListener(handleChange);
     return () => {
       widthMedia.removeListener(handleChange);
-      heightMedia.removeListener(handleChange);
     };
   }, []);
 

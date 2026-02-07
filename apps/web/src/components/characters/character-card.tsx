@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
+import { Modal } from '@/components/ui/modal';
 
 type CharacterCardProps = {
   character: {
@@ -26,7 +28,10 @@ function formatTimestamp(value: string | null) {
 
 export function CharacterCard({ character, isActive }: CharacterCardProps) {
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isWorking, setIsWorking] = useState(false);
   const [tagsInput, setTagsInput] = useState(character.tags.join(', '));
   const [notesInput, setNotesInput] = useState(character.notes ?? '');
   const [isPublic, setIsPublic] = useState(character.isPublic);
@@ -34,10 +39,47 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    setTagsInput(character.tags.join(', '));
+    setNotesInput(character.notes ?? '');
+    setIsPublic(character.isPublic);
+    setIsArchived(Boolean(character.archivedAt));
+  }, [
+    character.archivedAt,
+    character.isPublic,
+    character.notes,
+    character.tags,
+  ]);
+
   const tagList = useMemo(
     () => character.tags.filter((tag) => tag.trim().length > 0).slice(0, 6),
     [character.tags]
   );
+
+  const resetEditState = () => {
+    setTagsInput(character.tags.join(', '));
+    setNotesInput(character.notes ?? '');
+    setIsPublic(character.isPublic);
+  };
+
+  const openEditModal = () => {
+    resetEditState();
+    setError(null);
+    setStatus(null);
+    setIsEditOpen(true);
+  };
+
+  const openArchiveModal = () => {
+    setError(null);
+    setStatus(null);
+    setIsArchiveOpen(true);
+  };
+
+  const openDeleteModal = () => {
+    setError(null);
+    setStatus(null);
+    setIsDeleteOpen(true);
+  };
 
   async function handleSetActive() {
     setError(null);
@@ -73,9 +115,10 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
     router.refresh();
   }
 
-  async function handleSave() {
+  async function handleSave(): Promise<boolean> {
     setError(null);
     setStatus('Saving changes…');
+    setIsWorking(true);
     const response = await fetch(`/api/characters/${character.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -89,46 +132,40 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
     if (!response.ok) {
       setStatus(null);
       setError('Unable to save character updates.');
-      return;
+      setIsWorking(false);
+      return false;
     }
     setStatus('Changes saved.');
-    setIsEditing(false);
+    setIsWorking(false);
+    setIsEditOpen(false);
     router.refresh();
+    return true;
   }
 
-  async function handleDelete() {
-    const confirmed = window.confirm(
-      `Delete ${character.displayName}? This removes snapshots and overrides.`
-    );
-    if (!confirmed) {
-      return;
-    }
+  async function handleDelete(): Promise<boolean> {
     setError(null);
     setStatus('Deleting character…');
+    setIsWorking(true);
     const response = await fetch(`/api/characters/${character.id}`, {
       method: 'DELETE',
     });
     if (!response.ok) {
       setStatus(null);
       setError('Delete failed. Try again.');
-      return;
+      setIsWorking(false);
+      return false;
     }
     setStatus('Character deleted.');
+    setIsWorking(false);
+    setIsDeleteOpen(false);
     router.refresh();
+    return true;
   }
 
-  async function handleArchiveToggle() {
-    const nextArchived = !isArchived;
-    const confirmed = nextArchived
-      ? window.confirm(
-          `Archive ${character.displayName}? You can restore it later.`
-        )
-      : true;
-    if (!confirmed) {
-      return;
-    }
+  async function handleArchive(nextArchived: boolean): Promise<boolean> {
     setError(null);
     setStatus(nextArchived ? 'Archiving…' : 'Restoring…');
+    setIsWorking(true);
     const response = await fetch(`/api/characters/${character.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -137,11 +174,15 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
     if (!response.ok) {
       setStatus(null);
       setError('Update failed. Try again.');
-      return;
+      setIsWorking(false);
+      return false;
     }
     setStatus(nextArchived ? 'Character archived.' : 'Character restored.');
     setIsArchived(nextArchived);
+    setIsWorking(false);
+    setIsArchiveOpen(false);
     router.refresh();
+    return true;
   }
 
   return (
@@ -184,26 +225,56 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
         <button className="button" type="button" onClick={handleSync}>
           Sync now
         </button>
-        <button
-          className="button ghost"
-          type="button"
-          onClick={() => setIsEditing((value) => !value)}
-        >
-          {isEditing ? 'Close edit' : 'Edit details'}
+        <button className="button ghost" type="button" onClick={openEditModal}>
+          Edit details
         </button>
         <button
           className="button ghost"
           type="button"
-          onClick={handleArchiveToggle}
+          onClick={openArchiveModal}
         >
           {isArchived ? 'Restore' : 'Archive'}
         </button>
-        <button className="button danger" type="button" onClick={handleDelete}>
+        <button
+          className="button danger"
+          type="button"
+          onClick={openDeleteModal}
+        >
           Delete
         </button>
       </div>
 
-      {isEditing && (
+      <Modal
+        isOpen={isEditOpen}
+        size="md"
+        title={`Edit ${character.displayName}`}
+        footer={
+          <div className="form-actions">
+            <button
+              className="modal-btn primary"
+              disabled={isWorking}
+              type="button"
+              onClick={handleSave}
+            >
+              {isWorking ? 'Saving…' : 'Save changes'}
+            </button>
+            <button
+              className="modal-btn ghost"
+              disabled={isWorking}
+              type="button"
+              onClick={() => {
+                setIsEditOpen(false);
+                resetEditState();
+                setStatus(null);
+                setError(null);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        }
+        onClose={() => setIsEditOpen(false)}
+      >
         <div className="character-edit">
           <label>
             <span>Tags (comma separated)</span>
@@ -227,35 +298,81 @@ export function CharacterCard({ character, isActive }: CharacterCardProps) {
             />
             <span>Public profile</span>
           </label>
-          <label className="checkbox-row">
-            <input
-              checked={isArchived}
-              type="checkbox"
-              onChange={(event) => setIsArchived(event.target.checked)}
-            />
-            <span>Archived</span>
-          </label>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={isArchiveOpen}
+        size="sm"
+        subtitle={character.displayName}
+        title={isArchived ? 'Restore character' : 'Archive character'}
+        footer={
           <div className="form-actions">
-            <button className="button" type="button" onClick={handleSave}>
-              Save changes
+            <button
+              className="modal-btn primary"
+              disabled={isWorking}
+              type="button"
+              onClick={() => handleArchive(!isArchived)}
+            >
+              {isWorking
+                ? isArchived
+                  ? 'Restoring…'
+                  : 'Archiving…'
+                : isArchived
+                  ? 'Restore'
+                  : 'Archive'}
             </button>
             <button
-              className="button ghost"
+              className="modal-btn ghost"
+              disabled={isWorking}
               type="button"
-              onClick={() => {
-                setIsEditing(false);
-                setTagsInput(character.tags.join(', '));
-                setNotesInput(character.notes ?? '');
-                setIsPublic(character.isPublic);
-                setStatus(null);
-                setError(null);
-              }}
+              onClick={() => setIsArchiveOpen(false)}
             >
               Cancel
             </button>
           </div>
-        </div>
-      )}
+        }
+        onClose={() => setIsArchiveOpen(false)}
+      >
+        <p className="modal-description">
+          {isArchived
+            ? 'Restore this character to include it in your active roster again.'
+            : 'Archived characters stay saved but are hidden from your active list.'}
+        </p>
+      </Modal>
+
+      <Modal
+        isOpen={isDeleteOpen}
+        size="sm"
+        subtitle={character.displayName}
+        title="Delete character"
+        footer={
+          <div className="form-actions">
+            <button
+              className="modal-btn danger"
+              disabled={isWorking}
+              type="button"
+              onClick={handleDelete}
+            >
+              {isWorking ? 'Deleting…' : 'Delete'}
+            </button>
+            <button
+              className="modal-btn ghost"
+              disabled={isWorking}
+              type="button"
+              onClick={() => setIsDeleteOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        }
+        onClose={() => setIsDeleteOpen(false)}
+      >
+        <p className="modal-description">
+          This removes snapshots and overrides for this character. This action
+          cannot be undone.
+        </p>
+      </Modal>
 
       {status && !error && <div className="status-note">{status}</div>}
       {error && <div className="error">{error}</div>}

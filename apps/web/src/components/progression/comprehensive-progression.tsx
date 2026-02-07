@@ -17,6 +17,8 @@ import {
   type ReactNode,
 } from 'react';
 
+import { normalizeActivityScore } from '@/lib/character/normalize-activity-score';
+
 import {
   RequirementList,
   RequirementNamesProvider,
@@ -250,7 +252,17 @@ export function ComprehensiveProgression({
   const [_localProgress, setLocalProgress] =
     useState<LocalProgressState>(emptyLocalProgress);
 
-  const activityMap = data?.activities ?? null;
+  const activityMap = useMemo<Record<string, number> | null>(() => {
+    if (!data?.activities) return null;
+    const base = data.activities as Record<string, number>;
+    return {
+      ...base,
+      pvp_arena_rank: normalizeActivityScore(
+        'pvp_arena_rank',
+        base['pvp_arena_rank'] ?? 0
+      ),
+    };
+  }, [data?.activities]);
 
   const readLocalProgress = useCallback((): LocalProgressState => {
     if (!localStorageKey || typeof window === 'undefined') {

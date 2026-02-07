@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -32,6 +33,8 @@ const NAV_LINKS: NavLink[] = [
 ];
 
 export async function SiteNavApp() {
+  const headerList = await headers();
+  const pathname = headerList.get('x-nav-pathname') ?? '';
   const { hasGoogle, hasGitHub, hasFacebook, hasTwitter, hasMagicLink } =
     getAuthProviderFlags();
 
@@ -49,6 +52,8 @@ export async function SiteNavApp() {
   const visibleLinks = isSignedIn
     ? NAV_LINKS
     : NAV_LINKS.filter((link) => !link.requiresAuth);
+  const isActive = (href: string) =>
+    pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
   return (
     <header className="nav">
@@ -66,7 +71,11 @@ export async function SiteNavApp() {
 
       <nav className="nav-links">
         {visibleLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
+          <Link
+            key={link.href}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+            href={link.href}
+          >
             {link.label}
           </Link>
         ))}

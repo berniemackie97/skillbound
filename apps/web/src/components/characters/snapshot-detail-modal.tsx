@@ -1,6 +1,7 @@
 'use client';
 
 import { Modal } from '@/components/ui/modal';
+import { normalizeActivityScore } from '@/lib/character/normalize-activity-score';
 
 interface SkillData {
   name: string;
@@ -196,7 +197,9 @@ export function SnapshotDetailModal({
             {Object.entries(snapshot.activities).map(([name, value]) => (
               <div key={name} className="snapshot-activity">
                 <span className="activity-name">{name}</span>
-                <strong>{value.toLocaleString()}</strong>
+                <strong>
+                  {normalizeActivityScore(name, value).toLocaleString()}
+                </strong>
               </div>
             ))}
           </div>

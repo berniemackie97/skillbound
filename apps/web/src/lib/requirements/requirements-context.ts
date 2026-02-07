@@ -7,6 +7,8 @@ import {
 } from '@skillbound/domain';
 import type { HiscoresResponse } from '@skillbound/hiscores';
 
+import { normalizeActivityScore } from '../character/normalize-activity-score';
+
 function normalizeLevel(level: number): number {
   if (!Number.isFinite(level)) {
     return 1;
@@ -144,7 +146,11 @@ export function buildCharacterFacts(
   const activities: Record<string, number> = {};
 
   for (const activity of hiscores.activities ?? []) {
-    activities[activity.key] = normalizeXp(activity.score);
+    const normalizedScore = normalizeActivityScore(
+      activity.key,
+      activity.score
+    );
+    activities[activity.key] = normalizeXp(normalizedScore);
   }
 
   const facts: CharacterFacts = { skillLevels };
@@ -204,8 +210,11 @@ export function buildSnapshotActivities(
   const activities: Record<string, number> = {};
 
   for (const activity of hiscores.activities ?? []) {
-    const score = normalizeXp(activity.score);
-    activities[activity.key] = score;
+    const normalizedScore = normalizeActivityScore(
+      activity.key,
+      activity.score
+    );
+    activities[activity.key] = normalizeXp(normalizedScore);
   }
 
   return activities;

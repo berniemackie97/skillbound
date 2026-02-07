@@ -61,6 +61,11 @@ export function AuthModal({
 
   const hasOAuth = hasGoogle || hasGitHub || hasFacebook || hasTwitter;
 
+  const notifyAuthUpdated = () => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new Event('skillbound:auth-updated'));
+  };
+
   useEffect(() => {
     setPortalTarget(document.body);
   }, []);
@@ -138,6 +143,7 @@ export function AuthModal({
         try {
           await onSignIn('credentials', { identifier, password, callbackUrl });
           router.refresh();
+          notifyAuthUpdated();
           onClose();
         } catch (err) {
           if (isRedirectError(err)) throw err;
@@ -172,6 +178,7 @@ export function AuthModal({
         try {
           await onRegister(payload);
           router.refresh();
+          notifyAuthUpdated();
           onClose();
         } catch (err) {
           if (isRedirectError(err)) throw err;
@@ -232,6 +239,7 @@ export function AuthModal({
       try {
         await onSignOut();
         router.refresh();
+        notifyAuthUpdated();
         onClose();
       } catch (err) {
         if (isRedirectError(err)) throw err;

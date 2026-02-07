@@ -1,30 +1,97 @@
-/* Components: Form controls (base look-and-feel)
-   Keep these low-specificity so pages can override as needed.
-*/
+/* Components: Form controls (shared look-and-feel) */
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
 
 input,
 select,
 textarea {
   font-family: inherit;
   color: var(--text);
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  background: var(--rs-brown);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 0 rgba(255, 223, 128, 0.05);
+  transition: all 0.2s ease;
 }
 
 input,
 select {
-  padding: 9px 12px;
+  padding: 10px 14px;
 }
 
 textarea {
-  padding: 10px 12px;
+  padding: 10px 14px;
+  min-height: 110px;
+  resize: vertical;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+  border-color: var(--accent-strong);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 0 rgba(255, 223, 128, 0.08),
+    0 0 0 3px rgba(212, 175, 55, 0.2),
+    0 0 12px rgba(212, 175, 55, 0.15);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form-actions .button {
+  flex: 1 1 140px;
+}
+
+.form-grid .form-spacer {
+  display: none;
+}
+
+.character-edit {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .button {
+    flex: none;
+    width: 100%;
+  }
 }

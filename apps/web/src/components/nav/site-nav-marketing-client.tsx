@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { AuthProviderFlags } from '@/lib/auth/auth-providers';
 
@@ -62,44 +63,57 @@ export function SiteNavMarketingClient({
   registerAction,
   magicLinkAction,
 }: SiteNavMarketingClientProps) {
+  const pathname = usePathname();
   const [session, setSession] = useState<NavSessionResponse>(emptySession);
+  const isMountedRef = useRef(true);
+
+  const loadSession = useCallback(async () => {
+    try {
+      const response = await fetch('/api/nav/session', {
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        if (isMountedRef.current) setSession(emptySession);
+        return;
+      }
+      const payload = (await response.json()) as NavSessionResponse;
+      if (isMountedRef.current) {
+        setSession({
+          user: payload.user ?? null,
+          characters: payload.characters ?? [],
+          activeCharacterId: payload.activeCharacterId ?? null,
+        });
+      }
+    } catch {
+      if (isMountedRef.current) setSession(emptySession);
+    }
+  }, []);
 
   useEffect(() => {
-    let active = true;
-
-    const loadSession = async () => {
-      try {
-        const response = await fetch('/api/nav/session', {
-          cache: 'no-store',
-        });
-        if (!response.ok) {
-          if (active) setSession(emptySession);
-          return;
-        }
-        const payload = (await response.json()) as NavSessionResponse;
-        if (active) {
-          setSession({
-            user: payload.user ?? null,
-            characters: payload.characters ?? [],
-            activeCharacterId: payload.activeCharacterId ?? null,
-          });
-        }
-      } catch {
-        if (active) setSession(emptySession);
-      }
-    };
-
+    isMountedRef.current = true;
     void loadSession();
     return () => {
-      active = false;
+      isMountedRef.current = false;
     };
-  }, []);
+  }, [loadSession]);
+
+  useEffect(() => {
+    const handleAuthUpdated = () => {
+      void loadSession();
+    };
+    window.addEventListener('skillbound:auth-updated', handleAuthUpdated);
+    return () => {
+      window.removeEventListener('skillbound:auth-updated', handleAuthUpdated);
+    };
+  }, [loadSession]);
 
   const isSignedIn = Boolean(session.user?.id);
   const navLinks = useMemo<NavLink[]>(() => {
     if (!isSignedIn) return BASE_LINKS;
     return [{ href: '/characters', label: 'Characters' }, ...BASE_LINKS];
   }, [isSignedIn]);
+  const isActive = (href: string) =>
+    pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
   return (
     <header className="nav">
@@ -117,7 +131,11 @@ export function SiteNavMarketingClient({
 
       <nav className="nav-links">
         {navLinks.map((link) => (
-          <Link key={link.href} href={link.href}>
+          <Link
+            key={link.href}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+            href={link.href}
+          >
             {link.label}
           </Link>
         ))}

@@ -3,11 +3,11 @@ import { LookupActions } from '@/components/lookup/lookup-actions';
 import { LookupPanel } from '@/components/lookup/lookup-panel';
 import { SkillTilesPanel } from '@/components/lookup/skill-tiles-panel';
 import {
-  fetchLookup,
   getOverallSkill,
   getTopActivities,
   getTopSkills,
 } from '@/lib/lookup/lookup-data';
+import { fetchLookup } from '@/lib/lookup/lookup-server';
 import {
   parseLookupSearchParams,
   type LookupSearchParamsInput,

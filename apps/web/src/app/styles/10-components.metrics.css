@@ -1,0 +1,76 @@
+/* Components: Metrics + milestones */
+
+.metric-list,
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.metric-row {
+  font-size: 0.95rem;
+}
+
+.metric-row strong {
+  color: var(--accent-strong);
+}
+
+.stat-kv {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.milestone-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.milestone-item {
+  display: grid;
+  gap: 10px;
+}
+
+.milestone-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 176, 101, 0.25);
+  background: rgba(26, 21, 14, 0.65);
+  color: var(--text);
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.milestone-trigger:hover {
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+}
+
+.milestone-detail {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 176, 101, 0.2);
+  background: rgba(20, 16, 10, 0.45);
+  display: grid;
+  gap: 8px;
+}
+
+.milestone-json {
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(15, 12, 8, 0.6);
+  border: 1px solid rgba(226, 176, 101, 0.1);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+}

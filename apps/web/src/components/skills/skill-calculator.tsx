@@ -17,6 +17,7 @@ import type { HiscoresResponse } from '@skillbound/hiscores';
 import Image from 'next/image';
 import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 
+import { Modal } from '@/components/ui/modal';
 import type {
   CalculatorDataResponse,
   CalculatorItem,
@@ -337,6 +338,7 @@ export default function SkillCalculator({
   const ids = {
     displayName: `${idBase}-display-name`,
     accountType: `${idBase}-account-type`,
+    skillSelect: `${idBase}-skill-select`,
     currentLevel: `${idBase}-current-level`,
     targetLevel: `${idBase}-target-level`,
     currentXp: `${idBase}-current-xp`,
@@ -390,6 +392,8 @@ export default function SkillCalculator({
   const [hideMembers, setHideMembers] = useState(false);
   const [selectedBonuses, setSelectedBonuses] = useState<number[]>([]);
   const [useRealTimePrices, setUseRealTimePrices] = useState(false);
+  const [showBonusesModal, setShowBonusesModal] = useState(false);
+  const [showFiltersModal, setShowFiltersModal] = useState(false);
   const [actionsPerHourInput, setActionsPerHourInput] = useState('');
   const [sortBy, setSortBy] = useState<
     'level' | 'exp' | 'actions' | 'profit' | 'name' | 'hitpoints'
@@ -410,6 +414,11 @@ export default function SkillCalculator({
   const [monsterImages, setMonsterImages] = useState<Record<string, string>>(
     {}
   );
+
+  useEffect(() => {
+    setShowBonusesModal(false);
+    setShowFiltersModal(false);
+  }, [calculator.type, skill]);
 
   useEffect(() => {
     setTargetLevelInput(String(targetLevel));
@@ -704,6 +713,144 @@ export default function SkillCalculator({
       .map(([id, label]) => ({ id: Number(id), label: String(label) }))
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [skillData]);
+
+  const bonusesContent = skillData ? (
+    <div className="calc-checkbox-list">
+      {skillData.bonuses.map((bonus, index) => (
+        <label key={`${bonus.name}-${index}`} className="calc-checkbox">
+          <input
+            checked={selectedBonuses.includes(index)}
+            type="checkbox"
+            onChange={() => {
+              setSelectedBonuses((prev) => {
+                const bonusItem = skillData.bonuses[index];
+                if (!bonusItem) return prev;
+                if (prev.includes(index)) {
+                  return prev.filter((entry) => entry !== index);
+                }
+                if (bonusItem.validCategories.length === 0) {
+                  return [...prev, index];
+                }
+                const filtered = prev.filter((entry) => {
+                  const existing = skillData.bonuses[entry];
+                  if (!existing) return false;
+                  if (existing.validCategories.length === 0) return true;
+                  const overlaps = existing.validCategories.some((categoryId) =>
+                    bonusItem.validCategories.includes(categoryId)
+                  );
+                  return !overlaps;
+                });
+                return [...filtered, index];
+              });
+            }}
+          />
+          <span>{bonus.name}</span>
+          <span className="calc-checkbox-bonus">
+            +{Math.round((bonus.bonus - 1) * 100)}%
+          </span>
+        </label>
+      ))}
+    </div>
+  ) : null;
+
+  const filtersContent = skillData ? (
+    <>
+      <div className="calc-input-group">
+        <label htmlFor={ids.actionSearch}>Search actions</label>
+        <input
+          id={ids.actionSearch}
+          placeholder="Filter by name..."
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
+      {categoryOptions.length > 0 && (
+        <div className="calc-input-group">
+          <label htmlFor={ids.actionCategory}>Category</label>
+          <select
+            id={ids.actionCategory}
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(Number(e.target.value))}
+          >
+            <option value={0}>All categories</option>
+            {categoryOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      <div className="calc-input-group">
+        <label htmlFor={ids.actionsPerHour}>Actions per hour</label>
+        <input
+          id={ids.actionsPerHour}
+          min={0}
+          placeholder="For XP/hr calc"
+          type="number"
+          value={actionsPerHourInput}
+          onChange={(e) => setActionsPerHourInput(e.target.value)}
+        />
+      </div>
+      <div className="calc-checkbox-list">
+        {!skillData.members_only && (
+          <label className="calc-checkbox">
+            <input
+              checked={hideMembers}
+              type="checkbox"
+              onChange={(e) => setHideMembers(e.target.checked)}
+            />
+            <span>Hide members-only</span>
+          </label>
+        )}
+        {skillData.profit_loss_settings.real_time_prices && (
+          <label className="calc-checkbox">
+            <input
+              checked={useRealTimePrices}
+              type="checkbox"
+              onChange={(e) => setUseRealTimePrices(e.target.checked)}
+            />
+            <span>Use real-time prices</span>
+          </label>
+        )}
+      </div>
+    </>
+  ) : null;
+
+  const combatFiltersContent = combatData ? (
+    <>
+      <div className="calc-input-group">
+        <label htmlFor={ids.monsterSearch}>Search monsters</label>
+        <input
+          id={ids.monsterSearch}
+          placeholder="Filter by name..."
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
+      <div className="calc-input-group">
+        <label htmlFor={ids.killsPerHour}>Kills per hour</label>
+        <input
+          id={ids.killsPerHour}
+          min={0}
+          placeholder="For XP/hr calc"
+          type="number"
+          value={killsPerHourInput}
+          onChange={(e) => setKillsPerHourInput(e.target.value)}
+        />
+      </div>
+      <label className="calc-checkbox">
+        <input
+          checked={hideMembers}
+          type="checkbox"
+          onChange={(e) => setHideMembers(e.target.checked)}
+        />
+        <span>Hide members-only</span>
+      </label>
+    </>
+  ) : null;
 
   const bonusMultiplier = useCallback(
     (action: SkillAction) => {
@@ -1179,23 +1326,43 @@ export default function SkillCalculator({
 
       {/* Skill Selector */}
       <section className="calc-skills">
-        {skillGroups.map((group) => (
-          <div key={group.label} className="calc-skill-group">
-            <span className="calc-skill-group-label">{group.label}</span>
-            <div className="calc-skill-buttons">
-              {group.skills.map((skillKey) => (
-                <button
-                  key={skillKey}
-                  className={`calc-skill-btn ${skill === skillKey ? 'active' : ''}`}
-                  type="button"
-                  onClick={() => handleSkillChange(skillKey)}
-                >
-                  {SKILL_DISPLAY_NAMES[skillKey]}
-                </button>
-              ))}
+        <div className="calc-skill-select">
+          <label htmlFor={ids.skillSelect}>Skill</label>
+          <select
+            id={ids.skillSelect}
+            value={skill}
+            onChange={(e) => handleSkillChange(e.target.value as SkillName)}
+          >
+            {skillGroups.map((group) => (
+              <optgroup key={group.label} label={group.label}>
+                {group.skills.map((skillKey) => (
+                  <option key={skillKey} value={skillKey}>
+                    {SKILL_DISPLAY_NAMES[skillKey]}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        </div>
+        <div className="calc-skill-groups">
+          {skillGroups.map((group) => (
+            <div key={group.label} className="calc-skill-group">
+              <span className="calc-skill-group-label">{group.label}</span>
+              <div className="calc-skill-buttons">
+                {group.skills.map((skillKey) => (
+                  <button
+                    key={skillKey}
+                    className={`calc-skill-btn ${skill === skillKey ? 'active' : ''}`}
+                    type="button"
+                    onClick={() => handleSkillChange(skillKey)}
+                  >
+                    {SKILL_DISPLAY_NAMES[skillKey]}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       {/* Main Content Grid */}
@@ -1333,135 +1500,67 @@ export default function SkillCalculator({
           {/* Skill-specific Controls */}
           {calculator.type === 'skill' && skillData && (
             <>
-              {/* Bonuses Card */}
               {skillData.bonuses.length > 0 && (
-                <div className="calc-card">
+                <div className="calc-card calc-desktop-only">
                   <div className="calc-card-header">
                     <h3>XP bonuses</h3>
                   </div>
-                  <div className="calc-card-body">
-                    <div className="calc-checkbox-list">
-                      {skillData.bonuses.map((bonus, index) => (
-                        <label
-                          key={`${bonus.name}-${index}`}
-                          className="calc-checkbox"
-                        >
-                          <input
-                            checked={selectedBonuses.includes(index)}
-                            type="checkbox"
-                            onChange={() => {
-                              setSelectedBonuses((prev) => {
-                                const bonusItem = skillData.bonuses[index];
-                                if (!bonusItem) return prev;
-                                if (prev.includes(index)) {
-                                  return prev.filter(
-                                    (entry) => entry !== index
-                                  );
-                                }
-                                if (bonusItem.validCategories.length === 0) {
-                                  return [...prev, index];
-                                }
-                                const filtered = prev.filter((entry) => {
-                                  const existing = skillData.bonuses[entry];
-                                  if (!existing) return false;
-                                  if (existing.validCategories.length === 0)
-                                    return true;
-                                  const overlaps =
-                                    existing.validCategories.some(
-                                      (categoryId) =>
-                                        bonusItem.validCategories.includes(
-                                          categoryId
-                                        )
-                                    );
-                                  return !overlaps;
-                                });
-                                return [...filtered, index];
-                              });
-                            }}
-                          />
-                          <span>{bonus.name}</span>
-                          <span className="calc-checkbox-bonus">
-                            +{Math.round((bonus.bonus - 1) * 100)}%
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+                  <div className="calc-card-body">{bonusesContent}</div>
                 </div>
               )}
 
-              {/* Filters Card */}
-              <div className="calc-card">
+              <div className="calc-card calc-desktop-only">
                 <div className="calc-card-header">
                   <h3>Filters</h3>
                 </div>
+                <div className="calc-card-body">{filtersContent}</div>
+              </div>
+
+              <div className="calc-card calc-mobile-only">
+                <div className="calc-card-header">
+                  <h3>Quick filters</h3>
+                </div>
                 <div className="calc-card-body">
-                  <div className="calc-input-group">
-                    <label htmlFor={ids.actionSearch}>Search actions</label>
-                    <input
-                      id={ids.actionSearch}
-                      placeholder="Filter by name..."
-                      type="text"
-                      value={filter}
-                      onChange={(e) => setFilter(e.target.value)}
-                    />
-                  </div>
-                  {categoryOptions.length > 0 && (
-                    <div className="calc-input-group">
-                      <label htmlFor={ids.actionCategory}>Category</label>
-                      <select
-                        id={ids.actionCategory}
-                        value={categoryFilter}
-                        onChange={(e) =>
-                          setCategoryFilter(Number(e.target.value))
-                        }
+                  <div className="calc-mobile-actions">
+                    {skillData.bonuses.length > 0 && (
+                      <button
+                        className="calc-btn"
+                        type="button"
+                        onClick={() => setShowBonusesModal(true)}
                       >
-                        <option value={0}>All categories</option>
-                        {categoryOptions.map((option) => (
-                          <option key={option.id} value={option.id}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
-                  <div className="calc-input-group">
-                    <label htmlFor={ids.actionsPerHour}>Actions per hour</label>
-                    <input
-                      id={ids.actionsPerHour}
-                      min={0}
-                      placeholder="For XP/hr calc"
-                      type="number"
-                      value={actionsPerHourInput}
-                      onChange={(e) => setActionsPerHourInput(e.target.value)}
-                    />
-                  </div>
-                  <div className="calc-checkbox-list">
-                    {!skillData.members_only && (
-                      <label className="calc-checkbox">
-                        <input
-                          checked={hideMembers}
-                          type="checkbox"
-                          onChange={(e) => setHideMembers(e.target.checked)}
-                        />
-                        <span>Hide members-only</span>
-                      </label>
+                        XP bonuses
+                      </button>
                     )}
-                    {skillData.profit_loss_settings.real_time_prices && (
-                      <label className="calc-checkbox">
-                        <input
-                          checked={useRealTimePrices}
-                          type="checkbox"
-                          onChange={(e) =>
-                            setUseRealTimePrices(e.target.checked)
-                          }
-                        />
-                        <span>Use real-time prices</span>
-                      </label>
-                    )}
+                    <button
+                      className="calc-btn ghost"
+                      type="button"
+                      onClick={() => setShowFiltersModal(true)}
+                    >
+                      Filters
+                    </button>
                   </div>
                 </div>
               </div>
+
+              {skillData.bonuses.length > 0 && (
+                <Modal
+                  isOpen={showBonusesModal}
+                  size="lg"
+                  title="XP bonuses"
+                  onClose={() => setShowBonusesModal(false)}
+                >
+                  <div className="calc-modal-body">{bonusesContent}</div>
+                </Modal>
+              )}
+
+              <Modal
+                isOpen={showFiltersModal}
+                size="lg"
+                title="Filters"
+                onClose={() => setShowFiltersModal(false)}
+              >
+                <div className="calc-modal-body">{filtersContent}</div>
+              </Modal>
             </>
           )}
 
@@ -1509,42 +1608,38 @@ export default function SkillCalculator({
                 </div>
               </div>
 
-              <div className="calc-card">
+              <div className="calc-card calc-desktop-only">
                 <div className="calc-card-header">
                   <h3>Filters</h3>
                 </div>
+                <div className="calc-card-body">{combatFiltersContent}</div>
+              </div>
+
+              <div className="calc-card calc-mobile-only">
+                <div className="calc-card-header">
+                  <h3>Quick filters</h3>
+                </div>
                 <div className="calc-card-body">
-                  <div className="calc-input-group">
-                    <label htmlFor={ids.monsterSearch}>Search monsters</label>
-                    <input
-                      id={ids.monsterSearch}
-                      placeholder="Filter by name..."
-                      type="text"
-                      value={filter}
-                      onChange={(e) => setFilter(e.target.value)}
-                    />
+                  <div className="calc-mobile-actions">
+                    <button
+                      className="calc-btn"
+                      type="button"
+                      onClick={() => setShowFiltersModal(true)}
+                    >
+                      Filters
+                    </button>
                   </div>
-                  <div className="calc-input-group">
-                    <label htmlFor={ids.killsPerHour}>Kills per hour</label>
-                    <input
-                      id={ids.killsPerHour}
-                      min={0}
-                      placeholder="For XP/hr calc"
-                      type="number"
-                      value={killsPerHourInput}
-                      onChange={(e) => setKillsPerHourInput(e.target.value)}
-                    />
-                  </div>
-                  <label className="calc-checkbox">
-                    <input
-                      checked={hideMembers}
-                      type="checkbox"
-                      onChange={(e) => setHideMembers(e.target.checked)}
-                    />
-                    <span>Hide members-only</span>
-                  </label>
                 </div>
               </div>
+
+              <Modal
+                isOpen={showFiltersModal}
+                size="lg"
+                title="Filters"
+                onClose={() => setShowFiltersModal(false)}
+              >
+                <div className="calc-modal-body">{combatFiltersContent}</div>
+              </Modal>
 
               <div className="calc-card">
                 <div className="calc-card-header">
@@ -1647,341 +1742,562 @@ export default function SkillCalculator({
 
           {/* Skill Actions Table */}
           {calculator.type === 'skill' && skillData && !loadingCalculator && (
-            <div className="calc-table-container">
-              <table className="calc-table">
-                <thead>
-                  <tr>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('level')}
-                    >
-                      Level{' '}
-                      {sortBy === 'level' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('name')}
-                    >
-                      Action{' '}
-                      {sortBy === 'name' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('exp')}
-                    >
-                      XP{' '}
-                      {sortBy === 'exp' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('actions')}
-                    >
-                      Actions{' '}
-                      {sortBy === 'actions' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th>XP/hr</th>
-                    {skillData.profit_loss_settings.show_components && (
-                      <th>Materials</th>
-                    )}
-                    {skillData.profit_loss_settings.enabled && (
+            <>
+              <div className="calc-table-container">
+                <table className="calc-table">
+                  <thead>
+                    <tr>
                       <th
                         className="calc-th-sortable"
-                        onClick={() => toggleSort('profit')}
+                        onClick={() => toggleSort('level')}
                       >
-                        Profit{' '}
-                        {sortBy === 'profit' && (
+                        Level{' '}
+                        {sortBy === 'level' && (
                           <span className="calc-sort-icon">
                             {sortDirection === 'asc' ? '↑' : '↓'}
                           </span>
                         )}
                       </th>
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {computedActions.length === 0 ? (
-                    <tr>
-                      <td
-                        className="calc-empty"
-                        colSpan={
-                          5 +
-                          (skillData.profit_loss_settings.show_components
-                            ? 1
-                            : 0) +
-                          (skillData.profit_loss_settings.enabled ? 1 : 0)
-                        }
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('name')}
                       >
-                        No actions match your filters.
-                      </td>
+                        Action{' '}
+                        {sortBy === 'name' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('exp')}
+                      >
+                        XP{' '}
+                        {sortBy === 'exp' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('actions')}
+                      >
+                        Actions{' '}
+                        {sortBy === 'actions' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th>XP/hr</th>
+                      {skillData.profit_loss_settings.show_components && (
+                        <th>Materials</th>
+                      )}
+                      {skillData.profit_loss_settings.enabled && (
+                        <th
+                          className="calc-th-sortable"
+                          onClick={() => toggleSort('profit')}
+                        >
+                          Profit{' '}
+                          {sortBy === 'profit' && (
+                            <span className="calc-sort-icon">
+                              {sortDirection === 'asc' ? '↑' : '↓'}
+                            </span>
+                          )}
+                        </th>
+                      )}
                     </tr>
-                  ) : (
-                    computedActions.map((entry, index) => {
-                      const action = entry.action;
-                      const itemsUsed = itemsUsedForAction(
-                        action,
-                        entry.actionsNeeded
-                      );
-                      const levelMet = action.level_req <= currentLevel;
-                      const xpPerHour =
-                        actionsPerHour > 0
-                          ? entry.xpPerAction * actionsPerHour
-                          : null;
-                      const actionImage = resolveActionImage(action.image);
-                      const actionHref = buildWikiUrl(action.name);
-                      return (
-                        <tr
-                          key={`${action.name}-${index}`}
-                          className={
-                            levelMet ? 'calc-row-met' : 'calc-row-unmet'
+                  </thead>
+                  <tbody>
+                    {computedActions.length === 0 ? (
+                      <tr>
+                        <td
+                          className="calc-empty"
+                          colSpan={
+                            5 +
+                            (skillData.profit_loss_settings.show_components
+                              ? 1
+                              : 0) +
+                            (skillData.profit_loss_settings.enabled ? 1 : 0)
                           }
                         >
-                          <td>
+                          No actions match your filters.
+                        </td>
+                      </tr>
+                    ) : (
+                      computedActions.map((entry, index) => {
+                        const action = entry.action;
+                        const itemsUsed = itemsUsedForAction(
+                          action,
+                          entry.actionsNeeded
+                        );
+                        const levelMet = action.level_req <= currentLevel;
+                        const xpPerHour =
+                          actionsPerHour > 0
+                            ? entry.xpPerAction * actionsPerHour
+                            : null;
+                        const actionImage = resolveActionImage(action.image);
+                        const actionHref = buildWikiUrl(action.name);
+                        return (
+                          <tr
+                            key={`${action.name}-${index}`}
+                            className={
+                              levelMet ? 'calc-row-met' : 'calc-row-unmet'
+                            }
+                          >
+                            <td>
+                              <span
+                                className={`calc-level-badge ${levelMet ? 'met' : 'unmet'}`}
+                              >
+                                {action.level_req}
+                              </span>
+                            </td>
+                            <td>
+                              <div className="calc-action-cell">
+                                <a
+                                  className="calc-action-link"
+                                  href={actionHref}
+                                  rel="noreferrer"
+                                  target="_blank"
+                                  title={`Open ${action.name} on the OSRS Wiki`}
+                                >
+                                  {actionImage && (
+                                    <Image
+                                      alt=""
+                                      height={24}
+                                      loading="lazy"
+                                      src={actionImage}
+                                      width={24}
+                                    />
+                                  )}
+                                  <div className="calc-action-info">
+                                    <span className="calc-action-name">
+                                      {action.name}
+                                    </span>
+                                    {action.action_members && (
+                                      <span className="calc-member-tag">
+                                        P2P
+                                      </span>
+                                    )}
+                                  </div>
+                                </a>
+                              </div>
+                            </td>
+                            <td className="calc-num">
+                              {formatDecimal(entry.xpPerAction)}
+                            </td>
+                            <td className="calc-num">
+                              {formatNumber(entry.actionsNeeded)}
+                            </td>
+                            <td className="calc-num">
+                              {xpPerHour === null
+                                ? '-'
+                                : formatNumber(Math.round(xpPerHour))}
+                            </td>
+                            {skillData.profit_loss_settings.show_components && (
+                              <td className="calc-materials">
+                                {itemsUsed ? (
+                                  <ul>
+                                    {itemsUsed.map((item) => (
+                                      <li key={item.name}>
+                                        {formatNumber(Math.round(item.amount))}×{' '}
+                                        {item.name}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <span className="calc-muted">-</span>
+                                )}
+                              </td>
+                            )}
+                            {skillData.profit_loss_settings.enabled && (
+                              <td
+                                className={`calc-num ${
+                                  entry.profit === null
+                                    ? 'calc-muted'
+                                    : entry.profit >= 0
+                                      ? 'calc-profit'
+                                      : 'calc-loss'
+                                }`}
+                              >
+                                {entry.profit === null
+                                  ? '-'
+                                  : formatGp(Math.round(entry.profit))}
+                              </td>
+                            )}
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="calc-mobile-list">
+                {computedActions.length === 0 ? (
+                  <div className="calc-empty">
+                    No actions match your filters.
+                  </div>
+                ) : (
+                  computedActions.map((entry, index) => {
+                    const action = entry.action;
+                    const itemsUsed = itemsUsedForAction(
+                      action,
+                      entry.actionsNeeded
+                    );
+                    const levelMet = action.level_req <= currentLevel;
+                    const xpPerHour =
+                      actionsPerHour > 0
+                        ? entry.xpPerAction * actionsPerHour
+                        : null;
+                    const actionImage = resolveActionImage(action.image);
+                    const actionHref = buildWikiUrl(action.name);
+                    return (
+                      <article
+                        key={`${action.name}-${index}`}
+                        className={`calc-mobile-card ${
+                          levelMet ? 'calc-row-met' : 'calc-row-unmet'
+                        }`}
+                      >
+                        <div className="calc-mobile-header">
+                          <div className="calc-mobile-title">
                             <span
                               className={`calc-level-badge ${levelMet ? 'met' : 'unmet'}`}
                             >
                               {action.level_req}
                             </span>
-                          </td>
-                          <td>
-                            <div className="calc-action-cell">
-                              <a
-                                className="calc-action-link"
-                                href={actionHref}
-                                rel="noreferrer"
-                                target="_blank"
-                                title={`Open ${action.name} on the OSRS Wiki`}
-                              >
-                                {actionImage && (
-                                  <Image
-                                    alt=""
-                                    height={24}
-                                    loading="lazy"
-                                    src={actionImage}
-                                    width={24}
-                                  />
-                                )}
-                                <div className="calc-action-info">
-                                  <span className="calc-action-name">
-                                    {action.name}
-                                  </span>
-                                  {action.action_members && (
-                                    <span className="calc-member-tag">P2P</span>
-                                  )}
-                                </div>
-                              </a>
-                            </div>
-                          </td>
-                          <td className="calc-num">
-                            {formatDecimal(entry.xpPerAction)}
-                          </td>
-                          <td className="calc-num">
-                            {formatNumber(entry.actionsNeeded)}
-                          </td>
-                          <td className="calc-num">
-                            {xpPerHour === null
-                              ? '-'
-                              : formatNumber(Math.round(xpPerHour))}
-                          </td>
-                          {skillData.profit_loss_settings.show_components && (
-                            <td className="calc-materials">
-                              {itemsUsed ? (
-                                <ul>
-                                  {itemsUsed.map((item) => (
-                                    <li key={item.name}>
-                                      {formatNumber(Math.round(item.amount))}×{' '}
-                                      {item.name}
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : (
-                                <span className="calc-muted">-</span>
+                            <a
+                              className="calc-action-link"
+                              href={actionHref}
+                              rel="noreferrer"
+                              target="_blank"
+                              title={`Open ${action.name} on the OSRS Wiki`}
+                            >
+                              {actionImage && (
+                                <Image
+                                  alt=""
+                                  height={24}
+                                  loading="lazy"
+                                  src={actionImage}
+                                  width={24}
+                                />
                               )}
-                            </td>
-                          )}
-                          {skillData.profit_loss_settings.enabled && (
-                            <td
-                              className={`calc-num ${
+                              <div className="calc-action-info">
+                                <span className="calc-action-name">
+                                  {action.name}
+                                </span>
+                                {action.action_members && (
+                                  <span className="calc-member-tag">P2P</span>
+                                )}
+                              </div>
+                            </a>
+                          </div>
+                          {skillData.profit_loss_settings.enabled ? (
+                            <strong
+                              className={
                                 entry.profit === null
                                   ? 'calc-muted'
                                   : entry.profit >= 0
                                     ? 'calc-profit'
                                     : 'calc-loss'
-                              }`}
+                              }
                             >
                               {entry.profit === null
                                 ? '-'
                                 : formatGp(Math.round(entry.profit))}
-                            </td>
-                          )}
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
+                            </strong>
+                          ) : null}
+                        </div>
+                        <div className="calc-mobile-stats">
+                          <div>
+                            <span>XP</span>
+                            <strong>{formatDecimal(entry.xpPerAction)}</strong>
+                          </div>
+                          <div>
+                            <span>Actions</span>
+                            <strong>{formatNumber(entry.actionsNeeded)}</strong>
+                          </div>
+                          <div>
+                            <span>XP/hr</span>
+                            <strong>
+                              {xpPerHour === null
+                                ? '-'
+                                : formatNumber(Math.round(xpPerHour))}
+                            </strong>
+                          </div>
+                        </div>
+                        {skillData.profit_loss_settings.show_components && (
+                          <div className="calc-mobile-materials">
+                            {itemsUsed ? (
+                              <ul>
+                                {itemsUsed.map((item) => (
+                                  <li key={item.name}>
+                                    {formatNumber(Math.round(item.amount))}×{' '}
+                                    {item.name}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <span className="calc-muted">-</span>
+                            )}
+                          </div>
+                        )}
+                      </article>
+                    );
+                  })
+                )}
+              </div>
+            </>
           )}
 
           {/* Combat Monsters Table */}
           {calculator.type === 'combat' && combatData && !loadingCalculator && (
-            <div className="calc-table-container">
-              <table className="calc-table">
-                <thead>
-                  <tr>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('name')}
-                    >
-                      Monster{' '}
-                      {sortBy === 'name' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('level')}
-                    >
-                      Level{' '}
-                      {sortBy === 'level' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('hitpoints')}
-                    >
-                      HP{' '}
-                      {sortBy === 'hitpoints' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th
-                      className="calc-th-sortable"
-                      onClick={() => toggleSort('actions')}
-                    >
-                      Kills{' '}
-                      {sortBy === 'actions' && (
-                        <span className="calc-sort-icon">
-                          {sortDirection === 'asc' ? '↑' : '↓'}
-                        </span>
-                      )}
-                    </th>
-                    <th>XP/hr</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {combatRows.length === 0 ? (
+            <>
+              <div className="calc-table-container">
+                <table className="calc-table">
+                  <thead>
                     <tr>
-                      <td className="calc-empty" colSpan={5}>
-                        No monsters match your filters.
-                      </td>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('name')}
+                      >
+                        Monster{' '}
+                        {sortBy === 'name' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('level')}
+                      >
+                        Level{' '}
+                        {sortBy === 'level' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('hitpoints')}
+                      >
+                        HP{' '}
+                        {sortBy === 'hitpoints' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th
+                        className="calc-th-sortable"
+                        onClick={() => toggleSort('actions')}
+                      >
+                        Kills{' '}
+                        {sortBy === 'actions' && (
+                          <span className="calc-sort-icon">
+                            {sortDirection === 'asc' ? '↑' : '↓'}
+                          </span>
+                        )}
+                      </th>
+                      <th>XP/hr</th>
                     </tr>
-                  ) : (
-                    combatRows.map((entry, index) => {
-                      const xpPerHour =
-                        killsPerHour > 0
-                          ? entry.xpPerKill * killsPerHour
-                          : null;
-                      const monsterHref = buildWikiUrl(entry.monster.name);
-                      const monsterImage =
-                        monsterImages[normalizeWikiKey(entry.monster.name)];
-                      return (
-                        <tr key={`${entry.monster.name}-${index}`}>
-                          <td>
-                            <div className="calc-action-cell">
-                              <a
-                                className="calc-action-link"
-                                href={monsterHref}
-                                rel="noreferrer"
-                                target="_blank"
-                                title={`Open ${entry.monster.name} on the OSRS Wiki`}
-                              >
-                                {monsterImage && (
-                                  <Image
-                                    alt=""
-                                    height={24}
-                                    loading="lazy"
-                                    src={monsterImage}
-                                    width={24}
-                                  />
-                                )}
-                                <div className="calc-action-info">
-                                  <span className="calc-action-name">
-                                    {entry.monster.name}
-                                  </span>
-                                  {entry.monster.members && (
-                                    <span className="calc-member-tag">P2P</span>
+                  </thead>
+                  <tbody>
+                    {combatRows.length === 0 ? (
+                      <tr>
+                        <td className="calc-empty" colSpan={5}>
+                          No monsters match your filters.
+                        </td>
+                      </tr>
+                    ) : (
+                      combatRows.map((entry, index) => {
+                        const xpPerHour =
+                          killsPerHour > 0
+                            ? entry.xpPerKill * killsPerHour
+                            : null;
+                        const monsterHref = buildWikiUrl(entry.monster.name);
+                        const monsterImage =
+                          monsterImages[normalizeWikiKey(entry.monster.name)];
+                        return (
+                          <tr key={`${entry.monster.name}-${index}`}>
+                            <td>
+                              <div className="calc-action-cell">
+                                <a
+                                  className="calc-action-link"
+                                  href={monsterHref}
+                                  rel="noreferrer"
+                                  target="_blank"
+                                  title={`Open ${entry.monster.name} on the OSRS Wiki`}
+                                >
+                                  {monsterImage && (
+                                    <Image
+                                      alt=""
+                                      height={24}
+                                      loading="lazy"
+                                      src={monsterImage}
+                                      width={24}
+                                    />
                                   )}
-                                  {entry.monster.xp_bonus_multiplier &&
-                                    entry.monster.xp_bonus_multiplier !== 1 && (
-                                      <span className="calc-bonus-tag">
-                                        +
-                                        {formatDecimal(
-                                          (entry.monster.xp_bonus_multiplier -
-                                            1) *
-                                            100
-                                        )}
-                                        %
+                                  <div className="calc-action-info">
+                                    <span className="calc-action-name">
+                                      {entry.monster.name}
+                                    </span>
+                                    {entry.monster.members && (
+                                      <span className="calc-member-tag">
+                                        P2P
                                       </span>
                                     )}
-                                </div>
-                              </a>
-                              {entry.isCustom &&
-                                entry.customIndex !== undefined && (
-                                  <button
-                                    className="calc-remove-btn"
-                                    title="Remove"
-                                    type="button"
-                                    onClick={() =>
-                                      removeCustomMonster(entry.customIndex)
-                                    }
-                                  >
-                                    ×
-                                  </button>
+                                    {entry.monster.xp_bonus_multiplier &&
+                                      entry.monster.xp_bonus_multiplier !==
+                                        1 && (
+                                        <span className="calc-bonus-tag">
+                                          +
+                                          {formatDecimal(
+                                            (entry.monster.xp_bonus_multiplier -
+                                              1) *
+                                              100
+                                          )}
+                                          %
+                                        </span>
+                                      )}
+                                  </div>
+                                </a>
+                                {entry.isCustom &&
+                                  entry.customIndex !== undefined && (
+                                    <button
+                                      className="calc-remove-btn"
+                                      title="Remove"
+                                      type="button"
+                                      onClick={() =>
+                                        removeCustomMonster(entry.customIndex)
+                                      }
+                                    >
+                                      ×
+                                    </button>
+                                  )}
+                              </div>
+                            </td>
+                            <td className="calc-num">{entry.monster.level}</td>
+                            <td className="calc-num">
+                              {entry.monster.hitpoints}
+                            </td>
+                            <td className="calc-num">
+                              {formatNumber(entry.killsNeeded)}
+                            </td>
+                            <td className="calc-num">
+                              {xpPerHour === null
+                                ? '-'
+                                : formatNumber(Math.round(xpPerHour))}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="calc-mobile-list">
+                {combatRows.length === 0 ? (
+                  <div className="calc-empty">
+                    No monsters match your filters.
+                  </div>
+                ) : (
+                  combatRows.map((entry, index) => {
+                    const xpPerHour =
+                      killsPerHour > 0 ? entry.xpPerKill * killsPerHour : null;
+                    const monsterHref = buildWikiUrl(entry.monster.name);
+                    const monsterImage =
+                      monsterImages[normalizeWikiKey(entry.monster.name)];
+                    return (
+                      <article
+                        key={`${entry.monster.name}-${index}`}
+                        className="calc-mobile-card"
+                      >
+                        <div className="calc-mobile-header">
+                          <div className="calc-mobile-title">
+                            <a
+                              className="calc-action-link"
+                              href={monsterHref}
+                              rel="noreferrer"
+                              target="_blank"
+                              title={`Open ${entry.monster.name} on the OSRS Wiki`}
+                            >
+                              {monsterImage && (
+                                <Image
+                                  alt=""
+                                  height={24}
+                                  loading="lazy"
+                                  src={monsterImage}
+                                  width={24}
+                                />
+                              )}
+                              <div className="calc-action-info">
+                                <span className="calc-action-name">
+                                  {entry.monster.name}
+                                </span>
+                                {entry.monster.members && (
+                                  <span className="calc-member-tag">P2P</span>
                                 )}
-                            </div>
-                          </td>
-                          <td className="calc-num">{entry.monster.level}</td>
-                          <td className="calc-num">
-                            {entry.monster.hitpoints}
-                          </td>
-                          <td className="calc-num">
-                            {formatNumber(entry.killsNeeded)}
-                          </td>
-                          <td className="calc-num">
-                            {xpPerHour === null
-                              ? '-'
-                              : formatNumber(Math.round(xpPerHour))}
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
+                                {entry.monster.xp_bonus_multiplier &&
+                                  entry.monster.xp_bonus_multiplier !== 1 && (
+                                    <span className="calc-bonus-tag">
+                                      +
+                                      {formatDecimal(
+                                        (entry.monster.xp_bonus_multiplier -
+                                          1) *
+                                          100
+                                      )}
+                                      %
+                                    </span>
+                                  )}
+                              </div>
+                            </a>
+                            {entry.isCustom &&
+                              entry.customIndex !== undefined && (
+                                <button
+                                  className="calc-remove-btn"
+                                  title="Remove"
+                                  type="button"
+                                  onClick={() =>
+                                    removeCustomMonster(entry.customIndex)
+                                  }
+                                >
+                                  ×
+                                </button>
+                              )}
+                          </div>
+                        </div>
+                        <div className="calc-mobile-stats">
+                          <div>
+                            <span>Level</span>
+                            <strong>{entry.monster.level}</strong>
+                          </div>
+                          <div>
+                            <span>HP</span>
+                            <strong>{entry.monster.hitpoints}</strong>
+                          </div>
+                          <div>
+                            <span>Kills</span>
+                            <strong>{formatNumber(entry.killsNeeded)}</strong>
+                          </div>
+                          <div>
+                            <span>XP/hr</span>
+                            <strong>
+                              {xpPerHour === null
+                                ? '-'
+                                : formatNumber(Math.round(xpPerHour))}
+                            </strong>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })
+                )}
+              </div>
+            </>
           )}
         </main>
       </div>

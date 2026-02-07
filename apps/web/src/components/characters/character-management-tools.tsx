@@ -121,10 +121,6 @@ export function CharacterManagementTools({
       <div className="management-header">
         <div>
           <h3>Management tools</h3>
-          <p className="muted">
-            Edit tags, notes, and visibility per character. Archive anything you
-            are not actively tracking.
-          </p>
         </div>
         <button className="button" type="button" onClick={handleBulkSync}>
           Bulk sync now

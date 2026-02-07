@@ -93,7 +93,7 @@ export function TradingOverview({
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(max-width: 640px), (max-height: 520px)');
+    const media = window.matchMedia('(max-width: 640px)');
     const handleChange = () => {
       const compact = media.matches;
       setIsCompact(compact);
@@ -256,7 +256,7 @@ export function TradingOverview({
           }
         }}
       >
-        <summary className="overview-summary">
+        <summary className="overview-summary" hidden={!isCompact}>
           <span className="summary-label">More stats</span>
           <span className="summary-meta">
             {overview.uniqueItems} items · {overview.watchListCount} watching

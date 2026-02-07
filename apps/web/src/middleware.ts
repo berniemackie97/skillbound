@@ -16,15 +16,28 @@ function resolveCanonicalHost(): string | null {
 }
 
 export function middleware(request: NextRequest) {
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-nav-pathname', request.nextUrl.pathname);
+
   if (process.env['VERCEL_ENV'] !== 'production') {
-    return NextResponse.next();
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
 
   const canonicalHost = resolveCanonicalHost();
   if (!canonicalHost) return NextResponse.next();
 
   const currentHost = request.nextUrl.host;
-  if (currentHost === canonicalHost) return NextResponse.next();
+  if (currentHost === canonicalHost) {
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
 
   const url = request.nextUrl.clone();
   url.host = canonicalHost;
