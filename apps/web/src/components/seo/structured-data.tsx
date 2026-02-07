@@ -18,7 +18,7 @@ export function StructuredData() {
         '@id': organizationId,
         name: SITE_NAME,
         url: origin,
-        logo: `${origin}/icon.svg`,
+        logo: `${origin}/icon-512.png`,
       },
       {
         '@type': 'WebSite',
