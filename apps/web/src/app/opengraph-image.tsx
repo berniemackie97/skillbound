@@ -25,10 +25,10 @@ export default function OpenGraphImage() {
         SkillBound
       </div>
       <div style={{ fontSize: 34, marginTop: 16, color: '#d8c7a8' }}>
-        OSRS Progression Tracker
+        OSRS Progression Tracker + Grand Exchange Flipping Tool
       </div>
       <div style={{ fontSize: 24, marginTop: 28, color: '#b9a98d' }}>
-        Progression • Ironman • Grand Exchange
+        Progression • Grand Exchange • Flipping
       </div>
     </div>,
     size

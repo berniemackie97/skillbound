@@ -29,13 +29,13 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-body',
 });
 
-const siteUrl = resolveSiteUrl() ?? undefined;
+const siteUrl = resolveSiteUrl();
 const isProduction = process.env['VERCEL_ENV'] === 'production';
 const googleSiteVerification =
   process.env['NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION'];
 
 export const metadata: Metadata = {
-  metadataBase: siteUrl,
+  metadataBase: siteUrl ?? undefined,
   title: {
     default: DEFAULT_TITLE,
     template: `%s | ${SITE_NAME}`,
@@ -53,7 +53,9 @@ export const metadata: Metadata = {
       { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
       { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 
   openGraph: DEFAULT_OPEN_GRAPH,
@@ -82,12 +84,18 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={`${fraunces.variable} ${spaceGrotesk.variable}`} lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body>
         {children}
-        <Analytics />
-        <SpeedInsights />
-        <GoogleAnalytics />
-        <StructuredData />
+        {isProduction && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+            <GoogleAnalytics />
+          </>
+        )}
       </body>
     </html>
   );

@@ -18,7 +18,10 @@ export function StructuredData() {
         '@id': organizationId,
         name: SITE_NAME,
         url: origin,
-        logo: `${origin}/icon-512.png`,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${origin}/icon-512.png`,
+        },
       },
       {
         '@type': 'WebSite',
@@ -29,7 +32,10 @@ export function StructuredData() {
         inLanguage: DEFAULT_LANGUAGE,
         potentialAction: {
           '@type': 'SearchAction',
-          target: `${origin}/lookup?username={search_term_string}`,
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${origin}/lookup?username={search_term_string}`,
+          },
           'query-input': 'required name=search_term_string',
         },
       },
@@ -49,9 +55,11 @@ export function StructuredData() {
     ],
   };
 
+  const safeJson = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script');
+
   return (
     <script
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: safeJson }}
       type="application/ld+json"
     />
   );
