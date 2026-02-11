@@ -349,7 +349,7 @@
   background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  overflow: hidden;
+  /* NOTE: no overflow:hidden here — required for dropdown panels to escape */
 }
 
 .exchange-controls .controls-row {
@@ -678,6 +678,418 @@
 .exchange-refine-panel .refine-actions .button {
   width: 100%;
   justify-content: center;
+}
+
+/* Filters Dropdown */
+.filters-dropdown {
+  position: relative;
+}
+
+.filters-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filters-dropdown__trigger:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filters-dropdown__trigger--active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.filters-dropdown__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.filters-dropdown__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 40;
+  margin-top: 4px;
+  width: 360px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.filters-dropdown__section {
+  padding: 8px 0;
+}
+
+.filters-dropdown__section + .filters-dropdown__section {
+  border-top: 1px solid var(--border);
+}
+
+.filters-dropdown__section-title {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Quick filter toggles — inline row */
+.filters-dropdown__toggles {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.filters-dropdown__toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.filters-dropdown__toggle:hover {
+  background: var(--bg-elev);
+}
+
+.filters-dropdown__toggle input[type='checkbox'] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Quality row — inline */
+.filters-dropdown__quality-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-dropdown__quality-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.filters-dropdown__quality-select {
+  padding: 4px 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.filters-dropdown__quality-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Range filters */
+.filters-dropdown__ranges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filters-dropdown__range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-dropdown__range-label {
+  flex-shrink: 0;
+  width: 70px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.filters-dropdown__range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.filters-dropdown__range-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.filters-dropdown__range-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.filters-dropdown__range-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.filters-dropdown__range-sep {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Preset chips — wrap grid */
+.filters-dropdown__preset-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filters-dropdown__preset-chip {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill, 20px);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.filters-dropdown__preset-chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filters-dropdown__preset-chip--active {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.filters-dropdown__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.filters-dropdown__actions-right {
+  display: flex;
+  gap: 6px;
+}
+
+.filters-dropdown__btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filters-dropdown__btn--save {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.filters-dropdown__btn--save:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filters-dropdown__btn--reset {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.filters-dropdown__btn--reset:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.filters-dropdown__btn--apply {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+}
+
+.filters-dropdown__btn--apply:hover {
+  filter: brightness(1.1);
+}
+
+/* Members filter row inside filters dropdown */
+.filters-dropdown__members-row {
+  display: flex;
+  gap: 4px;
+}
+
+.filters-dropdown__members-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filters-dropdown__members-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filters-dropdown__members-btn--active {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Bankroll Add Funds popover */
+.bankroll-tag-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Find Me a Flip button */
+.exchange-controls .find-flip-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, var(--accent), #c9972a);
+  border: none;
+  border-radius: 8px;
+  color: var(--bg);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.exchange-controls .find-flip-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.exchange-controls .find-flip-btn:active {
+  transform: translateY(0);
+}
+
+/* Bankroll tag (in status row) */
+.exchange-controls .bankroll-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  margin-left: 6px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exchange-controls .bankroll-tag:hover {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: var(--accent);
+}
+
+.exchange-controls .bankroll-tag--empty {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.exchange-controls .bankroll-tag--empty:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Smart filter banner */
+.exchange-controls .smart-filter-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(212, 175, 55, 0.06);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.exchange-controls .smart-filter-banner strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.exchange-controls .smart-filter-banner__clear {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exchange-controls .smart-filter-banner__clear:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
 }
 
 /* Status row - Live indicator, refresh controls, update status */
@@ -2384,9 +2796,33 @@
     max-width: none;
   }
 
+  .exchange-controls .jump-search {
+    max-width: none;
+  }
+
   .exchange-controls .view-selector {
     justify-content: center;
   }
+
+  .exchange-controls .find-flip-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Filters dropdown panel → anchored bottom sheet at narrow desktop */
+  .filters-dropdown__panel {
+    position: fixed;
+    top: auto;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 14px;
+  }
+
+  /* Quality tooltip is now a portal — no position overrides needed */
 }
 
 @media (max-width: 640px) {
@@ -2412,6 +2848,34 @@
   .exchange-controls .reset-btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .exchange-controls .find-flip-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Filters dropdown → fullscreen bottom sheet on mobile */
+  .filters-dropdown__panel {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 18px 18px 0 0;
+    max-height: 85vh;
+  }
+
+  /* Bankroll tag hidden on mobile (visible in refine panel instead) */
+  .exchange-controls .bankroll-tag {
+    display: none;
+  }
+
+  /* Smart filter banner stacks vertically on mobile */
+  .exchange-controls .smart-filter-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .exchange-topbar {
@@ -2769,9 +3233,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-4);
+  padding: var(--space-3) var(--space-4);
   background: rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid var(--border);
+}
+
+.bankroll-header.no-title {
+  justify-content: flex-end;
 }
 
 .bankroll-header h3 {
@@ -2789,11 +3257,11 @@
   padding: var(--space-4);
 }
 
+/* Stats grid — 2×2 */
 .bankroll-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-3);
-  margin-bottom: var(--space-4);
 }
 
 .bankroll-stat {
@@ -2827,7 +3295,24 @@
   color: #ff9a9a;
 }
 
-/* Bankroll Edit Form - Enhanced UX */
+/* Empty state */
+.bankroll-empty {
+  text-align: center;
+  padding: var(--space-4) var(--space-2);
+}
+
+.bankroll-empty__text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.bankroll-empty__text strong {
+  color: var(--accent);
+}
+
+/* Edit form */
 .bankroll-edit-form {
   display: flex;
   flex-direction: column;
@@ -2929,7 +3414,54 @@
   white-space: nowrap;
 }
 
+/* Add Funds inline form */
+.bankroll-add-funds-inline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.add-funds-info-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(127, 175, 58, 0.08);
+  border: 1px solid rgba(127, 175, 58, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.add-funds-info-inline svg {
+  flex-shrink: 0;
+  color: var(--accent-alt);
+  margin-top: 1px;
+}
+
+.add-funds-info-inline span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.bankroll-add-funds-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.bankroll-add-funds-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.bankroll-add-funds-row .button {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
+/* Error + hint */
 .bankroll-error {
+  margin-top: var(--space-2);
   padding: 8px 12px;
   background: rgba(207, 58, 58, 0.15);
   border: 1px solid rgba(207, 58, 58, 0.3);
@@ -2945,83 +3477,168 @@
   text-align: center;
 }
 
-/* Add Funds Form - Clean Layout */
-.bankroll-add-funds-form {
+/* Bankroll Setup Modal (used from exchange page "Find Me a Flip" flow) */
+.bankroll-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--border);
-  margin-top: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 5, 4, 0.8);
+  backdrop-filter: blur(4px);
 }
 
-.add-funds-info {
+.bankroll-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.bankroll-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 10px 12px;
-  background: rgba(127, 175, 58, 0.08);
-  border: 1px solid rgba(127, 175, 58, 0.2);
-  border-radius: var(--radius-sm);
-}
-
-.add-funds-info svg {
-  flex-shrink: 0;
-  color: var(--accent-alt);
-  margin-top: 1px;
-}
-
-.add-funds-info span {
-  font-size: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
   color: var(--text-muted);
-  line-height: 1.4;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.add-funds-field {
+.bankroll-modal__close:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.bankroll-modal__title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.bankroll-modal__subtitle {
+  margin: 0 0 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.bankroll-modal__input-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  margin-bottom: 12px;
 }
 
-.add-funds-field .field-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.bankroll-modal__input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.bankroll-modal__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.bankroll-modal__preview {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.bankroll-modal__error {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  color: #ef4444;
+  font-size: 0.82rem;
+}
+
+.bankroll-modal__warning {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background: rgba(250, 204, 21, 0.08);
+  border: 1px solid rgba(250, 204, 21, 0.2);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.bankroll-modal__link {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.bankroll-modal__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.bankroll-modal__btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bankroll-modal__btn--secondary {
+  background: transparent;
+  border: 1px solid var(--border);
   color: var(--text-muted);
 }
 
-.add-funds-input-row {
-  display: flex;
-  gap: var(--space-2);
-}
-
-.add-funds-input-row input {
-  flex: 1;
-  min-width: 0;
-  padding: 10px 14px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+.bankroll-modal__btn--secondary:hover {
+  border-color: var(--text-muted);
   color: var(--text);
-  font-size: 0.9rem;
 }
 
-.add-funds-input-row input:focus {
-  outline: none;
-  border-color: var(--accent);
+.bankroll-modal__btn--primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
 }
 
-.add-funds-input-row .button {
-  padding: 10px 16px;
-  white-space: nowrap;
-  flex-shrink: 0;
+.bankroll-modal__btn--primary:hover:not(:disabled) {
+  filter: brightness(1.1);
 }
 
-.add-funds-field .field-preview {
-  font-size: 0.75rem;
-  color: var(--accent-alt);
-  font-weight: 500;
+.bankroll-modal__btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .bankroll-modal {
+    padding: 20px;
+    margin: 0 8px;
+  }
 }
 
 /* ==========================================================================
@@ -4821,19 +5438,13 @@
   }
 
   .bankroll-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
     gap: 8px;
   }
 
   .bankroll-actions {
-    width: 100%;
     flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .bankroll-actions .button {
-    flex: 1 1 auto;
+    gap: var(--space-2);
   }
 
   .mobile-actions-card .mobile-actions {

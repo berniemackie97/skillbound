@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import type { FlipQualityGrade } from '@/lib/trading/flip-scoring';
+
 import {
   DEFAULT_FILTERS,
   DEFAULT_REFRESH_INTERVAL,
@@ -14,6 +16,7 @@ import type {
   ColumnFilterKey,
   ColumnFilterState,
   ExchangeClientProps,
+  FlipContext,
   ItemsApiResponse,
   MembersFilter,
   SavedPreset,
@@ -35,6 +38,80 @@ import {
 } from './exchange-table';
 import { ExchangeTopbar } from './exchange-topbar';
 import type { ItemSearchResult } from './item-search';
+
+// ---------------------------------------------------------------------------
+// Smart filter thresholds (bankroll-based)
+// ---------------------------------------------------------------------------
+
+function getSmartFilterThresholds(bankroll: number) {
+  let minProfit: number;
+  if (bankroll < 1_000_000) {
+    minProfit = 1_000;
+  } else if (bankroll < 10_000_000) {
+    minProfit = 5_000;
+  } else if (bankroll < 100_000_000) {
+    minProfit = 25_000;
+  } else {
+    minProfit = 100_000;
+  }
+
+  return {
+    minProfit: String(minProfit),
+    minVolume: '50',
+    minRoi: '2',
+    maxPrice: String(bankroll),
+    minFlipQuality: 'B' as FlipQualityGrade,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Preset filter definitions
+// ---------------------------------------------------------------------------
+
+const PRESET_FILTER_MAP: Record<string, Partial<ColumnFilterState>> = {
+  'high-margin': { margin: { min: '100000', max: '' } },
+  'high-roi': { roi: { min: '5', max: '' } },
+  'high-volume': { volume: { min: '500', max: '' } },
+  'high-profit': { profit: { min: '100000', max: '' } },
+  'high-potential': { potentialProfit: { min: '1000000', max: '' } },
+  'low-price': { buyPrice: { min: '', max: '50000' } },
+  'high-price': { buyPrice: { min: '1000000', max: '' } },
+};
+
+function mergePresetFilters(
+  base: ColumnFilterState,
+  activePresets: Set<string>,
+  savedPresets: SavedPreset[]
+): ColumnFilterState {
+  let merged = { ...base };
+
+  for (const presetId of activePresets) {
+    // Check built-in presets
+    const builtIn = PRESET_FILTER_MAP[presetId];
+    if (builtIn) {
+      merged = { ...merged, ...builtIn };
+      continue;
+    }
+
+    // Check saved presets
+    const saved = savedPresets.find((p) => p.id === presetId);
+    if (saved) {
+      // Merge saved preset filters — non-empty values override
+      for (const key of Object.keys(saved.filters) as ColumnFilterKey[]) {
+        const savedFilter = saved.filters[key];
+        if (savedFilter.min || savedFilter.max) {
+          merged[key] = { ...savedFilter };
+        }
+      }
+    }
+  }
+
+  return merged;
+}
+
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
 
 export function ExchangeClient({
   initialItems,
@@ -98,8 +175,23 @@ export function ExchangeClient({
   );
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
-  const [presetValue, setPresetValue] = useState('custom');
-  const [stackPresets, setStackPresets] = useState(false);
+
+  // Multi-preset state (replaces old presetValue + stackPresets)
+  const [activePresets, setActivePresets] = useState<Set<string>>(new Set());
+
+  // Flip quality filter
+  const [minFlipQuality, setMinFlipQuality] =
+    useState<FlipQualityGrade | null>(null);
+
+  // Flip context (bankroll, trade history, inventory)
+  const [flipContext, setFlipContext] = useState<FlipContext | null>(null);
+
+
+  // Smart filter banner
+  const [smartFilterBankroll, setSmartFilterBankroll] = useState<number | null>(
+    null
+  );
+
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [nextRefreshAt, setNextRefreshAt] = useState<number | null>(null);
   const [refreshInterval, setRefreshInterval] = useState<number>(
@@ -115,6 +207,10 @@ export function ExchangeClient({
   const [watchMap, setWatchMap] = useState<Record<number, string>>({});
   const inFlightRef = useRef(false);
 
+  // -------------------------------------------------------------------------
+  // Load favorites from localStorage
+  // -------------------------------------------------------------------------
+
   useEffect(() => {
     try {
       const stored = localStorage.getItem(FAVORITES_STORAGE_KEY);
@@ -126,6 +222,10 @@ export function ExchangeClient({
       // Ignore localStorage errors
     }
   }, []);
+
+  // -------------------------------------------------------------------------
+  // Load saved presets (signed-in only)
+  // -------------------------------------------------------------------------
 
   useEffect(() => {
     if (!isSignedIn) return;
@@ -148,6 +248,10 @@ export function ExchangeClient({
     };
   }, [isSignedIn]);
 
+  // -------------------------------------------------------------------------
+  // Load active character (signed-in only)
+  // -------------------------------------------------------------------------
+
   useEffect(() => {
     if (!isSignedIn) return;
     let active = true;
@@ -169,6 +273,58 @@ export function ExchangeClient({
       active = false;
     };
   }, [isSignedIn]);
+
+  // -------------------------------------------------------------------------
+  // Load flip context (bankroll + trade history) for signed-in users
+  // -------------------------------------------------------------------------
+
+  const refreshFlipContext = useCallback(async () => {
+    if (!isSignedIn) return;
+    try {
+      const response = await fetch('/api/ge/flip-context', {
+        cache: 'no-store',
+      });
+      if (!response.ok) return;
+      const payload = (await response.json()) as { data?: FlipContext };
+      if (!payload.data) return;
+      setFlipContext(payload.data);
+      if (payload.data.activeCharacterId) {
+        setActiveCharacterId(payload.data.activeCharacterId);
+      }
+    } catch {
+      // Ignore flip context load errors
+    }
+  }, [isSignedIn]);
+
+  // Fetch flip context on mount
+  useEffect(() => {
+    void refreshFlipContext();
+  }, [refreshFlipContext]);
+
+  // Re-fetch flip context when bankroll changes (from any page/tab via localStorage storage event)
+  // AND when user switches back to this tab (visibilitychange)
+  useEffect(() => {
+    if (!isSignedIn) return;
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key !== 'bankroll-updated') return;
+      void refreshFlipContext();
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        void refreshFlipContext();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [isSignedIn, refreshFlipContext]);
+
+  // -------------------------------------------------------------------------
+  // Load watchlist (signed-in + active character)
+  // -------------------------------------------------------------------------
 
   useEffect(() => {
     if (!isSignedIn || !activeCharacterId) return;
@@ -198,6 +354,10 @@ export function ExchangeClient({
     };
   }, [activeCharacterId, isSignedIn]);
 
+  // -------------------------------------------------------------------------
+  // Load refresh settings (signed-in only)
+  // -------------------------------------------------------------------------
+
   useEffect(() => {
     if (!isSignedIn) return;
     let active = true;
@@ -224,6 +384,10 @@ export function ExchangeClient({
       active = false;
     };
   }, [isSignedIn]);
+
+  // -------------------------------------------------------------------------
+  // Refresh settings save
+  // -------------------------------------------------------------------------
 
   const saveRefreshSettings = useCallback(
     async (intervalMs: number, paused: boolean) => {
@@ -258,6 +422,10 @@ export function ExchangeClient({
     void saveRefreshSettings(refreshInterval, nextValue);
   }, [isRefreshPaused, refreshInterval, saveRefreshSettings]);
 
+  // -------------------------------------------------------------------------
+  // Favorites save
+  // -------------------------------------------------------------------------
+
   const saveFavorites = useCallback((newFavorites: Set<number>) => {
     try {
       localStorage.setItem(
@@ -280,6 +448,10 @@ export function ExchangeClient({
     []
   );
 
+  // -------------------------------------------------------------------------
+  // Presets save
+  // -------------------------------------------------------------------------
+
   const savePresets = useCallback(
     async (presets: SavedPreset[]) => {
       if (!isSignedIn) return;
@@ -295,6 +467,10 @@ export function ExchangeClient({
     },
     [isSignedIn]
   );
+
+  // -------------------------------------------------------------------------
+  // Toggle favorite
+  // -------------------------------------------------------------------------
 
   const handleToggleFavorite = useCallback(
     (itemId: number) => {
@@ -379,6 +555,10 @@ export function ExchangeClient({
     ]
   );
 
+  // -------------------------------------------------------------------------
+  // Fetch items
+  // -------------------------------------------------------------------------
+
   const fetchItems = useCallback(
     async (params: {
       page?: number;
@@ -388,6 +568,7 @@ export function ExchangeClient({
       filters?: ColumnFilterState;
       hideNegativeMargin?: boolean;
       hideNegativeRoi?: boolean;
+      minFlipQuality?: FlipQualityGrade | null;
       silent?: boolean;
     }) => {
       if (inFlightRef.current) {
@@ -422,6 +603,12 @@ export function ExchangeClient({
         const nextHideNegativeMargin =
           params.hideNegativeMargin ?? hideNegativeMargin;
         const nextHideNegativeRoi = params.hideNegativeRoi ?? hideNegativeRoi;
+
+        // Resolve minFlipQuality: use param if explicitly provided, else current state
+        const nextMinFlipQuality =
+          params.minFlipQuality !== undefined
+            ? params.minFlipQuality
+            : minFlipQuality;
 
         if (nextFilters.buyPrice.min) {
           queryParams.set('minPrice', nextFilters.buyPrice.min);
@@ -478,6 +665,11 @@ export function ExchangeClient({
           queryParams.set('minRoi', '0');
         }
 
+        // Flip quality filter
+        if (nextMinFlipQuality) {
+          queryParams.set('minFlipQuality', nextMinFlipQuality);
+        }
+
         const response = await fetch(
           `/api/ge/items?${queryParams.toString()}`,
           {
@@ -516,10 +708,15 @@ export function ExchangeClient({
       filters,
       hideNegativeMargin,
       hideNegativeRoi,
+      minFlipQuality,
     ]
   );
 
   const fetchItemsRef = useRef(fetchItems);
+
+  // -------------------------------------------------------------------------
+  // Sort options
+  // -------------------------------------------------------------------------
 
   const sortOptions = useMemo(
     () => [
@@ -544,6 +741,8 @@ export function ExchangeClient({
         label: 'Potential Profit (High to Low)',
       },
       { value: 'potentialProfit:asc', label: 'Potential Profit (Low to High)' },
+      { value: 'flipQuality:desc', label: 'Flip Quality (Best)' },
+      { value: 'flipQuality:asc', label: 'Flip Quality (Worst)' },
       { value: 'lastTrade:desc', label: 'Last Trade (Newest)' },
       { value: 'lastTrade:asc', label: 'Last Trade (Oldest)' },
       { value: 'name:asc', label: 'Name (A to Z)' },
@@ -551,6 +750,10 @@ export function ExchangeClient({
     ],
     []
   );
+
+  // -------------------------------------------------------------------------
+  // Ref syncs
+  // -------------------------------------------------------------------------
 
   useEffect(() => {
     fetchItemsRef.current = fetchItems;
@@ -563,6 +766,10 @@ export function ExchangeClient({
   useEffect(() => {
     pageRef.current = meta.page;
   }, [meta.page]);
+
+  // -------------------------------------------------------------------------
+  // Sort handlers
+  // -------------------------------------------------------------------------
 
   const handleSort = useCallback(
     (field: SortField, additive: boolean) => {
@@ -613,12 +820,20 @@ export function ExchangeClient({
     [fetchItems]
   );
 
+  // -------------------------------------------------------------------------
+  // Pagination
+  // -------------------------------------------------------------------------
+
   const handlePageChange = useCallback(
     (page: number) => {
       void fetchItems({ page });
     },
     [fetchItems]
   );
+
+  // -------------------------------------------------------------------------
+  // Search
+  // -------------------------------------------------------------------------
 
   const handleSearchSubmit = useCallback(() => {
     void fetchItems({ page: 1, search: searchFilter });
@@ -635,6 +850,10 @@ export function ExchangeClient({
 
     return () => clearTimeout(timer);
   }, [searchFilter, membersFilter]);
+
+  // -------------------------------------------------------------------------
+  // Auto-refresh
+  // -------------------------------------------------------------------------
 
   useEffect(() => {
     if (isRefreshPaused) {
@@ -654,6 +873,10 @@ export function ExchangeClient({
     return () => window.clearInterval(intervalId);
   }, [refreshInterval, isRefreshPaused]);
 
+  // -------------------------------------------------------------------------
+  // Navigation handlers
+  // -------------------------------------------------------------------------
+
   const handleItemClick = useCallback(
     (item: { id: number }) => {
       router.push(`/trading/item/${item.id}`);
@@ -672,13 +895,19 @@ export function ExchangeClient({
     setViewMode(mode);
   }, []);
 
+  // -------------------------------------------------------------------------
+  // Reset filters
+  // -------------------------------------------------------------------------
+
   const handleResetFilters = useCallback(() => {
     setSearchFilter('');
     setMembersFilter('all');
     setFilters(DEFAULT_FILTERS);
     setHideNegativeMargin(false);
     setHideNegativeRoi(false);
-    setPresetValue('custom');
+    setActivePresets(new Set());
+    setMinFlipQuality(null);
+    setSmartFilterBankroll(null);
     void fetchItems({
       page: 1,
       search: '',
@@ -686,8 +915,13 @@ export function ExchangeClient({
       filters: DEFAULT_FILTERS,
       hideNegativeMargin: false,
       hideNegativeRoi: false,
+      minFlipQuality: null,
     });
   }, [fetchItems]);
+
+  // -------------------------------------------------------------------------
+  // Column filter handlers
+  // -------------------------------------------------------------------------
 
   const updateFilterValue = useCallback(
     (key: ColumnFilterKey, field: 'min' | 'max', value: string) => {
@@ -750,66 +984,70 @@ export function ExchangeClient({
     ]
   );
 
-  const handlePresetChange = useCallback(
-    (value: string) => {
-      const baseFilters = stackPresets ? filters : DEFAULT_FILTERS;
-      let nextFilters = baseFilters;
-      setPresetValue(value);
-      switch (value) {
-        case 'high-margin':
-          nextFilters = { ...baseFilters, margin: { min: '100000', max: '' } };
-          break;
-        case 'high-roi':
-          nextFilters = { ...baseFilters, roi: { min: '5', max: '' } };
-          break;
-        case 'high-volume':
-          nextFilters = { ...baseFilters, volume: { min: '500', max: '' } };
-          break;
-        case 'high-profit':
-          nextFilters = { ...baseFilters, profit: { min: '100000', max: '' } };
-          break;
-        case 'high-potential':
-          nextFilters = {
-            ...baseFilters,
-            potentialProfit: { min: '1000000', max: '' },
-          };
-          break;
-        case 'low-price':
-          nextFilters = { ...baseFilters, buyPrice: { min: '', max: '50000' } };
-          break;
-        case 'high-price':
-          nextFilters = {
-            ...baseFilters,
-            buyPrice: { min: '1000000', max: '' },
-          };
-          break;
-        case 'reset':
-          nextFilters = DEFAULT_FILTERS;
-          break;
-        default:
-          break;
-      }
-      const normalized = normalizeFilters(nextFilters);
-      setFilters(normalized);
-      void fetchItems({
-        page: 1,
-        search: searchFilter,
-        members: membersFilter,
-        filters: normalized,
-        hideNegativeMargin,
-        hideNegativeRoi,
+  // -------------------------------------------------------------------------
+  // Multi-preset toggle handler
+  // -------------------------------------------------------------------------
+
+  const handleTogglePreset = useCallback(
+    (presetId: string) => {
+      setActivePresets((prev) => {
+        const next = new Set(prev);
+        if (next.has(presetId)) {
+          next.delete(presetId);
+        } else {
+          next.add(presetId);
+        }
+
+        // Merge all active presets into filters
+        const merged = mergePresetFilters(
+          DEFAULT_FILTERS,
+          next,
+          savedPresets
+        );
+        const normalized = normalizeFilters(merged);
+        setFilters(normalized);
+
+        // Also apply saved preset's hide toggles when activating a saved preset
+        const saved = savedPresets.find((p) => p.id === presetId);
+        if (saved && next.has(presetId)) {
+          setHideNegativeMargin(saved.hideNegativeMargin);
+          setHideNegativeRoi(saved.hideNegativeRoi);
+          setMembersFilter(saved.members);
+          void fetchItems({
+            page: 1,
+            search: searchFilter,
+            members: saved.members,
+            filters: normalized,
+            hideNegativeMargin: saved.hideNegativeMargin,
+            hideNegativeRoi: saved.hideNegativeRoi,
+          });
+        } else {
+          void fetchItems({
+            page: 1,
+            search: searchFilter,
+            members: membersFilter,
+            filters: normalized,
+            hideNegativeMargin,
+            hideNegativeRoi,
+          });
+        }
+
+        return next;
       });
     },
     [
       fetchItems,
-      filters,
       hideNegativeMargin,
       hideNegativeRoi,
       membersFilter,
+      savedPresets,
       searchFilter,
-      stackPresets,
     ]
   );
+
+  // -------------------------------------------------------------------------
+  // Save preset
+  // -------------------------------------------------------------------------
 
   const handleSavePreset = useCallback(() => {
     const name = window.prompt('Preset name');
@@ -825,7 +1063,8 @@ export function ExchangeClient({
     const updated = [...savedPresets, preset];
     setSavedPresets(updated);
     void savePresets(updated);
-    setPresetValue(preset.id);
+    // Auto-activate newly saved preset
+    setActivePresets((prev) => new Set([...prev, preset.id]));
   }, [
     filters,
     membersFilter,
@@ -835,30 +1074,9 @@ export function ExchangeClient({
     savePresets,
   ]);
 
-  const handleSavedPresetSelect = useCallback(
-    (value: string) => {
-      const preset = savedPresets.find((entry) => entry.id === value);
-      if (!preset) {
-        handlePresetChange(value);
-        return;
-      }
-      setPresetValue(preset.id);
-      setMembersFilter(preset.members);
-      setHideNegativeMargin(preset.hideNegativeMargin);
-      setHideNegativeRoi(preset.hideNegativeRoi);
-      const normalized = normalizeFilters(preset.filters);
-      setFilters(normalized);
-      void fetchItems({
-        page: 1,
-        search: searchFilter,
-        members: preset.members,
-        filters: normalized,
-        hideNegativeMargin: preset.hideNegativeMargin,
-        hideNegativeRoi: preset.hideNegativeRoi,
-      });
-    },
-    [fetchItems, handlePresetChange, savedPresets, searchFilter]
-  );
+  // -------------------------------------------------------------------------
+  // Hide negative margin/ROI toggle
+  // -------------------------------------------------------------------------
 
   const handleNegativeToggle = useCallback(
     (type: 'margin' | 'roi') => {
@@ -896,10 +1114,107 @@ export function ExchangeClient({
     ]
   );
 
+  // -------------------------------------------------------------------------
+  // Min flip quality change
+  // -------------------------------------------------------------------------
+
+  const handleMinFlipQualityChange = useCallback(
+    (grade: FlipQualityGrade | null) => {
+      setMinFlipQuality(grade);
+      void fetchItems({
+        page: 1,
+        search: searchFilter,
+        members: membersFilter,
+        filters,
+        hideNegativeMargin,
+        hideNegativeRoi,
+        minFlipQuality: grade,
+      });
+    },
+    [
+      fetchItems,
+      filters,
+      hideNegativeMargin,
+      hideNegativeRoi,
+      membersFilter,
+      searchFilter,
+    ]
+  );
+
+  // -------------------------------------------------------------------------
+  // Find Me a Flip
+  // -------------------------------------------------------------------------
+
+  const handleFindMeAFlip = useCallback(() => {
+    const currentBankroll = flipContext?.bankroll?.current ?? null;
+
+    // If no bankroll set, redirect to tracker to set it up
+    if (currentBankroll === null || currentBankroll <= 0) {
+      router.push('/trading/tracker');
+      return;
+    }
+
+    // Apply smart filters based on bankroll
+    const thresholds = getSmartFilterThresholds(currentBankroll);
+
+    const smartFilters: ColumnFilterState = {
+      ...DEFAULT_FILTERS,
+      profit: { min: thresholds.minProfit, max: '' },
+      volume: { min: thresholds.minVolume, max: '' },
+      roi: { min: thresholds.minRoi, max: '' },
+      buyPrice: { min: '', max: thresholds.maxPrice },
+    };
+
+    const normalized = normalizeFilters(smartFilters);
+    setFilters(normalized);
+    setHideNegativeMargin(true);
+    setMinFlipQuality(thresholds.minFlipQuality);
+    setSmartFilterBankroll(currentBankroll);
+    setActivePresets(new Set()); // Clear presets when using smart filter
+
+    // Sort by profit desc
+    const nextSorts: SortState[] = [{ field: 'profit', direction: 'desc' }];
+    setSorts(nextSorts);
+
+    void fetchItems({
+      page: 1,
+      sorts: nextSorts,
+      search: '',
+      members: membersFilter,
+      filters: normalized,
+      hideNegativeMargin: true,
+      hideNegativeRoi: false,
+      minFlipQuality: thresholds.minFlipQuality,
+    });
+  }, [fetchItems, flipContext, membersFilter]);
+
+  // -------------------------------------------------------------------------
+  // Clear smart filter
+  // -------------------------------------------------------------------------
+
+  const handleClearSmartFilter = useCallback(() => {
+    setSmartFilterBankroll(null);
+    handleResetFilters();
+  }, [handleResetFilters]);
+
+  // -------------------------------------------------------------------------
+  // Bankroll setup modal
+  // -------------------------------------------------------------------------
+
+  const handleOpenBankrollSetup = useCallback(() => {
+    // Redirect to tracker page — that's the single source of truth for bankroll
+    router.push('/trading/tracker');
+  }, [router]);
+
+  // -------------------------------------------------------------------------
+  // Display items (favorites filter)
+  // -------------------------------------------------------------------------
+
   const displayItems = useMemo(() => {
     if (viewMode !== 'favorites') return items;
     return items.filter((item) => favorites.has(item.id));
   }, [favorites, items, viewMode]);
+
   const lastUpdatedLabel = lastUpdated
     ? lastUpdated.toLocaleTimeString('en-US', {
         hour: 'numeric',
@@ -908,38 +1223,48 @@ export function ExchangeClient({
       })
     : '—';
 
+  // -------------------------------------------------------------------------
+  // Render
+  // -------------------------------------------------------------------------
+
   return (
     <div className="exchange-client">
       <ExchangeControls
+        activePresets={activePresets}
         filters={filters}
+        flipContext={flipContext}
         hideNegativeMargin={hideNegativeMargin}
         hideNegativeRoi={hideNegativeRoi}
         isRefineOpen={isRefineOpen}
         isRefreshPaused={isRefreshPaused}
+        isSignedIn={isSignedIn}
         lastUpdatedLabel={lastUpdatedLabel}
         membersFilter={membersFilter}
+        minFlipQuality={minFlipQuality}
         nextRefreshAt={nextRefreshAt}
-        presetValue={presetValue}
         refreshInterval={refreshInterval}
         savedPresets={savedPresets}
+        smartFilterBankroll={smartFilterBankroll}
         sortOptions={sortOptions}
         sortValue={sortValue}
-        stackPresets={stackPresets}
         viewMode={viewMode}
         onApplyFilters={() => applyColumnFilters()}
+        onClearSmartFilter={handleClearSmartFilter}
         onCloseRefine={() => setIsRefineOpen(false)}
         onFilterChange={updateFilterValue}
+        onFindMeAFlip={handleFindMeAFlip}
         onMembersFilterChange={setMembersFilter}
+        onMinFlipQualityChange={handleMinFlipQualityChange}
+        onOpenBankrollSetup={handleOpenBankrollSetup}
         onOpenRefine={() => setIsRefineOpen(true)}
-        onPresetSelect={handleSavedPresetSelect}
         onRefreshIntervalChange={handleRefreshIntervalChange}
         onResetFilters={handleResetFilters}
         onSavePreset={handleSavePreset}
         onSearchSelect={handleSearchSelect}
         onSortChange={handleSortChange}
         onToggleNegative={handleNegativeToggle}
+        onTogglePreset={handleTogglePreset}
         onToggleRefreshPaused={handleToggleRefreshPaused}
-        onToggleStackPresets={() => setStackPresets((prev) => !prev)}
         onViewModeChange={handleViewModeChange}
       />
 

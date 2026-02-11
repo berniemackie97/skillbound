@@ -1,4 +1,5 @@
 export { ExchangeClient } from './exchange-client';
+export { FlipQualityBadge } from './flip-quality-badge';
 export { ExchangeClientShell } from './exchange-client-shell';
 export {
   ExchangeTable,

@@ -1,14 +1,19 @@
 import { useEffect, useId, useState } from 'react';
 
+import type { FlipQualityGrade } from '@/lib/trading/flip-scoring';
+import { formatGp } from '@/lib/trading/ge-service';
+
 import { REFRESH_OPTIONS } from './exchange-client.constants';
 import type {
   ColumnFilterKey,
   ColumnFilterState,
+  FlipContext,
   MembersFilter,
   SavedPreset,
   ViewMode,
 } from './exchange-client.types';
 import { formatCountdown } from './exchange-client.utils';
+import { FiltersDropdown } from './filters-dropdown';
 import { ItemSearch, type ItemSearchResult } from './item-search';
 
 type SortOption = {
@@ -32,25 +37,44 @@ interface ExchangeControlsProps {
     value: string
   ) => void;
   onApplyFilters: () => void;
-  presetValue: string;
+
+  // Multi-preset (replaces old single presetValue + stackPresets)
+  activePresets: Set<string>;
   savedPresets: SavedPreset[];
-  onPresetSelect: (value: string) => void;
+  onTogglePreset: (presetId: string) => void;
   onSavePreset: () => void;
-  stackPresets: boolean;
-  onToggleStackPresets: () => void;
+
+  // Quick filters
   hideNegativeMargin: boolean;
   hideNegativeRoi: boolean;
   onToggleNegative: (type: 'margin' | 'roi') => void;
+  minFlipQuality: FlipQualityGrade | null;
+  onMinFlipQualityChange: (grade: FlipQualityGrade | null) => void;
+
   onResetFilters: () => void;
+
+  // Refresh
   refreshInterval: number;
   onRefreshIntervalChange: (value: number) => void;
   isRefreshPaused: boolean;
   onToggleRefreshPaused: () => void;
   nextRefreshAt: number | null;
   lastUpdatedLabel: string;
+
+  // Mobile refine panel
   isRefineOpen: boolean;
   onOpenRefine: () => void;
   onCloseRefine: () => void;
+
+  // Bankroll + Find-a-Flip (signed-in only)
+  isSignedIn: boolean;
+  flipContext: FlipContext | null;
+  onFindMeAFlip: () => void;
+  onOpenBankrollSetup: () => void;
+
+  // Smart filter banner
+  smartFilterBankroll: number | null;
+  onClearSmartFilter: () => void;
 }
 
 export function ExchangeControls({
@@ -65,15 +89,15 @@ export function ExchangeControls({
   filters,
   onFilterChange,
   onApplyFilters,
-  presetValue,
+  activePresets,
   savedPresets,
-  onPresetSelect,
+  onTogglePreset,
   onSavePreset,
-  stackPresets,
-  onToggleStackPresets,
   hideNegativeMargin,
   hideNegativeRoi,
   onToggleNegative,
+  minFlipQuality,
+  onMinFlipQualityChange,
   onResetFilters,
   refreshInterval,
   onRefreshIntervalChange,
@@ -84,14 +108,16 @@ export function ExchangeControls({
   isRefineOpen,
   onOpenRefine,
   onCloseRefine,
+  isSignedIn,
+  flipContext,
+  onFindMeAFlip,
+  onOpenBankrollSetup,
+  smartFilterBankroll,
+  onClearSmartFilter,
 }: ExchangeControlsProps) {
   const idBase = useId();
   const [now, setNow] = useState(() => Date.now());
-  const itemsId = `${idBase}-items`;
-  const presetId = `${idBase}-preset`;
   const refreshId = `${idBase}-refresh`;
-  const refineItemsId = `${idBase}-refine-items`;
-  const refinePresetId = `${idBase}-refine-preset`;
 
   useEffect(() => {
     const updateNow = () => {
@@ -113,8 +139,14 @@ export function ExchangeControls({
     : nextRefreshAt
       ? formatCountdown(Math.max(0, nextRefreshAt - now))
       : 'Calculating...';
+
+  const currentBankroll = flipContext?.bankroll?.current ?? null;
+  // Only show trading features if the user has a tradable (non-ironman) character
+  const hasTradableCharacter = flipContext?.activeCharacterId != null;
+
   return (
     <div className="exchange-controls">
+      {/* Row 1: Search + View + Find-a-Flip */}
       <div className="controls-row controls-top">
         <div className="jump-search">
           <ItemSearch
@@ -143,104 +175,48 @@ export function ExchangeControls({
             Favorites
           </button>
         </div>
+
+        {isSignedIn && hasTradableCharacter && (
+          <button
+            className="find-flip-btn"
+            type="button"
+            onClick={onFindMeAFlip}
+          >
+            <svg
+              fill="none"
+              height="16"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            Find Me a Flip
+          </button>
+        )}
       </div>
 
+      {/* Row 2: Filters (Desktop) */}
       <div className="controls-row controls-filters">
-        <div className="filter-group">
-          <label className="filter-label" htmlFor={itemsId}>
-            Items
-          </label>
-          <select
-            className="filter-select"
-            id={itemsId}
-            value={membersFilter}
-            onChange={(e) =>
-              onMembersFilterChange(e.target.value as MembersFilter)
-            }
-          >
-            <option value="all">All Items</option>
-            <option value="members">Members</option>
-            <option value="f2p">F2P</option>
-          </select>
-        </div>
-
-        <div className="filter-group">
-          <label className="filter-label" htmlFor={presetId}>
-            Preset
-          </label>
-          <select
-            className="filter-select"
-            id={presetId}
-            value={presetValue}
-            onChange={(e) => onPresetSelect(e.target.value)}
-          >
-            <option value="custom">Custom</option>
-            <option value="high-margin">High Margin</option>
-            <option value="high-roi">High ROI</option>
-            <option value="high-volume">High Volume</option>
-            <option value="high-profit">High Profit</option>
-            <option value="high-potential">High Potential</option>
-            <option value="low-price">Low Price</option>
-            <option value="high-price">High Price</option>
-            {savedPresets.length > 0 && (
-              <option disabled value="">
-                ───
-              </option>
-            )}
-            {savedPresets.map((preset) => (
-              <option key={preset.id} value={preset.id}>
-                {preset.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <button
-          className="save-preset-btn"
-          type="button"
-          onClick={onSavePreset}
-        >
-          <svg
-            fill="none"
-            height="14"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="14"
-          >
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-          Save Preset
-        </button>
-
-        <div className="filter-toggles">
-          <label className={`toggle-chip ${stackPresets ? 'active' : ''}`}>
-            <input
-              checked={stackPresets}
-              type="checkbox"
-              onChange={onToggleStackPresets}
-            />
-            <span>Stack Presets</span>
-          </label>
-          <label
-            className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}
-          >
-            <input
-              checked={hideNegativeMargin}
-              type="checkbox"
-              onChange={() => onToggleNegative('margin')}
-            />
-            <span>Hide -Margin</span>
-          </label>
-          <label className={`toggle-chip ${hideNegativeRoi ? 'active' : ''}`}>
-            <input
-              checked={hideNegativeRoi}
-              type="checkbox"
-              onChange={() => onToggleNegative('roi')}
-            />
-            <span>Hide -ROI</span>
-          </label>
-        </div>
+        <FiltersDropdown
+          activePresets={activePresets}
+          filters={filters}
+          hideNegativeMargin={hideNegativeMargin}
+          hideNegativeRoi={hideNegativeRoi}
+          membersFilter={membersFilter}
+          minFlipQuality={minFlipQuality}
+          savedPresets={savedPresets}
+          onFilterChange={onFilterChange}
+          onMembersFilterChange={onMembersFilterChange}
+          onTogglePreset={onTogglePreset}
+          onToggleNegative={onToggleNegative}
+          onMinFlipQualityChange={onMinFlipQualityChange}
+          onSavePreset={onSavePreset}
+          onResetAll={onResetFilters}
+          onApply={onApplyFilters}
+        />
 
         <button className="reset-btn" type="button" onClick={onResetFilters}>
           <svg
@@ -258,6 +234,7 @@ export function ExchangeControls({
         </button>
       </div>
 
+      {/* Row 3: Mobile controls */}
       <div className="controls-row controls-mobile">
         <div className="mobile-sort">
           <label className="filter-label" htmlFor="mobile-sort">
@@ -282,6 +259,24 @@ export function ExchangeControls({
         </button>
       </div>
 
+      {/* Smart Filter Banner */}
+      {smartFilterBankroll !== null && (
+        <div className="smart-filter-banner">
+          <span>
+            Showing flips for your{' '}
+            <strong>{formatGp(smartFilterBankroll)}</strong> bankroll
+          </span>
+          <button
+            className="smart-filter-banner__clear"
+            type="button"
+            onClick={onClearSmartFilter}
+          >
+            Clear
+          </button>
+        </div>
+      )}
+
+      {/* Row 4: Status + Bankroll tag */}
       <div className="controls-row controls-status">
         <div className="live-indicator">
           <span className="live-dot" />
@@ -295,6 +290,28 @@ export function ExchangeControls({
                 })
               : '—'}
           </span>
+
+          {/* Bankroll tag (signed-in + tradable character only) */}
+          {isSignedIn && hasTradableCharacter && currentBankroll !== null && currentBankroll > 0 && (
+            <a
+              className="bankroll-tag"
+              href="/trading/tracker"
+              title="Manage your bankroll in the Trade Tracker"
+            >
+              💰 {formatGp(currentBankroll)}
+            </a>
+          )}
+          {isSignedIn && hasTradableCharacter &&
+            (currentBankroll === null || currentBankroll === 0) && (
+              <button
+                className="bankroll-tag bankroll-tag--empty"
+                type="button"
+                onClick={onOpenBankrollSetup}
+                title="Set your trading bankroll"
+              >
+                Set Bankroll
+              </button>
+            )}
         </div>
 
         <div className="refresh-controls">
@@ -352,6 +369,7 @@ export function ExchangeControls({
         </div>
       </div>
 
+      {/* Refine Panel (Mobile) */}
       {isRefineOpen && (
         <>
           <button
@@ -436,12 +454,12 @@ export function ExchangeControls({
 
             <div className="refine-section refine-row">
               <div className="filter-group">
-                <label className="filter-label" htmlFor={refineItemsId}>
+                <label className="filter-label" htmlFor="refine-items">
                   Items
                 </label>
                 <select
                   className="filter-select"
-                  id={refineItemsId}
+                  id="refine-items"
                   value={membersFilter}
                   onChange={(e) =>
                     onMembersFilterChange(e.target.value as MembersFilter)
@@ -452,67 +470,9 @@ export function ExchangeControls({
                   <option value="f2p">F2P</option>
                 </select>
               </div>
-
-              <div className="filter-group">
-                <label className="filter-label" htmlFor={refinePresetId}>
-                  Preset
-                </label>
-                <select
-                  className="filter-select"
-                  id={refinePresetId}
-                  value={presetValue}
-                  onChange={(e) => onPresetSelect(e.target.value)}
-                >
-                  <option value="custom">Custom</option>
-                  <option value="high-margin">High Margin</option>
-                  <option value="high-roi">High ROI</option>
-                  <option value="high-volume">High Volume</option>
-                  <option value="high-profit">High Profit</option>
-                  <option value="high-potential">High Potential</option>
-                  <option value="low-price">Low Price</option>
-                  <option value="high-price">High Price</option>
-                  {savedPresets.length > 0 && (
-                    <option disabled value="">
-                      ───
-                    </option>
-                  )}
-                  {savedPresets.map((preset) => (
-                    <option key={preset.id} value={preset.id}>
-                      {preset.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
 
             <div className="refine-section refine-row">
-              <button
-                className="save-preset-btn"
-                type="button"
-                onClick={onSavePreset}
-              >
-                <svg
-                  fill="none"
-                  height="14"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  width="14"
-                >
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Save Preset
-              </button>
-
-              <label className={`toggle-chip ${stackPresets ? 'active' : ''}`}>
-                <input
-                  checked={stackPresets}
-                  type="checkbox"
-                  onChange={onToggleStackPresets}
-                />
-                <span>Stack Presets</span>
-              </label>
-
               <label
                 className={`toggle-chip ${hideNegativeMargin ? 'active' : ''}`}
               >

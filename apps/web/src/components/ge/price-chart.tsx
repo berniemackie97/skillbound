@@ -18,6 +18,10 @@ interface PricePoint {
 
 interface TimeseriesResponse {
   data?: {
+    buyPrice?: number | null;
+    sellPrice?: number | null;
+    buyPriceTime?: string | null;
+    sellPriceTime?: string | null;
     timeseries?: {
       points?: PricePoint[];
     };
@@ -46,7 +50,6 @@ const PERIODS: { value: ChartPeriod; label: string }[] = [
   { value: '1w', label: '1W' },
   { value: '1m', label: '1M' },
   { value: '1y', label: '1Y' },
-  { value: '5y', label: '5Y' },
   { value: 'all', label: 'All' },
 ];
 
@@ -90,7 +93,37 @@ export function PriceChart({
         throw new Error('Failed to fetch price data');
       }
       const json = (await response.json()) as TimeseriesResponse;
-      setData(json.data?.timeseries?.points ?? []);
+      const points = json.data?.timeseries?.points ?? [];
+
+      // Append latest instant prices as the final data point so the chart
+      // endpoint matches the live table prices (timeseries uses averaged
+      // prices which can lag behind the most recent instant trade).
+      const latestBuy = json.data?.buyPrice ?? null;
+      const latestSell = json.data?.sellPrice ?? null;
+      if (latestBuy !== null || latestSell !== null) {
+        const latestTime =
+          json.data?.buyPriceTime ?? json.data?.sellPriceTime ?? null;
+        const lastPoint = points[points.length - 1];
+        const lastTs = lastPoint ? new Date(lastPoint.timestamp).getTime() : 0;
+        const liveTs = latestTime ? new Date(latestTime).getTime() : Date.now();
+
+        // Only append if the instant price is newer than the last timeseries
+        // point, or if prices differ (meaning the timeseries hasn't caught up)
+        if (
+          liveTs > lastTs ||
+          lastPoint?.buyPrice !== latestBuy ||
+          lastPoint?.sellPrice !== latestSell
+        ) {
+          points.push({
+            timestamp: latestTime ?? new Date().toISOString(),
+            buyPrice: latestBuy,
+            sellPrice: latestSell,
+            volume: null,
+          });
+        }
+      }
+
+      setData(points);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
@@ -744,11 +777,17 @@ export function PriceChart({
                       volumeHeight - 20 - scaleVolumeY(point.volume);
                     const y = volumeHeight - 20 - height;
 
-                    // Color based on price movement
+                    // Color based on price movement - use buy price when
+                    // available, fall back to sell price so bars without a
+                    // buy data point aren't misleadingly green.
                     const prevPoint = data[i - 1];
-                    const buyPrice = point.buyPrice ?? 0;
-                    const prevBuyPrice = prevPoint?.buyPrice ?? buyPrice;
-                    const isUp = buyPrice >= prevBuyPrice;
+                    const price = point.buyPrice ?? point.sellPrice;
+                    const prevPrice =
+                      prevPoint?.buyPrice ?? prevPoint?.sellPrice ?? price;
+                    const isUp =
+                      price !== null && prevPrice !== null
+                        ? price >= prevPrice
+                        : true;
                     const isHovered = hoverData?.index === i;
 
                     return (

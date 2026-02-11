@@ -113,6 +113,7 @@ export function parseSorts(
         'volume',
         'buyLimit',
         'potentialProfit',
+        'flipQuality',
         'lastTrade',
       ].includes(entry.field)
     );

@@ -15,7 +15,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       <div className="shell">
         <SiteNavApp />
 
-        <main className="page" id="main">
+        <main className="page" id="main" tabIndex={-1}>
           {children}
         </main>
 

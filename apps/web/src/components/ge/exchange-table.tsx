@@ -11,6 +11,7 @@ import {
   useState,
 } from 'react';
 
+import type { FlipQualityScore } from '@/lib/trading/flip-scoring';
 import {
   formatGp,
   formatRoi,
@@ -18,6 +19,7 @@ import {
   getItemIconUrl,
 } from '@/lib/trading/ge-service';
 
+import { FlipQualityBadge } from './flip-quality-badge';
 import { MobileFilterSheet } from './mobile-filter-sheet';
 import { PriceChartPanel } from './price-chart-panel';
 
@@ -37,6 +39,7 @@ export interface ExchangeItem {
   roiPercent: number | null;
   volume: number | null;
   potentialProfit: number | null;
+  flipQuality: FlipQualityScore | null;
 }
 
 export type SortField =
@@ -50,7 +53,8 @@ export type SortField =
   | 'volume'
   | 'buyLimit'
   | 'potentialProfit'
-  | 'lastTrade';
+  | 'lastTrade'
+  | 'flipQuality';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -591,6 +595,12 @@ function ExchangeTableBase({
                       {item.buyLimit?.toLocaleString() ?? '—'}
                     </span>
                   </div>
+                  {item.flipQuality && (
+                    <FlipQualityBadge
+                      compact
+                      quality={item.flipQuality}
+                    />
+                  )}
                 </div>
 
                 <div className="exchange-card-metrics">
@@ -728,11 +738,12 @@ function ExchangeTableBase({
           <col className="col-volume" />
           <col className="col-limit" />
           <col className="col-potential" />
+          <col className="col-quality" />
           <col className="col-time" />
         </colgroup>
         <thead>
           <tr className="update-row">
-            <th colSpan={13}>
+            <th colSpan={14}>
               <div className="update-indicator">
                 <span aria-hidden="true" className="update-dot" />
                 Live prices
@@ -807,6 +818,12 @@ function ExchangeTableBase({
               field="potentialProfit"
               filterKey="potentialProfit"
               label="Pot. Profit"
+              {...sortHeaderProps}
+            />
+            <SortHeader
+              className="col-quality"
+              field="flipQuality"
+              label="Quality"
               {...sortHeaderProps}
             />
             <SortHeader
@@ -932,6 +949,13 @@ function ExchangeTableBase({
                   <td className="col-potential">
                     {formatGp(item.potentialProfit)}
                   </td>
+                  <td className="col-quality">
+                    {item.flipQuality ? (
+                      <FlipQualityBadge quality={item.flipQuality} />
+                    ) : (
+                      <span className="quality-empty">-</span>
+                    )}
+                  </td>
                   <td className="col-time">
                     <span className="time-indicator" />
                     {now ? formatTimeAgo(getLastTradeTime(item), now) : '-'}
@@ -939,7 +963,7 @@ function ExchangeTableBase({
                 </tr>
                 {expandedItemId === item.id && (
                   <tr className="expanded-row">
-                    <td colSpan={13}>
+                    <td colSpan={14}>
                       <div className="expanded-content">
                         <PriceChartPanel
                           itemIcon={item.icon}

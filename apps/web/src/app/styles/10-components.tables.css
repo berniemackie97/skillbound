@@ -190,8 +190,222 @@
   width: 8%;
 }
 
+.exchange-table col.col-quality {
+  width: 5%;
+}
+
 .exchange-table col.col-time {
   width: 6%;
+}
+
+/* Quality column cell */
+.exchange-table td.col-quality {
+  text-align: center;
+  padding: 4px 6px;
+}
+
+/* Flip Quality Badge */
+.flip-quality-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: default;
+  transition: transform 0.15s ease;
+  color: var(--grade-color);
+  background: color-mix(in srgb, var(--grade-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--grade-color) 25%, transparent);
+}
+
+.flip-quality-badge:hover {
+  transform: scale(1.08);
+}
+
+.flip-quality-badge--compact {
+  min-width: 22px;
+  height: 20px;
+  font-size: 0.7rem;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* On touch/mobile: badge is tappable — make it larger and more obvious */
+@media (pointer: coarse) {
+  .flip-quality-badge {
+    cursor: pointer;
+    min-width: 34px;
+    height: 30px;
+    font-size: 0.85rem;
+    padding: 0 8px;
+    border-radius: 8px;
+    border-width: 2px;
+  }
+
+  .flip-quality-badge--compact {
+    min-width: 30px;
+    height: 28px;
+    font-size: 0.8rem;
+    padding: 0 6px;
+    border-radius: 6px;
+  }
+}
+
+/* Quality tooltip — rendered via React portal at document.body level.
+   position: fixed + coordinates are set inline by the component.
+   This CSS handles only appearance (background, border, sizing). */
+.quality-tooltip {
+  width: 280px;
+  padding: 12px;
+  background: #1e1a14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  color: var(--text, #e8e0d4);
+}
+
+.quality-tooltip__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.quality-tooltip__grade {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.quality-tooltip__score {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.quality-tooltip__desc {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.quality-tooltip__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.quality-tooltip__bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quality-tooltip__bar-label {
+  flex-shrink: 0;
+  width: 74px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+}
+
+.quality-tooltip__bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.quality-tooltip__bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.quality-tooltip__bar-value {
+  flex-shrink: 0;
+  width: 20px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.quality-tooltip__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.quality-tooltip__flag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  color: #ef4444;
+}
+
+/* Quality modal content (touch devices — tap badge to open) */
+.quality-modal-content .quality-tooltip__header {
+  margin-bottom: 12px;
+}
+
+.quality-modal-content .quality-tooltip__grade {
+  font-size: 1.3rem;
+}
+
+.quality-modal-content .quality-tooltip__score {
+  font-size: 0.9rem;
+}
+
+.quality-modal-content .quality-tooltip__desc {
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.quality-modal-content .quality-tooltip__bars {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.quality-modal-content .quality-tooltip__bar-label {
+  font-size: 0.75rem;
+  width: 86px;
+}
+
+.quality-modal-content .quality-tooltip__bar-track {
+  height: 8px;
+}
+
+.quality-modal-content .quality-tooltip__bar-value {
+  font-size: 0.78rem;
+  width: 24px;
+}
+
+.quality-modal-content .quality-tooltip__flags {
+  gap: 6px;
+  padding-top: 10px;
+}
+
+.quality-modal-content .quality-tooltip__flag {
+  font-size: 0.75rem;
+  padding: 4px 8px;
 }
 
 /* Additional exchange table styles for improved UX */

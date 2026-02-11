@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { ItemDetailClient, PriceChartPanel } from '@/components/ge';
+import { FlipQualityBadge, ItemDetailClient, PriceChartPanel } from '@/components/ge';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import {
   formatGp,
@@ -131,6 +131,10 @@ export default async function ItemDetailPage({
         </div>
 
         <div className="item-quick-stats">
+          {item.flipQuality && (
+            <FlipQualityBadge quality={item.flipQuality} />
+          )}
+
           {item.profit !== null && (
             <span className={`profit-badge ${profitClass(item.profit)}`}>
               Profit: {item.profit >= 0 ? '+' : ''}
@@ -258,6 +262,27 @@ export default async function ItemDetailPage({
             <span className="detail-label">Examine</span>
             <span className="detail-value">{item.examine}</span>
           </div>
+
+          {item.flipQuality && (
+            <div className="detail-item full-width">
+              <span className="detail-label">Flip Quality</span>
+              <div className="detail-quality-breakdown">
+                <FlipQualityBadge quality={item.flipQuality} />
+                <span className="detail-quality-score">
+                  Score: {item.flipQuality.score}/100
+                </span>
+                {item.flipQuality.flags.length > 0 && (
+                  <div className="detail-quality-flags">
+                    {item.flipQuality.flags.map((flag) => (
+                      <span key={flag} className="detail-quality-flag">
+                        {flag.replace(/-/g, ' ')}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </details>
 

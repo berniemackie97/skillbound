@@ -17,6 +17,8 @@ interface BankrollCardProps {
   hideTitle?: boolean;
 }
 
+type Mode = 'view' | 'edit' | 'add-funds';
+
 export function BankrollCard({
   characterId,
   bankroll,
@@ -24,213 +26,282 @@ export function BankrollCard({
   hideTitle = false,
 }: BankrollCardProps) {
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState(false);
+  const [mode, setMode] = useState<Mode>('view');
   const [currentInput, setCurrentInput] = useState('');
   const [startingInput, setStartingInput] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isAddingFunds, setIsAddingFunds] = useState(false);
   const [fundsInput, setFundsInput] = useState('');
-  const [isAdding, setIsAdding] = useState(false);
-  const [isSyncing, setIsSyncing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const currentInputRef = useRef<HTMLInputElement>(null);
   const fundsInputRef = useRef<HTMLInputElement>(null);
 
+  // Listen for bankroll changes from other tabs via localStorage storage event
   useEffect(() => {
-    if (isEditing) {
-      currentInputRef.current?.focus();
-    }
-  }, [isEditing]);
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key !== 'bankroll-updated') return;
+      router.refresh();
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [router]);
 
+  // Focus appropriate input when switching modes
   useEffect(() => {
-    if (!isEditing && isAddingFunds) {
+    if (mode === 'edit') {
+      currentInputRef.current?.focus();
+    } else if (mode === 'add-funds') {
       fundsInputRef.current?.focus();
     }
-  }, [isAddingFunds, isEditing]);
+  }, [mode]);
 
-  // Calculate ROI based on total profit vs initial bankroll
+  // Derived values
   const roi =
     bankroll.initialBankroll > 0
       ? (totalProfit / bankroll.initialBankroll) * 100
       : 0;
 
-  function handleEdit() {
-    // Pre-fill with current values
-    setCurrentInput(String(bankroll.currentBankroll));
-    setStartingInput(String(bankroll.initialBankroll));
-    setIsEditing(true);
+  const hasBankroll =
+    bankroll.currentBankroll > 0 || bankroll.initialBankroll > 0;
+
+  // --- Handlers ---
+
+  function openEdit() {
+    setCurrentInput(
+      bankroll.currentBankroll > 0 ? String(bankroll.currentBankroll) : ''
+    );
+    setStartingInput(
+      bankroll.initialBankroll > 0 ? String(bankroll.initialBankroll) : ''
+    );
+    setError(null);
+    setMode('edit');
+  }
+
+  function openAddFunds() {
+    setFundsInput('');
+    setError(null);
+    setMode('add-funds');
+  }
+
+  function cancel() {
+    setMode('view');
     setError(null);
   }
 
-  async function handleAddFunds(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-
-    const deltaValue = parseGp(fundsInput);
-    if (deltaValue === null || deltaValue <= 0) {
-      setError('Enter a positive amount to add.');
-      return;
-    }
-
-    setIsAdding(true);
-    try {
-      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ delta: deltaValue }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add funds');
-      }
-
-      setFundsInput('');
-      setIsAddingFunds(false);
-      router.refresh();
-    } catch {
-      setError('Failed to add funds');
-    } finally {
-      setIsAdding(false);
-    }
+  /** Notify other tabs that bankroll changed */
+  function notifyOtherTabs() {
+    localStorage.setItem('bankroll-updated', String(Date.now()));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleEditSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
 
-    // Parse inputs with GP suffix support
-    const currentValue = parseGp(currentInput);
-    const startingValue = parseGp(startingInput);
+    let currentValue = parseGp(currentInput);
+    let startingValue = parseGp(startingInput);
+
+    // Allow empty fields — treat them as unchanged from existing value OR 0
+    if (currentInput.trim() === '') currentValue = bankroll.currentBankroll;
+    if (startingInput.trim() === '') startingValue = bankroll.initialBankroll;
 
     if (currentValue === null) {
       setError('Invalid current bankroll. Try: 4m, 500k, or 1000000');
       return;
     }
-
     if (startingValue === null) {
       setError('Invalid starting bankroll. Try: 4m, 500k, or 1000000');
       return;
     }
 
+    // First-time setup sync:
+    // If user set starting but left current at 0 → match current to starting
+    if (currentValue === 0 && startingValue > 0) {
+      currentValue = startingValue;
+    }
+    // If user set current but left starting at 0 → match starting to current
+    if (startingValue === 0 && currentValue > 0) {
+      startingValue = currentValue;
+    }
+
     setIsSubmitting(true);
     try {
-      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          currentBankroll: currentValue,
-          initialBankroll: startingValue,
-        }),
-      });
+      const response = await fetch(
+        `/api/characters/${characterId}/bankroll`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            currentBankroll: currentValue,
+            initialBankroll: startingValue,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Failed to update bankroll');
       }
 
-      setIsEditing(false);
-      setCurrentInput('');
-      setStartingInput('');
+      setMode('view');
+      notifyOtherTabs();
       router.refresh();
     } catch {
-      setError('Failed to update bankroll');
+      setError('Failed to update bankroll. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   }
 
-  function handleCancel() {
-    setIsEditing(false);
-    setCurrentInput('');
-    setStartingInput('');
+  async function handleAddFundsSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setError(null);
-  }
 
-  async function handleSync() {
-    setIsSyncing(true);
-    setError(null);
+    const deltaValue = parseGp(fundsInput);
+    if (deltaValue === null || deltaValue <= 0) {
+      setError('Enter a positive amount. Try: 2m, 500k, etc.');
+      return;
+    }
+
+    setIsSubmitting(true);
     try {
-      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
-        method: 'POST',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to sync bankroll');
+      // If starting bankroll is 0, this is first-time setup:
+      // set both starting and current to the added amount
+      if (bankroll.initialBankroll === 0 && bankroll.currentBankroll === 0) {
+        const response = await fetch(
+          `/api/characters/${characterId}/bankroll`,
+          {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              currentBankroll: deltaValue,
+              initialBankroll: deltaValue,
+            }),
+          }
+        );
+        if (!response.ok) throw new Error('Failed to set bankroll');
+      } else if (bankroll.initialBankroll === 0) {
+        // Starting is 0 but current has a value — also set starting
+        const response = await fetch(
+          `/api/characters/${characterId}/bankroll`,
+          {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              currentBankroll: bankroll.currentBankroll + deltaValue,
+              initialBankroll: bankroll.currentBankroll + deltaValue,
+            }),
+          }
+        );
+        if (!response.ok) throw new Error('Failed to set bankroll');
+      } else {
+        // Normal add funds: only adjust current via PATCH
+        const response = await fetch(
+          `/api/characters/${characterId}/bankroll`,
+          {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ delta: deltaValue }),
+          }
+        );
+        if (!response.ok) throw new Error('Failed to add funds');
       }
 
+      setMode('view');
+      notifyOtherTabs();
       router.refresh();
     } catch {
-      setError('Failed to sync bankroll');
+      setError('Failed to add funds. Please try again.');
     } finally {
-      setIsSyncing(false);
+      setIsSubmitting(false);
     }
   }
 
+  // --- Render ---
+
   return (
     <div className="bankroll-card">
+      {/* Header */}
       <div className={`bankroll-header ${hideTitle ? 'no-title' : ''}`}>
         {!hideTitle && <h3>Trading Bankroll</h3>}
-        {!isEditing && (
+        {mode === 'view' && (
           <div className="bankroll-actions">
             <button
               className="button ghost small"
-              disabled={isSyncing}
-              title="Recalculate bankroll from trades"
-              onClick={handleSync}
+              type="button"
+              onClick={openEdit}
             >
-              {isSyncing ? 'Syncing...' : 'Sync'}
+              {hasBankroll ? 'Edit' : 'Set Up'}
             </button>
-            <button className="button ghost small" onClick={handleEdit}>
-              Edit
-            </button>
-            <button
-              className="button ghost small"
-              onClick={() => {
-                setIsAddingFunds((prev) => !prev);
-                setError(null);
-              }}
-            >
-              {isAddingFunds ? 'Close' : 'Add Funds'}
-            </button>
+            {hasBankroll && (
+              <button
+                className="button ghost small"
+                type="button"
+                onClick={openAddFunds}
+              >
+                Add Funds
+              </button>
+            )}
           </div>
+        )}
+        {mode !== 'view' && (
+          <button
+            className="button ghost small"
+            type="button"
+            onClick={cancel}
+          >
+            Cancel
+          </button>
         )}
       </div>
 
+      {/* Content */}
       <div className="bankroll-content">
-        {!isEditing ? (
-          <div className="bankroll-stats">
-            <div className="bankroll-stat">
-              <span className="bankroll-stat-label">Current</span>
-              <span className="bankroll-stat-value">
-                {formatGp(bankroll.currentBankroll)}
-              </span>
-            </div>
-            <div className="bankroll-stat">
-              <span className="bankroll-stat-label">Starting</span>
-              <span className="bankroll-stat-value">
-                {formatGp(bankroll.initialBankroll)}
-              </span>
-            </div>
-            <div className="bankroll-stat">
-              <span className="bankroll-stat-label">Total Profit</span>
-              <span
-                className={`bankroll-stat-value ${totalProfit >= 0 ? 'positive' : 'negative'}`}
-              >
-                {totalProfit >= 0 ? '+' : ''}
-                {formatGp(totalProfit)}
-              </span>
-            </div>
-            <div className="bankroll-stat">
-              <span className="bankroll-stat-label">ROI</span>
-              <span
-                className={`bankroll-stat-value ${roi >= 0 ? 'positive' : 'negative'}`}
-              >
-                {roi >= 0 ? '+' : ''}
-                {roi.toFixed(1)}%
-              </span>
-            </div>
-          </div>
-        ) : (
-          <form className="bankroll-edit-form" onSubmit={handleSubmit}>
+        {mode === 'view' && (
+          <>
+            {hasBankroll ? (
+              <div className="bankroll-stats">
+                <div className="bankroll-stat bankroll-stat--primary">
+                  <span className="bankroll-stat-label">Current</span>
+                  <span className="bankroll-stat-value">
+                    {formatGp(bankroll.currentBankroll)}
+                  </span>
+                </div>
+                <div className="bankroll-stat">
+                  <span className="bankroll-stat-label">Starting</span>
+                  <span className="bankroll-stat-value">
+                    {formatGp(bankroll.initialBankroll)}
+                  </span>
+                </div>
+                <div className="bankroll-stat">
+                  <span className="bankroll-stat-label">Total Profit</span>
+                  <span
+                    className={`bankroll-stat-value ${totalProfit >= 0 ? 'positive' : 'negative'}`}
+                  >
+                    {totalProfit >= 0 ? '+' : ''}
+                    {formatGp(totalProfit)}
+                  </span>
+                </div>
+                <div className="bankroll-stat">
+                  <span className="bankroll-stat-label">ROI</span>
+                  <span
+                    className={`bankroll-stat-value ${roi >= 0 ? 'positive' : 'negative'}`}
+                  >
+                    {roi >= 0 ? '+' : ''}
+                    {roi.toFixed(1)}%
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="bankroll-empty">
+                <p className="bankroll-empty__text">
+                  No bankroll set. Click <strong>Set Up</strong> above to get
+                  started with trade tracking.
+                </p>
+              </div>
+            )}
+          </>
+        )}
+
+        {mode === 'edit' && (
+          <form className="bankroll-edit-form" onSubmit={handleEditSubmit}>
             <div className="bankroll-edit-warning">
               <svg
                 fill="none"
@@ -252,6 +323,7 @@ export function BankrollCard({
                 </span>
               </div>
             </div>
+
             <div className="bankroll-edit-fields">
               <label className="bankroll-edit-field">
                 <span className="field-label">Current Bankroll</span>
@@ -264,7 +336,7 @@ export function BankrollCard({
                 />
                 {currentInput && parseGp(currentInput) !== null && (
                   <span className="field-preview">
-                    = {formatGp(parseGp(currentInput))} GP
+                    = {formatGp(parseGp(currentInput)!)} GP
                   </span>
                 )}
               </label>
@@ -278,11 +350,17 @@ export function BankrollCard({
                 />
                 {startingInput && parseGp(startingInput) !== null && (
                   <span className="field-preview">
-                    = {formatGp(parseGp(startingInput))} GP
+                    = {formatGp(parseGp(startingInput)!)} GP
                   </span>
                 )}
               </label>
             </div>
+
+            <p className="bankroll-hint">
+              Leave a field empty to keep its current value. If one is 0 and
+              the other is set, both will match automatically.
+            </p>
+
             <div className="bankroll-edit-actions">
               <button
                 className="button primary small"
@@ -295,20 +373,24 @@ export function BankrollCard({
                 className="button ghost small"
                 disabled={isSubmitting}
                 type="button"
-                onClick={handleCancel}
+                onClick={cancel}
               >
                 Cancel
               </button>
             </div>
+
             <p className="bankroll-hint">
               Supports: 4m, 1.5k, 500000, or 2,500,000
             </p>
           </form>
         )}
 
-        {!isEditing && isAddingFunds && (
-          <form className="bankroll-add-funds-form" onSubmit={handleAddFunds}>
-            <div className="add-funds-info">
+        {mode === 'add-funds' && (
+          <form
+            className="bankroll-add-funds-inline"
+            onSubmit={handleAddFundsSubmit}
+          >
+            <div className="add-funds-info-inline">
               <svg
                 fill="none"
                 height="14"
@@ -322,12 +404,15 @@ export function BankrollCard({
                 <path d="M12 8h.01" />
               </svg>
               <span>
-                Adds to your bankroll without affecting ROI calculations.
+                {bankroll.initialBankroll === 0
+                  ? 'This will set your starting bankroll too since none is configured yet.'
+                  : 'Adds to your current bankroll without affecting ROI calculations.'}
               </span>
             </div>
-            <label className="add-funds-field">
+
+            <label className="bankroll-edit-field">
               <span className="field-label">Amount to Add</span>
-              <div className="add-funds-input-row">
+              <div className="bankroll-add-funds-row">
                 <input
                   ref={fundsInputRef}
                   placeholder="e.g. 2m, 500k"
@@ -337,18 +422,27 @@ export function BankrollCard({
                 />
                 <button
                   className="button primary small"
-                  disabled={isAdding}
+                  disabled={isSubmitting}
                   type="submit"
                 >
-                  {isAdding ? 'Adding...' : 'Add Funds'}
+                  {isSubmitting ? 'Adding...' : 'Add'}
                 </button>
               </div>
               {fundsInput && parseGp(fundsInput) !== null && (
                 <span className="field-preview">
-                  = {formatGp(parseGp(fundsInput))} GP
+                  = {formatGp(parseGp(fundsInput)!)} GP
                 </span>
               )}
             </label>
+
+            <button
+              className="button ghost small"
+              disabled={isSubmitting}
+              type="button"
+              onClick={cancel}
+            >
+              Cancel
+            </button>
           </form>
         )}
 

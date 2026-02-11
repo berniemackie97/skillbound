@@ -8,6 +8,12 @@
 import { createWikiPricesClient } from '@skillbound/wiki-api';
 
 import { getWikiCache, getWikiCacheTtlMs } from '../cache/wiki-cache';
+import {
+  calculateFlipQualityScore,
+  meetsMinimumGrade,
+  type FlipQualityGrade,
+  type FlipQualityScore,
+} from './flip-scoring';
 
 /**
  * GE Tax rate (1% capped at 5m)
@@ -60,6 +66,15 @@ export interface GeExchangeItem {
   avgLowPrice5m: number | null;
   avgHighPrice1h: number | null;
   avgLowPrice1h: number | null;
+
+  // Volume breakdown (buy/sell pressure)
+  highPriceVolume5m: number | null;
+  lowPriceVolume5m: number | null;
+  highPriceVolume1h: number | null;
+  lowPriceVolume1h: number | null;
+
+  // Flip quality scoring
+  flipQuality: FlipQualityScore | null;
 }
 
 export interface GeItemFilters {
@@ -79,6 +94,7 @@ export interface GeItemFilters {
   maxSellPrice?: number | undefined;
   minPotentialProfit?: number | undefined;
   maxPotentialProfit?: number | undefined;
+  minFlipQuality?: FlipQualityGrade | undefined;
 }
 
 /**
@@ -107,7 +123,7 @@ export interface PricePoint {
 /**
  * Time period options for charts
  */
-export type ChartPeriod = 'live' | '1w' | '1m' | '1y' | '5y' | 'all';
+export type ChartPeriod = 'live' | '1w' | '1m' | '1y' | 'all';
 
 type WikiClientKind = 'latest' | 'interval' | 'mapping' | 'timeseries';
 
@@ -184,6 +200,19 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
     const avgHighPrice1h = hourlyInterval?.avgHighPrice ?? null;
     const avgLowPrice1h = hourlyInterval?.avgLowPrice ?? null;
 
+    // Volume breakdown (buy/sell pressure data)
+    const highPriceVolume5m = interval?.highPriceVolume ?? null;
+    const lowPriceVolume5m = interval?.lowPriceVolume ?? null;
+    const highPriceVolume1h = hourlyInterval?.highPriceVolume ?? null;
+    const lowPriceVolume1h = hourlyInterval?.lowPriceVolume ?? null;
+
+    const buyPriceTime = latest?.highTime
+      ? new Date(latest.highTime * 1000)
+      : null;
+    const sellPriceTime = latest?.lowTime
+      ? new Date(latest.lowTime * 1000)
+      : null;
+
     items.push({
       id: mapping.id,
       name: mapping.name,
@@ -197,8 +226,8 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
 
       buyPrice,
       sellPrice,
-      buyPriceTime: latest?.highTime ? new Date(latest.highTime * 1000) : null,
-      sellPriceTime: latest?.lowTime ? new Date(latest.lowTime * 1000) : null,
+      buyPriceTime,
+      sellPriceTime,
 
       margin,
       tax,
@@ -206,7 +235,10 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
       roiPercent,
       potentialProfit,
 
-      volume: volume5m ?? volume1h ?? null,
+      // Prefer 1h volume for the table as it covers a broader window and
+      // is more representative of actual trading activity than a single
+      // 5-minute snapshot.
+      volume: volume1h ?? volume5m ?? null,
       avgHighPrice: avgHighPrice5m ?? avgHighPrice1h ?? null,
       avgLowPrice: avgLowPrice5m ?? avgLowPrice1h ?? null,
       volume5m,
@@ -215,7 +247,51 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
       avgLowPrice5m,
       avgHighPrice1h,
       avgLowPrice1h,
+
+      // Volume breakdown
+      highPriceVolume5m,
+      lowPriceVolume5m,
+      highPriceVolume1h,
+      lowPriceVolume1h,
+
+      // Flip quality will be computed below in batch
+      flipQuality: null,
     });
+  }
+
+  // Compute flip quality scores in batch (after all items are built)
+  const now = new Date();
+  for (const item of items) {
+    // Only score items that have both prices and a positive margin
+    if (
+      item.buyPrice !== null &&
+      item.sellPrice !== null &&
+      item.margin !== null &&
+      item.margin > 0
+    ) {
+      item.flipQuality = calculateFlipQualityScore(
+        {
+          buyPrice: item.buyPrice,
+          sellPrice: item.sellPrice,
+          buyPriceTime: item.buyPriceTime,
+          sellPriceTime: item.sellPriceTime,
+          margin: item.margin,
+          tax: item.tax,
+          avgHighPrice5m: item.avgHighPrice5m,
+          avgLowPrice5m: item.avgLowPrice5m,
+          volume5m: item.volume5m,
+          highPriceVolume5m: item.highPriceVolume5m,
+          lowPriceVolume5m: item.lowPriceVolume5m,
+          avgHighPrice1h: item.avgHighPrice1h,
+          avgLowPrice1h: item.avgLowPrice1h,
+          volume1h: item.volume1h,
+          highPriceVolume1h: item.highPriceVolume1h,
+          lowPriceVolume1h: item.lowPriceVolume1h,
+          buyLimit: item.buyLimit,
+        },
+        now
+      );
+    }
   }
 
   return items;
@@ -243,6 +319,7 @@ export function filterGeItems(
     maxSellPrice,
     minPotentialProfit,
     maxPotentialProfit,
+    minFlipQuality,
   } = filters;
 
   if (search) {
@@ -341,6 +418,14 @@ export function filterGeItems(
       (item) =>
         item.potentialProfit !== null &&
         item.potentialProfit <= maxPotentialProfit
+    );
+  }
+
+  if (minFlipQuality !== undefined) {
+    result = result.filter(
+      (item) =>
+        item.flipQuality !== null &&
+        meetsMinimumGrade(item.flipQuality.grade, minFlipQuality)
     );
   }
 
@@ -458,11 +543,6 @@ export async function getItemTimeseries(
       // Last year, 24h intervals
       timestep = '24h';
       filterStartTime = now - 365 * 24 * 60 * 60;
-      break;
-    case '5y':
-      // Last 5 years, 24h intervals (API only has ~1 year max)
-      timestep = '24h';
-      filterStartTime = now - 5 * 365 * 24 * 60 * 60;
       break;
     case 'all':
       // All time, 24h intervals - no filtering
@@ -672,7 +752,8 @@ export type SortField =
   | 'volume'
   | 'buyLimit'
   | 'potentialProfit'
-  | 'lastTrade';
+  | 'lastTrade'
+  | 'flipQuality';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -721,6 +802,8 @@ function getSortValue(
           : item.sellPriceTime;
       }
       return item.buyPriceTime ?? item.sellPriceTime ?? null;
+    case 'flipQuality':
+      return item.flipQuality?.score ?? null;
   }
 }
 

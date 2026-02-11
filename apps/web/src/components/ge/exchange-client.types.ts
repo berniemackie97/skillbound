@@ -50,3 +50,36 @@ export interface ExchangeClientProps {
   };
   isSignedIn?: boolean;
 }
+
+/**
+ * Trading context fetched from /api/ge/flip-context
+ */
+export interface FlipContext {
+  bankroll: {
+    current: number;
+    initial: number;
+  } | null;
+  activeCharacterId: string | null;
+  tradeHistory: {
+    frequentItems: Array<{
+      itemId: number;
+      itemName: string;
+      tradeCount: number;
+    }>;
+    totalFlips: number;
+  } | null;
+  inventory: Array<{
+    itemId: number;
+    itemName: string;
+    remainingQuantity: number;
+    averageBuyPrice: number;
+  }> | null;
+}
+
+/**
+ * Smart filter banner state
+ */
+export interface SmartFilterBanner {
+  bankrollAmount: number;
+  isActive: boolean;
+}

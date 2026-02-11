@@ -21,7 +21,7 @@ const querySchema = z.object({
     .string()
     .optional()
     .transform((v) => {
-      const periods: ChartPeriod[] = ['live', '1w', '1m', '1y', '5y', 'all'];
+      const periods: ChartPeriod[] = ['live', '1w', '1m', '1y', 'all'];
       return periods.includes(v as ChartPeriod) ? (v as ChartPeriod) : 'live';
     }),
   includeTimeseries: z

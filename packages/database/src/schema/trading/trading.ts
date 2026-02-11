@@ -272,6 +272,20 @@ export const geFlipSuggestions = pgTable(
     dailyVolume: integer('daily_volume'),
     profitPotential: profitPotentialEnum('profit_potential').notNull(),
 
+    // Flip quality scoring
+    flipQualityGrade: text('flip_quality_grade'), // A-F
+    flipQualityScore: integer('flip_quality_score'), // 0-100
+    qualityLiquidity: integer('quality_liquidity'),
+    qualityStaleness: integer('quality_staleness'),
+    qualityMarginStability: integer('quality_margin_stability'),
+    qualityVolumeAdequacy: integer('quality_volume_adequacy'),
+    qualityBuyPressure: integer('quality_buy_pressure'),
+    qualityTaxEfficiency: integer('quality_tax_efficiency'),
+    qualityFlags: text('quality_flags')
+      .array()
+      .notNull()
+      .default([]),
+
     // Metadata
     calculatedAt: timestamp('calculated_at', { withTimezone: true })
       .notNull()
@@ -285,6 +299,12 @@ export const geFlipSuggestions = pgTable(
     calculatedAtIdx: index('ge_flip_calculated_at_idx').on(table.calculatedAt),
     profitPotentialIdx: index('ge_flip_profit_potential_idx').on(
       table.profitPotential
+    ),
+    flipQualityGradeIdx: index('ge_flip_quality_grade_idx').on(
+      table.flipQualityGrade
+    ),
+    flipQualityScoreIdx: index('ge_flip_quality_score_idx').on(
+      table.flipQualityScore
     ),
   })
 );

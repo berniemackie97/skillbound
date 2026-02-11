@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
+import type { FlipQualityGrade } from '@/lib/trading/flip-scoring';
 import {
   filterGeItems,
   getGeExchangeItems,
@@ -27,7 +28,10 @@ const sortFields: SortField[] = [
   'buyLimit',
   'potentialProfit',
   'lastTrade',
+  'flipQuality',
 ];
+
+const VALID_FLIP_QUALITY_GRADES = ['A', 'B', 'C', 'D', 'F'] as const;
 
 const querySchema = z.object({
   ids: z
@@ -109,6 +113,18 @@ const querySchema = z.object({
     .string()
     .optional()
     .transform((v) => parseOptionalInt(v)),
+  minFlipQuality: z
+    .string()
+    .optional()
+    .transform((v) => {
+      if (!v) return undefined;
+      const upper = v.toUpperCase();
+      return VALID_FLIP_QUALITY_GRADES.includes(
+        upper as (typeof VALID_FLIP_QUALITY_GRADES)[number]
+      )
+        ? (upper as FlipQualityGrade)
+        : undefined;
+    }),
 });
 
 function parseIds(value?: string): number[] | undefined {
@@ -225,6 +241,8 @@ export async function GET(request: NextRequest) {
       request.nextUrl.searchParams.get('minPotentialProfit') ?? undefined,
     maxPotentialProfit:
       request.nextUrl.searchParams.get('maxPotentialProfit') ?? undefined,
+    minFlipQuality:
+      request.nextUrl.searchParams.get('minFlipQuality') ?? undefined,
   });
 
   if (!parsed.success) {
@@ -300,6 +318,7 @@ export async function GET(request: NextRequest) {
       maxSellPrice: parsed.data.maxSellPrice,
       minPotentialProfit: parsed.data.minPotentialProfit,
       maxPotentialProfit: parsed.data.maxPotentialProfit,
+      minFlipQuality: parsed.data.minFlipQuality,
     };
 
     items = filterGeItems(items, filters);
