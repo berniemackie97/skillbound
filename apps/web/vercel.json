@@ -5,6 +5,10 @@
       "schedule": "0 2 * * *"
     },
     {
+      "path": "/api/cron/flip-scores",
+      "schedule": "0 2 * * *"
+    },
+    {
       "path": "/api/cron/retention?batchSize=1000",
       "schedule": "30 3 * * 0"
     },
@@ -15,6 +19,9 @@
   ],
   "functions": {
     "src/app/api/cron/snapshots/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/flip-scores/route.ts": {
       "maxDuration": 300
     },
     "src/app/api/cron/retention/route.ts": {
