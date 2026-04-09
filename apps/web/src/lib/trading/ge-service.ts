@@ -8,6 +8,7 @@
 import { createWikiPricesClient } from '@skillbound/wiki-api';
 
 import { getWikiCache, getWikiCacheTtlMs } from '../cache/wiki-cache';
+
 import {
   calculateFlipQualityScore,
   meetsMinimumGrade,
@@ -16,10 +17,16 @@ import {
 } from './flip-scoring';
 
 /**
- * GE Tax rate (1% capped at 5m)
+ * GE Tax rate (2% capped at 5m, updated May 2025)
  */
-const GE_TAX_RATE = 0.01;
+const GE_TAX_RATE = 0.02;
 const GE_TAX_CAP = 5_000_000;
+
+/**
+ * Approximate nature rune cost for high alchemy price floor calculation.
+ * Updated periodically — nature runes typically trade 100-120gp.
+ */
+const NATURE_RUNE_COST = 105;
 
 /**
  * Calculate GE tax for a sale price
@@ -27,6 +34,17 @@ const GE_TAX_CAP = 5_000_000;
 export function calculateGeTax(sellPrice: number): number {
   const tax = Math.floor(sellPrice * GE_TAX_RATE);
   return Math.min(tax, GE_TAX_CAP);
+}
+
+/**
+ * Calculate the alchemy price floor for an item.
+ * Items rarely trade below highAlch - natureRuneCost because
+ * players can always alch them for a guaranteed return.
+ * Returns null if the item has no high alch value.
+ */
+export function calculateAlchFloor(highAlch: number | null): number | null {
+  if (highAlch === null || highAlch <= 0) return null;
+  return Math.max(0, highAlch - NATURE_RUNE_COST);
 }
 
 /**
@@ -54,7 +72,19 @@ export interface GeExchangeItem {
   tax: number | null;
   profit: number | null; // margin - tax
   roiPercent: number | null;
-  potentialProfit: number | null; // profit * buyLimit
+  potentialProfit: number | null; // profit * buyLimit (GP per 4h cycle)
+  dailyProfit: number | null; // potentialProfit * 6 (GP per day, 6 buy-limit cycles)
+
+  /** Estimated GP/hr based on margin, buy limit, and estimated fill time from volume */
+  gpPerHour: number | null;
+  /** Estimated hours to fill one buy limit, based on hourly volume. Null if no volume data. */
+  estimatedFillHours: number | null;
+
+  // Alchemy price floor: highAlch - nature rune cost (~105gp)
+  // Items rarely trade below this value. Null if no alch value.
+  alchFloor: number | null;
+  /** How close current sell price is to the alch floor (percent above). Null if no floor. */
+  distanceFromAlchFloor: number | null;
 
   // Volume data (from 5m or 1h prices)
   volume: number | null;
@@ -192,9 +222,34 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
     const buyLimit = mapping.limit ?? null;
     const potentialProfit =
       profit !== null && buyLimit !== null ? profit * buyLimit : null;
+    // 6 buy-limit cycles per day (4h each)
+    const dailyProfit = potentialProfit !== null ? potentialProfit * 6 : null;
+
+    // Alchemy price floor
+    const highAlch = mapping.highalch ?? null;
+    const alchFloor = calculateAlchFloor(highAlch);
+    const distanceFromAlchFloor =
+      alchFloor !== null && sellPrice !== null && alchFloor > 0
+        ? Math.round(((sellPrice - alchFloor) / alchFloor) * 1000) / 10
+        : null;
 
     const volume5m = interval?.volume ?? null;
     const volume1h = hourlyInterval?.volume ?? null;
+
+    // GP/hr estimation: how fast can you fill buy limit based on volume?
+    // hourlyVolume tells us items traded per hour on average.
+    // estimatedFillHours = buyLimit / hourlyVolume (capped at 4h max for one cycle)
+    const hourlyVolume = volume1h ?? (volume5m !== null ? volume5m * 12 : null);
+    const estimatedFillHours =
+      buyLimit !== null && hourlyVolume !== null && hourlyVolume > 0
+        ? Math.min(buyLimit / hourlyVolume, 4)
+        : null;
+    const gpPerHour =
+      potentialProfit !== null &&
+      estimatedFillHours !== null &&
+      estimatedFillHours > 0
+        ? Math.round(potentialProfit / estimatedFillHours)
+        : null;
     const avgHighPrice5m = interval?.avgHighPrice ?? null;
     const avgLowPrice5m = interval?.avgLowPrice ?? null;
     const avgHighPrice1h = hourlyInterval?.avgHighPrice ?? null;
@@ -234,6 +289,11 @@ export async function getGeExchangeItems(): Promise<GeExchangeItem[]> {
       profit,
       roiPercent,
       potentialProfit,
+      dailyProfit,
+      gpPerHour,
+      estimatedFillHours,
+      alchFloor,
+      distanceFromAlchFloor,
 
       // Prefer 1h volume for the table as it covers a broader window and
       // is more representative of actual trading activity than a single
@@ -752,6 +812,8 @@ export type SortField =
   | 'volume'
   | 'buyLimit'
   | 'potentialProfit'
+  | 'dailyProfit'
+  | 'gpPerHour'
   | 'lastTrade'
   | 'flipQuality';
 
@@ -795,6 +857,10 @@ function getSortValue(
       return item.buyLimit;
     case 'potentialProfit':
       return item.potentialProfit;
+    case 'dailyProfit':
+      return item.dailyProfit;
+    case 'gpPerHour':
+      return item.gpPerHour;
     case 'lastTrade':
       if (item.buyPriceTime && item.sellPriceTime) {
         return item.buyPriceTime > item.sellPriceTime

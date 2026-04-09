@@ -176,12 +176,12 @@ export function FiltersDropdown({
   }, [onResetAll]);
 
   return (
-    <div className="filters-dropdown" ref={dropdownRef}>
+    <div ref={dropdownRef} className="filters-dropdown">
       <button
+        aria-expanded={isOpen}
         className={`filters-dropdown__trigger ${activeCount > 0 ? 'filters-dropdown__trigger--active' : ''}`}
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-expanded={isOpen}
       >
         <svg
           fill="none"
@@ -208,8 +208,8 @@ export function FiltersDropdown({
               {(['all', 'members', 'f2p'] as const).map((value) => (
                 <button
                   key={value}
-                  type="button"
                   className={`filters-dropdown__members-btn ${membersFilter === value ? 'filters-dropdown__members-btn--active' : ''}`}
+                  type="button"
                   onClick={() => onMembersFilterChange(value)}
                 >
                   {value === 'all'
@@ -229,8 +229,8 @@ export function FiltersDropdown({
             <div className="filters-dropdown__toggles">
               <label className="filters-dropdown__toggle">
                 <input
-                  type="checkbox"
                   checked={hideNegativeMargin}
+                  type="checkbox"
                   onChange={() => onToggleNegative('margin')}
                 />
                 <span>Hide -Margin</span>
@@ -238,8 +238,8 @@ export function FiltersDropdown({
 
               <label className="filters-dropdown__toggle">
                 <input
-                  type="checkbox"
                   checked={hideNegativeRoi}
+                  type="checkbox"
                   onChange={() => onToggleNegative('roi')}
                 />
                 <span>Hide -ROI</span>
@@ -255,9 +255,7 @@ export function FiltersDropdown({
                 value={minFlipQuality ?? ''}
                 onChange={(e) =>
                   onMinFlipQualityChange(
-                    e.target.value
-                      ? (e.target.value as FlipQualityGrade)
-                      : null
+                    e.target.value ? (e.target.value as FlipQualityGrade) : null
                   )
                 }
               >
@@ -280,9 +278,9 @@ export function FiltersDropdown({
                   <span className="filters-dropdown__range-label">{label}</span>
                   <div className="filters-dropdown__range-inputs">
                     <input
-                      type="text"
                       className="filters-dropdown__range-input"
                       placeholder="Min"
+                      type="text"
                       value={filters[key].min}
                       onChange={(e) =>
                         onFilterChange(key, 'min', e.target.value)
@@ -290,9 +288,9 @@ export function FiltersDropdown({
                     />
                     <span className="filters-dropdown__range-sep">–</span>
                     <input
-                      type="text"
                       className="filters-dropdown__range-input"
                       placeholder="Max"
+                      type="text"
                       value={filters[key].max}
                       onChange={(e) =>
                         onFilterChange(key, 'max', e.target.value)
@@ -311,10 +309,10 @@ export function FiltersDropdown({
               {BUILT_IN_PRESETS.map((preset) => (
                 <button
                   key={preset.id}
-                  type="button"
                   className={`filters-dropdown__preset-chip ${activePresets.has(preset.id) ? 'filters-dropdown__preset-chip--active' : ''}`}
-                  onClick={() => onTogglePreset(preset.id)}
                   title={preset.description}
+                  type="button"
+                  onClick={() => onTogglePreset(preset.id)}
                 >
                   {preset.label}
                 </button>
@@ -330,8 +328,8 @@ export function FiltersDropdown({
                 {savedPresets.map((preset) => (
                   <button
                     key={preset.id}
-                    type="button"
                     className={`filters-dropdown__preset-chip ${activePresets.has(preset.id) ? 'filters-dropdown__preset-chip--active' : ''}`}
+                    type="button"
                     onClick={() => onTogglePreset(preset.id)}
                   >
                     {preset.name}

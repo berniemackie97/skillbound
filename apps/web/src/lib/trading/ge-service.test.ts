@@ -155,14 +155,19 @@ describe('filterGeItems', () => {
       highAlch: null,
       value: 0,
       buyPrice: 2_500_000,
-      sellPrice: 2_450_000,
+      sellPrice: 2_400_000,
       buyPriceTime: null,
       sellPriceTime: null,
-      margin: 50_000,
-      tax: 25_000,
-      profit: 25_000,
-      roiPercent: 1.02,
-      potentialProfit: 1_750_000,
+      margin: 100_000,
+      tax: 50_000,
+      profit: 50_000,
+      roiPercent: 2.08,
+      potentialProfit: 3_500_000,
+      dailyProfit: 21_000_000,
+      gpPerHour: null,
+      estimatedFillHours: null,
+      alchFloor: null,
+      distanceFromAlchFloor: null,
       volume: 120,
       avgHighPrice: 2_520_000,
       avgLowPrice: 2_440_000,
@@ -172,6 +177,11 @@ describe('filterGeItems', () => {
       avgLowPrice5m: null,
       avgHighPrice1h: null,
       avgLowPrice1h: null,
+      highPriceVolume5m: null,
+      lowPriceVolume5m: null,
+      highPriceVolume1h: null,
+      lowPriceVolume1h: null,
+      flipQuality: null,
     },
     {
       id: 2,
@@ -188,10 +198,15 @@ describe('filterGeItems', () => {
       buyPriceTime: null,
       sellPriceTime: null,
       margin: 500,
-      tax: 140,
-      profit: 360,
-      roiPercent: 2.67,
-      potentialProfit: 25_200,
+      tax: 280,
+      profit: 220,
+      roiPercent: 1.63,
+      potentialProfit: 15_400,
+      dailyProfit: 92_400,
+      gpPerHour: null,
+      estimatedFillHours: null,
+      alchFloor: null,
+      distanceFromAlchFloor: null,
       volume: 980,
       avgHighPrice: 14_200,
       avgLowPrice: 13_400,
@@ -201,6 +216,11 @@ describe('filterGeItems', () => {
       avgLowPrice5m: null,
       avgHighPrice1h: null,
       avgLowPrice1h: null,
+      highPriceVolume5m: null,
+      lowPriceVolume5m: null,
+      highPriceVolume1h: null,
+      lowPriceVolume1h: null,
+      flipQuality: null,
     },
   ];
 
@@ -211,7 +231,7 @@ describe('filterGeItems', () => {
   });
 
   it('filters by min volume and min ROI', () => {
-    const result = filterGeItems(items, { minVolume: 500, minRoi: 2 });
+    const result = filterGeItems(items, { minVolume: 500, minRoi: 1.5 });
     expect(result).toHaveLength(1);
     expect(result[0]?.id).toBe(2);
   });
@@ -234,7 +254,7 @@ describe('filterGeItems', () => {
   });
 
   it('filters by max buy price', () => {
-    const result = filterGeItems(items, { maxBuyPrice: 100_000 });
+    const result = filterGeItems(items, { maxPrice: 100_000 });
     expect(result).toHaveLength(1);
     expect(result[0]?.id).toBe(2);
   });
@@ -260,6 +280,9 @@ describe('filterGeItems', () => {
             volumeAdequacy: 55,
             buyPressure: 65,
             taxEfficiency: 85,
+            volumeAnomaly: 80,
+            priceConsistency: 85,
+            historicalReliability: 50,
           },
           flags: [],
         },
@@ -276,6 +299,9 @@ describe('filterGeItems', () => {
             volumeAdequacy: 40,
             buyPressure: 50,
             taxEfficiency: 55,
+            volumeAnomaly: 50,
+            priceConsistency: 40,
+            historicalReliability: 50,
           },
           flags: ['low-volume'],
         },

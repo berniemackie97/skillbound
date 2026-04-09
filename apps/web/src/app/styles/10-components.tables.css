@@ -261,7 +261,7 @@
    position: fixed + coordinates are set inline by the component.
    This CSS handles only appearance (background, border, sizing). */
 .quality-tooltip {
-  width: 280px;
+  width: 260px;
   padding: 12px;
   background: #1e1a14;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -275,52 +275,66 @@
 
 .quality-tooltip__header {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .quality-tooltip__grade {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
+  line-height: 1;
 }
 
 .quality-tooltip__score {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
-.quality-tooltip__desc {
-  margin: 0 0 8px;
-  font-size: 0.78rem;
+.quality-tooltip__desc-inline {
+  width: 100%;
+  font-size: 0.72rem;
   color: var(--text-muted);
+  line-height: 1.3;
+  margin-top: 2px;
 }
 
-.quality-tooltip__bars {
+/* 3 grouped quality bars (replaces 9 individual bars) */
+.quality-tooltip__groups {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.quality-tooltip__bar-row {
-  display: flex;
-  align-items: center;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
-.quality-tooltip__bar-label {
-  flex-shrink: 0;
-  width: 74px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
+.quality-tooltip__group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.quality-tooltip__group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.quality-tooltip__group-label {
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.quality-tooltip__group-score {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .quality-tooltip__bar-track {
-  flex: 1;
-  height: 6px;
+  height: 5px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 3px;
   overflow: hidden;
@@ -332,80 +346,74 @@
   transition: width 0.3s ease;
 }
 
-.quality-tooltip__bar-value {
-  flex-shrink: 0;
-  width: 20px;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
 .quality-tooltip__flags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding-top: 6px;
-  border-top: 1px solid var(--border);
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .quality-tooltip__flag {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 6px;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  border-radius: 4px;
+  align-items: flex-start;
+  gap: 5px;
   font-size: 0.68rem;
   color: #ef4444;
+  line-height: 1.3;
+}
+
+.quality-tooltip__flag-icon {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.quality-tooltip__flag-text {
+  opacity: 0.9;
 }
 
 /* Quality modal content (touch devices — tap badge to open) */
 .quality-modal-content .quality-tooltip__header {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .quality-modal-content .quality-tooltip__grade {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .quality-modal-content .quality-tooltip__score {
-  font-size: 0.9rem;
-}
-
-.quality-modal-content .quality-tooltip__desc {
   font-size: 0.85rem;
+}
+
+.quality-modal-content .quality-tooltip__desc-inline {
+  font-size: 0.8rem;
+}
+
+.quality-modal-content .quality-tooltip__groups {
+  gap: 12px;
   margin-bottom: 14px;
 }
 
-.quality-modal-content .quality-tooltip__bars {
-  gap: 10px;
-  margin-bottom: 14px;
+.quality-modal-content .quality-tooltip__group-label {
+  font-size: 0.78rem;
 }
 
-.quality-modal-content .quality-tooltip__bar-label {
-  font-size: 0.75rem;
-  width: 86px;
+.quality-modal-content .quality-tooltip__group-score {
+  font-size: 0.78rem;
 }
 
 .quality-modal-content .quality-tooltip__bar-track {
-  height: 8px;
-}
-
-.quality-modal-content .quality-tooltip__bar-value {
-  font-size: 0.78rem;
-  width: 24px;
+  height: 7px;
 }
 
 .quality-modal-content .quality-tooltip__flags {
   gap: 6px;
-  padding-top: 10px;
+  padding-top: 12px;
 }
 
 .quality-modal-content .quality-tooltip__flag {
   font-size: 0.75rem;
-  padding: 4px 8px;
 }
 
 /* Additional exchange table styles for improved UX */

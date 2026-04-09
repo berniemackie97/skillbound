@@ -44,6 +44,7 @@ const BASE_LINKS: NavLink[] = [
   { href: '/guides', label: 'Guides' },
   { href: '/trading', label: 'Trading' },
   { href: '/calculators', label: 'Calculators' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 const emptySession: NavSessionResponse = {

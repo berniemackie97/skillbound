@@ -42,6 +42,7 @@ type TradeFormProps = {
   onSuccess?: () => void;
   preselectedItemId?: number;
   availableBankroll?: number;
+  hasBankroll?: boolean;
 };
 
 export function TradeForm({
@@ -49,6 +50,7 @@ export function TradeForm({
   onSuccess,
   preselectedItemId,
   availableBankroll,
+  hasBankroll = true,
 }: TradeFormProps) {
   const router = useRouter();
 
@@ -79,8 +81,10 @@ export function TradeForm({
 
   const totalValue =
     (parseInt(quantity, 10) || 0) * (parseInt(pricePerItem, 10) || 0);
+  const needsBankrollSetup = tradeType === 'buy' && !hasBankroll;
   const exceedsBankroll =
     tradeType === 'buy' &&
+    hasBankroll &&
     typeof availableBankroll === 'number' &&
     availableBankroll >= 0 &&
     totalValue > availableBankroll;
@@ -260,6 +264,14 @@ export function TradeForm({
       return;
     }
 
+    if (needsBankrollSetup) {
+      setError(
+        'Set up your trading bankroll before recording buy trades. Use the Bankroll card to enter your starting GP.'
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
     if (exceedsBankroll) {
       setError(
         `Not enough bankroll. Available: ${formatGp(availableBankroll ?? 0)} GP.`
@@ -316,6 +328,11 @@ export function TradeForm({
               break;
             case 'INVALID_PRICE':
               setError('Please enter a valid price (0 or greater).');
+              break;
+            case 'NO_BANKROLL_SET':
+              setError(
+                'Set up your trading bankroll first — open the Bankroll card above and enter your starting GP.'
+              );
               break;
             case 'INSUFFICIENT_BANKROLL':
               setError(
@@ -517,10 +534,19 @@ export function TradeForm({
         />
       </label>
 
+      {needsBankrollSetup && (
+        <div className="form-hint warning">
+          No bankroll set yet. Open the <strong>Bankroll</strong> card and enter
+          your starting GP before recording a purchase.
+        </div>
+      )}
+
       <button
         className={`button submit-btn ${tradeType}`}
-        disabled={isSubmitting || !selectedItem || exceedsBankroll}
         type="submit"
+        disabled={
+          isSubmitting || !selectedItem || exceedsBankroll || needsBankrollSetup
+        }
       >
         {isSubmitting
           ? 'Recording...'

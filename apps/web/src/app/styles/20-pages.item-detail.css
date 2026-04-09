@@ -332,6 +332,38 @@
   border-radius: var(--radius-pill);
 }
 
+/* Coffer Premium */
+.detail-coffer-premium {
+  color: #4ade80;
+  font-size: 0.8rem;
+}
+
+/* Set Membership Links */
+.detail-set-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-set-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--dur-1) var(--ease-out);
+}
+
+.detail-set-link:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
 /* Actions Section */
 .actions-section {
   display: flex;

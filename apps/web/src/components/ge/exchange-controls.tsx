@@ -208,14 +208,14 @@ export function ExchangeControls({
           membersFilter={membersFilter}
           minFlipQuality={minFlipQuality}
           savedPresets={savedPresets}
+          onApply={onApplyFilters}
           onFilterChange={onFilterChange}
           onMembersFilterChange={onMembersFilterChange}
-          onTogglePreset={onTogglePreset}
-          onToggleNegative={onToggleNegative}
           onMinFlipQualityChange={onMinFlipQualityChange}
-          onSavePreset={onSavePreset}
           onResetAll={onResetFilters}
-          onApply={onApplyFilters}
+          onSavePreset={onSavePreset}
+          onToggleNegative={onToggleNegative}
+          onTogglePreset={onTogglePreset}
         />
 
         <button className="reset-btn" type="button" onClick={onResetFilters}>
@@ -292,22 +292,26 @@ export function ExchangeControls({
           </span>
 
           {/* Bankroll tag (signed-in + tradable character only) */}
-          {isSignedIn && hasTradableCharacter && currentBankroll !== null && currentBankroll > 0 && (
-            <a
-              className="bankroll-tag"
-              href="/trading/tracker"
-              title="Manage your bankroll in the Trade Tracker"
-            >
-              💰 {formatGp(currentBankroll)}
-            </a>
-          )}
-          {isSignedIn && hasTradableCharacter &&
+          {isSignedIn &&
+            hasTradableCharacter &&
+            currentBankroll !== null &&
+            currentBankroll > 0 && (
+              <a
+                className="bankroll-tag"
+                href="/trading/tracker"
+                title="Manage your bankroll in the Trade Tracker"
+              >
+                💰 {formatGp(currentBankroll)}
+              </a>
+            )}
+          {isSignedIn &&
+            hasTradableCharacter &&
             (currentBankroll === null || currentBankroll === 0) && (
               <button
                 className="bankroll-tag bankroll-tag--empty"
+                title="Set your trading bankroll"
                 type="button"
                 onClick={onOpenBankrollSetup}
-                title="Set your trading bankroll"
               >
                 Set Bankroll
               </button>

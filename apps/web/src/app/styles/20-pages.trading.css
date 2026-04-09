@@ -1339,9 +1339,121 @@
 
 /* Stats Overview Section */
 .tracker-stats {
+  display: block;
+}
+
+/* Trading Snapshot - slim stats strip */
+.trading-snapshot {
+  position: relative;
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.trading-snapshot .snapshot-period {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.trading-snapshot .snapshot-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1.6fr repeat(4, 1fr);
   gap: var(--space-4);
+  align-items: center;
+}
+
+.trading-snapshot .snapshot-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.trading-snapshot .snapshot-stat--hero {
+  padding-right: var(--space-4);
+  border-right: 1px solid var(--border);
+}
+
+.trading-snapshot .snapshot-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.trading-snapshot .snapshot-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.trading-snapshot .snapshot-stat--hero .snapshot-value {
+  font-size: 1.75rem;
+}
+
+.trading-snapshot .snapshot-value.positive {
+  color: #b6f1b6;
+}
+
+.trading-snapshot .snapshot-value.negative {
+  color: #ff9a9a;
+}
+
+.trading-snapshot .snapshot-sub {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.trading-snapshot .snapshot-sub.positive {
+  color: rgba(182, 241, 182, 0.75);
+}
+
+.trading-snapshot .snapshot-sub.negative {
+  color: rgba(255, 154, 154, 0.75);
+}
+
+@media (max-width: 900px) {
+  .trading-snapshot .snapshot-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .trading-snapshot .snapshot-stat--hero {
+    grid-column: 1 / -1;
+    padding-right: 0;
+    padding-bottom: var(--space-3);
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trading-snapshot .snapshot-period {
+    position: static;
+    margin-bottom: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .trading-snapshot {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .trading-snapshot .snapshot-stat--hero .snapshot-value {
+    font-size: 1.5rem;
+  }
+
+  .trading-snapshot .snapshot-value {
+    font-size: 1.1rem;
+  }
 }
 
 /* Tracker Grid */
@@ -1385,6 +1497,38 @@
   gap: var(--space-4);
   position: sticky;
   top: 20px;
+}
+
+/* Tracker Insights & Opportunities Sections */
+.tracker-insights,
+.tracker-opportunities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tracker-insights-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tracker-insights-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tracker-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .tracker-insights-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tracker Cards */
@@ -5140,6 +5284,19 @@
   margin-top: 10px;
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.form-hint.warning {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #f5dc8a;
+  line-height: 1.4;
+}
+
+.form-hint.warning strong {
+  color: var(--accent);
 }
 
 /* Trades Card */

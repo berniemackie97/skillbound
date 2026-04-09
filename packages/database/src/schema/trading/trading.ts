@@ -281,10 +281,10 @@ export const geFlipSuggestions = pgTable(
     qualityVolumeAdequacy: integer('quality_volume_adequacy'),
     qualityBuyPressure: integer('quality_buy_pressure'),
     qualityTaxEfficiency: integer('quality_tax_efficiency'),
-    qualityFlags: text('quality_flags')
-      .array()
-      .notNull()
-      .default([]),
+    qualityVolumeAnomaly: integer('quality_volume_anomaly'),
+    qualityPriceConsistency: integer('quality_price_consistency'),
+    qualityHistoricalReliability: integer('quality_historical_reliability'),
+    qualityFlags: text('quality_flags').array().notNull().default([]),
 
     // Metadata
     calculatedAt: timestamp('calculated_at', { withTimezone: true })
@@ -310,6 +310,93 @@ export const geFlipSuggestions = pgTable(
 );
 
 /**
+ * Price Alerts — triggered notifications when watch item thresholds are met.
+ * These are persisted for display in the UI and optional email/push delivery.
+ */
+export const alertTypeEnum = pgEnum('alert_type', [
+  'price-below',
+  'price-above',
+  'margin-threshold',
+  'volume-spike',
+  'quality-change',
+  'investment-opportunity',
+]);
+
+export const geAlerts = pgTable(
+  'ge_alerts',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userCharacterId: uuid('user_character_id')
+      .notNull()
+      .references(() => userCharacters.id, { onDelete: 'cascade' }),
+    itemId: integer('item_id').notNull(),
+    itemName: text('item_name').notNull(),
+    alertType: alertTypeEnum('alert_type').notNull(),
+    title: text('title').notNull(),
+    message: text('message').notNull(),
+    /** The value that triggered the alert (e.g., current price) */
+    triggerValue: integer('trigger_value'),
+    /** The threshold that was breached */
+    thresholdValue: integer('threshold_value'),
+    /** Whether the user has seen/dismissed this alert */
+    isRead: boolean('is_read').notNull().default(false),
+    /** Whether email/push was sent */
+    isDelivered: boolean('is_delivered').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index('ge_alerts_character_idx').on(table.userCharacterId),
+    index('ge_alerts_unread_idx').on(table.userCharacterId, table.isRead),
+  ]
+);
+
+/**
+ * Game Events — tracks OSRS game updates that impact market prices.
+ * Used to annotate price charts and correlate price movements with events.
+ */
+export const gameEventTypeEnum = pgEnum('game_event_type', [
+  'game-update',
+  'boss-release',
+  'boss-nerf',
+  'boss-buff',
+  'item-nerf',
+  'item-buff',
+  'leagues',
+  'deadman-mode',
+  'holiday-event',
+  'pvp-update',
+  'economy-change',
+  'other',
+]);
+
+export const geGameEvents = pgTable(
+  'ge_game_events',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    eventType: gameEventTypeEnum('event_type').notNull(),
+    title: text('title').notNull(),
+    description: text('description'),
+    /** When the event started (or was announced) */
+    eventDate: timestamp('event_date', { withTimezone: true }).notNull(),
+    /** Optional end date for events with duration (e.g., Leagues) */
+    endDate: timestamp('end_date', { withTimezone: true }),
+    /** Comma-separated list of affected item IDs, if known */
+    affectedItemIds: text('affected_item_ids'),
+    /** Source URL (e.g., OSRS Wiki update page) */
+    sourceUrl: text('source_url'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index('ge_game_events_date_idx').on(table.eventDate),
+    index('ge_game_events_type_idx').on(table.eventType),
+  ]
+);
+
+/**
  * Type definitions
  */
 export type GeTrade = typeof geTrades.$inferSelect;
@@ -322,3 +409,7 @@ export type GeTradingBankroll = typeof geTradingBankroll.$inferSelect;
 export type NewGeTradingBankroll = typeof geTradingBankroll.$inferInsert;
 export type GeInventoryPosition = typeof geInventoryPositions.$inferSelect;
 export type NewGeInventoryPosition = typeof geInventoryPositions.$inferInsert;
+export type GeGameEvent = typeof geGameEvents.$inferSelect;
+export type NewGeGameEvent = typeof geGameEvents.$inferInsert;
+export type GeAlert = typeof geAlerts.$inferSelect;
+export type NewGeAlert = typeof geAlerts.$inferInsert;

@@ -17,6 +17,7 @@ type TradingMobileActionsProps = {
   bankroll: BankrollData;
   totalProfit: number;
   availableBankroll: number;
+  hasBankroll: boolean;
   scope: 'character' | 'all';
   preselectedItemId?: number;
 };
@@ -28,6 +29,7 @@ export function TradingMobileActions({
   bankroll,
   totalProfit,
   availableBankroll,
+  hasBankroll,
   scope,
   preselectedItemId,
 }: TradingMobileActionsProps) {
@@ -77,6 +79,7 @@ export function TradingMobileActions({
         <TradeForm
           availableBankroll={availableBankroll}
           characterId={characterId}
+          hasBankroll={hasBankroll}
           {...(preselectedItemId !== undefined && { preselectedItemId })}
           onSuccess={() => setActiveAction(null)}
         />

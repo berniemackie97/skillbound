@@ -3,7 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { FlipQualityBadge, ItemDetailClient, PriceChartPanel } from '@/components/ge';
+import {
+  FlipQualityBadge,
+  ItemDetailClient,
+  PriceChartPanel,
+} from '@/components/ge';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import {
   formatGp,
@@ -12,6 +16,7 @@ import {
   getGeItem,
   getItemIconUrl,
 } from '@/lib/trading/ge-service';
+import { ITEM_SETS } from '@/lib/trading/item-sets';
 
 type PageParams = { id: string };
 
@@ -96,6 +101,19 @@ export default async function ItemDetailPage({
 
   const wikiUrl = buildWikiUrl(item.name);
 
+  // Death's Coffer values items at 105% of GE guide price
+  const cofferValue = item.value > 0 ? Math.floor(item.value * 1.05) : null;
+  const cofferPremium =
+    cofferValue !== null && item.buyPrice !== null && item.buyPrice > 0
+      ? cofferValue - item.buyPrice
+      : null;
+
+  // Check set membership
+  const setMemberships = ITEM_SETS.filter(
+    (set) =>
+      set.setId === itemId || set.components.some((c) => c.itemId === itemId)
+  );
+
   return (
     <section className="item-detail-page">
       <nav aria-label="Breadcrumb" className="breadcrumb">
@@ -131,9 +149,7 @@ export default async function ItemDetailPage({
         </div>
 
         <div className="item-quick-stats">
-          {item.flipQuality && (
-            <FlipQualityBadge quality={item.flipQuality} />
-          )}
+          {item.flipQuality && <FlipQualityBadge quality={item.flipQuality} />}
 
           {item.profit !== null && (
             <span className={`profit-badge ${profitClass(item.profit)}`}>
@@ -280,6 +296,45 @@ export default async function ItemDetailPage({
                     ))}
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {item.alchFloor !== null && (
+            <div className="detail-item">
+              <span className="detail-label">Alch Floor</span>
+              <span className="detail-value">{formatGp(item.alchFloor)}</span>
+            </div>
+          )}
+
+          {cofferValue !== null && (
+            <div className="detail-item">
+              <span className="detail-label">Coffer Value</span>
+              <span className="detail-value">
+                {cofferValue.toLocaleString()}
+                {cofferPremium !== null && cofferPremium > 0 && (
+                  <span className="detail-coffer-premium">
+                    {' '}
+                    (+{formatGp(cofferPremium)} premium)
+                  </span>
+                )}
+              </span>
+            </div>
+          )}
+
+          {setMemberships.length > 0 && (
+            <div className="detail-item full-width">
+              <span className="detail-label">Set Membership</span>
+              <div className="detail-set-list">
+                {setMemberships.map((set) => (
+                  <Link
+                    key={set.setId}
+                    className="detail-set-link"
+                    href={`/trading/item/${set.setId}`}
+                  >
+                    {set.setName}
+                  </Link>
+                ))}
               </div>
             </div>
           )}

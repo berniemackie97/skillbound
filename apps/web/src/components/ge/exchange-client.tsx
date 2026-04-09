@@ -180,12 +180,12 @@ export function ExchangeClient({
   const [activePresets, setActivePresets] = useState<Set<string>>(new Set());
 
   // Flip quality filter
-  const [minFlipQuality, setMinFlipQuality] =
-    useState<FlipQualityGrade | null>(null);
+  const [minFlipQuality, setMinFlipQuality] = useState<FlipQualityGrade | null>(
+    null
+  );
 
   // Flip context (bankroll, trade history, inventory)
   const [flipContext, setFlipContext] = useState<FlipContext | null>(null);
-
 
   // Smart filter banner
   const [smartFilterBankroll, setSmartFilterBankroll] = useState<number | null>(
@@ -999,11 +999,7 @@ export function ExchangeClient({
         }
 
         // Merge all active presets into filters
-        const merged = mergePresetFilters(
-          DEFAULT_FILTERS,
-          next,
-          savedPresets
-        );
+        const merged = mergePresetFilters(DEFAULT_FILTERS, next, savedPresets);
         const normalized = normalizeFilters(merged);
         setFilters(normalized);
 

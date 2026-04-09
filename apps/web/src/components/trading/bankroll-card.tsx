@@ -124,17 +124,14 @@ export function BankrollCard({
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(
-        `/api/characters/${characterId}/bankroll`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            currentBankroll: currentValue,
-            initialBankroll: startingValue,
-          }),
-        }
-      );
+      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentBankroll: currentValue,
+          initialBankroll: startingValue,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to update bankroll');
@@ -242,11 +239,7 @@ export function BankrollCard({
           </div>
         )}
         {mode !== 'view' && (
-          <button
-            className="button ghost small"
-            type="button"
-            onClick={cancel}
-          >
+          <button className="button ghost small" type="button" onClick={cancel}>
             Cancel
           </button>
         )}
@@ -336,7 +329,7 @@ export function BankrollCard({
                 />
                 {currentInput && parseGp(currentInput) !== null && (
                   <span className="field-preview">
-                    = {formatGp(parseGp(currentInput)!)} GP
+                    = {formatGp(parseGp(currentInput))} GP
                   </span>
                 )}
               </label>
@@ -350,15 +343,15 @@ export function BankrollCard({
                 />
                 {startingInput && parseGp(startingInput) !== null && (
                   <span className="field-preview">
-                    = {formatGp(parseGp(startingInput)!)} GP
+                    = {formatGp(parseGp(startingInput))} GP
                   </span>
                 )}
               </label>
             </div>
 
             <p className="bankroll-hint">
-              Leave a field empty to keep its current value. If one is 0 and
-              the other is set, both will match automatically.
+              Leave a field empty to keep its current value. If one is 0 and the
+              other is set, both will match automatically.
             </p>
 
             <div className="bankroll-edit-actions">
@@ -430,7 +423,7 @@ export function BankrollCard({
               </div>
               {fundsInput && parseGp(fundsInput) !== null && (
                 <span className="field-preview">
-                  = {formatGp(parseGp(fundsInput)!)} GP
+                  = {formatGp(parseGp(fundsInput))} GP
                 </span>
               )}
             </label>

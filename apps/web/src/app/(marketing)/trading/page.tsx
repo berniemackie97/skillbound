@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { ExchangeClientShell } from '@/components/ge';
+import { PublicMarketTools } from '@/components/trading/public-market-tools';
 import { TradingHeader } from '@/components/trading/trading-header';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import {
@@ -202,6 +203,10 @@ export default async function TradingPage({ searchParams }: PageProps) {
             sort={sort}
           />
         </Suspense>
+      </section>
+
+      <section className="ge-exchange-section" style={{ minHeight: 'auto' }}>
+        <PublicMarketTools />
       </section>
     </div>
   );

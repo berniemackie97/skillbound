@@ -85,21 +85,21 @@ export function BankrollSetupModal({
   return (
     <div className="bankroll-modal-overlay" onClick={onClose}>
       <div
-        className="bankroll-modal"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
         aria-labelledby="bankroll-modal-title"
+        aria-modal="true"
+        className="bankroll-modal"
+        role="dialog"
+        onClick={(e) => e.stopPropagation()}
       >
         <button
+          aria-label="Close"
           className="bankroll-modal__close"
           onClick={onClose}
-          aria-label="Close"
         >
           &times;
         </button>
 
-        <h2 id="bankroll-modal-title" className="bankroll-modal__title">
+        <h2 className="bankroll-modal__title" id="bankroll-modal-title">
           How much GP are you working with?
         </h2>
 
@@ -111,16 +111,16 @@ export function BankrollSetupModal({
         <div className="bankroll-modal__input-group">
           <input
             ref={inputRef}
-            type="text"
+            autoFocus
             className="bankroll-modal__input"
             placeholder="e.g. 5m, 500k, 10000"
+            type="text"
             value={inputValue}
+            onKeyDown={handleKeyDown}
             onChange={(e) => {
               setInputValue(e.target.value);
               setError(null);
             }}
-            onKeyDown={handleKeyDown}
-            autoFocus
           />
           {parsedPreview !== null && parsedPreview > 0 && (
             <span className="bankroll-modal__preview">
@@ -134,7 +134,7 @@ export function BankrollSetupModal({
         {!activeCharacterId && (
           <p className="bankroll-modal__warning">
             You need an active character selected. Visit{' '}
-            <a href="/settings" className="bankroll-modal__link">
+            <a className="bankroll-modal__link" href="/settings">
               Settings
             </a>{' '}
             to choose one.
@@ -150,13 +150,13 @@ export function BankrollSetupModal({
           </button>
           <button
             className="bankroll-modal__btn bankroll-modal__btn--primary"
-            onClick={() => void handleSubmit()}
             disabled={
               isSubmitting ||
               !activeCharacterId ||
               parsedPreview === null ||
               parsedPreview <= 0
             }
+            onClick={() => void handleSubmit()}
           >
             {isSubmitting ? 'Setting...' : 'Set Bankroll'}
           </button>

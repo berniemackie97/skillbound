@@ -9,12 +9,20 @@
       "schedule": "0 2 * * *"
     },
     {
+      "path": "/api/cron/market-history",
+      "schedule": "0 */6 * * *"
+    },
+    {
       "path": "/api/cron/retention?batchSize=1000",
       "schedule": "30 3 * * 0"
     },
     {
       "path": "/api/cron/content?type=all",
       "schedule": "0 4 * * 0"
+    },
+    {
+      "path": "/api/cron/alerts",
+      "schedule": "*/15 * * * *"
     }
   ],
   "functions": {
@@ -29,6 +37,12 @@
     },
     "src/app/api/cron/content/route.ts": {
       "maxDuration": 300
+    },
+    "src/app/api/cron/market-history/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/alerts/route.ts": {
+      "maxDuration": 60
     }
   }
 }

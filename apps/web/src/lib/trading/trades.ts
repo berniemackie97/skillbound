@@ -81,7 +81,20 @@ export async function validateTrade(
     const totalValue = input.quantity * input.pricePerItem;
     if (totalValue > 0) {
       const bankroll = await getBankroll(characterId);
-      const available = Math.max(bankroll?.currentBankroll ?? 0, 0);
+      // Distinguish "never set up" from "spent it all"
+      if (
+        !bankroll ||
+        (bankroll.initialBankroll <= 0 && bankroll.currentBankroll <= 0)
+      ) {
+        return {
+          valid: false,
+          error:
+            'Set up your trading bankroll before recording buy trades. Open the Bankroll card and enter your starting GP.',
+          errorCode: 'NO_BANKROLL_SET',
+          availableBankroll: 0,
+        };
+      }
+      const available = Math.max(bankroll.currentBankroll, 0);
       if (totalValue > available) {
         return {
           valid: false,

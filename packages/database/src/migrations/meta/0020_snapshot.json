@@ -67,16 +67,12 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         },
         "users_username_unique": {
           "name": "users_username_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "username"
-          ]
+          "columns": ["username"]
         }
       },
       "policies": {},
@@ -120,12 +116,8 @@
           "name": "user_credentials_user_id_users_id_fk",
           "tableFrom": "user_credentials",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -227,12 +219,8 @@
           "name": "accounts_user_id_users_id_fk",
           "tableFrom": "accounts",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -240,10 +228,7 @@
       "compositePrimaryKeys": {
         "accounts_provider_provider_account_id_pk": {
           "name": "accounts_provider_provider_account_id_pk",
-          "columns": [
-            "provider",
-            "provider_account_id"
-          ]
+          "columns": ["provider", "provider_account_id"]
         }
       },
       "uniqueConstraints": {},
@@ -287,12 +272,8 @@
           "name": "sessions_user_id_users_id_fk",
           "tableFrom": "sessions",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -331,10 +312,7 @@
       "compositePrimaryKeys": {
         "verification_tokens_identifier_token_pk": {
           "name": "verification_tokens_identifier_token_pk",
-          "columns": [
-            "identifier",
-            "token"
-          ]
+          "columns": ["identifier", "token"]
         }
       },
       "uniqueConstraints": {},
@@ -401,12 +379,8 @@
           "name": "authenticators_user_id_users_id_fk",
           "tableFrom": "authenticators",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -414,19 +388,14 @@
       "compositePrimaryKeys": {
         "authenticators_user_id_credential_id_pk": {
           "name": "authenticators_user_id_credential_id_pk",
-          "columns": [
-            "user_id",
-            "credential_id"
-          ]
+          "columns": ["user_id", "credential_id"]
         }
       },
       "uniqueConstraints": {
         "authenticators_credential_id_unique": {
           "name": "authenticators_credential_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "credential_id"
-          ]
+          "columns": ["credential_id"]
         }
       },
       "policies": {},
@@ -505,12 +474,8 @@
           "name": "user_settings_user_id_users_id_fk",
           "tableFrom": "user_settings",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -518,12 +483,8 @@
           "name": "user_settings_active_character_id_user_characters_id_fk",
           "tableFrom": "user_settings",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "active_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["active_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -624,10 +585,7 @@
         "character_profiles_display_name_mode_unique": {
           "name": "character_profiles_display_name_mode_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "display_name",
-            "mode"
-          ]
+          "columns": ["display_name", "mode"]
         }
       },
       "policies": {},
@@ -765,12 +723,8 @@
           "name": "user_characters_user_id_users_id_fk",
           "tableFrom": "user_characters",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -778,12 +732,8 @@
           "name": "user_characters_profile_id_character_profiles_id_fk",
           "tableFrom": "user_characters",
           "tableTo": "character_profiles",
-          "columnsFrom": [
-            "profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -793,10 +743,7 @@
         "user_characters_user_profile_unique": {
           "name": "user_characters_user_profile_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_id",
-            "profile_id"
-          ]
+          "columns": ["user_id", "profile_id"]
         }
       },
       "policies": {},
@@ -1008,12 +955,8 @@
           "name": "character_state_user_character_id_user_characters_id_fk",
           "tableFrom": "character_state",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1023,11 +966,7 @@
         "character_state_char_domain_key_unique": {
           "name": "character_state_char_domain_key_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "domain",
-            "key"
-          ]
+          "columns": ["user_character_id", "domain", "key"]
         }
       },
       "policies": {},
@@ -1317,12 +1256,8 @@
           "name": "character_snapshots_profile_id_character_profiles_id_fk",
           "tableFrom": "character_snapshots",
           "tableTo": "character_profiles",
-          "columnsFrom": [
-            "profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1525,12 +1460,8 @@
           "name": "snapshot_archives_profile_id_character_profiles_id_fk",
           "tableFrom": "snapshot_archives",
           "tableTo": "character_profiles",
-          "columnsFrom": [
-            "profile_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["profile_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1540,12 +1471,7 @@
         "snapshot_archives_profile_source_reason_bucket_unique": {
           "name": "snapshot_archives_profile_source_reason_bucket_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "profile_id",
-            "source_tier",
-            "reason",
-            "bucket_key"
-          ]
+          "columns": ["profile_id", "source_tier", "reason", "bucket_key"]
         }
       },
       "policies": {},
@@ -1652,12 +1578,8 @@
           "name": "character_overrides_user_character_id_user_characters_id_fk",
           "tableFrom": "character_overrides",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1667,11 +1589,7 @@
         "overrides_character_type_key_unique": {
           "name": "overrides_character_type_key_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "type",
-            "key"
-          ]
+          "columns": ["user_character_id", "type", "key"]
         }
       },
       "policies": {},
@@ -1779,9 +1697,7 @@
         "content_bundles_version_unique": {
           "name": "content_bundles_version_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "version"
-          ]
+          "columns": ["version"]
         }
       },
       "policies": {},
@@ -1919,12 +1835,8 @@
           "name": "guide_progress_user_character_id_user_characters_id_fk",
           "tableFrom": "guide_progress",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1932,12 +1844,8 @@
           "name": "guide_progress_guide_template_id_guide_templates_id_fk",
           "tableFrom": "guide_progress",
           "tableTo": "guide_templates",
-          "columnsFrom": [
-            "guide_template_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["guide_template_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1947,11 +1855,7 @@
         "guide_progress_character_guide_version_unique": {
           "name": "guide_progress_character_guide_version_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "guide_template_id",
-            "guide_version"
-          ]
+          "columns": ["user_character_id", "guide_template_id", "guide_version"]
         }
       },
       "policies": {},
@@ -2096,10 +2000,7 @@
         "guide_templates_title_version_unique": {
           "name": "guide_templates_title_version_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "title",
-            "version"
-          ]
+          "columns": ["title", "version"]
         }
       },
       "policies": {},
@@ -2224,9 +2125,7 @@
         "combat_achievement_definitions_runelite_id_unique": {
           "name": "combat_achievement_definitions_runelite_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "runelite_id"
-          ]
+          "columns": ["runelite_id"]
         }
       },
       "policies": {},
@@ -2508,12 +2407,8 @@
           "name": "diary_task_definitions_tier_id_diary_tier_definitions_id_fk",
           "tableFrom": "diary_task_definitions",
           "tableTo": "diary_tier_definitions",
-          "columnsFrom": [
-            "tier_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["tier_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -2523,10 +2418,7 @@
         "diary_task_defs_tier_order_unique": {
           "name": "diary_task_defs_tier_order_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "tier_id",
-            "task_order"
-          ]
+          "columns": ["tier_id", "task_order"]
         }
       },
       "policies": {},
@@ -2618,12 +2510,8 @@
           "name": "diary_tier_definitions_diary_id_diary_definitions_id_fk",
           "tableFrom": "diary_tier_definitions",
           "tableTo": "diary_definitions",
-          "columnsFrom": [
-            "diary_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["diary_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -2633,10 +2521,7 @@
         "diary_tier_defs_diary_tier_unique": {
           "name": "diary_tier_defs_diary_tier_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "diary_id",
-            "tier"
-          ]
+          "columns": ["diary_id", "tier"]
         }
       },
       "policies": {},
@@ -2972,12 +2857,8 @@
           "name": "character_progression_items_user_character_id_user_characters_id_fk",
           "tableFrom": "character_progression_items",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -2985,12 +2866,8 @@
           "name": "character_progression_items_category_id_progression_categories_id_fk",
           "tableFrom": "character_progression_items",
           "tableTo": "progression_categories",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -3000,11 +2877,7 @@
         "progression_items_char_cat_name_unique": {
           "name": "progression_items_char_cat_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "category_id",
-            "name"
-          ]
+          "columns": ["user_character_id", "category_id", "name"]
         }
       },
       "policies": {},
@@ -3092,9 +2965,7 @@
         "progression_categories_name_unique": {
           "name": "progression_categories_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         }
       },
       "policies": {},
@@ -3189,12 +3060,8 @@
           "name": "boss_killcounts_user_character_id_user_characters_id_fk",
           "tableFrom": "boss_killcounts",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -3204,10 +3071,7 @@
         "boss_kc_character_boss_unique": {
           "name": "boss_kc_character_boss_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "boss_name"
-          ]
+          "columns": ["user_character_id", "boss_name"]
         }
       },
       "policies": {},
@@ -3380,12 +3244,8 @@
           "name": "collection_log_items_user_character_id_user_characters_id_fk",
           "tableFrom": "collection_log_items",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -3393,12 +3253,8 @@
           "name": "collection_log_items_category_id_progression_categories_id_fk",
           "tableFrom": "collection_log_items",
           "tableTo": "progression_categories",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -3408,11 +3264,7 @@
         "coll_log_character_item_source_unique": {
           "name": "coll_log_character_item_source_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "item_id",
-            "source"
-          ]
+          "columns": ["user_character_id", "item_id", "source"]
         }
       },
       "policies": {},
@@ -3600,12 +3452,8 @@
           "name": "gear_progression_user_character_id_user_characters_id_fk",
           "tableFrom": "gear_progression",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -3615,12 +3463,7 @@
         "gear_prog_character_stage_slot_item_unique": {
           "name": "gear_prog_character_stage_slot_item_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "game_stage",
-            "slot",
-            "item_id"
-          ]
+          "columns": ["user_character_id", "game_stage", "slot", "item_id"]
         }
       },
       "policies": {},
@@ -3795,12 +3638,8 @@
           "name": "milestones_user_character_id_user_characters_id_fk",
           "tableFrom": "milestones",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -3808,12 +3647,8 @@
           "name": "milestones_category_id_progression_categories_id_fk",
           "tableFrom": "milestones",
           "tableTo": "progression_categories",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -3823,10 +3658,7 @@
         "milestones_character_name_unique": {
           "name": "milestones_character_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "name"
-          ]
+          "columns": ["user_character_id", "name"]
         }
       },
       "policies": {},
@@ -4046,9 +3878,7 @@
         "ge_flip_suggestions_item_id_unique": {
           "name": "ge_flip_suggestions_item_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "item_id"
-          ]
+          "columns": ["item_id"]
         }
       },
       "policies": {},
@@ -4178,12 +4008,8 @@
           "name": "ge_inventory_positions_user_character_id_user_characters_id_fk",
           "tableFrom": "ge_inventory_positions",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -4193,10 +4019,7 @@
         "ge_inventory_positions_character_item_unique": {
           "name": "ge_inventory_positions_character_item_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "item_id"
-          ]
+          "columns": ["user_character_id", "item_id"]
         }
       },
       "policies": {},
@@ -4440,12 +4263,8 @@
           "name": "ge_trades_user_character_id_user_characters_id_fk",
           "tableFrom": "ge_trades",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -4524,12 +4343,8 @@
           "name": "ge_trading_bankroll_user_character_id_user_characters_id_fk",
           "tableFrom": "ge_trading_bankroll",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -4539,9 +4354,7 @@
         "ge_trading_bankroll_user_character_id_unique": {
           "name": "ge_trading_bankroll_user_character_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id"
-          ]
+          "columns": ["user_character_id"]
         }
       },
       "policies": {},
@@ -4693,12 +4506,8 @@
           "name": "ge_watch_items_user_character_id_user_characters_id_fk",
           "tableFrom": "ge_watch_items",
           "tableTo": "user_characters",
-          "columnsFrom": [
-            "user_character_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_character_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -4708,10 +4517,7 @@
         "ge_watch_items_character_item_unique": {
           "name": "ge_watch_items_character_item_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_character_id",
-            "item_id"
-          ]
+          "columns": ["user_character_id", "item_id"]
         }
       },
       "policies": {},
@@ -4794,78 +4600,42 @@
     "public.bundle_status": {
       "name": "bundle_status",
       "schema": "public",
-      "values": [
-        "draft",
-        "published",
-        "deprecated"
-      ]
+      "values": ["draft", "published", "deprecated"]
     },
     "public.guide_status": {
       "name": "guide_status",
       "schema": "public",
-      "values": [
-        "draft",
-        "published",
-        "deprecated"
-      ]
+      "values": ["draft", "published", "deprecated"]
     },
     "public.progression_item_type": {
       "name": "progression_item_type",
       "schema": "public",
-      "values": [
-        "unlock",
-        "item",
-        "gear",
-        "goal",
-        "custom"
-      ]
+      "values": ["unlock", "item", "gear", "goal", "custom"]
     },
     "public.difficulty_tier": {
       "name": "difficulty_tier",
       "schema": "public",
-      "values": [
-        "easy",
-        "medium",
-        "hard",
-        "elite",
-        "master"
-      ]
+      "values": ["easy", "medium", "hard", "elite", "master"]
     },
     "public.game_stage": {
       "name": "game_stage",
       "schema": "public",
-      "values": [
-        "early",
-        "mid",
-        "late",
-        "end",
-        "specialized"
-      ]
+      "values": ["early", "mid", "late", "end", "specialized"]
     },
     "public.profit_potential": {
       "name": "profit_potential",
       "schema": "public",
-      "values": [
-        "high",
-        "medium",
-        "low"
-      ]
+      "values": ["high", "medium", "low"]
     },
     "public.trade_source": {
       "name": "trade_source",
       "schema": "public",
-      "values": [
-        "manual",
-        "auto-import"
-      ]
+      "values": ["manual", "auto-import"]
     },
     "public.trade_type": {
       "name": "trade_type",
       "schema": "public",
-      "values": [
-        "buy",
-        "sell"
-      ]
+      "values": ["buy", "sell"]
     }
   },
   "schemas": {},

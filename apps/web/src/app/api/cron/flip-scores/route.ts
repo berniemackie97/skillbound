@@ -9,12 +9,17 @@
  * Auth: CRON_SECRET header
  */
 
+import type { GeDailySummary } from '@skillbound/database';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { createProblemDetails } from '@/lib/api/problem-details';
 import { logger } from '@/lib/logging/logger';
+import {
+  calculateFlipQualityScore,
+  type HistoricalContext,
+} from '@/lib/trading/flip-scoring';
 import {
   bulkUpsertFlipSuggestions,
   pruneStaleFlipSuggestions,
@@ -24,6 +29,8 @@ import {
   getGeExchangeItems,
   type GeExchangeItem,
 } from '@/lib/trading/ge-service';
+import { computeTechnicalIndicators } from '@/lib/trading/market-analysis';
+import { getItemDailySummaries } from '@/lib/trading/market-history';
 
 export const dynamic = 'force-dynamic';
 
@@ -64,6 +71,117 @@ function deriveProfitPotential(
   if (marginPercent >= 5) return 'high';
   if (marginPercent >= 2) return 'medium';
   return 'low';
+}
+
+/**
+ * Compute multi-timeframe HistoricalContext from daily summaries.
+ *
+ * Accepts up to 365 days of data and produces:
+ * - 30d / 90d / 365d price averages and volatility
+ * - RSI, Bollinger Bands, MACD, 200-day SMA
+ * - Volume averages across timeframes
+ *
+ * Returns undefined when there is no usable data.
+ */
+function computeHistoricalContext(
+  summaries: GeDailySummary[],
+  currentPrice: number | null
+): HistoricalContext | undefined {
+  if (summaries.length === 0) return undefined;
+
+  // Sort by date ascending (oldest first) for indicator computation
+  const sorted = [...summaries].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  const now = Date.now();
+  const msPerDay = 24 * 60 * 60 * 1000;
+
+  // Split into time windows
+  const last30d = sorted.filter(
+    (s) => now - new Date(s.date).getTime() <= 30 * msPerDay
+  );
+  const last90d = sorted.filter(
+    (s) => now - new Date(s.date).getTime() <= 90 * msPerDay
+  );
+
+  // Extract price/volume arrays per window
+  const extractPrices = (arr: GeDailySummary[]) =>
+    arr.map((s) => s.avgBuyPrice).filter((p): p is number => p !== null);
+  const extractVolumes = (arr: GeDailySummary[]) =>
+    arr.map((s) => s.totalVolume).filter((v): v is number => v !== null);
+
+  const prices30d = extractPrices(last30d);
+  const prices90d = extractPrices(last90d);
+  const pricesAll = extractPrices(sorted);
+  const volumes30d = extractVolumes(last30d);
+  const volumes90d = extractVolumes(last90d);
+
+  const avg = (arr: number[]) =>
+    arr.length > 0
+      ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length)
+      : null;
+
+  const coeffVar = (arr: number[], mean: number | null) => {
+    if (mean === null || mean <= 0 || arr.length < 3) return null;
+    const variance =
+      arr.reduce((sum, p) => sum + (p - mean) ** 2, 0) / arr.length;
+    return Math.round((Math.sqrt(variance) / mean) * 100 * 100) / 100;
+  };
+
+  const avgPrice30d = avg(prices30d);
+  const avgPrice90d = avg(prices90d);
+  const avgPrice365d = avg(pricesAll);
+  const avgVolume30d = avg(volumes30d);
+  const avgVolume90d = avg(volumes90d);
+
+  // Technical indicators from the full price series
+  const indicators = computeTechnicalIndicators(pricesAll);
+
+  // Bollinger Band position
+  const bollingerFields: Pick<
+    HistoricalContext,
+    'belowBollingerLower' | 'aboveBollingerUpper'
+  > = {};
+  if (indicators.bollingerBands && currentPrice !== null) {
+    bollingerFields.belowBollingerLower =
+      currentPrice < indicators.bollingerBands.lower;
+    bollingerFields.aboveBollingerUpper =
+      currentPrice > indicators.bollingerBands.upper;
+  }
+
+  // Price vs 200d SMA
+  let priceVsSma200d: number | null = null;
+  if (
+    indicators.sma200d !== null &&
+    indicators.sma200d > 0 &&
+    currentPrice !== null
+  ) {
+    priceVsSma200d =
+      Math.round(
+        ((currentPrice - indicators.sma200d) / indicators.sma200d) * 1000
+      ) / 10;
+  }
+
+  return {
+    avgPrice30d,
+    avgVolume30d,
+    volatility30d: coeffVar(prices30d, avgPrice30d),
+    dataPoints: sorted.length,
+
+    // Extended timeframes
+    avgPrice90d,
+    volatility90d: coeffVar(prices90d, avgPrice90d),
+    avgPrice365d,
+    volatility365d: coeffVar(pricesAll, avgPrice365d),
+    avgVolume90d,
+
+    // Technical indicators
+    rsi14d: indicators.rsi14d,
+    ...bollingerFields,
+    macdSignal: indicators.macd?.crossover ?? 0,
+    priceVsSma200d,
+  };
 }
 
 /**
@@ -148,6 +266,69 @@ export async function GET(request: NextRequest) {
     // Fetch all items with live quality scores
     const items = await getGeExchangeItems();
 
+    // Pre-filter to items worth re-scoring (positive margin + existing quality)
+    const scoreable = items.filter(
+      (item) =>
+        item.margin !== null &&
+        item.margin > 0 &&
+        item.buyPrice !== null &&
+        item.sellPrice !== null
+    );
+
+    // Enrich with historical context and re-score in batches
+    // Fetch up to 365 days for full multi-timeframe analysis (RSI, MACD, Bollinger, seasonality)
+    const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+    const batchSize = 50;
+    let historicalHits = 0;
+
+    for (let i = 0; i < scoreable.length; i += batchSize) {
+      const batch = scoreable.slice(i, i + batchSize);
+
+      const summariesBatch = await Promise.all(
+        batch.map((item) => getItemDailySummaries(item.id, oneYearAgo))
+      );
+
+      for (let j = 0; j < batch.length; j++) {
+        const item = batch[j]!;
+        const summaries = summariesBatch[j]!;
+        const historicalContext = computeHistoricalContext(
+          summaries,
+          item.buyPrice
+        );
+
+        if (historicalContext) {
+          historicalHits++;
+          // Re-score with historical context
+          item.flipQuality = calculateFlipQualityScore({
+            buyPrice: item.buyPrice,
+            sellPrice: item.sellPrice,
+            buyPriceTime: item.buyPriceTime,
+            sellPriceTime: item.sellPriceTime,
+            margin: item.margin,
+            tax: item.tax,
+            avgHighPrice5m: item.avgHighPrice5m,
+            avgLowPrice5m: item.avgLowPrice5m,
+            volume5m: item.volume5m,
+            highPriceVolume5m: item.highPriceVolume5m,
+            lowPriceVolume5m: item.lowPriceVolume5m,
+            avgHighPrice1h: item.avgHighPrice1h,
+            avgLowPrice1h: item.avgLowPrice1h,
+            volume1h: item.volume1h,
+            highPriceVolume1h: item.highPriceVolume1h,
+            lowPriceVolume1h: item.lowPriceVolume1h,
+            buyLimit: item.buyLimit,
+            alchFloor: item.alchFloor,
+            historicalContext,
+          });
+        }
+      }
+    }
+
+    logger.info(
+      { scoreable: scoreable.length, historicalHits },
+      'Historical context enrichment complete'
+    );
+
     // Filter to items with positive margin and quality scores
     const candidates = items
       .map(itemToSuggestion)
@@ -182,8 +363,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Persist to database
-    const { upserted, errors } =
-      await bulkUpsertFlipSuggestions(candidates);
+    const { upserted, errors } = await bulkUpsertFlipSuggestions(candidates);
 
     // Prune suggestions older than 48 hours that weren't refreshed
     const pruned = await pruneStaleFlipSuggestions(48 * 60 * 60 * 1000);
@@ -220,8 +400,7 @@ export async function GET(request: NextRequest) {
     const problem = createProblemDetails({
       status: 500,
       title: 'Cron job failed',
-      detail:
-        error instanceof Error ? error.message : 'Unknown error occurred',
+      detail: error instanceof Error ? error.message : 'Unknown error occurred',
       instance: request.nextUrl.pathname,
     });
     return NextResponse.json(problem, { status: problem.status });

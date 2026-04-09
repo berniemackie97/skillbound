@@ -1,0 +1,789 @@
+/* ==========================================================================
+   Market Tools Dashboard Styles
+   Components: Risk Metrics, Portfolio, Set Arbitrage, Death's Coffer,
+   Margin Check, Fill Time, Alerts, Multi-Account, Journal
+   ========================================================================== */
+
+/* ---------- Shared Market Tools Layout ---------- */
+
+.market-tools {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.market-tools-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.market-tools-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.market-tools-header .tools-badge {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.market-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-4);
+}
+
+.market-tools-grid.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 860px) {
+  .market-tools-grid,
+  .market-tools-grid.two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Tool Card (shared base) ---------- */
+
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+
+.tool-card:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tool-card-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.tool-card-icon.gold {
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--accent);
+}
+
+.tool-card-icon.green {
+  background: rgba(127, 175, 58, 0.12);
+  color: var(--accent-alt);
+}
+
+.tool-card-icon.blue {
+  background: rgba(58, 155, 207, 0.12);
+  color: var(--accent-blue);
+}
+
+.tool-card-icon.red {
+  background: rgba(207, 58, 58, 0.12);
+  color: var(--color-error);
+}
+
+.tool-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tool-card-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.tool-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tool-card-empty {
+  text-align: center;
+  padding: var(--space-4) 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Grade Badge ---------- */
+
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+.grade-badge.grade-A { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.grade-badge.grade-B { background: rgba(20, 184, 166, 0.15); color: #14b8a6; }
+.grade-badge.grade-C { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+.grade-badge.grade-D { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+.grade-badge.grade-F { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+.grade-badge.large {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  border-radius: 12px;
+}
+
+/* ---------- Stat Row ---------- */
+
+.tool-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.85rem;
+}
+
+.tool-stat-row + .tool-stat-row {
+  border-top: 1px solid var(--border);
+}
+
+.tool-stat-label {
+  color: var(--text-muted);
+}
+
+.tool-stat-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.tool-stat-value.positive { color: #4ade80; }
+.tool-stat-value.negative { color: #f87171; }
+
+/* ---------- Risk Metrics Card ---------- */
+
+.risk-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  background: var(--bg-elev);
+  border-radius: 10px;
+}
+
+.risk-hero-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.risk-hero-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.risk-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.risk-metric-cell {
+  text-align: center;
+  padding: 8px 4px;
+  background: var(--bg-elev);
+  border-radius: 8px;
+}
+
+.risk-metric-cell .label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.risk-metric-cell .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Portfolio Card ---------- */
+
+.portfolio-donut {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+}
+
+.portfolio-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.portfolio-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.portfolio-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.portfolio-legend-label {
+  flex: 1;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-legend-pct {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Clickable Item Links ---------- */
+
+.tool-item-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.tool-item-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Arbitrage Table ---------- */
+
+.arb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.arb-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.arb-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.arb-table tbody tr {
+  transition: background var(--dur-1) var(--ease-out);
+}
+
+.arb-table tbody tr:hover {
+  background: var(--bg-elev);
+}
+
+.arb-table tr:last-child td {
+  border-bottom: none;
+}
+
+.arb-direction {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.arb-direction.buy-set {
+  background: rgba(127, 175, 58, 0.12);
+  color: var(--accent-alt);
+}
+
+.arb-direction.buy-parts {
+  background: rgba(58, 155, 207, 0.12);
+  color: var(--accent-blue);
+}
+
+/* ---------- Death's Coffer Table ---------- */
+
+.coffer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.coffer-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.coffer-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.coffer-table tbody tr {
+  transition: background var(--dur-1) var(--ease-out);
+}
+
+.coffer-table tbody tr:hover {
+  background: var(--bg-elev);
+}
+
+.coffer-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Margin Check Form ---------- */
+
+.margin-form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.margin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.margin-form label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.margin-form input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--dur-1) var(--ease-out);
+}
+
+.margin-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+.margin-result {
+  padding: var(--space-3);
+  background: var(--bg-elev);
+  border-radius: 10px;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.margin-result-hero {
+  text-align: center;
+  padding: var(--space-2) 0;
+}
+
+.margin-result-hero .net-margin {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.margin-result-hero .net-margin.positive { color: #4ade80; }
+.margin-result-hero .net-margin.negative { color: #f87171; }
+
+.margin-result-hero .verdict {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Fill Time Display ---------- */
+
+.fill-time-visual {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--bg-elev);
+  border-radius: 10px;
+}
+
+.fill-time-clock {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: var(--bg-card);
+}
+
+.fill-time-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.fill-time-main {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.fill-time-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.fill-time-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-card);
+  overflow: hidden;
+  margin-top: var(--space-2);
+}
+
+.fill-time-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width var(--dur-3) var(--ease-out);
+}
+
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.confidence-badge.high {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+.confidence-badge.medium {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+}
+
+.confidence-badge.low {
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+}
+
+.confidence-badge.unknown {
+  background: var(--bg-card);
+  color: var(--text-muted);
+}
+
+/* ---------- Alert List ---------- */
+
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.alert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--bg-elev);
+  border-radius: 10px;
+  border-left: 3px solid var(--accent);
+  transition: background var(--dur-1) var(--ease-out);
+}
+
+.alert-item:hover {
+  background: var(--bg-card-strong);
+}
+
+.alert-item.price-below { border-left-color: var(--accent-alt); }
+.alert-item.price-above { border-left-color: var(--accent); }
+.alert-item.margin-threshold { border-left-color: var(--accent-blue); }
+.alert-item.volume-spike { border-left-color: #a855f7; }
+
+.alert-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.alert-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.alert-item-message {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.alert-item-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- Journal Tags ---------- */
+
+.journal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.journal-tag {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--dur-1) var(--ease-out);
+  user-select: none;
+}
+
+.journal-tag:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.journal-tag.active {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--accent);
+}
+
+.journal-tag.emotional {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.journal-tag.emotional.active {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+/* ---------- Multi-Account ---------- */
+
+.multi-account-accounts {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.multi-account-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-3);
+  background: var(--bg-elev);
+  border-radius: 8px;
+}
+
+.multi-account-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  min-width: 80px;
+}
+
+.multi-account-stats {
+  flex: 1;
+  display: flex;
+  gap: var(--space-4);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.multi-account-stats span {
+  white-space: nowrap;
+}
+
+/* ---------- Tool Card Full-Width ---------- */
+
+.tool-card.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Loading Skeleton ---------- */
+
+.tool-skeleton {
+  background: linear-gradient(90deg, var(--bg-elev) 25%, var(--bg-card) 50%, var(--bg-elev) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.tool-skeleton-line {
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.tool-skeleton-line.short { width: 60%; }
+.tool-skeleton-line.medium { width: 80%; }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .market-tools-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .arb-table,
+  .coffer-table {
+    font-size: 0.78rem;
+  }
+
+  .arb-table th,
+  .arb-table td,
+  .coffer-table th,
+  .coffer-table td {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tool-card {
+    padding: 16px;
+  }
+
+  .risk-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .risk-metric-cell {
+    padding: 6px 4px;
+  }
+
+  .risk-metric-cell .value {
+    font-size: 0.85rem;
+  }
+
+  .grade-badge.large {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .multi-account-stats {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .multi-account-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .portfolio-legend-item {
+    font-size: 0.72rem;
+  }
+
+  .arb-direction {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .tool-card {
+    padding: 12px;
+  }
+
+  .tool-card-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  .tool-card-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .tool-card-title {
+    font-size: 0.88rem;
+  }
+
+  .risk-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+}

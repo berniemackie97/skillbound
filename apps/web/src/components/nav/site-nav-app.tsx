@@ -31,6 +31,7 @@ const NAV_LINKS: NavLink[] = [
   { href: '/guides', label: 'Guides' },
   { href: '/trading', label: 'Trading' },
   { href: '/calculators', label: 'Calculators' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export async function SiteNavApp() {

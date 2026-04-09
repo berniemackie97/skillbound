@@ -27,6 +27,7 @@ export * from './progression/progression-extended';
 
 // Trading & Economy
 export * from './trading/trading';
+export * from './trading/market-history';
 
 // Export progression templates
 export * from '../data/progression-templates';

@@ -1,0 +1,224 @@
+/* Pages: Contact */
+
+.contact-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-6) 0;
+}
+
+/* Panel wrapper — matches the site's panel component look */
+.contact-panel {
+  padding: 28px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--bg-elev) 0%, rgba(42, 35, 24, 0.8) 100%);
+  border: 3px solid transparent;
+  border-image: linear-gradient(135deg, var(--rs-gold) 0%, var(--accent) 50%, var(--rs-tan) 100%) 1;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 223, 128, 0.15),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(212, 175, 55, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 223, 128, 0.4) 50%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.contact-hero {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.contact-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.contact-hero p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Category selector — compact pill row */
+.contact-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+
+.contact-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--dur-2) var(--ease-out);
+  white-space: nowrap;
+}
+
+.contact-category input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-category:hover {
+  border-color: var(--accent);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.contact-category--active {
+  border-color: var(--accent);
+  background: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.1);
+}
+
+.contact-category__label {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.contact-category--active .contact-category__label {
+  color: var(--accent-strong);
+}
+
+/* Hide descriptions — pills are self-explanatory */
+.contact-category__desc {
+  display: none;
+}
+
+/* Form fields */
+.contact-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  position: relative;
+}
+
+.contact-optional {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.contact-required {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.contact-label-text {
+  white-space: nowrap;
+}
+
+.contact-char-count {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0.6;
+}
+
+/* Error message */
+.contact-error {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: var(--radius-sm);
+  color: #fca5a5;
+  font-size: 0.82rem;
+  margin-bottom: var(--space-4);
+}
+
+/* Success state */
+.contact-success {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+}
+
+.contact-success__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  border: 2px solid rgba(34, 197, 94, 0.35);
+  color: #22c55e;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.contact-success h2 {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-2);
+}
+
+.contact-success p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Disable button while sending */
+.contact-form .button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Submit button — full width */
+.contact-form .form-actions {
+  display: flex;
+}
+
+.contact-form .form-actions .button {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .contact-panel {
+    padding: 20px;
+  }
+
+  .contact-categories {
+    gap: 6px;
+  }
+
+  .contact-category {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}

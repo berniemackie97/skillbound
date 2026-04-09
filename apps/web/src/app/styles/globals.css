@@ -29,6 +29,8 @@
 @import url('./20-pages.trading.css') layer(pages);
 @import url('./20-pages.calculators.css') layer(pages);
 @import url('./20-pages.item-detail.css') layer(pages);
+@import url('./20-pages.contact.css') layer(pages);
+@import url('./20-pages.market-tools.css') layer(pages);
 @import url('./20-pages.misc.css') layer(pages);
 
 /* Utilities last so they can intentionally override components/pages */

@@ -13,8 +13,13 @@ import {
 } from '@/lib/trading/trading-service';
 
 import { BankrollCard } from './bankroll-card';
+import { DeathsCofferCard } from './deaths-coffer-card';
 import { InventoryCard } from './inventory-card';
 import { LiveAlerts } from './live-alerts';
+import { MultiAccountCard } from './multi-account-card';
+import { PortfolioCard } from './portfolio-card';
+import { RiskMetricsCard } from './risk-metrics-card';
+import { SetArbitrageCard } from './set-arbitrage-card';
 import { TradeFilters } from './trade-filters';
 import { TradeForm } from './trade-form';
 import { TradeList } from './trade-list';
@@ -109,6 +114,10 @@ export async function TradeTrackerContent({
           getInventorySummary(characterId),
         ]);
 
+  const hasBankroll = Boolean(
+    bankroll && (bankroll.currentBankroll > 0 || bankroll.initialBankroll > 0)
+  );
+
   return (
     <div className="tracker-layout">
       <section className="tracker-stats">
@@ -126,6 +135,7 @@ export async function TradeTrackerContent({
               availableBankroll={bankroll?.currentBankroll ?? 0}
               bankroll={bankroll ?? { currentBankroll: 0, initialBankroll: 0 }}
               characterId={characterId}
+              hasBankroll={hasBankroll}
               scope={scope}
               totalProfit={profitSummary.totalProfit}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
@@ -150,6 +160,7 @@ export async function TradeTrackerContent({
             <TradeForm
               availableBankroll={bankroll?.currentBankroll ?? 0}
               characterId={characterId}
+              hasBankroll={hasBankroll}
               {...(preselectedItemId !== undefined && { preselectedItemId })}
             />
           </div>
@@ -200,6 +211,29 @@ export async function TradeTrackerContent({
           </div>
         </div>
       </div>
+
+      <section className="tracker-insights">
+        <div className="tracker-insights-header">
+          <h3>Analytics</h3>
+          <span className="tools-badge">Live</span>
+        </div>
+        <div className="tracker-insights-grid">
+          <RiskMetricsCard />
+          <PortfolioCard />
+        </div>
+      </section>
+
+      <section className="tracker-opportunities">
+        <div className="tracker-insights-header">
+          <h3>Market Opportunities</h3>
+          <span className="tools-badge">Live</span>
+        </div>
+        <div className="tracker-insights-grid">
+          <SetArbitrageCard />
+          <DeathsCofferCard />
+          <MultiAccountCard />
+        </div>
+      </section>
     </div>
   );
 }

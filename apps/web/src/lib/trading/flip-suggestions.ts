@@ -17,6 +17,7 @@ import {
 
 import { getDbClient } from '../db';
 import { logger } from '../logging/logger';
+
 import type { FlipQualityGrade, FlipQualityScore } from './flip-scoring';
 import { meetsMinimumGrade } from './flip-scoring';
 
@@ -155,6 +156,10 @@ export async function bulkUpsertFlipSuggestions(
       qualityVolumeAdequacy: item.flipQuality.breakdown.volumeAdequacy,
       qualityBuyPressure: item.flipQuality.breakdown.buyPressure,
       qualityTaxEfficiency: item.flipQuality.breakdown.taxEfficiency,
+      qualityVolumeAnomaly: item.flipQuality.breakdown.volumeAnomaly,
+      qualityPriceConsistency: item.flipQuality.breakdown.priceConsistency,
+      qualityHistoricalReliability:
+        item.flipQuality.breakdown.historicalReliability,
       qualityFlags: item.flipQuality.flags,
       calculatedAt: new Date(),
     }));
@@ -181,6 +186,9 @@ export async function bulkUpsertFlipSuggestions(
             qualityVolumeAdequacy: sql`excluded.quality_volume_adequacy`,
             qualityBuyPressure: sql`excluded.quality_buy_pressure`,
             qualityTaxEfficiency: sql`excluded.quality_tax_efficiency`,
+            qualityVolumeAnomaly: sql`excluded.quality_volume_anomaly`,
+            qualityPriceConsistency: sql`excluded.quality_price_consistency`,
+            qualityHistoricalReliability: sql`excluded.quality_historical_reliability`,
             qualityFlags: sql`excluded.quality_flags`,
             calculatedAt: sql`excluded.calculated_at`,
           },

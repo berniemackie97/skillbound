@@ -596,10 +596,7 @@ function ExchangeTableBase({
                     </span>
                   </div>
                   {item.flipQuality && (
-                    <FlipQualityBadge
-                      compact
-                      quality={item.flipQuality}
-                    />
+                    <FlipQualityBadge compact quality={item.flipQuality} />
                   )}
                 </div>
 
