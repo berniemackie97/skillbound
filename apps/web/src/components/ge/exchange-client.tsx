@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { FlipQualityGrade } from '@/lib/trading/flip-scoring';
 
+import { BankrollSetupModal } from './bankroll-setup-modal';
 import {
   DEFAULT_FILTERS,
   DEFAULT_REFRESH_INTERVAL,
@@ -191,6 +192,10 @@ export function ExchangeClient({
   const [smartFilterBankroll, setSmartFilterBankroll] = useState<number | null>(
     null
   );
+
+  // Bankroll setup modal
+  const [isBankrollModalOpen, setIsBankrollModalOpen] = useState(false);
+  const [pendingFlipAction, setPendingFlipAction] = useState(false);
 
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [nextRefreshAt, setNextRefreshAt] = useState<number | null>(null);
@@ -1141,48 +1146,55 @@ export function ExchangeClient({
   // Find Me a Flip
   // -------------------------------------------------------------------------
 
+  const applySmartFilterForBankroll = useCallback(
+    (bankrollAmount: number) => {
+      const thresholds = getSmartFilterThresholds(bankrollAmount);
+
+      const smartFilters: ColumnFilterState = {
+        ...DEFAULT_FILTERS,
+        profit: { min: thresholds.minProfit, max: '' },
+        volume: { min: thresholds.minVolume, max: '' },
+        roi: { min: thresholds.minRoi, max: '' },
+        buyPrice: { min: '', max: thresholds.maxPrice },
+      };
+
+      const normalized = normalizeFilters(smartFilters);
+      setFilters(normalized);
+      setHideNegativeMargin(true);
+      setMinFlipQuality(thresholds.minFlipQuality);
+      setSmartFilterBankroll(bankrollAmount);
+      setActivePresets(new Set()); // Clear presets when using smart filter
+
+      // Sort by profit desc
+      const nextSorts: SortState[] = [{ field: 'profit', direction: 'desc' }];
+      setSorts(nextSorts);
+
+      void fetchItems({
+        page: 1,
+        sorts: nextSorts,
+        search: '',
+        members: membersFilter,
+        filters: normalized,
+        hideNegativeMargin: true,
+        hideNegativeRoi: false,
+        minFlipQuality: thresholds.minFlipQuality,
+      });
+    },
+    [fetchItems, membersFilter]
+  );
+
   const handleFindMeAFlip = useCallback(() => {
     const currentBankroll = flipContext?.bankroll?.current ?? null;
 
-    // If no bankroll set, redirect to tracker to set it up
+    // If no bankroll set, open the inline setup modal and queue the flip action
     if (currentBankroll === null || currentBankroll <= 0) {
-      router.push('/trading/tracker');
+      setPendingFlipAction(true);
+      setIsBankrollModalOpen(true);
       return;
     }
 
-    // Apply smart filters based on bankroll
-    const thresholds = getSmartFilterThresholds(currentBankroll);
-
-    const smartFilters: ColumnFilterState = {
-      ...DEFAULT_FILTERS,
-      profit: { min: thresholds.minProfit, max: '' },
-      volume: { min: thresholds.minVolume, max: '' },
-      roi: { min: thresholds.minRoi, max: '' },
-      buyPrice: { min: '', max: thresholds.maxPrice },
-    };
-
-    const normalized = normalizeFilters(smartFilters);
-    setFilters(normalized);
-    setHideNegativeMargin(true);
-    setMinFlipQuality(thresholds.minFlipQuality);
-    setSmartFilterBankroll(currentBankroll);
-    setActivePresets(new Set()); // Clear presets when using smart filter
-
-    // Sort by profit desc
-    const nextSorts: SortState[] = [{ field: 'profit', direction: 'desc' }];
-    setSorts(nextSorts);
-
-    void fetchItems({
-      page: 1,
-      sorts: nextSorts,
-      search: '',
-      members: membersFilter,
-      filters: normalized,
-      hideNegativeMargin: true,
-      hideNegativeRoi: false,
-      minFlipQuality: thresholds.minFlipQuality,
-    });
-  }, [fetchItems, flipContext, membersFilter]);
+    applySmartFilterForBankroll(currentBankroll);
+  }, [applySmartFilterForBankroll, flipContext]);
 
   // -------------------------------------------------------------------------
   // Clear smart filter
@@ -1198,9 +1210,26 @@ export function ExchangeClient({
   // -------------------------------------------------------------------------
 
   const handleOpenBankrollSetup = useCallback(() => {
-    // Redirect to tracker page — that's the single source of truth for bankroll
-    router.push('/trading/tracker');
-  }, [router]);
+    setPendingFlipAction(false);
+    setIsBankrollModalOpen(true);
+  }, []);
+
+  const handleBankrollModalSubmit = useCallback(
+    (amount: number) => {
+      setIsBankrollModalOpen(false);
+      void refreshFlipContext();
+      if (pendingFlipAction) {
+        setPendingFlipAction(false);
+        applySmartFilterForBankroll(amount);
+      }
+    },
+    [applySmartFilterForBankroll, pendingFlipAction, refreshFlipContext]
+  );
+
+  const handleBankrollModalClose = useCallback(() => {
+    setIsBankrollModalOpen(false);
+    setPendingFlipAction(false);
+  }, []);
 
   // -------------------------------------------------------------------------
   // Display items (favorites filter)
@@ -1298,6 +1327,13 @@ export function ExchangeClient({
           onToggleFavorite={handleToggleFavorite}
         />
       </div>
+
+      <BankrollSetupModal
+        activeCharacterId={activeCharacterId}
+        isOpen={isBankrollModalOpen}
+        onClose={handleBankrollModalClose}
+        onSubmit={handleBankrollModalSubmit}
+      />
     </div>
   );
 }

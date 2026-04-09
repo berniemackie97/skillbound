@@ -17,7 +17,7 @@ interface BankrollCardProps {
   hideTitle?: boolean;
 }
 
-type Mode = 'view' | 'edit' | 'add-funds';
+type Mode = 'view' | 'setup' | 'edit' | 'add-funds';
 
 export function BankrollCard({
   characterId,
@@ -47,7 +47,7 @@ export function BankrollCard({
 
   // Focus appropriate input when switching modes
   useEffect(() => {
-    if (mode === 'edit') {
+    if (mode === 'edit' || mode === 'setup') {
       currentInputRef.current?.focus();
     } else if (mode === 'add-funds') {
       fundsInputRef.current?.focus();
@@ -76,6 +76,13 @@ export function BankrollCard({
     setMode('edit');
   }
 
+  function openSetup() {
+    setCurrentInput('');
+    setStartingInput('');
+    setError(null);
+    setMode('setup');
+  }
+
   function openAddFunds() {
     setFundsInput('');
     setError(null);
@@ -90,6 +97,41 @@ export function BankrollCard({
   /** Notify other tabs that bankroll changed */
   function notifyOtherTabs() {
     localStorage.setItem('bankroll-updated', String(Date.now()));
+  }
+
+  async function handleSetupSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+
+    const value = parseGp(currentInput);
+    if (value === null || value <= 0) {
+      setError('Enter a valid GP amount. Try: 5m, 500k, 1000000');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(`/api/characters/${characterId}/bankroll`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentBankroll: value,
+          initialBankroll: value,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to set bankroll');
+      }
+
+      setMode('view');
+      notifyOtherTabs();
+      router.refresh();
+    } catch {
+      setError('Failed to set bankroll. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   async function handleEditSubmit(e: React.FormEvent) {
@@ -223,7 +265,7 @@ export function BankrollCard({
             <button
               className="button ghost small"
               type="button"
-              onClick={openEdit}
+              onClick={hasBankroll ? openEdit : openSetup}
             >
               {hasBankroll ? 'Edit' : 'Set Up'}
             </button>
@@ -291,6 +333,53 @@ export function BankrollCard({
               </div>
             )}
           </>
+        )}
+
+        {mode === 'setup' && (
+          <form className="bankroll-edit-form" onSubmit={handleSetupSubmit}>
+            <p className="bankroll-setup-intro">
+              How much GP are you starting trading with? This becomes your
+              baseline for profit and ROI tracking.
+            </p>
+
+            <label className="bankroll-edit-field">
+              <span className="field-label">Starting Bankroll</span>
+              <input
+                ref={currentInputRef}
+                placeholder="e.g. 5m, 500k, 1000000"
+                type="text"
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
+              />
+              {currentInput && parseGp(currentInput) !== null && (
+                <span className="field-preview">
+                  = {formatGp(parseGp(currentInput))} GP
+                </span>
+              )}
+            </label>
+
+            <div className="bankroll-edit-actions">
+              <button
+                className="button primary small"
+                disabled={isSubmitting}
+                type="submit"
+              >
+                {isSubmitting ? 'Saving...' : 'Save Bankroll'}
+              </button>
+              <button
+                className="button ghost small"
+                disabled={isSubmitting}
+                type="button"
+                onClick={cancel}
+              >
+                Cancel
+              </button>
+            </div>
+
+            <p className="bankroll-hint">
+              Supports: 5m, 1.5k, 500000, or 2,500,000
+            </p>
+          </form>
         )}
 
         {mode === 'edit' && (
